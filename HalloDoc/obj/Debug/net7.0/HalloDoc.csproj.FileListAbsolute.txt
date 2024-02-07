@@ -30,3 +30,15 @@ D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\HalloDoc.genruntimeconfig.cache
 D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\ref\HalloDoc.dll
 D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\scopedcss\Views\Shared\_NotHeader.cshtml.rz.scp.css
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\libman.json
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Humanizer.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Mono.TextTemplating.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Npgsql.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.CodeDom.dll
+D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\HalloDoc.csproj.AssemblyReference.cache
+D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\HalloDoc.csproj.CopyComplete

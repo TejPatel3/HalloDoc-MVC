@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
     Layout = "_NotHeader";
 }
-<div class="col d-flex justify-content-end align-items-center">
+<div class="col d-flex justify-content-end align-items-center" style="min-height:10vh;">
     @* <i class="fa-regular fa-moon fa-2xl  btn btn-outline-info  px-2 py-3   m-3  " style="color: #0b8199;" onclick="myFunction()"></i> *@
     <img src="~/images/night-mode.png"
          id="theme-toggle"
@@ -11,13 +11,24 @@
          onclick="toggleTheme()" />
          </div>
 
+@* 
+@model IEnumerable<HalloDoc.DataModels.AspNetUser>
+@foreach (var item in Model)
+{
+
+    @Html.DisplayFor(modelItem => item.Email)
+
+    @Html.DisplayFor(modelItem => item.PasswordHash)
+
+}  *@
+
 
 <div class="container  align-items-center" >
 
 
     <img class="background-img d-sm-none d-block " />
 
-    <div class="row " style="min-height:80vh;">
+    <div class="row " style="min-height:85vh;">
         <div class=" d-flex justify-content-center align-items-center ">
             <img src="/images/hallodoc-transparent.png" class="img-fluid border border-1 shadow ms-2 bg-white bg-opacity-75 d-block rounded-3" style="height:138px; width:237px; " alt="" />
         </div>
