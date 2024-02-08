@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using HalloDoc.DataModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace HalloDoc.DataContext;
+namespace HalloDoc.Data;
 
 public partial class ApplicationDbContext : DbContext
 {

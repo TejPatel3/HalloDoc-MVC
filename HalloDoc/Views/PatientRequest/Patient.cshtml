@@ -1,14 +1,14 @@
-﻿
+﻿@model HalloDoc.DataModels.Request
 
-<div class="bg-light " >
-
-    <script>
+   @*  <script>
         swal("Information",
             "When submitting a request, you must provide the correct contact information for the patient or the responsibly party.Failure to provide the correct email and phone number will delay service or be declined.",
             "warning", {
             closeOnClickOutside: false,
         });
-    </script>
+    </script> *@
+
+<div class="bg-light " >
 
 
     <!--  trigger modal -->
@@ -49,6 +49,8 @@
                 Back
             </a>
         </div>
+        <form method="post" >
+
         <div class="row bg-white px-4 py-2">
             <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
             <div class="form-floating col-12 mb-3">
@@ -58,7 +60,7 @@
                 <label for="floatingTextarea" class="ms-2 ">Enter Brief details about symptoms(optional)</label>
             </div>
             <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
+                <input type="text" asp-for="FirstName"
                        class="form-control"
                        placeholder="Username"
                        aria-label="Username" />
@@ -144,13 +146,14 @@
                        aria-describedby="button-addon2" />
             </div>
             <div class="col-12 d-flex justify-content-end pb-2">
-                <button href="#" class="btn me-2 px-2 btn-info text-white">Submit</button>
-                <button href="#" class="btn px-2 btn-outline-info">Cancel</button>
+                <button type="submit" class="btn me-2 px-2 btn-info text-white">Submit</button>
+                <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
             </div>
         </div>
+        </form>
     </div>
 
-
+    </div>
 
 
     <!-- script -->

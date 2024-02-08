@@ -1,8 +1,10 @@
-﻿@{
+﻿@model HalloDoc.DataModels.AspNetUser
+@{
     Layout = "_NotHeader";
 }
-@model HalloDoc.DataModels.AspNetUser
 
+<img class="background-img d-block " style=""/>
+<div class="container-fluid p-0 m-0">
 <div class="d-flex justify-content-end align-items-center">
     <img src="~/images/night-mode.png"
          id="theme-toggle"
@@ -10,11 +12,9 @@
          class="img-fluid  btn btn-outline-info  px-1   m-sm-3 m-1 "
          onclick="toggleTheme()" />
 </div>
-<img class="background-img d-sm-none d-block " />
-<div class="container-fluid p-0 m-0">
     <div class="row g-0 d-flex justify-content-center align-items-center" style=" min-height:85vh;">
         <div class="col-10 p-0 col-sm-7 col-md-5 col-lg-5 col-xxl-4 col-xl-5   align-items-center">
-            <div class="justify-content-center d-flex" style="min-height:20vh;">
+            <div class="justify-content-center d-flex" >
                 <img src="/images/hallodoc-transparent.png" alt="" />
             </div>
             <div style="min-height:65vh;">
@@ -29,7 +29,6 @@
                 <div class="d-flex justify-content-center my-2 ">
                     <h3>Login To Your Account</h3>
                 </div>
-
                     <div class="form mt-xxl-5 mt-lg-2 mt-3">
                         <div class="col-12 d-flex justify-content-center mb-xxl-3">
                             <div class="col-12 form-floating mb-3  text-input-max-width">
@@ -37,6 +36,7 @@
                                        class="form-control"
                                        placeholder="Username"
                                        aria-label="Username" />
+                                <span asp-validation-for="Email"></span>
                                 <label class="d-flex justify-content-around" asp-for="Email">Username </label>
                                 <img src="/images/profile-icon.png "
                                      class="username-icon icons d-block mobile-icon"
@@ -52,6 +52,8 @@
                                        aria-label="Username"
                                      />
                                 <label class="d-flex justify-content-between" asp-for="PasswordHash">Password </label>
+                                <span asp-validation-for="Email"></span>
+
                                 <img src="/images/password-eye-icon.png"
                                      class="username-icon icons mobile-icon d-block"
                                      alt="" id="togglePassword" />

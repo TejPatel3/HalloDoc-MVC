@@ -1,0 +1,15 @@
+D:\Project\HalloDoc\HalloDoc.Data\obj\Debug\net7.0\HalloDoc.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\HalloDoc\HalloDoc.Data\obj\Debug\net7.0\HalloDoc.Data.AssemblyInfoInputs.cache
+D:\Project\HalloDoc\HalloDoc.Data\obj\Debug\net7.0\HalloDoc.Data.AssemblyInfo.cs
+D:\Project\HalloDoc\HalloDoc.Data\obj\Debug\net7.0\HalloDoc.Data.csproj.CoreCompileInputs.cache
+D:\Project\HalloDoc\HalloDoc.Data\obj\Debug\net7.0\HalloDoc.Data.csproj.AssemblyReference.cache
+D:\Project\HalloDoc\HalloDoc.Data\bin\Debug\net7.0\HalloDoc.Data.deps.json
+D:\Project\HalloDoc\HalloDoc.Data\bin\Debug\net7.0\HalloDoc.Data.dll
+D:\Project\HalloDoc\HalloDoc.Data\bin\Debug\net7.0\HalloDoc.Data.pdb
+D:\Project\HalloDoc\HalloDoc.Data\bin\Debug\net7.0\HalloDoc.Models.dll
+D:\Project\HalloDoc\HalloDoc.Data\bin\Debug\net7.0\HalloDoc.Models.pdb
+D:\Project\HalloDoc\HalloDoc.Data\obj\Debug\net7.0\HalloDoc.Data.csproj.CopyComplete
+D:\Project\HalloDoc\HalloDoc.Data\obj\Debug\net7.0\HalloDoc.Data.dll
+D:\Project\HalloDoc\HalloDoc.Data\obj\Debug\net7.0\refint\HalloDoc.Data.dll
+D:\Project\HalloDoc\HalloDoc.Data\obj\Debug\net7.0\HalloDoc.Data.pdb
+D:\Project\HalloDoc\HalloDoc.Data\obj\Debug\net7.0\ref\HalloDoc.Data.dll

@@ -399,6 +399,34 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
+      },
+      "HalloDoc.Data/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "HalloDoc.Models": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "7.0.15",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
+        },
+        "compile": {
+          "bin/placeholder/HalloDoc.Data.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HalloDoc.Data.dll": {}
+        }
+      },
+      "HalloDoc.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.15"
+        },
+        "compile": {
+          "bin/placeholder/HalloDoc.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HalloDoc.Models.dll": {}
+        }
       }
     }
   },
@@ -1017,10 +1045,21 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "HalloDoc.Data/1.0.0": {
+      "type": "project",
+      "path": "../HalloDoc.Data/HalloDoc.Data.csproj",
+      "msbuildProject": "../HalloDoc.Data/HalloDoc.Data.csproj"
+    },
+    "HalloDoc.Models/1.0.0": {
+      "type": "project",
+      "path": "../HalloDoc.Models/HalloDoc.Models.csproj",
+      "msbuildProject": "../HalloDoc.Models/HalloDoc.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "HalloDoc.Data >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 7.0.15",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.15",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.15",
@@ -1053,7 +1092,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Project\\HalloDoc\\HalloDoc.Data\\HalloDoc.Data.csproj": {
+              "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\HalloDoc.Data.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

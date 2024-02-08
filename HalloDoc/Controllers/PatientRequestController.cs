@@ -1,19 +1,38 @@
-﻿using HalloDoc.Models;
+﻿using HalloDoc.Data;
+using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace HalloDoc.Controllers
 {
+
     public class PatientRequestController : Controller
     {
-       public IActionResult CreateRequest()
+        private readonly ApplicationDbContext _context;
+
+        public PatientRequestController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        public IActionResult CreateRequest()
         {
             return View();
         }
-
         public IActionResult Patient()
         {
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Patient([Bind("FirstName")] Request rc)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                _context.Add(rc);
+                await _context.SaveChangesAsync();
+                return View();
+            }
+            return View(rc);
         }
         public IActionResult Business()
         {
