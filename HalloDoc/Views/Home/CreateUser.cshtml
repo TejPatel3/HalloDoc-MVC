@@ -35,9 +35,9 @@
                             <div class="col-12 form-floating mb-3  text-input-max-width">
                                 <input type="email" asp-for="Email"
                                        class="form-control"
-                                       placeholder="Username"
-                                       aria-label="Username" />
+                                   />
                                 <label class="d-flex justify-content-around" asp-for="Email">Username </label>
+                                <span asp-validation-for="Email"></span>
 
                                 <img src="/images/profile-icon.png "
                                      class="username-icon icons d-block mobile-icon"
@@ -52,6 +52,7 @@
                                        placeholder="Username"
                                        aria-label="Username" />
                                 <label class="d-flex justify-content-between" asp-for="PasswordHash">Password </label>
+                                <span asp-validation-for="PasswordHash"></span>
                                 <img src="/images/password-eye-icon.png"
                                      class="username-icon icons mobile-icon d-block"
                                      alt="" id="togglePassword" />
@@ -82,5 +83,8 @@
 
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+
 
                         

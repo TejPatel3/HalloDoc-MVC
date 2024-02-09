@@ -7,11 +7,12 @@ namespace HalloDoc.Models.ViewModel
     {
         [Column(TypeName = "character varying")]
         public string? PasswordHash { get; set; }
-
+        [Required(ErrorMessage = "Enter Your Email")]
         [StringLength(256)]
         public string? Email { get; set; }
 
         [Required]
+
         [Compare("PasswordHash")]
 
         public string? ConfirmPassword { get; set; }

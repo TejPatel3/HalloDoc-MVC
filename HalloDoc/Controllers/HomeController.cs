@@ -46,6 +46,7 @@ namespace HalloDoc.Controllers
                 Guid id = Guid.NewGuid();
                 AspNetUser user = new AspNetUser();
 
+
                 user.Id = id.ToString();
                 user.Email = obj.Email;
                 user.UserName = obj.Email;
@@ -79,7 +80,7 @@ namespace HalloDoc.Controllers
             if (_context.AspNetUsers.Where
                 (m => m.Email == obj.Email).Any() && _context.AspNetUsers.Where(user => user.PasswordHash == obj.PasswordHash).Any())
             {
-                return RedirectToAction("CreateRequest", "PatientRequest");
+                return RedirectToAction("Dashboard", "PatientDashboard");
             }
 
             return View();

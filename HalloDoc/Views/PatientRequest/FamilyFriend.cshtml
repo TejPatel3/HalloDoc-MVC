@@ -1,4 +1,4 @@
-﻿
+﻿@model HalloDoc.Models.ViewModel.request
 
 <div class="bg-light" >
 
@@ -50,21 +50,22 @@
             </a>
         </div>
         <div class="row bg-white  px-4 py-2">
+            <form asp-action="FamilyFrient" method="post">
 
             <h5 class="mb-3 mt-4 fw-semibold ">Family\Friend Information</h5>
             <div class="col-12 col-sm-6   form-floating mb-3 ">
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+                <input type="text" asp-for="rFirstName" class="form-control" placeholder="Username" aria-label="Username">
                 <label class="d-flex justify-content-between  ms-2">
                     Your First name
                 </label>
             </div>   <div class="col-12 col-sm-6   form-floating mb-3 ">
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+                    <input type="text" asp-for="rLastName" class="form-control" placeholder="Username" aria-label="Username">
                 <label class="d-flex justify-content-between  ms-2">
                     Your Last name
                 </label>
             </div>
             <div class="col-12 col-sm-6 form-floating mb-3">
-                <div class="form-control p-0" style="padding: auto auto">
+                    <div asp-for="rPhonenumber" class="form-control p-0" style="padding: auto auto;">
                     <input id="phone"
                            type="tel"
                            name="phone"
@@ -72,7 +73,7 @@
                 </div>
             </div>
             <div class="col-12 col-sm-6   form-floating mb-3 ">
-                <input type="email" class="form-control" placeholder="Username" aria-label="Username">
+                    <input type="email" asp-for="rEmail" class="form-control" placeholder="Username" aria-label="Username">
                 <label class="d-flex justify-content-between  ms-2">
                     Your Email
                 </label>
@@ -87,34 +88,34 @@
 
             <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
             <div class="form-floating col-12 mb-3">
-                <textarea class="form-control"
+                <textarea  class="form-control"
                           placeholder="Leave a comment here"
                           style="height: 100px"></textarea>
                 <label for="floatingTextarea" class="ms-2 text-secondary">Enter Brief details about symptoms(optional)</label>
             </div>
             <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
+                    <input type="text" asp-for="FirstName"
                        class="form-control"
                        placeholder="Username"
                        aria-label="Username" />
                 <label class="d-flex justify-content-between ms-2">First Name </label>
             </div>
             <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
+                    <input type="text" asp-for="LastName"
                        class="form-control"
                        placeholder="Username"
                        aria-label="Username" />
                 <label class="d-flex justify-content-between ms-2">Last name</label>
             </div>
             <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="date"
+                    <input type="date" asp-for="BirthDate"
                        class="form-control pt-2"
                        placeholder="Username"
                        aria-label="Username" />
             </div>
             <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
             <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
+                    <input type="text" asp-for="Email"
                        class="form-control"
                        placeholder="Username"
                        aria-label="Username" />
@@ -122,7 +123,7 @@
             </div>
             <div class="col-12 col-sm-6 form-floating mb-3">
                 <div class="form-control p-0" style="padding: auto auto">
-                    <input id="home"
+                        <input id="home" asp-for="PhoneNumber"
                            type="tel"
                            name="phone"
                            style="border: none; padding: 18px 2% 15px 50px" />
@@ -131,28 +132,28 @@
 
             <h5 class="mb-3 mt-4 fw-semibold">Patient Location</h5>
             <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
+                    <input type="text" asp-for="Street"
                        class="form-control"
                        placeholder="Username"
                        aria-label="Username" />
                 <label class="d-flex justify-content-between ms-2">Street </label>
             </div>
             <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
+                    <input type="text" asp-for="City"
                        class="form-control"
                        placeholder="Username"
                        aria-label="Username" />
                 <label class="d-flex justify-content-between ms-2">City </label>
             </div>
             <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
+                    <input type="text" asp-for="State"
                        class="form-control"
                        placeholder="Username"
                        aria-label="Username" />
                 <label class="d-flex justify-content-between ms-2">State </label>
             </div>
             <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
+                <input type="text" asp-for="ZipCode"
                        class="form-control"
                        placeholder="Username"
                        aria-label="Username" />
@@ -183,6 +184,7 @@
                 <button href="#" class="btn me-2 px-2 btn-info text-white">Submit</button>
                 <button href="#" class="btn px-2 btn-outline-info">Cancel</button>
             </div>
+            </form>
         </div>
     </div>
 

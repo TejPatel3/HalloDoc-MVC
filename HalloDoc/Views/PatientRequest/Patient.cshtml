@@ -1,6 +1,6 @@
-﻿@model HalloDoc.DataModels.Request
+﻿@model HalloDoc.Models.ViewModel.request
 
-   @*  <script>
+@*  <script>
         swal("Information",
             "When submitting a request, you must provide the correct contact information for the patient or the responsibly party.Failure to provide the correct email and phone number will delay service or be declined.",
             "warning", {
@@ -8,169 +8,221 @@
         });
     </script> *@
 
-<div class="bg-light " >
+<div class="bg-light ">
 
 
     <!--  trigger modal -->
- @*    <div class="modal fade"
-         id="exampleModalCenter"
-         tabindex="-1"
-         role="dialog"
-         aria-labelledby="exampleModalCenterTitle"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="d-flex flex-column align-items-center p-5">
-                        <img src="/images/alert.png"
-                             style="height: 40px; width: 40px"
-                             alt="" />
-                        <h2>Information</h2>
-                        <p class="d-flex justify-content-center px-5 py-3">
-                            When submitting a request, you must provide the correct contact
-                            information for the patient or the responsibly party. Failure to
-                            provide the correct email and phone number will delay service or
-                            be declined.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    @*    <div class="modal fade"
+    id="exampleModalCenter"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+    <div class="modal-body">
+    <div class="d-flex flex-column align-items-center p-5">
+    <img src="/images/alert.png"
+    style="height: 40px; width: 40px"
+    alt="" />
+    <h2>Information</h2>
+    <p class="d-flex justify-content-center px-5 py-3">
+    When submitting a request, you must provide the correct contact
+    information for the patient or the responsibly party. Failure to
+    provide the correct email and phone number will delay service or
+    be declined.
+    </p>
+    </div>
+    </div>
+    </div>
+    </div>
     </div> *@
 
- 
+
     <!-- form input -->
 
     <div class="container">
         <div class="d-flex justify-content-end w-100 mb-2">
-            <a asp-area ="" asp-controller="PatientRequest" asp-action="CreateRequest"
+            <a asp-area="" asp-controller="PatientRequest" asp-action="CreateRequest"
                class="btn m-0 btn-outline-info  px-2 ">
                 <i class="fa-solid fa-chevron-left"></i>
                 Back
             </a>
         </div>
-        <form method="post" >
+        <form method="post" asp-action="patient">
 
-        <div class="row bg-white px-4 py-2">
-            <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
-            <div class="form-floating col-12 mb-3">
-                <textarea class="form-control"
-                          placeholder="Leave a comment here"
-                          style="height: 100px"></textarea>
-                <label for="floatingTextarea" class="ms-2 ">Enter Brief details about symptoms(optional)</label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text" asp-for="FirstName"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">First Name </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">Last name</label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="date"
-                       class="form-control pt-2"
-                       placeholder="Username"
-                       aria-label="Username" />
-            </div>
-            <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">Email </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <div class="form-control p-0" style="padding: auto auto">
-                    <input id="phone"
-                           type="tel"
-                           name="phone"
-                           style="border: none; padding: 18px 2% 18px 50px" />
+            <div class="row bg-white px-4 py-2">
+                <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
+                <div class="form-floating col-12 mb-3">
+                    <textarea class="form-control"
+                              placeholder="Leave a comment here"
+                              style="height: 100px"></textarea>
+                    <label for="floatingTextarea" class="ms-2 ">Enter Brief details about symptoms(optional)</label>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="FirstName"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">First Name </label>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="LastName"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Last name</label>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="date" asp-for="BirthDate"
+                           class="form-control pt-4"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Email </label>
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+                <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="Email"
+                           class="form-control" id="patientEmail"
+                           placeholder="Username" onblur="checkEmailExists()" />
+                    <label class="d-flex justify-content-between ms-2">Email </label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <div class="form-control p-0" >
+                        <input id="phone" asp-for="PhoneNumber"
+                               type="tel"
+                               name="phone"
+                               style="border: none; padding: 18px 2% 18px 50px" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div id="passf" style="display : none">
+                 <div class="d-flex row">                
+                     <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields1">
+                    <input type="password" 
+                           class="form-control" 
+                           placeholder="Username" onblur="checkEmailExists()" />
+                    <label class="d-flex justify-content-between ms-2">Password </label>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields2">
+                    <input type="password"
+                           class="form-control"
+                           placeholder="Username" />
+                    <label class="d-flex justify-content-between ms-2">Confirm Password </label>
+                </div>
+                </div>
+                </div>
+
+                <h5 class="mb-3 mt-4 fw-semibold">Patient Location</h5>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="Street"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Street </label>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="City"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">City </label>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="State"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">State </label>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="ZipCode"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Zip code </label>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">
+                        Room # / Suite (optional)
+                    </label>
+                </div>
+
+                <h5 class="mb-3 mt-4 fw-semibold">
+                    (Optional) Upload Photo or Document
+                </h5>
+
+                <div class="input-group mb-3">
+                    <input type="file"
+                           class="form-control"
+                           placeholder="Select File"
+                           aria-label="Recipient's username"
+                           aria-describedby="button-addon2" />
+                </div>
+                <div class="col-12 d-flex justify-content-end pb-2">
+                    <button type="submit" class="btn me-2 px-2 btn-info text-white">Submit</button>
+                    <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
                 </div>
             </div>
-            <h5 class="mb-3 mt-4 fw-semibold">Patient Location</h5>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">Street </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">City </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">State </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">Zip code </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">
-                    Room # / Suite (optional)
-                </label>
-            </div>
-
-            <h5 class="mb-3 mt-4 fw-semibold">
-                (Optional) Upload Photo or Document
-            </h5>
-
-            <div class="input-group mb-3">
-                <input type="file"
-                       class="form-control"
-                       placeholder="Select File"
-                       aria-label="Recipient's username"
-                       aria-describedby="button-addon2" />
-            </div>
-            <div class="col-12 d-flex justify-content-end pb-2">
-                <button type="submit" class="btn me-2 px-2 btn-info text-white">Submit</button>
-                <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
-            </div>
-        </div>
         </form>
     </div>
 
-    </div>
+</div>
 
 
-    <!-- script -->
-    <script>
-        window.onload = () => {
-            const myModal = new bootstrap.Modal("#exampleModalCenter");
-            myModal.show();
-        };
+<!-- script -->
+<script>
+    window.onload = () => {
+        const myModal = new bootstrap.Modal("#exampleModalCenter");
+        myModal.show();
+    };
 
-        const phoneInputField = document.querySelector("#phone");
-        const phoneInput = window.intlTelInput(phoneInputField, {
-            utilsScript:
-                "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-        });
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
 
-        function myFunction() {
-            var element = document.body;
-            element.classList.toggle("dark-mode");
-        }
-    </script>
+    function myFunction() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+    }
+</script>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    function checkEmailExists() {
+        var email = document.getElementById("patientEmail").value;
+
+        fetch('/Patient/PatientInfoPage/checkemail/' + email)
+            .then(response => response.json())
+            .then(data => {
+                var patientPassword = document.getElementById('passwordFields1');
+                var patientConfirmPassword = document.getElementById('passwordFields2');
+                var passf = document.getElementById("passf");
+                if (data.exists) {
+                    patientPassword.style.display = 'none';
+                    patientConfirmPassword.style.display = 'none';
+                    passf.style.display = 'none';
+                    console.log("exist ")
+                }
+                else {
+                    patientPassword.style.display = 'block';
+                    patientConfirmPassword.style.display = 'block';
+                    passf.style.display = 'block';
+                    console.log(" not exist ")
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>

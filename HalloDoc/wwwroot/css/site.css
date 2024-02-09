@@ -417,3 +417,22 @@ footer{
     background-color: rgb(10 10 10) !important;
 
 }*/
+
+
+
+.active {
+    background: transparent !important;
+    color: #0dcaf0 !important;
+    border: none !important;
+    border-bottom: 2px solid #0dcaf0 !important;
+    border-radius: 0px !important;
+}
+.nav-link{
+    color:dimgray;
+}
+    .nav-link:hover {
+        color: #2196F3;
+        border: none;
+        border-bottom: 1px solid #69B8ED !important;
+        background-color: #E1F5FE;
+    }
