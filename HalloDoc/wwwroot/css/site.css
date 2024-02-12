@@ -436,3 +436,16 @@ footer{
         border-bottom: 1px solid #69B8ED !important;
         background-color: #E1F5FE;
     }
+
+
+
+.uploadbtn {
+    background-color: #00b8e6;
+    color: white;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.uploadbtndiv {
+    background-color: #ebebeb;
+}

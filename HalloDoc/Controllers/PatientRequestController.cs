@@ -1,8 +1,9 @@
-﻿using HalloDoc.Data;
+﻿using HalloDoc.DataContext;
 using HalloDoc.DataModels;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace HalloDoc.Controllers
 {
@@ -21,69 +22,259 @@ namespace HalloDoc.Controllers
         }
 
 
-
+        // Get Method for Patient Request
         public IActionResult Patient()
         {
             return View();
         }
+        //Post Method for Patient Request
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Patient(request req)
+        public async Task<IActionResult> Patient(patientRequest req)
         {
-            var Asp = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
-            User dUser = new User
+            if (!ModelState.IsValid)
             {
-                Email = req.Email,
-                Id = Asp.Id,
+                return View(req);
+            }
+            Guid id = Guid.NewGuid();
+            var Asp = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
+            if (Asp == null)
+            {
+                AspNetUser aspuser = new AspNetUser();
+                aspuser.Email = req.Email;
+                aspuser.PasswordHash = req.Password;
+                aspuser.UserName = req.FirstName;
+                aspuser.Id = id.ToString();
+                aspuser.CreatedDate = DateTime.Now;
+                _context.AspNetUsers.Add(aspuser);
+                _context.SaveChanges();
+            }
+            User user = _context.Users.FirstOrDefault(m => m.Email == req.Email);
+
+            if (user == null)
+            {
+                User addUser = new User();
+                addUser.Email = req.Email;
+                addUser.Id = id.ToString();
+                addUser.FirstName = req.FirstName;
+                addUser.LastName = req.LastName;
+                addUser.CreatedBy = id.ToString();
+                addUser.CreatedDate = DateTime.Now;
+                addUser.ModifiedBy = id.ToString();
+                addUser.IntYear = int.Parse(req.BirthDate?.ToString("yyyy"));
+                addUser.IntDate = int.Parse(req.BirthDate?.ToString("dd"));
+                addUser.StrMonth = req.BirthDate?.ToString("MMM");
+                //users.IntDate = req.BirthDat
+                _context.Users.Add(addUser);
+                _context.SaveChanges();
+            }
+
+            var users = await _context.Users.FirstOrDefaultAsync(m => m.Email == req.Email);
+            Request requests = new Request
+            {
+                UserId = users.UserId,
+                RequestTypeId = 2,
+                Status = 1,
+                Email = users.Email,
                 FirstName = req.FirstName,
                 LastName = req.LastName,
-                CreatedBy = Asp.Id,
                 CreatedDate = DateTime.Now,
-                ModifiedBy = Asp.Id,
-                UserId = 7,
             };
-            _context.Users.Add(dUser);
+            _context.Requests.Add(requests);
             _context.SaveChanges();
 
-            var user = await _context.Users.FirstOrDefaultAsync(m => m.Email == req.Email);
-
-            Request r = new Request
+            var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == users.Email);
+            if (requestdata != null)
             {
-                UserId = user.UserId,
-                RequestTypeId = 1,
+                RequestClient requestclients = new RequestClient
+                {
+                    FirstName = req.FirstName,
+                    LastName = req.LastName,
+                    Email = req.Email,
+                    PhoneNumber = req.PhoneNumber,
+                    Street = req.Street,
+                    City = req.City,
+                    State = req.State,
+                    ZipCode = req.ZipCode,
+                    RequestId = requestdata.RequestId,
+                    RegionId = 1,
+                    Notes = req.Notes,
+                    //IntDate = req.BirthDate.Day,
+                    //IntYear = req.BirthDate.Year,
+                    //StrMonth = req.BirthDate.ToString("MMMM"),
+                };
+                _context.RequestClients.Add(requestclients);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("PatientDashboard", "Dashboard");
+        }
+
+        //Get method for Family-Friend 
+        public IActionResult FamilyFriend()
+        {
+            return View();
+        }
+
+        //Post method for Family-Friend 
+        [HttpPost]
+        public async Task<IActionResult> FamilyFriend(request req)
+        {
+            Request requests = new Request
+            {
+                FirstName = req.FirstName,
+                LastName = req.LastName,
+                Email = req.Email,
+                CreatedDate = DateTime.Now,
+                RequestTypeId = 3,
                 Status = 1,
-                Email = user.Email,
             };
-            _context.Requests.Add(r);
+            _context.Requests.Add(requests);
             _context.SaveChanges();
-            var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == user.Email);
-            RequestClient rc = new RequestClient();
-            rc.FirstName = req.FirstName;
-            rc.LastName = req.LastName;
-            rc.Email = req.Email;
-            rc.PhoneNumber = req.PhoneNumber;
-            rc.Street = req.Street;
-            rc.City = req.City;
-            rc.State = req.State;
-            rc.ZipCode = req.ZipCode;
-            rc.RequestId = requestdata.RequestId;
-            rc.RegionId = 1;
-            _context.RequestClients.Add(rc);
+
+            var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == req.Email);
+            RequestClient requestclients = new RequestClient
+            {
+                FirstName = req.rFirstName,
+                LastName = req.rLastName,
+                Email = req.rEmail,
+                PhoneNumber = req.rPhoneNumber,
+                Street = req.Street,
+                City = req.City,
+                State = req.State,
+                ZipCode = req.ZipCode,
+                RequestId = requestdata.RequestId,
+                RegionId = 1,
+                Notes = req.Notes,
+            };
+            _context.RequestClients.Add(requestclients);
             _context.SaveChanges();
+            return RedirectToAction("CreateRequest");
+        }
+
+        //Get Method for Concierge Patient Request
+        public IActionResult Concierge()
+        {
+            return View();
+        }
+
+        //Get Method for Concierge Patient Request
+        [HttpPost]
+        public async Task<IActionResult> Concierge(request req)
+        {
+
+            Request requests = new Request
+            {
+                FirstName = req.FirstName,
+                LastName = req.LastName,
+                Email = req.Email,
+                CreatedDate = DateTime.Now,
+                RequestTypeId = 4,
+                Status = 1,
+            };
+            _context.Requests.Add(requests);
+            _context.SaveChanges();
+
+            var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == req.Email);
+            RequestClient requestclients = new RequestClient
+            {
+                FirstName = req.rFirstName,
+                LastName = req.rLastName,
+                Email = req.rEmail,
+                PhoneNumber = req.rPhoneNumber,
+                Street = req.Street,
+                City = req.City,
+                State = req.State,
+                ZipCode = req.ZipCode,
+                RequestId = requestdata.RequestId,
+                RegionId = 1,
+                Notes = req.Notes,
+            };
+            _context.RequestClients.Add(requestclients);
+            _context.SaveChanges();
+
+            Concierge congierges = new Concierge
+            {
+                ConciergeName = req.FirstName + " " + req.LastName,
+                Street = req.Street,
+                City = req.City,
+                State = req.State,
+                ZipCode = req.ZipCode,
+                CreatedDate = DateTime.Now,
+            };
+            _context.Concierges.Add(congierges);
+            _context.SaveChanges();
+
+            RequestConcierge reqconcierges = new RequestConcierge
+            {
+                RequestId = requests.RequestId,
+                ConciergeId = congierges.ConciergeId,
+            };
+            _context.RequestConcierges.Add(reqconcierges);
+            _context.SaveChanges();
+
             return RedirectToAction("CreateRequest");
 
         }
 
 
-
-
+        //Get Method for Business Patient Request
         public IActionResult Business()
         {
             return View();
         }
-        public IActionResult Concierge()
+
+        //Post Method for Business Patient Request
+        [HttpPost]
+        public async Task<IActionResult> Business(request req)
         {
-            return View();
+            Request requests = new Request
+            {
+                FirstName = req.FirstName,
+                LastName = req.LastName,
+                Email = req.Email,
+                CreatedDate = DateTime.Now,
+                RequestTypeId = 1,
+                Status = 1,
+            };
+            _context.Requests.Add(requests);
+            _context.SaveChanges();
+
+            var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == req.Email);
+            RequestClient requestclients = new RequestClient
+            {
+                FirstName = req.rFirstName,
+                LastName = req.rLastName,
+                Email = req.rEmail,
+                PhoneNumber = req.rPhoneNumber,
+                Street = req.Street,
+                City = req.City,
+                State = req.State,
+                ZipCode = req.ZipCode,
+                RequestId = requestdata.RequestId,
+                RegionId = 1,
+                Notes = req.Notes,
+            };
+            _context.RequestClients.Add(requestclients);
+            _context.SaveChanges();
+
+            Business businesses = new Business
+            {
+                Name = req.rFirstName + " " + req.rLastName,
+                PhoneNumber = req.rPhoneNumber,
+                CreatedDate = DateTime.Now,
+            };
+            _context.Businesses.Add(businesses);
+            _context.SaveChanges();
+
+            RequestBusiness reqBusiness = new RequestBusiness
+            {
+                RequestId = requests.RequestId,
+                BusinessId = businesses.BusinessId,
+            };
+            _context.RequestBusinesses.Add(reqBusiness);
+            _context.SaveChanges();
+
+            return RedirectToAction("CreateRequest");
         }
 
         [Route("/Patient/PatientInfoPage/checkemail/{email}")]
@@ -92,57 +283,6 @@ namespace HalloDoc.Controllers
         {
             var emailExists = _context.AspNetUsers.Any(u => u.Email == email);
             return Json(new { exists = emailExists });
-        }
-
-
-        public IActionResult FamilyFriend()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> FamilyFriend(request req)
-        {
-            var Asp = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
-            User dUser = new User
-            {
-                Email = req.Email,
-                Id = Asp.Id,
-                FirstName = req.FirstName,
-                LastName = req.LastName,
-                CreatedBy = Asp.Id,
-                CreatedDate = DateTime.Now,
-                ModifiedBy = Asp.Id,
-                UserId = 7,
-            };
-            _context.Users.Add(dUser);
-            _context.SaveChanges();
-
-            var user = await _context.Users.FirstOrDefaultAsync(m => m.Email == req.Email);
-
-            Request r = new Request
-            {
-                UserId = user.UserId,
-                RequestTypeId = 1,
-                Status = 1,
-                Email = req.Email,
-            };
-            _context.Requests.Add(r);
-            _context.SaveChanges();
-            var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == user.Email);
-            RequestClient rc = new RequestClient();
-            rc.FirstName = req.FirstName;
-            rc.LastName = req.LastName;
-            rc.Email = req.Email;
-            rc.PhoneNumber = req.PhoneNumber;
-            rc.Street = req.Street;
-            rc.City = req.City;
-            rc.State = req.State;
-            rc.ZipCode = req.ZipCode;
-            rc.RequestId = requestdata.RequestId;
-            rc.RegionId = 1;
-            _context.RequestClients.Add(rc);
-            _context.SaveChanges();
-            return RedirectToAction("CreateRequest");
         }
 
 

@@ -1,8 +1,9 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 using HalloDoc.DataModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace HalloDoc.Data;
+namespace HalloDoc.DataContext;
 
 public partial class ApplicationDbContext : DbContext
 {
@@ -417,7 +418,7 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.UserId).HasName("User_pkey");
 
-            entity.Property(e => e.UserId).ValueGeneratedNever();
+            entity.Property(e => e.UserId).HasDefaultValueSql("nextval('\"Concierge_ConciergeId_seq\"'::regclass)");
 
             entity.HasOne(d => d.CreatedByNavigation).WithMany(p => p.UserCreatedByNavigations)
                 .OnDelete(DeleteBehavior.ClientSetNull)

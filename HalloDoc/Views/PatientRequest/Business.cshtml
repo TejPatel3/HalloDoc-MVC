@@ -1,5 +1,5 @@
-﻿
-<div class="bg-light" >
+﻿@model HalloDoc.Models.ViewModel.request
+<div class="bg-light">
     <script>
         swal("Information",
             "When submitting a request, you must provide the correct contact information for the patient or the responsibly party.Failure to provide the correct email and phone number will delay service or be declined.",
@@ -10,187 +10,194 @@
     </script>
 
     <!-- form input -->
+    <form asp-action="Business" method="post">
 
-    <div class="container">
-        <div class="d-flex justify-content-end w-100 mb-2">
-            <a asp-area="" asp-controller="PatientRequest" asp-action="CreateRequest"
-               class="btn m-0 btn-outline-info  px-2 ">
-                <i class="fa-solid fa-chevron-left"></i>
-                Back
-            </a>
-        </div>
-        <div class="row bg-white px-4 py-2">
-            <h5 class="mb-3 mt-4 fw-semibold">Business Information</h5>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">
-                    Your First name
-                </label>
+        <div class="container">
+            <div class="d-flex justify-content-end w-100 mb-2">
+                <a asp-area="" asp-controller="PatientRequest" asp-action="CreateRequest"
+                   class="btn m-0 btn-outline-info  px-2 ">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    Back
+                </a>
             </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">
-                    Your Last name
-                </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <div class="form-control p-0" style="padding: auto auto">
-                    <input id="phone"
-                           type="tel"
-                           name="phone"
-                           style="border: none; padding: 18px 2% 18px 50px" />
+            <div class="row bg-white px-4 py-2">
+                <h5 class="mb-3 mt-4 fw-semibold">Business Information</h5>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="rFirstName"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">
+                        Your First name
+                    </label>
+                    <span asp-validation-for="rFirstName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="rLastName"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">
+                        Your Last name
+                    </label>
+                    <span asp-validation-for="rLastName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <div class="form-control p-0" style="padding: auto auto;">
+                        <input id="phone" asp-for="rPhoneNumber"
+                               type="tel"
+                               name="phone"
+                               style="border: none; padding: 18px 2% 18px 50px" />
+                    <span asp-validation-for="rPhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="email" asp-for="rEmail"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">
+                        Your Email
+                    </label>
+                    <span asp-validation-for="rEmail" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">
+                        Hotel\Property Name
+                    </label>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3 ">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">
+                        Case Number(optional)
+                    </label>
+                </div>
+                <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
+                <div class="form-floating col-12 mb-3">
+                    <textarea class="form-control" asp-for="Notes"
+                              placeholder="Leave a comment here"
+                              style="height: 100px"></textarea>
+                    <label for="floatingTextarea" class="ms-2 text-secondary">Enter Brief details about symptoms(optional)</label>
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="FirstName"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">First Name </label>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="LastName"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Last name</label>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="date" asp-for="BirthDate"
+                           class="form-control pt-2"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+                <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="Email"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Email </label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <div class="form-control p-0" style="padding: auto auto">
+                        <input id="home" asp-for="PhoneNumber"
+                               type="tel"
+                               name="phone"
+                               style="border: none; padding: 18px 2% 15px 50px" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+                <h5 class="mb-3 mt-4 fw-semibold">Patient Location</h5>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="Street"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Street </label>
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="City"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">City </label>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="State"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">State </label>
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="ZipCode"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Zip code </label>
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">
+                        Room # / Suite (optional)
+                    </label>
+                </div>
+
+
+                <div class="col-12 d-flex justify-content-end pb-2">
+                    <button type="submit" class="btn me-2 px-2 btn-info text-white">
+                        Submit
+                    </button>
+                    <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
                 </div>
             </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="email"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">
-                    Your Email
-                </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">
-                    Hotel\Property Name
-                </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3 ">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">
-                    Case Number(optional)
-                </label>
-            </div>
-            <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
-            <div class="form-floating col-12 mb-3">
-                <textarea class="form-control"
-                          placeholder="Leave a comment here"
-                          style="height: 100px"></textarea>
-                <label for="floatingTextarea" class="ms-2 text-secondary">Enter Brief details about symptoms(optional)</label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">First Name </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">Last name</label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="date"
-                       class="form-control pt-2"
-                       placeholder="Username"
-                       aria-label="Username" />
-            </div>
-            <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">Email </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <div class="form-control p-0" style="padding: auto auto">
-                    <input id="home"
-                           type="tel"
-                           name="phone"
-                           style="border: none; padding: 18px 2% 15px 50px" />
-
-                </div>
-            </div>
-
-            <h5 class="mb-3 mt-4 fw-semibold">Patient Location</h5>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">Street </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">City </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">State </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">Zip code </label>
-            </div>
-            <div class="col-12 col-sm-6 form-floating mb-3">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Username"
-                       aria-label="Username" />
-                <label class="d-flex justify-content-between ms-2">
-                    Room # / Suite (optional)
-                </label>
-            </div>
-
-            <h5 class="mb-3 mt-4 fw-semibold">
-                (Optional) Upload Photo or Document
-            </h5>
-
-            <div class="input-group mb-3">
-                <input type="file"
-                       class="form-control"
-                       placeholder="Select File"
-                       aria-label="Recipient's username"
-                       aria-describedby="button-addon2" />
-            </div>
-            <div class="col-12 d-flex justify-content-end pb-2">
-                <button href="#" class="btn me-2 px-2 btn-info text-white">
-                    Submit
-                </button>
-                <button href="#" class="btn px-2 btn-outline-info">Cancel</button>
-            </div>
         </div>
-    </div>
+    </form>
 </div>
 
 <script>
+                    
 
-const phoneInputField = document.querySelector("#phone");
-const phoneInput = window.intlTelInput(phoneInputField, {
-    utilsScript:
-        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-});
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
 
-const inputHome = document.querySelector("#home");
-window.intlTelInput(inputHome, {
-    initialCountry: 'gb',
-    placeholderNumberType: 'FIXED_LINE',
-    utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
-});
+    const inputHome = document.querySelector("#home");
+    window.intlTelInput(inputHome, {
+        initialCountry: 'gb',
+        placeholderNumberType: 'FIXED_LINE',
+        utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
+    });
 </script>

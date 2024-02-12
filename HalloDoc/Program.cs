@@ -1,5 +1,5 @@
-using HalloDoc.Data;
 
+using HalloDoc.DataContext;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

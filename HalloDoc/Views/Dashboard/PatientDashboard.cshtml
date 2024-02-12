@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<HalloDoc.DataModels.Request>
+@{
     Layout = "_dashboard";
 }
 
@@ -12,20 +13,49 @@
 
 </ul>
 
+<div class="bg-light">
 
-<div class="container pt-3" style="height:77vh;">
-    <h6>
+<div class="container-fluid px-xxl-5 px-md-3 px-1  pt-3" style="min-height:77vh;">
+    <h5 class="ps-1">
         <b>
-                        Medical History
+            Medical History
         </b>
-    </h6>
+    </h5>
 
-    <div class="container-fluid  bg-light py-2">
-        <div class="d-flex justify-content-end">
-        <button class="btn btn-outline-info btn-sm">Create New Request</button>
-
+    <div class="container-fluid px-3 bg-white py-2">
+        <div class="d-flex justify-content-end py-2">
+            <button class="btn btn-outline-info btn-sm">Create New Request</button>
         </div>
+
+        <table class="table">
+
+            <thead style="background-color:lightgray">
+                <tr>
+                    <th scope="col">Created Date<i class="fa-solid fa-arrow-down ps-2"></i></th>
+                    <th scope="col">Current Status</th>
+                    <th scope="col">Document</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    
+                <tr class="text-black">
+                        <td >
+                            @Html.DisplayFor(modelItem => item.CreatedDate) 
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    <td>Otto</td>
+                </tr>
+                }
+             
+            </tbody>
+        </table>
     </div>
 
 </div>
 
+
+</div>

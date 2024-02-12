@@ -1,4 +1,4 @@
-﻿@model HalloDoc.Models.ViewModel.request
+﻿@model HalloDoc.Models.ViewModel.patientRequest
 
 @*  <script>
         swal("Information",
@@ -10,33 +10,6 @@
 
 <div class="bg-light ">
 
-
-    <!--  trigger modal -->
-    @*    <div class="modal fade"
-    id="exampleModalCenter"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-    <div class="modal-body">
-    <div class="d-flex flex-column align-items-center p-5">
-    <img src="/images/alert.png"
-    style="height: 40px; width: 40px"
-    alt="" />
-    <h2>Information</h2>
-    <p class="d-flex justify-content-center px-5 py-3">
-    When submitting a request, you must provide the correct contact
-    information for the patient or the responsibly party. Failure to
-    provide the correct email and phone number will delay service or
-    be declined.
-    </p>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div> *@
 
 
     <!-- form input -->
@@ -80,41 +53,43 @@
                            class="form-control pt-4"
                            placeholder="Username"
                            aria-label="Username" />
-                    <label class="d-flex justify-content-between ms-2">Email </label>
+                    <label class="d-flex justify-content-between ms-2" asp-for="BirthDate">Birth Date</label>
                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
                 <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
                 <div class="col-12 col-sm-6 form-floating mb-3">
-                    <input type="text" asp-for="Email"
+                    <input type="email" asp-for="Email"
                            class="form-control" id="patientEmail"
                            placeholder="Username" onblur="checkEmailExists()" />
                     <label class="d-flex justify-content-between ms-2">Email </label>
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
-                    <div class="form-control p-0" >
+                    <div class="form-control p-0">
                         <input id="phone" asp-for="PhoneNumber"
                                type="tel"
-                               name="phone"
+                               name="PhoneNumber"
                                style="border: none; padding: 18px 2% 18px 50px" />
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
                 <div id="passf" style="display : none">
-                 <div class="d-flex row">                
-                     <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields1">
-                    <input type="password" 
-                           class="form-control" 
-                           placeholder="Username" onblur="checkEmailExists()" />
-                    <label class="d-flex justify-content-between ms-2">Password </label>
-                </div>
-                <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields2">
-                    <input type="password"
-                           class="form-control"
-                           placeholder="Username" />
-                    <label class="d-flex justify-content-between ms-2">Confirm Password </label>
-                </div>
-                </div>
+                    <div class="d-flex row">
+                        <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields1">
+                            <input type="password" asp-for="Password"
+                                   class="form-control"
+                                   placeholder="Username" onblur="checkEmailExists()" />
+                            <label class="d-flex justify-content-between ms-2">Password </label>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields2">
+                            <input type="password" asp-for="ConfirmPassword"
+                                   class="form-control"
+                                   placeholder="Username" />
+                            <label class="d-flex justify-content-between ms-2">Confirm Password </label>
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <h5 class="mb-3 mt-4 fw-semibold">Patient Location</h5>
@@ -160,12 +135,25 @@
                     (Optional) Upload Photo or Document
                 </h5>
 
-                <div class="input-group mb-3">
-                    <input type="file"
-                           class="form-control"
-                           placeholder="Select File"
-                           aria-label="Recipient's username"
-                           aria-describedby="button-addon2" />
+            
+
+                <div class="mt-1">
+                    <div class="row d-flex">
+                        <div class="p-2 col-12 ">
+                            <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
+                                <div class="px-3">
+                                    <lable class="choosenfile text-dark" id="file-chosen">No item selected</lable>
+                                </div>
+                                <div role="button" class="uploadbtn p-2 d-flex">
+                                    <input type="file" id="actual-btn" hidden />
+                                    <label role="button" for="actual-btn" class="d-flex align-items-center">
+                                        <i class="bi bi-cloud-arrow-up p-2"></i>
+                                        <div>Upload</div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end pb-2">
                     <button type="submit" class="btn me-2 px-2 btn-info text-white">Submit</button>
@@ -178,12 +166,15 @@
 </div>
 
 
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
 <!-- script -->
 <script>
-    window.onload = () => {
-        const myModal = new bootstrap.Modal("#exampleModalCenter");
-        myModal.show();
-    };
+    // window.onload = () => {
+    //     const myModal = new bootstrap.Modal("#exampleModalCenter");
+    //     myModal.show();
+    // };
 
     const phoneInputField = document.querySelector("#phone");
     const phoneInput = window.intlTelInput(phoneInputField, {
@@ -191,16 +182,15 @@
             "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
     });
 
+    //Dark Mode...!
     function myFunction() {
         var element = document.body;
         element.classList.toggle("dark-mode");
     }
-</script>
 
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-<script>
+
+    // check user exist in database or not...!
     function checkEmailExists() {
         var email = document.getElementById("patientEmail").value;
 
@@ -225,4 +215,15 @@
             })
             .catch(error => console.error('Error:', error));
     }
+
+
+    // upload button...!
+    const actualBtn = document.getElementById('actual-btn');
+
+    const fileChosen = document.getElementById('file-chosen');
+
+    actualBtn.addEventListener('change', function () {
+        fileChosen.textContent = this.files[0].name
+    })
+
 </script>
