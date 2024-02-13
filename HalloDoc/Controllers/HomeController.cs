@@ -74,15 +74,12 @@ namespace HalloDoc.Controllers
         public IActionResult Login(AspNetUser obj)
         {
 
-
-
-
             if (_context.AspNetUsers.Where
                 (m => m.Email == obj.Email).Any() && _context.AspNetUsers.Where(user => user.PasswordHash == obj.PasswordHash).Any())
             {
-                return RedirectToAction("Dashboard", "PatientDashboard");
+                var user = _context.Users.FirstOrDefault(m => m.Email == obj.Email);
+                return RedirectToAction("PatientDashboard", "Dashboard", new { id = user.UserId });
             }
-
             return View();
         }
 

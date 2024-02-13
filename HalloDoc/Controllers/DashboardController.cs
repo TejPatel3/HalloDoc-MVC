@@ -1,6 +1,6 @@
 ﻿using HalloDoc.DataContext;
+using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace HalloDoc.Controllers
 {
@@ -12,12 +12,19 @@ namespace HalloDoc.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> PatientDashboard()
+
+
+        public async Task<IActionResult> PatientDashboard(int id)
         {
-            return _context.Users != null ?
-                        View(await _context.Requests.ToListAsync()) :
-                        Problem("Entity set 'ApplicationDbContext.Users'  is null.");
+            PatientDashboard model = new PatientDashboard();
+            model.users = _context.Users.FirstOrDefault(m => m.UserId == id);
+            model.requests = (from m in _context.Requests where m.UserId == id select m).ToList();
+            var users = _context.Users.FirstOrDefault(m => m.UserId == id);
+            TempData["user"] = users.FirstName;
+
+            return View(model);
         }
+
 
     }
 }

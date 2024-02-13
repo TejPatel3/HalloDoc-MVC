@@ -1,5 +1,5 @@
 ﻿@model HalloDoc.Models.ViewModel.request
-<div class="bg-light">
+<div class="bg-light" >
     <script>
         swal("Information",
             "When submitting a request, you must provide the correct contact information for the patient or the responsibly party.Failure to provide the correct email and phone number will delay service or be declined.",
@@ -46,8 +46,7 @@
                     <div class="form-control p-0" style="padding: auto auto;">
                         <input id="phone" asp-for="rPhoneNumber"
                                type="tel"
-                               name="phone"
-                               style="border: none; padding: 18px 2% 18px 50px" />
+                               name="rPhoneNumber" style="border: none; padding: 18px 2% 18px 50px" />
                     <span asp-validation-for="rPhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
@@ -79,6 +78,8 @@
                         Case Number(optional)
                     </label>
                 </div>
+
+
                 <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
                 <div class="form-floating col-12 mb-3">
                     <textarea class="form-control" asp-for="Notes"
@@ -123,8 +124,7 @@
                     <div class="form-control p-0" style="padding: auto auto">
                         <input id="home" asp-for="PhoneNumber"
                                type="tel"
-                               name="phone"
-                               style="border: none; padding: 18px 2% 15px 50px" />
+                               name="PhoneNumber" style="border: none; padding: 18px 2% 15px 50px" />
                     <span asp-validation-for="PhoneNumber" class="text-danger"></span>
 
                     </div>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using HalloDoc.DataModels;
+﻿using HalloDoc.DataModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace HalloDoc.DataContext;
