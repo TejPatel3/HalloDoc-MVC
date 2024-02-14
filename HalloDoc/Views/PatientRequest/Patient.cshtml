@@ -1,6 +1,7 @@
 ﻿@model HalloDoc.Models.ViewModel.patientRequest
 
-@*  <script>
+<div class="bg-light">
+ @*    <script>
         swal("Information",
             "When submitting a request, you must provide the correct contact information for the patient or the responsibly party.Failure to provide the correct email and phone number will delay service or be declined.",
             "warning", {
@@ -8,9 +9,32 @@
         });
     </script> *@
 
-<div class="bg-light ">
-
-
+    <!--  trigger modal -->
+   @*  <div class="modal fade"
+         id="exampleModalCenter"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="d-flex flex-column align-items-center p-5">
+                        <img src="/images/alert.png"
+                             style="height: 40px; width: 40px"
+                             alt="" />
+                        <h2>Information</h2>
+                        <p class="d-flex justify-content-center px-5 py-3">
+                            When submitting a request, you must provide the correct contact
+                            information for the patient or the responsibly party. Failure to
+                            provide the correct email and phone number will delay service or
+                            be declined.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> *@
 
     <!-- form input -->
 
@@ -22,15 +46,17 @@
                 Back
             </a>
         </div>
-        <form method="post" asp-action="patient">
+        <form method="post" asp-action="Patient" enctype="multipart/form-data">
+            <div class="row bg-white  px-4 py-2">
 
-            <div class="row bg-white px-4 py-2">
+
+
                 <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
                 <div class="form-floating col-12 mb-3">
-                    <textarea class="form-control"
+                    <textarea class="form-control" asp-for="Notes"
                               placeholder="Leave a comment here"
                               style="height: 100px"></textarea>
-                    <label for="floatingTextarea" class="ms-2 ">Enter Brief details about symptoms(optional)</label>
+                    <label for="floatingTextarea" class="ms-2 text-secondary">Enter Brief details about symptoms(optional)</label>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text" asp-for="FirstName"
@@ -50,10 +76,9 @@
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="date" asp-for="BirthDate"
-                           class="form-control pt-4"
+                           class="form-control pt-2"
                            placeholder="Username"
                            aria-label="Username" />
-                    <label class="d-flex justify-content-between ms-2" asp-for="BirthDate">Birth Date</label>
                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
                 <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
@@ -77,17 +102,21 @@
                     <div class="d-flex row">
                         <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields1">
                             <input type="password" asp-for="Password"
-                                   class="form-control"
+                                   class="form-control" id="pswd"
                                    placeholder="Username" onblur="checkEmailExists()" />
                             <label class="d-flex justify-content-between ms-2">Password </label>
                             <span asp-validation-for="Password" class="text-danger"></span>
+                            <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-icons" onclick="hideviewpswd()"></i>
+
                         </div>
                         <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields2">
                             <input type="password" asp-for="ConfirmPassword"
-                                   class="form-control"
+                                   class="form-control" id="pswd"
                                    placeholder="Username" />
                             <label class="d-flex justify-content-between ms-2">Confirm Password </label>
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-iconc" onclick="hideviewpswdcnf()"></i>
+
                         </div>
                     </div>
                 </div>
@@ -99,6 +128,7 @@
                            placeholder="Username"
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ms-2">Street </label>
+                    <span asp-validation-for="Street" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text" asp-for="City"
@@ -106,6 +136,7 @@
                            placeholder="Username"
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ms-2">City </label>
+                    <span asp-validation-for="City" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text" asp-for="State"
@@ -113,6 +144,7 @@
                            placeholder="Username"
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ms-2">State </label>
+                    <span asp-validation-for="State" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text" asp-for="ZipCode"
@@ -120,6 +152,7 @@
                            placeholder="Username"
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ms-2">Zip code </label>
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text"
@@ -135,20 +168,18 @@
                     (Optional) Upload Photo or Document
                 </h5>
 
-            
-
                 <div class="mt-1">
                     <div class="row d-flex">
                         <div class="p-2 col-12 ">
                             <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
                                 <div class="px-3">
-                                    <lable class="choosenfile text-dark" id="file-chosen">No item selected</lable>
+                                    @*<label class="choosenfile text-dark small" id="file-chosen">No item selected</label>*@
+                                    <input type="text" id="file-chosen" class="border border-0" placeholder="No item selected" disabled />
                                 </div>
                                 <div role="button" class="uploadbtn p-2 d-flex">
-                                    <input type="file" id="actual-btn" hidden />
+                                    <input type="file" id="actual-btn" asp-for="Upload" multiple hidden />
                                     <label role="button" for="actual-btn" class="d-flex align-items-center">
-                                        <i class="bi bi-cloud-arrow-up p-2"></i>
-                                        <div>Upload</div>
+                                        <i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div>
                                     </label>
                                 </div>
                             </div>
@@ -162,20 +193,13 @@
             </div>
         </form>
     </div>
-
 </div>
-
 
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 <!-- script -->
 <script>
-    // window.onload = () => {
-    //     const myModal = new bootstrap.Modal("#exampleModalCenter");
-    //     myModal.show();
-    // };
-
     const phoneInputField = document.querySelector("#phone");
     const phoneInput = window.intlTelInput(phoneInputField, {
         utilsScript:
@@ -187,13 +211,9 @@
         var element = document.body;
         element.classList.toggle("dark-mode");
     }
-
-
-
     // check user exist in database or not...!
     function checkEmailExists() {
         var email = document.getElementById("patientEmail").value;
-
         fetch('/Patient/PatientInfoPage/checkemail/' + email)
             .then(response => response.json())
             .then(data => {
@@ -216,14 +236,51 @@
             .catch(error => console.error('Error:', error));
     }
 
-
     // upload button...!
     const actualBtn = document.getElementById('actual-btn');
-
     const fileChosen = document.getElementById('file-chosen');
-
     actualBtn.addEventListener('change', function () {
         fileChosen.textContent = this.files[0].name
     })
 
+    actualBtn.addEventListener('change', function () {
+        /*fileChosen.textContent = this.files[0].name*/
+        fileChosen.placeholder = this.files[0].name
+        fileChosen.value = this.files[0].name
+    })
+
+    window.onload = () => {
+        const myModal = new bootstrap.Modal("#exampleModalCenter");
+        myModal.show();
+    };
+
+
+    const eyeicon = document.getElementById('eye-icons')
+    const eyeiconc = document.getElementById('eye-iconc')
+    const password = document.getElementById('pswd')
+    const confirmpassword = document.getElementById('pswdcnf')
+    function hideviewpswd() {
+        if (password.type === "password") {
+            console.log(confirmpassword)
+            eyeicon.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
+            password.type = "text"
+        }
+        else {
+            eyeicon.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
+            password.type = "password"
+        }
+    }
+
+
+    function hideviewpswdcnf() {
+        if (confirmpassword.type === "password") {
+            console.log(confirmpassword)
+            eyeiconc.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
+            confirmpassword.type = "text"
+        }
+        else {
+            eyeiconc.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
+            confirmpassword.type = "password"
+        }
+    }
 </script>

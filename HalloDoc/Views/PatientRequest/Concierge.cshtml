@@ -1,9 +1,6 @@
 ﻿@model HalloDoc.Models.ViewModel.request
 <div class="bg-light">
 
-
-
-
     <script>
         swal("Information",
             "When submitting a request, you must provide the correct contact information for the patient or the responsibly party.Failure to provide the correct email and phone number will delay service or be declined.",
@@ -68,7 +65,7 @@
                     <span asp-validation-for="rLastName" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
-                    <div class="form-control p-0" >
+                    <div class="form-control p-0">
                         <input id="phone" asp-for="rPhoneNumber"
                                type="tel"
                                name="rPhoneNumber"
@@ -101,7 +98,6 @@
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ms-2">First Name </label>
                     <span asp-validation-for="FirstName" class="text-danger"></span>
-
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text" asp-for="LastName"
@@ -132,10 +128,9 @@
                         <input id="home" asp-for="PhoneNumber"
                                type="tel"
                                name="PhoneNumber" style="border: none; padding: 18px 2% 15px 50px" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
-
                 <h5 class="mb-3 mt-4 fw-semibold">Patient Location</h5>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text" asp-for="Street"
@@ -178,8 +173,6 @@
                         Room # / Suite (optional)
                     </label>
                 </div>
-
-
                 <div class="col-12 d-flex justify-content-end pb-2">
                     <button type="submit" class="btn me-2 px-2 btn-info text-white">Submit</button>
                     <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
@@ -192,25 +185,21 @@
 
 <!-- script -->
 <script>
-
     window.onload = () => {
         const myModal = new bootstrap.Modal("#exampleModalCenter");
         myModal.show();
     };
-
     const phoneInputField = document.querySelector("#phone");
     const phoneInput = window.intlTelInput(phoneInputField, {
         utilsScript:
             "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
     });
-
     const inputHome = document.querySelector("#home");
     window.intlTelInput(inputHome, {
         initialCountry: 'gb',
         placeholderNumberType: 'FIXED_LINE',
         utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
     });
-
     function myFunction() {
         var element = document.body;
         element.classList.toggle("dark-mode");

@@ -1,17 +1,15 @@
 ﻿@model HalloDoc.Models.ViewModel.request
-<div class="bg-light" >
+<div class="bg-light">
     <script>
         swal("Information",
             "When submitting a request, you must provide the correct contact information for the patient or the responsibly party.Failure to provide the correct email and phone number will delay service or be declined.",
             "warning", {
             closeOnClickOutside: false,
-
         });
     </script>
 
     <!-- form input -->
     <form asp-action="Business" method="post">
-
         <div class="container">
             <div class="d-flex justify-content-end w-100 mb-2">
                 <a asp-area="" asp-controller="PatientRequest" asp-action="CreateRequest"
@@ -47,7 +45,7 @@
                         <input id="phone" asp-for="rPhoneNumber"
                                type="tel"
                                name="rPhoneNumber" style="border: none; padding: 18px 2% 18px 50px" />
-                    <span asp-validation-for="rPhoneNumber" class="text-danger"></span>
+                        <span asp-validation-for="rPhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
@@ -78,7 +76,6 @@
                         Case Number(optional)
                     </label>
                 </div>
-
 
                 <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
                 <div class="form-floating col-12 mb-3">
@@ -125,8 +122,7 @@
                         <input id="home" asp-for="PhoneNumber"
                                type="tel"
                                name="PhoneNumber" style="border: none; padding: 18px 2% 15px 50px" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -172,8 +168,6 @@
                         Room # / Suite (optional)
                     </label>
                 </div>
-
-
                 <div class="col-12 d-flex justify-content-end pb-2">
                     <button type="submit" class="btn me-2 px-2 btn-info text-white">
                         Submit
@@ -186,7 +180,7 @@
 </div>
 
 <script>
-                    
+
 
     const phoneInputField = document.querySelector("#phone");
     const phoneInput = window.intlTelInput(phoneInputField, {

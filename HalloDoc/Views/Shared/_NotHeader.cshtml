@@ -15,17 +15,17 @@
 </head>
 <body>
     <div>
-                @RenderBody()
+        @RenderBody()
     </div>
+
     <footer class="footer fixed-bottom bg-white d-flex align-items-center" style="height:5vh;">
         <div class="container p-0 d-flex justify-content-center ">
             <span class="text-secondary"> Terms and Condition | Privacy Policy</span>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
@@ -37,7 +37,7 @@
 
 
 <script>
-    //SHOW pASSWORD
+    //SHOW PASSWORD
     const eyeicon = document.getElementById('eye-icons')
     const eyeiconc = document.getElementById('eye-iconc')
     const password = document.getElementById('pswd')
@@ -46,32 +46,24 @@
         if (password.type === "password") {
             console.log(confirmpassword)
             eyeicon.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
-            // eyeiconc.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
             password.type = "text"
-            // confirmpassword.type = "text"
         }
         else {
             eyeicon.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
-            // eyeiconc.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
             password.type = "password"
-            // confirmpassword.type = "password"
-                    }
+        }
     }
+
+
     function hideviewpswdcnf() {
-        if (password.type === "password") {
+        if (confirmpassword.type === "password") {
             console.log(confirmpassword)
-            // eyeicon.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
             eyeiconc.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
-            // password.type = "text"
             confirmpassword.type = "text"
         }
         else {
-            // eyeicon.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
             eyeiconc.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
-            // password.type = "password"
             confirmpassword.type = "password"
-                    }
+        }
     }
-
-
 </script>

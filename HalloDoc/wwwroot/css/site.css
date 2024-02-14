@@ -69,7 +69,7 @@ footer {
 .background-img {
     background-image: url(/images/7768657_3763028.jpg);
     background-repeat: no-repeat;
-    background-position: center top;
+    background-position: center ;
     background-blend-mode: darken;
     position: absolute;
     top: 0;

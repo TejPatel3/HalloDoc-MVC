@@ -19,7 +19,6 @@
             </div>
             <div style="min-height:65vh;">
                 <form asp-action="CreateUser" method="post">
-
                     <div class="text-info  d-none d-sm-block w-50 my-3">
                         <a asp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none fw-bold fs-5 text-info">
                             <i class="fa-solid fa-chevron-left" style="color: #17a2b8"></i>
@@ -29,7 +28,6 @@
                     <div class="d-flex justify-content-center my-2 ">
                         <h3>Create Your Account</h3>
                     </div>
-
                     <div class="form mt-xxl-5 mt-lg-2 mt-3">
                         <div class="col-12 d-flex justify-content-center mb-xxl-3">
                             <div class="col-12 form-floating mb-3  text-input-max-width">
@@ -39,12 +37,9 @@
                                        aria-label="Username" />
                                 <label class="d-flex justify-content-around" asp-for="Email">Username </label>
                                 <span asp-validation-for="Email"></span>
-
                                 <i class="bi bi-person-circle icon username-icon icons  mobile-icon    d-block" role="button" id="eye-icon"></i>
-
                             </div>
                         </div>
-
                         <div class="col-12 d-flex justify-content-center mb-xxl-3">
                             <div class="col-12 form-floating mb-3  text-input-max-width">
                                 <input type="password" asp-for="PasswordHash"
@@ -54,7 +49,6 @@
                                 <label class="d-flex justify-content-between" asp-for="PasswordHash">Password </label>
                                 <span asp-validation-for="PasswordHash"></span>
                                 <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-icons" onclick="hideviewpswd()"></i>
-
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center mb-xxl-3">
@@ -65,13 +59,11 @@
                                 <label class="d-flex justify-content-between">Confirm Password </label>
                                 <span asp-validation-for="ConfirmPassword"></span>
                                 <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-iconc" onclick="hideviewpswdcnf()"></i>
-
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center mb-xxl-3 ">
                             <button type="submit" class="btn btn-info w-100 btn-lg text-white text-input-max-width">Create Account</button>
                         </div>
-                        
                     </div>
                 </form>
             </div>
@@ -85,4 +77,3 @@
 
 
 
-                        

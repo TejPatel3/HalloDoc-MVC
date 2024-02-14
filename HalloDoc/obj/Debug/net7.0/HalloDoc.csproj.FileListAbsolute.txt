@@ -46,3 +46,4 @@ D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\HalloDoc.Data.dll
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\HalloDoc.Models.dll
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\HalloDoc.Data.pdb
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\HalloDoc.Models.pdb
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.Security.Permissions.dll

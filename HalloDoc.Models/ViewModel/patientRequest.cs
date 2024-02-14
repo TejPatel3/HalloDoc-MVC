@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HalloDoc.Models.ViewModel
@@ -72,5 +73,6 @@ namespace HalloDoc.Models.ViewModel
         [StringLength(500)]
         public string? Notes { get; set; }
 
+        public List<IFormFile?> Upload { get; set; }
     }
 }

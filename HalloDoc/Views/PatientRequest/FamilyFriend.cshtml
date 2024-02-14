@@ -1,16 +1,13 @@
 ﻿@model HalloDoc.Models.ViewModel.request
 
 <div class="bg-light">
-
     <script>
         swal("Information",
             "When submitting a request, you must provide the correct contact information for the patient or the responsibly party.Failure to provide the correct email and phone number will delay service or be declined.",
             "warning", {
             closeOnClickOutside: false,
-
         });
     </script>
-
 
     <!--  trigger modal -->
     @*   <div class="modal fade"
@@ -49,7 +46,7 @@
                 Back
             </a>
         </div>
-        <form asp-action="FamilyFriend" method="post">
+        <form asp-action="FamilyFriend" method="post" enctype="multipart/form-data">
             <div class="row bg-white  px-4 py-2">
 
                 <h5 class="mb-3 mt-4 fw-semibold ">Family\Friend Information</h5>
@@ -59,8 +56,8 @@
                         Your First name
                     </label>
                     <span asp-validation-for="rFirstName" class="text-danger"></span>
-
-                </div>   <div class="col-12 col-sm-6   form-floating mb-3 ">
+                </div>
+                <div class="col-12 col-sm-6   form-floating mb-3 ">
                     <input type="text" asp-for="rLastName" class="form-control" placeholder="Username" aria-label="Username">
                     <label class="d-flex justify-content-between  ms-2">
                         Your Last name
@@ -73,7 +70,7 @@
                                type="tel"
                                name="rPhoneNumber"
                                style="border: none; padding: 18px 2% 18px 50px" />
-                    <span asp-validation-for="rPhoneNumber" class="text-danger"></span>
+                        <span asp-validation-for="rPhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6   form-floating mb-3 ">
@@ -88,8 +85,6 @@
                         Relation with Patient
                     </label>
                 </div>
-
-
 
                 <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
                 <div class="form-floating col-12 mb-3">
@@ -131,12 +126,12 @@
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
-                    <div class="form-control p-0" >
+                    <div class="form-control p-0">
                         <input id="home" asp-for="PhoneNumber"
                                type="tel"
                                name="PhoneNumber"
                                style="border: none; padding: 18px 2% 15px 50px" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
 
@@ -186,19 +181,18 @@
                 <h5 class="mb-3 mt-4 fw-semibold">
                     (Optional) Upload Photo or Document
                 </h5>
-
                 <div class="mt-1">
                     <div class="row d-flex">
                         <div class="p-2 col-12 ">
                             <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
                                 <div class="px-3">
-                                    <lable class="choosenfile text-dark" id="file-chosen">No item selected</lable>
+                                    @*<label class="choosenfile text-dark small" id="file-chosen">No item selected</label>*@
+                                    <input type="text" id="file-chosen" class="border border-0" placeholder="No item selected" disabled />
                                 </div>
                                 <div role="button" class="uploadbtn p-2 d-flex">
-                                    <input type="file" id="actual-btn" hidden />
+                                    <input type="file" id="actual-btn" asp-for="Upload" multiple hidden />
                                     <label role="button" for="actual-btn" class="d-flex align-items-center">
-                                        <i class="bi bi-cloud-arrow-up p-2"></i>
-                                        <div>Upload</div>
+                                        <i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div>
                                     </label>
                                 </div>
                             </div>
@@ -212,7 +206,6 @@
             </div>
         </form>
     </div>
-
 </div>
 
 
@@ -223,12 +216,14 @@
         myModal.show();
     };
 
+    //Contact Number
     const phoneInputField = document.querySelector("#phone");
     const phoneInput = window.intlTelInput(phoneInputField, {
         utilsScript:
             "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
     });
 
+    //DarkMode
     function myFunction() {
         var element = document.body;
         element.classList.toggle("dark-mode");
@@ -237,7 +232,7 @@
     window.intlTelInput(inputHome, {
         initialCountry: 'gb',
         placeholderNumberType: 'FIXED_LINE',
-        utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
+        utilsScript: "/intl-tel-input/js/utils.js?1705750707383"
     });
 
     // upload button...!
@@ -247,5 +242,10 @@
 
     actualBtn.addEventListener('change', function () {
         fileChosen.textContent = this.files[0].name
+    })
+    actualBtn.addEventListener('change', function () {
+        /*fileChosen.textContent = this.files[0].name*/
+        fileChosen.placeholder = this.files[0].name
+        fileChosen.value = this.files[0].name
     })
 </script>

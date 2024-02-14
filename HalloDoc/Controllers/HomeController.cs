@@ -73,12 +73,12 @@ namespace HalloDoc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(AspNetUser obj)
         {
-
             if (_context.AspNetUsers.Where
                 (m => m.Email == obj.Email).Any() && _context.AspNetUsers.Where(user => user.PasswordHash == obj.PasswordHash).Any())
             {
                 var user = _context.Users.FirstOrDefault(m => m.Email == obj.Email);
-                return RedirectToAction("PatientDashboard", "Dashboard", new { id = user.UserId });
+                HttpContext.Session.SetInt32("UserId", user.UserId);
+                return RedirectToAction("PatientDashboard", "Dashboard");
             }
             return View();
         }

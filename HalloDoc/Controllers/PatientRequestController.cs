@@ -3,18 +3,18 @@ using HalloDoc.DataModels;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
-
 namespace HalloDoc.Controllers
 {
 
     public class PatientRequestController : Controller
     {
+        private readonly IWebHostEnvironment _environment;
         private readonly ApplicationDbContext _context;
 
-        public PatientRequestController(ApplicationDbContext context)
+        public PatientRequestController(ApplicationDbContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
         public IActionResult CreateRequest()
         {
@@ -27,6 +27,7 @@ namespace HalloDoc.Controllers
         {
             return View();
         }
+
         //Post Method for Patient Request
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -79,6 +80,8 @@ namespace HalloDoc.Controllers
                 FirstName = req.FirstName,
                 LastName = req.LastName,
                 CreatedDate = DateTime.Now,
+                ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
+
             };
             _context.Requests.Add(requests);
             _context.SaveChanges();
@@ -106,8 +109,39 @@ namespace HalloDoc.Controllers
                 _context.RequestClients.Add(requestclients);
                 _context.SaveChanges();
             }
+
+            if (req.Upload != null)
+            {
+
+                uploadFile(req.Upload, requestdata.RequestId);
+            }
             return RedirectToAction("PatientDashboard", "Dashboard");
         }
+
+        public void uploadFile(List<IFormFile> file, int id)
+        {
+            foreach (var item in file)
+            {
+
+                //string path = _environment.WebRootPath + "/UploadDocument/" + item.FileName;
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadDocument", item.FileName);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    item.CopyTo(fileStream);
+                }
+                RequestWiseFile requestWiseFiles = new RequestWiseFile
+                {
+                    RequestId = id,
+                    FileName = path,
+                    CreatedDate = DateTime.Now,
+                };
+                _context.RequestWiseFiles.Add(requestWiseFiles);
+                _context.SaveChanges();
+            }
+
+
+        }
+
 
         //Get method for Family-Friend 
         public IActionResult FamilyFriend()
@@ -127,6 +161,8 @@ namespace HalloDoc.Controllers
                 CreatedDate = DateTime.Now,
                 RequestTypeId = 3,
                 Status = 1,
+                ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
+
             };
             _context.Requests.Add(requests);
             _context.SaveChanges();
@@ -148,6 +184,11 @@ namespace HalloDoc.Controllers
             };
             _context.RequestClients.Add(requestclients);
             _context.SaveChanges();
+
+            if (req.Upload != null)
+            {
+                uploadFile(req.Upload, requestdata.RequestId);
+            }
             return RedirectToAction("CreateRequest");
         }
 
