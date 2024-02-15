@@ -1,50 +1,236 @@
-﻿@{
+﻿@model HalloDoc.Models.ViewModel.PatientDashboard ;
+
+@{
     Layout = "_dashboard";
 }
 
-<div class="container  pt-3">
-    <div class="d-flex justify-content-between mb-2">
-        <h4>Documents</h4>
-        <a asp-area="" asp-controller="PatientRequest" asp-action="CreateRequest"
-           class="btn m-0 btn-outline-info  px-2 ">
-            <i class="fa-solid fa-chevron-left"></i>
-            Back
-        </a>
-    </div>
-    <div class="container-fluid bg-white px-3 pt-3">
-        <div class="row">
-            <div class="col-12  text-secondary " style="font-size:15px;">Patient Name</div>
-            <div class="col-12 text-secondary">
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-                <strong class="h4 text-info">Testing Test </strong>(MN00CS12KT32)
+
+        <div class="container  pt-3">
+            <div class="d-flex justify-content-between mb-2">
+                <h4>Documents</h4>
+                <a asp-area="" asp-controller="Dashboard" asp-action="PatientDashboard"
+                   class="btn m-0 btn-outline-info  px-2 ">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    Back
+                </a>
             </div>
-            <div class="col-12  text-secondary pt-2" style="font-size:13px;">Check here for any files that you or the doctors of your subsequenc requests have attached for you to review</div>
-            <div class="mt-1">
-                <div class="row d-flex">
-                    <div class="p-2 col-12 ">
-                        <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
-                            <div class="px-3">
-                                @*<label class="choosenfile text-dark small" id="file-chosen">No item selected</label>*@
-                                <input type="text" style="width:40vw;" id="file-chosen" class="border border-0" placeholder="No item selected" disabled />
-                            </div>
-                            <div role="button" class="uploadbtn  d-flex">
-                                <input type="file" id="actual-btn" multiple hidden />
-                                <label role="button" for="actual-btn" class="d-flex align-items-center px-2">
-                                    <i class="bi bi-cloud-arrow-up p-2"></i>Upload
-                                </label>
-                            </div>
+            <div class="container-fluid bg-white px-3 pt-3">
+                <div class="row">
+                    <div class="col-12  text-secondary " style="font-size:15px;">Patient Name</div>
+                    <div class="col-12 text-secondary">
+
+                        <strong class="h4 text-info">@Model.users.FirstName @Model.users.LastName </strong>
+                        <div>
+                            @Model.requests.FirstOrDefault(x => x.RequestId == (Model.requests.FirstOrDefault(m =>m.UserId == Model.users.UserId).RequestId)).ConfirmationNumber
                         </div>
+
+                    </div>
+
+                    <div class="col-12  text-secondary pt-2" style="font-size:13px;">Check here for any files that you or the doctors of your subsequenc requests have attached for you to review</div>
+                    <div class="mt-1">
+                        <form asp-action="UploadButton" asp-controller="Dashboard" enctype="multipart/form-data" method="post" asp-route-requestid="@Model.requestid">
+
+                            <div class="row d-flex">
+                                <div class="py-2 col-12 ">
+                                    <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
+                                        <div class="px-3 table-responsive">
+                                            <input type="file" id="actual-btn" asp-for="Upload" multiple hidden />
+                                            <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-dark text-nowrap">No item selected</label>
+                                        </div>
+                                        <button type="submit" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
+                                            <label role="button" class="d-flex align-items-center"><i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div></label>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
-            </div>
 
-            <div class="d-flex justify-content-between mb-2 pt-3">
-                <h5>Documents</h5>
-                <a
-                   class="btn m-0 btn-outline-info  px-2 ">
-                    Download all
-                </a>
+                <div class="d-flex justify-content-between mb-2 pt-3">
+                    <h5>Documents</h5>
+                    <a class="btn m-0 btn-outline-info  px-2 ">
+                        Download all
+                    </a>
+                </div>
+
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col"><input type="checkbox" id="download"/></th>
+                            <th scope="col">FileName</th>
+                            <th scope="col">Uploader</th>
+                            <th scope="col">Upload Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.wiseFiles)
+                        {
+
+                            <tr>
+                                <th scope="row"><input type="checkbox" class="childCheckbox"/></th>
+                                <td>@item.FileName.Substring(52)</td>
+                                <td>@Model.users.FirstName @Model.users.LastName</td>
+                                <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
+                                <td>
+                                    <a href="~/UploadDocument/@item.FileName.Substring(52)" download>
+
+                                        <i class="bi bi-cloud-arrow-down  btn btn-outline-info"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="container mt-3 ">
+            <div class="d-flex mb-2">
+                <div class="row ">
+                    <div class="d-flex justify-content-between col-12">
+                        <h4 class="pt-1">User Profile</h4>
+                        <a asp-area="" asp-controller="PatientRequest" asp-action="CreateRequest"
+                           class="btn m-0 btn-outline-info  px-2 ">
+                            <i class="fa-solid fa-chevron-left"></i>
+                            Back
+                        </a>
+                    </div>
+                    <form id="thisform" asp-controller="Dashboard" asp-action="edit">
+                        <div class=" row bg-white mt-2 p-3 g-1 g-sm-3">
+                            <h5 class="pt-1">General Information</h5>
+                            <div class="col-12 col-sm-6 form-floating mb-3">
+                                <input type="text" asp-for="users.FirstName"
+                                       class="form-control" id="age"
+                                       placeholder="Username"
+                                       aria-label="Username" disabled />
+                                <label class="d-flex justify-content-between ms-2">First Name </label>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-sm-6 form-floating mb-3">
+                                <input type="text" asp-for="users.LastName"
+                                       class="form-control" id="name"
+                                       placeholder="Username"
+                                       aria-label="Username" disabled />
+                                <label class="d-flex justify-content-between ms-2">Last name</label>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-sm-6 form-floating mb-3">
+                                <input type="date" asp-for="users.CreatedDate"
+                                       class="form-control pt-4 text-black "
+                                       placeholder="Username"
+                                       aria-label="Username" disabled />
+                                <label class="d-flex justify-content-between ms-2">Birth Date</label>
+                                <span class="text-danger"></span>
+                            </div>
+                            <h5 class="pt-1">Contact Information</h5>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="dropdown form-floating col-12 col-sm-4">
+                                        <button class="btn border dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height:58px;">
+                                            Type
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-8 form-floating mb-3">
+                                        <div class="form-control p-0">
+                                            <input id="phone" asp-for="users.Mobile"
+                                                   type="tel"
+                                                   name="phone" disabled
+                                                   style="border: none; padding: 18px 2% 18px 50px" />
+                                            <span class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 form-floating mb-3">
+                                <input type="email" asp-for="users.Email"
+                                       class="form-control"
+                                       placeholder="Username" disabled
+                                       aria-label="Username" />
+                                <label class="d-flex justify-content-between ms-2">Email </label>
+                                <span class="text-danger"></span>
+                            </div>
+                            <h5 class="pt-1">Location Information</h5>
+                            <div class="col-12 col-sm-6 form-floating mb-3">
+                                <input type="text" asp-for="users.Street"
+                                       class="form-control" disabled
+                                       placeholder="Username"
+                                       aria-label="Username" />
+                                <label class="d-flex justify-content-between ms-2">Street </label>
+                                <span asp-validation-for="users.Street" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-sm-6 form-floating mb-3">
+                                <input type="text" asp-for="users.City"
+                                       class="form-control" disabled
+                                       placeholder="Username"
+                                       aria-label="Username" />
+                                <label class="d-flex justify-content-between ms-2">City </label>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-sm-6 form-floating mb-3">
+                                <input type="text" asp-for="users.State"
+                                       class="form-control"
+                                       placeholder="Username" disabled
+                                       aria-label="Username" />
+                                <label class="d-flex justify-content-between ms-2">State </label>
+                                <span class="text-danger"></span>
+                            </div>
+                            <div class="col-12 col-sm-6 form-floating mb-3">
+                                <input type="text" asp-for="users.ZipCode"
+                                       class="form-control"
+                                       placeholder="Username" disabled
+                                       aria-label="Username" />
+                                <label class="d-flex justify-content-between ms-2">Zip code </label>
+                                <span class="text-danger"></span>
+                            </div>
+
+                            <div class="d-flex justify-content-end mb-5">
+
+                                <button type="submit" class="btn btn-info " id="editButton">Save</button>
+                            </div>
+                            <div class="d-flex justify-content-end mb-5">
+
+                                <button type="reset" class="btn btn-info " id="editButton">Cancle</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="d-flex justify-content-end mb-5">
+                        <button class="btn btn-info " id="editButton">Edit</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    // jQuery script to handle leader checkbox click event
+    $(document).ready(function () {
+        $('#download').click(function () {
+            $('.childCheckbox').prop('checked', $(this).prop('checked'));
+        });
+
+        // Handle individual checkbox clicks to update the leader checkbox state
+        $('.childCheckbox').click(function () {
+            $('#download').prop('checked', $('.childCheckbox:checked').length === $('.childCheckbox').length);
+        });
+    });
+</script>

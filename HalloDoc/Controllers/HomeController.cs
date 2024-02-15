@@ -33,6 +33,15 @@ namespace HalloDoc.Controllers
 
             return View();
         }
+
+        //post forgot password 
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(AspNetUser asp)
+        {
+
+            return RedirectToAction("Login");
+        }
+
         public IActionResult CreateUser()
         {
 

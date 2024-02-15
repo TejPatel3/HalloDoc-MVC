@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\HalloDoc.bundle.scp.css"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\11116016_415.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\11116016_415.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\11116040-opacity-low.png",
+      "PackagePath": "staticwebassets\\UploadDocument\\11116040-opacity-low.png"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7768657_3763028 opacity low.png",
       "PackagePath": "staticwebassets\\UploadDocument\\7768657_3763028 opacity low.png"
     },
@@ -51,6 +59,10 @@
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig26. Edit Physician Account.png",
       "PackagePath": "staticwebassets\\UploadDocument\\Fig26. Edit Physician Account.png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig3. Admin Dashboard.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\Fig3. Admin Dashboard.jpg"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig31.2 Create Role Patient UserAccess.png",
@@ -105,12 +117,28 @@
       "PackagePath": "staticwebassets\\UploadDocument\\Fig58. Create Patient request.jpg"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig6. Admin dashboard in Active state.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\Fig6. Admin dashboard in Active state.jpg"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig63.Reset Your Password Patient.jpg",
       "PackagePath": "staticwebassets\\UploadDocument\\Fig63.Reset Your Password Patient.jpg"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig64. Patient Dashboard ,Patient Medical History.jpg",
       "PackagePath": "staticwebassets\\UploadDocument\\Fig64. Patient Dashboard ,Patient Medical History.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig7. Admin dashboard in Conclude state.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\Fig7. Admin dashboard in Conclude state.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig8. Admin dashboard in To Close state.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\Fig8. Admin dashboard in To Close state.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig9. Admin dashboard in Unpaid state.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\Fig9. Admin dashboard in Unpaid state.jpg"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\LesfImage.png",

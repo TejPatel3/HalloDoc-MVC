@@ -1,4 +1,5 @@
 ﻿using HalloDoc.DataModels;
+using Microsoft.AspNetCore.Http;
 
 namespace HalloDoc.Models.ViewModel
 {
@@ -7,6 +8,8 @@ namespace HalloDoc.Models.ViewModel
         public User users { get; set; }
 
         public List<Request> requests { get; set; }
+
+        public List<RequestWiseFile> wiseFiles { get; set; }
 
         enum statusName
         {
@@ -25,6 +28,7 @@ namespace HalloDoc.Models.ViewModel
             string sName = ((statusName)status).ToString();
             return sName;
         }
-
+        public List<IFormFile?> Upload { get; set; }
+        public int requestid { get; set; }
     }
 }

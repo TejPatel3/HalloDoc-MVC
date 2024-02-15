@@ -71,6 +71,8 @@ namespace HalloDoc.Controllers
             }
 
             var users = await _context.Users.FirstOrDefaultAsync(m => m.Email == req.Email);
+            var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == user.RegionId);
+            var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
             Request requests = new Request
             {
                 UserId = users.UserId,
@@ -81,6 +83,7 @@ namespace HalloDoc.Controllers
                 LastName = req.LastName,
                 CreatedDate = DateTime.Now,
                 ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
+                //ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
 
             };
             _context.Requests.Add(requests);
@@ -121,10 +124,11 @@ namespace HalloDoc.Controllers
         public void uploadFile(List<IFormFile> file, int id)
         {
             foreach (var item in file)
+
             {
 
-                //string path = _environment.WebRootPath + "/UploadDocument/" + item.FileName;
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadDocument", item.FileName);
+                string path = _environment.WebRootPath + "/UploadDocument/" + id + item.FileName;
+                //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadDocument", id,item.FileName);
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
                     item.CopyTo(fileStream);
@@ -153,6 +157,7 @@ namespace HalloDoc.Controllers
         [HttpPost]
         public async Task<IActionResult> FamilyFriend(request req)
         {
+
             Request requests = new Request
             {
                 FirstName = req.FirstName,
@@ -161,8 +166,7 @@ namespace HalloDoc.Controllers
                 CreatedDate = DateTime.Now,
                 RequestTypeId = 3,
                 Status = 1,
-                ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
-
+                //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
             };
             _context.Requests.Add(requests);
             _context.SaveChanges();

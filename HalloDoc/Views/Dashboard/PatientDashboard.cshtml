@@ -1,89 +1,36 @@
-﻿@using System.Globalization;
+﻿<!-- Modal -->
+<div class="modal fade  mt-5 border-2" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create New Request</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-action="redirect" asp-route-c2="me" asp-controller="Dashboard" method="post">
+                <div class="modal-body d-flex justify-content-center">
+                    <div class="px-2">
+                        <input type="radio" id="me" name="selectrequesttype" value="true" hidden>
+                        <label for="me"><button type="button" class="btn border border-1 border-info text-info">Me</button></label>
+                        @{
+                            bool isChecked = me.Checked;
+}
+                        <input type="radio" id="someone" name="selectrequesttype" value="false" hidden>
+                        <label for="someone"><button type="button" class="btn border border-1 border-info text-info">Some One Else</button></label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info" onclick="redirect()">Continue</button>
+                    <button type="button" class="btn border border-1 border-info text-info" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@using System.Globalization;
 @model HalloDoc.Models.ViewModel.PatientDashboard ;
 @{
     Layout = "_dashboard";
 }
-
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" id="createRequest">
-    Launch demo modal
-</button>
-
-
-
-
-
-
-
-<div class="modal fade" id="createRequestModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Create New Request</h5>
-                <i class="fa-solid fa-lg fa-xmark modal-icon-cus close"></i>
-            </div>
-            <div class="modal-body">
-                <p>Here, I want to create new request for...</p>
-                <div class="d-flex gap-3 justify-content-center align-items-center">
-
-                    @* <div class="btn-group d-flex gap-3 justify-content-center align-items-center" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="check-btn-modal btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                    <label class="btn-second check-btn-modal p-2" for="btnradio1">Me</label>
-
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                    <label class="btn-second check-btn-modal p-2" for="btnradio2">Some One Else</label>
-                    </div> *@
-                    <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-                    <label class="btn btn-outline-info" for="success-outlined">Checked success radio</label>
-
-                    <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
-                    <label class="btn btn-outline-info" for="danger-outlined">Danger radio</label>
-
-                    @* <div class="d-flex align-items-center gap-3">
-                    <div class="form-check">
-                    <input class="btn-check"
-                    type="radio"
-                    name="flexRadioDefault"
-                    id="flexRadioDefault1" />
-                    <label class="check-btn-modal" for="flexRadioDefault1">
-                    Option 1
-                    </label>
-                    </div>
-                    <div class="form-check">
-                    <input class="form-check-input red-accent-box"
-                    type="radio"
-                    name="flexRadioDefault"
-                    id="flexRadioDefault2"
-                    checked />
-                    <label class="form-check-" for="flexRadioDefault2">
-                    Option 2
-                    </label>
-                    </div>
-                    </div> *@
-
-                    @* <button class="btn-prime p-2">Me</button>
-                    <button class="btn-second p-2">Some One Else</button> *@
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<script>
-    $("#createRequest").click(function () {
-        console.log("open modal")
-        $("#createRequestModal").modal('show');
-    })
-    $(".close").click(function () {
-        $('#createRequestModal').modal('hide');
-    })
-</script>
 
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -96,7 +43,7 @@
                 </h5>
                 <div class="container-fluid px-3 bg-white py-2">
                     <div class="d-flex justify-content-end py-2">
-                        <a class="btn btn-outline-info btn-sm" asp-controller="PatientRequest" asp-action="Patient" id="createRequest"><i class="bi bi-plus-lg pe-1"></i>Create New Request</a>
+                        <a class="btn btn-outline-info btn-sm" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" asp-controller="PatientRequest" asp-action="Patient"><i class="bi bi-plus-lg pe-1"></i>Create New Request</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -116,10 +63,14 @@
 
                                         </td>
                                         <td>
-                                            
+
                                             @Model.findStatus(item.Status)
                                         </td>
-                                        <td><a asp-action="ViewDocument" asp-controller="Dashboard" >Otto</a></td>
+                                        <td>
+                                            <a class="btn btn-outline-info" asp-action="ViewDocument" asp-controller="Dashboard" asp-route-requestid="@item.RequestId">
+                                                @item.RequestWiseFiles.Count() Document
+                                            </a>
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
@@ -211,6 +162,7 @@
                                        aria-label="Username" />
                                 <label class="d-flex justify-content-between ms-2">Street </label>
                                 <span asp-validation-for="users.Street" class="text-danger"></span>
+
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="text" asp-for="users.City"
@@ -239,11 +191,10 @@
 
                             <div class="d-flex justify-content-end mb-5">
 
-                                <button type="submit" class="btn btn-info " id="editButton">Save</button>
-                            </div>
-                            <div class="d-flex justify-content-end mb-5">
+                                <button type="submit" class="btn btn-info me-3" id="savebtn" hidden>Save</button>
 
-                                <button type="reset" class="btn btn-info " id="editButton">Cancle</button>
+
+                                <button type="reset" class="btn btn-info " id="canclebtn" hidden>Cancle</button>
                             </div>
                         </div>
                     </form>
@@ -271,14 +222,4 @@
     });
 
 </script>
-
-
-
-
-
-
-
-
-
-
 
