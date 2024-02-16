@@ -5,12 +5,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 namespace HalloDoc.Controllers
 {
-
     public class PatientRequestController : Controller
     {
         private readonly IWebHostEnvironment _environment;
         private readonly ApplicationDbContext _context;
-
         public PatientRequestController(ApplicationDbContext context, IWebHostEnvironment environment)
         {
             _context = context;
@@ -20,7 +18,6 @@ namespace HalloDoc.Controllers
         {
             return View();
         }
-
 
         // Get Method for Patient Request
         public IActionResult Patient()
@@ -37,6 +34,7 @@ namespace HalloDoc.Controllers
             {
                 return View(req);
             }
+
             Guid id = Guid.NewGuid();
             var Asp = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
             if (Asp == null)
@@ -51,7 +49,6 @@ namespace HalloDoc.Controllers
                 _context.SaveChanges();
             }
             User user = _context.Users.FirstOrDefault(m => m.Email == req.Email);
-
             if (user == null)
             {
                 User addUser = new User();
@@ -66,10 +63,10 @@ namespace HalloDoc.Controllers
                 addUser.IntDate = int.Parse(req.BirthDate?.ToString("dd"));
                 addUser.StrMonth = req.BirthDate?.ToString("MMM");
                 //users.IntDate = req.BirthDat
+
                 _context.Users.Add(addUser);
                 _context.SaveChanges();
             }
-
             var users = await _context.Users.FirstOrDefaultAsync(m => m.Email == req.Email);
             var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == user.RegionId);
             var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
@@ -84,40 +81,38 @@ namespace HalloDoc.Controllers
                 CreatedDate = DateTime.Now,
                 ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
                 //ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
-
             };
             _context.Requests.Add(requests);
             _context.SaveChanges();
+            int requestdata = requests.RequestId;
 
-            var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == users.Email);
-            if (requestdata != null)
+            RequestClient requestclients = new RequestClient
             {
-                RequestClient requestclients = new RequestClient
-                {
-                    FirstName = req.FirstName,
-                    LastName = req.LastName,
-                    Email = req.Email,
-                    PhoneNumber = req.PhoneNumber,
-                    Street = req.Street,
-                    City = req.City,
-                    State = req.State,
-                    ZipCode = req.ZipCode,
-                    RequestId = requestdata.RequestId,
-                    RegionId = 1,
-                    Notes = req.Notes,
-                    //IntDate = req.BirthDate.Day,
-                    //IntYear = req.BirthDate.Year,
-                    //StrMonth = req.BirthDate.ToString("MMMM"),
-                };
-                _context.RequestClients.Add(requestclients);
-                _context.SaveChanges();
-            }
+                FirstName = req.FirstName,
+                LastName = req.LastName,
+                Email = req.Email,
+                PhoneNumber = req.PhoneNumber,
+                Street = req.Street,
+                City = req.City,
+                State = req.State,
+                ZipCode = req.ZipCode,
+                RequestId = requestdata,
+                RegionId = 1,
+                Notes = req.Notes,
+                //IntDate = req.BirthDate.Day,
+                //IntYear = req.BirthDate.Year,
+                //StrMonth = req.BirthDate.ToString("MMMM"),
+            };
+            _context.RequestClients.Add(requestclients);
+            _context.SaveChanges();
+
 
             if (req.Upload != null)
             {
-
-                uploadFile(req.Upload, requestdata.RequestId);
+                uploadFile(req.Upload, requestdata);
             }
+
+            HttpContext.Session.SetInt32("UserId", users.UserId);
             return RedirectToAction("PatientDashboard", "Dashboard");
         }
 
@@ -157,43 +152,58 @@ namespace HalloDoc.Controllers
         [HttpPost]
         public async Task<IActionResult> FamilyFriend(request req)
         {
-
-            Request requests = new Request
+            var aspuser = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(n => n.Email == req.Email);
+            if (aspuser != null)
             {
-                FirstName = req.FirstName,
-                LastName = req.LastName,
-                Email = req.Email,
-                CreatedDate = DateTime.Now,
-                RequestTypeId = 3,
-                Status = 1,
-                //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
-            };
-            _context.Requests.Add(requests);
-            _context.SaveChanges();
+                Request requests = new Request
+                {
+                    FirstName = req.FirstName,
+                    LastName = req.LastName,
+                    Email = req.Email,
+                    CreatedDate = DateTime.Now,
+                    RequestTypeId = 3,
+                    Status = 1,
+                    UserId = user.UserId,
+                    PhoneNumber = req.PhoneNumber,
+                    ModifiedDate = DateTime.Now,
+                    User = user,
+                    //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
+                };
+                _context.Requests.Add(requests);
+                _context.SaveChanges();
+                RequestClient requestclients = new RequestClient
+                {
+                    FirstName = req.rFirstName,
+                    LastName = req.rLastName,
+                    Email = req.rEmail,
+                    PhoneNumber = req.rPhoneNumber,
+                    Street = req.Street,
+                    City = req.City,
+                    State = req.State,
+                    ZipCode = req.ZipCode,
+                    RequestId = requests.RequestId,
+                    RegionId = 1,
+                    Notes = req.Notes,
+                    Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
+                };
+                _context.RequestClients.Add(requestclients);
+                _context.SaveChanges();
 
-            var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == req.Email);
-            RequestClient requestclients = new RequestClient
-            {
-                FirstName = req.rFirstName,
-                LastName = req.rLastName,
-                Email = req.rEmail,
-                PhoneNumber = req.rPhoneNumber,
-                Street = req.Street,
-                City = req.City,
-                State = req.State,
-                ZipCode = req.ZipCode,
-                RequestId = requestdata.RequestId,
-                RegionId = 1,
-                Notes = req.Notes,
-            };
-            _context.RequestClients.Add(requestclients);
-            _context.SaveChanges();
-
-            if (req.Upload != null)
-            {
-                uploadFile(req.Upload, requestdata.RequestId);
+                if (req.Upload != null)
+                {
+                    uploadFile(req.Upload, requests.RequestId);
+                }
             }
-            return RedirectToAction("CreateRequest");
+            if (HttpContext.Session.GetInt32("UserId") != null)
+            {
+                return RedirectToAction("PatientDashboard", "Dashboard");
+            }
+            else
+            {
+                return RedirectToAction("CreateRequest");
+
+            }
         }
 
         //Get Method for Concierge Patient Request

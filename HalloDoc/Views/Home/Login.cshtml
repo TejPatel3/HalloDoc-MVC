@@ -1,4 +1,6 @@
 ﻿@model HalloDoc.DataModels.AspNetUser
+<Partial name="Toast" />
+
 @{
     Layout = "_NotHeader";
 }
@@ -48,7 +50,7 @@
                                        placeholder="Username"
                                        aria-label="Username" />
                                 <label class="d-flex justify-content-between" asp-for="PasswordHash">Password </label>
-                                <span asp-validation-for="PasswordHash"></span>
+                                <span asp-validation-for="PasswordHash" class="text-danger">@TempData["pswd"]</span>
                                 <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-icons" onclick="hideviewpswd()"></i>
                             </div>
                         </div>

@@ -30,5 +30,6 @@ namespace HalloDoc.Models.ViewModel
         }
         public List<IFormFile?> Upload { get; set; }
         public int requestid { get; set; }
+        public DateTime DOB { get; set; }
     }
 }

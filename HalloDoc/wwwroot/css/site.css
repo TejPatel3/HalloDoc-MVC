@@ -139,13 +139,6 @@ footer {
         top: 8px;
     }
 
-    #phone {
-        width: 190px;
-    }
-
-    #home {
-        width: 190px;
-    }
 
     .username-icon {
         position: absolute;
@@ -448,4 +441,12 @@ footer{
 
 .uploadbtndiv {
     background-color: #ebebeb;
+}
+
+.iti{
+    width:100% !important;
+} 
+.iti--allow-dropdown{
+    width:100% !important;
+
 }

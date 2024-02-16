@@ -65,3 +65,14 @@ function toggleTheme() {
 
 // Contact number country option js
 
+const phoneInputField = document.querySelector("#phone");
+const phoneInput = window.intlTelInput(phoneInputField, {
+    utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+const inputHome = document.querySelector("#home");
+window.intlTelInput(inputHome, {
+    initialCountry: 'gb',
+    placeholderNumberType: 'FIXED_LINE',
+    utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
+});

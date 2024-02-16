@@ -53,9 +53,9 @@
 
                 <div class="d-flex justify-content-between mb-2 pt-3">
                     <h5>Documents</h5>
-                    <a class="btn m-0 btn-outline-info  px-2 ">
+                    <button onclick="downloadSelectedFiles()" class="btn m-0 btn-outline-info  px-2 ">
                         Download all
-                    </a>
+                    </button>
                 </div>
 
 
@@ -74,7 +74,7 @@
                         {
 
                             <tr>
-                                <th scope="row"><input type="checkbox" class="childCheckbox"/></th>
+                                <th scope="row"><input type="checkbox" name="checkbox" class="childCheckbox"/></th>
                                 <td>@item.FileName.Substring(52)</td>
                                 <td>@Model.users.FirstName @Model.users.LastName</td>
                                 <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
@@ -233,4 +233,37 @@
             $('#download').prop('checked', $('.childCheckbox:checked').length === $('.childCheckbox').length);
         });
     });
+
+
+    // Function to handle download of selected files
+    function downloadSelectedFiles() {
+        var selectedFiles = document.querySelectorAll('input[name="checkbox"]:checked');
+        var fileUrls = [];
+        console.log(selectedFiles)
+
+        // Iterate through selected checkboxes and extract file URLs
+        selectedFiles.forEach(function (checkbox) {
+            var row = checkbox.closest('tr');
+            var fileUrl = row.querySelector('a').getAttribute('href');
+            fileUrls.push(fileUrl);
+        });
+        // Download each file
+        fileUrls.forEach(function (url) {
+            // Create an anchor element to trigger the download
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = '';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
+    // Event listener for download button
+    document.getElementById('downloadSelected').addEventListener('click', function (event) {
+        event.preventDefault();
+        downloadSelectedFiles();
+    });
+
+
+
 </script>

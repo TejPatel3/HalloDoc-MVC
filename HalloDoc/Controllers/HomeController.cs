@@ -5,15 +5,11 @@ using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-
-
 namespace HalloDoc.Controllers
 {
     public class HomeController : Controller
     {
-
         private readonly ApplicationDbContext _context;
-
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
@@ -22,15 +18,10 @@ namespace HalloDoc.Controllers
         public IActionResult Index()
         {
             return View();
-            //return _context.AspNetUsers != null ?
-            //             View(await _context.AspNetUsers.ToListAsync()) :
-            //             Problem("Entity set 'ApplicationDbContext.Users'  is null.");
-
         }
 
         public IActionResult ForgotPassword()
         {
-
             return View();
         }
 
@@ -38,13 +29,11 @@ namespace HalloDoc.Controllers
         [HttpPost]
         public async Task<IActionResult> ForgotPassword(AspNetUser asp)
         {
-
             return RedirectToAction("Login");
         }
 
         public IActionResult CreateUser()
         {
-
             return View();
         }
         [HttpPost]
@@ -54,8 +43,6 @@ namespace HalloDoc.Controllers
             {
                 Guid id = Guid.NewGuid();
                 AspNetUser user = new AspNetUser();
-
-
                 user.Id = id.ToString();
                 user.Email = obj.Email;
                 user.UserName = obj.Email;
@@ -63,15 +50,11 @@ namespace HalloDoc.Controllers
                 _context.AspNetUsers.Add(user);
                 _context.SaveChanges();
                 return RedirectToAction("CreateRequest", "PatientRequest");
-
             }
             else
             {
                 return View(obj);
             }
-
-
-
         }
 
         public IActionResult Login()
@@ -87,12 +70,15 @@ namespace HalloDoc.Controllers
             {
                 var user = _context.Users.FirstOrDefault(m => m.Email == obj.Email);
                 HttpContext.Session.SetInt32("UserId", user.UserId);
+                TempData["success"] = "Login Successful...!";
                 return RedirectToAction("PatientDashboard", "Dashboard");
             }
-            return View();
+            else
+            {
+                TempData["pswd"] = "Enter Valid Password";
+                return View(obj);
+            }
         }
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -100,7 +86,4 @@ namespace HalloDoc.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
-
-
-
 }
