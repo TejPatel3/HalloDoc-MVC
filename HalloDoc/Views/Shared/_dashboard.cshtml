@@ -51,12 +51,12 @@
         </div>
     </nav>
 
-    <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <button class="nav-link active text-info" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
-            <button class="nav-link text-info" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-        </div>
-    </nav>
+    @*    <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active text-info" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
+    <button class="nav-link text-info" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+    </div>
+    </nav> *@
     <div class="pt-2 bg-light mb-5">
         @RenderBody()
     </div>
@@ -98,13 +98,13 @@
             $('#savebtn').removeAttr('hidden', false);
             $('#canclebtn').removeAttr('hidden', false);
             $('#editButton').removeAttr('hidden', true);
-            
+
         });
     });
 
 
 
-        const actualBtn = document.getElementById('actual-btn');
+    const actualBtn = document.getElementById('actual-btn');
     const fileChosen = document.getElementById('file-chosen');
     actualBtn.addEventListener('change', function () {
         fileChosen.textContent = this.files[0].name

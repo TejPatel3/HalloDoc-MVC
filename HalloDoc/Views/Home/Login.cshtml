@@ -1,5 +1,4 @@
 ﻿@model HalloDoc.DataModels.AspNetUser
-<Partial name="Toast" />
 
 @{
     Layout = "_NotHeader";
@@ -7,13 +6,7 @@
 
 <img class="background-img d-block " style="" />
 <div class="container-fluid p-0 m-0">
-    <div class="d-flex justify-content-end align-items-center">
-        <img src="~/images/night-mode.png"
-             id="theme-toggle"
-             alt="Night Mode"
-             class="img-fluid  btn btn-outline-info  px-1   m-sm-3 m-1 "
-             onclick="toggleTheme()" />
-    </div>
+
     <div class="row g-0 d-flex justify-content-center align-items-center" style=" min-height:85vh;">
         <div class="col-10 p-0 col-sm-7 col-md-5 col-lg-5 col-xxl-3 col-xl-5   align-items-center">
             <div class="justify-content-center d-flex">
@@ -38,7 +31,7 @@
                                        placeholder="Username"
                                        aria-label="Username" />
                                 <span asp-validation-for="Email"></span>
-                                <label class="d-flex justify-content-around" asp-for="Email">Username </label>
+                                <label class="d-flex justify-content-around" asp-for="Email" class="text-danger">Username </label>
                                 <i class="bi bi-person-circle username-icon icons d-block mobile-icon" role="button" id="eye-icon"></i>
                             </div>
                         </div>

@@ -69,7 +69,7 @@ footer {
 .background-img {
     background-image: url(/images/7768657_3763028.jpg);
     background-repeat: no-repeat;
-    background-position: center ;
+    background-position: center;
     background-blend-mode: darken;
     position: absolute;
     top: 0;
@@ -84,6 +84,32 @@ footer {
     background-size: 100% 100%;
 }
 
+
+.admin-photo {
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width:768px) {
+
+    .admin-photo {
+        height: 100% !important;
+        width: 95% !important;
+        z-index: -1;
+        position: absolute;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        background-size: cover;
+        -webkit-filter: blur(10px);
+        -moz-filter: blur(5px);
+        filter: blur(10px);
+        height: 60%;
+        opacity: 0.6;
+    }
+}
+
 @media only screen and (min-width:460px) and (max-width:991px) {
     .main-div {
         background-image: url(/images/output-onlinepngtools.png);
@@ -92,6 +118,25 @@ footer {
         background-position: center;
         border-radius: 16px;
     }
+
+    /*    .background-img-small {
+        background-image: url(/images/7768657_3763028.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-blend-mode: darken;
+        position: absolute;
+        top: 0;
+        left: -10px;
+        right: -10px;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.4;
+        filter: blur(5px);
+        background-size: 100% 100%;
+    }*/
+
 
     .pl-container {
         background: transparent;
@@ -148,11 +193,15 @@ footer {
 }
 
 @media only screen and (max-width:459px) {
-    .main-div {
+    /*.main-div {
+        
         background-image: url(/images/output-onlinepngtools.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+    }*/
+    .container, .container-fluid {
+        padding: 0px !important;
     }
 
     .pl-container {
@@ -165,9 +214,27 @@ footer {
         height: 80vh;
     }
 
-    img {
-        display: none;
-    }
+    /*
+    .background-img-small {
+        display:none;
+        background-image: url(/images/7768657_3763028.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-blend-mode: darken;
+        position: absolute;
+        top: 0;
+        left: -10px;
+        right: -10px;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.4;
+        filter: blur(5px);
+        background-size: 100% 100%;
+    }*/
+
+
 
     .heading {
         font-size: 20px;
@@ -201,8 +268,6 @@ footer {
 
 @media only screen and (max-width:575px) {
 }
-
-
 /* patient login and forgot password css */
 
 #pt-login-row {
@@ -227,7 +292,6 @@ footer {
 /* patient request style */
 .pt-header {
     box-shadow: 0px 2px 8px black !important;
-
 }
 
 #pt-req-pat {
@@ -330,8 +394,8 @@ footer {
 .dark-mode {
     background-color: rgb(7, 7, 7) !important;
     color: dimgray;
-    
-.bg-white
+    .bg-white
+
 {
     background-color: black !important;
 }
@@ -340,9 +404,8 @@ footer {
     background-color: lightgray;
 }
 
-td
-{
-    color:white !important;
+td {
+    color: white !important;
 }
 
 .bg-light {
@@ -396,14 +459,14 @@ input[type=date] {
     color: white;
     background-color: black !important;
     height: 50px !important;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 }
+
 .footer .bg-black {
     color: rgb(202, 202, 202);
     height: 50px !important;
-
 }
 /*
 footer{
@@ -415,13 +478,12 @@ footer{
 
 .active {
     background: transparent !important;
-    
     border: none !important;
-        border-bottom: 2px solid #0dcaf0 !important;
-  
+    border-bottom: 2px solid #0dcaf0 !important;
 }
-.nav-link{
-    color:dimgray;
+
+.nav-link {
+    color: dimgray;
 }
 
     .nav-link:hover {
@@ -443,10 +505,10 @@ footer{
     background-color: #ebebeb;
 }
 
-.iti{
-    width:100% !important;
-} 
-.iti--allow-dropdown{
-    width:100% !important;
+.iti {
+    width: 100% !important;
+}
 
+.iti--allow-dropdown {
+    width: 100% !important;
 }

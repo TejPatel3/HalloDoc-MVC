@@ -22,9 +22,9 @@
                     <div class="col-12  text-secondary " style="font-size:15px;">Patient Name</div>
                     <div class="col-12 text-secondary">
 
-                        <strong class="h4 text-info">@Model.users.FirstName @Model.users.LastName </strong>
                         <div>
-                            @Model.requests.FirstOrDefault(x => x.RequestId == (Model.requests.FirstOrDefault(m =>m.UserId == Model.users.UserId).RequestId)).ConfirmationNumber
+                        <strong class="h4 text-info">@Model.users.FirstName @Model.users.LastName </strong>
+                            (@Model.requests.FirstOrDefault(x => x.RequestId == (Model.requests.FirstOrDefault(m =>m.UserId == Model.users.UserId).RequestId)).ConfirmationNumber)
                         </div>
 
                     </div>

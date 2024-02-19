@@ -1,0 +1,186 @@
+﻿<Partial name="Toast" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+@{
+    Layout = "_dashboard";
+}
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active text-info" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
+        <button class="nav-link text-info" id="nav-provider-location-tab" data-bs-toggle="tab" data-bs-target="#nav-provider-location" type="button" role="tab" aria-controls="nav-provider-location" aria-selected="false">Provider Location</button>
+        <button class="nav-link text-info" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Profile</button>
+        <button class="nav-link text-info" id="nav-provider-tab" data-bs-toggle="tab" data-bs-target="#nav-provider" type="button" role="tab" aria-controls="nav-provider" aria-selected="false">Providers</button>
+        <button class="nav-link text-info" id="nav-partner-tab" data-bs-toggle="tab" data-bs-target="#nav-partner" type="button" role="tab" aria-controls="nav-partner" aria-selected="false">Partners</button>
+        <button class="nav-link text-info" id="nav-access-tab" data-bs-toggle="tab" data-bs-target="#nav-access" type="button" role="tab" aria-controls="nav-access" aria-selected="false">Access</button>
+        <button class="nav-link text-info" id="nav-record-tab" data-bs-toggle="tab" data-bs-target="#nav-record" type="button" role="tab" aria-controls="nav-record" aria-selected="false">Records</button>
+    </div>
+</nav>
+
+
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="container-fluid">
+
+            <div class="row py-3 gy-2">
+
+                <nav>
+                    <div class="nav nav-tabs" id="status-tab" role="tablist">
+                        <!-- New  -->
+
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl">
+                            <div class="card">
+                                <div class="card-body">
+                                    <a class="nav-link  text-info" id="nav-new-tab" data-bs-toggle="tab" data-bs-target="#nav-new" type="button" role="tab" aria-controls="nav-new" aria-selected="false">
+                                        <h6 class="text-uppercase text-body-secondary mb-2">
+                                            New
+                                        </h6>
+                                        <span class="h2 mb-0">
+                                            1454
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending -->
+
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl">
+                            <div class="card">
+                                <div class="card-body">
+                                    <a class="nav-link active text-info" id="nav-pending-tab" data-bs-toggle="tab" data-bs-target="#nav-pending" type="button" role="tab" aria-controls="nav-pending" aria-selected="true">
+
+                                        <h6 class="text-uppercase text-body-secondary mb-2">
+                                            Pending
+                                        </h6>
+                                        <span class="h2 mb-0">
+                                            763.5
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Active -->
+
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl">
+                            <div class="card">
+                                <div class="card-body">
+                                    <button class="nav-link text-info" id="nav-active-tab" data-bs-toggle="tab" data-bs-target="#nav-active" type="button" role="tab" aria-controls="nav-active" aria-selected="false">
+                                        <h6 class="text-uppercase text-body-secondary mb-2">
+                                            Active
+                                        </h6>
+                                        <span class="h2 mb-0">
+                                            35.5%
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Conclude -->
+
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl">
+                            <div class="card">
+                                <div class="card-body">
+                                    <button class="nav-link text-info" id="nav-conclude-tab" data-bs-toggle="tab" data-bs-target="#nav-conclude" type="button" role="tab" aria-controls="nav-conclude" aria-selected="false">
+                                        <h6 class="text-uppercase text-body-secondary mb-2">
+                                            Conclude
+                                        </h6>
+                                        <span class="h2 mb-0">
+                                            35.5%
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- To Close -->
+
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl">
+                            <div class="card">
+                                <div class="card-body">
+                                    <button class="nav-link text-info" id="nav-close-tab" data-bs-toggle="tab" data-bs-target="#nav-close" type="button" role="tab" aria-controls="nav-close" aria-selected="false">
+                                        <h6 class="text-uppercase text-body-secondary mb-2">
+                                            To Close
+                                        </h6>
+                                        <span class="h2 mb-0">
+                                            35.5%
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Unpaid -->
+
+                        <div class="col-12 col-lg-4 col-md-6 col-sm-6 col-xl">
+                            <div class="card">
+                                <div class="card-body">
+                                    <button class="nav-link text-info" id="nav-unpaid-tab" data-bs-toggle="tab" data-bs-target="#nav-unpaid" type="button" role="tab" aria-controls="nav-unpaid" aria-selected="false">
+
+                                        <h6 class="text-uppercase text-body-secondary mb-2">
+                                            Unpaid
+                                        </h6>
+                                        <span class="h2 mb-0">
+                                            2:37
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <div class="tab-content" id="status-tabContent">
+                    <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
+                        2
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+                        3
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-active" role="tabpanel" aria-labelledby="nav-active-tab">
+                        4
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-conclude" role="tabpanel" aria-labelledby="nav-conclude-tab">
+                        5
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-close" role="tabpanel" aria-labelledby="nav-close-tab">
+                        6
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-unpaid" role="tabpanel" aria-labelledby="nav-unpaid-tab">
+                        7
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="nav-provider-location" role="tabpanel" aria-labelledby="nav-provider-location-tab">
+        2
+    </div>
+
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        3
+    </div>
+
+    <div class="tab-pane fade" id="nav-provider" role="tabpanel" aria-labelledby="nav-provider-tab">
+        4
+    </div>
+
+    <div class="tab-pane fade" id="nav-partner" role="tabpanel" aria-labelledby="nav-partner-tab">
+        5
+    </div>
+
+    <div class="tab-pane fade" id="nav-access" role="tabpanel" aria-labelledby="nav-access-tab">
+        6
+    </div>
+
+    <div class="tab-pane fade" id="nav-record" role="tabpanel" aria-labelledby="nav-record-tab">
+        7
+    </div>
+</div>

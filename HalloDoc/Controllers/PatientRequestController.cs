@@ -30,11 +30,6 @@ namespace HalloDoc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Patient(patientRequest req)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(req);
-            }
-
             Guid id = Guid.NewGuid();
             var Asp = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
             if (Asp == null)
@@ -70,6 +65,7 @@ namespace HalloDoc.Controllers
             var users = await _context.Users.FirstOrDefaultAsync(m => m.Email == req.Email);
             var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == user.RegionId);
             var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
+
             Request requests = new Request
             {
                 UserId = users.UserId,
@@ -113,15 +109,22 @@ namespace HalloDoc.Controllers
             }
 
             HttpContext.Session.SetInt32("UserId", users.UserId);
-            return RedirectToAction("PatientDashboard", "Dashboard");
+            TempData["success"] = "Your Request Submited Successful...!";
+            if (HttpContext.Session.GetInt32("UserId") != null)
+            {
+                return RedirectToAction("PatientDashboard", "Dashboard");
+            }
+            else
+            {
+
+                return RedirectToAction("Login", "Home");
+            }
         }
 
         public void uploadFile(List<IFormFile> file, int id)
         {
             foreach (var item in file)
-
             {
-
                 string path = _environment.WebRootPath + "/UploadDocument/" + id + item.FileName;
                 //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadDocument", id,item.FileName);
                 using (var fileStream = new FileStream(path, FileMode.Create))
@@ -158,14 +161,14 @@ namespace HalloDoc.Controllers
             {
                 Request requests = new Request
                 {
-                    FirstName = req.FirstName,
-                    LastName = req.LastName,
-                    Email = req.Email,
+                    FirstName = req.rFirstName,
+                    LastName = req.rLastName,
+                    Email = req.rEmail,
                     CreatedDate = DateTime.Now,
                     RequestTypeId = 3,
                     Status = 1,
                     UserId = user.UserId,
-                    PhoneNumber = req.PhoneNumber,
+                    PhoneNumber = req.rPhoneNumber,
                     ModifiedDate = DateTime.Now,
                     User = user,
                     //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
@@ -174,10 +177,10 @@ namespace HalloDoc.Controllers
                 _context.SaveChanges();
                 RequestClient requestclients = new RequestClient
                 {
-                    FirstName = req.rFirstName,
-                    LastName = req.rLastName,
-                    Email = req.rEmail,
-                    PhoneNumber = req.rPhoneNumber,
+                    FirstName = req.FirstName,
+                    LastName = req.LastName,
+                    Email = req.Email,
+                    PhoneNumber = req.PhoneNumber,
                     Street = req.Street,
                     City = req.City,
                     State = req.State,
@@ -219,9 +222,10 @@ namespace HalloDoc.Controllers
 
             Request requests = new Request
             {
-                FirstName = req.FirstName,
-                LastName = req.LastName,
-                Email = req.Email,
+                FirstName = req.rFirstName,
+                LastName = req.rLastName,
+                Email = req.rEmail,
+                PhoneNumber = req.rPhoneNumber,
                 CreatedDate = DateTime.Now,
                 RequestTypeId = 4,
                 Status = 1,
@@ -232,10 +236,10 @@ namespace HalloDoc.Controllers
             var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == req.Email);
             RequestClient requestclients = new RequestClient
             {
-                FirstName = req.rFirstName,
-                LastName = req.rLastName,
-                Email = req.rEmail,
-                PhoneNumber = req.rPhoneNumber,
+                FirstName = req.FirstName,
+                LastName = req.LastName,
+                Email = req.Email,
+                PhoneNumber = req.PhoneNumber,
                 Street = req.Street,
                 City = req.City,
                 State = req.State,
@@ -284,9 +288,10 @@ namespace HalloDoc.Controllers
         {
             Request requests = new Request
             {
-                FirstName = req.FirstName,
-                LastName = req.LastName,
-                Email = req.Email,
+                FirstName = req.rFirstName,
+                LastName = req.rLastName,
+                Email = req.rEmail,
+                PhoneNumber = req.rPhoneNumber,
                 CreatedDate = DateTime.Now,
                 RequestTypeId = 1,
                 Status = 1,
@@ -297,10 +302,10 @@ namespace HalloDoc.Controllers
             var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == req.Email);
             RequestClient requestclients = new RequestClient
             {
-                FirstName = req.rFirstName,
-                LastName = req.rLastName,
-                Email = req.rEmail,
-                PhoneNumber = req.rPhoneNumber,
+                FirstName = req.FirstName,
+                LastName = req.LastName,
+                Email = req.Email,
+                PhoneNumber = req.PhoneNumber,
                 Street = req.Street,
                 City = req.City,
                 State = req.State,

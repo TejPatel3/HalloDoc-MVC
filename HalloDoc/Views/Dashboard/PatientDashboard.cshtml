@@ -1,6 +1,17 @@
-﻿<Partial name="Toast" />
+﻿@using System.Globalization;
+@model HalloDoc.Models.ViewModel.PatientDashboard ;
+@{
+    Layout = "_dashboard";
+}
+<Partial name="Toast" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active text-info" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
+        <button class="nav-link text-info" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+    </div>
+</nav>
 <!-- Modal -->
 <div class="modal fade  mt-5 border-2" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -30,11 +41,6 @@
         </div>
     </div>
 </div>
-@using System.Globalization;
-@model HalloDoc.Models.ViewModel.PatientDashboard ;
-@{
-    Layout = "_dashboard";
-}
 
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">

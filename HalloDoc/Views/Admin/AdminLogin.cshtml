@@ -1,0 +1,70 @@
+﻿@model HalloDoc.Models.ViewModel.registrationViewModel
+@{
+    Layout = "_NotHeader";
+}
+
+
+<div class="container-fluid h-100">
+    <div class="row d-flex flex-row h-100">
+        <div class="col-xl-6 col-lg-6 col-md-6 d-flex ">
+            <div>
+                <img src="/images/11116016_415.jpg" alt="" class="admin-photo w-100 h-100">
+
+            </div>
+
+        </div>
+        <!-- hello -->
+        @*   <div class="col-md-6  login-content h-100 ">
+        <div class="container-fluid login-container pl-container"> *@
+        <div class="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center">
+            <div class="d-flex flex-column justify-content-around " style="height:100vh">
+
+                <div class="d-flex justify-content-center  d-none d-sm-block">
+                    <img src="/images/hallodoc-transparent.png" alt="">
+                </div>
+                <div class="d-flex flex-column">
+                    <div class="form mb-4 mt-5">
+                        <h2>Login To Your Account</h2>
+                    </div>
+                    <form method="post" asp-action="AdminLogin">
+
+                        <div>
+                            <div class="form-floating mb-3">
+                                <input type="email" asp-for="Email"
+                                       class="form-control "
+                                       placeholder="Username"
+                                       aria-label="Username" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <span class="text-danger">@TempData["email"]</span>
+                                <label class="d-flex justify-content-around" asp-for="Email">Username </label>
+                                <i class="bi bi-person-circle username-icon icons d-block mobile-icon" role="button" id="eye-icon"></i>
+                            </div>
+                        </div>
+                        <div class=" mb-xxl-3">
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" placeholder="Username" id="pswd" asp-for="PasswordHash"
+                                       aria-label="Username">
+                                <label>Password </label>
+                                <span class="text-danger">@TempData["pswd"]</span>
+                                <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-icons" onclick="hideviewpswd()"></i>
+
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-info btn-lg text-white w-100">Log in</button>
+                        </div>
+                    </form>
+                    <div class=" d-flex justify-content-center mb-5 mt-3">
+                        <a class="btn text-info   fw-semibold    " asp-action="AdminForgotPassword">Forget Password</a>
+                    </div>
+                </div>
+                <div class=" d-flex justify-content-center" style="height:5vh;">
+                    <span class="text-secondary"> Terms and Condition | Privacy Policy</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

@@ -128,7 +128,6 @@ namespace HalloDoc.Controllers
 
         public IActionResult Me()
         {
-
             int id = (int)HttpContext.Session.GetInt32("UserId");
             var users = _context.Users.FirstOrDefault(m => m.UserId == id);
             TempData["user"] = users.FirstName;
