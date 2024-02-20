@@ -30,8 +30,9 @@
                                        class="form-control "
                                        placeholder="Username"
                                        aria-label="Username" />
-                                <span asp-validation-for="Email"></span>
+                                @* <span asp-validation-for="Email"></span> *@
                                 <label class="d-flex justify-content-around" asp-for="Email" class="text-danger">Username </label>
+                                <span asp-validation-for="Email" class="text-danger">@TempData["email"]</span>     
                                 <i class="bi bi-person-circle username-icon icons d-block mobile-icon" role="button" id="eye-icon"></i>
                             </div>
                         </div>

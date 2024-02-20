@@ -30,6 +30,10 @@ namespace HalloDoc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Patient(patientRequest req)
         {
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(req);
+            //}
             Guid id = Guid.NewGuid();
             var Asp = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
             if (Asp == null)
@@ -40,6 +44,7 @@ namespace HalloDoc.Controllers
                 aspuser.UserName = req.FirstName;
                 aspuser.Id = id.ToString();
                 aspuser.CreatedDate = DateTime.Now;
+                aspuser.PhoneNumber = req.PhoneNumber;
                 _context.AspNetUsers.Add(aspuser);
                 _context.SaveChanges();
             }
@@ -53,17 +58,21 @@ namespace HalloDoc.Controllers
                 addUser.LastName = req.LastName;
                 addUser.CreatedBy = id.ToString();
                 addUser.CreatedDate = DateTime.Now;
-                addUser.ModifiedBy = id.ToString();
+                addUser.City = req.City;
+                addUser.Street = req.Street;
+                addUser.State = req.State;
+                addUser.ZipCode = req.ZipCode;
                 addUser.IntYear = int.Parse(req.BirthDate?.ToString("yyyy"));
                 addUser.IntDate = int.Parse(req.BirthDate?.ToString("dd"));
                 addUser.StrMonth = req.BirthDate?.ToString("MMM");
+                addUser.RegionId = 2;
                 //users.IntDate = req.BirthDat
 
                 _context.Users.Add(addUser);
                 _context.SaveChanges();
             }
             var users = await _context.Users.FirstOrDefaultAsync(m => m.Email == req.Email);
-            var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == user.RegionId);
+            var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == users.RegionId);
             var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
 
             Request requests = new Request
@@ -95,6 +104,8 @@ namespace HalloDoc.Controllers
                 RequestId = requestdata,
                 RegionId = 1,
                 Notes = req.Notes,
+                Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
+
                 //IntDate = req.BirthDate.Day,
                 //IntYear = req.BirthDate.Year,
                 //StrMonth = req.BirthDate.ToString("MMMM"),
@@ -108,7 +119,6 @@ namespace HalloDoc.Controllers
                 uploadFile(req.Upload, requestdata);
             }
 
-            HttpContext.Session.SetInt32("UserId", users.UserId);
             TempData["success"] = "Your Request Submited Successful...!";
             if (HttpContext.Session.GetInt32("UserId") != null)
             {
@@ -123,6 +133,7 @@ namespace HalloDoc.Controllers
 
         public void uploadFile(List<IFormFile> file, int id)
         {
+
             foreach (var item in file)
             {
                 string path = _environment.WebRootPath + "/UploadDocument/" + id + item.FileName;
@@ -217,7 +228,7 @@ namespace HalloDoc.Controllers
 
         //Get Method for Concierge Patient Request
         [HttpPost]
-        public async Task<IActionResult> Concierge(request req)
+        public async Task<IActionResult> Concierge(conciergeViewModel req)
         {
 
             Request requests = new Request
@@ -247,6 +258,8 @@ namespace HalloDoc.Controllers
                 RequestId = requestdata.RequestId,
                 RegionId = 1,
                 Notes = req.Notes,
+                Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
+
             };
             _context.RequestClients.Add(requestclients);
             _context.SaveChanges();
@@ -259,6 +272,8 @@ namespace HalloDoc.Controllers
                 State = req.State,
                 ZipCode = req.ZipCode,
                 CreatedDate = DateTime.Now,
+                Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
+
             };
             _context.Concierges.Add(congierges);
             _context.SaveChanges();
@@ -284,7 +299,7 @@ namespace HalloDoc.Controllers
 
         //Post Method for Business Patient Request
         [HttpPost]
-        public async Task<IActionResult> Business(request req)
+        public async Task<IActionResult> Business(businessViewModel req)
         {
             Request requests = new Request
             {
@@ -313,6 +328,8 @@ namespace HalloDoc.Controllers
                 RequestId = requestdata.RequestId,
                 RegionId = 1,
                 Notes = req.Notes,
+                Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
+
             };
             _context.RequestClients.Add(requestclients);
             _context.SaveChanges();
@@ -322,6 +339,13 @@ namespace HalloDoc.Controllers
                 Name = req.rFirstName + " " + req.rLastName,
                 PhoneNumber = req.rPhoneNumber,
                 CreatedDate = DateTime.Now,
+                Address1 = req.Street + " , " + req.City,
+                Address2 = req.State + " , " + req.ZipCode,
+                City = req.City,
+                RegionId = 1,
+                ZipCode = req.ZipCode,
+
+
             };
             _context.Businesses.Add(businesses);
             _context.SaveChanges();

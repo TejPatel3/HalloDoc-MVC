@@ -9,6 +9,7 @@ namespace HalloDoc.Controllers
     public class DashboardController : Controller
     {
         private readonly ApplicationDbContext _context;
+
         public DashboardController(ApplicationDbContext context)
         {
             _context = context;
@@ -94,6 +95,7 @@ namespace HalloDoc.Controllers
             {
                 //string path = _environment.WebRootPath + "/UploadDocument/" + item.FileName;
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadDocument", item.FileName);
+                ////string path = "D:\Project\HalloDoc-Images/" + item.FileName;
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
                     item.CopyTo(fileStream);
@@ -147,6 +149,7 @@ namespace HalloDoc.Controllers
 
         public IActionResult edit(PatientDashboard req)
         {
+
             int id = (int)HttpContext.Session.GetInt32("UserId");
             var users = _context.Users.FirstOrDefault(m => m.UserId == id);
             users.FirstName = req.users.FirstName;
@@ -155,8 +158,21 @@ namespace HalloDoc.Controllers
             users.State = req.users.State;
             users.ZipCode = req.users.ZipCode;
             users.Street = req.users.Street;
+            users.Mobile = req.users.Mobile;
+            users.ModifiedDate = req.users.ModifiedDate;
+            users.IntYear = int.Parse(req.DOB.ToString("yyyy"));
+            users.IntDate = int.Parse(req.DOB.ToString("dd"));
+            users.StrMonth = req.DOB.ToString("MMM");
             _context.Users.Update(users);
             _context.SaveChanges();
+
+            var asp = _context.AspNetUsers.FirstOrDefault(u => u.Email == req.users.Email);
+            asp.UserName = req.users.FirstName + req.users.LastName;
+            asp.PhoneNumber = req.users.Mobile;
+            asp.ModifiedDate = DateTime.Now;
+            _context.AspNetUsers.Update(asp);
+            _context.SaveChanges();
+
             return RedirectToAction("PatientDashboard", "Dashboard");
         }
     }

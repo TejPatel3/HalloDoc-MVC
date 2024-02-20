@@ -57,6 +57,8 @@
                               placeholder="Leave a comment here"
                               style="height: 100px"></textarea>
                     <label for="floatingTextarea" class="ms-2 text-secondary">Enter Brief details about symptoms(optional)</label>
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text" asp-for="FirstName"
@@ -75,10 +77,13 @@
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
+                    @{
+                        string max = DateTime.Now.ToString("yyyy-MM-dd");
+                    }
                     <input type="date" asp-for="BirthDate"
                            class="form-control pt-2"
                            placeholder="Username"
-                           aria-label="Username" />
+                           aria-label="Username" max=@max/>
                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
                 <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
@@ -91,9 +96,10 @@
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <div class="form-control p-0">
+                         
                         <input id="phone" asp-for="PhoneNumber"
                                type="tel"
-                               name="PhoneNumber"
+                           
                                style="border: none; padding: 18px 2% 18px 50px" />
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
@@ -111,11 +117,11 @@
                         </div>
                         <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields2">
                             <input type="password" asp-for="ConfirmPassword"
-                                   class="form-control" id="pswd"
+                                   class="form-control" id="pswdcnf"
                                    placeholder="Username" />
                             <label class="d-flex justify-content-between ms-2">Confirm Password </label>
-                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-iconc" onclick="hideviewpswdcnf()"></i>
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
 
                         </div>
                     </div>

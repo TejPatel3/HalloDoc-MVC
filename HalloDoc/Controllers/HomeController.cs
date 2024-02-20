@@ -73,6 +73,11 @@ namespace HalloDoc.Controllers
                 TempData["success"] = "Login Successful...!";
                 return RedirectToAction("PatientDashboard", "Dashboard");
             }
+            else if (!_context.AspNetUsers.Where(m => m.Email == obj.Email).Any())
+            {
+                TempData["email"] = "Email Does Not Exist";
+                return View(obj);
+            }
             else
             {
                 TempData["pswd"] = "Enter Valid Password";

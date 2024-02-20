@@ -13,8 +13,8 @@
     </div>
 </nav>
 <!-- Modal -->
-<div class="modal fade  mt-5 border-2" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade   border-2 " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Create New Request</h1>
@@ -56,11 +56,11 @@
                         <a class="btn btn-outline-info btn-sm" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" asp-controller="PatientRequest" asp-action="Patient"><i class="bi bi-plus-lg pe-1"></i>Create New Request</a>
                     </div>
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="example">
                             <thead style="background-color:lightgray">
-                                <tr>
-                                    <th scope="col" id="dtBasicExamples">Created Date<i class="fa-solid fa-arrow-down ps-2"></i></th>
-                                    <th scope="col" id="dtBasicExamples">Current Status</th>
+                                <tr class="table-active">
+                                    <th scope="col">Created Date<i class="fa-solid fa-arrow-down ps-2"></i></th>
+                                    <th scope="col">Current Status</th>
                                     <th scope="col">Document</th>
                                 </tr>
                             </thead>
@@ -70,16 +70,20 @@
                                     <tr class="text-black">
                                         <td>
                                             @item.CreatedDate.ToString("MMM dd , yyyy")
-
                                         </td>
                                         <td>
-
                                             @Model.findStatus(item.Status)
                                         </td>
                                         <td>
-                                            <a class="btn btn-outline-info" asp-action="ViewDocument" asp-controller="Dashboard" asp-route-requestid="@item.RequestId">
-                                                @item.RequestWiseFiles.Count() Document
-                                            </a>
+                                            @{
+
+                                                
+                                                    <a class="btn btn-outline-info" asp-action="ViewDocument" asp-controller="Dashboard" asp-route-requestid="@item.RequestId">
+                                                        @item.RequestWiseFiles.Count() Document
+                                                    </a>
+
+                                                
+                                            }
                                         </td>
                                     </tr>
                                 }
@@ -99,7 +103,7 @@
                 <div class="row ">
                     <div class="d-flex justify-content-between col-12">
                         <h4 class="pt-1">User Profile</h4>
-                        <a asp-area="" asp-controller="PatientRequest" asp-action="CreateRequest"
+                        <a asp-area="" asp-action="PatientDashboard"
                            class="btn m-0 btn-outline-info  px-2 ">
                             <i class="fa-solid fa-chevron-left"></i>
                             Back
@@ -114,7 +118,7 @@
                                        placeholder="Username"
                                        aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">First Name </label>
-                                <span class="text-danger"></span>
+                                <span class="text-danger" asp-validation-for="users.FirstName"></span>
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="text" asp-for="users.LastName"
@@ -122,41 +126,45 @@
                                        placeholder="Username"
                                        aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">Last name</label>
-                                <span class="text-danger"></span>
+                                <span class="text-danger" asp-validation-for="users.LastName"></span>
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
+                                @{
+                                    string max = DateTime.Now.ToString("yyyy-MM-dd");
+                                }
                                 <input type="date" asp-for="DOB"
                                        class="form-control pt-4 text-black "
                                        placeholder="Username"
-                                       aria-label="Username" disabled />
+                                       aria-label="Username" max=@max disabled />
                                 <label class="d-flex justify-content-between ms-2">Birth Date</label>
-                                <span class="text-danger"></span>
+                                <span class="text-danger" asp-validation-for="DOB"></span>
                             </div>
                             <h5 class="pt-1">Contact Information</h5>
                             <div class="col-12 col-sm-6 ">
                                 <div class="row">
-                                    <div class="dropdown form-floating col-12 col-sm-4">
-                                        <button class="btn border dropdown-toggle w-100 bg-light  form-control" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height:58px;">
-                                            Type
-                                        </button>
-                                        <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                    <div class="col-12 col-sm-4 form-floating mb-3">
+                                        <div class="form-floating">
+                                            <select class="form-select form-control shadow-none" aria-label="Default select example" id="frm" disabled>
+                                                <option selected>Mobile</option>
+                                                <option value="1">Phone</option>
+                                            </select>
+                                            <label for="floatingPassword" class="form-label">Type</label>
+
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-8 form-floating mb-3">
                                         <div class="form-control p-0 w-100">
                                             <input id="phone" asp-for="users.Mobile"
                                                    type="tel"
-                                                   name="phone" disabled
+                                                   disabled
                                                    style="border: none; padding: 18px 2% 18px 50px; width:100%; " />
-                                            <span class="text-danger"></span>
+                                            <span class="text-danger" asp-validation-for="users.Mobile"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
+                                <input type="email" asp-for="users.Email" hidden />
                                 <input type="email" asp-for="users.Email"
                                        class="form-control"
                                        placeholder="Username" disabled
@@ -180,7 +188,7 @@
                                        placeholder="Username"
                                        aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">City </label>
-                                <span class="text-danger"></span>
+                                <span class="text-danger" asp-validation-for="users.City"></span>
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="text" asp-for="users.State"
@@ -188,7 +196,7 @@
                                        placeholder="Username"
                                        aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">State </label>
-                                <span class="text-danger"></span>
+                                <span class="text-danger" asp-validation-for="users.State"></span>
                             </div>
                             <div class="col-6">
                                 <div class="row">
@@ -198,7 +206,7 @@
                                                placeholder="Username"
                                                aria-label="Username" disabled />
                                         <label class="d-flex justify-content-between ms-2">Zip code </label>
-                                        <span class="text-danger"></span>
+                                        <span class="text-danger" asp-validation-for="users.ZipCode"></span>
                                     </div>
                                     <div class="col-3 ">
                                         <a class="btn btn-outline-info p-3 w-100" id="map">
@@ -208,13 +216,13 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex d-none justify-content-end mb-5" id="hiddenBlock">
+                            <div class="d-flex d-none justify-content-end " id="hiddenBlock">
                                 <button type="submit" class="btn btn-info me-3" id="savebtn">Save</button>
                                 <a class="btn btn-info " id="canclebtn">Cancle</a>
                             </div>
                         </div>
                     </form>
-                    <div class="d-flex justify-content-end mb-5 mt-3">
+                    <div class="d-flex justify-content-end mb-2 mt-1">
                         <a class="btn btn-info " id="editButton">Edit</a>
                     </div>
                 </div>
@@ -224,70 +232,6 @@
 </div>
 
 <script>
-    //phone number saw
-    // const phoneInputField = document.querySelector("#phone");
-    // const phoneInput = window.intlTelInput(phoneInputField, {
-    //     utilsScript:
-    //         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    // });
-    // const inputHome = document.querySelector("#home");
-    // window.intlTelInput(inputHome, {
-    //     initialCountry: 'gb',
-    //     placeholderNumberType: 'FIXED_LINE',
-    //     utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
-    // });
-
-    // $(document).ready(function () {
-    //     $('#editButton').click(function () {
-    //         console.log("ktktkt");
-    //         // Remove disabled attribute to make inputs editable
-    //         // $('#name').prop('disabled', false);
-    //         // $('#age').prop('disabled', false);
-    //         $('input[type="text"]').removeAttr('disabled', false);
-    //         $('input[type="date"]').removeAttr('disabled', false);
-    //         $('input[type="tel"]').removeAttr('disabled', false);
-    //         // Hide the edit button after clicking it
-    //         $(this).hide();
-    //         $('#saveButton').removeAttr('hidden', false);
-    //     });
-    // });
-
-
-    // document.getElementById("map").addEventListener("click", function (e) {
-    //     console.log("hekol")
-    //     var street = document.getElementById("Street").value;
-    //     console.log(street)
-    //     var city = document.getElementById("City").value;
-    //     console.log(city)
-    //     var state = document.getElementById("State").value;
-    //     console.log(state)
-    //     var zip = document.getElementById("ZipCode").value;
-    //     console.log(zip)
-
-    //     var mapurl = "https://www.google.com/maps/search/?api=1&query=";
-
-    //     if (street != null) {
-    //         mapurl = mapurl + street.replace(" ", "") + "," + "+";
-    //     }
-    //     console.log(mapurl)
-    //     if (city != null) {
-    //         mapurl = mapurl + city.replace(" ", "") + "," + "+";
-    //     }
-    //     console.log(mapurl)
-    //     if (state != null) {
-    //         mapurl = mapurl + state.replace(" ", "") + "," + "+";
-    //     }
-    //     console.log(mapurl)
-    //     if (zip != null) {
-    //         mapurl = mapurl + zip.replace(" ", "") + "," + "+";
-    //     }
-
-    //     window.open(mapurl, '_blank');
-
-    //     e.preventDefault();
-    // })
-
-
     $(document).ready(function () {
         $('#editButton').click(function () {
             console.log("ktktkt");
@@ -297,6 +241,7 @@
             $('input[type="text"]').removeAttr('disabled', false);
             $('input[type="date"]').removeAttr('disabled', false);
             $('input[type="tel"]').removeAttr('disabled', false);
+            $('select').removeAttr('disabled', false);
             $("#hiddenBlock").removeClass("d-none");
             // Hide the edit button after clicking it
             $(this).hide();
@@ -306,16 +251,13 @@
 
     $(document).ready(function () {
         $('#canclebtn').click(function () {
-            $('input[type="text"]').prop('disabled',true);
+            $('input[type="text"]').prop('disabled', true);
             $('input[type="date"]').prop('disabled', true);
             $('input[type="tel"]').prop('disabled', true);
             $('#editButton').show();
             $("#hiddenBlock").addClass("d-none");
         });
     });
-
-
-
 
     document.getElementById("map").addEventListener("click", function (e) {
         console.log("hekol")
@@ -345,10 +287,45 @@
         if (zip != null) {
             mapurl = mapurl + zip.replace(" ", "") + "," + "+";
         }
-
         window.open(mapurl, '_blank');
-
         e.preventDefault();
     })
+
+    $(document).ready(function () {
+        $('#example').DataTable({
+            // //disable sorting on last column
+            // "columnDefs": [
+            //     { "orderable": false, "targets": 5 }
+            // ],
+            // language: {
+            //     //customize pagination prev and next buttons: use arrows instead of words
+            //     'paginate': {
+            //         'previous': '<span class="fa fa-chevron-left"></span>',
+            //         'next': '<span class="fa fa-chevron-right"></span>'
+            //     },
+            //     //customize number of elements to be displayed
+            //     "lengthMenu": 'Display <select class="form-control input-sm">' +
+            //         '<option value="10">10</option>' +
+            //         '<option value="20">20</option>' +
+            //         '<option value="30">30</option>' +
+            //         '<option value="40">40</option>' +
+            //         '<option value="50">50</option>' +
+            //         '<option value="-1">All</option>' +
+            //         '</select> results'
+            // }
+        })
+    });
+
+
+
 </script>
 
+<style>
+    .form-select {
+        width: 50px !important;
+    }
+
+    #frm {
+        width: 100% !important;
+    }
+</style>

@@ -1,13 +1,49 @@
-﻿@model HalloDoc.Models.ViewModel.PatientDashboard ;
-
+﻿@using System.Globalization;
+@model HalloDoc.Models.ViewModel.PatientDashboard ;
 @{
     Layout = "_dashboard";
 }
+<Partial name="Toast" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active text-info" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
+        <button class="nav-link text-info" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+    </div>
+</nav>
+<!-- Modal -->
+<div class="modal fade   border-2 " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create New Request</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-action="redirect" asp-controller="Dashboard" method="post">
+                <div class="modal-body d-flex justify-content-center">
+                    <div class="px-2">
+
+                        <input type="radio" class="btn-check" name="radiobtn" id="success-outlined" autocomplete="off" value="me" checked>
+                        <label class="btn btn-outline-info" for="success-outlined">Me</label>
+                    </div>
+                    <div class="px-2">
+
+                        <input type="radio" class="btn-check" name="radiobtn" id="danger-outlined" value="someone" autocomplete="off">
+                        <label class="btn btn-outline-info" for="danger-outlined">Some One Else</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info" onclick="redirect()">Continue</button>
+                    <button type="button" class="btn border border-1 border-info text-info" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-
         <div class="container  pt-3">
             <div class="d-flex justify-content-between mb-2">
                 <h4>Documents</h4>
@@ -23,7 +59,7 @@
                     <div class="col-12 text-secondary">
 
                         <div>
-                        <strong class="h4 text-info">@Model.users.FirstName @Model.users.LastName </strong>
+                            <strong class="h4 text-info">@Model.users.FirstName @Model.users.LastName </strong>
                             (@Model.requests.FirstOrDefault(x => x.RequestId == (Model.requests.FirstOrDefault(m =>m.UserId == Model.users.UserId).RequestId)).ConfirmationNumber)
                         </div>
 
@@ -62,7 +98,7 @@
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col"><input type="checkbox" id="download"/></th>
+                            <th scope="col"><input type="checkbox" id="download" /></th>
                             <th scope="col">FileName</th>
                             <th scope="col">Uploader</th>
                             <th scope="col">Upload Date</th>
@@ -74,7 +110,7 @@
                         {
 
                             <tr>
-                                <th scope="row"><input type="checkbox" name="checkbox" class="childCheckbox"/></th>
+                                <th scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" /></th>
                                 <td>@item.FileName.Substring(52)</td>
                                 <td>@Model.users.FirstName @Model.users.LastName</td>
                                 <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
@@ -94,14 +130,13 @@
             </div>
         </div>
     </div>
-
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
         <div class="container mt-3 ">
             <div class="d-flex mb-2">
                 <div class="row ">
                     <div class="d-flex justify-content-between col-12">
                         <h4 class="pt-1">User Profile</h4>
-                        <a asp-area="" asp-controller="PatientRequest" asp-action="CreateRequest"
+                        <a asp-area="" asp-action="PatientDashboard"
                            class="btn m-0 btn-outline-info  px-2 ">
                             <i class="fa-solid fa-chevron-left"></i>
                             Back
@@ -127,7 +162,7 @@
                                 <span class="text-danger"></span>
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
-                                <input type="date" asp-for="users.CreatedDate"
+                                <input type="date" asp-for="DOB"
                                        class="form-control pt-4 text-black "
                                        placeholder="Username"
                                        aria-label="Username" disabled />
@@ -135,30 +170,31 @@
                                 <span class="text-danger"></span>
                             </div>
                             <h5 class="pt-1">Contact Information</h5>
-                            <div class="col-6">
+                            <div class="col-12 col-sm-6 ">
                                 <div class="row">
-                                    <div class="dropdown form-floating col-12 col-sm-4">
-                                        <button class="btn border dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height:58px;">
-                                            Type
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
+                                    <div class="col-12 col-sm-4 form-floating mb-3">
+                                        <div class="form-floating">
+                                            <select class="form-select form-control shadow-none" aria-label="Default select example" id="frm" disabled>
+                                                <option selected>Mobile</option>
+                                                <option value="1">Phone</option>
+                                            </select>
+                                            <label for="floatingPassword" class="form-label">Type</label>
+
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-8 form-floating mb-3">
-                                        <div class="form-control p-0">
+                                        <div class="form-control p-0 w-100">
                                             <input id="phone" asp-for="users.Mobile"
                                                    type="tel"
-                                                   name="phone" disabled
-                                                   style="border: none; padding: 18px 2% 18px 50px" />
+                                                   disabled
+                                                   style="border: none; padding: 18px 2% 18px 50px; width:100%; " />
                                             <span class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
+                                <input type="email" asp-for="users.Email" hidden />
                                 <input type="email" asp-for="users.Email"
                                        class="form-control"
                                        placeholder="Username" disabled
@@ -169,49 +205,55 @@
                             <h5 class="pt-1">Location Information</h5>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="text" asp-for="users.Street"
-                                       class="form-control" disabled
+                                       class="form-control" id="Street"
                                        placeholder="Username"
-                                       aria-label="Username" />
+                                       aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">Street </label>
                                 <span asp-validation-for="users.Street" class="text-danger"></span>
+
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="text" asp-for="users.City"
-                                       class="form-control" disabled
+                                       class="form-control" id="City"
                                        placeholder="Username"
-                                       aria-label="Username" />
+                                       aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">City </label>
                                 <span class="text-danger"></span>
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="text" asp-for="users.State"
-                                       class="form-control"
-                                       placeholder="Username" disabled
-                                       aria-label="Username" />
+                                       class="form-control" id="State"
+                                       placeholder="Username"
+                                       aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">State </label>
                                 <span class="text-danger"></span>
                             </div>
-                            <div class="col-12 col-sm-6 form-floating mb-3">
-                                <input type="text" asp-for="users.ZipCode"
-                                       class="form-control"
-                                       placeholder="Username" disabled
-                                       aria-label="Username" />
-                                <label class="d-flex justify-content-between ms-2">Zip code </label>
-                                <span class="text-danger"></span>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-9 form-floating mb-3">
+                                        <input type="text" asp-for="users.ZipCode"
+                                               class="form-control" id="ZipCode"
+                                               placeholder="Username"
+                                               aria-label="Username" disabled />
+                                        <label class="d-flex justify-content-between ms-2">Zip code </label>
+                                        <span class="text-danger"></span>
+                                    </div>
+                                    <div class="col-3 ">
+                                        <a class="btn btn-outline-info p-3 w-100" id="map">
+                                            <i class="bi bi-geo-alt"></i> Map
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="d-flex justify-content-end mb-5">
-
-                                <button type="submit" class="btn btn-info " id="editButton">Save</button>
-                            </div>
-                            <div class="d-flex justify-content-end mb-5">
-
-                                <button type="reset" class="btn btn-info " id="editButton">Cancle</button>
+                            <div class="d-flex d-none justify-content-end " id="hiddenBlock">
+                                <button type="submit" class="btn btn-info me-3" id="savebtn">Save</button>
+                                <a class="btn btn-info " id="canclebtn">Cancle</a>
                             </div>
                         </div>
                     </form>
-                    <div class="d-flex justify-content-end mb-5">
-                        <button class="btn btn-info " id="editButton">Edit</button>
+                    <div class="d-flex justify-content-end mb-2 mt-1">
+                        <a class="btn btn-info " id="editButton">Edit</a>
                     </div>
                 </div>
             </div>
@@ -219,9 +261,91 @@
     </div>
 </div>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+    $(document).ready(function () {
+        $('#editButton').click(function () {
+            console.log("ktktkt");
+            // Remove disabled attribute to make inputs editable
+            // $('#name').prop('disabled', false);
+            // $('#age').prop('disabled', false);
+            $('input[type="text"]').removeAttr('disabled', false);
+            $('input[type="date"]').removeAttr('disabled', false);
+            $('input[type="tel"]').removeAttr('disabled', false);
+            $('select').removeAttr('disabled', false);
+            $("#hiddenBlock").removeClass("d-none");
+            // Hide the edit button after clicking it
+            $(this).hide();
+            // $('#saveButton').removeAttr('hidden', false);
+        });
+    });
+
+    $(document).ready(function () {
+        $('#canclebtn').click(function () {
+            $('input[type="text"]').prop('disabled', true);
+            $('input[type="date"]').prop('disabled', true);
+            $('input[type="tel"]').prop('disabled', true);
+            $('#editButton').show();
+            $("#hiddenBlock").addClass("d-none");
+        });
+    });
+
+    document.getElementById("map").addEventListener("click", function (e) {
+        console.log("hekol")
+        var street = document.getElementById("Street").value;
+        console.log(street)
+        var city = document.getElementById("City").value;
+        console.log(city)
+        var state = document.getElementById("State").value;
+        console.log(state)
+        var zip = document.getElementById("ZipCode").value;
+        console.log(zip)
+
+        var mapurl = "https://www.google.com/maps/search/?api=1&query=";
+
+        if (street != null) {
+            mapurl = mapurl + street.replace(" ", "") + "," + "+";
+        }
+        console.log(mapurl)
+        if (city != null) {
+            mapurl = mapurl + city.replace(" ", "") + "," + "+";
+        }
+        console.log(mapurl)
+        if (state != null) {
+            mapurl = mapurl + state.replace(" ", "") + "," + "+";
+        }
+        console.log(mapurl)
+        if (zip != null) {
+            mapurl = mapurl + zip.replace(" ", "") + "," + "+";
+        }
+        window.open(mapurl, '_blank');
+        e.preventDefault();
+    })
+
+    $(document).ready(function () {
+        $('#example').DataTable({
+            // //disable sorting on last column
+            // "columnDefs": [
+            //     { "orderable": false, "targets": 5 }
+            // ],
+            // language: {
+            //     //customize pagination prev and next buttons: use arrows instead of words
+            //     'paginate': {
+            //         'previous': '<span class="fa fa-chevron-left"></span>',
+            //         'next': '<span class="fa fa-chevron-right"></span>'
+            //     },
+            //     //customize number of elements to be displayed
+            //     "lengthMenu": 'Display <select class="form-control input-sm">' +
+            //         '<option value="10">10</option>' +
+            //         '<option value="20">20</option>' +
+            //         '<option value="30">30</option>' +
+            //         '<option value="40">40</option>' +
+            //         '<option value="50">50</option>' +
+            //         '<option value="-1">All</option>' +
+            //         '</select> results'
+            // }
+        })
+    });
+
     // jQuery script to handle leader checkbox click event
     $(document).ready(function () {
         $('#download').click(function () {
@@ -266,4 +390,21 @@
 
 
 
+
 </script>
+
+<style>
+    .form-select {
+        width: 50px !important;
+    }
+
+    #frm {
+        width: 100% !important;
+    }
+</style>
+
+
+
+
+
+

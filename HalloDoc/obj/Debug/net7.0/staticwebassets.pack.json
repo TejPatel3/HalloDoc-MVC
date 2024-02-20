@@ -197,6 +197,42 @@
       "PackagePath": "staticwebassets\\UploadDocument\\131Fig1. Platform login page.jpg"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\132Fig3. Admin Dashboard.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\132Fig3. Admin Dashboard.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\133Fig2. Forgot Password.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\133Fig2. Forgot Password.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\134Fig3. Admin Dashboard.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\134Fig3. Admin Dashboard.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\135Fig2. Forgot Password.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\135Fig2. Forgot Password.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\136Fig2. Forgot Password.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\136Fig2. Forgot Password.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\140Fig Contact your Provider.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\140Fig Contact your Provider.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\141Screenshot (5).png",
+      "PackagePath": "staticwebassets\\UploadDocument\\141Screenshot (5).png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\143Screenshot (3).png",
+      "PackagePath": "staticwebassets\\UploadDocument\\143Screenshot (3).png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\144Screenshot (4).png",
+      "PackagePath": "staticwebassets\\UploadDocument\\144Screenshot (4).png"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\22eye-icon.jfif",
       "PackagePath": "staticwebassets\\UploadDocument\\22eye-icon.jfif"
     },
@@ -789,6 +825,22 @@
       "PackagePath": "staticwebassets\\UploadDocument\\LesfImage.png"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Screenshot (2).png",
+      "PackagePath": "staticwebassets\\UploadDocument\\Screenshot (2).png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Screenshot (3).png",
+      "PackagePath": "staticwebassets\\UploadDocument\\Screenshot (3).png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Screenshot (4).png",
+      "PackagePath": "staticwebassets\\UploadDocument\\Screenshot (4).png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Screenshot (5).png",
+      "PackagePath": "staticwebassets\\UploadDocument\\Screenshot (5).png"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\alert.png",
       "PackagePath": "staticwebassets\\UploadDocument\\alert.png"
     },
@@ -831,374 +883,6 @@
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\11116016_415.jpg",
-      "PackagePath": "staticwebassets\\images\\11116016_415.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\11116040-opacity-low.png",
-      "PackagePath": "staticwebassets\\images\\11116040-opacity-low.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\7768657_3763028 opacity low.png",
-      "PackagePath": "staticwebassets\\images\\7768657_3763028 opacity low.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\7768657_3763028.jpg",
-      "PackagePath": "staticwebassets\\images\\7768657_3763028.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\7774236_3736765.jpg",
-      "PackagePath": "staticwebassets\\images\\7774236_3736765.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig Contact your Provider.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig Contact your Provider.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig1. Platform login page.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig1. Platform login page.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig10. View case.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig10. View case.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig11. View Notes.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig11. View Notes.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig12. Cancel Case pop-up.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig12. Cancel Case pop-up.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig13. Assign case.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig13. Assign case.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig14. Block case.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig14. Block case.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig15.View Uploads-PatientsConclude.png",
-      "PackagePath": "staticwebassets\\images\\Fig15.View Uploads-PatientsConclude.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig16. Orders.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig16. Orders.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig17.Transfer.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig17.Transfer.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig18.Clear Case.png",
-      "PackagePath": "staticwebassets\\images\\Fig18.Clear Case.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig19.Send Agreement pop-up.png",
-      "PackagePath": "staticwebassets\\images\\Fig19.Send Agreement pop-up.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig2. Forgot Password.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig2. Forgot Password.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig20.Close case.png",
-      "PackagePath": "staticwebassets\\images\\Fig20.Close case.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig21. Admin My profile..jpg",
-      "PackagePath": "staticwebassets\\images\\Fig21. Admin My profile..jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig22 Regions menu.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig22 Regions menu.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig23.Request Support.png",
-      "PackagePath": "staticwebassets\\images\\Fig23.Request Support.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig24. Provider Menu.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig24. Provider Menu.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig25. Contact your Provider.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig25. Contact your Provider.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig26. Edit Physician Account.png",
-      "PackagePath": "staticwebassets\\images\\Fig26. Edit Physician Account.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig27. Roles.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig27. Roles.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig28. Create Role All.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig28. Create Role All.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig29. Create Role Admin.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig29. Create Role Admin.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig3. Admin Dashboard.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig3. Admin Dashboard.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig30. Create Role Physician.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig30. Create Role Physician.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig31. 1 Create Role Patient.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig31. 1 Create Role Patient.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig31.2 Create Role Patient UserAccess.png",
-      "PackagePath": "staticwebassets\\images\\Fig31.2 Create Role Patient UserAccess.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig32. Day wise Scheduling.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig32. Day wise Scheduling.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig33. Month wise Scheduling.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig33. Month wise Scheduling.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig34. Week wise Scheduling.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig34. Week wise Scheduling.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig35. Provider on call (MDs On Call).jpg",
-      "PackagePath": "staticwebassets\\images\\Fig35. Provider on call (MDs On Call).jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig36. Requested Shift.png",
-      "PackagePath": "staticwebassets\\images\\Fig36. Requested Shift.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig37. Create Shift.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig37. Create Shift.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig38. View Shift.png",
-      "PackagePath": "staticwebassets\\images\\Fig38. View Shift.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig39. Provider Location.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig39. Provider Location.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig4. Admin dashboard in New state.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig4. Admin dashboard in New state.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig40. Profession menu Vendors.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig40. Profession menu Vendors.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig41.Add business page.png",
-      "PackagePath": "staticwebassets\\images\\Fig41.Add business page.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig42.Edit business page.png",
-      "PackagePath": "staticwebassets\\images\\Fig42.Edit business page.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig43. Patient history.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig43. Patient history.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig44. Patient Record Explore.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig44. Patient Record Explore.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig45. Search Records.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig45. Search Records.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig45.Email Logs.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig45.Email Logs.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig46. SMS Logs.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig46. SMS Logs.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig47. Block History.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig47. Block History.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig48. Create Requests.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig48. Create Requests.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig49. Provider dashboard.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig49. Provider dashboard.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig5. Admin dashboard in pending state.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig5. Admin dashboard in pending state.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig50.Encounter (Type Of care).png",
-      "PackagePath": "staticwebassets\\images\\Fig50.Encounter (Type Of care).png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig51.Conclude State  Action  Encounter Form.png",
-      "PackagePath": "staticwebassets\\images\\Fig51.Conclude State  Action  Encounter Form.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig52. Encounter Finalize popup.png",
-      "PackagePath": "staticwebassets\\images\\Fig52. Encounter Finalize popup.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig53. Provider transfer request pop-up.png",
-      "PackagePath": "staticwebassets\\images\\Fig53. Provider transfer request pop-up.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig54. Provider My Profile.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig54. Provider My Profile.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig55. Provider My Profile Request to Admin.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig55. Provider My Profile Request to Admin.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig56. Patient site 1.png",
-      "PackagePath": "staticwebassets\\images\\Fig56. Patient site 1.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig56. Patient site.png",
-      "PackagePath": "staticwebassets\\images\\Fig56. Patient site.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig57.Submit request screen.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig57.Submit request screen.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig58. Create Patient request.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig58. Create Patient request.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig59.1.FamilyFriend Information1.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig59.1.FamilyFriend Information1.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig59.FamilyFriend Information2.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig59.FamilyFriend Information2.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig6. Admin dashboard in Active state.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig6. Admin dashboard in Active state.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig60.Concierge Information.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig60.Concierge Information.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig61.Business Information.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig61.Business Information.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig62.Login Patient Account Registered Patient.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig62.Login Patient Account Registered Patient.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig63.Reset Your Password Patient.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig63.Reset Your Password Patient.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig64. Patient Dashboard ,Patient Medical History.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig64. Patient Dashboard ,Patient Medical History.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig65.Patient Create New Request.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig65.Patient Create New Request.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig66.Submit Information me.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig66.Submit Information me.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig67.Submit Information Some one else.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig67.Submit Information Some one else.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig68. View Documents.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig68. View Documents.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig7. Admin dashboard in Conclude state.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig7. Admin dashboard in Conclude state.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig8. Admin dashboard in To Close state.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig8. Admin dashboard in To Close state.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig9. Admin dashboard in Unpaid state.jpg",
-      "PackagePath": "staticwebassets\\images\\Fig9. Admin dashboard in Unpaid state.jpg"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\LesfImage.png",
-      "PackagePath": "staticwebassets\\images\\LesfImage.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\alert.png",
-      "PackagePath": "staticwebassets\\images\\alert.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\australia.png",
-      "PackagePath": "staticwebassets\\images\\australia.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\canada.png",
-      "PackagePath": "staticwebassets\\images\\canada.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\eye-icon.jfif",
-      "PackagePath": "staticwebassets\\images\\eye-icon.jfif"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\eye.png",
-      "PackagePath": "staticwebassets\\images\\eye.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\hallodoc-transparent.png",
-      "PackagePath": "staticwebassets\\images\\hallodoc-transparent.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\india.png",
-      "PackagePath": "staticwebassets\\images\\india.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\light-mode.png",
-      "PackagePath": "staticwebassets\\images\\light-mode.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\moon.png",
-      "PackagePath": "staticwebassets\\images\\moon.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\night-mode.png",
-      "PackagePath": "staticwebassets\\images\\night-mode.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\output-onlinepngtools.png",
-      "PackagePath": "staticwebassets\\images\\output-onlinepngtools.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\password-eye-icon.png",
-      "PackagePath": "staticwebassets\\images\\password-eye-icon.png"
-    },
-    {
-      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\profile-icon.png",
-      "PackagePath": "staticwebassets\\images\\profile-icon.png"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\site.js",
