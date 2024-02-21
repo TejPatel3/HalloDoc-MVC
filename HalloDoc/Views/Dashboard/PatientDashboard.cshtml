@@ -75,15 +75,9 @@
                                             @Model.findStatus(item.Status)
                                         </td>
                                         <td>
-                                            @{
-
-                                                
-                                                    <a class="btn btn-outline-info" asp-action="ViewDocument" asp-controller="Dashboard" asp-route-requestid="@item.RequestId">
-                                                        @item.RequestWiseFiles.Count() Document
-                                                    </a>
-
-                                                
-                                            }
+                                            <a class="btn btn-outline-info" asp-action="ViewDocument" asp-controller="Dashboard" asp-route-requestid="@item.RequestId">
+                                                @item.RequestWiseFiles.Count() Document
+                                            </a>
                                         </td>
                                     </tr>
                                 }

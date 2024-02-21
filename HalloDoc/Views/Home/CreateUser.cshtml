@@ -12,7 +12,6 @@
                 <img src="/images/hallodoc-transparent.png" alt="" />
             </div>
             <div style="min-height:65vh;">
-                <form asp-action="CreateUser" method="post">
                     <div class="text-info  d-none d-sm-block w-50 my-3">
                         <a asp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none fw-bold fs-5 text-info">
                             <i class="fa-solid fa-chevron-left" style="color: #17a2b8"></i>
@@ -22,6 +21,7 @@
                     <div class="d-flex justify-content-center my-2 ">
                         <h3>Create Your Account</h3>
                     </div>
+                <form asp-action="CreateUser" asp-controller="Home" method="post">
                     <div class="form mt-xxl-5 mt-lg-2 mt-3">
                         <div class="col-12 d-flex justify-content-center mb-xxl-3">
                             <div class="col-12 form-floating mb-3  text-input-max-width">

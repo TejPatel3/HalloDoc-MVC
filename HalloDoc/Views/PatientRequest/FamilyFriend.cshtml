@@ -114,10 +114,13 @@
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
+                    @{
+                        string max = DateTime.Now.ToString("yyyy-MM-dd");
+                    }
                     <input type="date" asp-for="BirthDate"
                            class="form-control pt-4"
                            placeholder="Username"
-                           aria-label="Username" max="2010-10-10" />
+                           aria-label="Username" max=@max />
                     <label class="d-flex justify-content-between  ps-4">Birth Date</label>
                     <span asp-validation-for="BirthDate" class="text-danger "></span>
                 </div>

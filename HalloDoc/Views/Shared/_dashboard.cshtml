@@ -21,13 +21,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/bd0516d00b.js" crossorigin="anonymous"></script>
+    @*  *@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HalloDoc.styles.css" asp-append-version="true" />
     <link rel="script" href="~/js/site.js" />
 </head>
 <body>
-    <nav class="navbar  navbar-light border-bottom justify-content-between">
+    <nav class="navbar  navbar-light border border-2 border-top-0 border-start-0 border-end-0 justify-content-between">
         <img src="/images/hallodoc-transparent.png"
              class="img-fluid d-block ms-2"
              alt="" style="height:100px;" />
@@ -40,7 +44,7 @@
                                 <h6 class=" pe-2" style="color:gray;">Welcome </h6>
                                 <h6 class="" style="color:gray;">@TempData["user"]</h6>
                                 <a asp-action="Logout" asp-controller="Dashboard">
-                                    <button class="btn btn-outline-info ms-4" style="height:41px;" onclick="location.href='@Url.Action("Index","Home")'">Log out</button>
+                                    <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("Index","Home")'">Log out</button>
                                 </a>
                                 <img src="~/images/night-mode.png"
                                      id="theme-toggle"
@@ -62,7 +66,7 @@
     <button class="nav-link text-info" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
     </div>
     </nav> *@
-    <div class="pt-2 bg-light mb-5">
+    <div class="mt-2 bg-light mb-5">
         @RenderBody()
     </div>
 

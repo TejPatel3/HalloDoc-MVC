@@ -476,10 +476,11 @@ footer{
 
 
 
-.active {
+.nav-link.active.k {
     background: transparent !important;
     border: none !important;
     border-bottom: 2px solid #0dcaf0 !important;
+    color: #17a2b8 !important;
 }
 
 .nav-link {
@@ -512,3 +513,5 @@ footer{
 .iti--allow-dropdown {
     width: 100% !important;
 }
+
+

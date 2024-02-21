@@ -1,8 +1,6 @@
 ﻿using HalloDoc.DataContext;
-using HalloDoc.DataModels;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
-using System.Globalization;
 
 namespace HalloDoc.Controllers
 {
@@ -20,10 +18,10 @@ namespace HalloDoc.Controllers
         [HttpPost]
         public IActionResult AdminLogin(registrationViewModel req)
         {
-            if (ModelState.IsValid)
-            {
-                return View();
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    return View();
+            //}
             if (_context.AspNetUsers.Where(m => m.Email == req.Email).Any() && _context.AspNetUsers.Where(user => user.PasswordHash == req.PasswordHash).Any())
             {
                 var admin = _context.Admins.FirstOrDefault(m => m.Email == req.Email);
@@ -46,6 +44,11 @@ namespace HalloDoc.Controllers
         {
             return View();
         }
+
+
+
+
+
         public IActionResult AdminDashboard()
         {
             if (HttpContext.Session.GetInt32("UserId") != null)
@@ -56,13 +59,13 @@ namespace HalloDoc.Controllers
                 var users = _context.Users.FirstOrDefault(m => m.UserId == id);
                 model.users = _context.Users.FirstOrDefault(m => m.UserId == id);
                 model.requests = (from m in _context.Requests where m.UserId == id select m).ToList();
-                Admin admin = _context.Admins.FirstOrDefault(m => m.AdminId == id);
+                var admin = _context.Admins.FirstOrDefault(m => m.AdminId == id);
                 TempData["user"] = admin.FirstName;
                 model.wiseFiles = _context.RequestWiseFiles.ToList();
                 var reqe = _context.Requests.FirstOrDefault(m => m.UserId == id);
                 //var confirmationNumber =  _context.Requests.FirstOrDefault(x => x.RequestId == (Model.requests.FirstOrDefault(m => m.UserId == Model.
                 //model.requestid = reqe.RequestId;
-                model.DOB = new DateTime(Convert.ToInt32(users.IntYear), DateTime.ParseExact(users.StrMonth, "MMM", CultureInfo.InvariantCulture).Month, Convert.ToInt32(users.IntDate));
+                //model.DOB = new DateTime(Convert.ToInt32(users.IntYear), DateTime.ParseExact(users.StrMonth, "MMM", CultureInfo.InvariantCulture).Month, Convert.ToInt32(users.IntDate));
                 //TempData["birth"] = model.DOB;
                 return View(model);
             }

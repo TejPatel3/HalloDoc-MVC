@@ -3,6 +3,9 @@ using HalloDoc.DataModels;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
+using System.Net.Mail;
+
 namespace HalloDoc.Controllers
 {
     public class PatientRequestController : Controller
@@ -207,7 +210,16 @@ namespace HalloDoc.Controllers
                 if (req.Upload != null)
                 {
                     uploadFile(req.Upload, requests.RequestId);
+
                 }
+            }
+
+            //var aspcheck = _context.AspNetUsers.FirstOrDefault(m => m.Email == req.Email);
+            if (_context.AspNetUsers.FirstOrDefault(m => m.Email == req.Email) == null)
+            {
+                familyCreatePatient(req);
+                var aspuser1 = _context.AspNetUsers.FirstOrDefault(m => m.Email == req.Email);
+                PatientResetPasswordEmail(aspuser1);
             }
             if (HttpContext.Session.GetInt32("UserId") != null)
             {
@@ -219,6 +231,92 @@ namespace HalloDoc.Controllers
 
             }
         }
+        public IActionResult familyCreatePatient(request req)
+        {
+            Guid id = Guid.NewGuid();
+
+            AspNetUser aspuser = new AspNetUser();
+            aspuser.Email = req.Email;
+            aspuser.UserName = req.FirstName;
+            aspuser.Id = id.ToString();
+            aspuser.CreatedDate = DateTime.Now;
+            aspuser.PhoneNumber = req.PhoneNumber;
+            _context.AspNetUsers.Add(aspuser);
+            _context.SaveChanges();
+
+            User addUser = new User();
+            addUser.Email = req.Email;
+            addUser.Id = id.ToString();
+            addUser.FirstName = req.FirstName;
+            addUser.LastName = req.LastName;
+            addUser.CreatedBy = id.ToString();
+            addUser.CreatedDate = DateTime.Now;
+            addUser.City = req.City;
+            addUser.Street = req.Street;
+            addUser.State = req.State;
+            addUser.ZipCode = req.ZipCode;
+            addUser.IntYear = int.Parse(req.BirthDate?.ToString("yyyy"));
+            addUser.IntDate = int.Parse(req.BirthDate?.ToString("dd"));
+            addUser.StrMonth = req.BirthDate?.ToString("MMM");
+            addUser.RegionId = 2;
+            //users.IntDate = req.BirthDat
+
+            _context.Users.Add(addUser);
+            _context.SaveChanges();
+
+            if (HttpContext.Session.GetInt32("UserId") != null)
+            {
+                return RedirectToAction("PatientDashboard", "Dashboard");
+            }
+            else
+            {
+                return RedirectToAction("CreateRequest");
+
+            }
+        }
+        //Email send 
+        private string GenerateResetPasswordUrl(string userId)
+        {
+            string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+            string resetPasswordPath = Url.Action("CreateUser", "Home", new { id = userId });
+            return baseUrl + resetPasswordPath;
+        }
+        public IActionResult PatientResetPasswordEmail(AspNetUser user)
+        {
+            string Id = (_context.AspNetUsers.FirstOrDefault(x => x.Email == user.Email)).Id;
+            string resetPasswordUrl = GenerateResetPasswordUrl(Id);
+            SendEmail(user.Email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
+
+            TempData["success"] = "Reset Password Link sent Successful";
+            return RedirectToAction("CreateRequest", "PatientRequest");
+        }
+
+
+        private Task SendEmail(string email, string subject, string message)
+        {
+            var mail = "tatva.dotnet.tejpatel@outlook.com";
+            var password = "7T6d2P3@K";
+
+            var client = new SmtpClient("smtp.office365.com", 587)
+            {
+                EnableSsl = true,
+                Credentials = new NetworkCredential(mail, password)
+            };
+
+            return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
+        }
+
+        [HttpPost]
+        public IActionResult CreatePatient(AspNetUser aspnetuser)
+        {
+            var aspuser = _context.AspNetUsers.FirstOrDefault(x => x.Email == aspnetuser.Email);
+            aspuser.PasswordHash = aspnetuser.PasswordHash;
+            _context.AspNetUsers.Update(aspuser);
+            _context.SaveChanges();
+            TempData["success"] = "Your Password Reset Successful";
+            return RedirectToAction("PatientDashboard", "Dashboard");
+        }
+
 
         //Get Method for Concierge Patient Request
         public IActionResult Concierge()

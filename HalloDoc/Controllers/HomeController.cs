@@ -4,6 +4,8 @@ using HalloDoc.Models;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net;
+using System.Net.Mail;
 
 namespace HalloDoc.Controllers
 {
@@ -20,17 +22,8 @@ namespace HalloDoc.Controllers
             return View();
         }
 
-        public IActionResult ForgotPassword()
-        {
-            return View();
-        }
 
-        //post forgot password 
-        [HttpPost]
-        public async Task<IActionResult> ForgotPassword(AspNetUser asp)
-        {
-            return RedirectToAction("Login");
-        }
+
 
         public IActionResult CreateUser()
         {
@@ -39,22 +32,13 @@ namespace HalloDoc.Controllers
         [HttpPost]
         public IActionResult CreateUser(registrationViewModel obj)
         {
-            if (ModelState.IsValid)
-            {
-                Guid id = Guid.NewGuid();
-                AspNetUser user = new AspNetUser();
-                user.Id = id.ToString();
-                user.Email = obj.Email;
-                user.UserName = obj.Email;
-                user.PasswordHash = obj.PasswordHash;
-                _context.AspNetUsers.Add(user);
-                _context.SaveChanges();
-                return RedirectToAction("CreateRequest", "PatientRequest");
-            }
-            else
-            {
-                return View(obj);
-            }
+            Guid id = Guid.NewGuid();
+            AspNetUser user = _context.AspNetUsers.FirstOrDefault(m => m.Email == obj.Email);
+            user.PasswordHash = obj.PasswordHash;
+            _context.AspNetUsers.Add(user);
+            _context.SaveChanges();
+            TempData["success"] = "Your Account Created Successful";
+            return RedirectToAction("PatientDashboard", "Dashboard");
         }
 
         public IActionResult Login()
@@ -90,5 +74,57 @@ namespace HalloDoc.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult resetPassword()
+        {
+            return View();
+        }
+
+        public IActionResult ForgotPassword(AspNetUser user)
+        {
+            return View(user);
+        }
+        private string GenerateResetPasswordUrl(string userId)
+        {
+            string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+            string resetPasswordPath = Url.Action("resetPassword", "Home", new { id = userId });
+            return baseUrl + resetPasswordPath;
+        }
+        public IActionResult PatientResetPasswordEmail(AspNetUser user)
+        {
+            string Id = (_context.AspNetUsers.FirstOrDefault(x => x.Email == user.Email)).Id;
+            string resetPasswordUrl = GenerateResetPasswordUrl(Id);
+            SendEmail(user.Email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
+
+            TempData["success"] = "Reset Password Link sent Successful";
+            return RedirectToAction("Login", "Home");
+        }
+
+
+        private Task SendEmail(string email, string subject, string message)
+        {
+            var mail = "tatva.dotnet.tejpatel@outlook.com";
+            var password = "7T6d2P3@K";
+
+            var client = new SmtpClient("smtp.office365.com", 587)
+            {
+                EnableSsl = true,
+                Credentials = new NetworkCredential(mail, password)
+            };
+
+            return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
+        }
+
+        [HttpPost]
+        public IActionResult resetPassword(AspNetUser aspnetuser)
+        {
+            var aspuser = _context.AspNetUsers.FirstOrDefault(x => x.Email == aspnetuser.Email);
+            aspuser.PasswordHash = aspnetuser.PasswordHash;
+            _context.AspNetUsers.Update(aspuser);
+            _context.SaveChanges();
+            TempData["success"] = "Your Password Reset Successful";
+            return RedirectToAction("Login");
+        }
+
     }
 }
+
