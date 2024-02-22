@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "awO1+31rYo0uYlvQ5AMdRCuEOJKmyHnFyqbvyU1+BR3ovauowipm0p92r5rMFLXkN5QfCrn+yHvs6RwrvVYETQ==",
+  "dgSpecHash": "xp3MaurgrRIBWcdhqr68xOv8Y5778V5zy0mBQnhQOo7IiwbSBvw9eyOFl041mneAcMNHS03qtWXhw+o846YhrA==",
   "success": true,
-  "projectFilePath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\HalloDoc.Models.csproj",
+  "projectFilePath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pce156\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\pce156\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
@@ -33,6 +33,8 @@
     "C:\\Users\\pce156\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\pce156\\.nuget\\packages\\microsoft.win32.registry\\4.5.0\\microsoft.win32.registry.4.5.0.nupkg.sha512",
     "C:\\Users\\pce156\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\pce156\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
+    "C:\\Users\\pce156\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.11\\npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512",
     "C:\\Users\\pce156\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\pce156\\.nuget\\packages\\system.security.accesscontrol\\4.5.0\\system.security.accesscontrol.4.5.0.nupkg.sha512",
     "C:\\Users\\pce156\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",

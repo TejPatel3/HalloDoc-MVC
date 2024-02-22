@@ -15,7 +15,6 @@ namespace HalloDoc.Models.ViewModel
         public string? Email { get; set; }
 
         [Required]
-
         [Compare("PasswordHash")]
 
         public string? ConfirmPassword { get; set; }

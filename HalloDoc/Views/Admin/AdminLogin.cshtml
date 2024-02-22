@@ -1,4 +1,4 @@
-﻿@model HalloDoc.Models.ViewModel.registrationViewModel
+﻿@model HalloDoc.DataModels.AspNetUser
 @{
     Layout = "_NotHeader";
 }
@@ -26,7 +26,7 @@
                     <div class="form mb-4 mt-5">
                         <h2>Login To Your Account</h2>
                     </div>
-                    <form method="post" asp-action="AdminLogin">
+                    <form method="post" asp-action="AdminLogin" asp-controller="Admin">
 
                         <div>
                             <div class="form-floating mb-3">
@@ -45,7 +45,7 @@
                                 <input type="password" class="form-control" placeholder="Username" id="pswd" asp-for="PasswordHash"
                                        aria-label="Username">
                                 <label>Password </label>
-                                <span class="text-danger">@TempData["pswd"]</span>
+                                <span class="text-danger" asp-validation-for="PasswordHash">@TempData["pswd"]</span>
                                 <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-icons" onclick="hideviewpswd()"></i>
 
                             </div>

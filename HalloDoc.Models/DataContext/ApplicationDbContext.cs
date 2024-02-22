@@ -1,7 +1,6 @@
-﻿using HalloDoc.DataModels;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace HalloDoc.DataContext;
+namespace HalloDoc.DataModels;
 
 public partial class ApplicationDbContext : DbContext
 {

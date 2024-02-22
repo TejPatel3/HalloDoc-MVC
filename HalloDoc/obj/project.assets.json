@@ -792,34 +792,35 @@
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
       },
-      "HalloDoc.Data/1.0.0": {
+      "DataModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "HalloDoc.Models": "1.0.0",
           "Microsoft.AspNetCore.Session": "2.2.0",
           "Microsoft.EntityFrameworkCore": "7.0.15",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
         },
         "compile": {
-          "bin/placeholder/HalloDoc.Data.dll": {}
+          "bin/placeholder/DataModels.dll": {}
         },
         "runtime": {
-          "bin/placeholder/HalloDoc.Data.dll": {}
+          "bin/placeholder/DataModels.dll": {}
         }
       },
-      "HalloDoc.Models/1.0.0": {
+      "Services/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "DataModels": "1.0.0",
           "Microsoft.AspNetCore.Session": "2.2.0",
-          "Microsoft.EntityFrameworkCore": "7.0.15"
+          "Microsoft.EntityFrameworkCore": "7.0.15",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
         },
         "compile": {
-          "bin/placeholder/HalloDoc.Models.dll": {}
+          "bin/placeholder/Services.dll": {}
         },
         "runtime": {
-          "bin/placeholder/HalloDoc.Models.dll": {}
+          "bin/placeholder/Services.dll": {}
         }
       }
     }
@@ -1917,27 +1918,27 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "HalloDoc.Data/1.0.0": {
+    "DataModels/1.0.0": {
       "type": "project",
-      "path": "../HalloDoc.Data/HalloDoc.Data.csproj",
-      "msbuildProject": "../HalloDoc.Data/HalloDoc.Data.csproj"
+      "path": "../HalloDoc.Models/DataModels.csproj",
+      "msbuildProject": "../HalloDoc.Models/DataModels.csproj"
     },
-    "HalloDoc.Models/1.0.0": {
+    "Services/1.0.0": {
       "type": "project",
-      "path": "../HalloDoc.Models/HalloDoc.Models.csproj",
-      "msbuildProject": "../HalloDoc.Models/HalloDoc.Models.csproj"
+      "path": "../HalloDoc.Data/Services.csproj",
+      "msbuildProject": "../HalloDoc.Data/Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "HalloDoc.Data >= 1.0.0",
-      "HalloDoc.Models >= 1.0.0",
+      "DataModels >= 1.0.0",
       "Microsoft.AspNet.Mvc >= 5.3.0",
       "Microsoft.AspNetCore.Session >= 2.2.0",
       "Microsoft.EntityFrameworkCore >= 7.0.15",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.15",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.15",
-      "Npgsql.EntityFrameworkCore.PostgreSQL >= 7.0.11"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 7.0.11",
+      "Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1967,11 +1968,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\Project\\HalloDoc\\HalloDoc.Data\\HalloDoc.Data.csproj": {
-              "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\HalloDoc.Data.csproj"
+            "D:\\Project\\HalloDoc\\HalloDoc.Data\\Services.csproj": {
+              "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\Services.csproj"
             },
-            "D:\\Project\\HalloDoc\\HalloDoc.Models\\HalloDoc.Models.csproj": {
-              "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\HalloDoc.Models.csproj"
+            "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj": {
+              "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj"
             }
           }
         }

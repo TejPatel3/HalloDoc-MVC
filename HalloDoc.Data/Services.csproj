@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HalloDoc.Models\HalloDoc.Models.csproj" />
+    <ProjectReference Include="..\HalloDoc.Models\DataModels.csproj" />
   </ItemGroup>
 
 </Project>

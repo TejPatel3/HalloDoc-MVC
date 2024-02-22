@@ -4,12 +4,12 @@
     "D:\\Project\\HalloDoc\\HalloDoc\\HalloDoc.csproj": {}
   },
   "projects": {
-    "D:\\Project\\HalloDoc\\HalloDoc.Data\\HalloDoc.Data.csproj": {
+    "D:\\Project\\HalloDoc\\HalloDoc.Data\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\HalloDoc\\HalloDoc.Data\\HalloDoc.Data.csproj",
-        "projectName": "HalloDoc.Data",
-        "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\HalloDoc.Data.csproj",
+        "projectUniqueName": "D:\\Project\\HalloDoc\\HalloDoc.Data\\Services.csproj",
+        "projectName": "Services",
+        "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\Services.csproj",
         "packagesPath": "C:\\Users\\pce156\\.nuget\\packages\\",
         "outputPath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\obj\\",
         "projectStyle": "PackageReference",
@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Project\\HalloDoc\\HalloDoc.Models\\HalloDoc.Models.csproj": {
-                "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\HalloDoc.Models.csproj"
+              "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj": {
+                "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj"
               }
             }
           }
@@ -77,12 +77,12 @@
         }
       }
     },
-    "D:\\Project\\HalloDoc\\HalloDoc.Models\\HalloDoc.Models.csproj": {
+    "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\HalloDoc\\HalloDoc.Models\\HalloDoc.Models.csproj",
-        "projectName": "HalloDoc.Models",
-        "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\HalloDoc.Models.csproj",
+        "projectUniqueName": "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj",
+        "projectName": "DataModels",
+        "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj",
         "packagesPath": "C:\\Users\\pce156\\.nuget\\packages\\",
         "outputPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\obj\\",
         "projectStyle": "PackageReference",
@@ -126,6 +126,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.15, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             }
           },
           "imports": [
@@ -172,11 +176,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Project\\HalloDoc\\HalloDoc.Data\\HalloDoc.Data.csproj": {
-                "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\HalloDoc.Data.csproj"
+              "D:\\Project\\HalloDoc\\HalloDoc.Data\\Services.csproj": {
+                "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\Services.csproj"
               },
-              "D:\\Project\\HalloDoc\\HalloDoc.Models\\HalloDoc.Models.csproj": {
-                "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\HalloDoc.Models.csproj"
+              "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj": {
+                "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj"
               }
             }
           }

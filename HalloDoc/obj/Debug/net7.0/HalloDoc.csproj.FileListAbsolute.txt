@@ -42,10 +42,6 @@ D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.Postgre
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.CodeDom.dll
 D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\HalloDoc.csproj.AssemblyReference.cache
 D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\HalloDoc.csproj.CopyComplete
-D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\HalloDoc.Data.dll
-D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\HalloDoc.Models.dll
-D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\HalloDoc.Data.pdb
-D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\HalloDoc.Models.pdb
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.Security.Permissions.dll
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.Web.Mvc.dll
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.Web.Razor.dll
@@ -54,3 +50,7 @@ D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.Web.WebPages.Deployment.dll
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.Web.WebPages.Razor.dll
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.Web.WebPages.dll
 D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\DataModels.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Services.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Services.pdb
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\DataModels.pdb

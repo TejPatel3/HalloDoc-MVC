@@ -1,5 +1,4 @@
-﻿using HalloDoc.DataContext;
-using HalloDoc.DataModels;
+﻿using HalloDoc.DataModels;
 using HalloDoc.Models;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -21,10 +20,6 @@ namespace HalloDoc.Controllers
         {
             return View();
         }
-
-
-
-
         public IActionResult CreateUser()
         {
             return View();

@@ -8,14 +8,14 @@
     ".NETCoreApp,Version=v7.0": {
       "HalloDoc/1.0.0": {
         "dependencies": {
-          "HalloDoc.Data": "1.0.0",
-          "HalloDoc.Models": "1.0.0",
+          "DataModels": "1.0.0",
           "Microsoft.AspNet.Mvc": "5.3.0",
           "Microsoft.AspNetCore.Session": "2.2.0",
           "Microsoft.EntityFrameworkCore": "7.0.15",
           "Microsoft.EntityFrameworkCore.Design": "7.0.15",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.15",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11",
+          "Services": "1.0.0"
         },
         "runtime": {
           "HalloDoc.dll": {}
@@ -341,24 +341,25 @@
           "System.Text.Encodings.Web": "7.0.0"
         }
       },
-      "HalloDoc.Data/1.0.0": {
+      "DataModels/1.0.0": {
         "dependencies": {
-          "HalloDoc.Models": "1.0.0",
           "Microsoft.AspNetCore.Session": "2.2.0",
           "Microsoft.EntityFrameworkCore": "7.0.15",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
         },
         "runtime": {
-          "HalloDoc.Data.dll": {}
+          "DataModels.dll": {}
         }
       },
-      "HalloDoc.Models/1.0.0": {
+      "Services/1.0.0": {
         "dependencies": {
+          "DataModels": "1.0.0",
           "Microsoft.AspNetCore.Session": "2.2.0",
-          "Microsoft.EntityFrameworkCore": "7.0.15"
+          "Microsoft.EntityFrameworkCore": "7.0.15",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
         },
         "runtime": {
-          "HalloDoc.Models.dll": {}
+          "Services.dll": {}
         }
       }
     }
@@ -684,12 +685,12 @@
       "path": "system.text.json/7.0.0",
       "hashPath": "system.text.json.7.0.0.nupkg.sha512"
     },
-    "HalloDoc.Data/1.0.0": {
+    "DataModels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "HalloDoc.Models/1.0.0": {
+    "Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

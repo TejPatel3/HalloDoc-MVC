@@ -1,5 +1,8 @@
-using HalloDoc.DataContext;
+using HalloDoc.DataModels;
 using Microsoft.EntityFrameworkCore;
+using Services.Contracts;
+using Services.Implementation;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSession(options =>
 {
@@ -12,6 +15,8 @@ builder.Services.AddSession(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<IAdminLog, AdminLog>();
+builder.Services.AddScoped<IAdminDashboard, AdminDashboard>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
