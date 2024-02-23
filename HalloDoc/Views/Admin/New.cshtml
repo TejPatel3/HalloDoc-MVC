@@ -1,1 +1,104 @@
-﻿
+﻿@using Services.ViewModels
+@model List<AdminDashboardTableDataViewModel>
+@{
+    Layout = null;
+}
+
+
+<table class="table" id="example">
+    <thead class="thead-light bg-light">
+
+        <tr>
+
+
+            <th scope="col">Name</th>
+
+            <th scope="col">Date Of Birth</th>
+
+            <th scope="col">Requestor</th>
+
+            <th scope="col">Requested Date</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Chat With</th>
+            <th scope="col">Actions</th>
+
+        </tr>
+
+    </thead>
+    <tbody id="datatable" class="bg-white">
+        @foreach (var item in Model)
+        {
+
+
+
+            var color = "green-dot";
+
+            switch (item.RequestType)
+            {
+                case 1:
+                    {
+                        color = "pink-dot";
+                        break;
+                    }
+                case 2:
+                    {
+                        color = "green-dot";
+                        break;
+                    }
+                case 3:
+                    {
+                        color = "orange-dot";
+                        break;
+                    }
+                case 4:
+                    {
+                        color = "cyan-dot";
+                        break;
+                    }
+                default:
+                    {
+                        color = "green-dot";
+                        break;
+                    }
+            }
+
+            <tr class="@color">
+                <td scope="row">@item.PatientName</td>
+                <td>@item.PatientDOB</td>
+                <td>@item.RequestTypeName(item.RequestType)</td>
+                <td>@item.RequestedDate</td>
+                <td>@item.PatientPhone</td>
+                <td>@item.Address</td>
+                <td>@item.Notes</td>
+                <td><button class="btn btn-outline-info">Patient</button></td>
+                <td>
+                    <div class="dropdown d-flex">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Actions
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Assign Case</a></li>
+                            <li><a class="dropdown-item" href="#">Cancle Case</a></li>
+                            <li><a class="dropdown-item" href="#">View Case</a></li>
+                            <li><a class="dropdown-item" href="#">View Notes</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fa-solid fa-ban me-1"></i>Block Patient</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+        })
+    });
+
+</script>

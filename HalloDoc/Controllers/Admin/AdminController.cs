@@ -10,13 +10,15 @@ namespace HalloDoc.Controllers.Admin
         private readonly ApplicationDbContext _context;
         private readonly IAdminLog adminLog;
         private readonly IAdminDashboard _adminDashboard;
+        private readonly IAdminDashboardDataTable _adminDashboardDataTable;
 
 
-        public AdminController(IAdminLog _admin, IAdminDashboard adminDashboard)
+        public AdminController(IAdminLog _admin, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboardDataTable)
         {
             _context = new ApplicationDbContext();
             adminLog = _admin;
             _adminDashboard = adminDashboard;
+            _adminDashboardDataTable = adminDashboardDataTable;
         }
         public IActionResult AdminLogin()
         {
@@ -28,6 +30,7 @@ namespace HalloDoc.Controllers.Admin
             var request = _adminDashboard.GetAll().ToList();
             AdminRequestViewModel viewModel = new AdminRequestViewModel();
             viewModel.requests = request;
+
             return View(viewModel);
         }
         [HttpPost]
@@ -102,6 +105,36 @@ namespace HalloDoc.Controllers.Admin
         {
             HttpContext.Session.Remove("UserId");
             return RedirectToAction("AdminLogin", "Admin");
+        }
+        public IActionResult New()
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(1);
+            return View(datalist);
+        }
+        public IActionResult Pending()
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(2);
+            return View(datalist);
+        }
+        public IActionResult Active()
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(4).Concat(_adminDashboardDataTable.getallAdminDashboard(5)).ToList();
+            return View(datalist);
+        }
+        public IActionResult Conclude()
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(6);
+            return View(datalist);
+        }
+        public IActionResult ToClose()
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(7).Concat(_adminDashboardDataTable.getallAdminDashboard(3)).Concat(_adminDashboardDataTable.getallAdminDashboard(8)).ToList();
+            return View(datalist);
+        }
+        public IActionResult Unpaid()
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(9);
+            return View(datalist);
         }
     }
 }

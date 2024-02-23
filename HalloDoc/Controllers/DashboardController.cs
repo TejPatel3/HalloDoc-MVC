@@ -174,5 +174,7 @@ namespace HalloDoc.Controllers
 
             return RedirectToAction("PatientDashboard", "Dashboard");
         }
+
+        public IActionResult New() { return View(); }
     }
 }

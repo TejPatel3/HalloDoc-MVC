@@ -5,7 +5,7 @@
     <nav>
         <div class="nav nav-tabs row g-0" id="status-tab" role="tablist">
             <div class="allstatus ">
-                <button class="w-100 nav-link dashboardtab active position-relative" id="status-new" data-bs-toggle="tab" data-bs-target="#s_new" type="button" role="tab" aria-controls="s_new" aria-selected="true">
+                <button class="w-100 nav-link dashboardtab active position-relative alltabs" id="status-new" data-bs-toggle="tab" data-bs-target="#status_new" type="button" role="tab" aria-controls="status_new" aria-selected="true">
                     <div class="p-2 new rounded">
                         <div class="d-flex">
                             <div class="px-2 icons float-start small"><i class="bi bi-plus-circle-dotted"></i></div><div class="small fw-bold">NEW</div>
@@ -18,7 +18,7 @@
                 </button>
             </div>
             <div class="allstatus">
-                <button class="nav-link dashboardtab position-relative w-100" id="status-pending" data-bs-toggle="tab" data-bs-target="#s_pending" type="button" role="tab" aria-controls="s_pending" aria-selected="false">
+                <button class="nav-link dashboardtab position-relative w-100 alltabs" id="status-pending" data-bs-toggle="tab" data-bs-target="#status_pending" type="button" role="tab" aria-controls="status_pending" aria-selected="false">
                     <div class="p-2 pending rounded-2">
                         <div class="d-flex">
                             <div class="px-2 icons  float-start small"><i class="bi bi-person"></i></div><div class="small fw-bold">PENDING</div>
@@ -31,7 +31,7 @@
                 </button>
             </div>
             <div class="allstatus">
-                <button class="nav-link dashboardtab position-relative w-100" id="status-active" data-bs-toggle="tab" data-bs-target="#s_active" type="button" role="tab" aria-controls="s_active" aria-selected="false">
+                <button class="nav-link dashboardtab position-relative w-100 alltabs" id="status-active" data-bs-toggle="tab" data-bs-target="#status_active" type="button" role="tab" aria-controls="status_active" aria-selected="false">
                     <div class="p-2 activecase rounded-2">
                         <div class="d-flex">
                             <div class="px-2 icons  float-start small"><i class="bi bi-plus-circle-dotted"></i></div><div class="small fw-bold">ACTIVE</div>
@@ -44,7 +44,7 @@
                 </button>
             </div>
             <div class="allstatus">
-                <button class="nav-link dashboardtab position-relative w-100" id="status-conclude" data-bs-toggle="tab" data-bs-target="#s_conclude" type="button" role="tab" aria-controls="s_conclude" aria-selected="false">
+                <button class="nav-link dashboardtab position-relative w-100 alltabs" id="status-conclude" data-bs-toggle="tab" data-bs-target="#status_conclude" type="button" role="tab" aria-controls="status_conclude" aria-selected="false">
                     <div class="p-2 conclude rounded-2">
                         <div class="d-flex">
                             <div class="px-2  icons float-start small"><i class="bi bi-plus-circle-dotted"></i></div><div class="small fw-bold">CONCLUDE</div>
@@ -57,7 +57,7 @@
                 </button>
             </div>
             <div class="allstatus">
-                <button class="nav-link dashboardtab position-relative w-100" id="status-toclose" data-bs-toggle="tab" data-bs-target="#s_toclose" type="button" role="tab" aria-controls="s_toclose" aria-selected="false">
+                <button class="nav-link dashboardtab position-relative w-100 alltabs" id="status-toclose" data-bs-toggle="tab" data-bs-target="#status_toclose" type="button" role="tab" aria-controls="status_toclose" aria-selected="false">
                     <div class="p-2 toclose rounded-2">
                         <div class="d-flex">
                             <div class="px-2 icons  float-start small"><i class="bi bi-plus-circle-dotted"></i></div><div class="small fw-bold">TO CLOSE</div>
@@ -70,7 +70,7 @@
                 </button>
             </div>
             <div class="allstatus">
-                <button class="nav-link dashboardtab position-relative w-100" id="status-unpaid" data-bs-toggle="tab" data-bs-target="#s_unpaid" type="button" role="tab" aria-controls="s_unpaid" aria-selected="false">
+                <button class="nav-link dashboardtab position-relative w-100 alltabs" id="status-unpaid" data-bs-toggle="tab" data-bs-target="#status_unpaid" type="button" role="tab" aria-controls="status_unpaid" aria-selected="false">
                     <div class="p-2 unpaid rounded-2">
                         <div class="d-flex">
                             <div class="px-2 icons  float-start small"><i class="bi bi-plus-circle-dotted"></i></div><div class="small fw-bold">UNPAID</div>
@@ -86,46 +86,45 @@
     </nav>
 </div>
 
-
 <div class="d-flex justify-content-between pt-3 container-fluid">
     <h4>Patient (New)</h4>
     <div class="d-flex ">
-        <div class="dash-btn bn632-hover bn26 d-flex align-items-center justify-content-center">
-            <i class="fa-regular fa-paper-plane  pe-1"></i>
-            <small>Send Link</small>
+        <div class="btn btn-info  rounded-3 mx-1">
+            <i class="fa-regular fa-paper-plane  pe-1" style="color: #ffffff;"></i>
+            <small class="text-white">Send Link</small>
         </div>
 
-        <div class="dash-btn bn632-hover bn26 d-flex align-items-center justify-content-center">
+        <div class="btn btn-info  rounded rounded-3 mx-1">
 
-            <i class="fa-solid fa-file-pen pe-1"></i>
+            <i class="fa-solid fa-file-pen pe-1" style="color: #ffffff;"></i>
             <small>Create Request</small>
         </div>
 
-        <div class="dash-btn bn632-hover bn26 d-flex align-items-center justify-content-center">
-            <i class="fa-solid fa-share pe-1"></i>
+        <div class="btn btn-info  rounded-3 mx-1">
+            <i class="fa-solid fa-share pe-1" style="color: #ffffff;"></i>
             <small>Export</small>
         </div>
 
-        <div class="dash-btn bn632-hover bn26 d-flex align-items-center justify-content-center">
-            <i class="fa-solid fa-share pe-1"></i>
+        <div class="btn btn-info  rounded-3 mx-1">
+            <i class="fa-solid fa-share pe-1" style="color: #ffffff;"></i>
             <small>Export All</small>
         </div>
 
-        <div class="dash-btn bn632-hover bn26 d-flex align-items-center justify-content-center">
-            <i class="fa-solid fa-user-doctor pe-1"></i>
+        <div class="btn btn-info  rounded-3 mx-1">
+            <i class="fa-solid fa-user-doctor pe-1" style="color: #ffffff;"></i>
             <small>Request DTY Support</small>
         </div>
     </div>
 </div>
 
-<div class="container-fluid mt-2">
-    <div class="row">
-        <div class=" d-flex justify-content-between mt-3">
+<div class="container-fluid mt-3 ">
+    <div class="row mx-1 bg-white ">
+        <div class=" d-flex justify-content-between my-2 ">
 
             <div class="dropdown d-flex">
-                <input type="text" placeholder="search" class="me-2" />
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
+                <input type="text" placeholder="search" class="me-2 border rounded" />
+                <button class="btn bg-white border  dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-magnifying-glass fa-xs"></i> <label class="me-4">All Region</label>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="#">Action</a></li>
@@ -134,12 +133,15 @@
                 </ul>
             </div>
             <div class="d-flex ms-4">
-                <button class="btn-outline-secondary btn mx-2">All</button>
-                <button class="btn-info btn mx-2">Patient</button>
-                <button class="btn-info btn mx-2">Family/Friend</button>
-                <button class="btn-info btn mx-2">Concierge</button>
-                <button class="btn-info btn mx-2">Business</button>
-                <button class="btn-info btn mx-2">Vip</button>
+
+
+
+                <button class="btn-outline-secondary btn mx-2 ">All</button>
+                <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #5fbc61;"></i>Patient</button>
+                <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #ed9124;"></i>Family/Friend</button>
+                <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:   #e36478;"></i>Concierge</button>
+                <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #0c7db7;"></i>Business</button>
+                <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #943db8;"></i>Vip</button>
 
             </div>
         </div>
@@ -147,59 +149,95 @@
     </div>
 </div>
 
-
+@*
 
 <div class="tab-content" id="status-tabContent">
-    <div class="tab-pane fade show active" id="s_new" role="tabpanel" aria-labelledby="status-new">
+    <div class="tab-pane fade show active" id="status_new" role="tabpanel" aria-labelledby="status-new">
     </div>
 
 
-    <div class="tab-pane fade" id="s_pending" role="tabpanel" aria-labelledby="status-panding">
+    <div class="tab-pane fade" id="status_pending" role="tabpanel" aria-labelledby="status-panding">
         Pending
     </div>
-    <div class="tab-pane fade" id="s_active" role="tabpanel" aria-labelledby="status-active">
+    <div class="tab-pane fade" id="status_active" role="tabpanel" aria-labelledby="status-active">
         Active
     </div>
-    <div class="tab-pane fade" id="s_conclude" role="tabpanel" aria-labelledby="status-conclude">
+    <div class="tab-pane fade" id="status_conclude" role="tabpanel" aria-labelledby="status-conclude">
         Conclude
     </div>
-    <div class="tab-pane fade" id="s_toclose" role="tabpanel" aria-labelledby="status-toclose">
+    <div class="tab-pane fade" id="status_toclose" role="tabpanel" aria-labelledby="status-toclose">
         To Close
     </div>
-    <div class="tab-pane fade" id="s_unpaid" role="tabpanel" aria-labelledby="status-unpaid">
+    <div class="tab-pane fade" id="status_unpaid" role="tabpanel" aria-labelledby="status-unpaid">
         Unpaid
     </div>
 </div>
+ *@
 
 
-
-<div class="container-fluid table-responsive">
-
-<table class="table">
-    <thead class="thead-light">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-        </tr>
-    </tbody>
-</table>   
+<div class="container-fluid table-responsive mt-3 mx-1" id="datatable">
 </div>
+
+<script>
+    $(document).ready(function () {
+        console.log("one");
+        $.ajax({
+            url: '/Admin/New',
+            success: function (response) {
+                $('#datatable').html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+    $(document).ready(function () {
+
+        $('.dashboardtab').on('click', function (e) {
+            e.preventDefault();
+            $('.dashboardtab').removeClass('active');
+            $(this).addClass('active');
+            var target = $(this).data('bs-target');
+            localStorage.setItem("target", target);
+            console.log(target);
+            var url;
+            switch (target) {
+                case '#status_new':
+                    url = '/Admin/New';
+
+                    break;
+                case '#status_pending':
+                    url = '/Admin/Pending';
+                    break;
+                case '#status_active':
+                    url = '/Admin/Active';
+                    break;
+                case '#status_conclude':
+                    url = '/Admin/Conclude';
+                    break;
+                case '#status_toclose':
+                    url = '/Admin/Toclose';
+                    break;
+                case '#status_unpaid':
+                    url = '/Admin/Unpaid';
+                    break;
+
+                default:
+                    url = '../Home/AdminLogin';
+            }
+            console.log(url);
+            $.ajax({
+                url: url,
+                 
+                success: function (response) {
+                    $('#datatable').html(response);
+
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+
+</script>

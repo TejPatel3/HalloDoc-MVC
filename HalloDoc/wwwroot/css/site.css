@@ -404,6 +404,9 @@ footer {
     background-color: lightgray;
 }
 
+th{
+    background-color:lightgray;
+}
 td {
     color: white !important;
 }

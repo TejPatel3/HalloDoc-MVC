@@ -15,12 +15,15 @@ namespace HalloDoc.Models.ViewModel
         {
             january,
             Unassigned,
-            Cancelled,
+            Accepted,
             MdEnRoute,
             MdOnSite,
+            Conclude,
+            Cancelled,
+            CancelledByPatient,
             Closed,
-            Clear,
-            Unpaid
+            Unpaid,
+            Clear
         }
 
         public string findStatus(int status)

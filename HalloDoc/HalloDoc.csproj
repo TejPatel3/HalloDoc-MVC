@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Admin\AdminTabs\" />
     <Folder Include="wwwroot\UploadDocument\" />
   </ItemGroup>
 
