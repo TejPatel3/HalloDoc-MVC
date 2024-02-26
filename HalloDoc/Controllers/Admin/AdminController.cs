@@ -11,17 +11,20 @@ namespace HalloDoc.Controllers.Admin
         private readonly IAdminLog adminLog;
         private readonly IAdminDashboard _adminDashboard;
         private readonly IAdminDashboardDataTable _adminDashboardDataTable;
+        private readonly IViewCaseRepo _viewcase;
 
 
-        public AdminController(IAdminLog _admin, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboardDataTable)
+        public AdminController(IAdminLog _admin, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboardDataTable, IViewCaseRepo viewcase)
         {
             _context = new ApplicationDbContext();
             adminLog = _admin;
             _adminDashboard = adminDashboard;
             _adminDashboardDataTable = adminDashboardDataTable;
+            _viewcase = viewcase;
         }
         public IActionResult AdminLogin()
         {
+
             return View();
         }
 
@@ -61,6 +64,7 @@ namespace HalloDoc.Controllers.Admin
             {
                 var admin = _context.Admins.FirstOrDefault(m => m.Email == req.Email);
                 HttpContext.Session.SetInt32("UserId", admin.AdminId);
+                HttpContext.Session.SetString("AdminName", $"{admin.FirstName} {admin.LastName}");
                 TempData["success"] = "Login Successful...!";
                 TempData["user"] = admin.FirstName;
                 return RedirectToAction("AdminDashboard");
@@ -135,6 +139,12 @@ namespace HalloDoc.Controllers.Admin
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(9);
             return View(datalist);
+        }
+        public IActionResult ViewCase(int id)
+        {
+
+            var request = _viewcase.GetViewCaseData(id);
+            return View(request);
         }
     }
 }

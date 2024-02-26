@@ -1,0 +1,139 @@
+﻿@* @using Services.ViewModels
+@model  ViewCaseViewModel *@
+@model HalloDoc.DataModels.RequestClient
+@{
+    Layout = "_Admin";
+}
+<div class="bg-light">
+    <!-- form input -->
+
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center w-100 my-3">
+            <h4>New Request<span class="green-dot ms-2  small   text-white px-3 py-2" style="border-radius:25px; font-size:15px ">Patient</span></h4>
+            <a asp-area="" asp-controller="Dashboard" asp-action="PatientDashboard"
+               class="btn m-0 btn-outline-info  px-2 ">
+                <i class="fa-solid fa-chevron-left"></i>
+                Back
+            </a>
+        </div>
+        <form >
+            <div class="row bg-white  px-4 py-2 rounded-3 shadow">
+                <h5>Patient Information</h5><span class="badge badge-success">Patient</span>
+                <small class="text-secondary">Confirmation Number</small>
+                <h5 class="text-info">123456hsbgdhsvb789</h5>
+                <div class="form-floating col-12 my-3  pb-2 ">
+                    <textarea class="form-control"
+                              placeholder="Leave a comment here"
+                              style="height: 100px"></textarea>
+                    <label for="floatingTextarea" class="ms-2 text-secondary">Enter Brief details about symptoms(optional)</label>
+                    <span  class="text-danger"></span>
+                </div>
+                <hr style="border:1px dashed gray; margin-bottom:25px;" />
+                <div class="col-12 col-sm-6 form-floating mb-3 ">
+                    <input asp-for="FirstName" hidden />
+                    <input type="text" asp-for="FirstName"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" disabled />
+                    <label class="d-flex justify-content-between ms-2">First Name </label>
+                    @*                     <span asp-validation-for="FirstName" class="text-danger"></span>
+                    *@
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input asp-for="LastName" hidden />
+
+                    <input type="text" asp-for="LastName"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" disabled />
+                    <label class="d-flex justify-content-between ms-2">Last name</label>
+                    @* <span asp-validation-for="LastName" class="text-danger"></span> *@
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    @{
+                        string max = DateTime.Now.ToString("yyyy-MM-dd");
+                    }
+                    <input type="date" 
+                           class="form-control pt-4 ms-1"
+                           placeholder="Username"
+                           aria-label="Username" max=@max />
+                    <label class="d-flex justify-content-between ms-3 m-0">Birth Date</label>
+                    <span class="text-danger" ></span>
+                </div>
+                <div class="col-12 col-sm-6 d-flex ">
+
+                    <div class="col-10 form-floating mb-3 me-3">
+
+                        <input type="text" asp-for="PhoneNumber"
+                               class="form-control"
+                               placeholder="Username"
+                               aria-label="Username" />
+                        <label class="d-flex justify-content-between ms-2">Phone Number </label>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-2 form-floating ">
+                        <a class="btn btn-outline-info p-3" href="https://www.google.com/maps/">
+                            <i class="bi bi-telephone"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input asp-for="Email" hidden />
+                    <input type="email" asp-for="Email"
+                           class="form-control" id="patientEmail"
+                           placeholder="Username" onblur="checkEmailExists()" disabled />
+                    <label class="d-flex justify-content-between ms-2">Email </label>
+                    <span class="text-danger"></span>
+                </div>
+              
+
+
+                <h5 class="mb-3 mt-4 fw-semibold">Location Information</h5>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="RegionId"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Region </label>
+                    <span asp-validation-for="Region" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 d-flex ">
+
+                    <div class="col-10 form-floating mb-3 me-3">
+
+                        <input type="text" asp-for="Address"
+                               class="form-control"
+                               placeholder="Username"
+                               aria-label="Username" />
+                        <label class="d-flex justify-content-between ms-2">Address </label>
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="col-2 form-floating ">
+                        <a class="btn btn-outline-info p-3" href="https://www.google.com/maps/">
+                            <i class="bi bi-geo-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">
+                        Room # / Suite (optional)
+                    </label>
+                </div>
+
+
+
+
+                <div class="col-12 d-flex justify-content-end pb-2">
+                    <button type="submit" class="btn me-2 px-2 btn-info text-white">Submit</button>
+                    <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

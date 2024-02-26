@@ -1,5 +1,6 @@
 ﻿@* @model HalloDoc.Models.ViewModel.PatientDashboard
  *@
+ @inject IHttpContextAccessor accessor
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,11 +39,10 @@
         <div class="collapse  d-flex justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
-                    <div class="bg-light">
+                    <div class="bg-white">
                         <div class="d-flex justify-content-between col align-items-center   bg-white ">
                             <div class="d-flex align-items-center">
-                                <h6 class=" pe-2" style="color:gray;">Welcome </h6>
-                                <h6 class="" style="color:gray;">@TempData["user"]</h6>
+                                <h6 class=" pe-2" style="color:gray;">Welcome @accessor.HttpContext.Session.GetString("AdminName")</h6>
                                 <a asp-action="Logout" asp-controller="Admin">
                                     <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("AdminLogin","Admin")'">Log out</button>
                                 </a>
@@ -59,6 +59,17 @@
             </ul>
         </div>
     </nav>
+    <nav class="shadow">
+        <div class="nav nav-tabs bg-white" id="nav-tab" role="tablist">
+            <button class="nav-link active k fw-bold me-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
+            <button class="nav-link k text-secondary fw-bold me-1" id="nav-provider-location-tab" data-bs-toggle="tab" data-bs-target="#nav-provider-location" type="button" role="tab" aria-controls="nav-provider-location" aria-selected="false">Provider Location</button>
+            <button class="nav-link k text-secondary fw-bold" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Profile</button>
+            <button class="nav-link k text-secondary fw-bold" id="nav-provider-tab" data-bs-toggle="tab" data-bs-target="#nav-provider" type="button" role="tab" aria-controls="nav-provider" aria-selected="false">Providers</button>
+            <button class="nav-link k text-secondary fw-bold" id="nav-partner-tab" data-bs-toggle="tab" data-bs-target="#nav-partner" type="button" role="tab" aria-controls="nav-partner" aria-selected="false">Partners</button>
+            <button class="nav-link k text-secondary fw-bold" id="nav-access-tab" data-bs-toggle="tab" data-bs-target="#nav-access" type="button" role="tab" aria-controls="nav-access" aria-selected="false">Access</button>
+            <button class="nav-link k text-secondary fw-bold" id="nav-record-tab" data-bs-toggle="tab" data-bs-target="#nav-record" type="button" role="tab" aria-controls="nav-record" aria-selected="false">Records</button>
+        </div>
+    </nav>
 
     @*    <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -66,15 +77,10 @@
     <button class="nav-link text-info" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
     </div>
     </nav> *@
-    <div class="mt-2 bg-light mb-5">
+    <div class="mt-2 bg-light ">
         @RenderBody()
     </div>
 
-    <footer class="footer mb-3 d-flex align-items-center">
-        <div class="container-fluid  p-0 d-flex justify-content-center align-items-center">
-            <span class="text-secondary"> Terms and Condition | Privacy Policy</span>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"> </script>

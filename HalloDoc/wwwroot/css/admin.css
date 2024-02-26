@@ -177,31 +177,21 @@
 }
 
 .pink-dot {
-    background-color: #e36478 !important;
+    background-color: #e4657c !important;
 }
 
 .cyan-dot {
-    background-color: #0c7db7 !important;
+    background-color: #007fc6 !important;
 }
 
 .purple-dot {
-    background-color: #943db8 !important;
+    background-color: #933cb5 !important;
 }
 
+.dataTables_length {
+    padding-left: 11px !important;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+div.dataTables_wrapper div.dataTables_length select {
+    width: 50px;
+}

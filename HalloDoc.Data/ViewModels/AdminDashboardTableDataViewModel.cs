@@ -15,6 +15,7 @@
         public string PatientEmail { get; set; }
         public int RequestType { get; set; }
 
+        public int requestid { get; set; }
 
         public enum Requestby
         {

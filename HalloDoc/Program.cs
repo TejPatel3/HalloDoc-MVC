@@ -18,6 +18,7 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IAdminLog, AdminLog>();
 builder.Services.AddScoped<IAdminDashboard, AdminDashboard>();
 builder.Services.AddScoped<IAdminDashboardDataTable, AdminDashboardDataTable>();
+builder.Services.AddScoped<IViewCaseRepo, ViewCaseRepo>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
