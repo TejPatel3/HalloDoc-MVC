@@ -107,10 +107,9 @@ namespace HalloDoc.Controllers
                 RegionId = 1,
                 Notes = req.Notes,
                 Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
-
-                //IntDate = req.BirthDate.Day,
-                //IntYear = req.BirthDate.Year,
-                //StrMonth = req.BirthDate.ToString("MMMM"),
+                IntDate = int.Parse(req.BirthDate?.ToString("dd")),
+                IntYear = int.Parse(req.BirthDate?.ToString("yyyy")),
+                StrMonth = req.BirthDate?.ToString("MMM"),
             };
             _context.RequestClients.Add(requestclients);
             _context.SaveChanges();
@@ -202,6 +201,9 @@ namespace HalloDoc.Controllers
                     RegionId = 1,
                     Notes = req.Notes,
                     Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
+                    IntDate = int.Parse(req.BirthDate?.ToString("dd")),
+                    IntYear = int.Parse(req.BirthDate?.ToString("yyyy")),
+                    StrMonth = req.BirthDate?.ToString("MMM"),
                 };
                 _context.RequestClients.Add(requestclients);
                 _context.SaveChanges();
@@ -356,6 +358,9 @@ namespace HalloDoc.Controllers
                 RegionId = 1,
                 Notes = req.Notes,
                 Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
+                IntDate = int.Parse(req.BirthDate?.ToString("dd")),
+                IntYear = int.Parse(req.BirthDate?.ToString("yyyy")),
+                StrMonth = req.BirthDate?.ToString("MMM"),
 
             };
             _context.RequestClients.Add(requestclients);
@@ -426,6 +431,9 @@ namespace HalloDoc.Controllers
                 RegionId = 1,
                 Notes = req.Notes,
                 Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
+                IntDate = int.Parse(req.BirthDate?.ToString("dd")),
+                IntYear = int.Parse(req.BirthDate?.ToString("yyyy")),
+                StrMonth = req.BirthDate?.ToString("MMM"),
 
             };
             _context.RequestClients.Add(requestclients);

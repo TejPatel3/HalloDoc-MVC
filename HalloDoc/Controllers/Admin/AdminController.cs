@@ -140,11 +140,31 @@ namespace HalloDoc.Controllers.Admin
             var datalist = _adminDashboardDataTable.getallAdminDashboard(9);
             return View(datalist);
         }
+
         public IActionResult ViewCase(int id)
         {
 
             var request = _viewcase.GetViewCaseData(id);
             return View(request);
+        }
+        [HttpPost]
+        public IActionResult Edit(ViewCaseViewModel request)
+        {
+            _viewcase.EditInfo(request);
+            var req = _context.Requests.FirstOrDefault(m => m.ConfirmationNumber == request.ConfirmationNumber);
+            return RedirectToAction("ViewCase", new { id = req.RequestId });
+        }
+        public IActionResult CancleCase(string confirmation)
+        {
+            var req = _context.Requests.FirstOrDefault(m => m.ConfirmationNumber == confirmation);
+            req.Status = 3;
+            _context.Requests.Update(req);
+            _context.SaveChanges();
+            return RedirectToAction("AdminDashboard");
+        }
+        public IActionResult ViewNotes()
+        {
+            return View();
         }
     }
 }

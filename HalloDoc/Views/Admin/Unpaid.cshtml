@@ -60,7 +60,12 @@
             <tr class="@color">
                 <td class="d-none">@item.RequestType</td>
 
-                <td scope="row">@item.PatientName</td>
+                <td scope="row">
+                    <div class="d-flex justify-content-between ">
+
+                        @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
+                    </div>
+                </td>
                 <td>@item.ProviderEmail</td>
                 <td>@item.PatientDOB</td>
                 <td>

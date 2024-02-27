@@ -25,11 +25,12 @@ namespace Services.Implementation
         {
             var AdminDashboardDataTableViewModels = from user in _context.Users
                                                     join req in _context.Requests on user.UserId equals req.UserId
+                                                    join reqclient in _context.RequestClients on req.RequestId equals reqclient.RequestId
                                                     where req.Status == status
                                                     orderby req.CreatedDate descending
                                                     select new AdminDashboardTableDataViewModel
                                                     {
-                                                        PatientName = user.FirstName + " " + user.LastName,
+                                                        PatientName = reqclient.FirstName + " " + reqclient.LastName,
                                                         PatientDOB = new DateOnly(Convert.ToInt32(user.IntYear), DateTime.ParseExact(user.StrMonth, "MMM", CultureInfo.InvariantCulture).Month, Convert.ToInt32(user.IntDate)),
                                                         RequestorName = req.FirstName + " " + req.LastName,
                                                         RequestedDate = req.CreatedDate,
