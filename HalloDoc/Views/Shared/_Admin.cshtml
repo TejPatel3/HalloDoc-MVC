@@ -36,15 +36,14 @@
         <img src="/images/hallodoc-transparent.png"
              class="img-fluid d-block ms-2"
              alt="" style="height:100px;" />
-        <div class="collapse  d-flex justify-content-end" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+        <div class="collapse  d-flex justify-content-end " id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
                 <li class="nav-item ">
-                    <div class="bg-white">
-                        <div class="d-flex justify-content-between col align-items-center   bg-white ">
+                        <div class="d-flex justify-content-between col align-items-center    ">
                             <div class="d-flex align-items-center">
-                                <h6 class=" pe-2" style="color:gray;">Welcome @accessor.HttpContext.Session.GetString("AdminName")</h6>
+                                <h6 class=" pe-2 d-sm-block d-none" style="color:gray;">Welcome @accessor.HttpContext.Session.GetString("AdminName")</h6>
                                 <a asp-action="Logout" asp-controller="Admin">
-                                    <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("AdminLogin","Admin")'">Log out</button>
+                                    <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("AdminLogin","Admin")'"> <i class="fa-solid fa-right-from-bracket d-sm-none d-block" style="color: #00bfff;"></i><h6 class="d-sm-block d-none m-0"> Log out</h6></button>
                                 </a>
                                 <img src="~/images/night-mode.png"
                                      id="theme-toggle"
@@ -53,7 +52,6 @@
                                      style="width:37px;"
                                      onclick="toggleTheme()" />
                             </div>
-                        </div>
                     </div>
                 </li>
             </ul>
@@ -102,6 +100,9 @@
     <script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
     <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

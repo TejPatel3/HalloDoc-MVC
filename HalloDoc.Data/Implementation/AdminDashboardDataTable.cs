@@ -13,14 +13,6 @@ namespace Services.Implementation
             _context = context;
         }
 
-        // AdminDashboardTableDataViewModel viewCase(int reqid)
-        //{
-
-        //    var request = _context.RequestClients.FirstOrDefault(m => m.RequestClientId == reqid);
-        //    return request;
-
-
-        //}
         public List<AdminDashboardTableDataViewModel> getallAdminDashboard(int status)
         {
             var AdminDashboardDataTableViewModels = from user in _context.Users

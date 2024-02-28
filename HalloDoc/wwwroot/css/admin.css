@@ -35,7 +35,7 @@
 }
 
 .allstatus {
-    width: 16.666666666666666667% !important;
+    width: 16.666666666666666667% ;
 }
 
 .nav-link {
@@ -194,4 +194,8 @@
 
 div.dataTables_wrapper div.dataTables_length select {
     width: 50px;
+}
+
+.nav-link:hover {
+    border : none !important;
 }

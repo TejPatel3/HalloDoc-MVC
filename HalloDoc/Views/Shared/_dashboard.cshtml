@@ -38,21 +38,21 @@
         <div class="collapse  d-flex justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
-                    <div class="bg-light">
-                        <div class="d-flex justify-content-between col align-items-center   bg-white ">
-                            <div class="d-flex align-items-center">
-                                <h6 class=" pe-2" style="color:gray;">Welcome </h6>
-                                <h6 class="" style="color:gray;">@TempData["user"]</h6>
-                                <a asp-action="Logout" asp-controller="Dashboard">
-                                    <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("Index","Home")'">Log out</button>
-                                </a>
-                                <img src="~/images/night-mode.png"
-                                     id="theme-toggle"
-                                     alt="Night Mode"
-                                     class="img-fluid  btn btn-outline-info  px-1   m-sm-3 m-1 "
-                                     style="width:37px;"
-                                     onclick="toggleTheme()" />
-                            </div>
+
+                    <div class="d-flex justify-content-between col align-items-center  ">
+                        <div class="d-flex align-items-center">
+                            <h6 class=" pe-2" style="color:gray;">Welcome </h6>
+                            <h6 class="" style="color:gray;">@TempData["user"]</h6>
+                            <a asp-action="Logout" asp-controller="Dashboard">
+                                <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("Index","Home")'">Log out</button>
+                            </a>
+                            <img src="~/images/night-mode.png"
+                                 id="theme-toggle"
+                                 alt="Night Mode"
+                                 class="img-fluid  btn btn-outline-info  px-1   m-sm-3 m-1 "
+                                 style="width:37px;"
+                                 onclick="toggleTheme()" />
+
                         </div>
                     </div>
                 </li>

@@ -12,15 +12,18 @@ namespace HalloDoc.Controllers.Admin
         private readonly IAdminDashboard _adminDashboard;
         private readonly IAdminDashboardDataTable _adminDashboardDataTable;
         private readonly IViewCaseRepo _viewcase;
+        private readonly IBlockCaseRepository _block;
 
 
-        public AdminController(IAdminLog _admin, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboardDataTable, IViewCaseRepo viewcase)
+
+        public AdminController(IAdminLog _admin, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboardDataTable, IViewCaseRepo viewcase, IBlockCaseRepository block)
         {
             _context = new ApplicationDbContext();
             adminLog = _admin;
             _adminDashboard = adminDashboard;
             _adminDashboardDataTable = adminDashboardDataTable;
             _viewcase = viewcase;
+            _block = block;
         }
         public IActionResult AdminLogin()
         {
@@ -33,7 +36,6 @@ namespace HalloDoc.Controllers.Admin
             var request = _adminDashboard.GetAll().ToList();
             AdminRequestViewModel viewModel = new AdminRequestViewModel();
             viewModel.requests = request;
-
             return View(viewModel);
         }
         [HttpPost]
@@ -145,6 +147,7 @@ namespace HalloDoc.Controllers.Admin
         {
 
             var request = _viewcase.GetViewCaseData(id);
+            TempData["RequestIdViewCase"] = request.FirstName + " " + request.LastName;
             return View(request);
         }
         [HttpPost]
@@ -165,6 +168,22 @@ namespace HalloDoc.Controllers.Admin
         public IActionResult ViewNotes()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult cancelCaseModal(int id)
+        {
+            var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
+            req.Status = 3;
+            _context.Requests.Update(req);
+            _context.SaveChanges();
+            return RedirectToAction("AdminDashboard");
+        }
+
+        public IActionResult BlockModal(int id, AdminRequestViewModel blocknote)
+        {
+            var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
+            _block.BlockPatient(id, blocknote.BlockNotes);
+            return RedirectToAction("AdminDashboard");
         }
     }
 }

@@ -123,11 +123,12 @@
                             </button>
                             <input type="hidden" asp-for="@item.requestid" value="@item.requestid"/>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-secondary" asp-action=""><i class="fa-regular fa-rectangle-list me-2"></i>Assign case</a></li>
-                                <li><a class="dropdown-item text-secondary" asp-action=""><i class="fa-regular fa-circle-xmark me-2"></i>Cancel case</a></li>
+                                <li><button type="button" class="dropdown-item text-secondary" data-toggle="modal" data-target="#AssignModal" >Assign case</button></li>
+
+                                <li><button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary canclebtn" data-toggle="modal" data-target="#exampleModal"><i class="fa-regular fa-circle-xmark me-2"></i>Cancel case</button></li>
                                 <li><a class="dropdown-item text-secondary" asp-action="ViewCase" asp-route-id="@item.requestid"><i class="bi bi-view-list me-2"></i>View case</a></li>
                                 <li><a class="dropdown-item text-secondary" asp-action="ViewNotes"><i class="fa-solid fa-book-journal-whills me-2"></i>View Notes </a> </li>
-                                <li><a class="dropdown-item text-secondary" asp-action=""><i class="fa-solid fa-ban me-2"></i>Block Patients</a></li>
+                                <li><button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary canclebtn" data-toggle="modal" data-target="#BlockModal"><i class="fa-solid fa-ban me-2"></i>Block Patients</button></li>
                             </ul>
                         </div>
                     </form>
@@ -142,11 +143,38 @@
 
 
 
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
 
 <script>
+
+    $(document).ready(function () {
+
+        $('.canclebtn').on('click', function (e) {
+            var name = $(this).attr('value');
+            $('.pname').html(name);
+            var reqid = $(this).attr('id');
+            var inputval = $('.requestid');
+            inputval.val(reqid);
+            
+        });
+
+        // $('.canclebtn').on('click', function (e) {
+
+           
+
+        //     var reqid = $(this).attr('id');
+        //     $('.requestid').html(reqid);
+            
+        //     console.log(reqid)
+        // });
+    });
+
+
     var table = $('#example').DataTable({ dom: 'lrtip' });
     $('input[type="search"]').on('keyup', function () {
         table.search(this.value).draw();

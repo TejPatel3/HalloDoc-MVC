@@ -1,11 +1,10 @@
 ﻿@using Services.ViewModels;
 @model AdminRequestViewModel;
 <div class="container-fluid">
-
     <nav>
         <div class="nav nav-tabs row g-0 border-0 pb-4 pt-2" id="status-tab" role="tablist">
-            <div class="allstatus ">
-                <button class="w-100 nav-link dashboardtab active position-relative alltabs" id="status-new" data-bs-toggle="tab" data-bs-target="#status_new" type="button" role="tab" aria-controls="status_new" aria-selected="true">
+            <div class="allstatus  ">
+                <button class="w-100 nav-link dashboardtab active position-relative alltabs border-0" id="status-new" data-bs-toggle="tab" data-bs-target="#status_new" type="button" role="tab" aria-controls="status_new" aria-selected="true">
                     <div class="p-2 new rounded">
                         <div class="d-flex">
                             <div class="px-2 icons float-start small"><i class="d-none d-md-block bi bi-plus-circle-dotted"></i></div><div class="small fw-bold">NEW</div>
@@ -87,35 +86,34 @@
 </div>
 
 <div class="d-flex justify-content-between pt-3 container-fluid">
-    <div class="h4 mb-0">
+    <div class="h4 m-0 pt-1 innerhead ">
 
         Patient
-        (<small class="" id="statusnamehead" style="color:#203f98; font-size:18px"></small>)
+        (<small class="innerhead-sm" id="statusnamehead" style="color:#203f98; "></small>)
     </div>
     <div class="d-flex h-25">
-        <div class="btn btn-info  rounded-3 mx-1 text-white btn-sm p-0">
-            <i class="fa-regular fa-paper-plane  pe-1" style="color: #ffffff;"></i>
+        <div class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0  height-fit-content">
+            <i class="fa-regular fa-paper-plane  " style="color: #ffffff; "></i>
             <small class="text-white d-none d-md-inline">Send Link</small>
         </div>
 
-        <div class="btn btn-info d-flex align-items-center  rounded rounded-3 mx-1 text-white ">
+        <div class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0 height-fit-content">
 
-            <i class="fa-solid fa-file-pen pe-1" style="color: #ffffff;"></i>
+            <i class="fa-solid fa-file-pen  " style="color: #ffffff;"></i>
             <small class="text-white d-none d-md-inline"> Create Request</small>
         </div>
 
-        <div class="btn btn-info  rounded-3 mx-1 text-white">
-            <i class="fa-solid fa-share pe-1" style="color: #ffffff;"></i>
+        <div class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0 height-fit-content">
+            <i class="fa-solid fa-share  " style="color: #ffffff;"></i>
             <small class="text-white d-none d-md-inline">Export</small>
         </div>
 
-        <div class="btn btn-info  rounded-3 mx-1 text-white">
-            <i class="fa-solid fa-share pe-1" style="color: #ffffff;"></i>
-            <small class="text-white d-none d-md-inline">Export All</small>
+        <div class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0 height-fit-content">
+            <i class="fa-solid fa-share-from-square " style="color: #ffffff;"></i>            <small class="text-white d-none d-md-inline">Export All</small>
         </div>
 
-        <div class="btn btn-info  rounded-3 mx-1 text-white">
-            <i class="fa-solid fa-user-doctor pe-1" style="color: #ffffff;"></i>
+        <div class="btn btn-info d-flex align-items-center   rounded-3  p-2 text-white  border-0 height-fit-content">
+            <i class="fa-solid fa-user-doctor  " style="color: #ffffff;"></i>
             <small class="text-white d-none d-md-inline">Request DTY Support</small>
         </div>
     </div>
@@ -124,64 +122,64 @@
 <div class="container-fluid mt-3 ">
     <div class="row mx-1 bg-white d-sm-flex d-block justify-content-between my-2">
 
-            <div class="col-12 col-md-2  py-3">
+        <div class="col-12 col-md-2 col-xl-2  py-3">
 
-                <input class="form-control search-input fuzzy-search rounded-1 form-control-sm me-2 py-2" type="search" placeholder="Search..." aria-label="Search" style="width:clamp(100px, 100%, 100%); ">
+            <input class="form-control search-input fuzzy-search rounded-1 form-control-sm me-2 py-2" type="search" placeholder="Search..." aria-label="Search" style="width:clamp(100px, 100%, 100%); ">
+        </div>
+        <div class="col-12 col-md-3 col-xl-2 d-flex align-items-center">
+            <div class="dropdown d-flex" style="width:clamp(200px, 100%, 100%);">
+
+                <button class="btn bg-white border  dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:clamp(200px, 100%, 100%);">
+                    <i class="fa-solid fa-magnifying-glass fa-xs pe-3"></i> <label class="me-4">All Region</label>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">District Of Columbia</a></li>
+                    <li><a class="dropdown-item" href="#">Maryland</a></li>
+                    <li><a class="dropdown-item" href="#">New York</a></li>
+                    <li><a class="dropdown-item" href="#">Virginia</a></li>
+                </ul>
             </div>
-            <div class="col-12 col-md-3 d-flex align-items-center">
-                <div class="dropdown d-flex" style="width:clamp(200px, 100%, 100%);">
+        </div>
+        <div class="col-12 col-md-7 col-xl-8 d-inline-block d-md-flex justify-content-end align-items-center mt-sm-2 mt-4 mb-2 ">
 
-                    <button class="btn bg-white border  dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:clamp(200px, 100%, 100%);">
-                        <i class="fa-solid fa-magnifying-glass fa-xs"></i> <label class="me-4">All Region</label>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">District Of Columbia</a></li>
-                        <li><a class="dropdown-item" href="#">Maryland</a></li>
-                        <li><a class="dropdown-item" href="#">New York</a></li>
-                        <li><a class="dropdown-item" href="#">Virginia</a></li>
-                    </ul>
-                </div>
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 width-xs">
+                <input type="radio" class="btn-check  " name="requestby" id="requestbyAll" autocomplete="off">
+                <label class="infowithcolor btn p-0 p-xl-2 font-size-xs" for="requestbyAll">All</label>
             </div>
-            <div class="col-12 col-md-7 d-inline-block d-lg-inline-flex justify-content-end mt-3 ">
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 width-xs">
+                <input type="radio" class="btn-check" name="requestby" id="1" autocomplete="off">
+                <i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:   #5fbc61;"></i>
 
-                <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1">
-                    <input type="radio" class="btn-check  " name="requestby" id="requestbyAll" autocomplete="off">
-                    <label class="infowithcolor btn p-0 p-xl-2" for="requestbyAll">All</label>
-                </div>
-                <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 ">
-                    <input type="radio" class="btn-check" name="requestby" id="1" autocomplete="off">
-                    <i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:   #5fbc61;"></i>
-
-                    <label class="infowithcolor btn p-0 p-xl-2" for="1">Patient</label>
-                </div>
-                <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1">
-                    <input type="radio" class="btn-check" name="requestby" id="2" autocomplete="off">
-                    <i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #ed9124;"></i>
-                    <label class="infowithcolor btn p-0 p-xl-2" for="2">Family</label>
-                </div>
-                <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1">
-                    <input type="radio" class="btn-check" name="requestby" id="3" autocomplete="off"><i class="fa-solid fa-circle fa-2xs pe-1  d-flex justify-content-center align-items-center" style="color:   #e36478;"></i>
-                    <label class="infowithcolor btn p-0 p-xl-2" for="3">Concierge</label>
-                </div>
-                <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1">
-                    <input type="radio" class="btn-check" name="requestby" id="4" autocomplete="off"><i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #0c7db7;"></i>
-                    <label class="infowithcolor btn p-0 p-xl-2" for="4">Business</label>
-                </div>
-                <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1">
-                    <input type="radio" class="btn-check" name="requestby" id="5" autocomplete="off"><i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #943db8;"></i>
-                    <label class="infowithcolor btn p-0 p-xl-2" for="5">VIP</label>
-                </div>
-
-
-
-                @*  <button class="btn-outline-secondary btn mx-2 ">All</button>
-                <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #5fbc61;"></i>Patient</button>
-                <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #ed9124;"></i>Family/Friend</button>
-                <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:   #e36478;"></i>Concierge</button>
-                <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #0c7db7;"></i>Business</button>
-                <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #943db8;"></i>Vip</button> *@
-
+                <label class="infowithcolor btn p-0 p-xl-2 font-size-xs" for="1">Patient</label>
             </div>
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1">
+                <input type="radio" class="btn-check" name="requestby" id="2" autocomplete="off">
+                <i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #ed9124;"></i>
+                <label class="infowithcolor btn p-0 p-xl-2" for="2">Family</label>
+            </div>
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1">
+                <input type="radio" class="btn-check" name="requestby" id="3" autocomplete="off"><i class="fa-solid fa-circle fa-2xs pe-1  d-flex justify-content-center align-items-center" style="color:   #e36478;"></i>
+                <label class="infowithcolor btn p-0 p-xl-2" for="3">Concierge</label>
+            </div>
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1">
+                <input type="radio" class="btn-check" name="requestby" id="4" autocomplete="off"><i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #0c7db7;"></i>
+                <label class="infowithcolor btn p-0 p-xl-2" for="4">Business</label>
+            </div>
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1">
+                <input type="radio" class="btn-check" name="requestby" id="5" autocomplete="off"><i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #943db8;"></i>
+                <label class="infowithcolor btn p-0 p-xl-2" for="5">VIP</label>
+            </div>
+
+
+
+            @*  <button class="btn-outline-secondary btn mx-2 ">All</button>
+            <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #5fbc61;"></i>Patient</button>
+            <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #ed9124;"></i>Family/Friend</button>
+            <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:   #e36478;"></i>Concierge</button>
+            <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #0c7db7;"></i>Business</button>
+            <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #943db8;"></i>Vip</button> *@
+
+        </div>
 
     </div>
 </div>
@@ -215,12 +213,145 @@
 <div class="container-fluid table-responsive mt-3 " id="datatable">
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+@* Cancle case model *@
+<div class="modal fade rounded-3 shadow" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Cancle Confirmation</h5>
+                <button class="btn" type="button" data-dismiss="modal">
+                    <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                </button>
+            </div>
+            <form asp-action="cancelCaseModal" method="post">
+                <div class="modal-body">
+                    <div class="requestid"></div>
+                    <input type="number" class="requestid" name="id" hidden />
+                    <h6 class="my-3 text-secondary fw-normal">Patient Name: <span class="text-info fw-normal pname"></span> </h6>
+                    <select class="form-select form-select-lg mb-3 fs-6" aria-label=".form-select-lg example">
+                        <option class="fs-6" selected hidden>Reasons For Cancellation</option>
+                        <option class="fs-6" value="1">I Am Sick</option>
+                        <option class="fs-6" value="2">I need to go Urgent</option>
+                        <option class="fs-6" value="3">Something Else</option>
+                    </select>
+                    <div class="my-2 form-floating">
+
+                        <textarea class="form-control"
+                                  placeholder="Provide Additional Note"
+                                  style="height: 100px"></textarea>
+                        <label for="floatingTextarea" class="text-secondary">Provide Additional Note</label>
+
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="submit" value="submit" class="btn btn-info text-white">Confirm</button>
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">Cancle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@* Assign Case Modal *@
+<div class="modal fade rounded-3 shadow" id="AssignModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Assign Request</h5>
+                <button class="btn" type="button" data-dismiss="modal">
+                    <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label class="my-2 text-secondary  fw-normal mb-3" style="font-size:12.8px">To Assign This Request, search and selectanother Physician</label>
+                <div class="form-floating">
+                    <select class="form-select form-select-lg mb-3 fs-6" aria-label=".form-select-lg example">
+                        <option class="fs-6" selected hidden>Narrow Search By Region</option>
+                        <option class="fs-6" value="1">I Am Sick</option>
+                        <option class="fs-6" value="2">I need to go Urgent</option>
+                        <option class="fs-6" value="3">Something Else</option>
+                    </select>
+                    <label for="floatingTextarea" class="text-secondary">Narrow Search By Region</label>
+                </div>
+
+                <select class="form-select form-select-lg mb-3 fs-6 form-control" aria-label=".form-select-lg example">
+                    <option class="fs-6" hidden>Select Physician</option>
+                    <option class="fs-6" value="1">I Am Sick</option>
+                    <option class="fs-6" value="2">I need to go Urgent</option>
+                    <option class="fs-6" value="3">Something Else</option>
+                </select>
+
+                <div class="my-2 form-floating">
+
+                    <textarea class="form-control"
+                              placeholder="Description"
+                              style="height: 100px"></textarea>
+                    <label for="floatingTextarea" class="text-secondary">Description</label>
+
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-info text-white">Confirm</button>
+                <button type="button" class="btn btn-outline-info" data-dismiss="modal">Cancle</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Block Case Modal *@
+<div class="modal fade rounded-3 shadow" id="BlockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Confirm Block</h5>
+                <button class="btn" type="button" data-dismiss="modal">
+                    <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                </button>
+            </div>
+            <form asp-action="BlockModal" method="post">
+
+                <div class="modal-body">
+
+                    <input type="number" class="requestid" name="id"/>
+
+                    <h6 class="my-2 text-secondary">Patient Name:<span class="text-info fw-normal pname"></span></h6>
+
+                    <div class="my-2 form-floating">
+
+                        <textarea class="form-control" asp-for="BlockNotes"
+                                  placeholder="Reason For Block Request"
+                                  style="height: 100px"></textarea>
+                        <label for="floatingTextarea" class=" text-secondary">Reason For Block Request</label>
+
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="submit" class="btn btn-info text-white">Confirm</button>
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">Cancle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <script>
 
 
 
+
+
     $(document).ready(function () {
-      
+
         $.ajax({
             url: '/Admin/New',
             success: function (response) {
@@ -303,8 +434,17 @@
         font-size: clamp(0.2rem, 1.35vw, 0.8rem);
     }
 
-    .infowithcolor{
+    .infowithcolor {
+        font-size: clamp(0.7rem, 1.4vw, 1rem);
+    }
 
-        font-size: clamp(0.7rem, 3vw, 1rem) ;
+    .innerhead{
+        font-size: clamp(1.1rem, 4vw , 1.5rem );
+    }
+    .innerhead-sm{
+        font-size: clamp(1rem, 4vw , 1.2rem );
+    }
+    .height-fit-content{
+        height:fit-content;
     }
 </style>
