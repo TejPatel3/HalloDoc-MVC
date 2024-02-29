@@ -14,11 +14,11 @@ namespace Services.Implementation
         public void BlockPatient(int requestid, String blocknote)
         {
             var requestdata = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
-            var blockdata = new BlockRequest();
 
             if (requestdata != null)
             {
 
+                var blockdata = new BlockRequest();
                 blockdata.RequestId = requestid.ToString();
                 blockdata.PhoneNumber = requestdata.PhoneNumber;
                 blockdata.Email = requestdata.Email;

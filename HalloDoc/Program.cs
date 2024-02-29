@@ -20,6 +20,8 @@ builder.Services.AddScoped<IAdminDashboard, AdminDashboard>();
 builder.Services.AddScoped<IAdminDashboardDataTable, AdminDashboardDataTable>();
 builder.Services.AddScoped<IViewCaseRepo, ViewCaseRepo>();
 builder.Services.AddScoped<IBlockCaseRepository, BlockCaseRepository>();
+builder.Services.AddScoped<IAddOrUpdateRequestNotes, AddOrUpdateRequestNotes>();
+builder.Services.AddScoped<IAddOrUpdateRequestStatusLog, AddOrUpdateRequestStatusLog>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

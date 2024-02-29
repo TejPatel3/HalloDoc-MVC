@@ -2,6 +2,6 @@
 {
     public interface IAddOrUpdateRequestStatusLog
     {
-        void AddOrUpdateRequestStatusLog();
+        void AddOrUpdateRequestStatusLog(int requestid, int? APId, string? cancelnote, int? trnastophyid = null);
     }
 }

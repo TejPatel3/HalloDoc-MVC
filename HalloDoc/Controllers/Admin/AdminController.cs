@@ -13,10 +13,14 @@ namespace HalloDoc.Controllers.Admin
         private readonly IAdminDashboardDataTable _adminDashboardDataTable;
         private readonly IViewCaseRepo _viewcase;
         private readonly IBlockCaseRepository _block;
+        private readonly IAddOrUpdateRequestNotes _addOrUpdateRequestNotes;
+        private readonly IAddOrUpdateRequestStatusLog _addOrUpdateRequestStatusLog;
 
 
 
-        public AdminController(IAdminLog _admin, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboardDataTable, IViewCaseRepo viewcase, IBlockCaseRepository block)
+        public AdminController(IAdminLog _admin, IAdminDashboard adminDashboard,
+            IAdminDashboardDataTable adminDashboardDataTable, IViewCaseRepo viewcase, IBlockCaseRepository block
+            , IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog, IAddOrUpdateRequestNotes addOrUpdateRequestNotes)
         {
             _context = new ApplicationDbContext();
             adminLog = _admin;
@@ -24,6 +28,8 @@ namespace HalloDoc.Controllers.Admin
             _adminDashboardDataTable = adminDashboardDataTable;
             _viewcase = viewcase;
             _block = block;
+            _addOrUpdateRequestNotes = addOrUpdateRequestNotes;
+            _addOrUpdateRequestStatusLog = addOrUpdateRequestStatusLog;
         }
         public IActionResult AdminLogin()
         {
@@ -33,9 +39,14 @@ namespace HalloDoc.Controllers.Admin
 
         public IActionResult AdminDashboard()
         {
+            var casetag = _context.CaseTags.ToList();
             var request = _adminDashboard.GetAll().ToList();
+            var region = _context.Regions.ToList();
+            var physician = _context.Physicians.ToList();
             AdminRequestViewModel viewModel = new AdminRequestViewModel();
             viewModel.requests = request;
+            viewModel.regions = region;
+            viewModel.caseTags = casetag;
             return View(viewModel);
         }
         [HttpPost]
@@ -78,6 +89,14 @@ namespace HalloDoc.Controllers.Admin
             return View();
         }
 
+        [HttpGet]
+        public List<Physician> GetPhysicianByRegionId(int regionId)
+        {
+            var physician = _context.Physicians.ToList().Where(r => r.RegionId == regionId).ToList();
+
+
+            return physician;
+        }
 
 
 
@@ -142,7 +161,7 @@ namespace HalloDoc.Controllers.Admin
             var datalist = _adminDashboardDataTable.getallAdminDashboard(9);
             return View(datalist);
         }
-
+        [HttpGet]
         public IActionResult ViewCase(int id)
         {
 
@@ -165,17 +184,31 @@ namespace HalloDoc.Controllers.Admin
             _context.SaveChanges();
             return RedirectToAction("AdminDashboard");
         }
-        public IActionResult ViewNotes()
-        {
-            return View();
-        }
+
         [HttpPost]
-        public IActionResult cancelCaseModal(int id)
+        public IActionResult cancelCaseModal(int id, AdminRequestViewModel cancelnote, string casetagname)
         {
             var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
             req.Status = 3;
+            var casetag = _context.CaseTags.FirstOrDefault(t => t.Name == casetagname);
+            req.CaseTag = casetag.CaseTagId.ToString();
             _context.Requests.Update(req);
             _context.SaveChanges();
+            var adminid = HttpContext.Session.GetInt32("UserId");
+            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, adminid, cancelnote.BlockNotes);
+            return RedirectToAction("AdminDashboard");
+        }
+
+        [HttpPost]
+        public IActionResult AssignCase(int id, AdminRequestViewModel assignnote, string physicianname)
+        {
+            var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
+            var physiciandetail = _context.Physicians.FirstOrDefault(p => p.FirstName + p.LastName == physicianname);
+            req.Status = 2;
+            _context.Requests.Update(req);
+            _context.SaveChanges();
+            var adminid = HttpContext.Session.GetInt32("UserId");
+            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, adminid, assignnote.BlockNotes, physiciandetail.PhysicianId);
             return RedirectToAction("AdminDashboard");
         }
 
@@ -184,6 +217,28 @@ namespace HalloDoc.Controllers.Admin
             var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
             _block.BlockPatient(id, blocknote.BlockNotes);
             return RedirectToAction("AdminDashboard");
+        }
+        public IActionResult ViewNotes(int reqid)
+        {
+            var request = _context.Requests.FirstOrDefault(m => m.RequestId == reqid);
+            var requestnote = _context.RequestNotes.FirstOrDefault(m => m.RequestId == reqid);
+
+            AdminRequestViewModel viewModel = new AdminRequestViewModel();
+            if (requestnote != null)
+            {
+
+                viewModel.BlockNotes = requestnote.AdminNotes;
+            }
+            viewModel.requestid = reqid;
+            return View(viewModel);
+        }
+        [HttpPost]
+        public IActionResult viewNotes(AdminRequestViewModel obj)
+        {
+            var request = _context.Requests.FirstOrDefault(m => m.RequestId == obj.requestid);
+            _addOrUpdateRequestNotes.AddOrUpdateRequestNotes(obj);
+            return RedirectToAction("AdminDashboard");
+
         }
     }
 }
