@@ -200,9 +200,9 @@ footer {
         background-repeat: no-repeat;
         background-position: center;
     }*/
-    .container, .container-fluid {
+   /* .container, .container-fluid {
         padding: 0px !important;
-    }
+    }*/
 
     .pl-container {
         background: transparent;

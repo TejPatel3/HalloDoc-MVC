@@ -208,7 +208,10 @@ namespace HalloDoc.Controllers.Admin
             _context.Requests.Update(req);
             _context.SaveChanges();
             var adminid = HttpContext.Session.GetInt32("UserId");
+
+
             _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, adminid, assignnote.BlockNotes, physiciandetail.PhysicianId);
+
             return RedirectToAction("AdminDashboard");
         }
 
@@ -223,19 +226,31 @@ namespace HalloDoc.Controllers.Admin
             var request = _context.Requests.FirstOrDefault(m => m.RequestId == reqid);
             var requestnote = _context.RequestNotes.FirstOrDefault(m => m.RequestId == reqid);
 
-            AdminRequestViewModel viewModel = new AdminRequestViewModel();
+            var viewnote = new AdminRequestViewModel();
             if (requestnote != null)
             {
 
-                viewModel.BlockNotes = requestnote.AdminNotes;
+                viewnote.BlockNotes = requestnote.AdminNotes;
             }
-            viewModel.requestid = reqid;
-            return View(viewModel);
+
+            var adminname = HttpContext.Session.GetString("AdminName");
+            viewnote.requestid = reqid;
+            var transfernotedetail = _context.RequestStatusLogs.FirstOrDefault(m => m.RequestId == reqid && m.Status == 2);
+            if (transfernotedetail != null)
+            {
+                var physicianname = _context.Physicians.FirstOrDefault(m => m.PhysicianId == transfernotedetail.TransToPhysicianId);
+                viewnote.PhsysicianNameViewNotes = physicianname.FirstName;
+                viewnote.AdminNameViewNotes = adminname;
+                viewnote.assigntime = transfernotedetail.CreatedDate;
+
+            }
+            return View(viewnote);
         }
+
         [HttpPost]
         public IActionResult viewNotes(AdminRequestViewModel obj)
         {
-            var request = _context.Requests.FirstOrDefault(m => m.RequestId == obj.requestid);
+            //var request = _context.Requests.FirstOrDefault(m => m.RequestId == obj.requestid);
             _addOrUpdateRequestNotes.AddOrUpdateRequestNotes(obj);
             return RedirectToAction("AdminDashboard");
 

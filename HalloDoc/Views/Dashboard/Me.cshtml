@@ -29,17 +29,18 @@
                     <input type="text" asp-for="FirstName"
                            class="form-control"
                            placeholder="Username"
-                           aria-label="Username" disabled/>
+                           aria-label="Username" disabled />
                     <label class="d-flex justify-content-between ms-2">First Name </label>
-@*                     <span asp-validation-for="FirstName" class="text-danger"></span>
- *@                </div>
+                    @*                     <span asp-validation-for="FirstName" class="text-danger"></span>
+                    *@
+                </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input asp-for="LastName" hidden />
 
                     <input type="text" asp-for="LastName"
                            class="form-control"
                            placeholder="Username"
-                           aria-label="Username" disabled/>
+                           aria-label="Username" disabled />
                     <label class="d-flex justify-content-between ms-2">Last name</label>
                     @* <span asp-validation-for="LastName" class="text-danger"></span> *@
                 </div>
@@ -50,15 +51,15 @@
                     <input type="date" asp-for="BirthDate"
                            class="form-control pt-2"
                            placeholder="Username"
-                           aria-label="Username" max=@max/>
+                           aria-label="Username" max=@max />
                     <span class="text-danger" asp-validation-for="BirthDate"></span>
                 </div>
                 <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input asp-for="Email" hidden />
-                                        <input type="email" asp-for="Email"
+                    <input type="email" asp-for="Email"
                            class="form-control" id="patientEmail"
-                           placeholder="Username" onblur="checkEmailExists()" disabled/>
+                           placeholder="Username" onblur="checkEmailExists()" disabled />
                     <label class="d-flex justify-content-between ms-2">Email </label>
                     <span class="text-danger"></span>
                 </div>
@@ -116,7 +117,7 @@
                 </div>
 
                 <div class="col-12 col-sm-6 form-floating mb-3">
-                    <a class="btn btn-outline-info p-3" href="https://www.google.com/maps/"> 
+                    <a class="btn btn-outline-info p-3" href="https://www.google.com/maps/">
                         <i class="bi bi-geo-alt"></i> Map
                     </a>
                 </div>
@@ -134,7 +135,7 @@
                                     <input type="text" id="file-chosen" class="border border-0" placeholder="No item selected" disabled />
                                 </div>
                                 <div role="button" class="uploadbtn p-2 d-flex">
-                                    <input type="file" id="actual-btn" multiple hidden asp-for="Upload"/>
+                                    <input type="file" id="actual-btn" multiple hidden asp-for="Upload" />
                                     <label role="button" for="actual-btn" class="d-flex align-items-center">
                                         <i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div>
                                     </label>

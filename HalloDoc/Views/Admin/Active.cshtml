@@ -28,23 +28,24 @@
         @foreach (var item in Model)
         {
 
+
             var color = "green-dot";
 
             switch (item.RequestType)
             {
                 case 1:
                     {
-                        color = "pink-dot";
+                        color = "green-dot";
                         break;
                     }
                 case 2:
                     {
-                        color = "green-dot";
+                        color = "orange-dot";
                         break;
                     }
                 case 3:
                     {
-                        color = "orange-dot";
+                        color = "pink-dot";
                         break;
                     }
                 case 4:
@@ -54,7 +55,7 @@
                     }
                 default:
                     {
-                        color = "green-dot";
+                        color = "purple-dot";
                         break;
                     }
             }

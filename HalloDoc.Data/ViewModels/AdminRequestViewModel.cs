@@ -14,5 +14,11 @@ namespace Services.ViewModels
         public int requestid { get; set; }
 
         public List<CaseTag> caseTags { get; set; }
+
+        public string AdminNameViewNotes { get; set; }
+
+        public string PhsysicianNameViewNotes { get; set; }
+
+        public DateTime assigntime { get; set; }
     }
 }

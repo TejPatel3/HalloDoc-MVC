@@ -1,6 +1,6 @@
 ﻿@* @model HalloDoc.Models.ViewModel.PatientDashboard
  *@
- @inject IHttpContextAccessor accessor
+@inject IHttpContextAccessor accessor
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,15 +32,17 @@
     <link rel="script" href="~/js/site.js" />
 </head>
 <body>
-    <nav class="navbar  navbar-light border border-2 border-top-0 border-start-0 border-end-0 justify-content-between">
-        <img src="/images/hallodoc-transparent.png"
-             class="img-fluid d-block ms-2"
-             alt="" style="height:100px;" />
-        <div class="collapse  d-flex justify-content-end " id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto ">
-                <li class="nav-item ">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light pt-0 d-flex flex-column">
+        <nav class="navbar  navbar-light border border-2 border-top-0 border-start-0 border-end-0 justify-content-between w-100">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            <img src="/images/hallodoc-transparent.png"
+                 class="img-fluid d-block ms-2"
+                 alt="" style="height:100px;" />
+            <div class="  d-flex justify-content-end " id="navbarSupportedContent">
+               
                         <div class="d-flex justify-content-between col align-items-center    ">
-                            <div class="d-flex align-items-center">
                                 <h6 class=" pe-2 d-sm-block d-none" style="color:gray;">Welcome @accessor.HttpContext.Session.GetString("AdminName")</h6>
                                 <a asp-action="Logout" asp-controller="Admin">
                                     <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("AdminLogin","Admin")'"> <i class="fa-solid fa-right-from-bracket d-sm-none d-block" style="color: #00bfff;"></i><h6 class="d-sm-block d-none m-0"> Log out</h6></button>
@@ -51,23 +53,35 @@
                                      class="img-fluid  btn btn-outline-info  px-1   m-sm-3 m-1 "
                                      style="width:37px;"
                                      onclick="toggleTheme()" />
-                            </div>
-                    </div>
-                </li>
-            </ul>
+                        </div>
+                
+            </div>
+        </nav>
+
+
+        <div class="collapse navbar-collapse bg-white w-100" id="navbarSupportedContent">
+            <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                <button class="nav-link active k fw-bold me-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
+                <button class="nav-link k text-secondary fw-bold me-1" id="nav-provider-location-tab" data-bs-toggle="tab" data-bs-target="#nav-provider-location" type="button" role="tab" aria-controls="nav-provider-location" aria-selected="false">Provider Location</button>
+                <button class="nav-link k text-secondary fw-bold" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Profile</button>
+                <button class="nav-link k text-secondary fw-bold" id="nav-provider-tab" data-bs-toggle="tab" data-bs-target="#nav-provider" type="button" role="tab" aria-controls="nav-provider" aria-selected="false">Providers</button>
+                <button class="nav-link k text-secondary fw-bold" id="nav-partner-tab" data-bs-toggle="tab" data-bs-target="#nav-partner" type="button" role="tab" aria-controls="nav-partner" aria-selected="false">Partners</button>
+                <button class="nav-link k text-secondary fw-bold" id="nav-access-tab" data-bs-toggle="tab" data-bs-target="#nav-access" type="button" role="tab" aria-controls="nav-access" aria-selected="false">Access</button>
+                <button class="nav-link k text-secondary fw-bold" id="nav-record-tab" data-bs-toggle="tab" data-bs-target="#nav-record" type="button" role="tab" aria-controls="nav-record" aria-selected="false">Records</button>
+            </div>
         </div>
     </nav>
-    <nav class="shadow">
-        <div class="nav nav-tabs bg-white" id="nav-tab" role="tablist">
-            <button class="nav-link active k fw-bold me-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
-            <button class="nav-link k text-secondary fw-bold me-1" id="nav-provider-location-tab" data-bs-toggle="tab" data-bs-target="#nav-provider-location" type="button" role="tab" aria-controls="nav-provider-location" aria-selected="false">Provider Location</button>
-            <button class="nav-link k text-secondary fw-bold" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Profile</button>
-            <button class="nav-link k text-secondary fw-bold" id="nav-provider-tab" data-bs-toggle="tab" data-bs-target="#nav-provider" type="button" role="tab" aria-controls="nav-provider" aria-selected="false">Providers</button>
-            <button class="nav-link k text-secondary fw-bold" id="nav-partner-tab" data-bs-toggle="tab" data-bs-target="#nav-partner" type="button" role="tab" aria-controls="nav-partner" aria-selected="false">Partners</button>
-            <button class="nav-link k text-secondary fw-bold" id="nav-access-tab" data-bs-toggle="tab" data-bs-target="#nav-access" type="button" role="tab" aria-controls="nav-access" aria-selected="false">Access</button>
-            <button class="nav-link k text-secondary fw-bold" id="nav-record-tab" data-bs-toggle="tab" data-bs-target="#nav-record" type="button" role="tab" aria-controls="nav-record" aria-selected="false">Records</button>
-        </div>
-    </nav>
+    @* <nav class="shadow">
+    <div class="nav nav-tabs bg-white" id="nav-tab" role="tablist">
+    <button class="nav-link active k fw-bold me-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
+    <button class="nav-link k text-secondary fw-bold me-1" id="nav-provider-location-tab" data-bs-toggle="tab" data-bs-target="#nav-provider-location" type="button" role="tab" aria-controls="nav-provider-location" aria-selected="false">Provider Location</button>
+    <button class="nav-link k text-secondary fw-bold" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Profile</button>
+    <button class="nav-link k text-secondary fw-bold" id="nav-provider-tab" data-bs-toggle="tab" data-bs-target="#nav-provider" type="button" role="tab" aria-controls="nav-provider" aria-selected="false">Providers</button>
+    <button class="nav-link k text-secondary fw-bold" id="nav-partner-tab" data-bs-toggle="tab" data-bs-target="#nav-partner" type="button" role="tab" aria-controls="nav-partner" aria-selected="false">Partners</button>
+    <button class="nav-link k text-secondary fw-bold" id="nav-access-tab" data-bs-toggle="tab" data-bs-target="#nav-access" type="button" role="tab" aria-controls="nav-access" aria-selected="false">Access</button>
+    <button class="nav-link k text-secondary fw-bold" id="nav-record-tab" data-bs-toggle="tab" data-bs-target="#nav-record" type="button" role="tab" aria-controls="nav-record" aria-selected="false">Records</button>
+    </div>
+    </nav> *@
 
     @*    <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -75,7 +89,7 @@
     <button class="nav-link text-info" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
     </div>
     </nav> *@
-    <div class="mt-2 bg-light ">
+    <div class="pt-2 bg-light ">
         @RenderBody()
     </div>
 
@@ -124,43 +138,43 @@
 
 
 
-    const actualBtn = document.getElementById('actual-btn');
-    const fileChosen = document.getElementById('file-chosen');
-    actualBtn.addEventListener('change', function () {
-        fileChosen.textContent = this.files[0].name
-    })
+            // const actualBtn = document.getElementById('actual-btn');
+            // const fileChosen = document.getElementById('file-chosen');
+            // actualBtn.addEventListener('change', function () {
+            //     fileChosen.textContent = this.files[0].name
+            // })
 
-    actualBtn.addEventListener('change', function () {
-        /*fileChosen.textContent = this.files[0].name*/
-        fileChosen.placeholder = this.files[0].name
-        fileChosen.value = this.files[0].name
-    })
-
-
-    const phoneInputField = document.querySelector("#phone");
-    const phoneInput = window.intlTelInput(phoneInputField, {
-        utilsScript:
-            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-    const inputHome = document.querySelector("#home");
-    window.intlTelInput(inputHome, {
-        initialCountry: 'gb',
-        placeholderNumberType: 'FIXED_LINE',
-        utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
-    });
+            // actualBtn.addEventListener('change', function () {
+            //     /*fileChosen.textContent = this.files[0].name*/
+            //     fileChosen.placeholder = this.files[0].name
+            //     fileChosen.value = this.files[0].name
+            // })
 
 
-    const phoneInputField = document.querySelector("#phone");
-    const phoneInput = window.intlTelInput(phoneInputField, {
-        utilsScript:
-            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-    const inputHome = document.querySelector("#home");
-    window.intlTelInput(inputHome, {
-        initialCountry: 'gb',
-        placeholderNumberType: 'FIXED_LINE',
-        utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
-    });
+            // const phoneInputField = document.querySelector("#phone");
+            // const phoneInput = window.intlTelInput(phoneInputField, {
+            //     utilsScript:
+            //         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            // });
+            // const inputHome = document.querySelector("#home");
+            // window.intlTelInput(inputHome, {
+            //     initialCountry: 'gb',
+            //     placeholderNumberType: 'FIXED_LINE',
+            //     utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
+            // });
+
+
+            // const phoneInputField = document.querySelector("#phone");
+            // const phoneInput = window.intlTelInput(phoneInputField, {
+            //     utilsScript:
+            //         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            // });
+            // const inputHome = document.querySelector("#home");
+            // window.intlTelInput(inputHome, {
+            //     initialCountry: 'gb',
+            //     placeholderNumberType: 'FIXED_LINE',
+            //     utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
+            // });
 
 
 </script>
