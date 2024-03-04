@@ -71,9 +71,9 @@
                         @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
                     </div>
                 </td>
-                <td>@item.PatientDOB</td>
+                <td>@item.PatientDOB.ToString("dd MMM,yyyy ")</td>
                 <td>@item.RequestTypeName(item.RequestType)</td>
-                <td></td>
+                <td>here physician name</td>
                 <td>@item.RequestedDate</td>
                 <td>
                     <button class="btn btn-outline-light w-100 d-flex ">
@@ -110,26 +110,76 @@
                 <td>@item.Address</td>
                 <td>@item.Notes</td>
                 <td>
-                    <div class="border border-1 border-white rounded d-flex justify-content-around align-items-center p-1" style="width : 65%">
-                        <i class="fa-solid fa-user-doctor pe-1"></i>
-                        Provider
+                    <div class="d-flex">
+                        <button class="btn btn-outline-light p-1 me-2 shadow-none"
+                                type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            <i class="bi bi-person-fill"></i>
+                            <span>
+                                Patient
+                            </span>
+                        </button>
+
+                        <button class="btn btn-outline-light p-1 shadow-none"
+                                type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            <i class="bi bi-person-badge-fill"></i>
+                            <span>
+                                Provider
+                            </span>
+                        </button>
+
                     </div>
                 </td>
                 <td>
                     <div class="dropstart ms-2">
-                        <button class="btn btn-outline-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+
+                        <button class="btn btn-outline-light shadow-none" type="button" data-bs-toggle="dropdown" id="drop" aria-expanded="false">
                             Actions
                         </button>
-                        <input type="hidden" asp-for="@item.requestid" value="@item.requestid" />
                         <ul class="dropdown-menu">
 
-                            <li><button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary canclebtn" data-toggle="modal" data-target="#exampleModal"><i class="fa-regular fa-circle-xmark me-2"></i>Cancel case</button></li>
-                            <li><button class="dropdown-item text-secondary viewCase" value="@item.requestid"><i class="bi bi-view-list me-2"></i>View case</button></li>
-                            <li><button class="dropdown-item text-secondary viewNotes" value="@item.requestid"><i class="fa-solid fa-book-journal-whills me-2"></i>View Notes </button> </li>
-                            <li><button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary canclebtn" data-toggle="modal" data-target="#BlockModal"><i class="fa-solid fa-ban me-2"></i>Block Patients</button></li>
+                            <li>
+                                <button class="dropdown-item text-secondary viewCase" value="@item.requestid">
+                                    <i class="bi bi-view-list me-2"></i>
+                                    View case
+                                </button>
+                            </li>
+                            <li>
+                                <button class="dropdown-item text-secondary viewUpload" value="@item.requestid" >
+                                    <i class="bi bi-view-list me-2"></i>
+                                    View Uploads
+                                </button>
+                            </li>
+                            <li>
+                                <button value="@item.requestid" class="dropdown-item text-secondary viewNotes">
+                                    <i class="fa-solid fa-book-journal-whills me-2"></i>View Notes
+                                </button>
+                            </li>
+                            <li>
+                                <button class="dropdown-item text-secondary" value="@item.requestid">
+                                    <i class="bi bi-view-list me-2"></i>
+                                    Transfer
+                                </button>
+                            </li>
+                            <li>
+                                <button class="dropdown-item text-secondary" value="@item.requestid">
+                                    <i class="bi bi-view-list me-2"></i>
+                                    Clear Case
+                                </button>
+                            </li>
+                            <li>
+                                <button class="dropdown-item text-secondary" value="@item.requestid">
+                                    <i class="bi bi-view-list me-2"></i>
+                                    Send Agreement
+                                </button>
+                            </li>
+
                         </ul>
-                    </div>
-                </td>
+
+
+                    </div></td>
             </tr>
 
         }
@@ -202,6 +252,23 @@
                 data: { reqid: requestid },
                 success: function (response) {
                     $('#nav-home').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
+
+        $('.viewUpload').on('click', function (e) {
+            var requestid = $(this).attr('value');
+            console.log(requestid)
+            $.ajax({
+                url: '/Admin/ViewUpload',
+               type: 'GET',
+                data: {requestid : requestid} ,
+                success: function (response) {
+                    $('#nav-tabContent').html(response);
                 },
                 error: function (xhr, status, error) {
                     console.error(error);

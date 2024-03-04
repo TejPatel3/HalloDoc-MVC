@@ -1,6 +1,7 @@
 ﻿<Partial name="Toast" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+@using Services.ViewModels;
+@model AdminRequestViewModel;
 @{
     Layout = "_Admin";
 }
@@ -39,13 +40,132 @@
     </div>
 </div>
 
+@* Cancle case model *@
+<div class="modal fade rounded-3 shadow" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content ">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Cancle Confirmation</h5>
+                <button class="btn" type="button" data-dismiss="modal">
+                    <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                </button>
+            </div>
+            <form asp-action="cancelCaseModal" method="post">
+                <div class="modal-body">
+                    <div class="requestid"></div>
+                    <input type="number" class="requestid" name="id" hidden />
+                    <h6 class="my-3 text-secondary fw-normal">Patient Name: <span class="text-info fw-normal pname"></span> </h6>
+                    <select name="casetagname" class="form-select form-select-lg mb-3 fs-6 shadow-none" aria-label=".form-select-lg example">
+                        <option class="fs-6" selected hidden>Reasons For Cancellation</option>
+                        @foreach (var item in Model.caseTags)
+                        {
+                            <option class="fs-6">@item.Name</option>
+                        }
+                    </select>
+                    <div class="my-2 form-floating">
 
-<script>
+                        <textarea class="form-control shadow-none" asp-for="BlockNotes"
+                                  placeholder="Provide Additional Note"
+                                  style="height: 100px"></textarea>
+                        <label for="floatingTextarea" class="text-secondary">Provide Additional Note</label>
 
-   
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="submit" value="submit" class="btn btn-info text-white">Confirm</button>
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">Cancle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
-</script>
+@* Assign Case Modal *@
+<div class="modal fade rounded-3 shadow" id="AssignModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Assign Request</h5>
+                <button class="btn" type="button" data-dismiss="modal">
+                    <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                </button>
+            </div>
+            <form asp-action="AssignCase" method="post">
+                <div class="modal-body">
+                    <input type="number" class="requestid" name="id" hidden />
+
+                    <label class="my-2 text-secondary  fw-normal mb-3" style="font-size:12.8px">To Assign This Request, search and selectanother Physician</label>
+                    <div class="form-floating">
+                        <select name="regionname" class="form-select form-select-lg mb-3 fs-6" aria-label=".form-select-lg example">
+                            <option class="fs-6" selected hidden>Narrow Search By Region</option>
+                            @foreach (var item in Model.regions)
+                            {
+                                <option class="fs-6 regionselect" id="@item.RegionId">@item.Name</option>
+                            }
+                        </select>
+                        <label for="floatingTextarea" class="text-secondary">Narrow Search By Region</label>
+                    </div>
+
+                    <select name="physicianname" class="form-select form-select-lg mb-3 fs-6 form-control physiciandrop" aria-label=".form-select-lg example">
+                        <option class="fs-6" hidden>Select Physician</option>
+                    </select>
+
+                    <div class="my-2 form-floating">
+
+                        <textarea class="form-control"
+                                  placeholder="Description" asp-for="BlockNotes"
+                                  style="height: 100px"></textarea>
+                        <label for="floatingTextarea" class="text-secondary">Description</label>
+
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="submit" class="btn btn-info text-white">Confirm</button>
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">Cancle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@* Block Case Modal *@
+<div class="modal fade rounded-3 shadow" id="BlockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Confirm Block</h5>
+                <button class="btn" type="button" data-dismiss="modal">
+                    <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                </button>
+            </div>
+            <form asp-action="BlockModal" method="post">
+
+                <div class="modal-body">
+
+                    <input type="number" class="requestid" name="id" hidden />
+
+                    <h6 class="my-2 text-secondary">Patient Name:<span class="text-info fw-normal pname"></span></h6>
+
+                    <div class="my-2 form-floating">
+
+                        <textarea class="form-control" asp-for="BlockNotes"
+                                  placeholder="Reason For Block Request"
+                                  style="height: 100px"></textarea>
+                        <label for="floatingTextarea" class=" text-secondary">Reason For Block Request</label>
+
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="submit" class="btn btn-info text-white">Confirm</button>
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">Cancle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 
     <style>
         .bg-light{

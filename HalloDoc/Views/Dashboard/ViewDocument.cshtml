@@ -74,7 +74,7 @@
                                     <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
                                         <div class="px-3 table-responsive">
                                             <input type="file" id="actual-btn" asp-for="Upload" multiple hidden />
-                                            <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-dark text-nowrap" >No item selected</label>
+                                            <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-dark text-nowrap">No item selected</label>
                                         </div>
                                         <button type="submit" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
                                             <label role="button" class="d-flex align-items-center"><i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div></label>
@@ -108,7 +108,6 @@
                     <tbody>
                         @foreach (var item in Model.wiseFiles)
                         {
-
                             <tr>
                                 <th scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" /></th>
                                 <td>@item.FileName.Substring(52)</td>
@@ -399,7 +398,7 @@
 
     })
 
-   
+
 
 </script>
 

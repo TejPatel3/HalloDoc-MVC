@@ -36,7 +36,14 @@
 
 .allstatus {
     width: 16.666666666666666667% ;
+    outline : none !important;
+    border : none !important;
+
 }
+
+    .allstatus :focus-visible {
+        outline: none !important;
+    }
 
 .nav-link {
     padding: 8px;

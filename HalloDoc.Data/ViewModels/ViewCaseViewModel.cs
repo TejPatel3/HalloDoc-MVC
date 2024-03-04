@@ -18,5 +18,8 @@ namespace Services.ViewModels
         [MaybeNull]
         public String Address { get; set; }
         public String Room { get; set; }
+        public int requestId { get; set; }
+        public int status { get; set; }
+
     }
 }

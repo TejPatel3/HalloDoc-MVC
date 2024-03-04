@@ -825,6 +825,10 @@
       "PackagePath": "staticwebassets\\UploadDocument\\LesfImage.png"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Screenshot (1).png",
+      "PackagePath": "staticwebassets\\UploadDocument\\Screenshot (1).png"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Screenshot (2).png",
       "PackagePath": "staticwebassets\\UploadDocument\\Screenshot (2).png"
     },

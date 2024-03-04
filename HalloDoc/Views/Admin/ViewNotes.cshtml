@@ -3,6 +3,7 @@
 @{
     Layout = null;
 }
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
 <div class="container  px-xl-5 " style="height:80.4vh">
     <div class="row px-xl-5 px-2">
@@ -52,7 +53,7 @@
                 </div>
                 <div class="w-100">
                     <h5 class="mb-0">Admin Notes</h5>
-                    <p id="adminnoteupdate">@Model.BlockNotes</p>
+                    <small class="text-secondary" id="adminnoteupdate">@Model.BlockNotes</small>
                     @* <textarea id="adminnoteupdate" class="small border-0 text-secondary w-100 bg-white" asp-for="BlockNotes" disabled></textarea> *@
                 </div>
             </div>

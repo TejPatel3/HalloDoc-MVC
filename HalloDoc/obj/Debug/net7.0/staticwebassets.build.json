@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "JIMjWkzrBeZSTU+k7C9iTVd6qQEQNoeUxGSiXyRr1V8=",
+  "Hash": "pg6TMy7FvziDtIWYfEj8Mw+V2l/p4ObQGmhPdhjuqqc=",
   "Source": "HalloDoc",
   "BasePath": "_content/HalloDoc",
   "Mode": "Default",
@@ -6288,6 +6288,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadDocument\\profile-icon.png"
+    },
+    {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Screenshot (1).png",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "UploadDocument/Screenshot (1).png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadDocument\\Screenshot (1).png"
     },
     {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Screenshot (2).png",

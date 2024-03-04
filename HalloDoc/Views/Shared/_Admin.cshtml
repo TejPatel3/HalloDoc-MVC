@@ -32,7 +32,7 @@
     <link rel="script" href="~/js/site.js" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light pt-0 d-flex flex-column">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white pt-0 d-flex flex-column">
         <nav class="navbar  navbar-light border border-2 border-top-0 border-start-0 border-end-0 justify-content-between w-100">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
             <div class="  d-flex justify-content-end " id="navbarSupportedContent">
                
                         <div class="d-flex justify-content-between col align-items-center    ">
-                                <h6 class=" pe-2 d-sm-block d-none" style="color:gray;">Welcome @accessor.HttpContext.Session.GetString("AdminName")</h6>
+                    <h6 class=" pe-2 d-sm-block d-none" style="color:gray;">Welcome <span class="text-black h6"> @accessor.HttpContext.Session.GetString("AdminName")</span></h6>
                                 <a asp-action="Logout" asp-controller="Admin">
                                     <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("AdminLogin","Admin")'"> <i class="fa-solid fa-right-from-bracket d-sm-none d-block" style="color: #00bfff;"></i><h6 class="d-sm-block d-none m-0"> Log out</h6></button>
                                 </a>
@@ -137,6 +137,17 @@
     });
 
 
+    const actualBtn = document.getElementById('actual-btn');
+    const fileChosen = document.getElementById('file-chosen');
+    actualBtn.addEventListener('change', function () {
+        fileChosen.textContent = this.files[0].name
+    })
+
+    actualBtn.addEventListener('change', function () {
+        /*fileChosen.textContent = this.files[0].name*/
+        fileChosen.placeholder = this.files[0].name
+        fileChosen.value = this.files[0].name
+    })
 
             // const actualBtn = document.getElementById('actual-btn');
             // const fileChosen = document.getElementById('file-chosen');

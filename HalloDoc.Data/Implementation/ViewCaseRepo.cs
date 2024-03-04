@@ -55,6 +55,8 @@ namespace Services.Implementation
                 Region = regionName.Name,
                 ConfirmationNumber = request.ConfirmationNumber,
                 PatientNotes = model.Notes,
+                requestId = reqid,
+                status = request.Status,
             };
             return details;
         }

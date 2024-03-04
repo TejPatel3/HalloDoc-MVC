@@ -68,6 +68,7 @@ namespace HalloDoc.Controllers
                 addUser.IntDate = int.Parse(req.BirthDate?.ToString("dd"));
                 addUser.StrMonth = req.BirthDate?.ToString("MMM");
                 addUser.RegionId = 2;
+
                 //users.IntDate = req.BirthDat
 
                 _context.Users.Add(addUser);

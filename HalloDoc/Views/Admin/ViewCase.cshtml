@@ -1,12 +1,12 @@
 ﻿@using Services.ViewModels
 @model ViewCaseViewModel
-@* @model HalloDoc.DataModels.RequestClient *@
 @{
     Layout = null;
 }
 <!-- form input -->
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
-<div class="container pb-4 bg-light">
+<div class="container pb-4 bg-light " id="vCase">
     <div class="d-flex justify-content-between align-items-center w-100 my-3">
         <h4>New Request<span class="green-dot ms-2  small   text-white px-3 py-2" style="border-radius:25px; font-size:15px ">Patient</span></h4>
         <a asp-controller="Admin" asp-action="AdminDashboard"
@@ -63,7 +63,7 @@
 
                     <div class="row">
 
-                        <div class="col-sm-8 col-8 form-floating ">
+                        <div class="col-sm-8 col-lg-10 col-8 form-floating ">
                             <input id="phone" asp-for="PhoneNumber"
                                    type="tel" class="form-control"
                                    name="PhoneNumber"
@@ -72,7 +72,7 @@
                             <span class="text-danger" asp-validation-for="PhoneNumber"></span>
                         </div>
 
-                        <div class="col-sm-4 col-4 form-floating ">
+                        <div class="col-sm-4 col-lg-2 col-4 form-floating ">
                             <a class="btn btn-outline-info w-100 h-100 d-flex justify-content-center align-items-center" href="https://www.google.com/maps/">
                                 <i class="bi bi-telephone fa-lg"></i>
                             </a>
@@ -115,7 +115,7 @@
 
                     <div class="row">
 
-                        <div class="col-10 form-floating ">
+                        <div class="col-sm-8 col-lg-10 col-8 form-floating ">
                             <input type="text" asp-for="Address"
                                    class="form-control"
                                    placeholder="Username"
@@ -124,7 +124,7 @@
                             <span asp-validation-for="Address" class="text-danger"></span>
                         </div>
 
-                        <div class="col-2 form-floating ">
+                        <div class="col-sm-4 col-lg-2 col-4 form-floating ">
                             <a class="btn btn-outline-info w-100 h-100 d-flex justify-content-center align-items-center" href="https://www.google.com/maps/">
                                 <i class="bi bi-geo-alt fa-lg"></i>
                             </a>
@@ -147,84 +147,52 @@
 
 
             <div class="justify-content-end d-flex pb-2">
+                @if(Model.status == 1){
+                    
                 <div class="mx-1">
-                    <button type="submit" class="btn btn-info text-white sub rounded-2 px-2 py-2">
-                        Assign
-                    </button>
-                </div>
-                <div class="mx-1">
-                    <button class="btn btn-info text-white sub rounded-2 px-2 py-2">
-                        View Notes
-                    </button>
-                </div>
-                <div class="mx-1">
-                    <button type="button" value="@TempData[" RequestIdViewCase"]" class="dropdown-item text-secondary canclebtn" data-toggle="modal" data-target="#exampleModal"><i class="fa-regular fa-circle-xmark me-2"></i>Cancel case</button>
+                    <button type="button" id="@Model.requestId" value="@Model.FirstName + @Model.LastName" class="btn bg-info text-white sub rounded-2 px-2 py-2 canclebtn" data-toggle="modal" data-target="#AssignModal">Assign case</button>
 
-                    <button type="button" class="btn btn-danger text-white sub rounded-2 px-2 py-2 bg-danger"  onclick="location.href='@Url.Action("CancleCase", "Admin" , new{confirmation = Model.ConfirmationNumber})'">
-                        Cancel
-                    </button>
+                </div>
+                }
+                <div class="mx-1">
+                    <button type="button" class="btn text-white bg-info rounded-2 px-2 py-2 viewNotes" value="@Model.requestId">View Notes </button>
+                </div>
+                <div class="mx-1">
+                    <button type="button" value="@Model.FirstName @Model.LastName" class="btn  text-white sub rounded-2 px-2 py-2 bg-danger canclebtn" data-toggle="modal" data-target="#exampleModal">Cancel case</button>
+
+
                 </div>
             </div>
         </div>
     </form>
 </div>
 
-
+@*
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+ *@
 
-@* Cancle case model *@
-<div class="modal fade rounded-3 shadow" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content ">
-            <div class="modal-header bg-info">
-                <h5 class="modal-title text-white" id="exampleModalLabel">Confirm Confirmation</h5>
-                <button class="btn" type="button" data-dismiss="modal">
-                    <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h6 class="my-3 text-secondary fw-normal">Patient Name: <span class="text-info fw-normal pname"></span> </h6>
-                <select class="form-select form-select-lg mb-3 fs-6" aria-label=".form-select-lg example">
-                    <option class="fs-6" selected hidden>Reasons For Cancellation</option>
-                    <option class="fs-6" value="1">I Am Sick</option>
-                    <option class="fs-6" value="2">I need to go Urgent</option>
-                    <option class="fs-6" value="3">Something Else</option>
-                </select>
-                <div class="my-2 form-floating">
-
-                    <textarea class="form-control"
-                              placeholder="Provide Additional Note"
-                              style="height: 100px"></textarea>
-                    <label for="floatingTextarea" class="text-secondary">Provide Additional Note</label>
-
-                </div>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-info text-white">Confirm</button>
-                <button type="button" class="btn btn-outline-info" data-dismiss="modal">Cancle</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
 
+
     $(document).ready(function () {
-
         $('.canclebtn').on('click', function (e) {
-
             var name = $(this).attr('value');
+            console.log(name)
             $('.pname').html(name);
-
-            console.log(name);
+            var reqid = $(this).attr('id');
+            var inputval = $('.requestid');
+            inputval.val(reqid);
         });
+
+
     });
 
 
@@ -242,5 +210,23 @@
             $(this).hide();
             $('#savebtn').removeAttr('hidden', false);
         });
+
+
     });
+    $('.viewNotes').on('click', function (e) {
+        var requestid = $(this).attr('value');
+        console.log(requestid)
+        $.ajax({
+            url: '/Admin/ViewNotes',
+            type: 'GET',
+            data: { reqid: requestid },
+            success: function (response) {
+                $('#nav-home').html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
 </script>

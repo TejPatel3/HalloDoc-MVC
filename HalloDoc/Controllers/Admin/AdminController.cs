@@ -164,7 +164,6 @@ namespace HalloDoc.Controllers.Admin
         [HttpGet]
         public IActionResult ViewCase(int id)
         {
-
             var request = _viewcase.GetViewCaseData(id);
             TempData["RequestIdViewCase"] = request.FirstName + " " + request.LastName;
             return View(request);
@@ -254,6 +253,63 @@ namespace HalloDoc.Controllers.Admin
             _addOrUpdateRequestNotes.AddOrUpdateRequestNotes(obj);
             return RedirectToAction("AdminDashboard");
 
+        }
+
+        public IActionResult ViewUpload(int requestid)
+        {
+            var wisefileslist = _context.RequestWiseFiles.ToList().Where(m => m.RequestId == requestid).ToList();
+            var requestclient = _context.RequestClients.FirstOrDefault(m => m.RequestId == requestid);
+            var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
+            var model = new ViewUploadViewModel
+            {
+                wiseFiles = wisefileslist,
+                requestid = requestid,
+                FirstName = requestclient.FirstName,
+                LastName = requestclient.LastName,
+                ConfirmationNumber = request.ConfirmationNumber,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult UploadButton(ViewUploadViewModel doc)
+        {
+            if (HttpContext.Session.GetInt32("UserId") != null)
+            {
+                int id = (int)HttpContext.Session.GetInt32("UserId");
+                ViewUploadViewModel model = new ViewUploadViewModel();
+
+                model.wiseFiles = (from m in _context.RequestWiseFiles where m.RequestId == doc.requestid select m).ToList();
+                model.requestid = doc.requestid;
+                if (doc.Upload != null)
+                {
+                    uploadFile(doc.Upload, doc.requestid);
+                }
+            }
+
+            return View();
+        }
+        public void uploadFile(List<IFormFile> file, int id)
+        {
+            foreach (var item in file)
+
+            {
+                //string path = _environment.WebRootPath + "/UploadDocument/" + item.FileName;
+                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "HalloDoc Request Documents", item.FileName);
+                ////string path = "D:\Project\HalloDoc-Images/" + item.FileName;
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    item.CopyTo(fileStream);
+                }
+                RequestWiseFile requestWiseFiles = new RequestWiseFile
+                {
+                    RequestId = id,
+                    FileName = path,
+                    CreatedDate = DateTime.Now,
+                };
+                _context.RequestWiseFiles.Add(requestWiseFiles);
+                _context.SaveChanges();
+            }
         }
     }
 }
