@@ -13,13 +13,13 @@
 
 
 //Login page JS show password
-//const togglePassword = document
+//var togglePassword = document
 //    .querySelector('#togglePassword');
-//const password = document.querySelector('#password');
+//var password = document.querySelector('#password');
 //togglePassword.addEventListener('click', () => {
 //    // Toggle the type attribute using
 //    // getAttribure() method
-//    const type = password
+//    var type = password
 //        .getAttribute('type') === 'password' ?
 //        'text' : 'password';
 //    password.setAttribute('type', type);
@@ -30,7 +30,7 @@
 
 //dark mode
 
-const userThemePreference = localStorage.getItem("theme");
+var userThemePreference = localStorage.getItem("theme");
 let themeIcon = document.getElementById('theme-toggle');
 
 if (userThemePreference === "dark") {
@@ -43,7 +43,7 @@ function toggleTheme() {
 
     document.body.classList.toggle("dark-mode");
 
-    const currentTheme = document.body.classList.contains("dark-mode")
+    var currentTheme = document.body.classList.contains("dark-mode")
         ? "dark"
         : "light";
     localStorage.setItem("theme", currentTheme);
@@ -65,12 +65,12 @@ function toggleTheme() {
 
 // Contact number country option js
 
-const phoneInputField = document.querySelector("#phone");
-const phoneInput = window.intlTelInput(phoneInputField, {
+var phoneInputField = document.querySelector("#phone");
+var phoneInput = window.intlTelInput(phoneInputField, {
     utilsScript:
         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 });
-const inputHome = document.querySelector("#home");
+var inputHome = document.querySelector("#home");
 window.intlTelInput(inputHome, {
     initialCountry: 'gb',
     placeholderNumberType: 'FIXED_LINE',

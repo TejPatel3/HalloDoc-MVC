@@ -206,8 +206,8 @@
 
 <!-- script -->
 <script>
-    const phoneInputField = document.querySelector("#phone");
-    const phoneInput = window.intlTelInput(phoneInputField, {
+    var phoneInputField = document.querySelector("#phone");
+    var phoneInput = window.intlTelInput(phoneInputField, {
         utilsScript:
             "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
     });
@@ -243,8 +243,8 @@
     }
 
     // upload button...!
-    const actualBtn = document.getElementById('actual-btn');
-    const fileChosen = document.getElementById('file-chosen');
+    var actualBtn = document.getElementById('actual-btn');
+    var fileChosen = document.getElementById('file-chosen');
     actualBtn.addEventListener('change', function () {
         fileChosen.textContent = this.files[0].name
     })
@@ -256,15 +256,15 @@
     })
 
     window.onload = () => {
-        const myModal = new bootstrap.Modal("#exampleModalCenter");
+        var myModal = new bootstrap.Modal("#exampleModalCenter");
         myModal.show();
     };
 
 
-    const eyeicon = document.getElementById('eye-icons')
-    const eyeiconc = document.getElementById('eye-iconc')
-    const password = document.getElementById('pswd')
-    const confirmpassword = document.getElementById('pswdcnf')
+    var eyeicon = document.getElementById('eye-icons')
+    var eyeiconc = document.getElementById('eye-iconc')
+    var password = document.getElementById('pswd')
+    var confirmpassword = document.getElementById('pswdcnf')
     function hideviewpswd() {
         if (password.type === "password") {
             console.log(confirmpassword)

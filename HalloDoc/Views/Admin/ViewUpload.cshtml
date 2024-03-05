@@ -5,7 +5,7 @@
     Layout = null;
 }
 
-<div class="container  pt-3">
+<div class="container  pt-3 ">
     <div class="d-flex justify-content-between mb-2">
         <h4>Documents</h4>
         <a asp-action="AdminDashboard"
@@ -14,13 +14,13 @@
             Back
         </a>
     </div>
-    <div class="container-fluid bg-white px-3 pt-3">
+    <div class="container-fluid bg-white shadow px-3 pt-3">
         <div class="row">
             <div class="col-12  text-secondary " style="font-size:15px;">Patient Name</div>
             <div class="col-12 text-secondary">
 
                 <div>
-                     <strong class="h4 text-info fw-bold">@Model.FirstName @Model.LastName </strong> 
+                    <strong class="h4 text-info fw-bold">@Model.FirstName @Model.LastName </strong>
                     <label class="fw-bold"> (@Model.ConfirmationNumber)</label>
                 </div>
 
@@ -28,119 +28,268 @@
 
             <div class="col-12  text-secondary pt-2" style="font-size:13px;">Check here for any files that you or the doctors of your subsequenc requests have attached for you to review</div>
             <div class="mt-1">
-                <form asp-action="UploadButton" asp-controller="Admin" enctype="multipart/form-data" method="post" asp-route-requestid="@Model.requestid">
-
-                    <div class="row d-flex">
+                @* <form enctype="multipart/form-data">
+                <div class="row d-flex">
+                <div class="py-2 col-12 ">
+                <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
+                <div class="px-3 table-responsive">
+                <input type="file" id="actual-btn" multiple hidden asp-for="Upload" />
+                <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-dark text-nowrap">No item selected</label>
+                </div>
+                <button type="button" id="uploadBtnAdmin" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
+                <label role="button" class="d-flex align-items-center"><i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div></label>
+                </button>
+                </div>
+                </div>
+                </div>
+                </form> *@
+                <form>
+                    <div class="row d-flex mt-3">
                         <div class="py-2 col-12 ">
-                            <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
-                                <div class="px-3 table-responsive">
-                                    <input type="file" id="actual-btn" multiple hidden asp-for="Upload" />
-                                    <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-dark text-nowrap">No item selected</label>
+                            <div class="form-group rounded d-flex align-items-center justify-content-between border border-2 uploadbtndiv">
+                                <div class="px-3 table-responsive w-100">
+                                    <input type="file" id="actual-btn" asp-for="Upload" multiple hidden />
+                                    <input type="text" class="RequestsId" value="@Model.requestid" hidden />
+                                    <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-nowrap text-secondary w-100">No item selected</label>
                                 </div>
-                                <button type="submit" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
-                                    <label role="button" class="d-flex align-items-center"><i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div></label>
+                                <button type="button" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
+                                    <label role="button" class="d-flex align-items-center">
+                                        <i class="bi bi-cloud-arrow-up p-2"></i>
+                                        <div>Upload</div>
+                                    </label>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
 
         <div class="d-flex justify-content-between mb-2 pt-3">
-            <h5>Documents</h5>
-            <button onclick="downloadFiles()" class="btn m-0 btn-outline-info  px-2 ">
-                Download all
-            </button>
+            <div>
+                <h5>Documents</h5>
+
+            </div>
+            <div>
+
+                <button onclick="download()" type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none">
+                    Download all
+                </button>
+                <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="DeleteAll">
+                    Delete All
+                </button>
+                <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none">
+                    Send Mail
+                </button>
+            </div>
         </div>
 
+        <div class="table-responsive">
 
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col"><input type="checkbox" id="download" /></th>
-                    <th scope="col">Documents</th>
-                    <th scope="col">Upload Date</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.wiseFiles)
-                {
-
+            <table class="table">
+                <thead class="thead-light">
                     <tr>
-                        <th scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" /></th>
-                        <td>@item.FileName.Substring(52)</td>
-                        <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
-                        <td>
-                            <a href="~/UploadDocument/@item.FileName.Substring(52)" download>
-
-                                <i class="bi bi-cloud-arrow-down  btn btn-outline-info"></i>
-                            </a>
-
-                        </td>
+                        <th scope="col"><input type="checkbox" id="downloadall" /></th>
+                        <th scope="col">Documents</th>
+                        <th scope="col">Upload Date</th>
+                        <th scope="col">Action</th>
                     </tr>
-                }
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.wiseFiles)
+                    {
 
-            </tbody>
-        </table>
+                        <tr>
+                            <th scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" id="@item.RequestWiseFileId" /></th>
+                            <td>@item.FileName.Substring(51)</td>
+                            <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
+                            <td>
+                                <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
+
+                                    <i class="bi bi-cloud-arrow-down "></i>
+                                </a>
+
+                                <div class=" btn btn-outline-info DeleteDoc" id="@item.RequestWiseFileId">
+
+                                    <i class="bi bi-trash  "></i>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
 
 
     </div>
 </div>
+@*
+    $('.uploadbtn').on('click', function (e) {
+        e.preventDefault();
 
+        var formData = new FormData();
+        for (var i = 0; i < actualBtn.files.length; i++) {
+            formData.append('files', actualBtn.files[i]); // Append each selected file
+        }
+        formData.append('RequestsId' , @Model.RequestsId);
+        console.log(formData);
+        // Add any other data you need (e.g., RequestsId)
 
+        $.ajax({
+            url: '../Dashboard/UploadFiles', // Replace with your controller action URL
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                $('#nav-tabContent').html(response);
+            },
+            error: function (error) {
+                console.error('Error uploading files:', error);
+            }
+        });
+    }); *@
 <script>
 
-
-    const actualBtn = document.getElementById('actual-btn');
-    const fileChosen = document.getElementById('file-chosen');
-    actualBtn.addEventListener('change', function () {
-        fileChosen.textContent = this.files[0].name
-    })
-
-    actualBtn.addEventListener('change', function () {
-        /*fileChosen.textContent = this.files[0].name*/
-        fileChosen.placeholder = this.files[0].name
-        fileChosen.value = this.files[0].name
-    })
-
     $(document).ready(function () {
-        $('#download').click(function () {
+        try {
+            var actualBtn = document.getElementById('actual-btn');
+            var fileChosen = document.getElementById('file-chosen');
+            actualBtn.addEventListener('change', function () {
+                var filesname = this.files[0].name;
+                console.log(filesname)
+                for (var i = 1; i < this.files.length; i++) {
+                    filesname = filesname + " + " + this.files[i].name;
+                }
+                fileChosen.style.fontSize = "15px";
+                fileChosen.style.fontWeight = "bold"
+                fileChosen.textContent = filesname;
+                fileChosen.ariaPlaceholder = filesname;
+                console.log("run")
+            })
+
+            $('.uploadbtn').on('click', function (e) {
+                e.preventDefault();
+                var formData = new FormData();
+                for (var i = 0; i < actualBtn.files.length; i++) {
+                    formData.append('file', actualBtn.files[i]); // Append each selected file
+                }
+                formData.append('id', @Model.requestid);
+                console.log(formData);
+                // Add any other data you need (e.g., RequestsId)
+                $.ajax({
+                    url: '../Admin/UploadButton', // Replace with your controller action URL
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        $('#nav-home').html(response);
+                    },
+                    error: function (error) {
+                        console.error('Error uploading files:', error);
+                    }
+                });
+            });
+        }
+        catch {
+            console.log("error");
+        }
+
+
+        // $('#uploadBtnAdmin').on('click', function () {
+        //     var actualBtn = document.getElementById('actual-btn');
+        //     var formData = new FormData();
+        //     for (var i = 0; i < actualBtn.files.length; i++) {
+        //         formData.append('files', actualBtn.files[i]); // Append each selected file
+        //     }
+        //     formData.append('requestid', @Model.requestid);
+        //     console.log(formData);
+        //     // Add any other data you need (e.g., RequestsId)
+
+        //     $.ajax({
+        //         url: '/Admin/UploadButton', // Replace with your controller action URL
+        //         type: 'POST',
+        //         data: formData,
+        //         processData: false,
+        //         contentType: false,
+        //         success: function (response) {
+        //             $('#nav-home').html(response);
+        //         },
+        //         error: function (error) {
+        //             console.error('Error uploading files:', error);
+        //         }
+        //     });
+        // });
+
+        $('#downloadall').click(function () {
+            console.log("hjbfgvd")
             $('.childCheckbox').prop('checked', $(this).prop('checked'));
         });
 
         // Handle individual checkbox clicks to update the leader checkbox state
         $('.childCheckbox').click(function () {
-            $('#download').prop('checked', $('.childCheckbox:checked').length === $('.childCheckbox').length);
+            console.log("another")
+
+            $('#downloadall').prop('checked', $('.childCheckbox:checked').length === $('.childCheckbox').length);
         });
+
+
+        $('#DeleteAll').click(function () {
+            console.log("lol")
+            $('.childCheckbox:checked').each(function () {
+                var wiseFileId = $(this).attr('id');
+                var reqid = @Model.requestid;
+                console.log(reqid);
+                console.log(wiseFileId);
+                $.ajax({
+                    url: '/Admin/DeleteDoc', // Replace with your controller action URL
+                    type: 'POST',
+                    data: {
+                        wiseid: wiseFileId,
+                        reqId: reqid
+                    },
+
+                    success: function (response) {
+                        $('#nav-home').html(response);
+
+                    },
+                    error: function (error) {
+                        console.error('Error uploading files:', error);
+                    }
+                });
+            });
+        });
+
+        $('.DeleteDoc').on('click',function () {
+            console.log("hello")
+            var wiseFileId = $(this).attr('id');
+            var reqid = @Model.requestid;
+            console.log(wiseFileId)
+
+            console.log(reqid)
+            $.ajax({
+                url: '/Admin/DeleteDoc', // Replace with your controller action URL
+                type: 'POST',
+                data: { wiseid: wiseFileId ,
+                reqId : reqid},
+            
+                success: function (response) {
+                    $('#nav-home').html(response);
+
+                },
+                error: function (error) {
+                    console.error('Error uploading files:', error);
+                }
+            });
+        });
+
+
+
     });
 
 
-    // Function to handle download of selected files
-    function downloadFiles() {
-        var selectedFiles = document.querySelectorAll('input[name="checkbox"]:checked');
-        var fileUrls = [];
-        console.log(selectedFiles)
-
-        // Iterate through selected checkboxes and extract file URLs
-        selectedFiles.forEach(function (checkbox) {
-            var row = checkbox.closest('tr');
-            var fileUrl = row.querySelector('a').getAttribute('href');
-            fileUrls.push(fileUrl);
-        });
-        // Download each file
-        fileUrls.forEach(function (url) {
-            // Create an anchor element to trigger the download
-            var link = document.createElement('a');
-            link.href = url;
-            link.download = '';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-    }
     // Event listener for download button
     document.getElementById('downloadSelected').addEventListener('click', function (event) {
         event.preventDefault();
@@ -148,100 +297,17 @@
     });
 
 
-    const actualBtn = document.getElementById('actual-btn');
-    const fileChosen = document.getElementById('file-chosen');
 
-    actualBtn.addEventListener('change', function () {
-        fileChosen.textContent = this.files[0].name
-        fileChosen.placeholder = this.files[0].name
-        fileChosen.value = this.files[0].name
 
-    })
+                    // var actualBtn = document.getElementById('actual-btn');
+                    // var fileChosen = document.getElementById('file-chosen');
+
+                    // actualBtn.addEventListener('change', function () {
+                    //     fileChosen.textContent = this.files[0].name
+                    //     fileChosen.placeholder = this.files[0].name
+                    //     fileChosen.value = this.files[0].name
+
+                    // })
 
 </script>
 
-
-
-@* 
-<div class="d-flex justify-content-between mb-2">
-    <h4>Documents</h4>
-    <a asp-area="" asp-controller="Dashboard" asp-action="PatientDashboard"
-       class="btn m-0 btn-outline-info  px-2 ">
-        <i class="fa-solid fa-chevron-left"></i>
-        Back
-    </a>
-</div>
-<div class="container-fluid bg-white px-3 pt-3">
-    <div class="row">
-        <div class="col-12  text-secondary " style="font-size:15px;">Patient Name</div>
-        <div class="col-12 text-secondary">
-
-            <div>
-                <strong class="h4 text-info">@Model.users.FirstName @Model.users.LastName </strong>
-                (@Model.requests.FirstOrDefault(x => x.RequestId == (Model.requests.FirstOrDefault(m =>m.UserId == Model.users.UserId).RequestId)).ConfirmationNumber)
-            </div>
-
-        </div>
-
-        <div class="col-12  text-secondary pt-2" style="font-size:13px;">Check here for any files that you or the doctors of your subsequenc requests have attached for you to review</div>
-        <div class="mt-1">
-            <form asp-action="UploadButton" asp-controller="Dashboard" enctype="multipart/form-data" method="post" asp-route-requestid="@Model.requestid">
-
-                <div class="row d-flex">
-                    <div class="py-2 col-12 ">
-                        <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
-                            <div class="px-3 table-responsive">
-                                <input type="file" id="actual-btn" asp-for="Upload" multiple hidden />
-                                <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-dark text-nowrap">No item selected</label>
-                            </div>
-                            <button type="submit" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
-                                <label role="button" class="d-flex align-items-center"><i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div></label>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-        </div>
-    </div>
-
-    <div class="d-flex justify-content-between mb-2 pt-3">
-        <h5>Documents</h5>
-        <button onclick="downloadFiles()" class="btn m-0 btn-outline-info  px-2 ">
-            Download all
-        </button>
-    </div>
-
-
-    <table class="table">
-        <thead class="thead-light">
-            <tr>
-                <th scope="col"><input type="checkbox" id="download" /></th>
-                <th scope="col">FileName</th>
-                <th scope="col">Uploader</th>
-                <th scope="col">Upload Date</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.wiseFiles)
-            {
-                <tr>
-                    <th scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" /></th>
-                    <td>@item.FileName.Substring(52)</td>
-                    <td>@Model.users.FirstName @Model.users.LastName</td>
-                    <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
-                    <td>
-                        <a href="~/UploadDocument/@item.FileName.Substring(52)" download>
-
-                            <i class="bi bi-cloud-arrow-down  btn btn-outline-info"></i>
-                        </a>
-                    </td>
-                </tr>
-            }
-
-        </tbody>
-    </table>
-
-
-</div> *@

@@ -210,7 +210,7 @@
  *@
 
 
-<div class="container-fluid mt-3 " id="datatable">
+<div class="container-fluid mt-3 table-responsive" id="datatable">
 </div>
 
 
@@ -234,16 +234,14 @@
 
                     $.each(data, function (index, item) {
                         secondDropdown.append($('<option>', {
-                            value: item.firstName+item.lastName, // Replace with the actual value from your data
-                            text: item.firstName+item.lastName // Replace with the actual text from your data
+                            value: item.firstName + item.lastName, // Replace with the actual value from your data
+                            text: item.firstName + item.lastName // Replace with the actual text from your data
                         }));
                     });
                 }
             });
         });
-    });
 
-    $(document).ready(function () {
 
         $.ajax({
             url: '/Admin/New',
@@ -255,8 +253,7 @@
                 console.error(error);
             }
         });
-    });
-    $(document).ready(function () {
+
 
         $('.dashboardtab').on('click', function (e) {
             e.preventDefault();
@@ -315,7 +312,35 @@
         });
     });
 
+    function download() {
+        var selectedFiles = document.querySelectorAll('input[name="checkbox"]:checked');
+        var fileUrls = [];
+        console.log(selectedFiles)
 
+        // Iterate through selected checkboxes and extract file URLs
+        selectedFiles.forEach(function (checkbox) {
+            var row = checkbox.closest('tr');
+            var fileUrl = row.querySelector('a').getAttribute('href');
+            fileUrls.push(fileUrl);
+        });
+        // Download each file
+        fileUrls.forEach(function (url) {
+            // Create an anchor element to trigger the download
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = '';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
+
+
+    var all = document.getElementById('downloadall');
+    console.log(all);
+    all.addEventListener('click', function () {
+        console.log("run");
+    });
 
 
 </script>

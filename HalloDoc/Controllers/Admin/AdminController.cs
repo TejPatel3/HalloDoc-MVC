@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 using Services.ViewModels;
+using System.Collections;
 
 namespace HalloDoc.Controllers.Admin
 {
@@ -257,7 +258,7 @@ namespace HalloDoc.Controllers.Admin
 
         public IActionResult ViewUpload(int requestid)
         {
-            var wisefileslist = _context.RequestWiseFiles.ToList().Where(m => m.RequestId == requestid).ToList();
+            var wisefileslist = _context.RequestWiseFiles.ToList().Where(m => m.IsDeleted == null && m.RequestId == requestid).ToList();
             var requestclient = _context.RequestClients.FirstOrDefault(m => m.RequestId == requestid);
             var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
             var model = new ViewUploadViewModel
@@ -272,22 +273,13 @@ namespace HalloDoc.Controllers.Admin
         }
 
         [HttpPost]
-        public IActionResult UploadButton(ViewUploadViewModel doc)
+        public IActionResult UploadButton(List<IFormFile> file, int id)
         {
-            if (HttpContext.Session.GetInt32("UserId") != null)
+            if (file != null)
             {
-                int id = (int)HttpContext.Session.GetInt32("UserId");
-                ViewUploadViewModel model = new ViewUploadViewModel();
-
-                model.wiseFiles = (from m in _context.RequestWiseFiles where m.RequestId == doc.requestid select m).ToList();
-                model.requestid = doc.requestid;
-                if (doc.Upload != null)
-                {
-                    uploadFile(doc.Upload, doc.requestid);
-                }
+                uploadFile(file, id);
             }
-
-            return View();
+            return RedirectToAction("ViewUpload", new { requestid = id });
         }
         public void uploadFile(List<IFormFile> file, int id)
         {
@@ -295,7 +287,7 @@ namespace HalloDoc.Controllers.Admin
 
             {
                 //string path = _environment.WebRootPath + "/UploadDocument/" + item.FileName;
-                string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "HalloDoc Request Documents", item.FileName);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadDocument", item.FileName);
                 ////string path = "D:\Project\HalloDoc-Images/" + item.FileName;
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
@@ -311,5 +303,17 @@ namespace HalloDoc.Controllers.Admin
                 _context.SaveChanges();
             }
         }
+        [HttpPost]
+        public IActionResult DeleteDoc(int wiseid, int reqId)
+        {
+            var wisefile = _context.RequestWiseFiles.FirstOrDefault(m => m.RequestWiseFileId == wiseid);
+            BitArray t = new BitArray(1);
+            t[0] = true;
+            wisefile.IsDeleted = t;
+            _context.RequestWiseFiles.Update(wisefile);
+            _context.SaveChanges();
+            return RedirectToAction("ViewUpload", new { requestid = reqId });
+        }
+
     }
 }
