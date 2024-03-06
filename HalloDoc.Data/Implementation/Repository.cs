@@ -1,4 +1,4 @@
-﻿using HalloDoc.DataModels;
+﻿using HalloDoc.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
 using System.Linq.Expressions;

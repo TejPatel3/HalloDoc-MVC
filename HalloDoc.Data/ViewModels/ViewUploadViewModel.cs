@@ -1,5 +1,6 @@
 ﻿using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace Services.ViewModels
 {
@@ -11,6 +12,7 @@ namespace Services.ViewModels
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public int requestid { get; set; }
+        [Required]
         public List<IFormFile?> Upload { get; set; }
 
     }

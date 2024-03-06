@@ -1,6 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace HalloDoc.DataModels;
 
@@ -13,41 +16,33 @@ public partial class User
     [StringLength(128)]
     public string? Id { get; set; }
 
-    [Required(ErrorMessage = "First Name is required"), Display(Name = "First Name")]
     [StringLength(100)]
-    [RegularExpression(@"^(?=.*\S)[a-zA-Z\s.'-]+$", ErrorMessage = "Enter a valid first name")]
     public string FirstName { get; set; } = null!;
 
-    [Required(ErrorMessage = "Last Name is required"), Display(Name = "Last Name")]
     [StringLength(100)]
-    [RegularExpression(@"^(?=.*\S)[a-zA-Z\s.'-]+$", ErrorMessage = "Enter a valid first name")]
     public string? LastName { get; set; }
 
     [StringLength(50)]
     public string Email { get; set; } = null!;
 
-    [StringLength(23)]
+    [StringLength(20)]
     public string? Mobile { get; set; }
 
     [Column(TypeName = "bit(1)")]
     public BitArray? IsMobile { get; set; }
 
-    [StringLength(100, MinimumLength = 2, ErrorMessage = "Enter valid Street")]
-    [RegularExpression(@"^(?=.*\S)[a-zA-Z0-9\s.,'-]+$", ErrorMessage = "Enter a valid street address")]
+    [StringLength(100)]
     public string? Street { get; set; }
 
-    [StringLength(100, MinimumLength = 2, ErrorMessage = "Enter valid City")]
-    [RegularExpression(@"^(?=.*\S)[a-zA-Z\s.'-]+$", ErrorMessage = "Enter a valid city name")]
+    [StringLength(100)]
     public string? City { get; set; }
 
-    [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter valid State")]
-    [RegularExpression(@"^(?=.*\S)[a-zA-Z\s.'-]+$", ErrorMessage = "Enter a valid State name")]
+    [StringLength(100)]
     public string? State { get; set; }
 
     public int? RegionId { get; set; }
 
-    [StringLength(10, ErrorMessage = "Enter valid Zip Code")]
-    [RegularExpression(@"^\d{5}$", ErrorMessage = "Enter a valid 5-digit zip code")]
+    [StringLength(10)]
     public string? ZipCode { get; set; }
 
     [Column("strMonth")]

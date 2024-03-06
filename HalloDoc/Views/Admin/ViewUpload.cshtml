@@ -1,11 +1,15 @@
 ﻿@using Services.ViewModels
 @model ViewUploadViewModel
 
+<script src="~/js/ViewUpload" asp-append-version="true"> </script>
+
+<Partial name="Toast" />
+
 @{
     Layout = null;
 }
 
-<div class="container  pt-3 ">
+<div class="container  pt-3 pb-4">
     <div class="d-flex justify-content-between mb-2">
         <h4>Documents</h4>
         <a asp-action="AdminDashboard"
@@ -78,7 +82,7 @@
                 <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="DeleteAll">
                     Delete All
                 </button>
-                <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none">
+                <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="sendMail">
                     Send Mail
                 </button>
             </div>
@@ -100,7 +104,7 @@
                     {
 
                         <tr>
-                            <th scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" id="@item.RequestWiseFileId" /></th>
+                            <td scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" id="@item.RequestWiseFileId" /></td>
                             <td>@item.FileName.Substring(51)</td>
                             <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
                             <td>
@@ -262,7 +266,7 @@
             });
         });
 
-        $('.DeleteDoc').on('click',function () {
+        $('.DeleteDoc').on('click', function () {
             console.log("hello")
             var wiseFileId = $(this).attr('id');
             var reqid = @Model.requestid;
@@ -272,9 +276,11 @@
             $.ajax({
                 url: '/Admin/DeleteDoc', // Replace with your controller action URL
                 type: 'POST',
-                data: { wiseid: wiseFileId ,
-                reqId : reqid},
-            
+                data: {
+                    wiseid: wiseFileId,
+                    reqId: reqid
+                },
+
                 success: function (response) {
                     $('#nav-home').html(response);
 
@@ -285,7 +291,36 @@
             });
         });
 
+        $('#sendMail').on('click', function (e) {
+            e.preventDefault();
+            console.log("not yet")
+            var formData = new FormData();
 
+            $('input[name="checkbox"]:checked').each(function () {
+                var wiseid = $(this).attr('id');
+          
+            formData.append('wiseFileId', wiseid);
+            });
+
+            formData.append('reqid', @Model.requestid);
+            console.log(formData);
+         
+            $.ajax({
+                url: '/Admin/SendMail', // Replace with your controller action URL
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+
+                success: function (response) {
+                    $('#nav-home').html(response);
+
+                },
+                error: function (error) {
+                    console.error('Error uploading files:', error);
+                }
+            });
+        })
 
     });
 
@@ -297,17 +332,17 @@
     });
 
 
+    
 
+                                    // var actualBtn = document.getElementById('actual-btn');
+                                    // var fileChosen = document.getElementById('file-chosen');
 
-                    // var actualBtn = document.getElementById('actual-btn');
-                    // var fileChosen = document.getElementById('file-chosen');
+                                    // actualBtn.addEventListener('change', function () {
+                                    //     fileChosen.textContent = this.files[0].name
+                                    //     fileChosen.placeholder = this.files[0].name
+                                    //     fileChosen.value = this.files[0].name
 
-                    // actualBtn.addEventListener('change', function () {
-                    //     fileChosen.textContent = this.files[0].name
-                    //     fileChosen.placeholder = this.files[0].name
-                    //     fileChosen.value = this.files[0].name
-
-                    // })
+                                    // })
 
 </script>
 

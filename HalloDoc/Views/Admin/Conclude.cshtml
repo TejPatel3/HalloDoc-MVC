@@ -214,6 +214,22 @@
             });
         });
 
+        $('.viewUpload').on('click', function (e) {
+            var requestid = $(this).attr('value');
+            console.log(requestid)
+            $.ajax({
+                url: '/Admin/ViewUpload',
+                type: 'GET',
+                data: { requestid: requestid },
+                success: function (response) {
+                    $('#nav-home').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
        
     });
 

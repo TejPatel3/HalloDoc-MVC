@@ -1,11 +1,16 @@
-﻿using HalloDoc.DataModels;
+﻿using HalloDoc.DataContext;
+using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
+using Services.Implementation;
 using Services.ViewModels;
 using System.Collections;
+using System.Net;
+using System.Net.Mail;
 
 namespace HalloDoc.Controllers.Admin
 {
+
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -16,12 +21,13 @@ namespace HalloDoc.Controllers.Admin
         private readonly IBlockCaseRepository _block;
         private readonly IAddOrUpdateRequestNotes _addOrUpdateRequestNotes;
         private readonly IAddOrUpdateRequestStatusLog _addOrUpdateRequestStatusLog;
+        private readonly IJwtRepository _jwtRepo;
 
 
 
         public AdminController(IAdminLog _admin, IAdminDashboard adminDashboard,
             IAdminDashboardDataTable adminDashboardDataTable, IViewCaseRepo viewcase, IBlockCaseRepository block
-            , IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog, IAddOrUpdateRequestNotes addOrUpdateRequestNotes)
+            , IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog, IAddOrUpdateRequestNotes addOrUpdateRequestNotes, IJwtRepository jwtRepo)
         {
             _context = new ApplicationDbContext();
             adminLog = _admin;
@@ -31,12 +37,15 @@ namespace HalloDoc.Controllers.Admin
             _block = block;
             _addOrUpdateRequestNotes = addOrUpdateRequestNotes;
             _addOrUpdateRequestStatusLog = addOrUpdateRequestStatusLog;
+            _jwtRepo = jwtRepo;
         }
         public IActionResult AdminLogin()
         {
 
             return View();
         }
+
+        [AuthorizationRepository("Admin")]
 
         public IActionResult AdminDashboard()
         {
@@ -49,6 +58,7 @@ namespace HalloDoc.Controllers.Admin
             viewModel.regions = region;
             viewModel.caseTags = casetag;
             return View(viewModel);
+
         }
         [HttpPost]
         public async Task<IActionResult> AdminLogin(AspNetUser req)
@@ -81,15 +91,33 @@ namespace HalloDoc.Controllers.Admin
                 HttpContext.Session.SetString("AdminName", $"{admin.FirstName} {admin.LastName}");
                 TempData["success"] = "Login Successful...!";
                 TempData["user"] = admin.FirstName;
+
+                var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Email == req.Email);
+
+                var LogedinUser = new LogedInUserViewModel();
+                LogedInUserViewModel loggedInPersonViewModel = new LogedInUserViewModel();
+                loggedInPersonViewModel.AspNetUserId = aspnetuser.Id;
+                loggedInPersonViewModel.UserName = aspnetuser.UserName;
+                var Roleid = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == aspnetuser.Id).UserId.ToString();
+                loggedInPersonViewModel.RoleName = _context.AspNetRoles.FirstOrDefault(x => x.Id == Roleid).Name;
+
+
+                Response.Cookies.Append("jwt", _jwtRepo.GenerateJwtToken(loggedInPersonViewModel));
                 return RedirectToAction("AdminDashboard");
             }
             return View(req);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Remove("UserId");
+            Response.Cookies.Delete("jwt");
+            return RedirectToAction("AdminLogin", "Admin");
         }
         public IActionResult AdminForgotPassword()
         {
             return View();
         }
-
         [HttpGet]
         public List<Physician> GetPhysicianByRegionId(int regionId)
         {
@@ -127,26 +155,29 @@ namespace HalloDoc.Controllers.Admin
         //    }
         //}
 
-        public async Task<IActionResult> Logout()
-        {
-            HttpContext.Session.Remove("UserId");
-            return RedirectToAction("AdminLogin", "Admin");
-        }
+        [AuthorizationRepository("Admin")]
+
         public IActionResult New()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(1);
             return View(datalist);
         }
+        [AuthorizationRepository("Admin")]
+
         public IActionResult Pending()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(2);
             return View(datalist);
         }
+        [AuthorizationRepository("Admin")]
+
         public IActionResult Active()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(4).Concat(_adminDashboardDataTable.getallAdminDashboard(5)).ToList();
             return View(datalist);
         }
+        [AuthorizationRepository("Admin")]
+
         public IActionResult Conclude()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(6);
@@ -196,6 +227,8 @@ namespace HalloDoc.Controllers.Admin
             _context.SaveChanges();
             var adminid = HttpContext.Session.GetInt32("UserId");
             _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, adminid, cancelnote.BlockNotes);
+            TempData["success"] = "Request Canceled Successfully..!";
+
             return RedirectToAction("AdminDashboard");
         }
 
@@ -211,6 +244,7 @@ namespace HalloDoc.Controllers.Admin
 
 
             _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, adminid, assignnote.BlockNotes, physiciandetail.PhysicianId);
+            TempData["success"] = "Request auccessfully Assigned..!";
 
             return RedirectToAction("AdminDashboard");
         }
@@ -219,6 +253,8 @@ namespace HalloDoc.Controllers.Admin
         {
             var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
             _block.BlockPatient(id, blocknote.BlockNotes);
+            TempData["success"] = "Request Blocked Successfully..!";
+
             return RedirectToAction("AdminDashboard");
         }
         public IActionResult ViewNotes(int reqid)
@@ -269,16 +305,25 @@ namespace HalloDoc.Controllers.Admin
                 LastName = requestclient.LastName,
                 ConfirmationNumber = request.ConfirmationNumber,
             };
+
             return View(model);
         }
 
         [HttpPost]
         public IActionResult UploadButton(List<IFormFile> file, int id)
         {
-            if (file != null)
+            if (file.Count() == 0)
             {
-                uploadFile(file, id);
+                TempData["warning"] = "Please Select Document..!";
+
             }
+            else
+            {
+
+                uploadFile(file, id);
+                TempData["success"] = "Document Upload Successfully..!";
+            }
+
             return RedirectToAction("ViewUpload", new { requestid = id });
         }
         public void uploadFile(List<IFormFile> file, int id)
@@ -312,8 +357,66 @@ namespace HalloDoc.Controllers.Admin
             wisefile.IsDeleted = t;
             _context.RequestWiseFiles.Update(wisefile);
             _context.SaveChanges();
+            TempData["success"] = "Document Deleted Successfully..!";
+
             return RedirectToAction("ViewUpload", new { requestid = reqId });
         }
 
+        [HttpPost]
+        public IActionResult SendMail(List<int> wiseFileId, int reqid)
+        {
+            List<string> filenames = new List<string>();
+            foreach (var item in wiseFileId)
+            {
+                var s = (item);
+                var file = _context.RequestWiseFiles.FirstOrDefault(x => x.RequestWiseFileId == s).FileName;
+                filenames.Add(file);
+            }
+
+            Sendemail("yashsarvaiya40@gmail.com", "Your Attachments", "Please Find Your Attachments Here", filenames);
+            TempData["success"] = "Document sent in Email..!";
+
+            return RedirectToAction("ViewUpload", new { requestid = reqid });
+        }
+        public async Task Sendemail(string email, string subject, string message, List<string> attachmentPaths)
+        {
+            try
+            {
+                var mail = "tatva.dotnet.tejpatel@outlook.com";
+                var password = "7T6d2P3@K";
+
+                var client = new SmtpClient("smtp.office365.com", 587)
+                {
+                    EnableSsl = true,
+                    Credentials = new NetworkCredential(mail, password)
+                };
+
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress(mail),
+                    Subject = subject,
+                    Body = message,
+                    IsBodyHtml = true // Set to true if your message contains HTML
+                };
+
+                mailMessage.To.Add(email);
+
+                foreach (var attachmentPath in attachmentPaths)
+                {
+                    if (!string.IsNullOrEmpty(attachmentPath))
+                    {
+                        var attachment = new Attachment(attachmentPath);
+                        mailMessage.Attachments.Add(attachment);
+                    }
+                }
+
+                await client.SendMailAsync(mailMessage);
+                TempData["success"] = "Document sent in Email..!";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending email: {ex.Message}");
+            }
+        }
     }
 }

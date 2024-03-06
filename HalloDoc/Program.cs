@@ -1,4 +1,5 @@
-using HalloDoc.DataModels;
+using DataAccess.ServiceRepository;
+using HalloDoc.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
 using Services.Implementation;
@@ -22,6 +23,8 @@ builder.Services.AddScoped<IViewCaseRepo, ViewCaseRepo>();
 builder.Services.AddScoped<IBlockCaseRepository, BlockCaseRepository>();
 builder.Services.AddScoped<IAddOrUpdateRequestNotes, AddOrUpdateRequestNotes>();
 builder.Services.AddScoped<IAddOrUpdateRequestStatusLog, AddOrUpdateRequestStatusLog>();
+builder.Services.AddScoped<IAuthorizatoinRepository, AuthorizationRepository>();
+builder.Services.AddScoped<IJwtRepository, JwtRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

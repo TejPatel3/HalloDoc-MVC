@@ -1,4 +1,5 @@
-﻿using HalloDoc.DataModels;
+﻿using HalloDoc.DataContext;
+using HalloDoc.DataModels;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -87,8 +88,8 @@ namespace HalloDoc.Controllers
                 FirstName = req.FirstName,
                 LastName = req.LastName,
                 CreatedDate = DateTime.Now,
-                ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
-                //ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
+                //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{DateTime.Now.ToString("")}",
+                ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
             };
             _context.Requests.Add(requests);
             _context.SaveChanges();
@@ -170,6 +171,9 @@ namespace HalloDoc.Controllers
         {
             var aspuser = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
             var user = await _context.Users.FirstOrDefaultAsync(n => n.Email == req.Email);
+            var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == user.RegionId);
+            var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
+
             if (aspuser != null)
             {
                 Request requests = new Request
@@ -184,6 +188,9 @@ namespace HalloDoc.Controllers
                     PhoneNumber = req.rPhoneNumber,
                     ModifiedDate = DateTime.Now,
                     User = user,
+
+                    ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
+
                     //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
                 };
                 _context.Requests.Add(requests);
