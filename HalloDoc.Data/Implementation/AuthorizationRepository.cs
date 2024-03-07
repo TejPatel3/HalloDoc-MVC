@@ -22,7 +22,7 @@ namespace Services.Implementation
             var jwtservice = context.HttpContext.RequestServices.GetService<IJwtRepository>();
             if (jwtservice == null)
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "AdminLogin" }));
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "UnauthorizeUser" }));
                 return;
             }
 
@@ -31,7 +31,7 @@ namespace Services.Implementation
 
             if (token == null || !jwtservice.ValidateToken(token, out JwtSecurityToken jwttoken))
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "AdminLogin" }));
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "UnauthorizeUser" }));
                 return;
             }
 
@@ -39,38 +39,15 @@ namespace Services.Implementation
 
             if (roleClaim == null)
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "AdminLogin" }));
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "UnauthorizeUser" }));
                 return;
             }
 
             if (string.IsNullOrEmpty(_role) || roleClaim.Value != _role)
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "AdminLogin" }));
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "UnauthorizeUser" }));
             }
 
-
-
-
-
-
-
-
-
-
-
-            //var person = SessionUtilsRepository.GetLoggedInPerson(context.HttpContext.Session);
-            //if (person == null)
-            //{
-            //    context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "AdminLogin" }));
-            //    return;
-            //}
-            //if (!string.IsNullOrEmpty(_role))
-            //{
-            //    if (!(person.Role == _role))
-            //    {
-            //        context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "AdminLogin" }));
-            //    }
-            //}
 
         }
     }

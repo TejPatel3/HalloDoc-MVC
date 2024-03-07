@@ -100,8 +100,6 @@ namespace HalloDoc.Controllers.Admin
                 loggedInPersonViewModel.UserName = aspnetuser.UserName;
                 var Roleid = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == aspnetuser.Id).UserId.ToString();
                 loggedInPersonViewModel.RoleName = _context.AspNetRoles.FirstOrDefault(x => x.Id == Roleid).Name;
-
-
                 Response.Cookies.Append("jwt", _jwtRepo.GenerateJwtToken(loggedInPersonViewModel));
                 return RedirectToAction("AdminDashboard");
             }
@@ -115,6 +113,10 @@ namespace HalloDoc.Controllers.Admin
             return RedirectToAction("AdminLogin", "Admin");
         }
         public IActionResult AdminForgotPassword()
+        {
+            return View();
+        }
+        public IActionResult UnauthorizeUser()
         {
             return View();
         }
@@ -417,6 +419,59 @@ namespace HalloDoc.Controllers.Admin
             {
                 Console.WriteLine($"Error sending email: {ex.Message}");
             }
+        }
+
+        public IActionResult Order(int requestid)
+        {
+            var professiontypeList = _context.HealthProfessionalTypes.ToList();
+            SendOrderModal orderdata = new SendOrderModal();
+            orderdata.requestid = requestid;
+            orderdata.Healthprofessionaltypes = professiontypeList;
+            return View(orderdata);
+        }
+
+        [HttpPost]
+        public IActionResult Orders(int requestid, int vendorid, string prescription, int refill)
+        {
+            var venderDetails = _context.HealthProfessionals.FirstOrDefault(m => m.VendorId == vendorid);
+            var order = new OrderDetail
+            {
+                VendorId = vendorid,
+                RequestId = requestid,
+                FaxNumber = venderDetails.FaxNumber,
+                Email = venderDetails.Email,
+                BusinessContact = venderDetails.BusinessContact,
+                CreatedDate = DateTime.Now,
+                Prescription = prescription,
+                NoOfRefill = refill,
+                CreatedBy = HttpContext.Session.GetString("AdminName")
+            };
+
+            if (order != null)
+            {
+
+                _context.OrderDetails.Add(order);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("AdminDashboard");
+        }
+
+        [HttpGet]
+        public List<HealthProfessional> GetBusiness(int healthprofessionId)
+        {
+            var businessList = _context.HealthProfessionals.ToList().Where(m => m.Profession == healthprofessionId).ToList();
+
+            return businessList;
+        }
+
+        public SendOrderModal GetVendorDetail(int vendorid)
+        {
+            var vendordetails = _context.HealthProfessionals.FirstOrDefault(m => m.VendorId == vendorid);
+            var orderdata = new SendOrderModal();
+            orderdata.FaxNumber = vendordetails.FaxNumber;
+            orderdata.Email = vendordetails.Email;
+            orderdata.BusinessContact = vendordetails.BusinessContact;
+            return orderdata;
         }
     }
 }

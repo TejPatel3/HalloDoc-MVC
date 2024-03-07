@@ -45,8 +45,13 @@ namespace HalloDoc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Login(AspNetUser obj)
         {
-            if (_context.AspNetUsers.Where
-                (m => m.Email == obj.Email).Any() && _context.AspNetUsers.Where(user => user.PasswordHash == obj.PasswordHash).Any())
+            if (!_context.Users.Where(user => user.Email == obj.Email).Any())
+            {
+                TempData["email"] = "You are not User";
+                return View(obj);
+            }
+
+            else if (_context.AspNetUsers.Where(m => m.Email == obj.Email).Any() && _context.AspNetUsers.Where(user => user.PasswordHash == obj.PasswordHash).Any())
             {
                 var user = _context.Users.FirstOrDefault(m => m.Email == obj.Email);
                 HttpContext.Session.SetInt32("UserId", user.UserId);

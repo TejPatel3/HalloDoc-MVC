@@ -10,10 +10,12 @@
     {
         <div class="accordion-item ">
             <h2 class="accordion-header" id="heading_@item.requestid">
-                <div class="d-flex flex-column accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
+                <div class="d-flex flex-column accordion-button collapsed align-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
                     <div class="d-flex justify-content-between w-100 ">
                         <h6 class="fw-normal">@item.PatientName</h6>
                         @{
+                            <div class="d-none">@item.RequestType</div>
+
                             if (item.RequestType == 1)
                             {
                                 <label>Patient <i class="fa-solid fa-circle fa-2xs" style="color:   #5fbc61;"></i></label>
@@ -43,8 +45,8 @@
                         <div class="h6">@item.Address</div>
                         <div class="btn btn-outline-info border-2" style="border-radius:50px">Map</div>
                     </div>
-                    <div>
-                        three
+                    <div class="d-flex ">
+                        <p><h6 class="text-secondary">Wait Time </h6> @item.RequestedDate</p>
                     </div>
                 </div>
 

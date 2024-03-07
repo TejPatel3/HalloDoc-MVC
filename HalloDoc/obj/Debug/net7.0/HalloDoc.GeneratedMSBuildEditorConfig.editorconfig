@@ -40,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTmV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/HalloDoc/HalloDoc/Views/Admin/Order.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cT3JkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/HalloDoc/HalloDoc/Views/Admin/Pending.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUGVuZGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -50,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Project/HalloDoc/HalloDoc/Views/Admin/ToClose.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVG9DbG9zZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/HalloDoc/HalloDoc/Views/Admin/UnauthorizeUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVW5hdXRob3JpemVVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/HalloDoc/HalloDoc/Views/Admin/Unpaid.cshtml]
