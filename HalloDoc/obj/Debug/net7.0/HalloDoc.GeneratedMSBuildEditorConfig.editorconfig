@@ -16,20 +16,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Project\HalloDoc\HalloDoc
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Project/HalloDoc/HalloDoc/Views/AdminCredential/AdminForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DcmVkZW50aWFsXEFkbWluRm9yZ290UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/HalloDoc/HalloDoc/Views/AdminCredential/AdminLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DcmVkZW50aWFsXEFkbWluTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/HalloDoc/HalloDoc/Views/Admin/Active.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWN0aXZlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/HalloDoc/HalloDoc/Views/Admin/AdminDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5EYXNoYm9hcmQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Project/HalloDoc/HalloDoc/Views/Admin/AdminForgotPassword.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Gb3Jnb3RQYXNzd29yZC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Project/HalloDoc/HalloDoc/Views/Admin/AdminLogin.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/HalloDoc/HalloDoc/Views/Admin/Conclude.cshtml]
@@ -54,10 +54,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Project/HalloDoc/HalloDoc/Views/Admin/ToClose.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVG9DbG9zZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Project/HalloDoc/HalloDoc/Views/Admin/UnauthorizeUser.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVW5hdXRob3JpemVVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/HalloDoc/HalloDoc/Views/Admin/Unpaid.cshtml]
@@ -154,6 +150,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Project/HalloDoc/HalloDoc/Views/Shared/_OnlyDark.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Pbmx5RGFyay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/HalloDoc/HalloDoc/Views/Shared/_OnlyLinks.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Pbmx5TGlua3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/HalloDoc/HalloDoc/Views/Shared/_ValidationScriptsPartial.cshtml]

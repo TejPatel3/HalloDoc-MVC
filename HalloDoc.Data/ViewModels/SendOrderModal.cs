@@ -4,7 +4,6 @@ namespace Services.ViewModels
 {
     public class SendOrderModal
     {
-
         public List<HealthProfessionalType> Healthprofessionaltypes { get; set; }
 
         public List<HealthProfessional> Healthprofessionals { get; set; }
@@ -20,7 +19,6 @@ namespace Services.ViewModels
         public string OrderDetails { get; set; }
 
         public DateTime CreatedDate { get; set; }
-
 
         public int refill { get; set; }
     }

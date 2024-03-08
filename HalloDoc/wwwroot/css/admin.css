@@ -180,23 +180,28 @@
 
 
 .green-dot {
-    background-color: #5fbc61 !important;
+    --bs-table-bg: #5fbc61 !important;
+    color:#5fbc61 !important;
 }
 
 .orange-dot {
-    background-color: #ed9124 !important;
+    --bs-table-bg: #ed9124 !important;
+    color: #ed9124 !important;
 }
 
 .pink-dot {
-    background-color: #e4657c !important;
+    --bs-table-bg: #e4657c !important;
+    color: #e4657c !important;
 }
 
 .cyan-dot {
-    background-color: #007fc6 !important;
+    --bs-table-bg: #007fc6 !important;
+    color: #007fc6 !important;
 }
 
 .purple-dot {
-    background-color: #933cb5 !important;
+    --bs-table-bg: #933cb5 !important;
+    color: #933cb5 !important;
 }
 
 .dataTables_length {

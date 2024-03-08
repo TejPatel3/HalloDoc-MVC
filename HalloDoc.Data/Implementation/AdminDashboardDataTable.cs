@@ -38,8 +38,6 @@ namespace Services.Implementation
                                                         requestid = req.RequestId,
                                                     };
             return AdminDashboardDataTableViewModels.ToList();
-
         }
-
     }
 }

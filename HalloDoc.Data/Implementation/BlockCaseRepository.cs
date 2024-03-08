@@ -18,14 +18,12 @@ namespace Services.Implementation
 
             if (requestdata != null)
             {
-
                 var blockdata = new BlockRequest();
                 blockdata.RequestId = requestid.ToString();
                 blockdata.PhoneNumber = requestdata.PhoneNumber;
                 blockdata.Email = requestdata.Email;
                 blockdata.Reason = blocknote;
                 blockdata.CreatedDate = DateTime.Now;
-
                 requestdata.Status = 11;
 
                 if (blockdata != null)
@@ -35,7 +33,6 @@ namespace Services.Implementation
                     _context.Requests.Update(requestdata);
                     _context.SaveChanges();
                 }
-
             }
         }
     }

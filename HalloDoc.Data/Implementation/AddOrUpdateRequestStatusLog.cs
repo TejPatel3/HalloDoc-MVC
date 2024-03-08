@@ -12,27 +12,35 @@ namespace Services.Implementation
             _context = context;
         }
 
-        void IAddOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(int requestid, int? APId, string cancelnote, int? transtophyid = null)
+        void IAddOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(int requestid, string? cancelnote, int? AdminId = null, int? trnastophyid = null, int? PhysicianId = null)
         {
             var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
             if (request != null)
             {
-                var data = new RequestStatusLog
+                var data = new RequestStatusLog();
+                if (AdminId != null)
                 {
-                    RequestId = requestid,
-                    Status = request.Status,
-                    AdminId = APId,
-                    Notes = cancelnote,
-                    CreatedDate = DateTime.Now
-                };
-                if (transtophyid != null)
+                    data.RequestId = requestid;
+                    data.Status = request.Status;
+                    data.AdminId = AdminId;
+                    data.Notes = cancelnote;
+                    data.CreatedDate = DateTime.Now;
+                }
+                else if (PhysicianId != null)
                 {
-                    data.TransToPhysicianId = transtophyid;
+                    data.RequestId = requestid;
+                    data.Status = request.Status;
+                    data.AdminId = AdminId;
+                    data.Notes = cancelnote;
+                    data.CreatedDate = DateTime.Now;
+                }
+                if (trnastophyid != null)
+                {
+                    data.TransToPhysicianId = trnastophyid;
                 };
                 _context.RequestStatusLogs.Add(data);
                 _context.SaveChanges();
             }
-
         }
     }
 }

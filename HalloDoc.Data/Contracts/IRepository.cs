@@ -9,6 +9,7 @@ namespace Services.Contracts
         void Add(T entity);
 
         void Update(T entity);
+
         void Remove(T entity);
 
         T GetFirst(Expression<Func<T, bool>> filter);

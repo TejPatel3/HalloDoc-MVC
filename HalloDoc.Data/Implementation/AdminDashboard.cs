@@ -9,9 +9,6 @@ namespace Services.Implementation
         public ApplicationDbContext _context { get; }
         public AdminDashboard(ApplicationDbContext context) : base(context)
         {
-
         }
-
-
     }
 }

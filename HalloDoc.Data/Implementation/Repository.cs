@@ -19,7 +19,6 @@ namespace Services.Implementation
             Set.Add(entity);
         }
 
-
         public IEnumerable<T> GetAll()
         {
             IQueryable<T> query = Set;
@@ -32,12 +31,10 @@ namespace Services.Implementation
             query = query.Where(filter);
             return query.FirstOrDefault();
         }
-
         public void Remove(T entity)
         {
             Set.Remove(entity);
         }
-
         public void Update(T entity)
         {
             Set.Update(entity);

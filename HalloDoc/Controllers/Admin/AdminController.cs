@@ -10,7 +10,7 @@ using System.Net.Mail;
 
 namespace HalloDoc.Controllers.Admin
 {
-
+    [AuthorizationRepository("Admin")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,12 +22,13 @@ namespace HalloDoc.Controllers.Admin
         private readonly IAddOrUpdateRequestNotes _addOrUpdateRequestNotes;
         private readonly IAddOrUpdateRequestStatusLog _addOrUpdateRequestStatusLog;
         private readonly IJwtRepository _jwtRepo;
-
-
-
-        public AdminController(IAdminLog _admin, IAdminDashboard adminDashboard,
-            IAdminDashboardDataTable adminDashboardDataTable, IViewCaseRepo viewcase, IBlockCaseRepository block
-            , IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog, IAddOrUpdateRequestNotes addOrUpdateRequestNotes, IJwtRepository jwtRepo)
+        public AdminController(
+    IAdminLog _admin, IAdminDashboard adminDashboard,
+    IAdminDashboardDataTable adminDashboardDataTable,
+    IViewCaseRepo viewcase, IBlockCaseRepository block,
+    IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog,
+    IAddOrUpdateRequestNotes addOrUpdateRequestNotes,
+    IJwtRepository jwtRepo)
         {
             _context = new ApplicationDbContext();
             adminLog = _admin;
@@ -39,13 +40,6 @@ namespace HalloDoc.Controllers.Admin
             _addOrUpdateRequestStatusLog = addOrUpdateRequestStatusLog;
             _jwtRepo = jwtRepo;
         }
-        public IActionResult AdminLogin()
-        {
-
-            return View();
-        }
-
-        [AuthorizationRepository("Admin")]
 
         public IActionResult AdminDashboard()
         {
@@ -60,66 +54,13 @@ namespace HalloDoc.Controllers.Admin
             return View(viewModel);
 
         }
-        [HttpPost]
-        public async Task<IActionResult> AdminLogin(AspNetUser req)
-        {
 
-            int num = adminLog.AdminLogin(req);
 
-            if (num == 1)
-            {
-                TempData["email"] = "Email Not Exist";
-                return View(req);
-            }
-
-            else if (num == 2)
-            {
-                TempData["email"] = "You Are not Admin";
-                return View(req);
-            }
-
-            else if (num == 3)
-            {
-                TempData["pswd"] = "Enter Valid Password";
-                return View(req);
-            }
-
-            else if (num == 0)
-            {
-                var admin = _context.Admins.FirstOrDefault(m => m.Email == req.Email);
-                HttpContext.Session.SetInt32("UserId", admin.AdminId);
-                HttpContext.Session.SetString("AdminName", $"{admin.FirstName} {admin.LastName}");
-                TempData["success"] = "Login Successful...!";
-                TempData["user"] = admin.FirstName;
-
-                var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Email == req.Email);
-
-                var LogedinUser = new LogedInUserViewModel();
-                LogedInUserViewModel loggedInPersonViewModel = new LogedInUserViewModel();
-                loggedInPersonViewModel.AspNetUserId = aspnetuser.Id;
-                loggedInPersonViewModel.UserName = aspnetuser.UserName;
-                var Roleid = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == aspnetuser.Id).UserId.ToString();
-                loggedInPersonViewModel.RoleName = _context.AspNetRoles.FirstOrDefault(x => x.Id == Roleid).Name;
-                Response.Cookies.Append("jwt", _jwtRepo.GenerateJwtToken(loggedInPersonViewModel));
-                return RedirectToAction("AdminDashboard");
-            }
-            return View(req);
-        }
-
-        public async Task<IActionResult> Logout()
-        {
-            HttpContext.Session.Remove("UserId");
-            Response.Cookies.Delete("jwt");
-            return RedirectToAction("AdminLogin", "Admin");
-        }
         public IActionResult AdminForgotPassword()
         {
             return View();
         }
-        public IActionResult UnauthorizeUser()
-        {
-            return View();
-        }
+
         [HttpGet]
         public List<Physician> GetPhysicianByRegionId(int regionId)
         {
@@ -157,28 +98,24 @@ namespace HalloDoc.Controllers.Admin
         //    }
         //}
 
-        [AuthorizationRepository("Admin")]
 
         public IActionResult New()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(1);
             return View(datalist);
         }
-        [AuthorizationRepository("Admin")]
 
         public IActionResult Pending()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(2);
             return View(datalist);
         }
-        [AuthorizationRepository("Admin")]
 
         public IActionResult Active()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(4).Concat(_adminDashboardDataTable.getallAdminDashboard(5)).ToList();
             return View(datalist);
         }
-        [AuthorizationRepository("Admin")]
 
         public IActionResult Conclude()
         {
@@ -203,7 +140,7 @@ namespace HalloDoc.Controllers.Admin
             return View(request);
         }
         [HttpPost]
-        public IActionResult Edit(ViewCaseViewModel request)
+        public IActionResult ViewCaseEditData(ViewCaseViewModel request)
         {
             _viewcase.EditInfo(request);
             var req = _context.Requests.FirstOrDefault(m => m.ConfirmationNumber == request.ConfirmationNumber);
@@ -228,7 +165,7 @@ namespace HalloDoc.Controllers.Admin
             _context.Requests.Update(req);
             _context.SaveChanges();
             var adminid = HttpContext.Session.GetInt32("UserId");
-            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, adminid, cancelnote.BlockNotes);
+            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, cancelnote.BlockNotes, adminid);
             TempData["success"] = "Request Canceled Successfully..!";
 
             return RedirectToAction("AdminDashboard");
@@ -240,12 +177,14 @@ namespace HalloDoc.Controllers.Admin
             var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
             var physiciandetail = _context.Physicians.FirstOrDefault(p => p.FirstName + p.LastName == physicianname);
             req.Status = 2;
+            req.PhysicianId = physiciandetail.PhysicianId;
+
             _context.Requests.Update(req);
             _context.SaveChanges();
             var adminid = HttpContext.Session.GetInt32("UserId");
 
 
-            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, adminid, assignnote.BlockNotes, physiciandetail.PhysicianId);
+            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, adminid, physiciandetail.PhysicianId);
             TempData["success"] = "Request auccessfully Assigned..!";
 
             return RedirectToAction("AdminDashboard");
@@ -259,6 +198,24 @@ namespace HalloDoc.Controllers.Admin
 
             return RedirectToAction("AdminDashboard");
         }
+
+        //*********************************************************************************this is for physician transfer model code
+        //[HttpPost]
+        //public IActionResult TransferModel(int id, AdminRequestViewModel assignnote, string physicianname)
+        //{
+        //    var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
+        //    var physiciandetail = _context.Physicians.FirstOrDefault(p => p.FirstName + p.LastName == physicianname);
+        //    req.PhysicianId = physiciandetail.PhysicianId;
+        //    _context.Requests.Update(req);
+        //    _context.SaveChanges();
+        //    var adminid = HttpContext.Session.GetInt32("UserId");
+
+
+        //    _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, physiciandetail.PhysicianId, physiciandetail.PhysicianId);
+        //    TempData["success"] = "Request auccessfully Assigned..!";
+
+        //    return RedirectToAction("AdminDashboard");
+        //}
         public IActionResult ViewNotes(int reqid)
         {
             var request = _context.Requests.FirstOrDefault(m => m.RequestId == reqid);
@@ -288,7 +245,6 @@ namespace HalloDoc.Controllers.Admin
         [HttpPost]
         public IActionResult viewNotes(AdminRequestViewModel obj)
         {
-            //var request = _context.Requests.FirstOrDefault(m => m.RequestId == obj.requestid);
             _addOrUpdateRequestNotes.AddOrUpdateRequestNotes(obj);
             return RedirectToAction("AdminDashboard");
 
@@ -473,5 +429,7 @@ namespace HalloDoc.Controllers.Admin
             orderdata.BusinessContact = vendordetails.BusinessContact;
             return orderdata;
         }
+
+
     }
 }

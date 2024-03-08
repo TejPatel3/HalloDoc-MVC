@@ -4,7 +4,5 @@ namespace Services.Contracts
 {
     public interface IAdminDashboard : IRepository<Request>
     {
-
-
     }
 }

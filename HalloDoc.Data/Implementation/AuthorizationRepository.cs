@@ -10,7 +10,6 @@ namespace Services.Implementation
     public class AuthorizationRepository : Attribute, IAuthorizatoinRepository, IAuthorizationFilter
     {
         private readonly string _role;
-
         public AuthorizationRepository(string role = "")
         {
             _role = role;
@@ -18,11 +17,10 @@ namespace Services.Implementation
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-
             var jwtservice = context.HttpContext.RequestServices.GetService<IJwtRepository>();
             if (jwtservice == null)
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "UnauthorizeUser" }));
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "AdminCredential", action = "AdminLogin" }));
                 return;
             }
 
@@ -31,7 +29,7 @@ namespace Services.Implementation
 
             if (token == null || !jwtservice.ValidateToken(token, out JwtSecurityToken jwttoken))
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "UnauthorizeUser" }));
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "AdminCredential", action = "AdminLogin" }));
                 return;
             }
 
@@ -39,17 +37,14 @@ namespace Services.Implementation
 
             if (roleClaim == null)
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "UnauthorizeUser" }));
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "AdminCredential", action = "AdminLogin" }));
                 return;
             }
 
             if (string.IsNullOrEmpty(_role) || roleClaim.Value != _role)
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Admin", action = "UnauthorizeUser" }));
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "AdminCredential", action = "AdminLogin" }));
             }
-
-
         }
     }
-
 }

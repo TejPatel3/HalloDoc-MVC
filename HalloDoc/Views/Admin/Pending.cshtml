@@ -5,7 +5,7 @@
     Layout = null;
 }
 
-<table class="table align-middle" id="example">
+<table class="table align-middle example">
     <thead class="thead-light bg-light">
         <tr>
             <td class="d-none"></td>
@@ -158,7 +158,7 @@
                                 </button>
                             </li>
                             <li>
-                                <button class="dropdown-item text-secondary" value="@item.requestid">
+                                <button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary canclebtn" data-toggle="modal" data-target="#TransferModal">
                                     <i class="bi bi-view-list me-2"></i>
                                     Transfer
                                 </button>
@@ -185,15 +185,15 @@
         }
     </tbody>
 </table>
-
+@* 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-
-
+ *@
+@* 
 <script>
     var table = $('#example').DataTable({ dom: 'lrtip' });
     $('input[type="search"]').on('keyup', function () {
@@ -220,13 +220,15 @@
 </script>
 
 
+ *@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-
-
+<script src="~/js/Admin/SixTabChildContent.js"> </script>
+@*
 <script>
     $(document).ready(function () {
+       
 
         $('.viewCase').on('click', function (e) {
             var requestid = $(this).attr('value');
@@ -277,11 +279,9 @@
         });
 
 
-    });
 
 
-    $(document).ready(function () {
-
+   
         $('.canclebtn').on('click', function (e) {
             var name = $(this).attr('value');
             $('.pname').html(name);
@@ -291,38 +291,45 @@
 
         });
 
-        // $('.canclebtn').on('click', function (e) {
+        $('.example').DataTable({
+            "initComplete": function (settings, json) {
 
+                $('#my-search-input').val(settings.oPreviousSearch.sSearch);
 
+                $('#my-search-input').on('keyup', function () {
+                    var searchValue = $(this).val();
+                    settings.oPreviousSearch.sSearch = searchValue;
+                    settings.oApi._fnReDraw(settings);
+                });
+            },
+            "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+            "pageLength": 5,
+            language: {
+                oPaginate: {
+                    sNext: '<i class="bi bi-caret-right-fill text-info"></i>',
+                    sPrevious: '<i class="bi bi-caret-left-fill text-info"></i>'
 
-        //     var reqid = $(this).attr('id');
-        //     $('.requestid').html(reqid);
+                }
+            }
+        });
 
-        //     console.log(reqid)
-        // });
+        $('.dataTables_filter').hide();
+        var table = $('.example').DataTable();
+
+        $('input[name="requestby"]').on('change', function () {
+            var value = $(this).attr('id');
+            console.log(value);
+            if (value == 'requestbyAll') {
+                table.columns(0).search('').draw();
+            }
+            else {
+                table.columns(0).search(value).draw(); // Replace 0 with the index of the column you want to filter
+            }
+        });
     });
 
 
 
-        // $(document).ready(function () {
-        //     $('.dropdown-item').on('click', function (e) {
-        //         event.preventDefault();
-        //         var action = $(this).attr('id');
-        //         var id = $(this).closest("form").data('id');
-        //         console.log("hello")
-        //         $.ajax({
-        //             url: '../Admin/' + action,
-
-        //             // data = id,
-        //             success: function (response) {
-        //                 $('#nav-home').html(response);
-
-        //             },
-        //             error: function (xhr, status, error) {
-        //                 console.error(error);
-        //             }
-        //         });
-        //     })
-        // });
-
+        
 </script>
+ *@

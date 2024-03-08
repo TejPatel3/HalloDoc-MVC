@@ -20,13 +20,11 @@ namespace Services.Implementation
             var existrequestnote = _context.RequestNotes.FirstOrDefault(m => m.RequestId == obj.requestid);
             if (existrequestnote != null)
             {
-
                 var requestnoteupdate = _context.RequestNotes.FirstOrDefault(m => m.RequestId == obj.requestid);
                 requestnoteupdate.ModifiedDate = DateTime.Now;
                 requestnoteupdate.AdminNotes = obj.BlockNotes;
                 _context.RequestNotes.Update(requestnoteupdate);
                 _context.SaveChanges();
-
             }
             else
             {

@@ -9,13 +9,11 @@ namespace HalloDoc.Models.ViewModel
         [Required(ErrorMessage = "First Name is required"), Display(Name = "First Name")]
         [StringLength(100)]
         [RegularExpression(@"^(?!\s+$).+", ErrorMessage = "Enter a valid Name")]
-
         public string? rFirstName { get; set; }
 
         [StringLength(100)]
         [Required(ErrorMessage = "Last Name is required"), Display(Name = "Last Name")]
         [RegularExpression(@"^(?!\s+$).+", ErrorMessage = "Enter a valid Name")]
-
         public string? rLastName { get; set; }
 
         [StringLength(50)]
@@ -39,11 +37,8 @@ namespace HalloDoc.Models.ViewModel
         [Column(TypeName = "character varying")]
         public string? Password { get; set; }
 
-
         [Required]
-
         [Compare("Password")]
-
         public string? ConfirmPassword { get; set; }
 
         //[Column("strMonth")]
@@ -63,14 +58,13 @@ namespace HalloDoc.Models.ViewModel
         [StringLength(50)]
         [Required(ErrorMessage = "Please enter your Email Address"), Display(Name = "Email Address")]
         [RegularExpression(@"^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|gov\.in)$", ErrorMessage = "Enter a valid email address with valid domain")]
-
         public string? Email { get; set; }
 
         [StringLength(23)]
         [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Please enter valid phone number")]
         [Required(ErrorMessage = "Plese enter your Phone Number"), Display(Name = " ")]
-
         public string? PhoneNumber { get; set; }
+
         [StringLength(100)]
         public string? Location { get; set; }
 
@@ -138,6 +132,5 @@ namespace HalloDoc.Models.ViewModel
         //[InverseProperty("RequestClients")]
         //public virtual Request Request { get; set; } = null!;
         public List<IFormFile?> Upload { get; set; }
-
     }
 }

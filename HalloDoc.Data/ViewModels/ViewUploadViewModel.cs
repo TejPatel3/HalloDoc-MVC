@@ -7,13 +7,16 @@ namespace Services.ViewModels
     public class ViewUploadViewModel
     {
         public String? ConfirmationNumber { get; set; }
+
         public List<RequestWiseFile> wiseFiles { get; set; }
 
         public String FirstName { get; set; }
+
         public String LastName { get; set; }
+
         public int requestid { get; set; }
+
         [Required]
         public List<IFormFile?> Upload { get; set; }
-
     }
 }

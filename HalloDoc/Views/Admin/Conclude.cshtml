@@ -4,7 +4,7 @@
     Layout = null;
 }
 
-<table class="table align-middle" id="example">
+<table class="table align-middle example">
     <thead class="thead-light bg-light">
         <tr>
             <td class="d-none"></td>
@@ -134,7 +134,7 @@
                                 </button>
                             </li>
                             <li>
-                                <button class="dropdown-item text-secondary" value="@item.requestid">
+                                <button class="dropdown-item text-secondary order" value="@item.requestid">
                                     <i class="bi bi-view-list me-2"></i>
                                     Orders
                                 </button>
@@ -164,26 +164,50 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="~/js/Admin/SixTabChildContent.js"> </script>
 
-
+@* 
 <script>
-    var table = $('#example').DataTable({ dom: 'lrtip' });
-    $('input[type="search"]').on('keyup', function () {
-        console.log(table);
-        table.search(this.value).draw();
-    });
-    $('input[name="requestby"]').on('change', function () {
-        var value = $(this).attr('id');
-        console.log(value);
-        if (value == 'requestbyAll') {
-            table.columns(0).search('').draw();
-        }
-        else {
-            table.columns(0).search(value).draw(); // Replace 0 with the index of the column you want to filter
-        }
-    });
+    
 
     $(document).ready(function () {
+        $('.example').DataTable({
+            "initComplete": function (settings, json) {
+
+                $('#my-search-input').val(settings.oPreviousSearch.sSearch);
+
+                $('#my-search-input').on('keyup', function () {
+                    var searchValue = $(this).val();
+                    settings.oPreviousSearch.sSearch = searchValue;
+                    settings.oApi._fnReDraw(settings);
+                });
+            },
+            "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+            "pageLength": 5,
+            language: {
+                oPaginate: {
+                    sNext: '<i class="bi bi-caret-right-fill text-info"></i>',
+                    sPrevious: '<i class="bi bi-caret-left-fill text-info"></i>'
+
+                }
+            }
+        });
+
+        $('.dataTables_filter').hide();
+        var table = $('.example').DataTable();
+
+        $('input[name="requestby"]').on('change', function () {
+            var value = $(this).attr('id');
+            console.log(value);
+            if (value == 'requestbyAll') {
+                table.columns(0).search('').draw();
+            }
+            else {
+                table.columns(0).search(value).draw(); // Replace 0 with the index of the column you want to filter
+            }
+        });
+
+
         $('.viewCase').on('click', function (e) {
             var requestid = $(this).attr('value');
             $.ajax({
@@ -230,7 +254,22 @@
             });
         });
 
-       
+        $('.order').on('click', function (e) {
+            var requestid = $(this).attr('value');
+            console.log(requestid)
+            $.ajax({
+                url: '/Admin/Order',
+                type: 'GET',
+                data: { requestid: requestid },
+                success: function (response) {
+                    $('#nav-home').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
     });
 
-</script>
+</script> *@

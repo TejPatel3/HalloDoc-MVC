@@ -46,7 +46,7 @@
                
                         <div class="d-flex justify-content-between col align-items-center    ">
                     <h6 class=" pe-2 d-sm-block d-none" style="color:gray;">Welcome <span class="text-black h6"> @accessor.HttpContext.Session.GetString("AdminName")</span></h6>
-                                <a asp-action="Logout" asp-controller="Admin">
+                                <a asp-action="Logout" asp-controller="AdminCredential">
                                     <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("AdminLogin","Admin")'"> <i class="fa-solid fa-right-from-bracket d-sm-none d-block" style="color: #00bfff;"></i><h6 class="d-sm-block d-none m-0"> Log out</h6></button>
                                 </a>
                                 <img src="~/images/night-mode.png"
@@ -124,6 +124,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
@@ -169,30 +170,19 @@
             // })
 
 
-            // const phoneInputField = document.querySelector("#phone");
-            // const phoneInput = window.intlTelInput(phoneInputField, {
-            //     utilsScript:
-            //         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-            // });
-            // const inputHome = document.querySelector("#home");
-            // window.intlTelInput(inputHome, {
-            //     initialCountry: 'gb',
-            //     placeholderNumberType: 'FIXED_LINE',
-            //     utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
-            // });
+            const phoneInputField = document.querySelector("#phone");
+            const phoneInput = window.intlTelInput(phoneInputField, {
+                utilsScript:
+                    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            });
+            const inputHome = document.querySelector("#home");
+            window.intlTelInput(inputHome, {
+                initialCountry: 'gb',
+                placeholderNumberType: 'FIXED_LINE',
+                utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
+            });
 
 
-            // const phoneInputField = document.querySelector("#phone");
-            // const phoneInput = window.intlTelInput(phoneInputField, {
-            //     utilsScript:
-            //         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-            // });
-            // const inputHome = document.querySelector("#home");
-            // window.intlTelInput(inputHome, {
-            //     initialCountry: 'gb',
-            //     placeholderNumberType: 'FIXED_LINE',
-            //     utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
-            // });
-
+           
 
 </script>
