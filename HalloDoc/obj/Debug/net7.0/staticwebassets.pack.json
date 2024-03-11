@@ -5,8 +5,28 @@
       "PackagePath": "staticwebassets\\HalloDoc.bundle.scp.css"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\11116016_415.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\11116016_415.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7774236_3736765.jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\7774236_3736765.jpg"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig56. Patient site 1.png",
       "PackagePath": "staticwebassets\\UploadDocument\\Fig56. Patient site 1.png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\LesfImage.png",
+      "PackagePath": "staticwebassets\\UploadDocument\\LesfImage.png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\eye.png",
+      "PackagePath": "staticwebassets\\UploadDocument\\eye.png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\india.png",
+      "PackagePath": "staticwebassets\\UploadDocument\\india.png"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\css\\admin.css",
@@ -107,6 +127,10 @@
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\SixTabChildContent.js",
       "PackagePath": "staticwebassets\\js\\Admin\\SixTabChildContent.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\Tabs.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\Tabs.js"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ViewCase.js",

@@ -214,6 +214,71 @@
 </div>
 
 
+@* Clear Case Modal *@
+<div class="modal fade rounded-3 shadow" id="ClearModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content py-4">
+            <form asp-action="ClearModal" method="post">
+                <div class="modal-body py-0">
+                    <div class="d-flex justify-content-center py-4">
+
+                        <img src="/images/alert.png" class="w-25 h-25 d-flex justify-content-center" />
+                    </div>
+                    <input type="number" class="requestid" name="id" />
+
+                    <h4 class="d-flex justify-content-center">Confirmation For Clear Case</h4>
+
+                    <div class="d-flex justify-content-center align-items-center text-secondary px-4 py-2">
+                        <p class="d-flex justify-content-center small">Are sure you want to clear this request? Once clear this request then you are not able to see this request</p>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 d-flex justify-content-center py-0">
+                    <button type="submit" class="btn btn-info text-white">Clear</button>
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">Cancle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@* Send Agreement Case Modal *@
+<div class="modal fade rounded-3 shadow" id="AgreementModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Send Agreement</h5>
+                <button class="btn" type="button" data-dismiss="modal">
+                    <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                </button>
+            </div>
+            <form asp-action="SendAgreementModal" method="post">
+                <div class="modal-body">
+                    <i class="bi bi-circle-fill" id="requesttype-dot"></i><span id="requesttype-agreement"></span>
+                    <input type="number" class="requestid" name="id" />
+
+
+                    <br />
+                    <small class="text-secondary">To Send Agreement please make sure you are updating the correct contact information below for the responsible party.</small>
+                    <div class="form-floating py-2 p-0">
+                        <input class="form-control p-0" id="AgreementModal-Phone" placeholder="Mobile Number" />
+                        <label for="floatingTextarea" class="text-secondary">Phone Number</label>
+                    </div>
+                    <div class="form-floating py-2">
+                        <input class="form-control" id="AgreementModal-Email" placeholder="Email" />
+                        <label for="floatingTextarea" class=" text-secondary">Email</label>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0 pb-3">
+                    <button type="submit" class="btn btn-info text-white sendAgreementBtn">Send</button>
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">Cancle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <style>
     .bg-light {
         background-color: #F3F2F2 !important;

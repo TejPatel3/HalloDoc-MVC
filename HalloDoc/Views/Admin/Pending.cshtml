@@ -164,13 +164,13 @@
                                 </button>
                             </li>
                             <li>
-                                <button class="dropdown-item text-secondary" value="@item.requestid">
+                                <button type="button" class="dropdown-item text-secondary canclebtn" id="@item.requestid" data-toggle="modal" data-target="#ClearModal">
                                     <i class="bi bi-view-list me-2"></i>
                                     Clear Case
                                 </button>
                             </li>
                             <li>
-                                <button class="dropdown-item text-secondary" value="@item.requestid">
+                                <button type="button" class="dropdown-item text-secondary canclebtn SendAgreementModal" value="@item.RequestType" id="@item.requestid" data-toggle="modal" data-target="#AgreementModal">
                                     <i class="bi bi-view-list me-2"></i>
                                     Send Agreement
                                 </button>

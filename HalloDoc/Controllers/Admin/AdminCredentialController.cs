@@ -10,7 +10,6 @@ namespace HalloDoc.Controllers.Admin
     {
         private readonly ApplicationDbContext _context;
         private readonly IAdminLog adminLog;
-
         private readonly IJwtRepository _jwtRepo;
 
         public AdminCredentialController(IAdminLog _admin, IJwtRepository jwtRepository)
@@ -24,12 +23,11 @@ namespace HalloDoc.Controllers.Admin
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> AdminLogin(AspNetUser req)
         {
-
             int num = adminLog.AdminLogin(req);
-
             if (num == 1)
             {
                 TempData["email"] = "Email Not Exist";
@@ -55,9 +53,7 @@ namespace HalloDoc.Controllers.Admin
                 HttpContext.Session.SetString("AdminName", $"{admin.FirstName} {admin.LastName}");
                 TempData["success"] = "Login Successful...!";
                 TempData["user"] = admin.FirstName;
-
                 var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Email == req.Email);
-
                 var LogedinUser = new LogedInUserViewModel();
                 LogedInUserViewModel loggedInPersonViewModel = new LogedInUserViewModel();
                 loggedInPersonViewModel.AspNetUserId = aspnetuser.Id;
@@ -69,17 +65,17 @@ namespace HalloDoc.Controllers.Admin
             }
             return View(req);
         }
+
         public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Remove("UserId");
             Response.Cookies.Delete("jwt");
             return RedirectToAction("AdminLogin", "AdminCredential");
         }
+
         public IActionResult AdminForgotPassword()
         {
             return View();
         }
-
-
     }
 }

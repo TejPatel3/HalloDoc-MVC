@@ -1,33 +1,33 @@
 ﻿
-    $('.savenote').click(function () {
+$('.savenote').click(function () {
 
-        var reqid = $('#rid').attr('value');
+    var reqid = $('#rid').attr('value');
     var notes = $('#notes').val();
     var viewModel = {
         requestid: reqid,
-    BlockNotes: notes
-        };
+        BlockNotes: notes
+    };
     console.log(viewModel)
     console.log(viewModel)
     console.log(viewModel)
     $.ajax({
         url: '/Admin/ViewNotes', // replace with your URL
-    type: 'POST',
-    dataType: 'json',
-    // contentType: 'application/json; charset=utf-8',
-    data: viewModel,
-    success: function (data) {
-        // Handle success
-        console.log('Success:', data);
-            },
-    error: function () {
-        // Handle error
-        console.log('Error occurred');
-            }
-        });
+        type: 'POST',
+        dataType: 'json',
+        // contentType: 'application/json; charset=utf-8',
+        data: viewModel,
+        success: function (data) {
+            // Handle success
+            console.log('Success:', data);
+        },
+        error: function () {
+            // Handle error
+            console.log('Error occurred');
+        }
+    });
 
     $('#adminnoteupdate').html(notes);
-    });
+});
 
 
 

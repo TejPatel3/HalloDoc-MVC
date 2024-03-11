@@ -1,9 +1,14 @@
 ﻿@using Services.ViewModels
 @model ViewCaseViewModel
 @{
-    Layout = "_OnlyLinks";
+    Layout = null;
 }
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+
+<input type="number" class="requestid" value="@Model.requestId"/>
 <div class="container pb-4 bg-light " id="vCase">
     <div class="d-flex justify-content-between align-items-center w-100 my-3">
         <h4>New Request<span class="green-dot ms-2  small   text-white px-3 py-2" style="border-radius:25px; font-size:15px ">Patient</span></h4>
@@ -13,7 +18,7 @@
             Back
         </a>
     </div>
-    <form asp-controller="Admin" asp-action="ViewCaseEditData" >
+    <form asp-controller="Admin" asp-action="ViewCaseEditData">
         <div class="row bg-white  px-4 py-2 rounded-3 shadow">
             <h5 class="py-2">Patient Information</h5>
             <small class="text-secondary small" style="font-size:12px">Confirmation Number</small>
@@ -62,9 +67,8 @@
                         <div class="col-sm-8 col-lg-10 col-8 form-floating ">
                             <input id="home" asp-for="PhoneNumber"
                                    type="tel" class="form-control"
-                                  
                                    style=" padding: 16px 2% 16px 50px; " disabled />
-                           
+
                             <span class="text-danger" asp-validation-for="PhoneNumber"></span>
                         </div>
 
@@ -168,7 +172,93 @@
     </form>
 </div>
 
+<script src="~/js/Admin/ViewCase.js" asp-append-version="true"> </script> 
+@* 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="~/js/Admin/ViewCase.js"> </script>
+
+ *@
+@* 
+<script>
+    $(document).ready(function () {
+
+        $('.canclebtn').on('click', function (e) {
+            var name = $(this).attr('value');
+            console.log(name)
+            $('.pname').html(name);
+            var reqid = $(this).attr('id');
+            var inputval = $('.requestid');
+            inputval.val(reqid);
+        });
+
+        $('.viewNotes').on('click', function (e) {
+            var requestid = $(this).attr('value');
+            console.log("clickit");
+            $.ajax({
+                url: '/Admin/ViewNotes',
+                type: 'GET',
+                data: { reqid: requestid },
+                success: function (response) {
+                    $('#nav-home').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
+        $('#editButton').click(function () {
+            $('input[type="email"]').removeAttr('disabled', false);
+            $('input[type="tel"]').removeAttr('disabled', false);
+            $(this).hide();
+            $('#savebtn').removeAttr('hidden', false);
+        });
+
+
+        $('.ViewCaseSaveBtn').on('click', function (e) {
+            console.log("checked for view case edit btn")
+            var requestid = @Model.requestId;
+            var email = $('#ViewCasePatientEmail').val();
+            var phoneNumber = $('#home').val();
+            var confirmationNumber = $('#ViewCaseConfirmationNumber').val();
+            console.log(email)
+            console.log(phoneNumber)
+            var ViewModel = {
+                requestId: requestid,
+                Email: email,
+                PhoneNumber: phoneNumber,
+                ConfirmationNumber: confirmationNumber,
+            };
+            console.log(ViewModel)
+            $('input[type="email"]').attr('disabled', true);
+            $('input[type="tel"]').attr('disabled', true);
+            $(this).hide();
+            $('#editButton').show();
+            $.ajax({
+                url: '/Admin/ViewCaseEditData',
+                type: 'POST',
+                data: ViewModel,
+                dataType: 'json',
+                success: function (response) {
+                    $('#nav-home').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+
+
+
+</script>  *@

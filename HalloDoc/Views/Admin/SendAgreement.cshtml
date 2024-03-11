@@ -1,0 +1,31 @@
+﻿<div class="container p-sm-5 my-sm-5 my-2 ">
+    <h4>
+        To provide best medical service, we cannot determine the cost right away. If you agree to our service, so we will provide care and follow-up until all care is completed. So with this points, if you like us to provide care to you click on "Agree" and we'll get started immediately, if you do not agree simply click "Cancel".
+    </h4>
+
+    <div class="d-flex justify-content-center my-5 ">
+        <button class="btn btn-success m-sm-5 m-2 px-4 rounded-3 shadow ">
+            I Agree
+        </button>
+        <button class="btn btn-danger m-sm-5 m-2 px-4 rounded-3 shadow ">
+            Cancle
+        </button>
+    </div>
+</div>
+
+<script>
+    // const url = new URL('https://example.com/resource?id=12345');
+    // const params = new URLSearchParams(url.search);
+    // const idFromParams = params.get('id');
+
+    window.onload = (event) => {
+        var url = window.location.href;
+        console.log(url)
+        const idMatch = url.match(/\/(\d+)\/?$/);
+        const extractedID = idMatch ? idMatch[1] : null;
+        console.log('Extracted ID:', extractedID);
+
+
+    };
+
+</script>

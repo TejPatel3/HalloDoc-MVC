@@ -104,7 +104,7 @@
 
                         <tr>
                             <td scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" id="@item.RequestWiseFileId" /></td>
-                            <td>@item.FileName.Substring(51)</td>
+                            <td>@item.FileName.Substring(52)</td>
                             <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
                             <td>
                                 <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
@@ -127,8 +127,7 @@
 
     </div>
 </div>
-<script src="~/js/Admin/ViewUpload.js" > </script>
-
+<script src="~/js/Admin/ViewUpload.js" asp-append-version="true"> </script>
 @*
     $('.uploadbtn').on('click', function (e) {
         e.preventDefault();
@@ -154,7 +153,8 @@
                 console.error('Error uploading files:', error);
             }
         });
-    }); *@
+    }); *@ 
+@* 
 <script>
 
     $(document).ready(function () {
@@ -346,4 +346,4 @@
                                     // })
 
 </script>
-
+ *@
