@@ -120,10 +120,13 @@ function download() {
 }
 
 
-var all = document.getElementById('downloadall');
-console.log(all);
-all.addEventListener('click', function () {
-    console.log("run");
-});
+//var all = document.getElementById('downloadall');
+//console.log(all);
+//all.addEventListener('click', function () {
+//    console.log("run");
+//});
 
 
+//$('#downloadall').click(function () {
+
+//});

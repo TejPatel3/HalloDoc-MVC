@@ -36,7 +36,10 @@ namespace Services.Implementation
                                                         RequestorEmail = req.Email,
                                                         RequestType = req.RequestTypeId,
                                                         requestid = req.RequestId,
+                                                        regionid = reqclient.RegionId,
+                                                        PhysicianId = req.PhysicianId,
                                                     };
+
             return AdminDashboardDataTableViewModels.ToList();
         }
     }

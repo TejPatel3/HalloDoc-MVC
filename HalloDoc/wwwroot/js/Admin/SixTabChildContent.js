@@ -123,7 +123,9 @@
 
     $('.dataTables_filter').hide();
     var table = $('.example').DataTable();
-
+    //$('input[type="search"]').on('keyup', function () {
+    //    table.search(this.value).draw();
+    //});
     $('input[name="requestby"]').on('change', function () {
         var value = $(this).attr('id');
         console.log(value);
@@ -135,7 +137,16 @@
         }
     });
 
-    
+    $('#RegionSearch').change(function () {
+        var regionid = $(this).val();
+
+        if (regionid == '1234') {
+            table.columns(1).search('').draw();
+        }
+        else {
+            table.columns(1).search(regionid).draw(); // Replace 0 with the index of the column you want to filter
+        }
+    })
 
 });
 

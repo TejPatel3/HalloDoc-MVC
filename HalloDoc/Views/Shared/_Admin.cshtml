@@ -62,7 +62,7 @@
 
 
         <div class="collapse navbar-collapse bg-white w-100" id="navbarSupportedContent">
-            <div class="nav nav-tabs " id="nav-tab" role="tablist">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active k fw-bold me-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
                 <button class="nav-link k text-secondary fw-bold me-1" id="nav-provider-location-tab" data-bs-toggle="tab" data-bs-target="#nav-provider-location" type="button" role="tab" aria-controls="nav-provider-location" aria-selected="false">Provider Location</button>
                 <button class="nav-link k text-secondary fw-bold" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Profile</button>
@@ -145,42 +145,31 @@
     });
 
 
-    const actualBtn = document.getElementById('actual-btn');
-    const fileChosen = document.getElementById('file-chosen');
-    actualBtn.addEventListener('change', function () {
-        fileChosen.textContent = this.files[0].name
-    })
+    // const actualBtn = document.getElementById('actual-btn');
+    // const fileChosen = document.getElementById('file-chosen');
+    // actualBtn.addEventListener('change', function () {
+    //     fileChosen.textContent = this.files[0].name
+    // })
 
-    actualBtn.addEventListener('change', function () {
-        /*fileChosen.textContent = this.files[0].name*/
-        fileChosen.placeholder = this.files[0].name
-        fileChosen.value = this.files[0].name
-    })
+    // actualBtn.addEventListener('change', function () {
+    //     /*fileChosen.textContent = this.files[0].name*/
+    //     fileChosen.placeholder = this.files[0].name
+    //     fileChosen.value = this.files[0].name
+    // })
 
-            // const actualBtn = document.getElementById('actual-btn');
-            // const fileChosen = document.getElementById('file-chosen');
-            // actualBtn.addEventListener('change', function () {
-            //     fileChosen.textContent = this.files[0].name
-            // })
+    
 
-            // actualBtn.addEventListener('change', function () {
-            //     /*fileChosen.textContent = this.files[0].name*/
-            //     fileChosen.placeholder = this.files[0].name
-            //     fileChosen.value = this.files[0].name
-            // })
-
-
-            const phoneInputField = document.querySelector("#phone");
-            const phoneInput = window.intlTelInput(phoneInputField, {
-                utilsScript:
-                    "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-            });
-            const inputHome = document.querySelector("#home");
-            window.intlTelInput(inputHome, {
-                initialCountry: 'gb',
-                placeholderNumberType: 'FIXED_LINE',
-                utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
-            });
+            // const phoneInputField = document.querySelector("#phone");
+            // const phoneInput = window.intlTelInput(phoneInputField, {
+            //     utilsScript:
+            //         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            // });
+            // const inputHome = document.querySelector("#home");
+            // window.intlTelInput(inputHome, {
+            //     initialCountry: 'gb',
+            //     placeholderNumberType: 'FIXED_LINE',
+            //     utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
+            // });
 
 
            

@@ -8,7 +8,7 @@ namespace Services.ViewModels
         public List<Request> requests { get; set; }
         public List<Region> regions { get; set; }
         public List<Physician> physicians { get; set; }
-
+        public string patientName { get; set; }
         [MaybeNull]
         public string BlockNotes { get; set; }
         public int requestid { get; set; }

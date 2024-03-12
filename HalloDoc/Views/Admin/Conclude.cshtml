@@ -8,6 +8,7 @@
     <thead class="thead-light bg-light">
         <tr>
             <td class="d-none"></td>
+            <td class="d-none"></td>
 
             <th scope="col">Name</th>
             <th scope="col">Date Of Birth</th>
@@ -60,6 +61,7 @@
 
             <tr class="@color">
                 <td class="d-none">@item.RequestType</td>
+                <td class="d-none">@item.regionid</td>
 
                 <td scope="row">
                     <div class="d-flex justify-content-between ">
@@ -68,7 +70,7 @@
                     </div>
                 </td>
                 <td>@item.PatientDOB.ToString("dd MMM,yyyy ")</td>
-                <td>@item.ProviderEmail</td>
+                <td>@item.PhysicianName</td>
                 <td scope="row">@item.PatientName</td>
                 <td>
                     <button class="btn btn-outline-light w-100 d-flex ">

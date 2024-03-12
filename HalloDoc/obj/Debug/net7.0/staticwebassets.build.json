@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "N7lZJA+D7EhgMuBe4Yh+AzQM26R7n9K0ktRwULWXTbQ=",
+  "Hash": "j8YAjenJwIwzFLJ4wK6cluVtOJTAcjwXNJGNjEcMqMY=",
   "Source": "HalloDoc",
   "BasePath": "_content/HalloDoc",
   "Mode": "Default",
@@ -457,6 +457,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\sessionexpider.png"
+    },
+    {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\SendAgreement.js",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "js/Admin/SendAgreement.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Admin\\SendAgreement.js"
     },
     {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\SixTabChildContent.js",

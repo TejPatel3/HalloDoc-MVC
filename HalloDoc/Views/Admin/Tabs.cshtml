@@ -126,20 +126,24 @@
 
         <div class="col-12 col-md-2 col-xl-2  py-3">
 
-            <input class="form-control search-input fuzzy-search rounded-1 form-control-sm me-2 py-2 shadow-none" type="search" placeholder="Search..." aria-label="Search" style="width:clamp(100px, 100%, 100%); ">
+            <input class="form-control search-input fuzzy-search rounded-1 form-control-sm me-2 py-2 shadow-none" id="my-search-input" type="search" placeholder="Search..." aria-label="Search" style="width:clamp(100px, 100%, 100%); ">
         </div>
         <div class="col-12 col-md-3 col-xl-2 d-flex align-items-center">
             <div class="dropdown d-flex" style="width:clamp(200px, 100%, 100%);">
 
-                <button class="btn bg-white border border-1 dropdown-toggle shadow-none" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width:clamp(200px, 100%, 100%);">
-                    <i class="fa-solid fa-magnifying-glass fa-xs pe-3"></i> <label class="me-4">All Region</label>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">District Of Columbia</a></li>
-                    <li><a class="dropdown-item" href="#">Maryland</a></li>
-                    <li><a class="dropdown-item" href="#">New York</a></li>
-                    <li><a class="dropdown-item" href="#">Virginia</a></li>
-                </ul>
+
+
+                <select name="regionname" id="RegionSearch" class="form-select shadow-none getregion h-100" aria-label="Floating label select example">
+                    <span class="search-icon "></span>
+
+                    <option class="regionselect" value="1234" selected>All Regions</option>
+
+                    @foreach (var item in Model.regions)
+                    {
+                        <option class="regionselect" value="@item.RegionId" itemid="@item.RegionId">@item.Name</option>
+                    }
+                </select>
+
             </div>
         </div>
         <div class="col-12 col-md-7 col-xl-8 d-inline-block d-md-flex justify-content-end align-items-center mt-sm-2 mt-4 mb-2 ">

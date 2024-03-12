@@ -125,6 +125,10 @@
       "PackagePath": "staticwebassets\\images\\sessionexpider.png"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\SendAgreement.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\SendAgreement.js"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\SixTabChildContent.js",
       "PackagePath": "staticwebassets\\js\\Admin\\SixTabChildContent.js"
     },

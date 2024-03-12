@@ -215,3 +215,7 @@ div.dataTables_wrapper div.dataTables_length select {
 .nav-link:hover {
     border : none !important;
 }
+
+.nav-tabs{
+    border-bottom:none;
+}

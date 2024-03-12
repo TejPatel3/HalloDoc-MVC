@@ -87,30 +87,55 @@ namespace HalloDoc.Controllers.Admin
         public IActionResult Pending()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(2);
+            foreach (var item in datalist)
+            {
+                var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+                item.PhysicianName = physician.FirstName;
+            }
             return View(datalist);
         }
 
         public IActionResult Active()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(4).Concat(_adminDashboardDataTable.getallAdminDashboard(5)).ToList();
+            foreach (var item in datalist)
+            {
+                var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+                item.PhysicianName = physician.FirstName;
+            }
             return View(datalist);
         }
 
         public IActionResult Conclude()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(6);
+            foreach (var item in datalist)
+            {
+                var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+                item.PhysicianName = physician.FirstName;
+            }
             return View(datalist);
         }
 
         public IActionResult ToClose()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(7).Concat(_adminDashboardDataTable.getallAdminDashboard(3)).Concat(_adminDashboardDataTable.getallAdminDashboard(8)).ToList();
+            foreach (var item in datalist)
+            {
+                var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+                item.PhysicianName = physician.FirstName;
+            }
             return View(datalist);
         }
 
         public IActionResult Unpaid()
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(9);
+            foreach (var item in datalist)
+            {
+                var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+                item.PhysicianName = physician.FirstName;
+            }
             return View(datalist);
         }
 
@@ -339,7 +364,11 @@ namespace HalloDoc.Controllers.Admin
             var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
             req.Status = 3;
             var casetag = _context.CaseTags.FirstOrDefault(t => t.Name == casetagname);
-            req.CaseTag = casetag.CaseTagId.ToString();
+            if (casetag != null)
+            {
+                req.CaseTag = casetag.CaseTagId.ToString();
+
+            }
             _context.Requests.Update(req);
             _context.SaveChanges();
             var adminid = HttpContext.Session.GetInt32("UserId");
@@ -431,11 +460,11 @@ namespace HalloDoc.Controllers.Admin
         }
 
         [HttpPost]
-        public IActionResult SendAgreementModal(int id)
+        public IActionResult SendAgreementModal(int id, string email)
         {
 
             string AgreementUrl = GenerateAgreementUrl(id);
-            SendEmail("pateltej3122002@gmail.com", "Confirm Your Agreement", $"Hello, Click On below Link for COnfirm Agreement: {AgreementUrl}");
+            SendEmail(email, "Confirm Your Agreement", $"Hello, Click On below Link for COnfirm Agreement: {AgreementUrl}");
             TempData["success"] = "Agreement sent in Email..!";
             return RedirectToAction("AdminDashboard");
         }
@@ -449,8 +478,19 @@ namespace HalloDoc.Controllers.Admin
             string AgreementPath = Url.Action("SendAgreement", "Admin", new { id = requestid });
             return baseUrl + AgreementPath;
         }
-        public IActionResult SendAgreement(string reqid)
+        public IActionResult SendAgreement(string id)
         {
+            var viewModel = new AdminRequestViewModel();
+            var requestid = int.Parse(EncryptionDecryption.DecryptStringFromBase64_Aes(id, key, iv));
+            var PatienName = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
+            viewModel.patientName = PatienName.FirstName + " " + PatienName.LastName;
+            viewModel.requestid = requestid;
+            return View(viewModel);
+        }
+        [HttpPost]
+        public IActionResult SendAgreement(int reqid)
+        {
+
             return View();
         }
 
@@ -467,6 +507,16 @@ namespace HalloDoc.Controllers.Admin
             };
 
             return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
+        }
+
+        public IActionResult IAgreeSendAgreement(int requestid)
+        {
+            var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
+            request.Status = 4;
+            _context.Requests.Update(request);
+            _context.SaveChanges();
+            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(requestid);
+            return RedirectToAction("PatientDashboard", "Dashboard");
         }
     }
 }

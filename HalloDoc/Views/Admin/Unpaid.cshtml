@@ -8,7 +8,7 @@
     <thead class="thead-light bg-light">
         <tr>
             <td class="d-none"></td>
-
+            <td class="d-none"></td>
             <th scope="col">Name</th>
             <th scope="col">Physician Name</th>
             <th scope="col">Date Of Services</th>
@@ -19,16 +19,9 @@
         </tr>
     </thead>
     <tbody id="datatable" class="bg-white">
-
-
-
         @foreach (var item in Model)
         {
-
-
-
             var color = "green-dot";
-
             switch (item.RequestType)
             {
                 case 1:
@@ -59,14 +52,14 @@
             }
             <tr class="@color">
                 <td class="d-none">@item.RequestType</td>
-
+                <td class="d-none">@item.regionid</td>
                 <td scope="row">
                     <div class="d-flex justify-content-between ">
 
                         @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
                     </div>
                 </td>
-                <td>@item.PatientDOB.ToString("dd MMM,yyyy ")</td>
+                <td>@item.PhysicianName</td>
                 <td>@item.ProviderEmail</td>
                 <td>
                     <button class="btn btn-outline-light w-100 d-flex ">
@@ -146,7 +139,7 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="~/js/Admin/SixTabChildContent.js"> </script>
 
-@* 
+@*
 <script>
     var table = $('#example').DataTable({ dom: 'lrtip' });
     $('input[type="search"]').on('keyup', function () {
@@ -247,6 +240,6 @@
             });
         });
 
-      
+
     });
 </script> *@

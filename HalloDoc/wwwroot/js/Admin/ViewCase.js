@@ -31,6 +31,7 @@ console.log("helo");
         $('input[type="tel"]').removeAttr('disabled', false);
         $(this).hide();
         $('#savebtn').removeAttr('hidden', false);
+        $('#savebtn').show();
     });
     $('.ViewCaseSaveBtn').on('click', function (e) {
         console.log("checked for view case edit btn")
