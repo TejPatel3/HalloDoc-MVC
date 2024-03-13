@@ -22,7 +22,7 @@ namespace Services.ViewModels
         public int requestid { get; set; }
         public int? regionid { get; set; }
 
-        public int regionidtoclose { get; set; }
+        public string regionidtoclose { get; set; }
 
 
         public enum RegionName
@@ -54,13 +54,17 @@ namespace Services.ViewModels
         {
             first,
             Patient,
-            Friend_Family,
+            [Description("Family Friend")]
+            FamilyFriend,
             Concierge,
-            Business_Partner
+            [Description("Business Partner")]
+            BusinessPartner,
+
         }
         public string RequestTypeName(int by)
         {
-            string By = ((Requestby)by).ToString();
+            string By = (GetEnumDescription((Requestby)by)).ToString();
+            //string By = ((Requestby)by).ToString();
             return By;
         }
     }

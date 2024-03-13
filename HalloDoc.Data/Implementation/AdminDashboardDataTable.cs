@@ -38,9 +38,41 @@ namespace Services.Implementation
                                                         requestid = req.RequestId,
                                                         regionid = reqclient.RegionId,
                                                         PhysicianId = req.PhysicianId,
+                                                        regionidtoclose = reqclient.RegionId.ToString(),
                                                     };
 
             return AdminDashboardDataTableViewModels.ToList();
         }
+
+        public List<AdminDashboardTableDataViewModel> GetDataForExportAll()
+        {
+            var AdminDashboardDataTableViewModels = from user in _context.Users
+                                                    join req in _context.Requests on user.UserId equals req.UserId
+                                                    join reqclient in _context.RequestClients on req.RequestId equals reqclient.RequestId
+                                                    orderby req.CreatedDate descending
+                                                    select new AdminDashboardTableDataViewModel
+                                                    {
+                                                        PatientName = reqclient.FirstName + " " + reqclient.LastName,
+                                                        PatientDOB = new DateOnly(Convert.ToInt32(user.IntYear), DateTime.ParseExact(user.StrMonth, "MMM", CultureInfo.InvariantCulture).Month, Convert.ToInt32(user.IntDate)),
+                                                        RequestorName = req.FirstName + " " + req.LastName,
+                                                        RequestedDate = req.CreatedDate,
+                                                        PatientPhone = user.Mobile,
+                                                        RequestorPhone = req.PhoneNumber,
+                                                        Address = req.RequestClients.FirstOrDefault(x => x.RequestId == req.RequestId).Address,
+                                                        Notes = req.RequestClients.FirstOrDefault(x => x.RequestId == req.RequestId).Notes,
+                                                        ProviderEmail = _context.Physicians.FirstOrDefault(x => x.PhysicianId == req.PhysicianId).Email,
+                                                        PatientEmail = user.Email,
+                                                        RequestorEmail = req.Email,
+                                                        RequestType = req.RequestTypeId,
+                                                        requestid = req.RequestId,
+                                                        regionid = reqclient.RegionId,
+                                                        PhysicianId = req.PhysicianId,
+                                                        regionidtoclose = reqclient.RegionId.ToString(),
+                                                    };
+
+            return AdminDashboardDataTableViewModels.ToList();
+        }
+
+
     }
 }

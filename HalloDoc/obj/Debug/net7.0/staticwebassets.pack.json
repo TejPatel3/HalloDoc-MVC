@@ -125,6 +125,14 @@
       "PackagePath": "staticwebassets\\images\\sessionexpider.png"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\AdminDashboard.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\AdminDashboard.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ExportDataInExcle.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\ExportDataInExcle.js"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\SendAgreement.js",
       "PackagePath": "staticwebassets\\js\\Admin\\SendAgreement.js"
     },

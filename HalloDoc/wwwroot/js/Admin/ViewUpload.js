@@ -68,15 +68,12 @@ $('.uploadbtn').on('click', function (e) {
 
 
 $('#downloadall').click(function () {
-    console.log("hjbfgvd")
     $('.childCheckbox').prop('checked', $(this).prop('checked'));
 });
 
 // Handle individual checkbox clicks to update the leader checkbox state
 $('.childCheckbox').click(function () {
-    console.log("another")
-
-    $('#downloadall').prop('checked', $('.childCheckbox:checked').length === $('.childCheckbox').length);
+        $('#downloadall').prop('checked', $('.childCheckbox:checked').length === $('.childCheckbox').length);
 });
 
 $('#DeleteAll').click(function () {

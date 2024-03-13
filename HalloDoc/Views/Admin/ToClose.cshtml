@@ -3,8 +3,7 @@
 @{
     Layout = null;
 }
-
-<table class="table align-middle example">
+<table class="table align-middle example" id="SixTableContent">
     <thead class="thead-light bg-light">
         <tr>
             <td class="d-none"></td>
@@ -21,16 +20,9 @@
         </tr>
     </thead>
     <tbody id="datatable" class="bg-white">
-
-
-
         @foreach (var item in Model)
         {
-
-
-
             var color = "green-dot";
-
             switch (item.RequestType)
             {
                 case 1:
@@ -62,15 +54,13 @@
             <tr class="@color">
                 <td class="d-none">@item.RequestType</td>
                 <td class="d-none">@item.regionid</td>
-
                 <td scope="row">
                     <div class="d-flex justify-content-between ">
-
                         @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
                     </div>
                 </td>
                 <td>@item.PatientDOB.ToString("dd MMM,yyyy ")</td>
-                <td>@item.RegionNameById(item.regionidtoclose)</td>
+                <td>@item.RegionNameById(int.Parse(item.regionidtoclose))</td>
                 <td>@item.PhysicianName</td>
                 <td>@item.ProviderEmail</td>
                 <td>@item.PatientDOB</td>
@@ -112,7 +102,7 @@
                                 </button>
                             </li>
                             <li>
-                                <button class="dropdown-item text-secondary" value="@item.requestid">
+                                <button class="dropdown-item text-secondary closecasebtn" value="@item.requestid" id="@item.requestid">
                                     <i class="bi bi-x-circle"></i>
                                     Close Case
                                 </button>
@@ -124,7 +114,7 @@
                                 </button>
                             </li>
                             <li>
-                                <button class="dropdown-item text-secondary canclebtn" id="@item.requestid" data-toggle="modal" data-target="#ClearModal">
+                                <button class="dropdown-item text-secondary cancelbtn" id="@item.requestid" data-toggle="modal" data-target="#ClearModal">
                                     <i class="bi bi-view-list me-2"></i>
                                     Clear Case
                                 </button>
@@ -135,12 +125,10 @@
                                     Encounter
                                 </button>
                             </li>
-
                         </ul>
                     </div>
                 </td>
             </tr>
-
         }
     </tbody>
 </table>
@@ -148,8 +136,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="~/js/Admin/SixTabChildContent.js"> </script>
+<script>
 
-@* 
+    $('.closecasebtn').on('click', function (e) {
+        console.log("requestid")
+        var requestid = $(this).attr('id');
+        $.ajax({
+            url: '/Admin/CloseCase',
+            type: 'GET',
+            data: { requestid: requestid },
+            success: function (response) {
+                $('#nav-home').html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error("error");
+            }
+        });
+    });
+</script>
+@*
 <script>
     // var table = $('#example').DataTable({ dom: 'lrtip' });
     // $('input[type="search"]').on('keyup', function () {

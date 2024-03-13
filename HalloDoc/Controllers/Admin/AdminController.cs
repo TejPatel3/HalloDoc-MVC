@@ -349,7 +349,7 @@ namespace HalloDoc.Controllers.Admin
 
         //************************************** Action DropDown Modals methods ************************************//
 
-        public IActionResult CancleCase(string confirmation)
+        public IActionResult cancelCase(string confirmation)
         {
             var req = _context.Requests.FirstOrDefault(m => m.ConfirmationNumber == confirmation);
             req.Status = 3;
@@ -380,15 +380,15 @@ namespace HalloDoc.Controllers.Admin
         [HttpPost]
         public IActionResult AssignCase(int id, AdminRequestViewModel assignnote, string physicianname)
         {
-            var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
-            var physiciandetail = _context.Physicians.FirstOrDefault(p => p.FirstName + p.LastName == physicianname);
-            req.Status = 2;
-            req.PhysicianId = physiciandetail.PhysicianId;
-            _context.Requests.Update(req);
-            _context.SaveChanges();
-            var adminid = HttpContext.Session.GetInt32("UserId");
+            //var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
+            //var physiciandetail = _context.Physicians.FirstOrDefault(p => p.FirstName + p.LastName == physicianname);
+            //req.Status = 2;
+            //req.PhysicianId = physiciandetail.PhysicianId;
+            //_context.Requests.Update(req);
+            //_context.SaveChanges();
+            //var adminid = HttpContext.Session.GetInt32("UserId");
 
-            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, adminid, physiciandetail.PhysicianId);
+            //_addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, adminid, physiciandetail.PhysicianId);
             TempData["success"] = "Request auccessfully Assigned..!";
             return RedirectToAction("AdminDashboard");
         }
@@ -475,10 +475,10 @@ namespace HalloDoc.Controllers.Admin
             string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
 
             var requestid = EncryptionDecryption.EncryptStringToBase64_Aes(reqid.ToString(), key, iv);
-            string AgreementPath = Url.Action("SendAgreement", "Admin", new { id = requestid });
+            string AgreementPath = Url.Action("ReviewAgreement", "Admin", new { id = requestid });
             return baseUrl + AgreementPath;
         }
-        public IActionResult SendAgreement(string id)
+        public IActionResult ReviewAgreement(string id)
         {
             var viewModel = new AdminRequestViewModel();
             var requestid = int.Parse(EncryptionDecryption.DecryptStringFromBase64_Aes(id, key, iv));
@@ -517,6 +517,32 @@ namespace HalloDoc.Controllers.Admin
             _context.SaveChanges();
             _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(requestid);
             return RedirectToAction("PatientDashboard", "Dashboard");
+        }
+
+        public List<AdminDashboardTableDataViewModel> ExportAllDownload()
+        {
+            var data = _adminDashboardDataTable.GetDataForExportAll();
+            return data;
+        }
+        public IActionResult AdminProfile()
+        {
+            return View();
+        }
+        [HttpGet]
+        public IActionResult CloseCase(int requestid)
+        {
+            var requestclient = _context.RequestClients.FirstOrDefault(m => m.RequestId == requestid);
+            var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
+            var wisefiles = _context.RequestWiseFiles.ToList();
+
+            var datamodel = new ViewUploadViewModel
+            {
+                FirstName = requestclient.FirstName,
+                LastName = requestclient.LastName,
+                ConfirmationNumber = request.ConfirmationNumber,
+                wiseFiles = wisefiles,
+            };
+            return View(datamodel);
         }
     }
 }

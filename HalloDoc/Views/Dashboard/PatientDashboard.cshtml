@@ -212,7 +212,7 @@
 
                             <div class="d-flex d-none justify-content-end " id="hiddenBlock">
                                 <button type="submit" class="btn btn-info me-3" id="savebtn">Save</button>
-                                <a class="btn btn-info " id="canclebtn">Cancle</a>
+                                <a class="btn btn-info " id="cancelbtn">cancel</a>
                             </div>
                         </div>
                     </form>
@@ -244,7 +244,7 @@
     });
 
     $(document).ready(function () {
-        $('#canclebtn').click(function () {
+        $('#cancelbtn').click(function () {
             $('input[type="text"]').prop('disabled', true);
             $('input[type="date"]').prop('disabled', true);
             $('input[type="tel"]').prop('disabled', true);

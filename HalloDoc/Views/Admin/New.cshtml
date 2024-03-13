@@ -203,21 +203,20 @@
                 </div>
             </div>
         </div>
-
     }
 </div>
 
 
 
-<div class="d-none d-sm-block p-0 m-0  table-responsive">
+<div class="d-none d-sm-block p-0 m-0  table-responsive" >
 
-    <table class="table align-middle small example">
+    <table class="table align-middle small example" id="SixTableContent">
         <thead class="thead-light bg-light">
 
             <tr>
 
-                <th class="d-none"></th>
-                <th class="d-none"></th>
+                <th class="d-none">request Type</th>
+                <th class="d-none">Request Id</th>
                 <th scope="col">Name</th>
 
                 <th scope="col">Date Of Birth</th>
@@ -340,21 +339,21 @@
                             <input type="hidden" asp-for="@item.requestid" value="@item.requestid" />
                             <ul class="dropdown-menu">
                                 <li>
-                                    <button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary canclebtn" data-toggle="modal" data-target="#AssignModal">
+                                    <button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary cancelbtn" data-toggle="modal" data-target="#AssignModal">
                                         <i class="fa-regular fa-rectangle-list me-2"></i>
                                         Assign case
                                     </button>
                                 </li>
 
                                 <li>
-                                    <button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary canclebtn" data-toggle="modal" data-target="#exampleModal">
+                                    <button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary cancelbtn" data-toggle="modal" data-target="#exampleModal">
                                         <i class="fa-regular fa-circle-xmark me-2"></i>
                                         Cancel case
                                     </button>
                                 </li>
                                 <li><button class="dropdown-item text-secondary viewCase" value="@item.requestid"><i class="bi bi-view-list me-2"></i>View case</button></li>
                                 <li><button class="dropdown-item text-secondary viewNotes" value="@item.requestid"><i class="fa-solid fa-book-journal-whills me-2"></i>View Notes </button> </li>
-                                <li><button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary canclebtn" data-toggle="modal" data-target="#BlockModal"><i class="fa-solid fa-ban me-2"></i>Block Patients</button></li>
+                                <li><button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary cancelbtn" data-toggle="modal" data-target="#BlockModal"><i class="fa-solid fa-ban me-2"></i>Block Patients</button></li>
                             </ul>
                         </div>
                     </td>
@@ -409,7 +408,7 @@
             });
         });
 
-        $('.canclebtn').on('click', function (e) {
+        $('.cancelbtn').on('click', function (e) {
 
             var name = $(this).attr('value');
             console.log(name)

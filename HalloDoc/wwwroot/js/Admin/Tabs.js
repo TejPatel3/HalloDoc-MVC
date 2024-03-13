@@ -12,7 +12,7 @@ $(document).ready(function () {
                 secondDropdown.empty(); // Clear existing options
                 secondDropdown.append($('<option>', {
                     hidden: "hidden",
-                    value: "invalid",
+                    value: "",
                     text: "Select Physician"
                 }))
                 $.each(data, function (index, item) {

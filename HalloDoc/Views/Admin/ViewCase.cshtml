@@ -155,7 +155,7 @@
                 {
 
                     <div class="mx-1">
-                        <button type="button" id="@Model.requestId" value="@Model.FirstName + @Model.LastName" class="btn bg-info text-white sub rounded-2 px-2 py-2 canclebtn" data-toggle="modal" data-target="#AssignModal">Assign case</button>
+                        <button type="button" id="@Model.requestId" value="@Model.FirstName + @Model.LastName" class="btn bg-info text-white sub rounded-2 px-2 py-2 cancelbtn" data-toggle="modal" data-target="#AssignModal">Assign case</button>
 
                     </div>
                 }
@@ -163,7 +163,7 @@
                     <button type="button" class="btn text-white bg-info rounded-2 px-2 py-2 viewNotes" value="@Model.requestId">View Notes </button>
                 </div>
                 <div class="mx-1">
-                    <button type="button" value="@Model.FirstName @Model.LastName" class="btn  text-white sub rounded-2 px-2 py-2 bg-danger canclebtn" data-toggle="modal" data-target="#exampleModal">Cancel case</button>
+                    <button type="button" value="@Model.FirstName @Model.LastName" class="btn  text-white sub rounded-2 px-2 py-2 bg-danger cancelbtn" data-toggle="modal" data-target="#exampleModal">Cancel case</button>
 
 
                 </div>
@@ -186,7 +186,7 @@
 <script>
     $(document).ready(function () {
 
-        $('.canclebtn').on('click', function (e) {
+        $('.cancelbtn').on('click', function (e) {
             var name = $(this).attr('value');
             console.log(name)
             $('.pname').html(name);

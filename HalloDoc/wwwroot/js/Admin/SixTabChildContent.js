@@ -29,7 +29,7 @@
         });
     });
 
-    $('.canclebtn').on('click', function (e) {
+    $('.cancelbtn').on('click', function (e) {
         var name = $(this).attr('value');
         console.log(name)
         $('.pname').html(name);
@@ -190,6 +190,23 @@ $('.sendAgreementBtn').on('click', function (e) {
         data: { reqid: requestid },
         success: function (response) {
             
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
+});
+
+
+$('.closecasebtn').on('click', function (e) {
+    var requestid = $(this).attr('id');
+    console.log(requestid)
+    $.ajax({
+        url: '/Admin/CloseCase',
+        type: 'GET',
+        data: { requestid: requestid },
+        success: function (response) {
+            $('#nav-home').html(response);
         },
         error: function (xhr, status, error) {
             console.error(error);

@@ -5,7 +5,7 @@
     Layout = null;
 }
 
-<table class="table align-middle example">
+<table class="table align-middle example" id="SixTableContent">
     <thead class="thead-light bg-light">
         <tr>
             <td class="d-none"></td>
@@ -160,19 +160,19 @@
                                 </button>
                             </li>
                             <li>
-                                <button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary canclebtn" data-toggle="modal" data-target="#TransferModal">
+                                <button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary cancelbtn" data-toggle="modal" data-target="#TransferModal">
                                     <i class="bi bi-view-list me-2"></i>
                                     Transfer
                                 </button>
                             </li>
                             <li>
-                                <button type="button" class="dropdown-item text-secondary canclebtn" id="@item.requestid" data-toggle="modal" data-target="#ClearModal">
+                                <button type="button" class="dropdown-item text-secondary cancelbtn" id="@item.requestid" data-toggle="modal" data-target="#ClearModal">
                                     <i class="bi bi-view-list me-2"></i>
                                     Clear Case
                                 </button>
                             </li>
                             <li>
-                                <button type="button" class="dropdown-item text-secondary canclebtn SendAgreementModal" value="@item.RequestType" id="@item.requestid" data-toggle="modal" data-target="#AgreementModal">
+                                <button type="button" class="dropdown-item text-secondary cancelbtn SendAgreementModal" value="@item.RequestType" id="@item.requestid" data-toggle="modal" data-target="#AgreementModal">
                                     <i class="bi bi-view-list me-2"></i>
                                     Send Agreement
                                 </button>
@@ -284,7 +284,7 @@
 
 
    
-        $('.canclebtn').on('click', function (e) {
+        $('.cancelbtn').on('click', function (e) {
             var name = $(this).attr('value');
             $('.pname').html(name);
             var reqid = $(this).attr('id');

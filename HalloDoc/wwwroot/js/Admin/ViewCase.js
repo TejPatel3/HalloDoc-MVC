@@ -2,7 +2,7 @@
 
 console.log("helo");
 
-    $('.canclebtn').on('click', function (e) {
+    $('.cancelbtn').on('click', function (e) {
         var name = $(this).attr('value');
         console.log(name)
         $('.pname').html(name);
