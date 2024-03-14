@@ -49,7 +49,7 @@ namespace HalloDoc.Controllers.Admin
             else if (num == 0)
             {
                 var admin = _context.Admins.FirstOrDefault(m => m.Email == req.Email);
-                HttpContext.Session.SetInt32("UserId", admin.AdminId);
+                HttpContext.Session.SetInt32("AdminId", admin.AdminId);
                 HttpContext.Session.SetString("AdminName", $"{admin.FirstName} {admin.LastName}");
                 TempData["success"] = "Login Successful...!";
                 TempData["user"] = admin.FirstName;
@@ -76,6 +76,16 @@ namespace HalloDoc.Controllers.Admin
         public IActionResult AdminForgotPassword()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult ResetPassword(string email, string password)
+        {
+            var adiminid = HttpContext.Session.GetInt32("AdminId");
+            var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Email == email);
+            aspnetuser.PasswordHash = password;
+            _context.AspNetUsers.Update(aspnetuser);
+            _context.SaveChanges();
+            return RedirectToAction("AdminProfile", "Admin");
         }
     }
 }

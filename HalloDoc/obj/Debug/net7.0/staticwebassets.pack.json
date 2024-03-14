@@ -129,6 +129,10 @@
       "PackagePath": "staticwebassets\\js\\Admin\\AdminDashboard.js"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\CloseCase.js",
+      "PackagePath": "staticwebassets\\js\\Admin\\CloseCase.js"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ExportDataInExcle.js",
       "PackagePath": "staticwebassets\\js\\Admin\\ExportDataInExcle.js"
     },

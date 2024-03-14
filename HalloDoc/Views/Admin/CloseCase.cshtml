@@ -1,33 +1,21 @@
 ﻿@using Services.ViewModels
 @model ViewUploadViewModel
-
+<Partial name="Toast" />
 
 @{
-    Layout = "_Admin";
+    Layout = null;
 }
-<div class="container bg-light">
-    <div class="d-flex justify-content-between align-items-center w-100 my-3">
-        <h4>Close Case</h4>
-        <a asp-controller="Admin" asp-action="AdminDashboard"
+<input class="CloseCaseRequestid" value="@Model.requestid" />
+<div class="container  pt-3 pb-4">
+
+    <div class="d-flex justify-content-between mb-2">
+        <h4>Documents</h4>
+        <a asp-action="AdminDashboard"
            class="btn m-0 btn-outline-info  px-2 ">
             <i class="fa-solid fa-chevron-left"></i>
             Back
         </a>
     </div>
-    <div class="container-fluid bg-white">
-        <div >
-            <div class="d-flex justify-content-between">
-                <div>
-
-                <small class="text-secondary small" style="font-size:12px">Confirmation Number</small>
-                <h5 class="text-info">ConfirmationNumber</h5>
-                </div>
-                <button class="btn btn-outline-info">Create Invoice Through Quickbooks</button>
-            </div>
-            <h4 class="mt-3">Documents</h4>
-        </div>
-    </div>
-
     <div class="container-fluid bg-white shadow px-3 pt-3">
         <div class="row">
             <div class="col-12  text-secondary " style="font-size:15px;">Patient Name</div>
@@ -41,102 +29,146 @@
             </div>
 
             <div class="col-12  text-secondary pt-2" style="font-size:13px;">Check here for any files that you or the doctors of your subsequenc requests have attached for you to review</div>
-            <div class="mt-1">
-                @* <form enctype="multipart/form-data">
-                <div class="row d-flex">
-                <div class="py-2 col-12 ">
-                <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
-                <div class="px-3 table-responsive">
-                <input type="file" id="actual-btn" multiple hidden asp-for="Upload" />
-                <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-dark text-nowrap">No item selected</label>
+
+
+            <div class="d-flex justify-content-between  pt-3">
+                <div>
+                    <h5>Documents</h5>
+
                 </div>
-                <button type="button" id="uploadBtnAdmin" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
-                <label role="button" class="d-flex align-items-center"><i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div></label>
-                </button>
+
+            </div>
+            @if (Model.wiseFiles.Count() != 0)
+            {
+                
+            <div class="table-responsive mt-2">
+
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Documents</th>
+                            <th scope="col">Upload Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.wiseFiles)
+                        {
+
+                            <tr>
+                                <td>@item.FileName.Substring(52)</td>
+                                <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
+                                <td>
+                                    <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
+
+                                        <i class="bi bi-cloud-arrow-down "></i>
+                                    </a>
+
+
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
                 </div>
-                </div>
-                </div>
-                </form> *@
-                <form>
-                    <div class="row d-flex mt-3">
-                        <div class="py-2 col-12 ">
-                            <div class="form-group rounded d-flex align-items-center justify-content-between border border-2 uploadbtndiv">
-                                <div class="px-3 table-responsive w-100">
-                                    <input type="file" id="actual-btn" asp-for="Upload" multiple hidden />
-                                    <input type="text" class="RequestsId" value="@Model.requestid" hidden />
-                                    <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-nowrap text-secondary w-100">No item selected</label>
+            }
+            else
+            {
+                <span class="text-secondary mb-2">No Document Uploaded</span>
+            }
+            <div class="container-fluid px-0 pt-2">
+                <div class="row px-3">
+                    <h5>Patien Inforrmation</h5>
+                    <div class="col-12 col-sm-6 form-floating mb-3 ">
+                        <input type="text" asp-for="FirstName"
+                               class="form-control"
+                               placeholder="Username"
+                               aria-label="Username" disabled />
+                        <label class="d-flex justify-content-between ms-2">First Name </label>
+                    </div>
+                    <div class="col-12 col-sm-6 form-floating mb-3">
+
+                        <input type="text" asp-for="LastName"
+                               class="form-control"
+                               placeholder="Username"
+                               aria-label="Username" disabled />
+                        <label class="d-flex justify-content-between ms-2">Last name</label>
+                        @* <span asp-validation-for="LastName" class="text-danger"></span> *@
+                    </div>
+                    <div class="col-12 col-sm-6 form-floating mb-3">
+                        @{
+                            string max = DateTime.Now.ToString("yyyy-MM-dd");
+                        }
+                        <input type="date" asp-for="DOB"
+                               class="form-control pt-4 ms-1"
+                               placeholder="Username"
+                               aria-label="Username" max=@max disabled />
+                        <label class="d-flex justify-content-between ms-3 m-0">Birth Date</label>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="col-12 col-sm-6 d-flex mb-3">
+                        <div class="container-fluid p-0 m-0">
+
+                            <div class="row">
+
+                                <div class="col-sm-8 col-lg-10 col-8 form-floating ">
+                                    <input id="phone" asp-for="PhoneNumber"
+                                           type="tel" class="form-control viewcasephone"
+                                           style=" padding: 16px 2% 16px 50px; " disabled />
+
+                                    <span class="text-danger" asp-validation-for="PhoneNumber"></span>
                                 </div>
-                                <button type="button" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
-                                    <label role="button" class="d-flex align-items-center">
-                                        <i class="bi bi-cloud-arrow-up p-2"></i>
-                                        <div>Upload</div>
-                                    </label>
-                                </button>
+
+                                <div class="col-sm-4 col-lg-2 col-4 form-floating ">
+                                    <a class="btn btn-outline-info w-100 h-100 d-flex justify-content-center align-items-center" href="https://www.google.com/maps/">
+                                        <i class="bi bi-telephone fa-lg"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </form>
+
+                    <div class="col-12 col-sm-6 form-floating mb-3">
+                        <input type="email" asp-for="Email"
+                               class="form-control" id="ViewCasePatientEmail"
+                               placeholder="Username" onblur="checkEmailExists()" disabled />
+                        <label class="d-flex justify-content-between ms-2">Email </label>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="justify-content-end d-flex mt-4 pb-3 pe-3" id="edit-close-closecase">
+
+                        <div class="mx-1">
+                            <button type="button" class="btn btn-info shadow-none text-white py-2 px-4" id="closecase-edit">
+                                Edit
+                            </button>
+                        </div>
+                        <div class="mx-1">
+                            <button type="button" class="btn btn-outline-info shadow-none  py-2" id="closecase-CloseCase">
+                                Close Case
+                            </button>
+                        </div>
+
+
+                    </div>
+                    <div class="justify-content-end d-flex mt-4 d-none pb-3 pe-3" id="save-cancel-closecase">
+                        <div class="mx-1">
+                            <button type="button" class="btn btn-info shadow-none text-white py-2 px-4" id="closecase-save">
+                                Save
+                            </button>
+                        </div>
+                        <div class="mx-1">
+                            <button type="button" class="btn btn-outline-info shadow-none  py-2 px-4" id="closecase-cancel">
+                                Cancel
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
+
         </div>
-
-        <div class="d-flex justify-content-between mb-2 pt-3">
-            <div>
-                <h5>Documents</h5>
-
-            </div>
-            <div>
-
-                <button onclick="download()" type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none">
-                    Download all
-                </button>
-                <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="DeleteAll">
-                    Delete All
-                </button>
-                <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="sendMail">
-                    Send Mail
-                </button>
-            </div>
-        </div>
-
-        <div class="table-responsive">
-
-            <table class="table">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col"><input type="checkbox" id="downloadall" /></th>
-                        <th scope="col">Documents</th>
-                        <th scope="col">Upload Date</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.wiseFiles)
-                    {
-
-                        <tr>
-                            <td scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" id="@item.RequestWiseFileId" /></td>
-                            <td>@item.FileName.Substring(52)</td>
-                            <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
-                            <td>
-                                <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
-
-                                    <i class="bi bi-cloud-arrow-down "></i>
-                                </a>
-
-                                <div class=" btn btn-outline-info DeleteDoc" id="@item.RequestWiseFileId">
-
-                                    <i class="bi bi-trash  "></i>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-
-                </tbody>
-            </table>
-        </div>
-
-
     </div>
-
-
 </div>
+<script src="~/js/Admin/CloseCase.js" asp-append-version="true"> </script>

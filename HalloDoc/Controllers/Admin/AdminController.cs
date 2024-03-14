@@ -1,10 +1,12 @@
 ﻿using HalloDoc.DataContext;
 using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
 using Services.Implementation;
 using Services.ViewModels;
 using System.Collections;
+using System.Globalization;
 using System.Net;
 using System.Net.Mail;
 
@@ -67,7 +69,7 @@ namespace HalloDoc.Controllers.Admin
         //    req.PhysicianId = physiciandetail.PhysicianId;
         //    _context.Requests.Update(req);
         //    _context.SaveChanges();
-        //    var adminid = HttpContext.Session.GetInt32("UserId");
+        //    var adminid = HttpContext.Session.GetInt32("AdminId");
 
 
         //    _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, physiciandetail.PhysicianId, physiciandetail.PhysicianId);
@@ -371,7 +373,7 @@ namespace HalloDoc.Controllers.Admin
             }
             _context.Requests.Update(req);
             _context.SaveChanges();
-            var adminid = HttpContext.Session.GetInt32("UserId");
+            var adminid = HttpContext.Session.GetInt32("AdminId");
             _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, cancelnote.BlockNotes, adminid);
             TempData["success"] = "Request Canceled Successfully..!";
             return RedirectToAction("AdminDashboard");
@@ -386,7 +388,7 @@ namespace HalloDoc.Controllers.Admin
             //req.PhysicianId = physiciandetail.PhysicianId;
             //_context.Requests.Update(req);
             //_context.SaveChanges();
-            //var adminid = HttpContext.Session.GetInt32("UserId");
+            //var adminid = HttpContext.Session.GetInt32("AdminId");
 
             //_addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, adminid, physiciandetail.PhysicianId);
             TempData["success"] = "Request auccessfully Assigned..!";
@@ -410,7 +412,7 @@ namespace HalloDoc.Controllers.Admin
                 _context.Requests.Update(request);
                 _context.SaveChanges();
             }
-            var adminid = HttpContext.Session.GetInt32("UserId");
+            var adminid = HttpContext.Session.GetInt32("AdminId");
             _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, null, adminid);
             return RedirectToAction("AdminDashboard");
         }
@@ -524,25 +526,81 @@ namespace HalloDoc.Controllers.Admin
             var data = _adminDashboardDataTable.GetDataForExportAll();
             return data;
         }
-        public IActionResult AdminProfile()
-        {
-            return View();
-        }
+
         [HttpGet]
         public IActionResult CloseCase(int requestid)
         {
             var requestclient = _context.RequestClients.FirstOrDefault(m => m.RequestId == requestid);
             var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
-            var wisefiles = _context.RequestWiseFiles.ToList();
+            var wisefiles = _context.RequestWiseFiles.ToList().Where(m => m.IsDeleted == null && m.RequestId == requestid).ToList();
 
             var datamodel = new ViewUploadViewModel
             {
                 FirstName = requestclient.FirstName,
                 LastName = requestclient.LastName,
+                PhoneNumber = requestclient.PhoneNumber,
+                DOB = new DateTime(Convert.ToInt32(requestclient.IntYear), DateTime.ParseExact(requestclient.StrMonth, "MMM", CultureInfo.InvariantCulture).Month, Convert.ToInt32(requestclient.IntDate)),
+                Email = requestclient.Email,
                 ConfirmationNumber = request.ConfirmationNumber,
                 wiseFiles = wisefiles,
+                requestid = requestid,
             };
             return View(datamodel);
         }
+        public IActionResult EditCloseCaseInfo(ViewUploadViewModel model, int requestid)
+        {
+            if (model.Email != null)
+            {
+                var requestclient = _context.RequestClients.FirstOrDefault(m => m.RequestId == model.requestid);
+                requestclient.Email = model.Email;
+                requestclient.PhoneNumber = model.PhoneNumber;
+                _context.RequestClients.Update(requestclient);
+                _context.SaveChanges();
+                return RedirectToAction("CloseCase", new { requestid = model.requestid });
+            }
+            return RedirectToAction("CloseCase", new { requestid = requestid });
+
+        }
+        [HttpPost]
+        public IActionResult CloseCasebtn(int requestid)
+        {
+
+            var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
+            request.Status = 9;
+            var adminid = HttpContext.Session.GetInt32("AdminId");
+            //_addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(requestid, null, adminid);
+            //_context.Requests.Update(request);
+            //_context.SaveChanges();
+            return RedirectToAction("AdminDashboard");
+
+        }
+        public IActionResult AdminProfile()
+        {
+            var adminid = HttpContext.Session.GetInt32("AdminId");
+            var admin = _context.Admins.FirstOrDefault(m => m.AdminId == adminid);
+            var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == admin.AspNetUserId);
+            var rolelist = _context.AspNetRoles.ToList();
+            var regionlist = _context.Regions.ToList();
+            var model = new UserAllDataViewModel
+            {
+                UserName = aspnetuser.UserName,
+                password = aspnetuser.PasswordHash,
+                status = admin.Status,
+                role = rolelist,
+                firstname = admin.FirstName,
+                lastname = admin.LastName,
+                email = admin.Email,
+                confirmationemail = admin.Email,
+                phonenumber = admin.Mobile,
+                regionlist = regionlist,
+                address1 = admin.Address1,
+                address2 = admin.Address2,
+                city = admin.City,
+                zip = admin.Zip,
+                alterphonenumber = admin.AltPhone,
+            };
+            return View(model);
+        }
+
     }
 }

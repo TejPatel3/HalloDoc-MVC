@@ -25,7 +25,7 @@ namespace Services.Implementation
                 {
                     return 2;
                 }
-                else if (!_context.AspNetUsers.Where(user => user.PasswordHash == req.PasswordHash).Any())
+                else if (!_context.AspNetUsers.Where(user => user.PasswordHash == req.PasswordHash && user.Email == req.Email).Any())
                 {
                     return 3;
                 }

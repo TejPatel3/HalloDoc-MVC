@@ -14,6 +14,12 @@ namespace Services.ViewModels
 
         public String LastName { get; set; }
 
+        public String Email { get; set; }
+
+        public DateTime DOB { get; set; }
+
+        public string PhoneNumber { get; set; }
+
         public int requestid { get; set; }
 
         [Required]
