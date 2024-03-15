@@ -5,7 +5,7 @@
 @{
     Layout = null;
 }
-<input class="CloseCaseRequestid" value="@Model.requestid" />
+<input class="CloseCaseRequestid" value="@Model.requestid" hidden />
 <div class="container  pt-3 pb-4">
 
     <div class="d-flex justify-content-between mb-2">
@@ -40,133 +40,139 @@
             </div>
             @if (Model.wiseFiles.Count() != 0)
             {
-                
-            <div class="table-responsive mt-2">
 
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Documents</th>
-                            <th scope="col">Upload Date</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.wiseFiles)
-                        {
+                <div class="table-responsive mt-2">
 
+                    <table class="table">
+                        <thead class="thead-light">
                             <tr>
-                                <td>@item.FileName.Substring(52)</td>
-                                <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
-                                <td>
-                                    <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
-
-                                        <i class="bi bi-cloud-arrow-down "></i>
-                                    </a>
-
-
-                                </td>
+                                <th scope="col">Documents</th>
+                                <th scope="col">Upload Date</th>
+                                <th scope="col">Action</th>
                             </tr>
-                        }
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.wiseFiles)
+                            {
 
-                    </tbody>
-                </table>
+                                <tr>
+                                    <td>@item.FileName.Substring(52)</td>
+                                    <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
+                                    <td>
+                                        <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
+
+                                            <i class="bi bi-cloud-arrow-down "></i>
+                                        </a>
+
+
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
                 </div>
             }
             else
             {
                 <span class="text-secondary mb-2">No Document Uploaded</span>
             }
-            <div class="container-fluid px-0 pt-2">
-                <div class="row px-3">
-                    <h5>Patien Inforrmation</h5>
-                    <div class="col-12 col-sm-6 form-floating mb-3 ">
-                        <input type="text" asp-for="FirstName"
-                               class="form-control"
-                               placeholder="Username"
-                               aria-label="Username" disabled />
-                        <label class="d-flex justify-content-between ms-2">First Name </label>
-                    </div>
-                    <div class="col-12 col-sm-6 form-floating mb-3">
+            <form>
+                <div class="container-fluid px-0 pt-2">
+                    <div class="row px-3">
+                        <h5>Patien Inforrmation</h5>
+                        <div class="col-12 col-sm-6 form-floating mb-3 ">
+                            <input type="text" asp-for="FirstName"
+                                   class="form-control"
+                                   placeholder="Username"
+                                   aria-label="Username" disabled />
+                            <label class="d-flex justify-content-between ms-2">First Name </label>
+                        </div>
+                        <div class="col-12 col-sm-6 form-floating mb-3">
 
-                        <input type="text" asp-for="LastName"
-                               class="form-control"
-                               placeholder="Username"
-                               aria-label="Username" disabled />
-                        <label class="d-flex justify-content-between ms-2">Last name</label>
-                        @* <span asp-validation-for="LastName" class="text-danger"></span> *@
-                    </div>
-                    <div class="col-12 col-sm-6 form-floating mb-3">
-                        @{
-                            string max = DateTime.Now.ToString("yyyy-MM-dd");
-                        }
-                        <input type="date" asp-for="DOB"
-                               class="form-control pt-4 ms-1"
-                               placeholder="Username"
-                               aria-label="Username" max=@max disabled />
-                        <label class="d-flex justify-content-between ms-3 m-0">Birth Date</label>
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="col-12 col-sm-6 d-flex mb-3">
-                        <div class="container-fluid p-0 m-0">
+                            <input type="text" asp-for="LastName"
+                                   class="form-control"
+                                   placeholder="Username"
+                                   aria-label="Username" disabled />
+                            <label class="d-flex justify-content-between ms-2">Last name</label>
+                            @* <span asp-validation-for="LastName" class="text-danger"></span> *@
+                        </div>
+                        <div class="col-12 col-sm-6 form-floating mb-3">
+                            @{
+                                string max = DateTime.Now.ToString("yyyy-MM-dd");
+                            }
+                            <input type="date" asp-for="DOB"
+                                   class="form-control pt-4 ms-1"
+                                   placeholder="Username"
+                                   aria-label="Username" max=@max disabled />
+                            <label class="d-flex justify-content-between ms-3 m-0">Birth Date</label>
+                            <span class="text-danger"></span>
+                        </div>
 
-                            <div class="row">
 
-                                <div class="col-sm-8 col-lg-10 col-8 form-floating ">
-                                    <input id="phone" asp-for="PhoneNumber"
-                                           type="tel" class="form-control viewcasephone"
-                                           style=" padding: 16px 2% 16px 50px; " disabled />
+                        <div class="col-12 col-sm-6 d-flex mb-3">
+                            <div class="container-fluid p-0 m-0">
 
-                                    <span class="text-danger" asp-validation-for="PhoneNumber"></span>
-                                </div>
+                                <div class="row">
 
-                                <div class="col-sm-4 col-lg-2 col-4 form-floating ">
-                                    <a class="btn btn-outline-info w-100 h-100 d-flex justify-content-center align-items-center" href="https://www.google.com/maps/">
-                                        <i class="bi bi-telephone fa-lg"></i>
-                                    </a>
+                                    <div class="col-sm-8 col-lg-10 col-8 form-floating ">
+                                        <input id="phone" asp-for="PhoneNumber"
+                                               type="tel" class="form-control viewcasephone"
+                                               style=" padding: 16px 2% 16px 50px; " disabled />
+
+                                        <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                                    </div>
+
+                                    <div class="col-sm-4 col-lg-2 col-4 form-floating ">
+                                        <a class="btn btn-outline-info w-100 h-100 d-flex justify-content-center align-items-center" href="https://www.google.com/maps/">
+                                            <i class="bi bi-telephone fa-lg"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-12 col-sm-6 form-floating mb-3">
-                        <input type="email" asp-for="Email"
-                               class="form-control" id="ViewCasePatientEmail"
-                               placeholder="Username" onblur="checkEmailExists()" disabled />
-                        <label class="d-flex justify-content-between ms-2">Email </label>
-                        <span class="text-danger"></span>
-                    </div>
-                    <div class="justify-content-end d-flex mt-4 pb-3 pe-3" id="edit-close-closecase">
 
-                        <div class="mx-1">
-                            <button type="button" class="btn btn-info shadow-none text-white py-2 px-4" id="closecase-edit">
-                                Edit
-                            </button>
+
+                        <div class="col-12 col-sm-6 form-floating mb-3">
+                            <input type="email" asp-for="Email"
+                                   class="form-control" id="ViewCasePatientEmail"
+                                   placeholder="Username" onblur="checkEmailExists()" disabled />
+                            <label class="d-flex justify-content-between ms-2">Email </label>
+                            <span class="text-danger"></span>
                         </div>
-                        <div class="mx-1">
-                            <button type="button" class="btn btn-outline-info shadow-none  py-2" id="closecase-CloseCase">
-                                Close Case
-                            </button>
+                        <div class="justify-content-end d-flex mt-4 pb-3 pe-3" id="edit-close-closecase">
+
+                            <div class="mx-1">
+                                <button type="button" class="btn btn-info shadow-none text-white py-2 px-4" id="closecase-edit">
+                                    Edit
+                                </button>
+                            </div>
+                            <div class="mx-1">
+                                <button type="button" class="btn btn-outline-info shadow-none  py-2" id="closecase-CloseCase">
+                                    Close Case
+                                </button>
+                            </div>
+
+
                         </div>
+                        <div class="justify-content-end d-flex mt-4 d-none pb-3 pe-3" id="save-cancel-closecase">
+                            <div class="mx-1">
+                                <button type="button" class="btn btn-info shadow-none text-white py-2 px-4" id="closecase-save">
+                                    Save
+                                </button>
+                            </div>
+                            <div class="mx-1">
+                                <button type="reset" class="btn btn-outline-info shadow-none  py-2 px-4" id="closecase-cancel">
+                                    Cancel
+                                </button>
+                            </div>
 
 
-                    </div>
-                    <div class="justify-content-end d-flex mt-4 d-none pb-3 pe-3" id="save-cancel-closecase">
-                        <div class="mx-1">
-                            <button type="button" class="btn btn-info shadow-none text-white py-2 px-4" id="closecase-save">
-                                Save
-                            </button>
                         </div>
-                        <div class="mx-1">
-                            <button type="button" class="btn btn-outline-info shadow-none  py-2 px-4" id="closecase-cancel">
-                                Cancel
-                            </button>
-                        </div>
-
-
                     </div>
                 </div>
-            </div>
+            </form>
 
         </div>
     </div>

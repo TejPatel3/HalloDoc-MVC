@@ -20,5 +20,6 @@ namespace Services.ViewModels
         public string state { get; set; }
         public string zip { get; set; }
         public string alterphonenumber { get; set; }
+        public List<AdminRegion> adminregionlist { get; set; }
     }
 }

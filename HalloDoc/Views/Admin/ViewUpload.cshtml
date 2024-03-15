@@ -111,9 +111,7 @@
 
                                     <i class="bi bi-cloud-arrow-down "></i>
                                 </a>
-
                                 <div class=" btn btn-outline-info DeleteDoc" id="@item.RequestWiseFileId">
-
                                     <i class="bi bi-trash  "></i>
                                 </div>
                             </td>
@@ -153,8 +151,8 @@
                 console.error('Error uploading files:', error);
             }
         });
-    }); *@ 
-@* 
+    }); *@
+@*
 <script>
 
     $(document).ready(function () {
@@ -299,13 +297,13 @@
 
             $('input[name="checkbox"]:checked').each(function () {
                 var wiseid = $(this).attr('id');
-          
+
             formData.append('wiseFileId', wiseid);
             });
 
             formData.append('reqid', @Model.requestid);
             console.log(formData);
-         
+
             $.ajax({
                 url: '/Admin/SendMail', // Replace with your controller action URL
                 type: 'POST',
@@ -333,7 +331,7 @@
     });
 
 
-    
+
 
                                     // var actualBtn = document.getElementById('actual-btn');
                                     // var fileChosen = document.getElementById('file-chosen');

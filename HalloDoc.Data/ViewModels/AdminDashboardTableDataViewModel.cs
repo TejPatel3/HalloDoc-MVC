@@ -18,7 +18,6 @@ namespace Services.ViewModels
         public int RequestType { get; set; }
         public string? PhysicianName { get; set; }
         public int? PhysicianId { get; set; }
-
         public int requestid { get; set; }
         public int? regionid { get; set; }
 

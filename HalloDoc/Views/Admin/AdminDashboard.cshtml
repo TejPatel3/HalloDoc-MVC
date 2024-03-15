@@ -95,7 +95,7 @@
             </div>
             <form asp-action="AssignCase" method="post">
                 <div class="modal-body">
-                    <input type="number" class="requestid" name="id" />
+                    <input type="number" class="requestid" name="id" hidden/>
 
                     <label class="my-2 text-secondary  fw-normal mb-3" style="font-size:12.8px">To Assign This Request, search and selectanother Physician</label>
                     <div class="form-floating">
@@ -186,7 +186,7 @@
             </div>
             <form asp-action="AssignCase" method="post">
                 <div class="modal-body">
-                    <input type="number" class="requestid" name="id" />
+                    <input type="number" class="requestid" name="id" hidden/>
                     <label class="my-2 text-secondary  fw-normal mb-3" style="font-size:12.8px">To Transfer This Request, search and selectanother Physician</label>
                     <div class="form-floating">
                         <select id="TransferModalFirstDropDownSelect" name="regionname" class="form-select form-select-lg  fs-6 SelectedRegionGivePhysicianList" aria-label=".form-select-lg example">
@@ -234,7 +234,7 @@
 
                         <img src="/images/alert.png" class="w-25 h-25 d-flex justify-content-center" />
                     </div>
-                    <input type="number" class="requestid" name="id" />
+                    <input type="number" class="requestid" name="id" hidden/>
 
                     <h4 class="d-flex justify-content-center">Confirmation For Clear Case</h4>
 
@@ -265,7 +265,7 @@
             <form asp-action="SendAgreementModal" method="post">
                 <div class="modal-body">
                     <i class="bi bi-circle-fill pe-1" id="requesttype-dot"></i><span id="requesttype-agreement"></span>
-                    <input type="number" class="requestid" name="id" />
+                    <input type="number" class="requestid" name="id" hidden/>
                     <br />
                     <small class="text-secondary">To Send Agreement please make sure you are updating the correct contact information below for the responsible party.</small>
                     <div class="form-floating py-2 p-0">

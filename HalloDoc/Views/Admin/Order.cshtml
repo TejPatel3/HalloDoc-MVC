@@ -87,7 +87,7 @@
                         <div class="p-2 col-xl-12">
                             <div class="form-floating">
                                 <div class="form-floating">
-                                    <textarea asp-for="OrderDetails" class="form-control shadow-none prescription"
+                                    <textarea  class="form-control shadow-none "
                                               placeholder="Prescription or Order Details"
                                               style="height: 100px"></textarea>
                                     <label for="floatingTextarea2">Prescription or Order Details</label>
@@ -165,7 +165,7 @@
 <script>
     $(document).ready(function () {
         $('.firstdropdown').change(function () {
-            debugger
+            debugger;
             var healthprofessionId = $(this).find(":selected").attr('itemid'); // This will get the id of the selected professional
             console.log(healthprofessionId);
             $.ajax({

@@ -41,19 +41,9 @@ namespace HalloDoc.Models.ViewModel
         [Compare("Password")]
         public string? ConfirmPassword { get; set; }
 
-        //[Column("strMonth")]
-        //[StringLength(20)]
-        //public string? StrMonth { get; set; }
-
-        //[Column("intYear")]
-        //public int? IntYear { get; set; }
-
-        //[Column("intDate")]
-        //public int? IntDate { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime? BirthDate { get; set; }
-
 
         [StringLength(50)]
         [Required(ErrorMessage = "Please enter your Email Address"), Display(Name = "Email Address")]
@@ -93,44 +83,6 @@ namespace HalloDoc.Models.ViewModel
         [RegularExpression(@"^[a-zA-Z0-9][a-zA-Z0-9 ]+$", ErrorMessage = "Use letters only please")]
         public string? Notes { get; set; }
 
-        //[StringLength(20)]
-        //public string? NotiMobile { get; set; }
-
-        //[StringLength(50)]
-        //public string? NotiEmail { get; set; }
-
-
-        //[Column(TypeName = "bit(1)")]
-        //public BitArray? IsMobile { get; set; }
-
-
-        //public short? CommunicationType { get; set; }
-
-        //public short? RemindReservationCount { get; set; }
-
-        //public short? RemindHouseCallCount { get; set; }
-
-        //public short? IsSetFollowupSent { get; set; }
-
-        //[Column("IP")]
-        //[StringLength(20)]
-        //public string? Ip { get; set; }
-
-        //public short? IsReservationReminderSent { get; set; }
-
-        //[Precision(9, 6)]
-        //public decimal? Latitude { get; set; }
-
-        //[Precision(9, 6)]
-        //public decimal? Longitude { get; set; }
-
-        //[ForeignKey("RegionId")]
-        //[InverseProperty("RequestClients")]
-        //public virtual Region? Region { get; set; }
-
-        //[ForeignKey("RequestId")]
-        //[InverseProperty("RequestClients")]
-        //public virtual Request Request { get; set; } = null!;
         public List<IFormFile?> Upload { get; set; }
     }
 }

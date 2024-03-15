@@ -37,7 +37,7 @@ console.log("helo");
         console.log("checked for view case edit btn")
         var requestid = $('.requestid').val();
         var email = $('#ViewCasePatientEmail').val();
-        var phoneNumber = $('#home').val();
+        var phoneNumber = $('#viewcasephone ').val();
         var confirmationNumber = $('#ViewCaseConfirmationNumber').val();
         console.log(email)
         console.log(phoneNumber)
@@ -47,6 +47,7 @@ console.log("helo");
             PhoneNumber: phoneNumber,
             ConfirmationNumber: confirmationNumber,
         };
+      
         console.log(ViewModel)
         $('input[type="email"]').attr('disabled', true);
         $('input[type="tel"]').attr('disabled', true);
@@ -67,8 +68,18 @@ console.log("helo");
     });
 
 
-//const phoneInputField = document.querySelector("#phone");
+//const phoneInputField = document.querySelector("#viewcasephone ");
 //const phoneInput = window.intlTelInput(phoneInputField, {
 //    utilsScript:
 //        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 
+var phoneInputField = document.querySelector("#viewcasephone ");
+var phoneInput = window.intlTelInput(phoneInputField, {
+    utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+var phoneInputField2 = document.querySelector("#viewcasephone ");
+var phoneInput = window.intlTelInput(phoneInputField2, {
+    utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
