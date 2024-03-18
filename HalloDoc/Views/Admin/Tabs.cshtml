@@ -94,20 +94,23 @@
         (<small class="innerhead-sm" id="statusnamehead" style="color:#203f98; "></small>)
     </div>
     <div class="d-flex h-25">
-        <div class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0  height-fit-content">
+        <button class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0  height-fit-content" data-toggle="modal" data-target="#SendLinkModal">
+
             <i class="fa-regular fa-paper-plane  " style="color: #ffffff; "></i>
             <small class="text-white d-none d-md-inline ps-1">Send Link</small>
-        </div>
+        </button>
 
-        <div class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0 height-fit-content">
+        <div class="btn btn-info d-flex align-items-center   rounded-3 me-1 py-1  px-2  text-white  border-0 height-fit-content">
+            <a asp-controller="Admin" asp-action="CreatePatientRequest" class="text-decoration-none p-0  m-0">
 
-            <i class="fa-solid fa-file-pen  " style="color: #ffffff;"></i>
-            <small class="text-white d-none d-md-inline ps-1"> Create Request</small>
+                <i class="fa-solid fa-file-pen" style="color: #ffffff; padding:5px 0 5px 0"></i>
+                <small class="text-white d-none d-md-inline ps-1"> Create Request</small>
+            </a>
         </div>
 
         <button class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0 height-fit-content download" data-table="SixTableContent">
-@*             <button class="download bg-info border-0 text-white p-0" data-table="SixTableContent">
- *@
+            @*             <button class="download bg-info border-0 text-white p-0" data-table="SixTableContent">
+            *@
             <i class="fa-solid fa-share  " style="color: #ffffff;"></i>
             <small class="text-white d-none d-md-inline ps-1">Export</small>
             @* </button> *@
@@ -128,7 +131,7 @@
 </div>
 
 <div class="container-fluid mt-3 ">
-    <div class="row mx-1 bg-white d-sm-flex d-block justify-content-between my-2">
+    <div class="row mx-1 bg-white rounded-top d-sm-flex d-block justify-content-between my-2">
 
         <div class="col-12 col-md-2 col-xl-2  py-3">
 
@@ -136,14 +139,9 @@
         </div>
         <div class="col-12 col-md-3 col-xl-2 d-flex align-items-center">
             <div class="dropdown d-flex" style="width:clamp(200px, 100%, 100%);">
-
-
-
                 <select name="regionname" id="RegionSearch" class="form-select shadow-none getregion h-100" aria-label="Floating label select example">
                     <span class="search-icon "></span>
-
                     <option class="regionselect" value="1234" selected>All Regions</option>
-
                     @foreach (var item in Model.regions)
                     {
                         <option class="regionselect" value="@item.RegionId" itemid="@item.RegionId">@item.Name</option>
@@ -181,16 +179,6 @@
                 <input type="radio" class="btn-check" name="requestby" id="5" autocomplete="off"><i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #943db8;"></i>
                 <label class="infowithcolor btn p-0 p-xl-2" for="5">VIP</label>
             </div>
-
-
-
-            @*  <button class="btn-outline-secondary btn mx-2 ">All</button>
-            <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #5fbc61;"></i>Patient</button>
-            <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #ed9124;"></i>Family/Friend</button>
-            <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:   #e36478;"></i>Concierge</button>
-            <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #0c7db7;"></i>Business</button>
-            <button class=" btn mx-2 p-0"><i class="fa-solid fa-circle fa-2xs me-2" style="color:  #943db8;"></i>Vip</button> *@
-
         </div>
 
     </div>

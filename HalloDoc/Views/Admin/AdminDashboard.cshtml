@@ -287,6 +287,42 @@
 </div>
 
 
+@* Send patient request page link Case Modal *@
+<div class="modal fade rounded-3 shadow" id="SendLinkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Send Link</h5>
+                <button class="btn" type="button" data-dismiss="modal">
+                    <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
+                </button>
+            </div>
+            <form asp-action="SendCreatePatientRequestPageLink" method="post">
+                <div class="modal-body">
+                    <input type="number" class="requestid" name="id" hidden />
+                    <small class="text-secondary">To Send Create Patient Request Page in Email And Phone</small>
+                    <div class="form-floating py-2 p-0">
+                        <input class="form-control " placeholder="Name" name="firstname"/>
+                        <label for="floatingTextarea" class="text-secondary" style="top : 8px">Name</label>
+                    </div>
+                    <div class="form-floating py-2 p-0">
+                        <input class="form-control " placeholder="Mobile Number" name="phonenumber"/>
+                        <label for="floatingTextarea" class="text-secondary" style="top : 8px">Phone Number</label>
+                    </div>
+                    <div class="form-floating py-2">
+                        <input class="form-control"  placeholder="Email" name="email" />
+                        <label for="floatingTextarea" class=" text-secondary" style="top : 8px">Email</label>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0 pb-3">
+                    <button type="submit" class="btn btn-info text-white">Send</button>
+                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script src="/js/Admin/AdminDashboard.js"></script>
 
 <style>

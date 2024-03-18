@@ -85,6 +85,7 @@ namespace HalloDoc.Controllers.Admin
             aspnetuser.PasswordHash = password;
             _context.AspNetUsers.Update(aspnetuser);
             _context.SaveChanges();
+            TempData["success"] = "Password Reset Successfully...!";
             return RedirectToAction("AdminProfile", "Admin");
         }
     }

@@ -27,12 +27,12 @@ namespace Services.ViewModels
         public enum RegionName
         {
             India,
+            [Description("District Of Columbia")]
+            DistrictOfColumbia,
+            Maryland,
             [Description("New York")]
             NewYork,
             Virginia,
-            [Description("District Of Columbia")]
-            DistrictOfColumbia,
-            Maryland
         }
 
         public static string GetEnumDescription(Enum value)

@@ -382,15 +382,15 @@ namespace HalloDoc.Controllers.Admin
         [HttpPost]
         public IActionResult AssignCase(int id, AdminRequestViewModel assignnote, string physicianname)
         {
-            //var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
-            //var physiciandetail = _context.Physicians.FirstOrDefault(p => p.FirstName + p.LastName == physicianname);
-            //req.Status = 2;
-            //req.PhysicianId = physiciandetail.PhysicianId;
-            //_context.Requests.Update(req);
-            //_context.SaveChanges();
-            //var adminid = HttpContext.Session.GetInt32("AdminId");
+            var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
+            var physiciandetail = _context.Physicians.FirstOrDefault(p => p.FirstName + p.LastName == physicianname);
+            req.Status = 2;
+            req.PhysicianId = physiciandetail.PhysicianId;
+            _context.Requests.Update(req);
+            _context.SaveChanges();
+            var adminid = HttpContext.Session.GetInt32("AdminId");
 
-            //_addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, adminid, physiciandetail.PhysicianId);
+            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, adminid, physiciandetail.PhysicianId);
             TempData["success"] = "Request auccessfully Assigned..!";
             return RedirectToAction("AdminDashboard");
         }
@@ -480,6 +480,7 @@ namespace HalloDoc.Controllers.Admin
             string AgreementPath = Url.Action("ReviewAgreement", "Admin", new { id = requestid });
             return baseUrl + AgreementPath;
         }
+
         public IActionResult ReviewAgreement(string id)
         {
             var viewModel = new AdminRequestViewModel();
@@ -492,10 +493,23 @@ namespace HalloDoc.Controllers.Admin
         [HttpPost]
         public IActionResult SendAgreement(int reqid)
         {
-
             return View();
         }
+        [HttpPost]
 
+        public IActionResult SendCreatePatientRequestPageLink(string firstname, int phonenumber, string email)
+        {
+            String CreateRequestUrl = GenerateSendCreateRequestLinkUrl(email, phonenumber, firstname);
+            SendEmail(email, "Create A Request", $"Hello, Click On below Link for Creating a request: {CreateRequestUrl}");
+            TempData["success"] = "Create Request link sent in Email..!";
+            return RedirectToAction("AdminDashboard");
+        }
+        private string GenerateSendCreateRequestLinkUrl(string email, int phonenumber, string firstname)
+        {
+            string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+            string AgreementPath = Url.Action("CreatePatientRequest", "Admin", new { firstname = firstname, phonenumber = phonenumber, email = email });
+            return baseUrl + AgreementPath;
+        }
 
         private Task SendEmail(string email, string subject, string message)
         {
@@ -581,6 +595,7 @@ namespace HalloDoc.Controllers.Admin
             var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == admin.AspNetUserId);
             var rolelist = _context.AspNetRoles.ToList();
             var regionlist = _context.Regions.ToList();
+            var adminregionlist = _context.AdminRegions.Where(a => a.AdminId == adminid).ToList();
             var model = new UserAllDataViewModel
             {
                 UserName = aspnetuser.UserName,
@@ -598,8 +613,77 @@ namespace HalloDoc.Controllers.Admin
                 city = admin.City,
                 zip = admin.Zip,
                 alterphonenumber = admin.AltPhone,
+                adminregionlist = adminregionlist,
             };
             return View(model);
+        }
+        [HttpPost]
+        public IActionResult UpdateAdministrationInfoAdminProfile(UserAllDataViewModel model)
+        {
+            var adminid = HttpContext.Session.GetInt32("AdminId");
+            var admin = _context.Admins.Include(r => r.AdminRegions).FirstOrDefault(m => m.AdminId == adminid);
+            var addadminregion = new AdminRegion();
+            List<int> adminRegion = admin.AdminRegions.Select(m => m.RegionId).ToList();
+            var RegionToDelete = adminRegion.Except(model.selectedregion);
+            foreach (var item in RegionToDelete)
+            {
+                AdminRegion? adminRegionToDelete = _context.AdminRegions
+            .FirstOrDefault(ar => ar.AdminId == adminid && ar.RegionId == item);
+
+                if (adminRegionToDelete != null)
+                {
+                    _context.AdminRegions.Remove(adminRegionToDelete);
+                }
+            }
+            IEnumerable<int> regionsToAdd = model.selectedregion.Except(adminRegion);
+
+            foreach (int item in regionsToAdd)
+            {
+                AdminRegion newAdminRegion = new AdminRegion
+                {
+                    AdminId = (int)adminid,
+                    RegionId = item,
+                };
+                _context.AdminRegions.Add(newAdminRegion);
+            }
+            _context.SaveChanges();
+
+            if (admin != null)
+            {
+                admin.FirstName = model.firstname;
+                admin.LastName = model.lastname;
+                admin.Email = model.email;
+                admin.Mobile = model.phonenumber;
+            }
+            _context.Admins.Update(admin);
+            _context.SaveChanges();
+            TempData["success"] = "Profile Updated Successfully...!";
+
+            return RedirectToAction("AdminProfile");
+        }
+        [HttpPost]
+        public IActionResult UpdateMailingInfoAdminProfile(UserAllDataViewModel model)
+        {
+            var adminid = HttpContext.Session.GetInt32("AdminId");
+            var admin = _context.Admins.FirstOrDefault(m => m.AdminId == adminid);
+            //var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == admin.AspNetUserId);
+            //var rolelist = _context.AspNetRoles.ToList();
+            //var regionlist = _context.Regions.ToList();
+            if (admin != null)
+            {
+                admin.Address1 = model.address1;
+                admin.Address2 = model.address2;
+                admin.City = model.city;
+                admin.Zip = model.zip;
+                admin.AltPhone = model.alterphonenumber;
+            }
+            _context.Admins.Update(admin);
+            _context.SaveChanges();
+            return RedirectToAction("AdminProfile");
+        }
+        public IActionResult CreatePatientRequest()
+        {
+            return View();
         }
 
     }
