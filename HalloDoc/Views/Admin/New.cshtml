@@ -206,16 +206,19 @@
     }
 </div>
 
+@{
+    var totalpages = Math.Ceiling(@ViewBag.TotalRowsOfDataContent / 5.00);
+}
 
+<div class="d-none d-sm-block p-0 m-0  table-responsive">
 
-<div class="d-none d-sm-block p-0 m-0  table-responsive" >
-        <table class="table align-middle small example" id="SixTableContent">
+    <table class="table align-middle small">
         <thead class="thead-light bg-light">
-                        <tr>
-                                            <th class="d-none">request Type</th>
+            <tr>
+                <th class="d-none">request Type</th>
                 <th class="d-none">Request Id</th>
                 <th scope="col">Name</th>
-                                <th scope="col">Date Of Birth</th>
+                <th scope="col">Date Of Birth</th>
 
                 <th scope="col">Requestor</th>
 
@@ -229,7 +232,9 @@
             </tr>
 
         </thead>
+
         <tbody id="datatable" class="bg-white">
+
             @foreach (var item in Model)
             {
 
@@ -357,13 +362,107 @@
 
                 </tr>
 
+
             }
         </tbody>
+
     </table>
-
-
 </div>
+<div class="dataTables_paginate d-flex justify-content-center gap-2 px-4">
+</div>
+@*
 
+    <div class="d-flex justify-content-center gap-2">
+        @if (totalpages > 0)
+        {
+            var previous = 0;
+            var next = totalpages;
+            if (previous <= 0)
+            {
+                previous = 1;
+            }
+            if (next > totalpages)
+            {
+                next = totalpages;
+            }
+            <button class="@previous" id="page-0" onclick="ChangePage(@previous)">
+                Previous
+            </button>
+            @if (totalpages > 5)
+            {
+                @if (Model.currentpage > totalpages - 3)
+                {
+                    <button class="1" id="page-1" onclick="ChangePage(1)">
+                        1
+                    </button>
+                    <button class="0" id="page-0" style="width:25px">
+                        ...
+                    </button>
+                    @for (var i = totalpages - 3; i <= totalpages; i++)
+                    {
+                        <button class="@i" id="page-@i" onclick="ChangePage(@i)">
+                            @i
+                        </button>
+                    }
+                }
+                else if (Model.currentpage < totalpages - 2 && Model.currentpage > 3)
+                {
+                    <button class="1" id="page-1" onclick="ChangePage(1)">
+                        1
+                    </button>
+                    <button class="0" id="page-0" style="width:25px">
+                        ...
+                    </button>
+                    @for (var i = Model.currentpage - 1; i <= Model.currentpage + 1; i++)
+                    {
+                        <button class="@i" id="page-@i" onclick="ChangePage(@i)">
+                            @i
+                        </button>
+                    }
+                    <button class="0" id="page-0" style="width:25px">
+                        ...
+                    </button>
+                    <button class="@totalpages" mailto:id="page-@totalpages" onclick="ChangePage(@totalpages)">
+                        @totalpages
+                    </button>
+                }
+                else
+                {
+                    @for (var i = 1; i <= 4; i++)
+                    {
+                        <button class="@i" id="page-@i" onclick="ChangePage(@i)" >
+                            @i
+                        </button>
+                    }
+                    <button class="0" id="page-0" style="width:25px">
+                        ...
+                    </button>
+                    <button class="@totalpages" mailto:id="page-@totalpages" onclick="ChangePage(@totalpages)" >
+                        @totalpages
+                    </button>
+                }
+            }
+            else
+            {
+                @for (int page = 0; page < totalpages; page++)
+                {
+                    var temp = page + 1;
+
+                    <button class="@temp" id="page-@temp" onclick="ChangePage(@temp)" >
+                        @temp
+                    </button>
+                }
+            }
+            <button class="@next" id="page-@next" onclick="ChangePage(@next)" >
+                Next
+            </button>
+        }
+        else
+        {
+            <div class="h3 text-danger">No Record found</div>
+        }
+    </div>
+ *@
 
 
 
@@ -371,7 +470,119 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="~/js/Admin/SixTabChildContent.js"> </script>
 
-@* 
+
+<script>
+    var currentpage = 1;
+    // function filterwithoutpagination(state, requesttype, search, region) {
+    //     $.ajax({
+    //         url: 'AdminArea/StatuswiseData/CountbyFilter',
+    //         type: 'POST',
+    //         data: { state, requesttype, search, region },
+    //         success: function (data) {
+    //             printbuttons(data);
+    //             $('.paginate_button').removeClass("current");
+    //             console.log(currentpage);
+    //             $('.paginate_button[data-id="' + currentpage + '"]').addClass("current");
+    //         }
+    //     });
+    // }
+
+    function change_page(temp) {
+        currentpage = temp;
+        
+        $.ajax({
+            url: '/Admin/DashboardTabsData',
+            data: { "status": status, "currentpage": currentpage , "requesttype":requesttype , "searchkey" : searchkey},
+            success: function (response) {
+                $('#statusnamehead').html('New');
+                $('#datatable').html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+
+
+    }
+    // $('.dataTables_paginate').on('click', '.paginate_button' , function () {
+    //     console.log("ayu bhai ayu")
+    // })
+
+    var check = 0;
+    $(document).ready(function () {
+
+        if (check == 0) {
+
+            // buttoncount = Math.ceil(data / pagesize);
+            var buttoncount = @totalpages;
+            $('.dataTables_paginate').html("");
+            var j = currentpage;
+            if (@totalpages <= 5) {
+                for (var i = 1; i <= @totalpages; i++) {
+                    $('.dataTables_paginate').append('<button class="paginate_button" onclick="change_page(' + i + ')" data-id="' + i + '">' + i + '</button> ');
+                }
+            }
+            else {
+                if (currentpage >= buttoncount - 3) {
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + 1 + '">' + 1 + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + '...' + '">' + '...' + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + (buttoncount - 3) + '">' + (buttoncount - 3) + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + (buttoncount - 2) + '">' + (buttoncount - 2) + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + (buttoncount - 1) + '">' + (buttoncount - 1) + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + buttoncount + '">' + buttoncount + '</div> ');
+                }
+                else if (currentpage < 4) {
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + 1 + '">' + 1 + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + 2 + '">' + 2 + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + 3 + '">' + 3 + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + 4 + '">' + 4 + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + '...' + '">' + '...' + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + buttoncount + '">' + buttoncount + '</div> ');
+                }
+                else {
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + 1 + '">' + 1 + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + '...' + '">' + '...' + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + (currentpage - 1) + '">' + (currentpage - 1) + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + currentpage + '">' + currentpage + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + (currentpage + 1) + '">' + (currentpage + 1) + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + '...' + '">' + '...' + '</div> ');
+                    $('.dataTables_paginate').append('<div class="paginate_button" data-id="' + buttoncount + '">' + buttoncount + '</div> ');
+                }
+            }
+            if (currentpage == 1) {
+                $('.paginate_Previousbutton').addClass("d-none");
+            }
+            else {
+                $('.paginate_Previousbutton').removeClass("d-none");
+            }
+            if (buttoncount == currentpage) {
+                $('.paginate_Nextbutton').addClass("d-none");
+                $('#tothisrequest').html(data);
+            }
+            else {
+                $('.paginate_Nextbutton').removeClass("d-none");
+                if (data == 0) {
+                    $('#tothisrequest').html(0);
+                }
+                else {
+                    $('#tothisrequest').html(((currentpage) * pagesize));
+                }
+            }
+            if (data == 0) {
+                $('#fromthisrequest').html(0);
+            }
+            else {
+                $('#fromthisrequest').html((((currentpage - 1) * pagesize) + 1));
+            }
+            $('#totalcountofrequest').html(data);
+        }
+        check = 1;
+
+    });
+
+</script>
+
+@*
 <script>
     $(document).ready(function () {
         $('.viewCase').on('click', function (e) {

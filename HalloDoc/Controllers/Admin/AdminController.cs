@@ -81,67 +81,111 @@ namespace HalloDoc.Controllers.Admin
         //}
 
         //************************************** 6 Tabs Open controller method ************************************//
-
-        public IActionResult New()
+        public IActionResult DashboardTabsData(string status, int currentpage, int requesttype, string searchkey, int regionid)
         {
-            var datalist = _adminDashboardDataTable.getallAdminDashboard(1);
-            return View(datalist);
-        }
-
-        public IActionResult Pending()
-        {
-            var datalist = _adminDashboardDataTable.getallAdminDashboard(2);
-            foreach (var item in datalist)
+            var data = _adminDashboardDataTable.getallAdminDashboard(status, currentpage, requesttype, searchkey, regionid);
+            ViewBag.TotalRowsOfDataContent = data.Count();
+            var newdatalist = data.Skip((currentpage - 1) * 5).Take(5).ToList();
+            switch (status)
             {
-                var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
-                item.PhysicianName = physician.FirstName;
+                case "1":
+                    return View("New", newdatalist);
+                    break;
+                case "2":
+                    return View("Pending", newdatalist);
+                    break;
+                case "3":
+                    return View("ToClose", newdatalist);
+                    break;
+                case "4":
+                    return View("Active", newdatalist);
+                    break;
+                case "5":
+                    return View("Active", newdatalist);
+                    break;
+                case "6":
+                    return View("Conclude", newdatalist);
+                    break;
+                case "7":
+                    return View("ToClose", newdatalist);
+                    break;
+                case "8":
+                    return View("ToClose", newdatalist);
+                    break;
+                case "9":
+                    return View("Unpaid", newdatalist);
+                    break;
+                default: return View();
             }
-            return View(datalist);
         }
 
-        public IActionResult Active()
-        {
-            var datalist = _adminDashboardDataTable.getallAdminDashboard(4).Concat(_adminDashboardDataTable.getallAdminDashboard(5)).ToList();
-            foreach (var item in datalist)
-            {
-                var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
-                item.PhysicianName = physician.FirstName;
-            }
-            return View(datalist);
-        }
+        //public IActionResult New(int currentpage)
+        //{
 
-        public IActionResult Conclude()
-        {
-            var datalist = _adminDashboardDataTable.getallAdminDashboard(6);
-            foreach (var item in datalist)
-            {
-                var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
-                item.PhysicianName = physician.FirstName;
-            }
-            return View(datalist);
-        }
+        //    if (currentpage == 0)
+        //    {
+        //        currentpage = 1;
+        //    }
+        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(1, currentpage);
+        //    ViewBag.TotalRowsOfDataContent = datalist.Count();
+        //    var newdatalist = datalist.Skip((currentpage - 1) * 5).Take(5).ToList();
+        //    return View(newdatalist);
+        //}
 
-        public IActionResult ToClose()
-        {
-            var datalist = _adminDashboardDataTable.getallAdminDashboard(7).Concat(_adminDashboardDataTable.getallAdminDashboard(3)).Concat(_adminDashboardDataTable.getallAdminDashboard(8)).ToList();
-            foreach (var item in datalist)
-            {
-                var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
-                item.PhysicianName = physician.FirstName;
-            }
-            return View(datalist);
-        }
+        //public IActionResult Pending(int currentpage)
+        //{
+        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(2, currentpage);
+        //    foreach (var item in datalist)
+        //    {
+        //        var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+        //        item.PhysicianName = physician.FirstName;
+        //    }
+        //    return View(datalist);
+        //}
 
-        public IActionResult Unpaid()
-        {
-            var datalist = _adminDashboardDataTable.getallAdminDashboard(9);
-            foreach (var item in datalist)
-            {
-                var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
-                item.PhysicianName = physician.FirstName;
-            }
-            return View(datalist);
-        }
+        //public IActionResult Active(int currentpage)
+        //{
+        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(4, currentpage).Concat(_adminDashboardDataTable.getallAdminDashboard(5, currentpage)).ToList();
+        //    foreach (var item in datalist)
+        //    {
+        //        var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+        //        item.PhysicianName = physician.FirstName;
+        //    }
+        //    return View(datalist);
+        //}
+
+        //public IActionResult Conclude(int currentpage)
+        //{
+        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(6, currentpage);
+        //    foreach (var item in datalist)
+        //    {
+        //        var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+        //        item.PhysicianName = physician.FirstName;
+        //    }
+        //    return View(datalist);
+        //}
+
+        //public IActionResult ToClose(int currentpage)
+        //{
+        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(7, currentpage).Concat(_adminDashboardDataTable.getallAdminDashboard(3, currentpage)).Concat(_adminDashboardDataTable.getallAdminDashboard(8, currentpage)).ToList();
+        //    foreach (var item in datalist)
+        //    {
+        //        var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+        //        item.PhysicianName = physician.FirstName;
+        //    }
+        //    return View(datalist);
+        //}
+
+        //public IActionResult Unpaid(int currentpage)
+        //{
+        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(9, currentpage);
+        //    foreach (var item in datalist)
+        //    {
+        //        var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+        //        item.PhysicianName = physician.FirstName;
+        //    }
+        //    return View(datalist);
+        //}
 
 
         //************************************** Action DropDown Methods ************************************//
@@ -477,7 +521,6 @@ namespace HalloDoc.Controllers.Admin
         private string GenerateAgreementUrl(int reqid)
         {
             string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-
             var requestid = EncryptionDecryption.EncryptStringToBase64_Aes(reqid.ToString(), key, iv);
             string AgreementPath = Url.Action("ReviewAgreement", "Admin", new { id = requestid });
             return baseUrl + AgreementPath;
@@ -501,7 +544,7 @@ namespace HalloDoc.Controllers.Admin
 
         public IActionResult SendCreatePatientRequestPageLink(string firstname, string phonenumber, string email)
         {
-            String CreateRequestUrl = GenerateSendCreateRequestLinkUrl(email, phonenumber, firstname);
+            string CreateRequestUrl = GenerateSendCreateRequestLinkUrl(email, phonenumber, firstname);
             SendEmail(email, "Create A Request", $"Hello, Click On below Link for Creating a request: {CreateRequestUrl}");
             TempData["success"] = "Create Request link sent in Email..!";
             return RedirectToAction("AdminDashboard");

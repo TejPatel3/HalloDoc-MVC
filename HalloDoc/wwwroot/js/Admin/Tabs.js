@@ -1,4 +1,8 @@
-﻿
+﻿var currentpage = 1;
+var status = 1;
+var requesttype = 0;
+var searchkey;
+var regionid = 0;
 $(document).ready(function () {
     $('.SelectedRegionGivePhysicianList').change(function () {
         var regionId = $(this).find(":selected").attr('id'); // This will get the id of the selected region
@@ -28,7 +32,8 @@ $(document).ready(function () {
 
 
     $.ajax({
-        url: '/Admin/New',
+        url: '/Admin/DashboardTabsData',
+        data: { "status": status, "currentpage": currentpage },
         success: function (response) {
             $('#statusnamehead').html('New');
             $('#datatable').html(response);
@@ -49,41 +54,37 @@ $(document).ready(function () {
         switch (target) {
             case '#status_new':
                 $('#statusnamehead').html('New');
-                url = '/Admin/New';
+                status = 1;
 
                 break;
             case '#status_pending':
                 $('#statusnamehead').html('Pending');
 
-                url = '/Admin/Pending';
+                status = 2;
                 break;
             case '#status_active':
                 $('#statusnamehead').html('Active');
-
-                url = '/Admin/Active';
+                status = 4
                 break;
             case '#status_conclude':
                 $('#statusnamehead').html('Conclude');
-
-                url = '/Admin/Conclude';
+                status = 6
                 break;
             case '#status_toclose':
                 $('#statusnamehead').html('To Close');
-
-                url = '/Admin/Toclose';
+                status = 3
                 break;
             case '#status_unpaid':
                 $('#statusnamehead').html('Unpaide');
-
-                url = '/Admin/Unpaid';
+                status = 9
                 break;
 
             default:
-                url = '../Home/AdminLogin';
         }
         console.log(url);
         $.ajax({
-            url: url,
+            url: '/Admin/DashboardTabsData',
+            data: { "status": status, "currentpage": currentpage },
 
             success: function (response) {
                 $('#datatable').html(response);
@@ -114,6 +115,7 @@ function download() {
         link.href = url;
         link.download = '';
         document.body.appendChild(link);
+        document.body.appendChild(link);Admin
         link.click();
         document.body.removeChild(link);
     });
@@ -130,3 +132,47 @@ function download() {
 //$('#downloadall').click(function () {
 
 //});
+
+function RequestTypeFilter(type) {
+    requesttype = type;
+    $.ajax({
+        url: '/Admin/DashboardTabsData',
+        data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
+        success: function (response) {
+            $('#statusnamehead').html('New');
+            $('#datatable').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
+};
+function search() {
+    searchkey = $('#my-search-input').val();
+    $.ajax({
+        url: '/Admin/DashboardTabsData',
+        data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
+        success: function (response) {
+            $('#statusnamehead').html('New');
+            $('#datatable').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
+};
+
+function SearchByRegion() {
+    var regionid = $('#RegionSearch').val();
+    $.ajax({
+        url: '/Admin/DashboardTabsData',
+        data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
+        success: function (response) {
+            $('#statusnamehead').html('New');
+            $('#datatable').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
+};
