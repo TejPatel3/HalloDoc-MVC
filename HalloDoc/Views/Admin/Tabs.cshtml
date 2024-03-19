@@ -100,13 +100,13 @@
             <small class="text-white d-none d-md-inline ps-1">Send Link</small>
         </button>
 
-        <div class="btn btn-info d-flex align-items-center   rounded-3 me-1 py-1  px-2  text-white  border-0 height-fit-content">
-            <a asp-controller="Admin" asp-action="CreatePatientRequest" class="text-decoration-none p-0  m-0">
+        <a asp-controller="Admin" asp-action="CreatePatientRequest" class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0  height-fit-content">
+            @* <a asp-controller="Admin" asp-action="CreatePatientRequest" class="text-decoration-none p-0  m-0"> *@
 
-                <i class="fa-solid fa-file-pen" style="color: #ffffff; padding:5px 0 5px 0"></i>
+                <i class="fa-solid fa-file-pen" style="color: #ffffff;"></i>
                 <small class="text-white d-none d-md-inline ps-1"> Create Request</small>
-            </a>
-        </div>
+            @* </a> *@
+        </a>
 
         <button class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0 height-fit-content download" data-table="SixTableContent">
             @*             <button class="download bg-info border-0 text-white p-0" data-table="SixTableContent">

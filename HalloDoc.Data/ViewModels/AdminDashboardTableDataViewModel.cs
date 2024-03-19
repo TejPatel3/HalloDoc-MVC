@@ -4,6 +4,8 @@ namespace Services.ViewModels
 {
     public class AdminDashboardTableDataViewModel
     {
+        public int totalpages { get; set; }
+        public int currentpage { get; set; }
         public string PatientName { get; set; }
         public DateOnly PatientDOB { get; set; }
         public string RequestorName { get; set; }
@@ -66,5 +68,6 @@ namespace Services.ViewModels
             //string By = ((Requestby)by).ToString();
             return By;
         }
+
     }
 }

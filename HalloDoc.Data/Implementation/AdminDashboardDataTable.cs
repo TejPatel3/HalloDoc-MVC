@@ -40,7 +40,6 @@ namespace Services.Implementation
                                                         PhysicianId = req.PhysicianId,
                                                         regionidtoclose = reqclient.RegionId.ToString(),
                                                     };
-
             return AdminDashboardDataTableViewModels.ToList();
         }
 

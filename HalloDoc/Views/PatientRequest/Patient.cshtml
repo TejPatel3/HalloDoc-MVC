@@ -47,7 +47,7 @@
             </a>
         </div>
         <form method="post" asp-action="Patient" asp-controller="PatientRequest" enctype="multipart/form-data">
-            <div class="row bg-white  px-4 py-2">
+            <div class="row bg-white shadow px-4 py-2">
 
 
 
@@ -100,7 +100,7 @@
                         <input id="phone" asp-for="PhoneNumber"
                                type="tel"
                            
-                               style="border: none; padding: 18px 2% 18px 50px" />
+                               style="border: none; padding: 17.5px 2% 17.5px 50px; width:inherit" />
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
@@ -192,17 +192,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 d-flex justify-content-end pb-2">
-                    <button type="submit" class="btn me-2 px-2 btn-info text-white">Submit</button>
-                    <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
+                <div class="col-12 d-flex justify-content-end pb-2 mt-3">
+                    <button type="submit" class="btn me-2 px-3 py-2 btn-info text-white">Submit</button>
+                    <button type="reset" class="btn px-3 py-2 btn-outline-info">Cancel</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
 
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 <!-- script -->
 <script>
@@ -290,3 +288,7 @@
         }
     }
 </script>
+
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

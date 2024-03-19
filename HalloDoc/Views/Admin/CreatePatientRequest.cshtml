@@ -1,7 +1,11 @@
 ﻿@model HalloDoc.Models.ViewModel.patientRequest
+@inject IHttpContextAccessor accessor
+
 @{
     Layout = "_Admin";
 }
+<Partial name="Toast" />
+
 <div class="bg-light">
     <!-- form input -->
     <div class="container">
@@ -12,7 +16,7 @@
                 Back
             </a>
         </div>
-        <form method="post" asp-action="Patient" asp-controller="PatientRequest" enctype="multipart/form-data">
+        <form method="post" asp-action="CreatePatientRequest" asp-controller="Admin" enctype="multipart/form-data">
             <div class="row bg-white  px-4 py-2">
                 <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
                 <div class="form-floating col-12 mb-3">
@@ -53,7 +57,7 @@
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="email" asp-for="Email"
                            class="form-control" id="patientEmail"
-                           placeholder="Username" onblur="checkEmailExists()" />
+                           placeholder="Username" />
                     <label class="d-flex justify-content-between ms-2">Email </label>
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
@@ -64,28 +68,6 @@
                                type="tel"
                                style="border: none; padding: 18px 2% 18px 50px" />
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                    </div>
-                </div>
-                <div id="passf" style="display : none">
-                    <div class="d-flex row">
-                        <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields1">
-                            <input type="password" asp-for="Password"
-                                   class="form-control" id="pswd"
-                                   placeholder="Username" onblur="checkEmailExists()" />
-                            <label class="d-flex justify-content-between ms-2">Password </label>
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                            <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-icons" onclick="hideviewpswd()"></i>
-
-                        </div>
-                        <div class="col-12 col-sm-6 form-floating mb-3" id="passwordFields2">
-                            <input type="password" asp-for="ConfirmPassword"
-                                   class="form-control" id="pswdcnf"
-                                   placeholder="Username" />
-                            <label class="d-flex justify-content-between ms-2">Confirm Password </label>
-                            <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-iconc" onclick="hideviewpswdcnf()"></i>
-                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-
-                        </div>
                     </div>
                 </div>
 
@@ -135,8 +117,7 @@
                 <h5 class="mb-3 mt-4 fw-semibold">
                     (Optional) Upload Photo or Document
                 </h5>
-
-                <div class="mt-1 mb-3">
+                <div class="mt-1">
                     <div class="row d-flex">
                         <div class="p-2 col-12 ">
                             <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
@@ -145,8 +126,8 @@
                                     <input type="text" id="file-chosen" class="border border-0" placeholder="No item selected" disabled />
                                 </div>
                                 <div role="button" class="uploadbtn p-2 d-flex">
-                                    <input type="file" id="actual-btn" asp-for="Upload" multiple hidden />
-                                    <label role="button" for="actual-btn" class="d-flex align-items-center">
+                                    <input type="file" id="Create-request-upload" asp-for="Upload" multiple hidden />
+                                    <label role="button" for="Create-request-upload" class="d-flex align-items-center">
                                         <i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div>
                                     </label>
                                 </div>
@@ -205,7 +186,7 @@
     }
 
     // upload button...!
-    var actualBtn = document.getElementById('actual-btn');
+    var actualBtn = document.getElementById('Create-request-upload');
     var fileChosen = document.getElementById('file-chosen');
     actualBtn.addEventListener('change', function () {
         fileChosen.textContent = this.files[0].name
@@ -252,3 +233,4 @@
         }
     }
 </script>
+

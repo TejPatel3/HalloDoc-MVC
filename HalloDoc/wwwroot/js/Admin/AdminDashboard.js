@@ -28,7 +28,7 @@
 
 
 
-$('#AssignModalSubminbtn').click(function () {
+$('#AssignModalSubminbtn').on(function () {
     console.log("assign modal validation js")
     var note = $('#AssignModalNote').val();
     var Region = $('#AssignModalFirstDropDownSelect').val();

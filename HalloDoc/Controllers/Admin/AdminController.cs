@@ -1,5 +1,6 @@
 ﻿using HalloDoc.DataContext;
 using HalloDoc.DataModels;
+using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
@@ -51,6 +52,7 @@ namespace HalloDoc.Controllers.Admin
         {
             var casetag = _context.CaseTags.ToList();
             var request = _adminDashboard.GetAll().ToList();
+            var viewmodel = new AdminDashboardTableDataViewModel();
             var region = _context.Regions.ToList();
             var physician = _context.Physicians.ToList();
             AdminRequestViewModel viewModel = new AdminRequestViewModel();
@@ -497,17 +499,17 @@ namespace HalloDoc.Controllers.Admin
         }
         [HttpPost]
 
-        public IActionResult SendCreatePatientRequestPageLink(string firstname, int phonenumber, string email)
+        public IActionResult SendCreatePatientRequestPageLink(string firstname, string phonenumber, string email)
         {
             String CreateRequestUrl = GenerateSendCreateRequestLinkUrl(email, phonenumber, firstname);
             SendEmail(email, "Create A Request", $"Hello, Click On below Link for Creating a request: {CreateRequestUrl}");
             TempData["success"] = "Create Request link sent in Email..!";
             return RedirectToAction("AdminDashboard");
         }
-        private string GenerateSendCreateRequestLinkUrl(string email, int phonenumber, string firstname)
+        private string GenerateSendCreateRequestLinkUrl(string email, string phonenumber, string firstname)
         {
             string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-            string AgreementPath = Url.Action("CreatePatientRequest", "Admin", new { firstname = firstname, phonenumber = phonenumber, email = email });
+            string AgreementPath = Url.Action("Patient", "PatientRequest", new { firstname = firstname, phonenumber = phonenumber, email = email });
             return baseUrl + AgreementPath;
         }
 
@@ -685,6 +687,70 @@ namespace HalloDoc.Controllers.Admin
         {
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> CreatePatientRequest(patientRequest req)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(req);
+            }
+            var aspuser = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(n => n.Email == req.Email);
+            var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == user.RegionId);
+            var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
+            string regiondata = _context.Regions.FirstOrDefault(a => a.RegionId == user.RegionId).Abbreviation;
+            var adminid = HttpContext.Session.GetInt32("AdminId");
+            var admin = await _context.Admins.FirstOrDefaultAsync(m => m.AdminId == adminid);
+            if (aspuser != null)
+            {
+                Request requests = new Request
+                {
+                    FirstName = admin.FirstName,
+                    LastName = admin.LastName,
+                    Email = admin.Email,
+                    CreatedDate = DateTime.Now,
+                    RequestTypeId = 5,
+                    Status = 1,
+                    UserId = admin.AdminId,
+                    PhoneNumber = admin.Mobile,
+                    ModifiedDate = DateTime.Now,
+                    //ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
+                    ConfirmationNumber = regiondata + DateTime.Now.Day.ToString().PadLeft(2, '0') + DateTime.Now.Month.ToString().PadLeft(2, '0')
+                           + DateTime.Now.Year.ToString().Substring(2) + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) +                           (requestcount.Count() + 1).ToString().PadLeft(4, '0'),
 
+                    //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
+                };
+                _context.Requests.Add(requests);
+                _context.SaveChanges();
+                RequestClient requestclients = new RequestClient
+                {
+                    FirstName = req.FirstName,
+                    LastName = req.LastName,
+                    Email = req.Email,
+                    PhoneNumber = req.PhoneNumber,
+                    Street = req.Street,
+                    City = req.City,
+                    State = req.State,
+                    ZipCode = req.ZipCode,
+                    RequestId = requests.RequestId,
+                    RegionId = 1,
+                    Notes = req.Notes,
+                    Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
+                    IntDate = int.Parse(req.BirthDate?.ToString("dd")),
+                    IntYear = int.Parse(req.BirthDate?.ToString("yyyy")),
+                    StrMonth = req.BirthDate?.ToString("MMM"),
+                };
+                _context.RequestClients.Add(requestclients);
+                _context.SaveChanges();
+
+                if (req.Upload != null)
+                {
+                    uploadFile(req.Upload, requests.RequestId);
+
+                }
+            }
+            return View();
+
+        }
     }
 }

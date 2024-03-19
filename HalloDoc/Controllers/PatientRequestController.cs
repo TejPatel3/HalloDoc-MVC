@@ -23,20 +23,28 @@ namespace HalloDoc.Controllers
         }
 
         // Get Method for Patient Request
-        public IActionResult Patient()
+        public IActionResult Patient(string? firstname = null, string? phonenumber = null, string? email = null)
         {
+            if (email != null)
+            {
+                var model = new patientRequest();
+                model.Email = email;
+                model.FirstName = firstname;
+                model.PhoneNumber = phonenumber;
+                return View(model);
+            }
             return View();
         }
 
         //Post Method for Patient Request
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Patient(patientRequest req)
+
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(req);
-            //}
+            if (!ModelState.IsValid)
+            {
+                return View(req);
+            }
             Guid id = Guid.NewGuid();
             var Asp = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
             if (Asp == null)

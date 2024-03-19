@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace HalloDoc.Models.ViewModel
 {
@@ -17,11 +17,10 @@ namespace HalloDoc.Models.ViewModel
         [RegularExpression(@"^(?!\s+$).+", ErrorMessage = "Enter a valid Name")]
         public string? LastName { get; set; }
 
-        [Column(TypeName = "character varying")]
         public string? Password { get; set; }
 
+        [AllowNull]
         [Compare("Password")]
-        [Column(TypeName = "character varying")]
         public string? ConfirmPassword { get; set; }
 
         [Required]
@@ -36,7 +35,7 @@ namespace HalloDoc.Models.ViewModel
 
         [StringLength(23)]
         [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Please enter valid phone number")]
-        [Required(ErrorMessage = "Plese enter your Phone Number"), Display(Name = " ")]
+        [Required(ErrorMessage = "Plese enter your Phone Number")]
         public string? PhoneNumber { get; set; }
 
         [StringLength(100)]
@@ -59,7 +58,7 @@ namespace HalloDoc.Models.ViewModel
         public string? State { get; set; }
 
         [StringLength(10, ErrorMessage = "Enter valid Zip Code")]
-        [RegularExpression(@"^\d{5}$", ErrorMessage = "Enter a valid 5-digit zip code")]
+        [RegularExpression(@"^\d{6}$", ErrorMessage = "Enter a valid 5-digit zip code")]
         //[Required(ErrorMessage = "Zip Code is required")]
         public string? ZipCode { get; set; }
 
@@ -70,7 +69,7 @@ namespace HalloDoc.Models.ViewModel
         [StringLength(500)]
         [RegularExpression(@"^[a-zA-Z0-9][a-zA-Z0-9 ]+$", ErrorMessage = "Use letters only please")]
         public string? Notes { get; set; }
-
+        [MaybeNull]
         public List<IFormFile?> Upload { get; set; }
     }
 }

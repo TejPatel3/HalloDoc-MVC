@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4rqzngCC8kvdHrQfCjD1AnEoFB+V5GS6vm/UT+b8eBY=",
+  "Hash": "TurYeUZ1+ClTkWwGwlVDaffJSPeZ1CKeXypS75iUIC4=",
   "Source": "HalloDoc",
   "BasePath": "_content/HalloDoc",
   "Mode": "Default",
@@ -1647,6 +1647,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadDocument\\11116040-opacity-low.png"
+    },
+    {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\186india.png",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "UploadDocument/186india.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadDocument\\186india.png"
     },
     {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7768657_3763028 opacity low.png",
