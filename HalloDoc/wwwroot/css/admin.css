@@ -219,3 +219,24 @@ div.dataTables_wrapper div.dataTables_length select {
 .nav-tabs{
     border-bottom:none;
 }
+
+.pagination-active{
+    background-color:red !important;
+    color:white !important;
+}
+.pagination-active1 {
+    background-color: blue !important;
+    color: white !important;
+}
+.offcanvas{
+    width:80%;
+    height:inherit;
+    position:absolute;
+    top:80px;
+}
+.offcanvas-backdrop{
+    position:absolute;
+}
+.offcanvas-body{
+    padding-bottom:0px;
+}

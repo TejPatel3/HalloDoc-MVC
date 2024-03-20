@@ -115,8 +115,8 @@ function download() {
         link.href = url;
         link.download = '';
         document.body.appendChild(link);
-        document.body.appendChild(link);Admin
-        link.click();
+        document.body.appendChild(link);
+        Adminlink.click();
         document.body.removeChild(link);
     });
 }
@@ -135,12 +135,14 @@ function download() {
 
 function RequestTypeFilter(type) {
     requesttype = type;
+
     $.ajax({
         url: '/Admin/DashboardTabsData',
         data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
         success: function (response) {
             $('#statusnamehead').html('New');
             $('#datatable').html(response);
+            $(this).css("border", "1px solid red")
         },
         error: function (xhr, status, error) {
             console.error(error);
@@ -176,3 +178,44 @@ function SearchByRegion() {
         }
     });
 };
+
+
+//  <button id="downloadButton" class="btn btn-primary">Download Excel</button>
+
+//<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+$('a.download').on('click', function () {
+    //console.log("kykykyk")
+    //$.ajax({
+    //    url: '/Admin/DownloadExcelfile', // Replace with your URL
+    //    type: 'GET', // Or 'POST', depending on your needs
+    //    data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
+    //    success: function (response) {
+    //        // This function will be executed if the request succeeds
+    //        // You can use the 'response' variable to access the data returned from the server
+
+    //        // Create a link element
+    //        var link = document.createElement('a');
+    //        link.href = window.URL.createObjectURL(new Blob([response]));
+    //        link.download = 'Data.xlsx';
+
+    //        // Trigger the download by simulating a click on the link
+    //        link.click();
+    //    },
+    //    error: function (jqXHR, textStatus, errorThrown) {
+    //        // This function will be executed if the request fails
+    //        // 'jqXHR' is the raw request object
+    //        // 'textStatus' is a string describing the type of error
+    //        // 'errorThrown' is an optional exception object, if one occurred
+    //    }
+    //});
+
+    var link = document.createElement('a');
+    link.href = '/Admin/DownloadExcelfile?status=' + status + "&currentpage=" + currentpage + "&requestType=" + requesttype + "&searchkey"+ searchkey+ "&regionid"+ regionid;
+    link.style.display = 'none';
+    document.body.appendChild(link)
+        ;
+    link.click();
+    document.body.removeChild(link)
+        ;
+});
+

@@ -200,7 +200,7 @@ footer {
         background-repeat: no-repeat;
         background-position: center;
     }*/
-   /* .container, .container-fluid {
+    /* .container, .container-fluid {
         padding: 0px !important;
     }*/
 
@@ -399,17 +399,27 @@ footer {
 {
     background-color: black !important;
 }
-
+.text-black{
+    color:white !important;
+}
+.text-secondary{
+    color: darkgrey !important;
+}
+.text-light{
+    color: lightgray !important;
+}
 .form-control {
     background-color: lightgray;
 }
 
-th{
-    background-color:lightgray;
+th {
+    background-color: lightgray;
 }
+
 td {
     color: white !important;
 }
+
 .bg-light {
     background-color: rgb(10, 10, 10) !important;
 }
@@ -515,5 +525,6 @@ footer{
 .iti--allow-dropdown {
     width: 100% !important;
 }
-
-
+.paginate_button-active{
+    background-color: blue;
+}

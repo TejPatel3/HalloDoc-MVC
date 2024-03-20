@@ -3,6 +3,7 @@ using HalloDoc.DataModels;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using Services.Contracts;
 using Services.Implementation;
 using Services.ViewModels;
@@ -116,6 +117,55 @@ namespace HalloDoc.Controllers.Admin
                     return View("Unpaid", newdatalist);
                     break;
                 default: return View();
+            }
+        }
+
+
+        //        using OfficeOpenXml;
+        //using System.IO;
+        [HttpGet]
+        public ActionResult DownloadExcelfile(string status, int currentpage, int requesttype, string searchkey, int regionid)
+        {
+            // Create a list of data
+            var data = _adminDashboardDataTable.getallAdminDashboard(status, currentpage, requesttype, searchkey, regionid);
+            //var data = new List<string> { "Item1", "Item2", "Item3" };
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                worksheet.Cells[1, 1].Value = "Patien Name";
+                worksheet.Cells[1, 2].Value = "Birth Date";
+                worksheet.Cells[1, 3].Value = "Requestor";
+                worksheet.Cells[1, 4].Value = "Requested Date";
+                worksheet.Cells[1, 5].Value = "Patient Number";
+                worksheet.Cells[1, 5].Value = "Requestor Number";
+                worksheet.Cells[1, 6].Value = "Address";
+                worksheet.Cells[1, 7].Value = "Notes";
+
+
+                // Add data to the worksheet
+                for (int i = 0; i < data.Count; i++)
+                {
+                    worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
+                    worksheet.Cells[i + 2, 2].Value = data[i].PatientDOB;
+                    worksheet.Cells[i + 2, 3].Value = data[i].RequestType;
+                    worksheet.Cells[i + 2, 4].Value = data[i].RequestedDate.ToString("dd MMM,yyyy");
+                    worksheet.Cells[i + 2, 5].Value = data[i].PatientPhone;
+                    worksheet.Cells[i + 2, 5].Value = data[i].RequestorPhone;
+                    worksheet.Cells[i + 2, 6].Value = data[i].Address;
+                    worksheet.Cells[i + 2, 7].Value = data[i].Notes;
+                    //worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
+                    //worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
+                }
+
+                // Convert the Excel package to a byte array
+                byte[] fileBytes = package.GetAsByteArray();
+
+                // Return the file
+                return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Data.xlsx");
             }
         }
 
@@ -703,7 +753,6 @@ namespace HalloDoc.Controllers.Admin
             _context.Admins.Update(admin);
             _context.SaveChanges();
             TempData["success"] = "Profile Updated Successfully...!";
-
             return RedirectToAction("AdminProfile");
         }
         [HttpPost]
@@ -724,6 +773,8 @@ namespace HalloDoc.Controllers.Admin
             }
             _context.Admins.Update(admin);
             _context.SaveChanges();
+            TempData["success"] = "Profile Updated Successfully...!";
+
             return RedirectToAction("AdminProfile");
         }
         public IActionResult CreatePatientRequest()
@@ -752,14 +803,15 @@ namespace HalloDoc.Controllers.Admin
                     LastName = admin.LastName,
                     Email = admin.Email,
                     CreatedDate = DateTime.Now,
-                    RequestTypeId = 5,
+                    RequestTypeId = 1,
                     Status = 1,
-                    UserId = admin.AdminId,
+                    UserId = user.UserId,
                     PhoneNumber = admin.Mobile,
                     ModifiedDate = DateTime.Now,
                     //ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
                     ConfirmationNumber = regiondata + DateTime.Now.Day.ToString().PadLeft(2, '0') + DateTime.Now.Month.ToString().PadLeft(2, '0')
-                           + DateTime.Now.Year.ToString().Substring(2) + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) +                           (requestcount.Count() + 1).ToString().PadLeft(4, '0'),
+                           + DateTime.Now.Year.ToString().Substring(2) + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) +
+                           (requestcount.Count() + 1).ToString().PadLeft(4, '0'),
 
                     //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
                 };

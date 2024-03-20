@@ -232,3 +232,13 @@ D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\refint\HalloDoc.dll
 D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\HalloDoc.pdb
 D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\HalloDoc.genruntimeconfig.cache
 D:\Project\HalloDoc\HalloDoc\obj\Debug\net7.0\ref\HalloDoc.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\EPPlus.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\EPPlus.Interfaces.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\EPPlus.System.Drawing.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.Drawing.Common.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\System.Security.Cryptography.Pkcs.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll

@@ -212,7 +212,7 @@
 
 <div class="d-none d-sm-block p-0 m-0  table-responsive">
 
-    <table class="table align-middle small">
+    <table class="table align-middle small" id="SixTableContent">
         <thead class="thead-light bg-light">
             <tr>
                 <th class="d-none">request Type</th>
@@ -368,7 +368,7 @@
 
     </table>
 </div>
-<div class="dataTables_paginate d-flex justify-content-center gap-2 px-4">
+<div class="dataTables_paginate d-flex justify-content-center gap-3 px-4 bg-white mb-3 py-2 rounded-3">
 </div>
 @*
 
@@ -469,6 +469,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="~/js/Admin/SixTabChildContent.js"> </script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 
 <script>
@@ -488,11 +489,18 @@
     // }
 
     function change_page(temp) {
+        console.log($(this));
+        // $(this).addClass("paginate_button-active");
         currentpage = temp;
-        
+        // console.log($('.paginate_button').data('id') == temp)
+        // if ($('.paginate_button').data('id') == temp) {
+        //     $('.paginate_button').addClass('btn-info');
+
+        // }
+        $(".paginate_button").addClass("paginate_button-active");
         $.ajax({
             url: '/Admin/DashboardTabsData',
-            data: { "status": status, "currentpage": currentpage , "requesttype":requesttype , "searchkey" : searchkey},
+            data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey },
             success: function (response) {
                 $('#statusnamehead').html('New');
                 $('#datatable').html(response);
@@ -501,9 +509,13 @@
                 console.error(error);
             }
         });
-
-
     }
+
+    $(document).ready(function () {
+
+    });
+
+
     // $('.dataTables_paginate').on('click', '.paginate_button' , function () {
     //     console.log("ayu bhai ayu")
     // })
@@ -519,7 +531,8 @@
             var j = currentpage;
             if (@totalpages <= 5) {
                 for (var i = 1; i <= @totalpages; i++) {
-                    $('.dataTables_paginate').append('<button class="paginate_button" onclick="change_page(' + i + ')" data-id="' + i + '">' + i + '</button> ');
+                    $('.dataTables_paginate').append('<button class="paginate_button btn btn-outline-info" onclick="change_page(' + i + ')" data-id="' + i + '">' + i + '</button> ');
+                    // $('.dataTables_paginate').append('<button class="paginate_button btn btn-outline-info" data-iiid="' + i + '">' + i + '</button> ');
                 }
             }
             else {
@@ -580,6 +593,62 @@
 
     });
 
+        // $(document).ready(function () {
+        //     $(document).on("click", ".dataTables_paginate .paginate_button", function () {
+        //         let temp = $(this).data("iiid"); // Get the page number from the button's data-iiid attribute
+        //         console.log("ayu bhai")
+        //         console.log("aayu k nai ");
+        //         console.log("temp is", temp);
+        //         console.log($(this));
+        //         currentpage = temp;
+        //         $(".paginate_button").removeClass("btn-outline-info paginate_button-active");
+        //         $(this).addClass("paginate_button-active");
+
+        //         // console.log($('.paginate_button').data('id') == temp)
+        //         // if ($('.paginate_button').data('id') == temp) {
+        //         //     $('.paginate_button').addClass('btn-info');
+
+        //         // }
+        //         $.ajax({
+        //             url: '/Admin/DashboardTabsData',
+        //             data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey },
+        //             success: function (response) {
+        //                 $('#statusnamehead').html('New');
+        //                 $('#datatable').html(response);
+        //             },
+        //             error: function (xhr, status, error) {
+        //                 console.error(error);
+        //             }
+        //         });
+
+        //     });
+        // });
+
+        // $('.paginate_button').on('click', function () {
+        //     console.log("aayu k nai ");
+        //     let temp = $(".paginate_button").data('iiid');
+        //     console.log("temp is", temp);
+        //     console.log($(this));
+        //     $(".paginate_button").addClass("paginate_button-active");
+        //     $(this).addClass("paginate_button-active");
+        //     currentpage = temp;
+        //     // console.log($('.paginate_button').data('id') == temp)
+        //     // if ($('.paginate_button').data('id') == temp) {
+        //     //     $('.paginate_button').addClass('btn-info');
+
+        //     // }
+        //     $.ajax({
+        //         url: '/Admin/DashboardTabsData',
+        //         data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey },
+        //         success: function (response) {
+        //             $('#statusnamehead').html('New');
+        //             $('#datatable').html(response);
+        //         },
+        //         error: function (xhr, status, error) {
+        //             console.error(error);
+        //         }
+        //     });
+        // });
 </script>
 
 @*

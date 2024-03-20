@@ -174,6 +174,29 @@ $('#sendMail').on('click', function (e) {
 
 
 
+function download() {
+    console.log("llllll")
+    var selectedFiles = document.querySelectorAll('input[name="checkbox"]:checked');
+    var fileUrls = [];
+
+    // Iterate through selected checkboxes and extract file URLs
+    selectedFiles.forEach(function (checkbox) {
+        var row = checkbox.closest('tr');
+        var fileUrl = row.querySelector('a').getAttribute('href');
+        fileUrls.push(fileUrl);
+    });
+
+    // Download each file
+    fileUrls.forEach(function (url) {
+        // Create an anchor element to trigger the download
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = '';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+}
 
 
 

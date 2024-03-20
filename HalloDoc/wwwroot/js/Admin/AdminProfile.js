@@ -13,6 +13,7 @@ $('#resetpassword-adminprofile').click(function () {
     console.log("reset pass")
     $('#password-adminprofile').removeAttr('disabled',false)
     $('#savepassword-adminprofile').removeAttr('hidden', false);
+    $('#savepassword-adminprofile').show();
     $(this).hide();
    
 });
@@ -20,12 +21,15 @@ $('#savepassword-adminprofile').click(function () {
     console.log("reset pass")
     var password = $('#password-adminprofile').val();
     var email = $('#email-adminprofile').val();
+    $('#password-adminprofile').attr('disabled', true);
+    $('#resetpassword-adminprofile').show();
+    $(this).hide();
     $.ajax({
         url: '/AdminCredential/ResetPassword',
         type: 'POST',
         data: { email: email, password: password },
         success: function (response) {
-            $('#nav-profile').html(response);
+            //$('#nav-profile').html(response);
         },
         error: function (xhr, status, error) {
             console.error(error);
@@ -91,7 +95,7 @@ $('#savebtn-administrator-adminprofile').click(function () {
             //dataType: 'json',
             data: model,
             success: function (response) {
-                $('#nav-profile').html(response);
+                //$('#nav-profile').html(response);
             },
 
 
@@ -146,18 +150,15 @@ $('#savebtn-mailing-adminprofile').click(function () {
 
     $('#confirmemail-validationspan').html("");
 
-    $('.adisabled').attr('disabled', true);
 
-    $('#editbtn-administrator-adminprofile').show();
-    $(this).hide();
 
     $.ajax({
         url: '/Admin/UpdateMailingInfoAdminProfile',
         type: 'POST',
-        dataType: 'json',
+        //dataType: 'json',
         data: model,
         success: function (response) {
-            $('#nav-profile').html(response);
+            //$('#nav-profile').html(response);
         },
         error: function (xhr, status, error) {
             console.error(error);
