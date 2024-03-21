@@ -65,13 +65,14 @@
                     <div class="row">
 
                         <div class="col-sm-8 col-lg-10 col-8 form-floating ">
-                 
+
                             <div class="form-control p-0">
                                 <input id="viewcasephone" asp-for="PhoneNumber"
                                        type="tel"
                                        style="border: none; padding: 18px 2% 18px 50px; width:inherit" disabled />
                             </div>
                             <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                            <span class="text-danger" id="phone-validationspan-viewcase"></span>
                         </div>
 
                         <div class="col-sm-4 col-lg-2 col-4 form-floating ">
@@ -88,7 +89,7 @@
                        class="form-control" id="ViewCasePatientEmail"
                        placeholder="Username" onblur="checkEmailExists()" disabled />
                 <label class="d-flex justify-content-between ms-2">Email </label>
-                <span class="text-danger"></span>
+                <span class="text-danger" id="email-validationspan-viewcase"></span>
             </div>
             @if (Model.status == 1)
             {

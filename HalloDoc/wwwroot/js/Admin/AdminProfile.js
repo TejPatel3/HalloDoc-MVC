@@ -11,11 +11,11 @@ var phoneInput = window.intlTelInput(phoneInputField2, {
 });
 $('#resetpassword-adminprofile').click(function () {
     console.log("reset pass")
-    $('#password-adminprofile').removeAttr('disabled',false)
+    $('#password-adminprofile').removeAttr('disabled', false)
     $('#savepassword-adminprofile').removeAttr('hidden', false);
     $('#savepassword-adminprofile').show();
     $(this).hide();
-   
+
 });
 $('#savepassword-adminprofile').click(function () {
     console.log("reset pass")
@@ -35,7 +35,7 @@ $('#savepassword-adminprofile').click(function () {
             console.error(error);
         }
     });
-    
+
 });
 $('#editbtn-administrator-adminprofile').click(function () {
     console.log("reset pass")
@@ -68,6 +68,10 @@ $('#savebtn-administrator-adminprofile').click(function () {
     var firstname = $('#firstname-adminprofile').val();
     var lastname = $('#lastname-adminprofile').val();
     var selectedregion = [];
+    var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+    var regexphone = /^[1-9][0-9]{9}$/;
+    var regexname = /^[a-zA-Z]+$/i;
+    var allvalidation = true;
     $('input[type="checkbox"]:checked').each(function () {
         selectedregion.push($(this).val());
     });
@@ -79,11 +83,61 @@ $('#savebtn-administrator-adminprofile').click(function () {
         email: email,
         selectedregion: selectedregion,
     }
-
-    if (email != confirmemail) {
-        $('#confirmemail-validationspan').html("Email and Confirm Email is not Match");
+        $('#firstname-validationspan').html("");
+        $('#lastname-validationspan').html("");
+        $('#email-validationspan').html("");
+        $('#confirmemail-validationspan').html("");
+        $('#phone-validationspan').html("");
+    if (firstname == "") {
+        $('#firstname-validationspan').html("please enter firstname");
+        allvalidation = false;
+    }
+    else if (!regexname.test(firstname)) {
+        $('#firstname-validationspan').html("please enter valid name");
+        allvalidation = false;
     }
     else {
+        $('#firstname-validationspan').html("");
+
+    }
+    if (lastname == "") {
+        $('#lastname-validationspan').html("please enter lastname");
+        allvalidation = false;
+    }
+    else if (!regexname.test(lastname)) {
+        $('#lastname-validationspan').html("please enter valid name");
+        allvalidation = false;
+    }
+    else {
+        $('#lastname-validationspan').html("");
+    }
+    if (email == "") {
+        $('#email-validationspan').html("Please Enter Email");
+        allvalidation = false;
+        $('#confirmemail-validationspan').html("");
+
+    }
+    else if (!regexemail.test(email)) {
+        $('#email-validationspan').html("Please Enter Valid Email");
+        $('#confirmemail-validationspan').html("");
+        allvalidation = false;
+    }
+    else {
+        $('#email-validationspan').html("");
+    }
+    if (email != confirmemail) {
+        $('#confirmemail-validationspan').html("Email and Confirm Email is not Match");
+        allvalidation = false;
+    }
+    if (phone == "") {
+        $('#phone-validationspan').html("please enter phone");
+        allvalidation = false;
+    }
+    else if (!regexphone.test(phone)) {
+        $('#phone-validationspan').html("please enter 10 digit mobile number");
+        allvalidation = false;
+    }
+    if (allvalidation) {
         $('#confirmemail-validationspan').html("");
         $('.adisabled').attr('disabled', true);
         $('#editbtn-administrator-adminprofile').show();
@@ -144,7 +198,7 @@ $('#savebtn-mailing-adminprofile').click(function () {
         address2: address2,
         city: city,
         zip: zip,
-        alterphonenumber : alterphonenumber,
+        alterphonenumber: alterphonenumber,
     }
 
 
@@ -167,4 +221,3 @@ $('#savebtn-mailing-adminprofile').click(function () {
 
 });
 
-    

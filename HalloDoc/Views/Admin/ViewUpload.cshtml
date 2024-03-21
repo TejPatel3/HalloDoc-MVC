@@ -75,17 +75,29 @@
             </div>
             <div>
 
-                <button onclick="download()" type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none">
-                    Download all
+                <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" onclick="download()">
+                    <i class="bi bi-cloud-arrow-down d-block d-sm-none"></i>
+                    <label class="d-sm-block d-none">
+                        Download all
+                    </label>
                 </button>
                 <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="DeleteAll">
-                    Delete All
+                    <i class="bi bi-trash  d-block d-sm-none"></i>
+                    <label class="d-sm-block d-none">
+
+                        Delete All
+                    </label>
                 </button>
                 <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="sendMail">
-                    Send Mail
+                    <i class="bi bi-envelope d-block d-sm-none"></i>
+                    <label class="d-sm-block d-none">
+
+                        Send Mail
+                    </label>
                 </button>
             </div>
         </div>
+        <span id="downloadallbtn-viewupload" class="text-danger"></span>
 
         <div class="table-responsive">
 
@@ -108,8 +120,7 @@
                             <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
                             <td>
                                 <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
-
-                                    <i class="bi bi-cloud-arrow-down "></i>
+                                    <i class="bi bi-cloud-arrow-down"></i>
                                 </a>
                                 <div class=" btn btn-outline-info DeleteDoc" id="@item.RequestWiseFileId">
                                     <i class="bi bi-trash  "></i>
@@ -125,6 +136,7 @@
 
     </div>
 </div>
+
 <script src="~/js/Admin/ViewUpload.js" asp-append-version="true"> </script>
 @*
     $('.uploadbtn').on('click', function (e) {

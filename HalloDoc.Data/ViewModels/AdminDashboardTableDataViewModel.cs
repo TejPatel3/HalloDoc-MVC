@@ -46,7 +46,7 @@ namespace Services.ViewModels
             return attributes.Length > 0 ? attributes[0].Description : value.ToString();
         }
 
-        public string RegionNameById(int regionid)
+        public string RegionNameById(int? regionid)
         {
             string regionname = (GetEnumDescription((RegionName)regionid)).ToString();
             return regionname;

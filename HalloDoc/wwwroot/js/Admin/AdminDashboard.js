@@ -1,65 +1,65 @@
-﻿$('#CancelModalSubminbtn').click(function () {
+﻿var regexnote = /^[a-zA-Z0-9][a-zA-Z0-9 ]+$/i;
+var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+var regexphone = /^[1-9][0-9]{9}$/;
+$('#CancelModalSubminbtn').click(function () {
     console.log("assign modal validation js")
     var note = $('#CancelModalNote').val();
     var firsrdrop = $('#CancelModalFirstDropDownSelect').val();
-
-
+    var allvalidation = true;
+    $('#CancelModalFirstDropDownSpan').html("");
+    $('#CancelModalNoteSpan').html("");
     if (FirstDropDownValidation(firsrdrop)) {
         $('#CancelModalFirstDropDownSpan').html("Please Select Reason for cancellation");
-        $('#CancelModalNoteSpan').html("");
+        allvalidation = false;
     }
-    else {
-        $('#CancelModalFirstDropDownSpan').html("");
-        const regexPattern = /^[a-zA-Z0-9 ]+$/;
 
-        if (note == "") {
-            $('#CancelModalNoteSpan').html("Please Enter cancellation Note");
-        }
-        else if (!regexPattern.test(note)) {
-            $('#CancelModalNoteSpan').html("cancellation Note is not valid");
-        }
-        else {
-            $('#CancelModalSubminbtn').closest('form').submit()
-
-        }
+    if (note == "") {
+        $('#CancelModalNoteSpan').html("Please Enter cancellation Note");
+        allvalidation = false;
+    }
+    else if (!regexnote.test(note)) {
+        $('#CancelModalNoteSpan').html("cancellation Note is not valid");
+        allvalidation = false;
+    }
+    if (allvalidation) {
+        $('#CancelModalSubminbtn').closest('form').submit()
     }
 });
 
-
-
-
-$('#AssignModalSubminbtn').on(function () {
+$('#AssignModalSubminbtn').click(function () {
     console.log("assign modal validation js")
     var note = $('#AssignModalNote').val();
     var Region = $('#AssignModalFirstDropDownSelect').val();
     var Physician = $('#AssignModalSecondDropDownSelect').val();
-    console.log(Physician)
-    console.log(note)
-
+    var allvalidation = true;
+    $('#AssignModalFirstDropDownSpan').html("");
+    $('#AssignModalNoteSpan').html("");
+    $('#AssignModalSecondDropDownSpan').html("");
     if (FirstDropDownValidation(Region)) {
         $('#AssignModalFirstDropDownSpan').html("Please Select Region");
-        $('#AssignModalNoteSpan').html("");
-        $('#AssignModalSecondDropDownSpan').html("");
+        allvalidation = false;
     }
-    else {
-        $('#AssignModalFirstDropDownSpan').html("");
-        if (SecondDropDownValidation(Physician)) {
-            $('#AssignModalSecondDropDownSpan').html("Please Select Physician");
+    if (SecondDropDownValidation(Physician)) {
+        if (FirstDropDownValidation(Region)) {
+            $('#AssignModalSecondDropDownSpan').html("Please Select Region first");
+
         }
         else {
-            $('#AssignModalSecondDropDownSpan').html("");
-            const regexPattern = /^[a-zA-Z0-9 ]+$/;
 
-            if (note == "") {
-                $('#AssignModalNoteSpan').html("Please Enter Assign Note");
-            }
-            else if (!regexPattern.test(note)) {
-                $('#AssignModalNoteSpan').html("Assign Note is not valid");
-            }
-            else {
-                $('#AssignModalSubminbtn').closest('form').submit()
-            }
+            $('#AssignModalSecondDropDownSpan').html("Please Select Physician");
         }
+        allvalidation = false;
+    }
+    if (note == "") {
+        $('#AssignModalNoteSpan').html("Please Enter Assign Note");
+        allvalidation = false;
+    }
+    else if (!regexnote.test(note)) {
+        $('#AssignModalNoteSpan').html("Assign Note is not valid");
+        allvalidation = false;
+    }
+    if (allvalidation) {
+        $('#AssignModalSubminbtn').closest('form').submit()
     }
 });
 
@@ -67,14 +67,18 @@ $('#AssignModalSubminbtn').on(function () {
 $('#BlockModalSubminbtn').click(function () {
     console.log("assign modal validation js")
     var note = $('#BlockModalNote').val();
-    const regexPattern = /^[a-zA-Z0-9 ]+$/;
+    let allvalidation = true;
+    $('#BlockModalNoteSpan').html(" ");
+    $('#BlockModalNoteSpan').html("");
     if (note == "") {
         $('#BlockModalNoteSpan').html("Please Enter Block Note");
+        allvalidation = false;
     }
-    else if (!regexPattern.test(note)) {
+    else if (!regexnote.test(note)) {
         $('#BlockModalNoteSpan').html("Block Note is not valid");
+        allvalidation = false;
     }
-    else {
+    if (allvalidation) {
         $('#BlockModalSubminbtn').closest('form').submit()
     }
 });
@@ -87,35 +91,69 @@ $('#TransferModalSubminbtn').click(function () {
     var note = $('#TransferModalNote').val();
     var Region = $('#TransferModalFirstDropDownSelect').val();
     var Physician = $('#TransferModalSecondDropDownSelect').val();
+    var allvalidation = true;
     console.log(Physician)
     console.log(note)
-
+    $('#TransferModalFirstDropDownSpan').html("");
+    $('#TransferModalNoteSpan').html("");
+    $('#TransferModalSecondDropDownSpan').html("");
     if (FirstDropDownValidation(Region)) {
         $('#TransferModalFirstDropDownSpan').html("Please Select Region");
-        $('#TransferModalNoteSpan').html("");
-        $('#TransferModalSecondDropDownSpan').html("");
+        allvalidation = false;
     }
-    else {
-        $('#TransferModalFirstDropDownSpan').html("");
-        if (SecondDropDownValidation(Physician)) {
-            $('#TransferModalSecondDropDownSpan').html("Please Select Physician");
+    if (SecondDropDownValidation(Physician)) {
+        if (FirstDropDownValidation(Region)) {
+            $('#TransferModalSecondDropDownSpan').html("Please Select Region First");
         }
         else {
-            $('#TransferModalSecondDropDownSpan').html("");
-            const regexPattern = /^[a-zA-Z0-9 ]+$/;
+            $('#TransferModalSecondDropDownSpan').html("Please Select Physician");
 
-            if (note == "") {
-                $('#TransferModalNoteSpan').html("Please Enter Assign Note");
-            }
-            else if (!regexPattern.test(note)) {
-                $('#TransferModalNoteSpan').html("Assign Note is not valid");
-            }
-            else {
-                $('#TransferModalSubminbtn').closest('form').submit()
-            }
         }
+        allvalidation = false;
+    }
+    if (note == "") {
+        $('#TransferModalNoteSpan').html("Please Enter Assign Note");
+        allvalidation = false;
+    }
+    else if (!regexnote.test(note)) {
+        $('#TransferModalNoteSpan').html("Assign Note is not valid");
+        allvalidation = false;
+    }
+    if (allvalidation) {
+        $('#TransferModalSubminbtn').closest('form').submit();
     }
 });
+
+$('#SendAgreementModalSubminbtn').click(function () {
+    var phone = $('#AgreementModal-Phone').val();
+    var email= $('#AgreementModal-Email').val();
+    let allvalidation = true;
+
+        $('#SendAgreementModalphoneSpan').html("");
+        $('#SendAgreementModalemailSpan').html("");
+    if (phone == "") {
+        $('#SendAgreementModalphoneSpan').html("Please Enter Phone number");
+        allvalidation = false;
+    }
+    else if (!regexphone.test(phone)) {
+        $('#SendAgreementModalphoneSpan').html("Please enter 10 digit mobile number");
+        allvalidation = false;
+    }
+    if (email == "") {
+        $('#SendAgreementModalemailSpan').html("Please Enter Email");
+        allvalidation = false;
+    }
+    else if (!regexemail.test(email)) {
+        $('#SendAgreementModalemailSpan').html("Email is not valid");
+        allvalidation = false;
+    }
+
+
+    if (allvalidation) {
+        $('#SendAgreementModalSubminbtn').closest('form').submit()
+    }
+});
+
 
 
 function FirstDropDownValidation(firstdropvalue) {

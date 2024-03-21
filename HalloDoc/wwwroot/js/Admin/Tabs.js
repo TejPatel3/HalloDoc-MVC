@@ -1,4 +1,5 @@
-﻿var currentpage = 1;
+﻿var statusnamehead = "New";
+var currentpage = 1;
 var status = 1;
 var requesttype = 0;
 var searchkey;
@@ -54,34 +55,43 @@ $(document).ready(function () {
         switch (target) {
             case '#status_new':
                 $('#statusnamehead').html('New');
+                statusnamehead = "New";
                 status = 1;
 
                 break;
             case '#status_pending':
                 $('#statusnamehead').html('Pending');
+                statusnamehead = "Pending";
 
                 status = 2;
                 break;
             case '#status_active':
                 $('#statusnamehead').html('Active');
+                statusnamehead = "Active";
+
                 status = 4
                 break;
             case '#status_conclude':
                 $('#statusnamehead').html('Conclude');
+                statusnamehead = "Conclude";
+
                 status = 6
                 break;
             case '#status_toclose':
                 $('#statusnamehead').html('To Close');
+                statusnamehead = "To Close";
+
                 status = 3
                 break;
             case '#status_unpaid':
                 $('#statusnamehead').html('Unpaide');
+                statusnamehead = "Unpaid";
+
                 status = 9
                 break;
 
             default:
         }
-        console.log(url);
         $.ajax({
             url: '/Admin/DashboardTabsData',
             data: { "status": status, "currentpage": currentpage },
@@ -132,15 +142,16 @@ function download() {
 //$('#downloadall').click(function () {
 
 //});
-
-function RequestTypeFilter(type) {
-    requesttype = type;
-
+$(".radio-under").click(function () {
+    let requesttype = $(this).attr('id');
+    if (requesttype == "requestbyAll") {
+        requesttype = 0;
+    }
     $.ajax({
         url: '/Admin/DashboardTabsData',
         data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
         success: function (response) {
-            $('#statusnamehead').html('New');
+            $('#statusnamehead').html(statusnamehead);
             $('#datatable').html(response);
             $(this).css("border", "1px solid red")
         },
@@ -148,14 +159,15 @@ function RequestTypeFilter(type) {
             console.error(error);
         }
     });
-};
+});
+
 function search() {
     searchkey = $('#my-search-input').val();
     $.ajax({
         url: '/Admin/DashboardTabsData',
         data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
         success: function (response) {
-            $('#statusnamehead').html('New');
+            $('#statusnamehead').html(statusnamehead);
             $('#datatable').html(response);
         },
         error: function (xhr, status, error) {
@@ -166,11 +178,12 @@ function search() {
 
 function SearchByRegion() {
     var regionid = $('#RegionSearch').val();
+    console.log("kolok")
     $.ajax({
         url: '/Admin/DashboardTabsData',
         data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
         success: function (response) {
-            $('#statusnamehead').html('New');
+            $('#statusnamehead').html(statusnamehead);
             $('#datatable').html(response);
         },
         error: function (xhr, status, error) {
@@ -210,7 +223,7 @@ $('a.download').on('click', function () {
     //});
 
     var link = document.createElement('a');
-    link.href = '/Admin/DownloadExcelfile?status=' + status + "&currentpage=" + currentpage + "&requestType=" + requesttype + "&searchkey"+ searchkey+ "&regionid"+ regionid;
+    link.href = '/Admin/DownloadExcelfile?status=' + status + "&currentpage=" + currentpage + "&requestType=" + requesttype + "&searchkey" + searchkey + "&regionid" + regionid;
     link.style.display = 'none';
     document.body.appendChild(link)
         ;

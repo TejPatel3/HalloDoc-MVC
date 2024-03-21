@@ -1,4 +1,5 @@
 ﻿@model Services.ViewModels.SendOrderModal
+<Partial name="Toast" />
 
 @{
     Layout = null;
@@ -160,12 +161,12 @@
         7
     </div>
 </div>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
 <script>
     $(document).ready(function () {
         $('.firstdropdown').change(function () {
-            debugger;
             var healthprofessionId = $(this).find(":selected").attr('itemid'); // This will get the id of the selected professional
             console.log(healthprofessionId);
             $.ajax({
@@ -173,14 +174,12 @@
                 type: 'GET',
                 data: { healthprofessionId: healthprofessionId },
                 success: function (data) {
-                    console.log(data);
+
                     var secondDropdown = $('.business'); // Replace with your second dropdown selector
                     secondDropdown.empty(); // Clear existing options
                     secondDropdown.append($('<option>', {
                         hidden: "hidden",
-                        value: "
-
-",
+                        value: "invalid",
                         text: "Business"
                     }))
                     $.each(data, function (index, item) {
@@ -206,6 +205,49 @@
             });
         })
 
+//         console.log("order page open")
+//         $('.firstdropdown').change(function () {
+//             debugger;
+//             var healthprofessionId = $(this).find(":selected").attr('itemid'); // This will get the id of the selected professional
+//             console.log(healthprofessionId);
+//             $.ajax({
+//                 url: '/Admin/GetBusiness', // Replace with your server script URL
+//                 type: 'GET',
+//                 data: { healthprofessionId: healthprofessionId },
+//                 success: function (data) {
+//                     console.log(data);
+//                     var secondDropdown = $('.business'); // Replace with your second dropdown selector
+//                     secondDropdown.empty(); // Clear existing options
+//                     secondDropdown.append($('<option>', {
+//                         hidden: "hidden",
+//                         value: "
+
+// ",
+//                         text: "Business"
+//                     }))
+//                     $.each(data, function (index, item) {
+//                         secondDropdown.append($('<option>', {
+//                             value: item.vendorId, // Replace with the actual value from your data
+//                             text: item.vendorName // Replace with the actual text from your data
+//                         }));
+//                     });
+//                 }
+//             });
+//         });
+
+//         $('.secondDropdown').on('change', function () {
+//             $.ajax({
+//                 url: '/Admin/GetVendorDetail',
+//                 data: { vendorid: $(this).val() },
+//                 success: function (data) {
+//                     console.log(data)
+//                     $('input[name="BusinessContact"]').val(data.businessContact);
+//                     $('input[name="Email"]').val(data.email);
+//                     $('input[name="FaxNumber"]').val(data.faxNumber);
+//                 }
+//             });
+//         })
+
         //$.ajax({
         //    url: '/Admin/ViewNotes',
         //    type: 'POST',
@@ -220,7 +262,6 @@
         //});
 
         $('.ordersubmit').on('click', function () {
-            debugger;
             var requestid = @Model.requestid;
             var vendorid = $('.secondDropdown').val();
             var RefillNumber = $('.RefillNum').val();
@@ -236,7 +277,7 @@
                 type: 'POST',
                 data: { requestid: requestid, vendorid: vendorid, prescription: prescription, refill: RefillNumber },
                 success: function (data) {
-
+                    window.location.href = "https://localhost:44370/";
                 },
                 error: function (xhr, status, error) {
                     console.log(error);

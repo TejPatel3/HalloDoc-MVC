@@ -1,4 +1,5 @@
-﻿
+﻿//const { isEmptyObject } = require("jquery");
+
 var actualBtn = document.getElementById('actual-btn');
 var fileChosen = document.getElementById('file-chosen');
 actualBtn.addEventListener('change', function () {
@@ -15,8 +16,6 @@ actualBtn.addEventListener('change', function () {
 })
 
 $('.uploadbtn').on('click', function (e) {
-    e.preventDefault();
-
     var formData = new FormData();
     for (var i = 0; i < actualBtn.files.length; i++) {
         formData.append('file', actualBtn.files[i]); // Append each selected file
@@ -24,7 +23,6 @@ $('.uploadbtn').on('click', function (e) {
     formData.append('id', $('.RequestsId').val());
     console.log(formData);
     // Add any other data you need (e.g., RequestsId)
-
     $.ajax({
         url: '../Admin/UploadButton', // Replace with your controller action URL
         type: 'POST',
@@ -38,6 +36,7 @@ $('.uploadbtn').on('click', function (e) {
             console.error('Error uploading files:', error);
         }
     });
+
 });
 
 //$('.uploadbtn').on('click', function (e) {
@@ -73,7 +72,7 @@ $('#downloadall').click(function () {
 
 // Handle individual checkbox clicks to update the leader checkbox state
 $('.childCheckbox').click(function () {
-        $('#downloadall').prop('checked', $('.childCheckbox:checked').length === $('.childCheckbox').length);
+    $('#downloadall').prop('checked', $('.childCheckbox:checked').length === $('.childCheckbox').length);
 });
 
 $('#DeleteAll').click(function () {
@@ -83,6 +82,7 @@ $('#DeleteAll').click(function () {
         var reqid = $('.RequestsId').val();
         console.log(reqid);
         console.log(wiseFileId);
+
         $.ajax({
             url: '/Admin/DeleteDoc', // Replace with your controller action URL
             type: 'POST',
@@ -129,12 +129,11 @@ $('.DeleteDoc').on('click', function () {
 
 $('#sendMail').on('click', function (e) {
     e.preventDefault();
-    console.log("not yet")
+
     var formData = new FormData();
 
     $('input[name="checkbox"]:checked').each(function () {
         var wiseid = $(this).attr('id');
-
         formData.append('wiseFileId', wiseid);
     });
     var reqid = $('.RequestsId').val();
@@ -175,9 +174,9 @@ $('#sendMail').on('click', function (e) {
 
 
 function download() {
-    console.log("llllll")
     var selectedFiles = document.querySelectorAll('input[name="checkbox"]:checked');
     var fileUrls = [];
+
 
     // Iterate through selected checkboxes and extract file URLs
     selectedFiles.forEach(function (checkbox) {
@@ -196,6 +195,7 @@ function download() {
         link.click();
         document.body.removeChild(link);
     });
+
 }
 
 

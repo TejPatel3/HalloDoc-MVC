@@ -6,157 +6,311 @@
 @{
     var totalpages = Math.Ceiling(@ViewBag.TotalRowsOfDataContent / 5.00);
 }
-<table class="table align-middle">
-    <thead class="thead-light bg-light">
-        <tr>
-            <td class="d-none"></td>
-            <td class="d-none"></td>
-            <th scope="col">Name</th>
-            <th scope="col">Date Of Birth</th>
-            <th scope="col">Region</th>
-            <th scope="col">Physician Name</th>
-            <th scope="col">Date Of Services</th>
-            <th scope="col">Address</th>
-            <th scope="col">Notes</th>
-            <th scope="col">Chat With</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody id="datatable" class="bg-white">
-        @foreach (var item in Model)
-        {
-            var color = "green-dot";
-            switch (item.RequestType)
-            {
-                case 1:
-                    {
-                        color = "green-dot";
-                        break;
-                    }
-                case 2:
-                    {
-                        color = "orange-dot";
-                        break;
-                    }
-                case 3:
-                    {
-                        color = "pink-dot";
-                        break;
-                    }
-                case 4:
-                    {
-                        color = "cyan-dot";
-                        break;
-                    }
-                default:
-                    {
-                        color = "purple-dot";
-                        break;
-                    }
-            }
-            <tr class="@color">
-                <td class="d-none">@item.RequestType</td>
-                <td class="d-none">@item.regionid</td>
-                <td scope="row">
-                    <div class="d-flex justify-content-between ">
-                        @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
-                    </div>
-                </td>
-                <td>@item.PatientDOB.ToString("dd MMM,yyyy ")</td>
-                <td>@item.RegionNameById(int.Parse(item.regionidtoclose))</td>
-                <td>@item.PhysicianName</td>
-                <td>@item.ProviderEmail</td>
-                <td>@item.PatientDOB</td>
-                <td scope="row">@item.PatientName</td>
-                <td>
-                    <div class="border border-1 border-white rounded d-flex justify-content-around align-items-center p-1" style="width : 65%">
-                        <i class="fa-solid fa-user-doctor pe-1"></i>
-                        Provider
-                    </div>
-                </td>
-                <td>
-                    <div class="dropstart ms-2">
-                        <button class="btn btn-outline-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Actions
-                        </button>
-                        <ul class="dropdown-menu">
 
-                            <li>
-                                <button class="dropdown-item text-secondary viewCase" value="@item.requestid">
-                                    <i class="bi bi-view-list me-2"></i>
-                                    View case
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item text-secondary viewUpload" value="@item.requestid">
-                                    <i class="bi bi-view-list me-2"></i>
-                                    View Uploads
-                                </button>
-                            </li>
-                            <li>
-                                <button value="@item.requestid" class="dropdown-item text-secondary viewNotes">
-                                    <i class="fa-solid fa-book-journal-whills me-2"></i>View Notes
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item text-secondary order" value="@item.requestid">
-                                    <i class="bi bi-view-list me-2"></i>
-                                    Orders
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item text-secondary closecasebtn" value="@item.requestid" id="@item.requestid">
-                                    <i class="bi bi-x-circle"></i>
-                                    Close Case
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item text-secondary" value="@item.requestid">
-                                    <i class="bi bi-file-earmark-text"></i>
-                                    Doctors Note
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item text-secondary cancelbtn" id="@item.requestid" data-toggle="modal" data-target="#ClearModal">
-                                    <i class="bi bi-view-list me-2"></i>
-                                    Clear Case
-                                </button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item text-secondary" value="@item.requestid">
-                                    <i class="bi bi-file-earmark-text"></i>
-                                    Encounter
-                                </button>
-                            </li>
-                        </ul>
+<div class="accordion d-block d-sm-none " id="accordionExample">
+
+    @foreach (var item in Model)
+    {
+        <div class="accordion-item">
+            @{
+
+                var color = "green-dot";
+
+                switch (item.RequestType)
+                {
+                    case 1:
+                        {
+                            color = "green-dot";
+                            break;
+                        }
+                    case 2:
+                        {
+                            color = "orange-dot";
+                            break;
+                        }
+                    case 3:
+                        {
+                            color = "pink-dot";
+                            break;
+                        }
+                    case 4:
+                        {
+                            color = "cyan-dot";
+                            break;
+                        }
+                    default:
+                        {
+                            color = "purple-dot";
+                            break;
+                        }
+                }
+            }
+
+            <h2 class="accordion-header" id="heading_@item.requestid">
+                <div class="accordion-button collapsed pb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
+
+
+                    <div class="col d-flex flex-column">
+                        <span class="d-none">@item.RequestType</span>
+                        <span class="">@item.PatientName</span>
+                        <span class=" mt-3 font-size-m-clamp">@item.Address</span>
+                        <span class="mt-2 font-size-s-clamp"><i class="bi bi-clock text-info me-2 "></i>Wait Time: DEC5, 2023</span>
                     </div>
-                </td>
+                    <div class="col d-flex flex-column text-end mt-2 p-0">
+                        <div>
+                            <div>
+                                <span>@item.RequestTypeName(item.RequestType)</span>
+                                <i class="bi bi-circle-fill  @color"></i>
+                            </div>
+                            <div class="btn text-info border-info float-end mt-3 rounded-pill btn-sm width-xs-clamp font-size-xs-clamp">
+                                Map Location
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="m-0">
+            </h2>
+
+            <div id="collapse_@item.requestid" class="accordion-collapse collapse " aria-labelledby="heading_@item.requestid" data-bs-parent="#accordion">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="rounded-pill me-3 viewCaseBtn p-1 viewCase" value="@item.requestid" style="cursor : pointer">
+                        View Case
+                    </button>
+                </div>
+
+                <div class="accordion-body d-flex flex-column gap-1">
+                    <div><i class="bi bi-calendar2-minus me-2 icn"></i>Date of birth: @item.PatientDOB</div>
+                    <div><i class="bi bi-envelope me-2 icn"></i>Email: @item.PatientEmail</div>
+                    <div><i class="bi bi-person me-2 icn"></i>Transfer Admin transferred to Dr.tatva on 13/12/2023 at 5:47:19 AM : test</div>
+
+                    <div><i class="bi bi-calendar2-minus me-2 icn"></i>Date of service: -</div>
+                    <div><i class="bi bi-person me-2 icn"></i>Physician: @item.RequestorName</div>
+                    <div><i class="bi bi-circle me-2 icn"></i>Region: @item.RegionNameById(item.regionid)</div>
+
+
+                </div>
+                <div class="container-fluid">
+
+                    <div class="row gy-2">
+
+
+                        <div class="col-6 d-flex justify-content-center">
+
+                            <button value="@item.requestid" id="@item.requestid" class="btn w-100 bg-danger text-white rounded-pill p-1 btn-sm text-secondary closecasebtn">
+
+                                Close Case
+                            </button>
+                        </div>
+
+                        <div class="col-6 d-flex justify-content-center">
+
+                            <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary viewNotes">
+
+                                View Notes
+                            </button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+
+                            <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary">
+
+                                Doctor Note
+                            </button>
+                        </div>
+
+                        <div class="col-6 d-flex justify-content-center">
+
+                            <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary viewUpload">
+
+                                View Uploads
+                            </button>
+                        </div>
+
+                        <div class="col-6 d-flex justify-content-center">
+
+                            <button type="button" value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary encounter" id="@item.requestid" data-toggle="modal" data-target="#exampleModalEncounter">
+
+                                Encounter
+                            </button>
+                        </div>
+
+
+
+                        <div class="col-6 d-flex justify-content-center">
+
+                            <button type="button" id="@item.requestid" value="@item.requestid" data-toggle="modal" data-target="#ClearModal" class="btn w-100 text-white bg-warning rounded-pill p-1 btn-sm text-secondary cancelbtn">
+                                Clear Case
+                            </button>
+                        </div>
+
+                        <div class="col-6 d-flex justify-content-center">
+                            <a class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm">Email</a>
+                        </div>
+
+                        <div class="d-flex justify-content-end mb-2">
+                            <small class="mt-1">Chat with: &nbsp;</small>
+                            <button class="btn btn-outline-info p-1 me-2 shadow-none"
+                                    type="button" >
+                                <i class="bi bi-person-fill"></i>
+                                <small>
+                                    Patient
+                                </small>
+                            </button>
+
+                            <button class="btn btn-outline-info p-1 shadow-none"
+                                    type="button">
+                                <i class="bi bi-person-badge-fill"></i>
+                                <small>
+                                    Provider
+                                </small>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="d-none d-sm-block">
+
+
+    <table class="table align-middle ">
+        <thead class="thead-light bg-light">
+            <tr>
+                <td class="d-none"></td>
+                <td class="d-none"></td>
+                <th scope="col">Name</th>
+                <th scope="col">Date Of Birth</th>
+                <th scope="col">Region</th>
+                <th scope="col">Physician Name</th>
+                <th scope="col">Date Of Services</th>
+                <th scope="col">Address</th>
+                <th scope="col">Notes</th>
+                <th scope="col">Chat With</th>
+                <th scope="col">Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody id="datatable" class="bg-white">
+            @foreach (var item in Model)
+            {
+                var color = "green-dot";
+                switch (item.RequestType)
+                {
+                    case 1:
+                        {
+                            color = "green-dot";
+                            break;
+                        }
+                    case 2:
+                        {
+                            color = "orange-dot";
+                            break;
+                        }
+                    case 3:
+                        {
+                            color = "pink-dot";
+                            break;
+                        }
+                    case 4:
+                        {
+                            color = "cyan-dot";
+                            break;
+                        }
+                    default:
+                        {
+                            color = "purple-dot";
+                            break;
+                        }
+                }
+                <tr class="@color">
+                    <td class="d-none">@item.RequestType</td>
+                    <td class="d-none">@item.regionid</td>
+                    <td scope="row">
+                        <div class="d-flex justify-content-between ">
+                            @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
+                        </div>
+                    </td>
+                    <td>@item.PatientDOB.ToString("dd MMM,yyyy ")</td>
+                    <td>@item.RegionNameById(int.Parse(item.regionidtoclose))</td>
+                    <td>@item.PhysicianName</td>
+                    <td>@item.ProviderEmail</td>
+                    <td>@item.PatientDOB</td>
+                    <td scope="row">@item.PatientName</td>
+                    <td>
+                        <div class="border border-1 border-white rounded d-flex justify-content-around align-items-center p-1" style="width : 65%">
+                            <i class="fa-solid fa-user-doctor pe-1"></i>
+                            Provider
+                        </div>
+                    </td>
+                    <td>
+                        <div class="dropstart ms-2">
+                            <button class="btn btn-outline-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Actions
+                            </button>
+                            <ul class="dropdown-menu">
+
+                                <li>
+                                    <button class="dropdown-item text-secondary viewCase" value="@item.requestid">
+                                        <i class="bi bi-view-list me-2"></i>
+                                        View case
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-secondary viewUpload" value="@item.requestid">
+                                        <i class="bi bi-view-list me-2"></i>
+                                        View Uploads
+                                    </button>
+                                </li>
+                                <li>
+                                    <button value="@item.requestid" class="dropdown-item text-secondary viewNotes">
+                                        <i class="fa-solid fa-book-journal-whills me-2"></i>View Notes
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-secondary order" value="@item.requestid">
+                                        <i class="bi bi-view-list me-2"></i>
+                                        Orders
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-secondary closecasebtn" value="@item.requestid" id="@item.requestid">
+                                        <i class="bi bi-x-circle"></i>
+                                        Close Case
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-secondary" value="@item.requestid">
+                                        <i class="bi bi-file-earmark-text"></i>
+                                        Doctors Note
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-secondary cancelbtn" id="@item.requestid" data-toggle="modal" data-target="#ClearModal">
+                                        <i class="bi bi-view-list me-2"></i>
+                                        Clear Case
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dropdown-item text-secondary" value="@item.requestid">
+                                        <i class="bi bi-file-earmark-text"></i>
+                                        Encounter
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 <div class="dataTables_paginate d-flex justify-content-center gap-2 px-4">
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script src="~/js/Admin/SixTabChildContent.js"> </script>
-<script>
 
-    $('.closecasebtn').on('click', function (e) {
-        console.log("requestid")
-        var requestid = $(this).attr('id');
-        $.ajax({
-            url: '/Admin/CloseCase',
-            type: 'GET',
-            data: { requestid: requestid },
-            success: function (response) {
-                $('#nav-home').html(response);
-            },
-            error: function (xhr, status, error) {
-                console.error("error");
-            }
-        });
-    });
+<script>
     var currentpage = 1;
     // function filterwithoutpagination(state, requesttype, search, region) {
     //     $.ajax({
@@ -173,22 +327,33 @@
     // }
 
     function change_page(temp) {
+        console.log($(this));
+        // $(this).addClass("paginate_button-active");
         currentpage = temp;
+        // console.log($('.paginate_button').data('id') == temp)
+        // if ($('.paginate_button').data('id') == temp) {
+        //     $('.paginate_button').addClass('btn-info');
 
+        // }
+        $(".paginate_button").addClass("paginate_button-active");
         $.ajax({
             url: '/Admin/DashboardTabsData',
             data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey },
             success: function (response) {
-                $('#statusnamehead').html('New');
+                $('#statusnamehead').html(statusnamehead);
                 $('#datatable').html(response);
             },
             error: function (xhr, status, error) {
                 console.error(error);
             }
         });
-
-
     }
+
+    $(document).ready(function () {
+
+    });
+
+
     // $('.dataTables_paginate').on('click', '.paginate_button' , function () {
     //     console.log("ayu bhai ayu")
     // })
@@ -204,7 +369,8 @@
             var j = currentpage;
             if (@totalpages <= 5) {
                 for (var i = 1; i <= @totalpages; i++) {
-                    $('.dataTables_paginate').append('<button class="paginate_button" onclick="change_page(' + i + ')" data-id="' + i + '">' + i + '</button> ');
+                    $('.dataTables_paginate').append('<button class="paginate_button btn btn-outline-info" onclick="change_page(' + i + ')" data-id="' + i + '">' + i + '</button> ');
+                    // $('.dataTables_paginate').append('<button class="paginate_button btn btn-outline-info" data-iiid="' + i + '">' + i + '</button> ');
                 }
             }
             else {
@@ -264,7 +430,65 @@
         check = 1;
 
     });
+
+                // $(document).ready(function () {
+                //     $(document).on("click", ".dataTables_paginate .paginate_button", function () {
+                //         let temp = $(this).data("iiid"); // Get the page number from the button's data-iiid attribute
+                //         console.log("ayu bhai")
+                //         console.log("aayu k nai ");
+                //         console.log("temp is", temp);
+                //         console.log($(this));
+                //         currentpage = temp;
+                //         $(".paginate_button").removeClass("btn-outline-info paginate_button-active");
+                //         $(this).addClass("paginate_button-active");
+
+                //         // console.log($('.paginate_button').data('id') == temp)
+                //         // if ($('.paginate_button').data('id') == temp) {
+                //         //     $('.paginate_button').addClass('btn-info');
+
+                //         // }
+                //         $.ajax({
+                //             url: '/Admin/DashboardTabsData',
+                //             data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey },
+                //             success: function (response) {
+                //                 $('#statusnamehead').html('New');
+                //                 $('#datatable').html(response);
+                //             },
+                //             error: function (xhr, status, error) {
+                //                 console.error(error);
+                //             }
+                //         });
+
+                //     });
+                // });
+
+                // $('.paginate_button').on('click', function () {
+                //     console.log("aayu k nai ");
+                //     let temp = $(".paginate_button").data('iiid');
+                //     console.log("temp is", temp);
+                //     console.log($(this));
+                //     $(".paginate_button").addClass("paginate_button-active");
+                //     $(this).addClass("paginate_button-active");
+                //     currentpage = temp;
+                //     // console.log($('.paginate_button').data('id') == temp)
+                //     // if ($('.paginate_button').data('id') == temp) {
+                //     //     $('.paginate_button').addClass('btn-info');
+
+                //     // }
+                //     $.ajax({
+                //         url: '/Admin/DashboardTabsData',
+                //         data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey },
+                //         success: function (response) {
+                //             $('#statusnamehead').html('New');
+                //             $('#datatable').html(response);
+                //         },
+                //         error: function (xhr, status, error) {
+                //             console.error(error);
+                //         }
+                //     });
+                // });
 </script>
+
 @*
 <script>
     // var table = $('#example').DataTable({ dom: 'lrtip' });

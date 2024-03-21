@@ -189,41 +189,41 @@
             </div> *@
 
 
-       @*      <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1" onclick="RequestTypeFilter(2)">
-                <input type="radio" class="btn-check" name="requestby" autocomplete="off" id="2">
-                <label class="infowithcolor btn p-0 p-xl-2 text-black d-flex flex-row" for="2">
-                    <i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #ed9124;"></i>
-                    Family
-                </label>
+            @*      <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1" onclick="RequestTypeFilter(2)">
+            <input type="radio" class="btn-check" name="requestby" autocomplete="off" id="2">
+            <label class="infowithcolor btn p-0 p-xl-2 text-black d-flex flex-row" for="2">
+            <i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #ed9124;"></i>
+            Family
+            </label>
             </div> *@
 
-            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 width-xs" onclick="RequestTypeFilter(0)">
-                <input type="radio" class="btn-check" name="requestby" autocomplete="off" id="requestbyAll" checked>
-                <label class="infowithcolor btn p-0 p-xl-2 font-size-xs text-black " for="requestbyAll">All</label>
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 width-xs selected-border check-activeradio" >
+                <input type="radio" class="btn-check radio-under" name="requestby" autocomplete="off" id="requestbyAll" checked>
+                <label class="infowithcolor btn p-0 p-xl-2 font-size-xs text-black shadow-none" for="requestbyAll">All</label>
             </div>
-            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 width-xs" onclick="RequestTypeFilter(1)">
-                <input type="radio" class="btn-check" name="requestby" autocomplete="off" id="1">
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 width-xs check-activeradio" >
+                <input type="radio" class="btn-check radio-under" name="requestby" autocomplete="off" id="1">
                 <i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:   #5fbc61;"></i>
 
                 <label class="infowithcolor btn p-0 p-xl-2 font-size-xs text-black" for="1">Patient</label>
             </div>
-            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1" onclick="RequestTypeFilter(2)">
-                <input type="radio" class="btn-check" name="requestby" autocomplete="off" id="2">
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 check-activeradio" >
+                <input type="radio" class="btn-check radio-under" name="requestby" autocomplete="off" id="2">
                 <i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #ed9124;"></i>
                 <label class="infowithcolor btn p-0 p-xl-2 text-black" for="2">Family</label>
             </div>
-            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1" onclick="RequestTypeFilter(3)">
-                <input type="radio" class="btn-check" name="requestby" autocomplete="off" id="3">
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 check-activeradio" >
+                <input type="radio" class="btn-check radio-under" name="requestby" autocomplete="off" id="3">
                 <i class="fa-solid fa-circle fa-2xs pe-1  d-flex justify-content-center align-items-center" style="color:   #e36478;"></i>
                 <label class="infowithcolor btn p-0 p-xl-2 text-black" for="3">Concierge</label>
             </div>
-            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1" onclick="RequestTypeFilter(4)">
-                <input type="radio" class="btn-check" name="requestby" autocomplete="off" id="4">
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 check-activeradio" >
+                <input type="radio" class="btn-check radio-under" name="requestby" autocomplete="off" id="4">
                 <i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #0c7db7;"></i>
                 <label class="infowithcolor btn p-0 p-xl-2 text-black" for="4">Business</label>
             </div>
-            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1" onclick="RequestTypeFilter(5)">
-                <input type="radio" class="btn-check" name="requestby" autocomplete="off" id="5">
+            <div class="d-inline-block d-sm-inline-flex justify-content-center align-items-center px-sm-2 pe-1 check-activeradio" >
+                <input type="radio" class="btn-check radio-under" name="requestby" autocomplete="off" id="5">
                 <i class="fa-solid fa-circle fa-2xs pe-1 d-flex justify-content-center align-items-center" style="color:  #943db8;"></i>
                 <label class="infowithcolor btn p-0 p-xl-2 text-black" for="5">VIP</label>
             </div>
@@ -281,9 +281,7 @@
         color: white;
     }
 
-    small {
-        font-size: clamp(0.2rem, 1.35vw, 0.8rem);
-    }
+
 
     .infowithcolor {
         font-size: clamp(0.7rem, 1.4vw, 1rem);
@@ -300,4 +298,33 @@
     .height-fit-content {
         height: fit-content;
     }
+
+    .selected-border {
+        border-bottom: 2px solid gray;
+        padding-bottom: 5px;
+        background-color: #F9F8F8;
+        border-radius:5px 5px 0px 0px;
+    }
+
+
 </style>
+<script>
+
+    const radiouttons = document.querySelectorAll('.radio-under');
+    const radioDivs = document.querySelectorAll('.check-activeradio');
+
+    console.log("1" + radiouttons)
+    console.log("2" + radioDivs)
+    radiouttons.forEach((radio, index) => {
+        radio.addEventListener('click', () => {
+            radioDivs.forEach((div, divIndex) => {
+                if (index === divIndex) {
+                    div.classList.add('selected-border');
+                } else {
+                    div.classList.remove('selected-border');
+                }
+            });
+        });
+    });
+
+</script>

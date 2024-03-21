@@ -86,6 +86,13 @@ namespace HalloDoc.Controllers.Admin
         {
             var data = _adminDashboardDataTable.getallAdminDashboard(status, currentpage, requesttype, searchkey, regionid);
             ViewBag.TotalRowsOfDataContent = data.Count();
+            foreach (var item in data)
+            {
+                if (item.PhysicianId != null)
+                {
+                    item.PhysicianName = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId).FirstName + _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId).LastName;
+                }
+            }
             var newdatalist = data.Skip((currentpage - 1) * 5).Take(5).ToList();
             switch (status)
             {
@@ -141,9 +148,9 @@ namespace HalloDoc.Controllers.Admin
                 worksheet.Cells[1, 3].Value = "Requestor";
                 worksheet.Cells[1, 4].Value = "Requested Date";
                 worksheet.Cells[1, 5].Value = "Patient Number";
-                worksheet.Cells[1, 5].Value = "Requestor Number";
-                worksheet.Cells[1, 6].Value = "Address";
-                worksheet.Cells[1, 7].Value = "Notes";
+                worksheet.Cells[1, 6].Value = "Requestor Number";
+                worksheet.Cells[1, 7].Value = "Address";
+                worksheet.Cells[1, 8].Value = "Notes";
 
 
                 // Add data to the worksheet
@@ -154,9 +161,9 @@ namespace HalloDoc.Controllers.Admin
                     worksheet.Cells[i + 2, 3].Value = data[i].RequestType;
                     worksheet.Cells[i + 2, 4].Value = data[i].RequestedDate.ToString("dd MMM,yyyy");
                     worksheet.Cells[i + 2, 5].Value = data[i].PatientPhone;
-                    worksheet.Cells[i + 2, 5].Value = data[i].RequestorPhone;
-                    worksheet.Cells[i + 2, 6].Value = data[i].Address;
-                    worksheet.Cells[i + 2, 7].Value = data[i].Notes;
+                    worksheet.Cells[i + 2, 6].Value = data[i].RequestorPhone;
+                    worksheet.Cells[i + 2, 7].Value = data[i].Address;
+                    worksheet.Cells[i + 2, 8].Value = data[i].Notes;
                     //worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
                     //worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
                 }
@@ -308,6 +315,7 @@ namespace HalloDoc.Controllers.Admin
             SendOrderModal orderdata = new SendOrderModal();
             orderdata.requestid = requestid;
             orderdata.Healthprofessionaltypes = professiontypeList;
+
             return View(orderdata);
         }
 
@@ -333,6 +341,8 @@ namespace HalloDoc.Controllers.Admin
                 _context.OrderDetails.Add(order);
                 _context.SaveChanges();
             }
+            TempData["success"] = "Your order placed successfully..!";
+
             return RedirectToAction("AdminDashboard");
         }
 
@@ -487,7 +497,7 @@ namespace HalloDoc.Controllers.Admin
             var adminid = HttpContext.Session.GetInt32("AdminId");
 
             _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, adminid, physiciandetail.PhysicianId);
-            TempData["success"] = "Request auccessfully Assigned..!";
+            TempData["success"] = "Request successfully Assigned..!";
             return RedirectToAction("AdminDashboard");
         }
 

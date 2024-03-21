@@ -271,14 +271,16 @@
                     <div class="form-floating py-2 p-0">
                         <input class="form-control " id="AgreementModal-Phone" placeholder="Mobile Number" />
                         <label for="floatingTextarea" class="text-secondary" style="top : 8px">Phone Number</label>
+                        <span class="text-danger" id="SendAgreementModalphoneSpan"></span>
                     </div>
                     <div class="form-floating py-2">
                         <input class="form-control" id="AgreementModal-Email" placeholder="Email" name="email" />
                         <label for="floatingTextarea" class=" text-secondary" style="top : 8px">Email</label>
+                        <span class="text-danger" id="SendAgreementModalemailSpan"></span>
                     </div>
                 </div>
                 <div class="modal-footer border-0 pt-0 pb-3">
-                    <button type="submit" class="btn btn-info text-white sendAgreementBtn">Send</button>
+                    <button type="button" class="btn btn-info text-white sendAgreementBtn" id="SendAgreementModalSubminbtn">Send</button>
                     <button type="button" class="btn btn-outline-info" data-dismiss="modal">cancel</button>
                 </div>
             </form>
@@ -322,7 +324,7 @@
     </div>
 </div>
 
-<script src="/js/Admin/AdminDashboard.js"></script>
+<script src="/js/Admin/AdminDashboard.js" asp-append-version="true"></script>
 
 <style>
     .bg-light {
