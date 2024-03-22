@@ -604,9 +604,18 @@ namespace HalloDoc.Controllers.Admin
 
         public IActionResult SendCreatePatientRequestPageLink(string firstname, string phonenumber, string email)
         {
-            string CreateRequestUrl = GenerateSendCreateRequestLinkUrl(email, phonenumber, firstname);
-            SendEmail(email, "Create A Request", $"Hello, Click On below Link for Creating a request: {CreateRequestUrl}");
-            TempData["success"] = "Create Request link sent in Email..!";
+            if (firstname == null || phonenumber == null || email == null)
+            {
+
+                TempData["error"] = "Something Went wrong try again..!";
+            }
+            else
+            {
+
+                string CreateRequestUrl = GenerateSendCreateRequestLinkUrl(email, phonenumber, firstname);
+                SendEmail(email, "Create A Request", $"Hello, Click On below Link for Creating a request: {CreateRequestUrl}");
+                TempData["success"] = "Create Request link sent in Email..!";
+            }
             return RedirectToAction("AdminDashboard");
         }
         private string GenerateSendCreateRequestLinkUrl(string email, string phonenumber, string firstname)
