@@ -31,16 +31,19 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="script" href="~/js/site.js" />
 </head>
-<body id="AdminLayoutBody">
+<body>
     <div class="bg-light min-vh-100">
 
         <nav class="navbar navbar-light border-bottom px-1 bg-white" style="z-index:1041;">
-            <button class="btn d-sm-none border border-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-                <i class="bi bi-list"></i>
-            </button>
-            <img src="/images/hallodoc-transparent.png"
-                 class="img-fluid d-flex ms-2"
-                 alt="" style="max-height:100px;     width: clamp(112px, 15vw, 141px); " />
+            <div class="d-flex align-items-center">
+
+                <button class="btn d-sm-none border border-dark h-25" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    <i class="bi bi-list"></i>
+                </button>
+                <img src="/images/hallodoc-transparent.png"
+                     class="img-fluid d-flex ms-2"
+                     alt="" style="max-height:100px;     width: clamp(112px, 15vw, 141px); " />
+            </div>
 
             <div class="navdiv d-flex flex-row align-items-center">
                 <h6 class="pe-2 d-sm-flex align-items-center d-none text-secondary">Welcome <b class="text-black ms-1">@accessor.HttpContext.Session.GetString("AdminName")</b></h6>
@@ -58,16 +61,31 @@
             </div>
         </nav>
 
-        <div class="nav nav-tabs d-none d-sm-flex bg-white" id="nav-tab" role="tablist">
-            <button class="nav-link active k fw-bold me-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
-            <button class="nav-link k text-secondary fw-bold me-1" id="nav-provider-location-tab" data-bs-toggle="tab" data-bs-target="#nav-provider-location" type="button" role="tab" aria-controls="nav-provider-location" aria-selected="false">Provider Location</button>
-            <button class="nav-link k text-secondary fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Profile</button>
-            <button class="nav-link k text-secondary fw-bold" id="nav-provider-tab" data-bs-toggle="tab" data-bs-target="#nav-provider" type="button" role="tab" aria-controls="nav-provider" aria-selected="false">Providers</button>
-            <button class="nav-link k text-secondary fw-bold" id="nav-partner-tab" data-bs-toggle="tab" data-bs-target="#nav-partner" type="button" role="tab" aria-controls="nav-partner" aria-selected="false">Partners</button>
-            <button class="nav-link k text-secondary fw-bold" id="nav-access-tab" data-bs-toggle="tab" data-bs-target="#nav-access" type="button" role="tab" aria-controls="nav-access" aria-selected="false">Access</button>
-            <button class="nav-link k text-secondary fw-bold" id="nav-record-tab" data-bs-toggle="tab" data-bs-target="#nav-record" type="button" role="tab" aria-controls="nav-record" aria-selected="false">Records</button>
+        @*        <div class="nav nav-tabs d-none d-sm-flex bg-white" id="nav-tab" role="tablist">
+        <button class="nav-link active k fw-bold me-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
+        <button class="nav-link k text-secondary fw-bold me-1" id="nav-provider-location-tab" data-bs-toggle="tab" data-bs-target="#nav-provider-location" type="button" role="tab" aria-controls="nav-provider-location" aria-selected="false">Provider Location</button>
+        <button class="nav-link k text-secondary fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Profile</button>
+        <button class="nav-link k text-secondary fw-bold" id="nav-provider-tab" data-bs-toggle="tab" data-bs-target="#nav-provider" type="button" role="tab" aria-controls="nav-provider" aria-selected="false">Providers</button>
+        <button class="nav-link k text-secondary fw-bold" id="nav-partner-tab" data-bs-toggle="tab" data-bs-target="#nav-partner" type="button" role="tab" aria-controls="nav-partner" aria-selected="false">Partners</button>
+        <button class="nav-link k text-secondary fw-bold" id="nav-access-tab" data-bs-toggle="tab" data-bs-target="#nav-access" type="button" role="tab" aria-controls="nav-access" aria-selected="false">Access</button>
+        <button class="nav-link k text-secondary fw-bold" id="nav-record-tab" data-bs-toggle="tab" data-bs-target="#nav-record" type="button" role="tab" aria-controls="nav-record" aria-selected="false">Records</button>
         </div>
-
+        *@
+        <div class="nav nav-tabs d-none d-sm-flex bg-white" id="nav-tab" role="tablist">
+            <a class="admin-layout-nav admin-layout-nav-active text-secondary fw-bold me-2" id="nav-home-tab" asp-action="AdminDashboard">Dashboard</a>
+            <a class="admin-layout-nav text-secondary fw-bold me-1" id="nav-provider-location-tab">Provider Location</a>
+            <a class="admin-layout-nav text-secondary fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" asp-action="AdminProfile">My Profile</a>
+           
+            <a class="admin-layout-nav text-secondary fw-bold btn  dropdown shadow-none " id="nav-provider-tab"  href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Providers</a>
+            <div class="dropdown-menu" aria-labelledby="nav-provider-tab">
+                <a class="dropdown-item" asp-action="Provider" asp-controller="Provider"> Provider  </a>
+                <a class="dropdown-item" href="#">Scheduling</a>
+                <a class="dropdown-item" href="#">Invoices</a>
+            </div>
+            <a class="admin-layout-nav text-secondary fw-bold" id="nav-partner-tab">Partners</a>
+            <a class="admin-layout-nav text-secondary fw-bold" id="nav-access-tab">Access</a>
+            <a class="admin-layout-nav text-secondary fw-bold" id="nav-record-tab">Records</a>
+        </div>
 
 
         @*
@@ -137,14 +155,14 @@
 
                 </div>
                 <div class="offcanvas-body pt-0" style="z-index:auto;">
-                    <div class="nav nav-tabs d-block" id="nav-tab" role="tablist">
-                        <button class="nav-link active k fw-bold me-2" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
-                        <button class="nav-link k text-secondary fw-bold me-1" id="nav-provider-location-tab" data-bs-toggle="tab" data-bs-target="#nav-provider-location" type="button" role="tab" aria-controls="nav-provider-location" aria-selected="false">Provider Location</button>
-                        <button class="nav-link k text-secondary fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">My Profile</button>
-                        <button class="nav-link k text-secondary fw-bold" id="nav-provider-tab" data-bs-toggle="tab" data-bs-target="#nav-provider" type="button" role="tab" aria-controls="nav-provider" aria-selected="false">Providers</button>
-                        <button class="nav-link k text-secondary fw-bold" id="nav-partner-tab" data-bs-toggle="tab" data-bs-target="#nav-partner" type="button" role="tab" aria-controls="nav-partner" aria-selected="false">Partners</button>
-                        <button class="nav-link k text-secondary fw-bold" id="nav-access-tab" data-bs-toggle="tab" data-bs-target="#nav-access" type="button" role="tab" aria-controls="nav-access" aria-selected="false">Access</button>
-                        <button class="nav-link k text-secondary fw-bold" id="nav-record-tab" data-bs-toggle="tab" data-bs-target="#nav-record" type="button" role="tab" aria-controls="nav-record" aria-selected="false">Records</button>
+                    <div class=" nav nav-tabs d-flex flex-row row m-0 p-0" id="nav-tab" role="tablist">
+                        <a class="m-0 px-0 py-2 admin-layout-nav admin-layout-nav-active text-secondary fw-bold me-2" id="nav-home-tab" asp-action="AdminDashboard">Dashboard</a>
+                        <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold me-1" id="nav-provider-location-tab">Provider Location</a>
+                        <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" asp-action="AdminProfile">My Profile</a>
+                        <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold" id="nav-provider-tab">Providers</a>
+                        <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold" id="nav-partner-tab">Partners</a>
+                        <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold" id="nav-access-tab">Access</a>
+                        <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold" id="nav-record-tab">Records</a>
                     </div>
                 </div>
             </div>
@@ -182,7 +200,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="/js/Admin/ViewUpload.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false);
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

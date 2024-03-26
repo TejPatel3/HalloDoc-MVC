@@ -3,6 +3,8 @@ using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 using Services.ViewModels;
+using System.Net.Mail;
+using System.Net;
 
 namespace HalloDoc.Controllers.Admin
 {
@@ -73,10 +75,7 @@ namespace HalloDoc.Controllers.Admin
             return RedirectToAction("AdminLogin", "AdminCredential");
         }
 
-        public IActionResult AdminForgotPassword()
-        {
-            return View();
-        }
+
         [HttpPost]
         public IActionResult ResetPassword(string email, string password)
         {
@@ -87,6 +86,79 @@ namespace HalloDoc.Controllers.Admin
             _context.SaveChanges();
             TempData["success"] = "Password Reset Successfully...!";
             return RedirectToAction("AdminProfile", "Admin");
+        }
+        public IActionResult AdminForgotPassword()
+        {
+            return View();
+        }
+        public int generateconfirmationcode()
+        {
+            Random rnd = new Random();
+            int confirmationcode = rnd.Next(100000, 1000000);
+            return confirmationcode;
+        }
+        [HttpPost]
+        public IActionResult AdminForgotPassword(bool sendcode, bool checkcode, bool updatepassword, string email, int confirmationcode, string password ,int originalconfirmationcode)
+        {
+            int generatedconfirmationcode = 0;
+
+            if (sendcode)
+            {
+                generatedconfirmationcode = generateconfirmationcode();
+                TempData["Confirmationcode"] = generatedconfirmationcode;
+                SendEmail(email, "Your Attachments", "Please Find Your Attachments Here", generatedconfirmationcode);
+                
+                TempData["success"] = "Code sent successfully";
+
+                return Json(new { success = true, confirmationCode = generatedconfirmationcode });
+            }
+            if (checkcode)
+            {
+                if (confirmationcode == originalconfirmationcode)
+                {
+                    //return Json(new { redirectToUrl = Url.Action("AdminForgotPassword", "AdminCredential") });
+
+                    return View();
+                }
+                else
+                {
+                return Json(new { success = true, confirmationnumbernotmatch = true });
+                    //TempData["warning"] = "Confirmation code wrong";
+                    //return View();
+                    //TempData["warning"] = "Confirmation code wrong";
+                    //return Json(new { message = TempData["warning"].ToString() });
+                }
+            }
+            if (updatepassword)
+            {
+                var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Email == email);
+                aspnetuser.PasswordHash = password;
+                _context.AspNetUsers.Update(aspnetuser);
+                _context.SaveChanges();
+                return RedirectToAction("AdminLogin");
+            }
+            return RedirectToAction("AdminLogin");
+        }
+
+        private Task SendEmail(string email, string subject, string message, int confirmationcode)
+        {
+            var mail = "tatva.dotnet.tejpatel@outlook.com";
+            var password = "7T6d2P3@K";
+
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress(mail),
+                Subject = subject,
+                Body = message + "\n" + confirmationcode,
+            };
+            mailMessage.To.Add(email);
+            var client = new SmtpClient("smtp.office365.com", 587)
+            {
+                EnableSsl = true,
+                Credentials = new NetworkCredential(mail, password)
+            };
+
+            return client.SendMailAsync(mailMessage);
         }
     }
 }

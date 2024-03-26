@@ -114,10 +114,10 @@
                     @foreach (var item in Model.wiseFiles)
                     {
 
-                        <tr>
+                        <tr >
                             <td scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" id="@item.RequestWiseFileId" /></td>
-                            <td>@item.FileName.Substring(52)</td>
-                            <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
+                            <td class="text-black">@item.FileName.Substring(52)</td>
+                            <td class="text-black">  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
                             <td>
                                 <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
                                     <i class="bi bi-cloud-arrow-down"></i>

@@ -45,8 +45,8 @@ namespace HalloDoc.Controllers.Admin
             _jwtRepo = jwtRepo;
         }
 
-        byte[] key = { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16 };
-        byte[] iv = { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16 };
+        //byte[] key = { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16 };
+        //byte[] iv = { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16 };
 
         //************************************** Admin Dashboard ************************************//
         public IActionResult AdminDashboard()
@@ -82,167 +82,140 @@ namespace HalloDoc.Controllers.Admin
         //}
 
         //************************************** 6 Tabs Open controller method ************************************//
-        public IActionResult DashboardTabsData(string status, int currentpage, int requesttype, string searchkey, int regionid)
-        {
-            var data = _adminDashboardDataTable.getallAdminDashboard(status, currentpage, requesttype, searchkey, regionid);
-            ViewBag.TotalRowsOfDataContent = data.Count();
-            foreach (var item in data)
-            {
-                if (item.PhysicianId != null)
-                {
-                    item.PhysicianName = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId).FirstName + _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId).LastName;
-                }
-            }
-            var newdatalist = data.Skip((currentpage - 1) * 5).Take(5).ToList();
-            switch (status)
-            {
-                case "1":
-                    return View("New", newdatalist);
-                    break;
-                case "2":
-                    return View("Pending", newdatalist);
-                    break;
-                case "3":
-                    return View("ToClose", newdatalist);
-                    break;
-                case "4":
-                    return View("Active", newdatalist);
-                    break;
-                case "5":
-                    return View("Active", newdatalist);
-                    break;
-                case "6":
-                    return View("Conclude", newdatalist);
-                    break;
-                case "7":
-                    return View("ToClose", newdatalist);
-                    break;
-                case "8":
-                    return View("ToClose", newdatalist);
-                    break;
-                case "9":
-                    return View("Unpaid", newdatalist);
-                    break;
-                default: return View();
-            }
-        }
-
+        //public IActionResult DashboardTabsData(string status, int currentpage, int requesttype, string searchkey, int regionid)
+        //{
+        //    var data = _adminDashboardDataTable.getallAdminDashboard(status, currentpage, requesttype, searchkey, regionid);
+        //    ViewBag.TotalRowsOfDataContent = data.Count();
+        //    foreach (var item in data)
+        //    {
+        //        if (item.PhysicianId != null)
+        //        {
+        //            item.PhysicianName = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId).FirstName + _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId).LastName;
+        //        }
+        //    }
+        //    var newdatalist = data.Skip((currentpage - 1) * 5).Take(5).ToList();
+        //    switch (status)
+        //    {
+        //        case "1":
+        //            return View("New", newdatalist);
+        //            break;
+        //        case "2":
+        //            return View("Pending", newdatalist);
+        //            break;
+        //        case "3":
+        //            return View("ToClose", newdatalist);
+        //            break;
+        //        case "4":
+        //            return View("Active", newdatalist);
+        //            break;
+        //        case "5":
+        //            return View("Active", newdatalist);
+        //            break;
+        //        case "6":
+        //            return View("Conclude", newdatalist);
+        //            break;
+        //        case "7":
+        //            return View("ToClose", newdatalist);
+        //            break;
+        //        case "8":
+        //            return View("ToClose", newdatalist);
+        //            break;
+        //        case "9":
+        //            return View("Unpaid", newdatalist);
+        //            break;
+        //        default: return View();
+        //    }
+        //}
+       
 
         //        using OfficeOpenXml;
         //using System.IO;
-        [HttpGet]
-        public ActionResult DownloadExcelfile(string status, int currentpage, int requesttype, string searchkey, int regionid)
-        {
-            // Create a list of data
-            var data = _adminDashboardDataTable.getallAdminDashboard(status, currentpage, requesttype, searchkey, regionid);
-            //var data = new List<string> { "Item1", "Item2", "Item3" };
+        //[HttpGet]
+        //public ActionResult DownloadExcelfile(string status, int currentpage, int requesttype, string searchkey, int regionid)
+        //{
+        //    // Create a list of data
+        //    var data = _adminDashboardDataTable.getallAdminDashboard(status, currentpage, requesttype, searchkey, regionid);
+        //    //var data = new List<string> { "Item1", "Item2", "Item3" };
 
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        //    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-            using (var package = new ExcelPackage())
-            {
-                var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+        //    using (var package = new ExcelPackage())
+        //    {
+        //        var worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
-                worksheet.Cells[1, 1].Value = "Patien Name";
-                worksheet.Cells[1, 2].Value = "Birth Date";
-                worksheet.Cells[1, 3].Value = "Requestor";
-                worksheet.Cells[1, 4].Value = "Requested Date";
-                worksheet.Cells[1, 5].Value = "Patient Number";
-                worksheet.Cells[1, 6].Value = "Requestor Number";
-                worksheet.Cells[1, 7].Value = "Address";
-                worksheet.Cells[1, 8].Value = "Notes";
+        //        worksheet.Cells[1, 1].Value = "Patien Name";
+        //        worksheet.Cells[1, 2].Value = "Birth Date";
+        //        worksheet.Cells[1, 3].Value = "Requestor";
+        //        worksheet.Cells[1, 4].Value = "Requested Date";
+        //        worksheet.Cells[1, 5].Value = "Patient Number";
+        //        worksheet.Cells[1, 6].Value = "Requestor Number";
+        //        worksheet.Cells[1, 7].Value = "Address";
+        //        worksheet.Cells[1, 8].Value = "Notes";
 
 
-                // Add data to the worksheet
-                for (int i = 0; i < data.Count; i++)
-                {
-                    worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
-                    worksheet.Cells[i + 2, 2].Value = data[i].PatientDOB;
-                    worksheet.Cells[i + 2, 3].Value = data[i].RequestType;
-                    worksheet.Cells[i + 2, 4].Value = data[i].RequestedDate.ToString("dd MMM,yyyy");
-                    worksheet.Cells[i + 2, 5].Value = data[i].PatientPhone;
-                    worksheet.Cells[i + 2, 6].Value = data[i].RequestorPhone;
-                    worksheet.Cells[i + 2, 7].Value = data[i].Address;
-                    worksheet.Cells[i + 2, 8].Value = data[i].Notes;
-                    //worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
-                    //worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
-                }
+        //        // Add data to the worksheet
+        //        for (int i = 0; i < data.Count; i++)
+        //        {
+        //            worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
+        //            worksheet.Cells[i + 2, 2].Value = data[i].PatientDOB;
+        //            worksheet.Cells[i + 2, 3].Value = data[i].RequestType;
+        //            worksheet.Cells[i + 2, 4].Value = data[i].RequestedDate.ToString("dd MMM,yyyy");
+        //            worksheet.Cells[i + 2, 5].Value = data[i].PatientPhone;
+        //            worksheet.Cells[i + 2, 6].Value = data[i].RequestorPhone;
+        //            worksheet.Cells[i + 2, 7].Value = data[i].Address;
+        //            worksheet.Cells[i + 2, 8].Value = data[i].Notes;
+        //            //worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
+        //            //worksheet.Cells[i + 2, 1].Value = data[i].PatientName;
+        //        }
 
-                // Convert the Excel package to a byte array
-                byte[] fileBytes = package.GetAsByteArray();
+        //        // Convert the Excel package to a byte array
+        //        byte[] fileBytes = package.GetAsByteArray();
 
-                // Return the file
-                return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Data.xlsx");
-            }
+        //        // Return the file
+        //        return File(fileBytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Data.xlsx");
+        //    }
+        //}
+
+        public IActionResult New()
+        {           
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(1);
+             return PartialView(datalist);
         }
 
-        //public IActionResult New(int currentpage)
-        //{
+        public IActionResult Pending(int currentpage)
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(2);
+        
+            return PartialView(datalist);
+        }
 
-        //    if (currentpage == 0)
-        //    {
-        //        currentpage = 1;
-        //    }
-        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(1, currentpage);
-        //    ViewBag.TotalRowsOfDataContent = datalist.Count();
-        //    var newdatalist = datalist.Skip((currentpage - 1) * 5).Take(5).ToList();
-        //    return View(newdatalist);
-        //}
+        public IActionResult Active(int currentpage)
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(4).Concat(_adminDashboardDataTable.getallAdminDashboard(5)).ToList();
+          
+            return View(datalist);
+        }
 
-        //public IActionResult Pending(int currentpage)
-        //{
-        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(2, currentpage);
-        //    foreach (var item in datalist)
-        //    {
-        //        var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
-        //        item.PhysicianName = physician.FirstName;
-        //    }
-        //    return View(datalist);
-        //}
+        public IActionResult Conclude(int currentpage)
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(6);
+           
+            return View(datalist);
+        }
 
-        //public IActionResult Active(int currentpage)
-        //{
-        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(4, currentpage).Concat(_adminDashboardDataTable.getallAdminDashboard(5, currentpage)).ToList();
-        //    foreach (var item in datalist)
-        //    {
-        //        var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
-        //        item.PhysicianName = physician.FirstName;
-        //    }
-        //    return View(datalist);
-        //}
+        public IActionResult ToClose(int currentpage)
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(7).Concat(_adminDashboardDataTable.getallAdminDashboard(3)).Concat(_adminDashboardDataTable.getallAdminDashboard(8)).ToList();
+          
+            return View(datalist);
+        }
 
-        //public IActionResult Conclude(int currentpage)
-        //{
-        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(6, currentpage);
-        //    foreach (var item in datalist)
-        //    {
-        //        var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
-        //        item.PhysicianName = physician.FirstName;
-        //    }
-        //    return View(datalist);
-        //}
-
-        //public IActionResult ToClose(int currentpage)
-        //{
-        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(7, currentpage).Concat(_adminDashboardDataTable.getallAdminDashboard(3, currentpage)).Concat(_adminDashboardDataTable.getallAdminDashboard(8, currentpage)).ToList();
-        //    foreach (var item in datalist)
-        //    {
-        //        var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
-        //        item.PhysicianName = physician.FirstName;
-        //    }
-        //    return View(datalist);
-        //}
-
-        //public IActionResult Unpaid(int currentpage)
-        //{
-        //    var datalist = _adminDashboardDataTable.getallAdminDashboard(9, currentpage);
-        //    foreach (var item in datalist)
-        //    {
-        //        var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
-        //        item.PhysicianName = physician.FirstName;
-        //    }
-        //    return View(datalist);
-        //}
+        public IActionResult Unpaid(int currentpage)
+        {
+            var datalist = _adminDashboardDataTable.getallAdminDashboard(9);
+           
+            return View(datalist);
+        }
 
 
         //************************************** Action DropDown Methods ************************************//
@@ -260,6 +233,8 @@ namespace HalloDoc.Controllers.Admin
         {
             _viewcase.EditInfo(request);
             var req = _context.Requests.FirstOrDefault(m => m.ConfirmationNumber == request.ConfirmationNumber);
+            TempData["success"] = "Updated Successfully..!";
+
             return RedirectToAction("ViewCase", new { id = req.RequestId });
         }
 
@@ -567,6 +542,8 @@ namespace HalloDoc.Controllers.Admin
             return Json(agreementdata);
         }
 
+
+
         [HttpPost]
         public IActionResult SendAgreementModal(int id, string email)
         {
@@ -581,7 +558,7 @@ namespace HalloDoc.Controllers.Admin
         private string GenerateAgreementUrl(int reqid)
         {
             string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-            var requestid = EncryptionDecryption.EncryptStringToBase64_Aes(reqid.ToString(), key, iv);
+            var requestid = EncryptionDecryption.EncryptStringToBase64_Aes(reqid.ToString());
             string AgreementPath = Url.Action("ReviewAgreement", "Admin", new { id = requestid });
             return baseUrl + AgreementPath;
         }
@@ -589,7 +566,7 @@ namespace HalloDoc.Controllers.Admin
         public IActionResult ReviewAgreement(string id)
         {
             var viewModel = new AdminRequestViewModel();
-            var requestid = int.Parse(EncryptionDecryption.DecryptStringFromBase64_Aes(id, key, iv));
+            var requestid = int.Parse(EncryptionDecryption.DecryptStringFromBase64_Aes(id));
             var PatienName = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
             viewModel.patientName = PatienName.FirstName + " " + PatienName.LastName;
             viewModel.requestid = requestid;
@@ -638,7 +615,7 @@ namespace HalloDoc.Controllers.Admin
 
             return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
         }
-
+        
         public IActionResult IAgreeSendAgreement(int requestid)
         {
             var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
@@ -863,8 +840,13 @@ namespace HalloDoc.Controllers.Admin
 
                 }
             }
-            return View();
+            TempData["success"] = "Request created successfully";
+            return RedirectToAction("AdminDashboard");
 
+        }
+        public IActionResult CreateAdmin()
+        {
+            return View();
         }
     }
 }

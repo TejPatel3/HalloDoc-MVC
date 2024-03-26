@@ -1,7 +1,7 @@
 ﻿@using Services.ViewModels
 @model UserAllDataViewModel
 @{
-    Layout = null;
+    Layout = "_Admin";
 }
 <Partial name="Toast" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -17,6 +17,7 @@
     </div>
     <div class="container-fluid my-3 bg-white shadow">
         <div class="row px-2">
+
             <h5 class="my-3">Account Information</h5>
             <div class="col-12 col-sm-6 form-floating mb-3 ">
                 <input type="text" asp-for="UserName"
@@ -32,6 +33,7 @@
                        placeholder="Username"
                        aria-label="Username" disabled />
                 <label class="d-flex justify-content-between ps-4">Password</label>
+                <span class="text-danger" id="AdminProfileResetPasswordSpan"></span>
             </div>
             <div class="col-12 col-sm-6 form-floating">
 
@@ -189,130 +191,3 @@
 </div>
 
 <script src="/js/Admin/AdminProfile.js" asp-append-version="true"></script>
-
-@*
-<script>
-    var phoneInputField = document.querySelector("#phone");
-    var phoneInput = window.intlTelInput(phoneInputField, {
-        utilsScript:
-            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-    var phoneInputField2 = document.querySelector("#home");
-    var phoneInput = window.intlTelInput(phoneInputField2, {
-        utilsScript:
-            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-    $('#resetpassword-adminprofile').click(function () {
-        console.log("reset pass")
-        var password = $('#password-adminprofile').val();
-        var email = $('#email-adminprofile').val();
-        $.ajax({
-            url: '/AdminCredential/ResetPassword',
-            type: 'POST',
-            data: { email: email, password: password },
-            success: function (response) {
-                $('#nav-profile').html(response);
-            },
-            error: function (xhr, status, error) {
-                console.error(error);
-            }
-        });
-        // $.ajax({
-        //     url: '/AdminCredential/ResetPassword',
-        //     type : 'GET',
-        //     data: { email: email, password: password },
-        //     success: function (data) {
-        //         $('#nav-profile').html(data);
-        //     }
-        //                  error: function () {
-        //         console.log("this is iagree btn ajax error");
-        //     }
-        // });
-    });
-    $('#editbtn-administrator-adminprofile').click(function () {
-        console.log("reset pass")
-        var password = $('#password-adminprofile').val();
-        var email = $('#email-adminprofile').val();
-        $('.adisabled').removeAttr('disabled', false);
-
-        $('#savebtn-administrator-adminprofile').removeAttr('hidden', false);
-        $('#savebtn-administrator-adminprofile').show();
-        $(this).hide();
-
-        // $.ajax({
-        //     url: '/AdminCredential/ResetPassword',
-        //     type: 'POST',
-        //     data: { email: email, password: password },
-        //     success: function (response) {
-        //         $('#nav-profile').html(response);
-        //     },
-        //     error: function (xhr, status, error) {
-        //         console.error(error);
-        //     }
-        // });
-    });
-    $('#savebtn-administrator-adminprofile').click(function () {
-        console.log("reset pass")
-        var password = $('#password-adminprofile').val();
-        var email = $('#email-adminprofile').val();
-        $('.adisabled').attr('disabled', true);
-
-        $('#editbtn-administrator-adminprofile').show();
-        $(this).hide();
-
-        $.ajax({
-            url: '/Admin/UpdateAdministrationInfoAdminProfile',
-            type: 'POST',
-            data: { email: email, password: password },
-            success: function (response) {
-                $('#nav-profile').html(response);
-            },
-            error: function (xhr, status, error) {
-                console.error(error);
-            }
-        });
-    });
-    $('#editbtn-mailing-adminprofile').click(function () {
-        console.log("reset pass")
-        var password = $('#password-adminprofile').val();
-        var email = $('#email-adminprofile').val();
-        $('.mdisabled').removeAttr('disabled', false);
-
-        $('#savebtn-mailing-adminprofile').removeAttr('hidden', false);
-        $('#savebtn-mailing-adminprofile').show();
-        $(this).hide();
-
-        // $.ajax({
-        //     url: '/AdminCredential/ResetPassword',
-        //     type: 'POST',
-        //     data: { email: email, password: password },
-        //     success: function (response) {
-        //         $('#nav-profile').html(response);
-        //     },
-        //     error: function (xhr, status, error) {
-        //         console.error(error);
-        //     }
-        // });
-    });
-    $('#savebtn-mailing-adminprofile').click(function () {
-        console.log("reset pass")
-        var password = $('#password-adminprofile').val();
-        var email = $('#email-adminprofile').val();
-        $('.mdisabled').attr('disabled',true);
-
-        $('#editbtn-mailing-adminprofile').show();
-        $(this).hide();
-
-        // $.ajax({
-        //     url: '/AdminCredential/ResetPassword',
-        //     type: 'POST',
-        //     data: { email: email, password: password },
-        //     success: function (response) {
-        //         $('#nav-profile').html(response);
-        //     },
-        //     error: function (xhr, status, error) {
-        //         console.error(error);
-        //     }
-        // });
-    });
-</script> *@

@@ -1,9 +1,8 @@
-﻿var statusnamehead = "New";
-var currentpage = 1;
-var status = 1;
-var requesttype = 0;
-var searchkey;
-var regionid = 0;
+﻿window.onload = function () {
+    $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+    $('#nav-home-tab').addClass('admin-layout-nav-active');
+}
+
 $(document).ready(function () {
     $('.SelectedRegionGivePhysicianList').change(function () {
         var regionId = $(this).find(":selected").attr('id'); // This will get the id of the selected region
@@ -33,8 +32,7 @@ $(document).ready(function () {
 
 
     $.ajax({
-        url: '/Admin/DashboardTabsData',
-        data: { "status": status, "currentpage": currentpage },
+        url: '/Admin/New',
         success: function (response) {
             $('#statusnamehead').html('New');
             $('#datatable').html(response);
@@ -55,18 +53,20 @@ $(document).ready(function () {
         switch (target) {
             case '#status_new':
                 $('#statusnamehead').html('New');
-                statusnamehead = "New";
+                url = "/Admin/New";
                 status = 1;
 
                 break;
             case '#status_pending':
                 $('#statusnamehead').html('Pending');
                 statusnamehead = "Pending";
+                url = "/Admin/Pending";
 
                 status = 2;
                 break;
             case '#status_active':
                 $('#statusnamehead').html('Active');
+                url = "/Admin/Active";
                 statusnamehead = "Active";
 
                 status = 4
@@ -74,6 +74,7 @@ $(document).ready(function () {
             case '#status_conclude':
                 $('#statusnamehead').html('Conclude');
                 statusnamehead = "Conclude";
+                url = "/Admin/Conclude";
 
                 status = 6
                 break;
@@ -81,20 +82,23 @@ $(document).ready(function () {
                 $('#statusnamehead').html('To Close');
                 statusnamehead = "To Close";
 
+                url = "/Admin/ToClose";
                 status = 3
                 break;
             case '#status_unpaid':
                 $('#statusnamehead').html('Unpaide');
                 statusnamehead = "Unpaid";
+                url = "/Admin/Unpaid";
 
                 status = 9
                 break;
 
             default:
+                url = "/Admin/New";
         }
+        console.log(url)
         $.ajax({
-            url: '/Admin/DashboardTabsData',
-            data: { "status": status, "currentpage": currentpage },
+            url: url,
 
             success: function (response) {
                 $('#datatable').html(response);
@@ -142,93 +146,95 @@ function download() {
 //$('#downloadall').click(function () {
 
 //});
-$(".radio-under").click(function () {
-    let requesttype = $(this).attr('id');
-    if (requesttype == "requestbyAll") {
-        requesttype = 0;
-    }
-    $.ajax({
-        url: '/Admin/DashboardTabsData',
-        data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
-        success: function (response) {
-            $('#statusnamehead').html(statusnamehead);
-            $('#datatable').html(response);
-            $(this).css("border", "1px solid red")
-        },
-        error: function (xhr, status, error) {
-            console.error(error);
-        }
-    });
-});
+//$(".radio-under").click(function () {
+//    let requesttype = $(this).attr('id');
+//    if (requesttype == "requestbyAll") {
+//        requesttype = 0;
+//    }
+//    $.ajax({
+//        url: '/Admin/DashboardTabsData',
+//        data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
+//        success: function (response) {
+//            $('#statusnamehead').html(statusnamehead);
+//            $('#datatable').html(response);
+//            $(this).css("border", "1px solid red")
+//        },
+//        error: function (xhr, status, error) {
+//            console.error(error);
+//        }
+//    });
+//});
 
-function search() {
-    searchkey = $('#my-search-input').val();
-    $.ajax({
-        url: '/Admin/DashboardTabsData',
-        data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
-        success: function (response) {
-            $('#statusnamehead').html(statusnamehead);
-            $('#datatable').html(response);
-        },
-        error: function (xhr, status, error) {
-            console.error(error);
-        }
-    });
-};
+//function search() {
+//    searchkey = $('#my-search-input').val();
+//    $.ajax({
+//        url: '/Admin/DashboardTabsData',
+//        data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
+//        success: function (response) {
+//            $('#statusnamehead').html(statusnamehead);
+//            $('#datatable').html(response);
+//        },
+//        error: function (xhr, status, error) {
+//            console.error(error);
+//        }
+//    });
+//};
 
-function SearchByRegion() {
-    var regionid = $('#RegionSearch').val();
-    console.log("kolok")
-    $.ajax({
-        url: '/Admin/DashboardTabsData',
-        data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
-        success: function (response) {
-            $('#statusnamehead').html(statusnamehead);
-            $('#datatable').html(response);
-        },
-        error: function (xhr, status, error) {
-            console.error(error);
-        }
-    });
-};
+//function SearchByRegion() {
+//    var regionid = $('#RegionSearch').val();
+//    console.log("kolok")
+//    $.ajax({
+//        url: '/Admin/DashboardTabsData',
+//        data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
+//        success: function (response) {
+//            $('#statusnamehead').html(statusnamehead);
+//            $('#datatable').html(response);
+//        },
+//        error: function (xhr, status, error) {
+//            console.error(error);
+//        }
+//    });
+//};
 
 
 //  <button id="downloadButton" class="btn btn-primary">Download Excel</button>
 
 //<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-$('a.download').on('click', function () {
-    //console.log("kykykyk")
-    //$.ajax({
-    //    url: '/Admin/DownloadExcelfile', // Replace with your URL
-    //    type: 'GET', // Or 'POST', depending on your needs
-    //    data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
-    //    success: function (response) {
-    //        // This function will be executed if the request succeeds
-    //        // You can use the 'response' variable to access the data returned from the server
+//$('a.download').on('click', function () {
+//    //console.log("kykykyk")
+//    //$.ajax({
+//    //    url: '/Admin/DownloadExcelfile', // Replace with your URL
+//    //    type: 'GET', // Or 'POST', depending on your needs
+//    //    data: { "status": status, "currentpage": currentpage, "requesttype": requesttype, "searchkey": searchkey, "regionid": regionid },
+//    //    success: function (response) {
+//    //        // This function will be executed if the request succeeds
+//    //        // You can use the 'response' variable to access the data returned from the server
 
-    //        // Create a link element
-    //        var link = document.createElement('a');
-    //        link.href = window.URL.createObjectURL(new Blob([response]));
-    //        link.download = 'Data.xlsx';
+//    //        // Create a link element
+//    //        var link = document.createElement('a');
+//    //        link.href = window.URL.createObjectURL(new Blob([response]));
+//    //        link.download = 'Data.xlsx';
 
-    //        // Trigger the download by simulating a click on the link
-    //        link.click();
-    //    },
-    //    error: function (jqXHR, textStatus, errorThrown) {
-    //        // This function will be executed if the request fails
-    //        // 'jqXHR' is the raw request object
-    //        // 'textStatus' is a string describing the type of error
-    //        // 'errorThrown' is an optional exception object, if one occurred
-    //    }
-    //});
+//    //        // Trigger the download by simulating a click on the link
+//    //        link.click();
+//    //    },
+//    //    error: function (jqXHR, textStatus, errorThrown) {
+//    //        // This function will be executed if the request fails
+//    //        // 'jqXHR' is the raw request object
+//    //        // 'textStatus' is a string describing the type of error
+//    //        // 'errorThrown' is an optional exception object, if one occurred
+//    //    }
+//    //});
 
-    var link = document.createElement('a');
-    link.href = '/Admin/DownloadExcelfile?status=' + status + "&currentpage=" + currentpage + "&requestType=" + requesttype + "&searchkey" + searchkey + "&regionid" + regionid;
-    link.style.display = 'none';
-    document.body.appendChild(link)
-        ;
-    link.click();
-    document.body.removeChild(link)
-        ;
-});
+//    var link = document.createElement('a');
+//    link.href = '/Admin/DownloadExcelfile?status=' + status + "&currentpage=" + currentpage + "&requestType=" + requesttype + "&searchkey" + searchkey + "&regionid" + regionid;
+//    link.style.display = 'none';
+//    document.body.appendChild(link)
+//        ;
+//    link.click();
+
+
+//    document.body.removeChild(link)
+//        ;
+//});
 

@@ -264,3 +264,15 @@ div.dataTables_wrapper div.dataTables_length select {
     transform: translateY(-15px);
     z-index: 5 !important;
 }
+
+.admin-layout-nav-active {
+    border-bottom: 2px solid #17a2b8;
+}
+.admin-layout-nav {
+    margin: 10px 5px;
+    padding:0px 5px 5px 5px;
+    text-decoration: none;
+}
+.admin-layout-nav-mobile-active{
+    background-color:lightgray;
+}

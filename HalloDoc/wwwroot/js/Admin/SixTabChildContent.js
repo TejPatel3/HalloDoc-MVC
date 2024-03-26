@@ -100,16 +100,7 @@
     });
 
     $('.example').DataTable({
-        "initComplete": function (settings, json) {
-
-            $('#my-search-input').val(settings.oPreviousSearch.sSearch);
-
-            $('#my-search-input').on('keyup', function () {
-                var searchValue = $(this).val();
-                settings.oPreviousSearch.sSearch = searchValue;
-                settings.oApi._fnReDraw(settings);
-            });
-        },
+     
         "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
         "pageLength": 5,
         language: {
@@ -123,9 +114,9 @@
 
     $('.dataTables_filter').hide();
     var table = $('.example').DataTable();
-    //$('input[type="search"]').on('keyup', function () {
-    //    table.search(this.value).draw();
-    //});
+    $('input[type="search"]').on('keyup', function () {
+        table.search(this.value).draw();
+    });
     $('input[name="requestby"]').on('change', function () {
         var value = $(this).attr('id');
         console.log(value);

@@ -1,4 +1,9 @@
-﻿var regexnote = /^[a-zA-Z0-9][a-zA-Z0-9 ]+$/i;
+﻿window.onload = function () {
+    $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+    $('#nav-home-tab').addClass('admin-layout-nav-active');
+}
+var regexnote = /^[a-zA-Z0-9][a-zA-Z0-9 ]+$/i;
+var regextext = /^[a-zA-Z][a-zA-Z ]+$/i;
 var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 var regexphone = /^[1-9][0-9]{9}$/;
 $('#CancelModalSubminbtn').click(function () {
@@ -126,11 +131,11 @@ $('#TransferModalSubminbtn').click(function () {
 
 $('#SendAgreementModalSubminbtn').click(function () {
     var phone = $('#AgreementModal-Phone').val();
-    var email= $('#AgreementModal-Email').val();
+    var email = $('#AgreementModal-Email').val();
     let allvalidation = true;
 
-        $('#SendAgreementModalphoneSpan').html("");
-        $('#SendAgreementModalemailSpan').html("");
+    $('#SendAgreementModalphoneSpan').html("");
+    $('#SendAgreementModalemailSpan').html("");
     if (phone == "") {
         $('#SendAgreementModalphoneSpan').html("Please Enter Phone number");
         allvalidation = false;
@@ -154,6 +159,44 @@ $('#SendAgreementModalSubminbtn').click(function () {
     }
 });
 
+$('#SendCreateRequestModalSubminbtn').click(function () {
+    console.log("create request modal validation js")
+    var name = $('#SendCreateRequestModalName').val();
+    var phonenumber = $('#SendCreateRequestModalPhoneNumber').val();
+    let email = $('#SendCreateRequestModalEmail').val();
+    var allvalidation = true;
+    $('#SendCreateRequestModalNameSpan').html("");
+    $('#SendCreateRequestModalPhoneNumberSpan').html("");
+    $('#SendCreateRequestModalEmailSpan').html("");
+    if (name == "") {
+        $('#SendCreateRequestModalNameSpan').html("Please Enter Name");
+        allvalidation = false;
+    }
+    else if (!regextext.test(name)) {
+        $('#SendCreateRequestModalNameSpan').html("Name is not valid");
+        allvalidation = false;
+    }
+    if (phonenumber == "") {
+        $('#SendCreateRequestModalPhoneNumberSpan').html("please enter phonenumber");
+        allvalidation = false;
+    }
+    else if (!regexphone.test(phonenumber)) {
+        $('#SendCreateRequestModalPhoneNumberSpan').html("please enter 10 digit phone number");
+        allvalidation = false;
+    }
+
+    if (email == "") {
+        $('#SendCreateRequestModalEmailSpan').html("please enter email");
+        allvalidation = false;
+    }
+    else if (!regexemail.test(email)) {
+        $('#SendCreateRequestModalEmailSpan').html("please enter valid email");
+        allvalidation = false;
+    }
+    if (allvalidation) {
+        $('#SendCreateRequestModalSubminbtn').closest('form').submit()
+    }
+});
 
 
 function FirstDropDownValidation(firstdropvalue) {
