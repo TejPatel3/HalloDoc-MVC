@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bLy4ZIQMPVyfWJ1rEPrZECXBOjIYatez2VEK/JoS33E=",
+  "Hash": "+245h6HiY6+fNxl5CjCRsh5HpdpEnAnxARzHibs1ab4=",
   "Source": "HalloDoc",
   "BasePath": "_content/HalloDoc",
   "Mode": "Default",
@@ -644,6 +644,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Admin\\ViewUpload.js"
+    },
+    {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Provider\\AddOrUpdatePhysicianAccount.js",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "js/Provider/AddOrUpdatePhysicianAccount.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Provider\\AddOrUpdatePhysicianAccount.js"
+    },
+    {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Provider\\Provider.js",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "js/Provider/Provider.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Provider\\Provider.js"
     },
     {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\site.js",

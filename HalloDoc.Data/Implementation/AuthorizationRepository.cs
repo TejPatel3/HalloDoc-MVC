@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,10 @@ namespace Services.Implementation
         public AuthorizationRepository(string role = "")
         {
             _role = role;
+        }
+        private bool isAjaxRequest(HttpRequest request)
+        {
+            return request.Headers["X-Requested-With"] == "XMLHttpRequest";
         }
 
         public void OnAuthorization(AuthorizationFilterContext context)
@@ -29,7 +34,23 @@ namespace Services.Implementation
 
             if (token == null || !jwtservice.ValidateToken(token, out JwtSecurityToken jwttoken))
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "AdminCredential", action = "AdminLogin" }));
+                if (isAjaxRequest(request))
+                {
+                    context.Result = new JsonResult(new { error = "Failed to Authenticate User" })
+                    {
+                        StatusCode = 401
+                    };
+                }
+                else
+                {
+
+                    context.Result = new RedirectToRouteResult(new RouteValueDictionary(new
+                    {
+                        Controller = "AdminCredential",
+                        Action = "AdminLogin"
+                    }));
+                }
+                //context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "AdminCredential", action = "AdminLogin" }));
                 return;
             }
 

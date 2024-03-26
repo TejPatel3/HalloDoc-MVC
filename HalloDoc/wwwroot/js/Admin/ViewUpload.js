@@ -1,6 +1,6 @@
 ﻿//const { isEmptyObject } = require("jquery");
 
-var actualBtn = document.getElementById('actual-btn');
+var actualBtn = document.getElementById('actual-btn-viewupload');
 var fileChosen = document.getElementById('file-chosen');
 actualBtn.addEventListener('change', function () {
     var filesname = this.files[0].name;

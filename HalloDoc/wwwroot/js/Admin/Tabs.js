@@ -105,6 +105,10 @@ $(document).ready(function () {
 
             },
             error: function (xhr, status, error) {
+                if (xhr.status === 401) {
+                    console.log("error accured with 401");
+                    location.reload();
+                }
                 console.error(error);
             }
         });
@@ -134,6 +138,29 @@ function download() {
         document.body.removeChild(link);
     });
 }
+
+function filterAccordionSearch() {
+    console.log("serach run")
+    const input = document.getElementById('my-search-input');
+    const filter = input.value.toUpperCase();
+    const headers = document.querySelectorAll('.accordion-header');
+
+
+    headers.forEach((header) => {
+        const patientName = header.querySelector('.patient-name');
+        const nameText = patientName.textContent || patientName.innerText;
+
+        if (nameText.toUpperCase().includes(filter)) {
+            header.style.display = ''; // Show the header
+        } else {
+            header.style.display = 'none'; // Hide the header
+        }
+    });
+}
+
+// Attach the filter function to the input field
+document.getElementById('my-search-input').addEventListener('keyup', filterAccordionSearch);
+
 
 
 //var all = document.getElementById('downloadall');

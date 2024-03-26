@@ -233,6 +233,14 @@
       "PackagePath": "staticwebassets\\js\\Admin\\ViewUpload.js"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Provider\\AddOrUpdatePhysicianAccount.js",
+      "PackagePath": "staticwebassets\\js\\Provider\\AddOrUpdatePhysicianAccount.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Provider\\Provider.js",
+      "PackagePath": "staticwebassets\\js\\Provider\\Provider.js"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
