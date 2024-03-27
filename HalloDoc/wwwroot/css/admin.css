@@ -267,6 +267,7 @@ div.dataTables_wrapper div.dataTables_length select {
 
 .admin-layout-nav-active {
     border-bottom: 2px solid #17a2b8;
+    color: #17a2b8 !important;
 }
 .admin-layout-nav {
     margin: 10px 5px;

@@ -1,5 +1,7 @@
 ﻿using HalloDoc.DataContext;
+using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Services.ViewModels;
 using System.Net;
 using System.Net.Mail;
@@ -62,6 +64,7 @@ namespace HalloDoc.Controllers.Provider
             var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == physicianid);
             var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == physician.Id);
             var regionlist = _context.Regions.ToList();
+            var selectedphyregionlist = _context.PhysicianRegions.Where(m => m.PhysicianId == physicianid).ToList();
             var model = new ProviderDetailsViewModel
             {
                 username = aspnetuser.UserName,
@@ -81,6 +84,10 @@ namespace HalloDoc.Controllers.Provider
                 businessname = physician.BusinessName,
                 businesswebsite = physician.BusinessWebsite,
                 adminnote = physician.AdminNotes,
+                photo = physician.Photo,
+                signature = physician.Signature,
+                physicianid = physicianid,
+                selectedregionlist = selectedphyregionlist,
             };
             //var physicianregion = _context.PhysicianRegions.Where(m => m.PhysicianId == physicianid).ToList();
             //if (physicianregion != null)
@@ -95,8 +102,9 @@ namespace HalloDoc.Controllers.Provider
         [HttpPost]
         public IActionResult EditProviderAccount(ProviderDetailsViewModel obj)
         {
-            var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == obj.physicianid);
+            var physician = _context.Physicians.Include(m => m.PhysicianRegions).FirstOrDefault(m => m.PhysicianId == obj.physicianid);
             var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == physician.Id);
+            List<int> physicianRegion = physician.PhysicianRegions.Select(m => m.RegionId).ToList();
             if (obj.username != null)
             {
                 aspnetuser.UserName = obj.username;
@@ -105,6 +113,30 @@ namespace HalloDoc.Controllers.Provider
             }
             if (obj.firstname != null)
             {
+                var RegionToDelete = physicianRegion.Except(obj.selectedregion);
+                foreach (var item in RegionToDelete)
+                {
+                    PhysicianRegion physicianRegionToDelete = _context.PhysicianRegions
+                .FirstOrDefault(ar => ar.PhysicianId == obj.physicianid && ar.RegionId == item);
+
+                    if (physicianRegionToDelete != null)
+                    {
+                        _context.PhysicianRegions.Remove(physicianRegionToDelete);
+                    }
+                }
+                IEnumerable<int> regionsToAdd = obj.selectedregion.Except(physicianRegion);
+
+                foreach (int item in regionsToAdd)
+                {
+                    PhysicianRegion newphysicianRegion = new PhysicianRegion
+                    {
+                        PhysicianId = obj.physicianid,
+                        RegionId = item,
+                    };
+                    _context.PhysicianRegions.Add(newphysicianRegion);
+                }
+                _context.SaveChanges();
+
                 physician.FirstName = obj.firstname;
                 physician.LastName = obj.lastname;
                 physician.Email = obj.email;
@@ -114,7 +146,40 @@ namespace HalloDoc.Controllers.Provider
                 _context.Physicians.Update(physician);
                 _context.SaveChanges();
             }
+            if (obj.password != null)
+            {
+                aspnetuser.PasswordHash = obj.password;
+                _context.AspNetUsers.Update(aspnetuser);
+                _context.SaveChanges();
+            }
             return RedirectToAction("EditProviderAccount", new { physicianid = obj.physicianid });
+        }
+
+        [HttpPost]
+
+        public IActionResult EditProviderPhoto(int providerid, string base64String)
+        {
+            var physiciandata = _context.Physicians.FirstOrDefault(p => p.PhysicianId == providerid);
+            physiciandata.Photo = base64String;
+
+            _context.Physicians.Update(physiciandata);
+            _context.SaveChanges();
+
+            return RedirectToAction("EditProviderAccount", new { physicianid = providerid });
+        }
+
+        [HttpPost]
+
+        public IActionResult EditProviderSign(int providerid, string base64String)
+        {
+            var physiciandata = _context.Physicians.FirstOrDefault(p => p.PhysicianId == providerid);
+            physiciandata.Signature = base64String;
+
+            _context.Physicians.Update(physiciandata);
+            _context.SaveChanges();
+
+            return RedirectToAction("EditProviderAccount", new { physicianid = providerid });
+
         }
 
     }

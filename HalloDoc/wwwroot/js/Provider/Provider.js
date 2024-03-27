@@ -50,6 +50,8 @@ $('.editbtn-Provider').on('click', function () {
         success: function (response) {
             $('#provider-maindiv').html(response);
             $('#physicianid-editprovideraccount').val(physicianid);
+            $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+            $('#nav-provider-tab').addClass('admin-layout-nav-active');
         },
         error: function (xhr, status, error) {
             console.error(error)

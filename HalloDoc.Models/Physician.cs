@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace HalloDoc.DataModels;
 
@@ -31,7 +28,7 @@ public partial class Physician
     [StringLength(500)]
     public string? MedicalLicense { get; set; }
 
-    [StringLength(100)]
+
     public string? Photo { get; set; }
 
     [StringLength(500)]
@@ -98,7 +95,6 @@ public partial class Physician
     [Column(TypeName = "bit(1)")]
     public BitArray? IsLicenseDoc { get; set; }
 
-    [StringLength(100)]
     public string? Signature { get; set; }
 
     [Column(TypeName = "bit(1)")]

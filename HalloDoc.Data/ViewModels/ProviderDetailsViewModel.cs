@@ -28,6 +28,20 @@ namespace Services.ViewModels
         public string signature { get; set; }
         public string adminnote { get; set; }
         public int physicianid { get; set; }
+        public bool IsAgreementDoc { get; set; }
+        public bool IsBackgroundDoc { get; set; }
+        public bool IsCredentialDoc { get; set; }
+        public bool IsNonDisclosureDoc { get; set; }
+        public bool IsLicenseDoc { get; set; }
+
+        public int[] selectedregion { get; set; }
+        public string ContactMessage { get; set; }
+        public List<AspNetRole> role { get; set; }
 
     }
 }
+
+
+
+
+
