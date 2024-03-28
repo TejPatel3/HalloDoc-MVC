@@ -1,10 +1,12 @@
 ﻿using HalloDoc.DataModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace Services.ViewModels
 {
     public class ProviderDetailsViewModel
     {
         public List<Physician> physician { get; set; }
+        [Required]
         public string username { get; set; }
         public string password { get; set; }
         public string firstname { get; set; }

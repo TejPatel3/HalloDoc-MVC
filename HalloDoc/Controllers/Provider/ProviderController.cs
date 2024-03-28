@@ -113,11 +113,12 @@ namespace HalloDoc.Controllers.Provider
             }
             if (obj.firstname != null)
             {
+
+
                 var RegionToDelete = physicianRegion.Except(obj.selectedregion);
                 foreach (var item in RegionToDelete)
                 {
-                    PhysicianRegion physicianRegionToDelete = _context.PhysicianRegions
-                .FirstOrDefault(ar => ar.PhysicianId == obj.physicianid && ar.RegionId == item);
+                    PhysicianRegion physicianRegionToDelete = _context.PhysicianRegions.FirstOrDefault(ar => ar.PhysicianId == obj.physicianid && ar.RegionId == item);
 
                     if (physicianRegionToDelete != null)
                     {
@@ -137,6 +138,7 @@ namespace HalloDoc.Controllers.Provider
                 }
                 _context.SaveChanges();
 
+
                 physician.FirstName = obj.firstname;
                 physician.LastName = obj.lastname;
                 physician.Email = obj.email;
@@ -152,6 +154,24 @@ namespace HalloDoc.Controllers.Provider
                 _context.AspNetUsers.Update(aspnetuser);
                 _context.SaveChanges();
             }
+            if (obj.adminnote != null)
+            {
+                physician.BusinessWebsite = obj.businesswebsite;
+                physician.BusinessName = obj.businessname;
+                physician.AdminNotes = obj.adminnote;
+                _context.Physicians.Update(physician);
+            };
+            if (obj.address1 != null)
+            {
+                physician.Address1 = obj.address1;
+                physician.Address2 = obj.address2;
+                physician.City = obj.city;
+                physician.Zip = obj.zip;
+                physician.AltPhone = obj.alterphonenumber;
+                _context.Physicians.Update(physician);
+            }
+
+            _context.SaveChanges();
             return RedirectToAction("EditProviderAccount", new { physicianid = obj.physicianid });
         }
 
@@ -182,5 +202,76 @@ namespace HalloDoc.Controllers.Provider
 
         }
 
+        public IActionResult CreateProviderAccount()
+        {
+            var regionlist = _context.Regions.ToList();
+            ProviderDetailsViewModel model = new ProviderDetailsViewModel
+            {
+                regionlist = regionlist,
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult CreateProviderAccount(ProviderDetailsViewModel obj, int[] selectedregion)
+        {
+            var adminid = HttpContext.Session.GetInt32("AdminId");
+            var admin = _context.Admins.FirstOrDefault(m => m.AdminId == adminid);
+            if (adminid != 0)
+            {
+                Guid id = Guid.NewGuid();
+
+                var aspnetuser = new AspNetUser
+                {
+                    Id = id.ToString(),
+                    UserName = obj.username,
+                    Email = obj.email,
+                    PasswordHash = obj.password,
+                    PhoneNumber = obj.phonenumber,
+                    CreatedDate = DateTime.Now,
+                };
+                _context.AspNetUsers.Add(aspnetuser);
+                _context.SaveChanges();
+                var physician = new Physician
+                {
+                    Id = aspnetuser.Id,
+                    FirstName = obj.firstname,
+                    LastName = obj.lastname,
+                    Email = obj.email,
+                    Mobile = obj.phonenumber,
+                    MedicalLicense = obj.medicallicencenumber,
+                    AdminNotes = obj.adminnote,
+                    Address1 = obj.address1,
+                    Address2 = obj.address2,
+                    City = obj.city,
+                    Zip = obj.zip,
+                    AltPhone = obj.alterphonenumber,
+                    CreatedBy = admin.AspNetUserId,
+                    CreatedDate = DateTime.Now,
+                    Npinumber = obj.npinumber,
+                    BusinessName = obj.businessname,
+                    BusinessWebsite = obj.businesswebsite,
+                };
+                _context.Physicians.Add(physician);
+                _context.SaveChanges();
+                PhysicianRegion physicianregion = new PhysicianRegion
+                {
+                    PhysicianId = physician.PhysicianId,
+                };
+                foreach (var item in selectedregion)
+                {
+                    physicianregion.RegionId = item;
+                    _context.Add(physicianregion);
+                }
+                _context.SaveChanges();
+                TempData["success"] = "Physician Account Created Successfully..!";
+
+            }
+            else
+            {
+                TempData["error"] = "Something went wrong try again..!";
+
+            }
+            return RedirectToAction("Provider");
+        }
     }
 }

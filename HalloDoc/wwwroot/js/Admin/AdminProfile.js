@@ -1,20 +1,19 @@
 ﻿var regexstrongpassword = /[A-Za-z\d@$!%*?&]{8,}/
 //var regexstrongpassword = /^(?=.* [a - z])(?=.* [A - Z])(?=.*\d)(?=.* [@$! %*?&])[A - Za - z\d@$!%*?&]{ 8,} $/
-
+var phoneInputField = document.querySelector("#alterphonenumber-adminprofile");
+var phoneInput = window.intlTelInput(phoneInputField, {
+    utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+var phoneInputField2 = document.querySelector("#phone-adminprofile");
+var phoneInput = window.intlTelInput(phoneInputField2, {
+    utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
 window.onload = function () {
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
     $('#nav-profile-tab').addClass('admin-layout-nav-active');
 
-    var phoneInputField = document.querySelector("#phone-adminprofile");
-    var phoneInput = window.intlTelInput(phoneInputField, {
-        utilsScript:
-            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-    var phoneInputField2 = document.querySelector("#alterphonenumber-adminprofile");
-    var phoneInput = window.intlTelInput(phoneInputField2, {
-        utilsScript:
-            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
     $('#resetpassword-adminprofile').click(function () {
         console.log("reset pass")
         $('#password-adminprofile').removeAttr('disabled', false)
@@ -163,6 +162,10 @@ window.onload = function () {
         }
         else if (!regexphone.test(phone)) {
             $('#phone-validationspan').html("please enter 10 digit mobile number");
+            allvalidation = false;
+        }
+        if (selectedregion == "") {
+            $('#selectedregion-validationspan').html("please select atleast one region");
             allvalidation = false;
         }
         if (allvalidation) {

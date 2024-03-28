@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="script" href="~/js/site.js" />
 </head>
-<body>
+<body id="adminLayoutMainDiv">
     <div class="bg-light min-vh-100">
 
         <nav class="navbar navbar-light border-bottom px-1 bg-white" style="z-index:1041;">
@@ -72,19 +72,19 @@
         </div>
         *@
         <div class="nav nav-tabs d-none d-sm-flex bg-white" id="nav-tab" role="tablist">
-            <a class="admin-layout-nav text-secondary fw-bold me-2" id="nav-home-tab" asp-action="AdminDashboard" asp-controller="Admin">Dashboard</a>
-            <a class="admin-layout-nav text-secondary fw-bold me-1" id="nav-provider-location-tab">Provider Location</a>
-            <a class="admin-layout-nav text-secondary fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" asp-action="AdminProfile" asp-controller="Admin">My Profile</a>
+            <a class="admin-layout-nav  fw-bold me-2" id="nav-home-tab" asp-action="AdminDashboard" asp-controller="Admin">Dashboard</a>
+            <a class="admin-layout-nav  fw-bold me-1" id="nav-provider-location-tab">Provider Location</a>
+            <a class="admin-layout-nav  fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" asp-action="AdminProfile" asp-controller="Admin">My Profile</a>
 
-            <a class="admin-layout-nav text-secondary fw-bold btn  dropdown shadow-none" id="nav-provider-tab" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Providers</a>
+            <a class="admin-layout-nav  fw-bold btn  dropdown shadow-none" id="nav-provider-tab" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Providers</a>
             <div class="dropdown-menu" aria-labelledby="nav-provider-tab">
                 <a class="dropdown-item" asp-action="Provider" asp-controller="Provider"> Provider  </a>
                 <a class="dropdown-item" href="#">Scheduling</a>
                 <a class="dropdown-item" href="#">Invoices</a>
             </div>
-            <a class="admin-layout-nav text-secondary fw-bold" id="nav-partner-tab">Partners</a>
-            <a class="admin-layout-nav text-secondary fw-bold" asp-controller="Access" asp-action="AccessRole" id="nav-access-tab">Access</a>
-            <a class="admin-layout-nav text-secondary fw-bold" id="nav-record-tab">Records</a>
+            <a class="admin-layout-nav  fw-bold" id="nav-partner-tab">Partners</a>
+            <a class="admin-layout-nav  fw-bold" asp-controller="Access" asp-action="AccessRole" id="nav-access-tab">Access</a>
+            <a class="admin-layout-nav  fw-bold" id="nav-record-tab">Records</a>
         </div>
 
 
@@ -192,7 +192,7 @@
     <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
 
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="/js/Admin/ViewUpload.js" asp-append-version="true"></script>
+    @* <script src="/js/Admin/ViewUpload.js" asp-append-version="true"></script> *@
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

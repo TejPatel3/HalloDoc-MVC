@@ -70,12 +70,12 @@ namespace HalloDoc.Controllers.Access
         //}
 
         [HttpPost]
-        public IActionResult CreateRole(string rolename, int accounttype, int[] selectedrole, int roleid)
+        public IActionResult CreateRole(string rolename, int accounttype, int[] selectedmenu, int roleid)
         {
             var adminname = HttpContext.Session.GetString("AdminName");
-            var role = new Role();
             if (roleid == 0)
             {
+                var role = new Role();
                 var bit = new BitArray(1);
                 bit[0] = false;
                 role.Name = rolename;
@@ -87,7 +87,7 @@ namespace HalloDoc.Controllers.Access
                 _context.Roles.Add(role);
                 _context.SaveChanges();
 
-                foreach (var item in selectedrole)
+                foreach (var item in selectedmenu)
                 {
                     var rolemenu = new RoleMenu
                     {
@@ -98,13 +98,14 @@ namespace HalloDoc.Controllers.Access
                     _context.RoleMenus.Add(rolemenu);
                 }
                 _context.SaveChanges();
+                TempData["success"] = "Role Created Successfully!";
             }
             else
             {
 
                 int[]? roleMenus = _context.RoleMenus.Where(r => r.RoleId == roleid).Select(s => s.MenuId).ToArray();
 
-                IEnumerable<int> menusToDelete = roleMenus.Except(selectedrole);
+                IEnumerable<int> menusToDelete = roleMenus.Except(selectedmenu);
 
                 foreach (var menuToDelete in menusToDelete)
                 {
@@ -117,7 +118,7 @@ namespace HalloDoc.Controllers.Access
 
                 }
 
-                IEnumerable<int> menusToAdd = selectedrole.Except(roleMenus);
+                IEnumerable<int> menusToAdd = selectedmenu.Except(roleMenus);
 
                 foreach (var menuToAdd in menusToAdd)
                 {
@@ -132,9 +133,27 @@ namespace HalloDoc.Controllers.Access
                 _context.SaveChanges();
 
 
+                TempData["success"] = "Role Updated Successfully!";
             }
 
-            TempData["success"] = "Role Created Successfully!";
+
+            return RedirectToAction("AccessRole");
+        }
+        public IActionResult DeleteRole(int roleid)
+        {
+            if (roleid != 0)
+            {
+                Role role = _context.Roles.FirstOrDefault(m => m.RoleId == roleid);
+                List<RoleMenu> roleMenu = _context.RoleMenus.Where(m => m.RoleId == roleid).ToList();
+                foreach (var item in roleMenu)
+                {
+                    _context.Remove(item);
+                }
+                _context.Remove(role);
+                _context.SaveChanges();
+
+            }
+            TempData["success"] = "Role Deleted Successfully!";
             return RedirectToAction("AccessRole");
         }
     }

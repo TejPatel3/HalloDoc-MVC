@@ -1,12 +1,21 @@
-﻿var regextext = /^[a-zA-Z][a-zA-Z0-9 ]+$/i;
+﻿var regextext = /^[a-zA-Z0-9][a-zA-Z0-9-, ]*$/i;
 var regexlicense = /^[a-zA-Z0-9][a-zA-Z0-9 ]+$/i;
 var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 var regexphone = /^[1-9][0-9]{9}$/;
+var regexzip = /^[1-9][0-9]{5}$/;
 var regexstrongpassword = /[A-Za-z\d@$!%*?&]{8,}/
-window.onload = function () {
-    $('.admin-layout-nav').removeClass('admin-layout-nav-active');
-    $('#nav-provider-tab').addClass('admin-layout-nav-active');
-}
+
+
+var phoneInputField = document.querySelector("#phone-editprovideraccount");
+var phoneInput = window.intlTelInput(phoneInputField, {
+    utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+var phoneInputField2 = document.querySelector("#alterphonenumber-editprovideraccount");
+var phoneInput = window.intlTelInput(phoneInputField2, {
+    utilsScript:
+        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
 var actualBtn = document.getElementById('actual-btn-editprovideraccount');
 var fileChosen = document.getElementById('file-chosen');
 actualBtn.addEventListener('change', function () {
@@ -21,20 +30,7 @@ actualBtn.addEventListener('change', function () {
     fileChosen.ariaPlaceholder = filesname;
     console.log("run")
 });
-var actualBtnsign = document.getElementById('actual-btn-sign');
-var fileChosensign = document.getElementById('file-chosen-sign');
-actualBtnsign.addEventListener('change', function () {
-    var filesname = this.files[0].name;
-    console.log(filesname)
-    for (var i = 1; i < this.files.length; i++) {
-        filesname = filesname + " + " + this.files[i].name;
-    }
-    fileChosensign.style.fontSize = "15px";
-    fileChosensign.style.fontWeight = "bold"
-    fileChosensign.textContent = filesname;
-    fileChosensign.ariaPlaceholder = filesname;
-    console.log("run")
-});
+
 $('#username-editprovideraccount').on('input', function () {
     let username = $('#username-editprovideraccount').val();
     $('#username-editprovideraccount-span').html("");
@@ -108,18 +104,91 @@ $('#pieditbtn-editprovideraccount').on('click', function () {
 //$('#npinumber-editprovideraccount')
 
 
+//provider information on input jc
 
+$('#firstname-editprovideraccount').on('input', function () {
+    let firstname = $('#firstname-editprovideraccount').val();
+    $('#firstname-editprovideraccount-span').html("");
+    if (firstname == "") {
+        $('#firstname-editprovideraccount-span').html("please enter firstname");
+        allvalidation = false;
+    }
+    else if (!regextext.test(firstname)) {
+        $('#firstname-editprovideraccount-span').html("firstname not valid");
+        allvalidation = false;
+
+    }
+});
+$('#lastname-editprovideraccount').on('input', function () {
+    let lastname = $('#lastname-editprovideraccount').val();
+    $('#lastname-editprovideraccount-span').html("");
+    if (lastname == "") {
+        $('#lastname-editprovideraccount-span').html("please enter lastname");
+        allvalidation = false;
+    }
+    else if (!regextext.test(lastname)) {
+        $('#lastname-editprovideraccount-span').html("lastname not valid");
+        allvalidation = false;
+    }
+});
+$('#email-editprovideraccount').on('input', function () {
+    let email = $('#email-editprovideraccount').val();
+    $('#email-editprovideraccount-span').html("");
+    if (email == "") {
+        $('#email-editprovideraccount-span').html("please enter email");
+        allvalidation = false;
+    }
+    else if (!regexemail.test(email)) {
+        $('#email-editprovideraccount-span').html("email not valid");
+        allvalidation = false;
+    }
+});
+$('#phone-editprovideraccount').on('input', function () {
+    let phonenumber = $('#phone-editprovideraccount').val();
+    $('#phone-editprovideraccount-span').html("");
+    if (phonenumber == "") {
+        $('#phone-editprovideraccount-span').html("please enter phonenumber");
+        allvalidation = false;
+    }
+    else if (!regexphone.test(phonenumber)) {
+        $('#phone-editprovideraccount-span').html("phonenumber not valid");
+        allvalidation = false;
+    }
+});
+$('#medicallicense-editprovideraccount').on('input', function () {
+    let medicallicense = $('#medicallicense-editprovideraccount').val();
+    $('#medicallicense-editprovideraccount-span').html("");
+    if (medicallicense == "") {
+        $('#medicallicense-editprovideraccount-span').html("please enter medical license");
+        allvalidation = false;
+    }
+    else if (!regexlicense.test(medicallicense)) {
+        $('#medicallicense-editprovideraccount-span').html("medical license not valid");
+        allvalidation = false;
+    }
+});
+$('#npinumber-editprovideraccount').on('input', function () {
+    let npinum = $('#npinumber-editprovideraccount').val();
+    $('#npinumber-editprovideraccount-span').html("");
+    if (npinum == "") {
+        $('#npinumber-editprovideraccount-span').html("please enter NPI number");
+        allvalidation = false;
+    }
+    else if (!regexlicense.test(npinum)) {
+        $('#npinumber-editprovideraccount-span').html("NPI number not valid");
+        allvalidation = false;
+    }
+});
 
 $('#pisavebtn-editprovideraccount').on('click', function () {
     let physicianid = $('#physicianid-editprovideraccount').val();
-
     let firstname = $('#firstname-editprovideraccount').val();
     let lastname = $('#lastname-editprovideraccount').val();
     let email = $('#email-editprovideraccount').val();
     let phonenumber = $('#phone-editprovideraccount').val();
     let medicallicense = $('#medicallicense-editprovideraccount').val();
     let npinum = $('#npinumber-editprovideraccount').val();
-    let regionlist = $('#username-editprovideraccount').val();
+    //let regionlist = $('#username-editprovideraccount').val();
     let allvalidation = true;
     var selectedregion = [];
 
@@ -136,12 +205,13 @@ $('#pisavebtn-editprovideraccount').on('click', function () {
         npinumber: npinum,
         selectedregion: selectedregion
     }
+    $('#firstname-editprovideraccount-span').html("");
     $('#lastname-editprovideraccount-span').html("");
     $('#email-editprovideraccount-span').html("");
     $('#phone-editprovideraccount-span').html("");
     $('#medicallicense-editprovideraccount-span').html("");
     $('#npinumber-editprovideraccount-span').html("");
-    $('#firstname-editprovideraccount-span').html("");
+    $('#selectedregion-editprovideraccount-span').html("");
     if (firstname == "") {
         $('#firstname-editprovideraccount-span').html("please enter firstname");
         allvalidation = false;
@@ -160,11 +230,11 @@ $('#pisavebtn-editprovideraccount').on('click', function () {
         allvalidation = false;
     }
     if (email == "") {
-        $('#firstname-editprovideraccount-span').html("please enter email");
+        $('#email-editprovideraccount-span').html("please enter email");
         allvalidation = false;
     }
     else if (!regexemail.test(email)) {
-        $('#firstname-editprovideraccount-span').html("email not valid");
+        $('#email-editprovideraccount-span').html("email not valid");
         allvalidation = false;
     }
     if (phonenumber == "") {
@@ -191,6 +261,11 @@ $('#pisavebtn-editprovideraccount').on('click', function () {
         $('#npinumber-editprovideraccount-span').html("NPI number not valid");
         allvalidation = false;
     }
+    if (selectedregion == "") {
+        $('#selectedregion-editprovideraccount-span').html("please select at least one region");
+        allvalidation = false;
+
+    }
     if (allvalidation) {
         $('#pieditbtn-editprovideraccount').removeClass('d-none')
         $('.pidisabled').attr('disabled', true);
@@ -211,11 +286,142 @@ $('#pisavebtn-editprovideraccount').on('click', function () {
     }
 });
 
+
+//mailing & billing provider data on input methods for validation
+$('#address1-editprovideraccount').on('input', function () {
+    var address1 = $('#address1-editprovideraccount').val();
+    $('#address1-editprovideraccount-span').html("")
+    if (address1 == "") {
+        $('#address1-editprovideraccount-span').html("please enter address");
+    }
+    else if (!regextext.test(address1)) {
+        $('#address1-editprovideraccount-span').html("please enter valid address");
+    }
+});
+
+
+$('#address2-editprovideraccount').on('input', function () {
+    var address2 = $('#address2-editprovideraccount').val();
+    $('#address2-editprovideraccount-span').html("")
+    if (address2 == "") {
+        $('#address2-editprovideraccount-span').html("please enter address");
+    }
+    else if (!regextext.test(address2)) {
+        $('#address2-editprovideraccount-span').html("please enter valid address")
+    }
+});
+$('#zip-editprovideraccount').on('input', function () {
+    var zip = $('#zip-editprovideraccount').val();
+    $('#zip-editprovideraccount-span').html("")
+    if (zip == "") {
+        $('#zip-editprovideraccount-span').html("please enter zip")
+    }
+    else if (!regexzip.test(zip)) {
+        $('#zip-editprovideraccount-span').html("please enter six digit zip")
+
+    }
+});
+$('#city-editprovideraccount').on('input', function () {
+    var city = $('#city-editprovideraccount').val();
+    $('#city-editprovideraccount-span').html("")
+    if (city == "") {
+        $('#city-editprovideraccount-span').html("please enter city")
+    }
+    else if (!regextext.test(city)) {
+        $('#city-editprovideraccount-span').html("input is not valid")
+    }
+});
+$('#alterphonenumber-editprovideraccount').on('input', function () {
+    var alterphonenumber = $('#alterphonenumber-editprovideraccount').val();
+    $('#alterphonenumber-editprovideraccount-span').html("")
+    if (alterphonenumber == "") {
+        $('#alterphonenumber-editprovideraccount-span').html("please enter phone number")
+    }
+    else if (!regexphone.test(alterphonenumber)) {
+        $('#alterphonenumber-editprovideraccount-span').html("please enter 10 digit phone number")
+    }
+});
+
+
+//mailing end billing edit and save js
+$('#mbeditbtn-EditProviderAccount').on('click', function () {
+    $(this).addClass('d-none');
+    $('#mbsavebtn-EditProviderAccount').removeClass('d-none');
+    $('.mbdisabled').removeAttr('disabled', false);
+});
+$('#mbsavebtn-EditProviderAccount').on('click', function () {
+    let physicianid = $('#physicianid-editprovideraccount').val();
+    var address1 = $('#address1-editprovideraccount').val();
+    var address2 = $('#address2-editprovideraccount').val();
+    var zip = $('#zip-editprovideraccount').val();
+    var city = $('#city-editprovideraccount').val();
+    var alterphonenumber = $('#alterphonenumber-editprovideraccount').val();
+    var model = {
+        physicianid: physicianid,
+        address1: address1,
+        address2: address2,
+        city: city,
+        zip: zip,
+        alterphonenumber: alterphonenumber,
+    }
+    var allValidaion = true;
+    $('#address1-editprovideraccount-span').html("")
+    $('#address2-editprovideraccount-span').html("")
+    $('#zip-editprovideraccount-span').html("")
+    $('#city-editprovideraccount-span').html("")
+    $('#alterphonenumber-editprovideraccount-span').html("")
+    if (address1 == "") {
+        $('#address1-editprovideraccount-span').html("please enter address");
+        allValidaion = false;
+    }
+    else if (!regextext.test(address1)) {
+        $('#address1-editprovideraccount-span').html("please enter valid address");
+        allValidaion = false;
+    }
+    if (address2 == "") {
+        $('#address2-editprovideraccount-span').html("please enter address");
+        allValidaion = false;
+    }
+    else if (!regextext.test(address2)) {
+        $('#address2-editprovideraccount-span').html("please enter valid address")
+        allValidaion = false
+    }
+    if (zip == "") {
+        $('#zip-editprovideraccount-span').html("please enter zip")
+        allValidaion = false
+    }
+    if (city == "") {
+        $('#city-editprovideraccount-span').html("please enter city")
+        allValidaion = false
+    }
+    if (alterphonenumber == "") {
+        $('#alterphonenumber-editprovideraccount-span').html("please enter phone number")
+        allValidaion = false
+    }
+    else if (!regexphone.test(alterphonenumber)) {
+        $('#alterphonenumber-editprovideraccount-span').html("please enter 10 digit phone number")
+        allValidaion = false
+    }
+    if (allValidaion) {
+        $.ajax({
+            url: '/Provider/EditProviderAccount',
+            type: 'POST',
+            data: model,
+            success: function (response) {
+                $('#mbsavebtn-EditProviderAccount').addClass('d-none');
+                $('#mbeditbtn-EditProviderAccount').removeClass('d-none');
+                $('.mbdisabled').attr('disabled', true);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+});
 $('#password-editprovideraccount').on('input', function () {
     let password = $('#password-editprovideraccount').val();
     $('#resetpassword-editprovideraccount-span').html("");
     if (password == "") {
-
         $('#resetpassword-editprovideraccount-span').html("please enter password");
     }
     else if (!regexstrongpassword.test(password)) {
@@ -263,6 +469,81 @@ $('#Aiupdatebtn-editprovideraccount').on('click', function () {
 });
 
 
+//provider profile information onload validation method
+$('#adminnote-editprovider').on('input', function () {
+    let adminnote = $('#adminnote-editprovider').val();
+    $('#adminnote-editprovider-span').html("");
+    if (adminnote == "") {
+        $('#adminnote-editprovider-span').html("Please enter adminnote");
+    }
+    else if (!regextext.test()) {
+        $('#adminnote-editprovider-span').html("not valid");
+    }
+});
+$('#businessname-editprovideraccount').on('input', function () {
+    let businessname = $('#businessname-editprovideraccount').val();
+    $('#businessname-editprovideraccount-span').html("");
+    if (businessname == "") {
+        $('#businessname-editprovideraccount-span').html("Please enter business name");
+    }
+    else if (!regextext.test(businessname)) {
+        $('#businessname-editprovideraccount-span').html("Please enter valid business name");
+    }
+});
+$('#businesswebsite-editprovideraccount').on('input', function () {
+    let businesswebsite = $('#businesswebsite-editprovideraccount').val();
+    let regex = /^[a-zA-Z0-9][a-zA-Z0-9-,. ]*$/i;
+    $('#businesswebsite-editprovideraccount-span').html("");
+    if (businesswebsite == "") {
+        $('#businesswebsite-editprovideraccount-span').html("Please enter business website");
+    }
+    else if (!regex.test(businesswebsite)) {
+        $('#businesswebsite-editprovideraccount-span').html("Please enter valid business website");
+    }
+});
+
+
+//provider profile edit and save js
+$('#editbtn-adminnote-editprovider').on('click', function () {
+    console.log("jhgbvgfcfdxcdx")
+    $(this).addClass('d-none');
+    $('.ppdisabled').removeAttr('disabled', false);
+    $('#savebtn-adminnote-editprovider').removeClass('d-none');
+});
+$('#savebtn-adminnote-editprovider').on('click', function () {
+    let physicianid = $('#physicianid-editprovideraccount').val();
+    let adminnote = $('#adminnote-editprovider').val();
+    let businessname = $('#businessname-editprovideraccount').val();
+    let businesswebsite = $('#businesswebsite-editprovideraccount').val();
+    var model = {
+        physicianid: physicianid,
+        adminnote: adminnote,
+        businessname: businessname,
+        businesswebsite: businesswebsite
+    }
+    if (
+        $('#businesswebsite-editprovideraccount-span').html() == "" &&
+        $('#businessname-editprovideraccount-span').html() == "" &&
+        $('#adminnote-editprovider-span').html() == ""
+    ) {
+
+        $.ajax({
+            url: '/Provider/EditProviderAccount',
+            type: 'POST',
+            data: model,
+            success: function (response) {
+                //$('#nav-profile').html(response);
+                $('#savebtn-adminnote-editprovider').addClass('d-none');
+                $('.ppdisabled').attr('disabled', true);
+                $('#editbtn-adminnote-editprovider').removeClass('d-none');
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+});
+
 
 
 (function fun() {
@@ -276,7 +557,7 @@ $('#Aiupdatebtn-editprovideraccount').on('click', function () {
                 window.setTimeout(callback, 1000 / 60);
             };
     })();
-
+    console.log("hdsvbdbsajbdjhb")
     var canvas = document.getElementById("sig-canvas");
     var ctx = canvas.getContext("2d");
     ctx.strokeStyle = "#222222";
@@ -451,24 +732,4 @@ $('#provider-photo').on('click', function () {
         });
     };
     reader.readAsDataURL(file);
-});
-
-$('#editbtn-adminnote-editprovider').on('click', function () {
-    $(this).addClass('d-none');
-    $('#adminnote-editprovider').removeAttr('disabled', false);
-    $('#savebtn-adminnote-editprovider').removeClass('d-none');
-});
-$('#adminnote-editprovider').on('input', function () {
-    let adminnote = $('#adminnote-editprovider').val();
-    $('#adminnote-editprovider-span').html("");
-    if (adminnote == "") {
-        $('#adminnote-editprovider-span').html("Please enter adminnote");
-
-    }
-    else if (!regextext.test()) {
-
-    }
-});
-$('#savebtn-adminnote-editprovider').on('click', function () {
-
 });
