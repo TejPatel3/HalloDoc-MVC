@@ -733,3 +733,54 @@ $('#provider-photo').on('click', function () {
     };
     reader.readAsDataURL(file);
 });
+
+//FOR ONBOARDING
+
+var onboardinguploadvalue;
+var onboardingbtnvalue;
+$('.fileuploadbtn').on('click', function () {
+    $('#SelectFileToUpload').click();
+    onboardingbtnvalue = $(this).val();
+    console.log(onboardingbtnvalue)
+    onboardinguploadvalue = $(this).val();
+});
+
+$('#SelectFileToUpload').on('change', function () {
+    var fileInput = document.getElementById('SelectFileToUpload');
+    var file = fileInput.files[0]; // Get the selected file
+    let providerid = $('#physicianid-editprovideraccount').val();
+
+    var formData = new FormData();
+    formData.append('file', file); // Append the file
+    formData.append('providerid', providerid); // Append other data
+    formData.append('onboardinguploadvalue', onboardinguploadvalue); // Append other data
+    let x = file.name;
+    let extention = x.split('.').pop();
+    if (extention != "pdf") {
+        alert("please upload pdf file")
+    }
+    else {
+
+        $.ajax({
+            url: '/Provider/uploadFile', // Replace with your server endpoint
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                $('#provider-maindiv').html(response);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+});
+
+
+//Create Provider Account
+
+
+$('#UploadFileCreateProvider').on('change', function () {
+    
+});

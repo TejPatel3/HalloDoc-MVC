@@ -3,7 +3,6 @@ using HalloDoc.DataModels;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OfficeOpenXml;
 using Services.Contracts;
 using Services.Implementation;
 using Services.ViewModels;
@@ -126,7 +125,7 @@ namespace HalloDoc.Controllers.Admin
         //        default: return View();
         //    }
         //}
-       
+
 
         //        using OfficeOpenXml;
         //using System.IO;
@@ -177,43 +176,43 @@ namespace HalloDoc.Controllers.Admin
         //}
 
         public IActionResult New()
-        {           
+        {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(1);
-             return PartialView(datalist);
+            return PartialView(datalist);
         }
 
         public IActionResult Pending(int currentpage)
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(2);
-        
+
             return PartialView(datalist);
         }
 
         public IActionResult Active(int currentpage)
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(4).Concat(_adminDashboardDataTable.getallAdminDashboard(5)).ToList();
-          
+
             return View(datalist);
         }
 
         public IActionResult Conclude(int currentpage)
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(6);
-           
+
             return View(datalist);
         }
 
         public IActionResult ToClose(int currentpage)
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(7).Concat(_adminDashboardDataTable.getallAdminDashboard(3)).Concat(_adminDashboardDataTable.getallAdminDashboard(8)).ToList();
-          
+
             return View(datalist);
         }
 
         public IActionResult Unpaid(int currentpage)
         {
             var datalist = _adminDashboardDataTable.getallAdminDashboard(9);
-           
+
             return View(datalist);
         }
 
@@ -615,7 +614,7 @@ namespace HalloDoc.Controllers.Admin
 
             return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
         }
-        
+
         public IActionResult IAgreeSendAgreement(int requestid)
         {
             var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
@@ -813,6 +812,8 @@ namespace HalloDoc.Controllers.Admin
                 };
                 _context.Requests.Add(requests);
                 _context.SaveChanges();
+
+
                 RequestClient requestclients = new RequestClient
                 {
                     FirstName = req.FirstName,
@@ -846,6 +847,38 @@ namespace HalloDoc.Controllers.Admin
         }
         public IActionResult CreateAdmin()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateAdminAccount(UserAllDataViewModel obj)
+        {
+
+            if (obj != null)
+            {
+
+
+                var adminid = HttpContext.Session.GetInt32("AdminId");
+                Guid aspnetid = Guid.NewGuid();
+                AspNetUser aspnetuser = new AspNetUser
+                {
+                    Id = aspnetid.ToString(),
+                    UserName = obj.UserName,
+                    Email = obj.email,
+                    PasswordHash = obj.password,
+                    CreatedDate = DateTime.Now,
+                    PhoneNumber = obj.phonenumber,
+                };
+                _context.AspNetUsers.Add(aspnetuser);
+
+
+                _context.SaveChanges(true);
+                TempData["success"] = "Account created successfully";
+            }
+            else
+            {
+                TempData["error"] = "Something went wrong try again";
+
+            }
             return View();
         }
     }

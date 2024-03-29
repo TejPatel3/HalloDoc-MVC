@@ -286,12 +286,23 @@ div.dataTables_wrapper div.dataTables_length select {
 }
 
     .admin-layout-nav:hover {
-    padding: 2px 5px 5px 5px;
+        padding: 2px 5px 5px 5px;
         border-bottom: 2px solid #17a2b8 !important;
         color: rgb(11 139 160) !important;
-        font-size:16.4px;
+        font-size: 16.4px;
+        letter-spacing: 0.5px;
+        transition-property: letter-spacing,font-size,padding !important;
+        transition-duration: 0.3s !important
     }
 
 .admin-layout-nav-mobile-active {
     background-color: lightgray !important;
+}
+.dropdown-item:hover {
+    background-color: #17a2b8;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition-property: letter-spacing !important;
+    transition-duration: 0.3s !important;
 }

@@ -1,4 +1,6 @@
 ﻿using HalloDoc.DataModels;
+using Microsoft.AspNetCore.Http;
+using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
 namespace Services.ViewModels
@@ -30,11 +32,17 @@ namespace Services.ViewModels
         public string signature { get; set; }
         public string adminnote { get; set; }
         public int physicianid { get; set; }
-        public bool IsAgreementDoc { get; set; }
-        public bool IsBackgroundDoc { get; set; }
-        public bool IsCredentialDoc { get; set; }
-        public bool IsNonDisclosureDoc { get; set; }
-        public bool IsLicenseDoc { get; set; }
+        public BitArray IsAgreementDoc { get; set; }
+        public BitArray IsBackgroundDoc { get; set; }
+        public BitArray IsCredentialDoc { get; set; }
+        public BitArray IsNonDisclosureDoc { get; set; }
+        public BitArray IsLicenseDoc { get; set; }
+        public IFormFile AgreementDoc { get; set; }
+        public IFormFile BackgroundDoc { get; set; }
+        public IFormFile CredentialDoc { get; set; }
+        public IFormFile NonDisclosureDoc { get; set; }
+        public IFormFile LicenseDoc { get; set; }
+
 
         public int[] selectedregion { get; set; }
         public string ContactMessage { get; set; }

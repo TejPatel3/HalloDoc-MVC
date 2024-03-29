@@ -3,6 +3,7 @@ using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.ViewModels;
+using System.Collections;
 using System.Net;
 using System.Net.Mail;
 
@@ -88,6 +89,7 @@ namespace HalloDoc.Controllers.Provider
                 signature = physician.Signature,
                 physicianid = physicianid,
                 selectedregionlist = selectedphyregionlist,
+                IsAgreementDoc = physician.IsAgreementDoc,                IsCredentialDoc = physician.IsCredentialDoc,                IsBackgroundDoc = physician.IsBackgroundDoc,                IsLicenseDoc = physician.IsLicenseDoc,                IsNonDisclosureDoc = physician.IsNonDisclosureDoc
             };
             //var physicianregion = _context.PhysicianRegions.Where(m => m.PhysicianId == physicianid).ToList();
             //if (physicianregion != null)
@@ -229,8 +231,8 @@ namespace HalloDoc.Controllers.Provider
                     PhoneNumber = obj.phonenumber,
                     CreatedDate = DateTime.Now,
                 };
-                _context.AspNetUsers.Add(aspnetuser);
-                _context.SaveChanges();
+                //_context.AspNetUsers.Add(aspnetuser);
+                //_context.SaveChanges();
                 var physician = new Physician
                 {
                     Id = aspnetuser.Id,
@@ -250,9 +252,12 @@ namespace HalloDoc.Controllers.Provider
                     Npinumber = obj.npinumber,
                     BusinessName = obj.businessname,
                     BusinessWebsite = obj.businesswebsite,
+
                 };
-                _context.Physicians.Add(physician);
-                _context.SaveChanges();
+                //_context.Physicians.Add(physician);
+                //_context.SaveChanges();
+
+
                 PhysicianRegion physicianregion = new PhysicianRegion
                 {
                     PhysicianId = physician.PhysicianId,
@@ -262,7 +267,7 @@ namespace HalloDoc.Controllers.Provider
                     physicianregion.RegionId = item;
                     _context.Add(physicianregion);
                 }
-                _context.SaveChanges();
+                //_context.SaveChanges();
                 TempData["success"] = "Physician Account Created Successfully..!";
 
             }
@@ -273,5 +278,15 @@ namespace HalloDoc.Controllers.Provider
             }
             return RedirectToAction("Provider");
         }
+
+        public IActionResult uploadFile(IFormFile file, int providerid, string onboardinguploadvalue)        {            if (file != null && file.Length > 0)            {                string extension = Path.GetExtension(file.FileName);                string filename = onboardinguploadvalue + extension;                string folderpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "onboarding", providerid.ToString());                if (!Directory.Exists(folderpath))                    Directory.CreateDirectory(folderpath);                string uploadFile = Path.Combine(folderpath, filename);                using (var fileStream = new FileStream(uploadFile, FileMode.Create))                {                    file.CopyTo(fileStream);                }                Physician physician = _context.Physicians.FirstOrDefault(x => x.PhysicianId == providerid);
+
+
+                BitArray bitset = new BitArray(1);
+
+                // Set some bits
+                bitset[0] = true; // Set the first bit to 1
+
+                if (onboardinguploadvalue == "IndependentContractorAgreement")                {                    physician.IsAgreementDoc = bitset;                }                else if (onboardinguploadvalue == "BackgroundCheck")                {                    physician.IsBackgroundDoc = bitset;                }                else if (onboardinguploadvalue == "HIPAACompliance")                {                    physician.IsCredentialDoc = bitset;                }                else if (onboardinguploadvalue == "Non-DisclosureAgreement")                {                    physician.IsNonDisclosureDoc = bitset;                }                else if (onboardinguploadvalue == "LicenseDocument")                {                    physician.IsLicenseDoc = bitset;                }                _context.Update(physician);                _context.SaveChanges();            }            return RedirectToAction("EditProviderAccount", new { physicianid = providerid });        }
     }
 }

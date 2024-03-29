@@ -477,6 +477,34 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\0\\.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\0\\.pdf"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\2\\IndependentContractorAgreement.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\2\\IndependentContractorAgreement.pdf"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\BackgroundCheck.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\3\\BackgroundCheck.pdf"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\HIPAACompliance.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\3\\HIPAACompliance.pdf"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\IndependentContractorAgreement.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\3\\IndependentContractorAgreement.pdf"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\LicenseDocument.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\3\\LicenseDocument.pdf"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\Non-DisclosureAgreement.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\3\\Non-DisclosureAgreement.pdf"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.HalloDoc.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
