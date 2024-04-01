@@ -79,7 +79,7 @@
             <a class="admin-layout-nav  fw-bold btn  shadow-none" id="nav-provider-tab" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Providers</a>
             <div class="dropdown-menu" aria-labelledby="nav-provider-tab">
                 <a class="dropdown-item" asp-action="Provider" asp-controller="Provider"> Provider  </a>
-                <a class="dropdown-item" href="#">Scheduling</a>
+                <a class="dropdown-item" asp-controller="Scheduling" asp-action="Scheduling">Scheduling</a>
                 <a class="dropdown-item" href="#">Invoices</a>
             </div>
             <a class="admin-layout-nav  fw-bold" id="nav-partner-tab">Partners</a>
@@ -87,7 +87,7 @@
             <div class="dropdown-menu" aria-labelledby="nav-access-tab">
                 <a class="dropdown-item" asp-controller="Access" asp-action="AccessRole"> Access</a>
                 <a class="dropdown-item" asp-controller="Admin" asp-action="CreateAdmin">Create Admin</a>
-                <a class="dropdown-item" href="#">Invoices</a>
+                <a class="dropdown-item" asp-controller="Access" asp-action="UserAccess">User Access</a>
             </div>
             <a class="admin-layout-nav  fw-bold" id="nav-record-tab">Records</a>
         </div>
@@ -173,7 +173,7 @@
             </div>
             @RenderBody()
         </div>
-    </div
+    </div>
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

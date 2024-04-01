@@ -25,13 +25,14 @@ namespace HalloDoc.Controllers.Admin
         private readonly IAddOrUpdateRequestNotes _addOrUpdateRequestNotes;
         private readonly IAddOrUpdateRequestStatusLog _addOrUpdateRequestStatusLog;
         private readonly IJwtRepository _jwtRepo;
+        private readonly IAdd _add;
         public AdminController(
         IAdminLog _admin, IAdminDashboard adminDashboard,
         IAdminDashboardDataTable adminDashboardDataTable,
         IViewCaseRepo viewcase, IBlockCaseRepository block,
         IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog,
         IAddOrUpdateRequestNotes addOrUpdateRequestNotes,
-        IJwtRepository jwtRepo)
+        IJwtRepository jwtRepo, IAdd add)
         {
             _context = new ApplicationDbContext();
             adminLog = _admin;
@@ -42,6 +43,7 @@ namespace HalloDoc.Controllers.Admin
             _addOrUpdateRequestNotes = addOrUpdateRequestNotes;
             _addOrUpdateRequestStatusLog = addOrUpdateRequestStatusLog;
             _jwtRepo = jwtRepo;
+            _add = add;
         }
 
         //byte[] key = { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16 };
@@ -847,39 +849,19 @@ namespace HalloDoc.Controllers.Admin
         }
         public IActionResult CreateAdmin()
         {
-            return View();
+            UserAllDataViewModel model = new UserAllDataViewModel();
+            model.regionlist = _context.Regions.ToList();
+            var rolelist = _context.Roles.Where(m => m.AccountType == 0 || m.AccountType == 1).ToList();
+            model.rolelist = rolelist;
+            return View(model);
         }
         [HttpPost]
         public IActionResult CreateAdminAccount(UserAllDataViewModel obj)
         {
-
-            if (obj != null)
-            {
-
-
-                var adminid = HttpContext.Session.GetInt32("AdminId");
-                Guid aspnetid = Guid.NewGuid();
-                AspNetUser aspnetuser = new AspNetUser
-                {
-                    Id = aspnetid.ToString(),
-                    UserName = obj.UserName,
-                    Email = obj.email,
-                    PasswordHash = obj.password,
-                    CreatedDate = DateTime.Now,
-                    PhoneNumber = obj.phonenumber,
-                };
-                _context.AspNetUsers.Add(aspnetuser);
-
-
-                _context.SaveChanges(true);
-                TempData["success"] = "Account created successfully";
-            }
-            else
-            {
-                TempData["error"] = "Something went wrong try again";
-
-            }
-            return View();
+            int adminid = (int)HttpContext.Session.GetInt32("AdminId");
+            _add.AddAdmin(obj, adminid);
+            TempData["success"] = "Admin Account created successfully";
+            return RedirectToAction("AdminDashboard");
         }
     }
 }

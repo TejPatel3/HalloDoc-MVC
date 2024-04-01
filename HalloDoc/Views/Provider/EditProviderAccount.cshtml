@@ -481,12 +481,7 @@
             <div class="d-flex justify-content-end mb-3">
 
                 <div class="mx-1 d-flex">
-                    <button type="button" class="btn btn-info shadow-none text-white viewNotes small px-3">
-                        Save
-                    </button>
-                </div>
-                <div class="mx-1 d-flex">
-                    <button type="button" class="btn btn-info shadow-none border-0 text-white bg-danger small px-3">
+                    <button type="button" class="btn btn-info shadow-none border-0 text-white bg-danger small px-3" onclick="deleteProviderAccount()">
                         Delete Account
                     </button>
                 </div>
@@ -523,4 +518,17 @@
         fileChosensign.ariaPlaceholder = filesname;
         console.log("run")
     });
+    function deleteProviderAccount() {
+        let physicianid = $('#physicianid-editprovideraccount').val();
+        $.ajax({
+            url: '/Provider/DeleteProviderAccount',
+            data: { "physicianid": physicianid },
+            success: function (data) {
+                $('#provider-maindiv').html(data);
+            },
+            error: function (xhr, status, error) {
+                console.error(error)
+            }
+        });
+    }
 </script>

@@ -43,6 +43,7 @@ namespace Services.ViewModels
         public IFormFile NonDisclosureDoc { get; set; }
         public IFormFile LicenseDoc { get; set; }
 
+        public List<PhysicianNotification> isnotificationstopped { get; set; }
 
         public int[] selectedregion { get; set; }
         public string ContactMessage { get; set; }

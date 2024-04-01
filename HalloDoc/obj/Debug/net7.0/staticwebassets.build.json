@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2lnVY/wlNjRZYnh/zJ03Qoq6bbXc8m8AMYMl5zwaqn4=",
+  "Hash": "OtVBFt77EG8rSFu4UZm+/WEH3AEHb5LL1zQ/kIB0e2c=",
   "Source": "HalloDoc",
   "BasePath": "_content/HalloDoc",
   "Mode": "Default",
@@ -1800,6 +1800,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\onboarding\\3\\Non-DisclosureAgreement.pdf"
+    },
+    {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\4\\IndependentContractorAgreement.pdf",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "onboarding/4/IndependentContractorAgreement.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\onboarding\\4\\IndependentContractorAgreement.pdf"
     },
     {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\11116016_415.jpg",

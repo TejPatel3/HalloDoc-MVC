@@ -42,8 +42,6 @@ $('#contactprovidersubmitbtn').on('click', function () {
 
 $('.editbtn-Provider').on('click', function () {
     let physicianid = $(this).val();
-
-
     $.ajax({
         url: '/Provider/EditProviderAccount',
         data: { physicianid: physicianid },
@@ -58,4 +56,27 @@ $('.editbtn-Provider').on('click', function () {
         }
     });
 
+});
+$('.providernotificationcheckbox').on('change', function () {
+    $('#savebtnNotificationProvider').removeClass('d-none');
+});
+$('#savebtnNotificationProvider').on('click', function () {
+    $('#savebtnNotificationProvider').addClass('d-none');
+    let  provideridlist=[];
+    $('input[type="checkbox"]:checked').each(function () {
+        provideridlist.push($(this).val());
+    });
+    console.log(provideridlist)
+    $.ajax({
+        url: '/Provider/UpdateNotification',
+        data: { "provideridlist": provideridlist },
+        type: 'POST',
+
+        success: function () {
+
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
 });

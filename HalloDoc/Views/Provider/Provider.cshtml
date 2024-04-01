@@ -36,7 +36,7 @@
                         </tr>
                     </thead>
                     <tbody id="datatable" class="bg-white">
-                        <tr>
+                        <tr class="d-none" id="savebtnNotificationProvider">
                             <td class="border-0">
 
                                 <button class="btn btn-info">save</button>
@@ -45,7 +45,11 @@
                         @foreach (var item in Model.physician)
                         {
                             <tr>
-                                <td><input type="checkbox" /></td>
+                                <td><input type="checkbox" value="@item.PhysicianId" name="providernotificationcheckbox" class="providernotificationcheckbox" 
+                                    @if(Model.isnotificationstopped.Any(m => m.PhysicianId == item.PhysicianId)){
+                                        @:checked
+                                    }
+                                    /></td>
                                 <td>@item.FirstName @item.LastName</td>
                                 <td>Physician</td>
                                 <td>Available</td>

@@ -306,3 +306,12 @@ div.dataTables_wrapper div.dataTables_length select {
     transition-property: letter-spacing !important;
     transition-duration: 0.3s !important;
 }
+
+input[type="file" i]{
+    color:white;
+    background-color:white !important;
+    
+}
+#file-upload-button{
+    background-color:red !important;
+}

@@ -505,6 +505,10 @@
       "PackagePath": "staticwebassets\\onboarding\\3\\Non-DisclosureAgreement.pdf"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\4\\IndependentContractorAgreement.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\4\\IndependentContractorAgreement.pdf"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.HalloDoc.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

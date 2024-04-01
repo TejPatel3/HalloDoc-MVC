@@ -1,0 +1,60 @@
+﻿@using Services.ViewModels
+@model DayWiseScheduling
+@{
+    Layout = null;
+}
+
+<table class="table table-bordered bg-white shadow">
+    <thead>
+        <tr class="bg-secondary text-white">
+            <td>STAFF</td>
+            <td>12A</td>
+            <td>1A</td>
+            <td>2A</td>
+            <td>3A</td>
+            <td>4A</td>
+            <td>5A</td>
+            <td>6A</td>
+            <td>7A</td>
+            <td>8A</td>
+            <td>9A</td>
+            <td>10A</td>
+            <td>11A</td>
+            <td>12P</td>
+            <td>1P</td>
+            <td>2P</td>
+            <td>3P</td>
+            <td>4P</td>
+            <td>5P</td>
+            <td>6P</td>
+            <td>7P</td>
+            <td>8P</td>
+            <td>9P</td>
+            <td>10P</td>
+            <td>11P</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                CONVERAGE
+            </td>
+            @for (int i = 1; i < 25; i++)
+            {
+                <td></td>
+            }
+        </tr>
+     @*    @foreach (var item in Model.physicians)
+        {
+            <tr>
+                <td> 
+                    <img src="@item.Photo" style="height:25px; width:25px">
+                    @item.FirstName @item.LastName</td>
+                @for (int i = 1; i < 25; i++)
+                {
+                    <td></td>
+                }
+            </tr>
+        } *@
+    </tbody>
+</table>

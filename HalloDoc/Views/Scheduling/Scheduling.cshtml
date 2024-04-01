@@ -1,0 +1,159 @@
+﻿@{
+    Layout = "_Admin";
+}
+
+@using Services.ViewModels
+@model Scheduling
+<Partial name="Toast" />
+
+
+
+<div class="container pb-4 bg-light px-0 px-lg-5">
+    <div class="row">
+
+        <div class="col-12 d-flex justify-content-between align-items-center w-100 my-3">
+            <h4 class="fw-bold">Scheduling</h4>
+            <a asp-controller="Admin" asp-action="AdminDashboard"
+               class="btn m-0 btn-outline-info  px-2 ">
+                <i class="fa-solid fa-chevron-left"></i>
+                Back
+            </a>
+        </div>
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <div class="col-3 form-floating">
+                <select class="form-select shadow-none w-100">
+                    <option class="fs-6 " value="0">1</option>
+                    <option class="fs-6 " value="1">2</option>
+                    <option class="fs-6 " value="2">3</option>
+                    <option class="fs-6 " value="3">4</option>
+                </select>
+                <label for="floatingTextarea" class="text-secondary">All Region</label>
+            </div>
+            <div>
+                <button class="btn btn-info text-white">Providers On Call</button>
+                <button class="btn btn-info text-white">Shifts For Review</button>
+                <button class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#addShiftModal">Add New Shift</button>
+            </div>
+        </div>
+        <h5 class="col-12 pt-3"></h5>
+
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <div>
+                <i class="bi bi-caret-left rounded-pill p-2" style="background-color:#0dcaf0"></i>
+                <i class="fa-solid fa-calendar-days mx-2" style="color: #a6a6a6;"></i>
+                <i class="bi bi-caret-right rounded-pill p-2" style="background-color:#0dcaf0"></i>
+            </div>
+            <div class="d-flex flex-column gap-3">
+                <div>
+
+                    <label><i class="fa-solid fa-circle pe-1 ps-3" style="color: #b148a3;"></i>Pending Shifts</label>
+                    <label><i class="fa-solid fa-circle pe-1 ps-3" style="color: #4cae5c;"></i>Approved Shifts</label>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-info text-white mx-2">Day</button>
+                    <button class="btn btn-info text-white mx-2">Week</button>
+                    <button class="btn btn-info text-white mx-2">Month</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 table-responsive mt-2">
+            <Partial name="_DayWise" />
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@*Add New Shift Modal*@
+
+<div class="modal fade" id="addShiftModal" tabindex="-1" aria-labelledby="addShiftModalLabel1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h1 class="modal-title fs-5" id="addShiftModal1Label">Create Shift</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form asp-action="AddShift" asp-controller="Scheduling">
+                <div class="modal-body">
+
+
+                    <div class="form-floating">
+                        <select asp-for="Regionid" class="form-select physiciandata" id="floatingSelect" aria-label="Floating label select example">
+                            <option value="" selected>Select Region</option>
+                            @if (Model.regions != null)
+                            {
+                                @foreach (var obj in Model.regions)
+                                {
+                                    <option value="@obj.RegionId">@obj.Name</option>
+                                }
+                            }
+                        </select> 
+                        <label for="floatingSelect" class="text-info">
+                            Region
+                        </label>
+                    </div>
+                    <select asp-for="providerid" class="form-select mt-4" id="physelect" aria-label="Floating label select example" style="height:58px">
+                        <option value="" selected>Select Physician</option>
+                    </select>
+                    <div class="form-floating mt-3">
+                        <input asp-for="shiftdate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" placeholder="Date">
+                        <label for="floatingInput">Shift Date</label>
+                    </div>
+                    <div class="row row-cols-md-2 row-cols-sm-1 row-cols-1 mt-3">
+                        <div class="col mb-3 mb-md-0">
+                            <div class="form-floating">
+                                <input asp-for="starttime" type="time" class="form-control" placeholder="Date" />
+                                <label for="floatingInput">Start</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                                <input asp-for="endtime" type="time" class="form-control" placeholder="Date" />
+                                <label for="floatingInput">End</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-check form-switch mt-2 mb-3 ms-1">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Repeat</label>
+                        <input class="form-check-input repeatchk" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    </div>
+                    Repeat Days
+                    <div class="checkbox mt-2 d-flex flex-wrap">
+                        <span class="me-2"><input type="checkbox" value="0" name="repeatdays" class="me-1 disable" disabled /> Every Sunday</span>
+                        <span class="me-2"><input type="checkbox" value="1" name="repeatdays" class="me-1 disable" disabled /> Every Monday</span>
+                        <span class="me-2"><input type="checkbox" value="2" name="repeatdays" class="me-1 disable" disabled /> Every Tuesday</span>
+                        <span class="me-2"><input type="checkbox" value="3" name="repeatdays" class="me-1 disable" disabled /> Every Wednesday</span>
+                        <span class="me-2"><input type="checkbox" value="4" name="repeatdays" class="me-1 disable" disabled /> Every Thursday</span>
+                        <span class="me-2"><input type="checkbox" value="5" name="repeatdays" class="me-1 disable" disabled /> Every Friday</span>
+                        <span><input type="checkbox" value="6" class="me-1 disable" name="repeatdays" disabled /> Every Saturday</span>
+                    </div>
+                    <div class="form-floating mt-3">
+                        <select asp-for="repeatcount" class="form-select disable" id="floatingSelect" aria-label="Floating label select example" disabled>
+                            <option value="1" selected>1-times</option>
+                            <option value="2" selected>2-times</option>
+                            <option value="3" selected>3-times</option>
+                            <option value="4" selected>4-times</option>
+                            <option value="5" selected>5-times</option>
+                        </select>
+                        <label for="floatingSelect" class="text-info">
+                            Repeat End
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-info text-white">Save</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-provider-tab').addClass('admin-layout-nav-active');
+
+    }
+</script>

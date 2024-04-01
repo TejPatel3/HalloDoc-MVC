@@ -3,8 +3,8 @@ using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 using Services.ViewModels;
-using System.Net.Mail;
 using System.Net;
+using System.Net.Mail;
 
 namespace HalloDoc.Controllers.Admin
 {
@@ -55,12 +55,12 @@ namespace HalloDoc.Controllers.Admin
                 HttpContext.Session.SetString("AdminName", $"{admin.FirstName} {admin.LastName}");
                 TempData["success"] = "Login Successful...!";
                 TempData["user"] = admin.FirstName;
-                var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Email == req.Email);
+                var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == admin.AspNetUserId);
                 var LogedinUser = new LogedInUserViewModel();
                 LogedInUserViewModel loggedInPersonViewModel = new LogedInUserViewModel();
                 loggedInPersonViewModel.AspNetUserId = aspnetuser.Id;
                 loggedInPersonViewModel.UserName = aspnetuser.UserName;
-                var Roleid = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == aspnetuser.Id).UserId.ToString();
+                var Roleid = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == aspnetuser.Id).RoleId;
                 loggedInPersonViewModel.RoleName = _context.AspNetRoles.FirstOrDefault(x => x.Id == Roleid).Name;
                 Response.Cookies.Append("jwt", _jwtRepo.GenerateJwtToken(loggedInPersonViewModel));
                 return RedirectToAction("AdminDashboard", "Admin");
@@ -98,7 +98,7 @@ namespace HalloDoc.Controllers.Admin
             return confirmationcode;
         }
         [HttpPost]
-        public IActionResult AdminForgotPassword(bool sendcode, bool checkcode, bool updatepassword, string email, int confirmationcode, string password ,int originalconfirmationcode)
+        public IActionResult AdminForgotPassword(bool sendcode, bool checkcode, bool updatepassword, string email, int confirmationcode, string password, int originalconfirmationcode)
         {
             int generatedconfirmationcode = 0;
 
@@ -107,7 +107,7 @@ namespace HalloDoc.Controllers.Admin
                 generatedconfirmationcode = generateconfirmationcode();
                 TempData["Confirmationcode"] = generatedconfirmationcode;
                 SendEmail(email, "Your Attachments", "Please Find Your Attachments Here", generatedconfirmationcode);
-                
+
                 TempData["success"] = "Code sent successfully";
 
                 return Json(new { success = true, confirmationCode = generatedconfirmationcode });
@@ -122,7 +122,7 @@ namespace HalloDoc.Controllers.Admin
                 }
                 else
                 {
-                return Json(new { success = true, confirmationnumbernotmatch = true });
+                    return Json(new { success = true, confirmationnumbernotmatch = true });
                     //TempData["warning"] = "Confirmation code wrong";
                     //return View();
                     //TempData["warning"] = "Confirmation code wrong";

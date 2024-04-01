@@ -156,5 +156,14 @@ namespace HalloDoc.Controllers.Access
             TempData["success"] = "Role Deleted Successfully!";
             return RedirectToAction("AccessRole");
         }
+        public IActionResult UserAccess()
+        {
+            var rolelist = _context.Roles.ToList();
+            var model = new AccessRoleViewModel
+            {
+                rolelist = rolelist
+            };
+            return View(model);
+        }
     }
 }

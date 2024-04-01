@@ -31,7 +31,7 @@
                 <div class="col-12 col-sm-4 form-floating mb-3">
 
                     <input type="text" asp-for="password"
-                           class="form-control" id="password-adminprofile"
+                           class="form-control"
                            placeholder="Username"
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ps-4">Password</label>
@@ -39,11 +39,11 @@
                 </div>
 
                 <div class="col-12 col-sm-4 form-floating">
-                    <select class="form-select form-select-lg  fs-6 shadow-none" aria-label=".form-select-lg example">
-                        @*   @foreach (var item in Model.role)
+                    <select class="form-select form-select-lg  fs-6 shadow-none" aria-label=".form-select-lg example" asp-for="selectedrole">
+                        @foreach (var item in Model.rolelist)
                         {
-                        <option class="fs-6">@item.Name</option>
-                        } *@
+                            <option class="fs-6">@item.Name</option>
+                        }
                     </select>
                     <label for="floatingTextarea" class="text-secondary ms-3">Role</label>
 
@@ -94,17 +94,13 @@
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 pt-2">
-                    @*  @foreach (var item in Model.regionlist)
+                    @foreach (var item in Model.regionlist)
                     {
-                    <div class="form-check form-check-inline ">
-                    <input class="form-check-input a adminselectedregion-adminprofile" type="checkbox" id="@item.RegionId"
-                    @if (Model.adminregionlist.Any(adminRegion => adminRegion.RegionId == item.RegionId))
-                    {
-                    @:checked
-                    } value="@item.RegionId" >
-                    <label class="form-check-label" for="@item.RegionId">@item.Name</label>
-                    </div>
-                    } *@
+                        <div class="form-check form-check-inline ">
+                            <input class="form-check-input a adminselectedregion-createadmin" type="checkbox" id="@item.RegionId" value="@item.RegionId">
+                            <label class="form-check-label" for="@item.RegionId">@item.Name</label>
+                        </div>
+                    }
                 </div>
 
                 @* ********************************************************************************************************************************************* *@
@@ -141,15 +137,15 @@
                 </div>
                 <div class="col-12 col-sm-6 form-floating">
 
-                    <select class="form-select form-select-lg  fs-6 shadow-none m" aria-label=".form-select-lg example">
-                        S
-                        @*   @foreach (var item in Model.regionlist)
+
+                    <select class="form-select form-select-lg  fs-6 shadow-none" aria-label=".form-select-lg example" asp-for="selectedstate">
+                        @foreach (var item in Model.regionlist)
                         {
-                        <option class="fs-6">@item.Name</option>
-                        } *@
+                            <option class="fs-6">@item.Name</option>
+                        }
                     </select>
                     <label for="floatingTextarea" class="text-secondary ms-3">State</label>
-                    <span class="small text-danger" asp-validation-for="state"></span>
+                    @* <span class="small text-danger" asp-validation-for="state"></span> *@
 
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
@@ -165,12 +161,12 @@
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <div class="form-control p-0">
                         <input id="alterphonenumber-CreateAdmin" asp-for="alterphonenumber"
-                               type="tel" class="m"
+                               type="tel"
                                name="PhoneNumber"
                                style="border: none; padding: 18px 2% 15px 50px; width:inherit" />
-                        <span class="small text-danger" asp-validation-for="alterphonenumber"></span>
 
                     </div>
+                    <span class="small text-danger" asp-validation-for="alterphonenumber"></span>
                 </div>
 
                 <div class="d-flex justify-content-end col-12 pb-3">
@@ -183,6 +179,7 @@
 
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 
 <script>
@@ -197,15 +194,22 @@
             "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
     });
     $("#createAdminAccountForm").submit(function (event) {
+        debugger;
         event.preventDefault();
         if ($("#createAdminAccountForm").valid()) {
             var formData = new FormData(this);
+            $('input[type="checkbox"]:checked').each(function () {
+                formData.append("selectedregion",$(this).val());
+            });
             $.ajax({
                 url: '/Admin/CreateAdminAccount',
                 type: 'POST',
-                data: formData,               
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
                 success: function (response) {
-                    
+
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     console.log('Error while updating physician info:', errorThrown);
@@ -214,3 +218,4 @@
         }
     });
 </script>
+

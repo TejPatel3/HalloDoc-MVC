@@ -18,8 +18,13 @@ namespace HalloDoc.Controllers.Provider
         }
         public IActionResult Provider()
         {
+            BitArray bitset = new BitArray(1);
+            bitset[0] = true;
+
+            var physiciannotificatin = _context.PhysicianNotifications.ToList();
             var model = new ProviderDetailsViewModel();
-            model.physician = _context.Physicians.ToList();
+            model.physician = _context.Physicians.Where(m => m.IsDeleted != bitset).ToList();
+            model.isnotificationstopped = physiciannotificatin;
             return View(model);
         }
 
@@ -231,8 +236,8 @@ namespace HalloDoc.Controllers.Provider
                     PhoneNumber = obj.phonenumber,
                     CreatedDate = DateTime.Now,
                 };
-                //_context.AspNetUsers.Add(aspnetuser);
-                //_context.SaveChanges();
+                _context.AspNetUsers.Add(aspnetuser);
+                _context.SaveChanges();
                 var physician = new Physician
                 {
                     Id = aspnetuser.Id,
@@ -252,10 +257,9 @@ namespace HalloDoc.Controllers.Provider
                     Npinumber = obj.npinumber,
                     BusinessName = obj.businessname,
                     BusinessWebsite = obj.businesswebsite,
-
                 };
-                //_context.Physicians.Add(physician);
-                //_context.SaveChanges();
+                _context.Physicians.Add(physician);
+                _context.SaveChanges();
 
 
                 PhysicianRegion physicianregion = new PhysicianRegion
@@ -267,7 +271,7 @@ namespace HalloDoc.Controllers.Provider
                     physicianregion.RegionId = item;
                     _context.Add(physicianregion);
                 }
-                //_context.SaveChanges();
+                _context.SaveChanges();
                 TempData["success"] = "Physician Account Created Successfully..!";
 
             }
@@ -288,5 +292,42 @@ namespace HalloDoc.Controllers.Provider
                 bitset[0] = true; // Set the first bit to 1
 
                 if (onboardinguploadvalue == "IndependentContractorAgreement")                {                    physician.IsAgreementDoc = bitset;                }                else if (onboardinguploadvalue == "BackgroundCheck")                {                    physician.IsBackgroundDoc = bitset;                }                else if (onboardinguploadvalue == "HIPAACompliance")                {                    physician.IsCredentialDoc = bitset;                }                else if (onboardinguploadvalue == "Non-DisclosureAgreement")                {                    physician.IsNonDisclosureDoc = bitset;                }                else if (onboardinguploadvalue == "LicenseDocument")                {                    physician.IsLicenseDoc = bitset;                }                _context.Update(physician);                _context.SaveChanges();            }            return RedirectToAction("EditProviderAccount", new { physicianid = providerid });        }
+        [HttpPost]
+        public IActionResult UpdateNotification(int[] provideridlist)
+        {
+            BitArray bitset = new BitArray(1);
+            bitset[0] = true;
+            List<int> physiciannotificationDB = _context.PhysicianNotifications.Select(m => m.PhysicianId).ToList();
+            var deletePhysicianNotification = physiciannotificationDB.Except(provideridlist);
+            foreach (var item in deletePhysicianNotification)
+            {
+                PhysicianNotification physicianNotification = _context.PhysicianNotifications.FirstOrDefault(m => m.PhysicianId == item);
+                _context.Remove(physicianNotification);
+            }
+            _context.SaveChanges();
+            var addPhysicianNotification = provideridlist.Except(physiciannotificationDB);
+            foreach (var item in addPhysicianNotification)
+            {
+                PhysicianNotification physiciannotification = new PhysicianNotification
+                {
+                    PhysicianId = item,
+                    IsNotificationStopped = bitset,
+                };
+                _context.Add(physiciannotification);
+            };
+            _context.SaveChanges();
+            return RedirectToAction("Provider");
+        }
+        public IActionResult DeleteProviderAccount(int physicianid)
+        {
+            BitArray bitset = new BitArray(1);
+            bitset[0] = true;
+            Physician physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == physicianid);
+            physician.IsDeleted = bitset;
+            _context.Update(physician);
+            _context.SaveChanges();
+            return RedirectToAction("Provider");
+
+        }
     }
 }

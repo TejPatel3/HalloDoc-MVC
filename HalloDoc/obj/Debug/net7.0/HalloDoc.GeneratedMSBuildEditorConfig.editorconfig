@@ -28,6 +28,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXE1lbnVGaWx0ZXJDaGVja2JveC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/HalloDoc/HalloDoc/Views/Access/UserAccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXFVzZXJBY2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/HalloDoc/HalloDoc/Views/AdminCredential/AdminForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DcmVkZW50aWFsXEFkbWluRm9yZ290UGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -174,6 +178,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Project/HalloDoc/HalloDoc/Views/Provider/Provider.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmlkZXJcUHJvdmlkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/HalloDoc/HalloDoc/Views/Scheduling/Scheduling.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NoZWR1bGluZ1xTY2hlZHVsaW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/HalloDoc/HalloDoc/Views/Scheduling/_DayWise.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NoZWR1bGluZ1xfRGF5V2lzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/HalloDoc/HalloDoc/Views/Scheduling/_MonthWise.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NoZWR1bGluZ1xfTW9udGhXaXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/HalloDoc/HalloDoc/Views/Scheduling/_WeekWise.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2NoZWR1bGluZ1xfV2Vla1dpc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/HalloDoc/HalloDoc/Views/Shared/Error.cshtml]
