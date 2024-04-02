@@ -245,6 +245,10 @@
       "PackagePath": "staticwebassets\\js\\Provider\\Provider.js"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Scheduling\\Scheduling.js",
+      "PackagePath": "staticwebassets\\js\\Scheduling\\Scheduling.js"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

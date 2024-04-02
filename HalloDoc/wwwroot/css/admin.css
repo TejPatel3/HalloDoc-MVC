@@ -298,6 +298,7 @@ div.dataTables_wrapper div.dataTables_length select {
 .admin-layout-nav-mobile-active {
     background-color: lightgray !important;
 }
+
 .dropdown-item:hover {
     background-color: #17a2b8;
     color: white;
@@ -307,11 +308,27 @@ div.dataTables_wrapper div.dataTables_length select {
     transition-duration: 0.3s !important;
 }
 
-input[type="file" i]{
-    color:white;
-    background-color:white !important;
-    
+input[type="file" i] {
+    color: white;
+    background-color: white !important;
 }
-#file-upload-button{
-    background-color:red !important;
+
+#file-upload-button {
+    background-color: red !important;
 }
+
+.btn-info {
+    color: white;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+

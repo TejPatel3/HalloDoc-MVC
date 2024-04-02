@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace HalloDoc.DataModels;
 
@@ -14,15 +11,18 @@ public partial class ShiftDetail
     public int ShiftDetailId { get; set; }
 
     public int ShiftId { get; set; }
-
+    //[NotMapped]
     [Column(TypeName = "timestamp without time zone")]
-    public DateTime ShiftDate { get; set; }
+    public DateOnly ShiftDate { get; set; }
+    //public DateTime ShiftDate { get; set; }
 
     public int? RegionId { get; set; }
 
-    public TimeOnly StartTime { get; set; }
+    public DateTime StartTime { get; set; }
+    //public TimeOnly StartTime { get; set; }
 
-    public TimeOnly EndTime { get; set; }
+    public DateTime EndTime { get; set; }
+    //public TimeOnly EndTime { get; set; }
 
     public short Status { get; set; }
 

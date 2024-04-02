@@ -94,8 +94,11 @@ namespace HalloDoc.Controllers.Provider
                 signature = physician.Signature,
                 physicianid = physicianid,
                 selectedregionlist = selectedphyregionlist,
-                IsAgreementDoc = physician.IsAgreementDoc,                IsCredentialDoc = physician.IsCredentialDoc,                IsBackgroundDoc = physician.IsBackgroundDoc,                IsLicenseDoc = physician.IsLicenseDoc,                IsNonDisclosureDoc = physician.IsNonDisclosureDoc
+                IsAgreementDoc = physician.IsAgreementDoc,                IsCredentialDoc = physician.IsCredentialDoc,                IsBackgroundDoc = physician.IsBackgroundDoc,                IsLicenseDoc = physician.IsLicenseDoc,                IsNonDisclosureDoc = physician.IsNonDisclosureDoc,
+                selectedroleid = (int)physician.RoleId,
+                status = (short)physician.Status,
             };
+            model.rolelist = _context.Roles.Where(m => m.AccountType == 2 || m.AccountType == 0).ToList();
             //var physicianregion = _context.PhysicianRegions.Where(m => m.PhysicianId == physicianid).ToList();
             //if (physicianregion != null)
             //{
@@ -116,6 +119,9 @@ namespace HalloDoc.Controllers.Provider
             {
                 aspnetuser.UserName = obj.username;
                 _context.AspNetUsers.Update(aspnetuser);
+                physician.RoleId = obj.selectedroleid;
+                physician.Status = obj.status;
+                _context.Update(physician);
                 _context.SaveChanges();
             }
             if (obj.firstname != null)

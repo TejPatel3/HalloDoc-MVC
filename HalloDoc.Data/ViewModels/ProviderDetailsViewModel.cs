@@ -17,7 +17,10 @@ namespace Services.ViewModels
         public string phonenumber { get; set; }
         public string medicallicencenumber { get; set; }
         public string npinumber { get; set; }
+        public int selectedroleid { get; set; }
+        public short status { get; set; }
 
+        public List<Role> rolelist { get; set; }
         public List<Region> regionlist { get; set; }
         public List<PhysicianRegion> selectedregionlist { get; set; }
         public string address1 { get; set; }

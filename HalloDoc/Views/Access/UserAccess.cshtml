@@ -1,5 +1,5 @@
 ﻿@using Services.ViewModels
-@model AccessRoleViewModel
+@model AccessViewModel
 <Partial name="Toast" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
@@ -22,8 +22,8 @@
                 <table class="table align-middle">
                     <thead class="bg-light">
                         <tr>
+                            <th class="">Account Type</th>
                             <th class="ps-3">Name</th>
-                            <th class="text-center">Account Type</th>
 
                             <th class="text-center">Actions</th>
                         </tr>
@@ -32,7 +32,7 @@
                         @foreach (var item in Model.rolelist)
                         {
                             <tr>
-                                <td class="text-center">@Model.Accounttypename(item.AccountType)</td>
+                                <td >@Model.Accounttypename(item.AccountType)</td>
                                 <td class="ps-3">@item.Name</td>
                                 <td class="text-center" style="width:clamp(10rem, 25vw, 11rem)">
                                     <button class="btn btn-outline-info editbtn-accessrole" value="@item.RoleId">Edit</button>

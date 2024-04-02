@@ -50,10 +50,15 @@ $('#Aieditbtn-editprovideraccount').on('click', function () {
 $('#Aisavebtn-editprovideraccount').on('click', function () {
     let username = $('#username-editprovideraccount').val();
     let physicianid = $('#physicianid-editprovideraccount').val();
+    let role = $('#selectedrole-editprovideraccount').val();
+    let status = $('#selectedstatus-editprovideraccount').val();
+    console.log(role)
     console.log(physicianid)
     var model = {
         physicianid: physicianid,
         username: username,
+        selectedroleid: role,
+        status: status
     }
 
     if ($('#username-editprovideraccount-span').html() == "") {

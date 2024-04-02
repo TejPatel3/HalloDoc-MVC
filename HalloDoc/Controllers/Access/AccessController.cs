@@ -159,7 +159,7 @@ namespace HalloDoc.Controllers.Access
         public IActionResult UserAccess()
         {
             var rolelist = _context.Roles.ToList();
-            var model = new AccessRoleViewModel
+            AccessViewModel model = new AccessViewModel
             {
                 rolelist = rolelist
             };

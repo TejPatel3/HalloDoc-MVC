@@ -71,21 +71,21 @@
             </div>
             <div class="col-12 col-sm-6 form-floating">
 
-                <select class="form-select form-select-lg  fs-6 shadow-none aidisabled" aria-label=".form-select-lg example" disabled>
+                <select asp-for="status" class="form-select form-select-lg  fs-6 shadow-none aidisabled" id="selectedstatus-editprovideraccount" aria-label=".form-select-lg example" disabled>
 
-                    <option class="fs-6" value="1" selected>Active</option>
-                    <option class="fs-6" value="0" selected>Inactive</option>
+                    <option class="fs-6" value="1">Active</option>
+                    <option class="fs-6" value="0">Inactive</option>
 
                 </select>
                 <label for="floatingTextarea" class="text-secondary ms-3">Status</label>
 
             </div>
             <div class="col-12 col-sm-6 form-floating">
-                <select class="form-select form-select-lg  fs-6 shadow-none aidisabled" aria-label=".form-select-lg example" disabled>
-                    @*    @foreach (var item in Model.role)
+                <select asp-for="selectedroleid" class="form-select form-select-lg  fs-6 shadow-none aidisabled" id="selectedrole-editprovideraccount" aria-label=".form-select-lg example" disabled>
+                    @foreach (var item in Model.rolelist)
                     {
-                    <option class="fs-6">@item.Name</option>
-                    } *@
+                        <option class="fs-6" value="@item.RoleId">@item.Name</option>
+                    }
                 </select>
                 <label for="floatingTextarea" class="text-secondary ms-3">Role</label>
 
