@@ -26,7 +26,7 @@
             x = 4;
         }
         var date = 1;
-        <div class="table-responsive shadow">
+        <div class="table-responsive shadow bg-white">
             <table class="table calendar-table table-bordered text-center">
                 <tr class="text-white bg-secondary">
                     <th>Sun</th>
@@ -43,15 +43,15 @@
                     {
 
                         <tr>
-                       
-                                <td class="bg-white"></td>
-                                <td class="bg-white"></td>
-                                <td class="bg-white"></td>
-                                <td class="bg-white"></td>
-                                <td class="bg-white"></td>
-                                <td class="bg-white"></td>
-                                <td class="bg-white"></td>
-                            
+
+                            <td class="bg-white"></td>
+                            <td class="bg-white"></td>
+                            <td class="bg-white"></td>
+                            <td class="bg-white"></td>
+                            <td class="bg-white"></td>
+                            <td class="bg-white"></td>
+                            <td class="bg-white"></td>
+
                         </tr>
                         <tr>
                             @for (var j = 0; j < 7; j++)
@@ -129,10 +129,19 @@
                                                     {
                                                         <tr>
                                                             <td>
-                                                                <div style="background-color:lightpink">
-                                                                    @obj.StartTime-@obj.EndTime
+                                                                <button class="dates d-flex align-items-center justify-content-center border-0 viewshiftbtn small text-white" value="@obj.ShiftDetailId"
+                                                                        data-bs-toggle="modal" data-bs-target="#viewShiftModal"
+                                                                @if (obj.Status == 2)
+                                                                {
+                                                                    @:style="background-color:#ABEE97;"
+                                                                }
+                                                                else
+                                                                {
+                                                                    @:style="background-color:#efabd2;"
+                                                                }>
+                                                                    @obj.StartTime-@obj.EndTime<br />
                                                                     @obj.Shift.Physician.FirstName, @obj.Shift.Physician.LastName
-                                                                </div>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     }
@@ -164,7 +173,7 @@
 
                             }
                         </tr>
-                   
+
 
 
                     }
@@ -198,5 +207,37 @@
             ids[i].classList.toggle('d-none');
         }
     }
+    $('.viewshiftbtn').on('click', function () {
+        console.log("dhsgb")
+        let shiftid = $(this).val();
+        $('#shiftdetailidviewmodel').val(shiftid);
+        $.ajax({
+            url: '/Scheduling/ViewShiftOpen',
+            data: { shiftdetailid: shiftid },
+            success: function (response) {
+                let starttimeviewshift = new Date(response.starttime);
+                let endtimeviewshift = new Date(response.endtime);
+                let options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+                let starttimeString = starttimeviewshift.toLocaleTimeString('en-US', options);
+                let endtimeString = endtimeviewshift.toLocaleTimeString('en-US', options);
 
+                $("#viewShiftModal").modal();
+                console.log(response)
+
+                $('#viewshiftregion').val(response.regionname)
+                $('#viewshiftphysicianname').empty();
+                $('#viewshiftphysicianname').append(
+                    $('<option>', {
+                        value: response.physicianname,
+                        text: response.physicianname,
+                    }));
+                $('#viewshiftshiftdate').val(response.shiftdateviewshift)
+                $('#viewshiftstartdate').val(starttimeString)
+                $('#viewshiftenddate').val(endtimeString)
+            },
+            error: function (xhr, textStatus, error) {
+                console.log(error)
+            }
+        });
+    });
 </script>

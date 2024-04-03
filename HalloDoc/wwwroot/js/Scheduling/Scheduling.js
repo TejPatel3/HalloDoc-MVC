@@ -1,9 +1,28 @@
-﻿
-
-var regionid;
+﻿var regionid;
 var filterDate = new Date($('#currentDateValue').text());
 var currentPartial = "";
 
+$('#endTimeAddShiftModel').on('change', function () {
+    let start = $('#startTimeAddShiftModel').val();
+    let end = $('#endTimeAddShiftModel').val();
+    console.log("sgvgvd" + start + end)
+    const startdate = new Date(`1970-01-01T${start}`);
+    const enddate = new Date(`1970-01-01T${end}`);
+    const diffMilliseconds = Math.abs(enddate - startdate);
+    const minutes = Math.floor(diffMilliseconds / 60000);
+
+    console.log(minutes)
+    if (minutes < 120) {
+
+        Swal.fire({
+            title: "Alert",
+            text: "you can add minimum 2 hour shift",
+            icon: "warning",
+        });
+        $('#endTimeAddShiftModel').val("");
+    }
+
+});
 
 function loadSchedulingPartial(PartialName) {
     currentPartial = PartialName;
@@ -59,7 +78,7 @@ $(document).ready(function () {
             loadSchedulingPartial(currentPartial);
         }
         else if (currentPartial == "_WeekWise") {
-            var date = filterDate.setDate(filterDate.getDate() +7);
+            var date = filterDate.setDate(filterDate.getDate() + 7);
             loadSchedulingPartial(currentPartial);
         }
     });
@@ -73,21 +92,21 @@ $(document).ready(function () {
             data: { "regionid": regionid },
             success: function (response) {
                 //console.log(response);
-                var physelect = $('#physelect');
+                var physelect = $('#physelectschedule');
                 //console.log(physelect);
                 physelect.empty();
                 physelect.append($('<option>', {
                     value: "",
                     text: "Select Physician"
                 }))
-                response.forEach(function (item) {
-                    console.log(item);
-                    physelect.append(
-                        $('<option>', {
-                            value: item.physicianid,
-                            text: item.firstname
-                        }));
+                $.each(response, function (index, item) {
+                    console.log(item)
+                    physelect.append($('<option>', {
+                        value: item.physicianId,
+                        text: item.firstName + item.lastName
+                    }));
                 });
+
             },
             error: function (xhr, status, error) {
                 console.error(error);
@@ -113,8 +132,11 @@ $(document).ready(function () {
 
 $('#editbtnviewshiftmodel').click(function () {
     console.log("jdsbhjdbshj")
-    $(this).addClass('d-none');
-    $('#savebtnviewshiftmodel').removeClass('d-none')
+    $('#viewshiftstartdate').prop('disabled', false);
+    $('#viewshiftenddate').prop('disabled', false);
+    $('#editbtnviewshiftmodel').addClass('d-none');
+    $(this).hide();
+    $('#savebtnviewshiftmodel').removeClass('d-none');
 });
 //$('#savebtnviewshiftmodel').on('click', function () {
 //    console.log("fbhdshfgb");
@@ -143,8 +165,65 @@ $('#editbtnviewshiftmodel').click(function () {
 //    }
 //});
 
-$('.viewshiftbtn').on('click',function () {
-    console.log("dhsgb")
-    $("#viewShiftModal").modal();
+//$('#deletebtnviewshiftmodel').on('click', function () {
+//    event.preventDefault();
+//    if ($("#viewShiftForm").valid()) {
+//        //var formData = new FormData($('#viewShiftForm'));
+//        var formData = $('#viewShiftForm').serialize();
+//        $.ajax({
+//            url: '/Scheduling/ViewShiftModelDeletebtn',
+//            type: 'POST',
+//            data: formData,
+
+//            success: function (response) {
+
+//            },
+//            error: function (xhr, textStatus, errorThrown) {
+//                console.log('Error while updating physician info:', errorThrown);
+//            }
+//        });
+//    }
+//});
+
+$('#deletebtnviewshiftmodel').on('click', function () {
+    let shiftdetailsid = $('#shiftdetailidviewmodel').val()
+    console.log("sjhdihj" + shiftdetailsid)
+    $.ajax({
+        url: '/Scheduling/ViewShiftModelDeletebtn',
+        type: 'POST',
+        data: {
+            shiftdetailsid: shiftdetailsid
+        },
+
+        success: function (response) {
+            loadSchedulingPartial(currentPartial);
+            $('#viewShiftModal').modal('hide');
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error:', errorThrown);
+        }
+    });
 
 });
+
+$('#returnbtnviewshiftmodel').on('click', function () {
+    let shiftdetailsid = $('#shiftdetailidviewmodel').val()
+    console.log("sjhdihj" + shiftdetailsid)
+    $.ajax({
+        url: '/Scheduling/ViewShiftModelReturnbtn',
+        type: 'POST',
+        data: {
+            shiftdetailsid: shiftdetailsid
+        },
+
+        success: function (response) {
+            loadSchedulingPartial(currentPartial);
+            $('#viewShiftModal').modal('hide');
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error:', errorThrown);
+        }
+    });
+
+});
+

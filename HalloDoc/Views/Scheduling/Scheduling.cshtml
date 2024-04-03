@@ -5,6 +5,8 @@
 @{
     Layout = "_Admin";
 }
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 @Html.Partial("Toast");
 
 <div class="container mt-3">
@@ -45,29 +47,41 @@
             </div>
         </div>
 
-        <div class="d-none" id="currentDateValue">
-            @DateTime.Now.Date.ToString("MMM dd yyyy")
-        </div>
-        <div class="h6 mt-3" id="showDate">
-            @DateTime.Now.DayOfWeek,
-            @DateTime.Now.Date.ToString("MMM dd yyyy")
-        </div>
+
 
 
         <div class="d-flex justify-content-between mt-3">
             <div class="calbtn">
-                <span class="dot bg-info text-center text-white me-1" id="prevDateBtn" style="height:27px;width:27px"><i class="fa-solid fa-chevron-left"></i></span>
-                <span>
+                <div>
+                    <div class="d-none" id="currentDateValue">
+                        @DateTime.Now.Date.ToString("MMM dd yyyy")
+                    </div>
+                    <div class="h6 mt-3" id="showDate">
+                        @DateTime.Now.DayOfWeek,
+                        @DateTime.Now.Date.ToString("MMM dd yyyy")
+                    </div>
+                </div>
+                <div>
+                    <span class="dot bg-info text-center text-white me-1" id="prevDateBtn" style="height:27px;width:27px"><i class="fa-solid fa-chevron-left"></i></span>
+                    <span>
 
-                    <i class="bi bi-calendar-week"></i>
-                </span>
+                        <i class="bi bi-calendar-week"></i>
+                    </span>
 
-                <span class="dot bg-info text-center text-white ms-1" id="nextDateBtn" style="height:27px;width:27px"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span class="dot bg-info text-center text-white ms-1" id="nextDateBtn" style="height:27px;width:27px"><i class="fa-solid fa-chevron-right"></i></span>
+                </div>
             </div>
-            <div class="d-flex">
-                <button type="button" onclick="loadSchedulingPartial('_DayWise')" class="btn btn-outline-info removeactive" id="Day">Day</button>
-                <button type="button" onclick="loadSchedulingPartial('_WeekWise')" class="btn btn-outline-info ms-2 removeactive" id="Week">Week</button>
-                <button type="button" onclick="loadSchedulingPartial('_MonthWise')" class="btn btn-outline-info ms-2 removeactive" id="Month">Month</button>
+            <div>
+                <div class="mt-1 mb-2">
+                    <span>Pending Shift</span>
+                    <span>Approved Shift</span>
+                </div>
+
+                <div class="d-flex">
+                    <button type="button" onclick="loadSchedulingPartial('_DayWise')" class="btn btn-outline-info removeactive" id="Day">Day</button>
+                    <button type="button" onclick="loadSchedulingPartial('_WeekWise')" class="btn btn-outline-info ms-2 removeactive" id="Week">Week</button>
+                    <button type="button" onclick="loadSchedulingPartial('_MonthWise')" class="btn btn-outline-info ms-2 removeactive" id="Month">Month</button>
+                </div>
             </div>
         </div>
 
@@ -84,20 +98,21 @@
 
 
 
-@*Add view Shift Modal*@
+@*view Shift Modal*@
 <div class="modal fade" id="viewShiftModal" tabindex="-1" aria-labelledby="addShiftModalLabel1" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-info text-white">
-                <h1 class="modal-title fs-5" id="addShiftModal1Label">Create Shift</h1>
+                <h1 class="modal-title fs-5" id="addShiftModal1Label">View Shift</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form asp-action="viewShiftEdit" asp-controller="Scheduling">
+            <form id="viewShiftForm" asp-controller="Scheduling" asp-action="ViewShiftModelSavebtn">
                 <div class="modal-body">
-                    <input id="shiftidviewmodel" type="number" asp-for="shiftid"/>
+                    <input id="shiftdetailidviewmodel" type="number" asp-for="shiftdetailid" />
+                    @* <input id="shiftidviewmodel" type="number"  /> *@
 
                     <div class="form-floating">
-                        <select asp-for="regionid" class="form-select physiciandata" id="floatingSelect" aria-label="Floating label select example" disabled>
+                        <select asp-for="regionid" class="form-select physiciandata" id="viewshiftregion" aria-label="Floating label select example" disabled>
                             <option value="" selected>Select Region</option>
                             @if (Model.regions != null)
                             {
@@ -111,33 +126,33 @@
                             Region
                         </label>
                     </div>
-                    <select asp-for="providerid" class="form-select mt-4" id="physelect" aria-label="Floating label select example" style="height:58px" disabled>
+                    <select asp-for="physicianname" class="form-select mt-4" id="viewshiftphysicianname" aria-label="Floating label select example" style="height:58px" disabled>
                         <option value="" selected>Select Physician</option>
                     </select>
                     <div class="form-floating mt-3">
-                        <input asp-for="shiftdate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" placeholder="Date" disabled>
+                        <input asp-for="shiftdate" id="viewshiftshiftdate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" placeholder="Date" disabled>
                         <label for="floatingInput">Shift Date</label>
                     </div>
                     <div class="row row-cols-md-2 row-cols-sm-1 row-cols-1 mt-3">
                         <div class="col mb-3 mb-md-0">
                             <div class="form-floating">
-                                <input asp-for="starttime" type="time" class="form-control" placeholder="Date" />
+                                <input asp-for="starttime" id="viewshiftstartdate" type="time" class="form-control" placeholder="Date" disabled />
                                 <label for="floatingInput">Start</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input asp-for="endtime" type="time" class="form-control" placeholder="Date" />
+                                <input asp-for="endtime" id="viewshiftenddate" type="time" class="form-control" placeholder="Date" disabled />
                                 <label for="floatingInput">End</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info text-white">Return</button>
+                        <button type="button" class="btn btn-info text-white" id="returnbtnviewshiftmodel">Return</button>
                         <button type="submit" class="btn btn-info text-white d-none" id="savebtnviewshiftmodel">Save</button>
                         <button type="button" class="btn btn-info text-white" id="editbtnviewshiftmodel">Edit</button>
-                        <button type="button" class="btn btn-danger text-white">Delete</button>
+                        <button type="button" class="btn btn-danger text-white" id="deletebtnviewshiftmodel">Delete</button>
                     </div>
                 </div>
             </form>
@@ -147,7 +162,7 @@
 
 @*Add New Shift Modal*@
 <div class="modal fade" id="addShiftModal" tabindex="-1" aria-labelledby="addShiftModalLabel1" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header bg-info text-white">
                 <h1 class="modal-title fs-5" id="addShiftModal1Label">Create Shift</h1>
@@ -155,8 +170,6 @@
             </div>
             <form asp-action="AddShift" asp-controller="Scheduling">
                 <div class="modal-body">
-
-
                     <div class="form-floating">
                         <select asp-for="regionid" class="form-select physiciandata" id="floatingSelect" aria-label="Floating label select example">
                             <option value="" selected>Select Region</option>
@@ -172,10 +185,8 @@
                             Region
                         </label>
                     </div>
-                    <select asp-for="providerid" class="form-select mt-4" id="physelect" aria-label="Floating label select example" style="height:58px">
+                    <select asp-for="providerid" class="form-select mt-4" id="physelectschedule" aria-label="Floating label select example" style="height:58px">
                         <option value="4" selected>Select Physician</option>
-                        <option value="5" selected>Select Physician</option>
-                        <option value="7" selected>Select Physician</option>
                     </select>
                     <div class="form-floating mt-3">
                         <input asp-for="shiftdate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" placeholder="Date">
@@ -184,13 +195,13 @@
                     <div class="row row-cols-md-2 row-cols-sm-1 row-cols-1 mt-3">
                         <div class="col mb-3 mb-md-0">
                             <div class="form-floating">
-                                <input asp-for="starttime" type="time" class="form-control" placeholder="Date" />
+                                <input asp-for="starttime" id="startTimeAddShiftModel" type="time" class="form-control" placeholder="Date" />
                                 <label for="floatingInput">Start</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input asp-for="endtime" type="time" class="form-control" placeholder="Date" />
+                                <input asp-for="endtime" id="endTimeAddShiftModel" type="time" class="form-control" placeholder="Date" />
                                 <label for="floatingInput">End</label>
                             </div>
                         </div>
@@ -230,7 +241,24 @@
         </div>
     </div>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<script src="/js/Scheduling/Scheduling.js"></script>
+<script src="/js/Scheduling/Scheduling.js" asp-append-version="true"></script>
+<script>
+    // $(document).ready(function () {
+    //     $('#viewShiftModal').on('show.bs.modal', function () {
+    //         // Make an AJAX request to load content (replace with your actual URL)
+    //         $.ajax({
+    //             url: '/Scheduling/ViewShiftModel',
+    //             success: function (data) {
+    //                 // Update the modal body with the loaded content
+    //                 $('.modal-body').html(data);
+    //             },
+    //             error: function () {
+    //                 $('.modal-body').html('Error loading content.');
+    //             }
+    //         });
+    //     });
+    // });
+</script>

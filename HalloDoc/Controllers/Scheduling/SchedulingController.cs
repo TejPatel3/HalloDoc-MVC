@@ -87,6 +87,7 @@ namespace HelloDoc.Controllers.Scheduling
             {
                 foreach (var obj in shiftid)
                 {
+                    //var shiftdetailchk = _context.ShiftDetails.Where(u => u.ShiftId == obj && u.ShiftDate == model.shiftdate).ToList();
                     var shiftdetailchk = _context.ShiftDetails.Where(u => u.ShiftId == obj && u.ShiftDate == DateOnly.FromDateTime(model.shiftdate)).ToList();
                     if (shiftdetailchk.Count() > 0)
                     {
@@ -127,6 +128,8 @@ namespace HelloDoc.Controllers.Scheduling
             ShiftDetail shiftdetail = new ShiftDetail();
             shiftdetail.ShiftId = shift.ShiftId;
             shiftdetail.ShiftDate = DateOnly.FromDateTime(curdate);
+            shiftdetail.Status = 1;
+            //shiftdetail.ShiftDate = curdate;
             shiftdetail.RegionId = model.regionid;
             shiftdetail.StartTime = model.starttime;
             shiftdetail.EndTime = model.endtime;
@@ -190,6 +193,7 @@ namespace HelloDoc.Controllers.Scheduling
                         ShiftDetail shiftdetailnew = new ShiftDetail
                         {
                             ShiftId = shift.ShiftId,
+                            //ShiftDate = newcurdate,
                             ShiftDate = DateOnly.FromDateTime(newcurdate),
                             RegionId = model.regionid,
                             StartTime = new DateTime(newcurdate.Year, newcurdate.Month, newcurdate.Day, model.starttime.Hour, model.starttime.Minute, model.starttime.Second),
@@ -220,5 +224,70 @@ namespace HelloDoc.Controllers.Scheduling
         //    };
         //    return PartialView("_DayWise", day);
         //}
+        public IActionResult ViewShiftModelSavebtn(SchedulingViewModel obj)
+        {
+            ShiftDetail shiftdetail = _context.ShiftDetails.Include(m => m.Shift).FirstOrDefault(m => m.ShiftDetailId == obj.shiftdetailid);
+            Physician physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == shiftdetail.Shift.PhysicianId);
+            if (shiftdetail.StartTime != obj.starttime)
+            {
+                shiftdetail.StartTime = obj.starttime;
+                shiftdetail.EndTime = obj.endtime;
+                _context.ShiftDetails.Update(shiftdetail);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Scheduling");
+        }
+        public IActionResult ViewShiftModelDeletebtn(int shiftdetailsid)
+        {
+            ShiftDetail shiftdetail = _context.ShiftDetails.FirstOrDefault(m => m.ShiftDetailId == shiftdetailsid);
+            if (shiftdetail != null)
+            {
+                _context.Remove(shiftdetail);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Scheduling");
+        }
+        public IActionResult ViewShiftModelReturnbtn(int shiftdetailsid)
+        {
+            ShiftDetail shiftdetail = _context.ShiftDetails.FirstOrDefault(m => m.ShiftDetailId == shiftdetailsid);
+            if (shiftdetail != null)
+            {
+                if (shiftdetail.Status == 1)
+                {
+
+                    shiftdetail.Status = 2;
+                }
+                else if (shiftdetail.Status == 2)
+                {
+                    shiftdetail.Status = 1;
+                }
+                else
+                {
+                    shiftdetail.Status = 1;
+
+                }
+                _context.Update(shiftdetail);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Scheduling");
+        }
+        public SchedulingViewModel ViewShiftOpen(int shiftdetailid)
+        {
+
+            ShiftDetail shiftdata = _context.ShiftDetails.Include(x => x.Shift).FirstOrDefault(s => s.ShiftDetailId == shiftdetailid);
+
+            SchedulingViewModel model = new SchedulingViewModel
+            {
+                regionname = _context.Regions.FirstOrDefault(r => r.RegionId == shiftdata.RegionId).RegionId.ToString(),
+                physicianname = _context.Physicians.FirstOrDefault(p => p.PhysicianId == shiftdata.Shift.PhysicianId).FirstName + " "
+                                + _context.Physicians.FirstOrDefault(p => p.PhysicianId == shiftdata.Shift.PhysicianId).LastName,
+                shiftdateviewshift = shiftdata.ShiftDate,
+                starttime = shiftdata.StartTime,
+                endtime = shiftdata.EndTime,
+            };
+
+            return model;
+
+        }
     }
 }

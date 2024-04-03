@@ -49,15 +49,14 @@
                 Back
             </a>
         </div>
-        <div class="container-fluid my-3 bg-white  rounded-3 shadow" >
+        <div class="container-fluid my-3 bg-white  rounded-3 shadow">
             <div class="row px-2">
 
                 <h5 class="my-3">Account Information</h5>
                 <div class="col-12 col-sm-4 form-floating mb-3 ">
                     <input type="text" asp-for="username"
                            class="form-control"
-                           placeholder="Username"
-                           />
+                           placeholder="Username" />
                     <label class="d-flex justify-content-between ps-4">User Name</label>
                     <span asp-validation-for="username" class="text-danger small"></span>
                 </div>
@@ -280,14 +279,13 @@
                                 Independent Contractor Agreement
                             </td>
                             <td class="p-2 ">
-                             
                                 <input type="file" class="UploadFileCreateProvider visually-hidden" placeholder="" asp-for="AgreementDoc" accept=".pdf" />
                                 <label asp-for="AgreementDoc" class="btn btn-info">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                     Upload
                                 </label>
                             </td>
-                           
+
                         </tr>
                         <tr class="p-1">
                             <td class="p-2">
@@ -298,14 +296,14 @@
                                 Background Check
                             </td>
                             <td class="p-2">
-                           
+
                                 <input type="file" class="UploadFileCreateProvider visually-hidden" asp-for="BackgroundDoc" accept=".pdf" />
                                 <label asp-for="BackgroundDoc" class="btn btn-info">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                     Upload
                                 </label>
                             </td>
-                          
+
 
                         </tr>
                         <tr class="p-1">
@@ -317,7 +315,7 @@
                                 HIPAA Compliance
                             </td>
                             <td class="p-2">
-                           
+
                                 <input type="file" class="UploadFileCreateProvider visually-hidden" asp-for="CredentialDoc" accept=".pdf" />
 
                                 <label asp-for="CredentialDoc" class="btn btn-info">
@@ -325,8 +323,8 @@
                                     Upload
                                 </label>
                             </td>
-                        
-                           
+
+
                         </tr>
                         <tr class="p-1">
                             <td class="p-2">
@@ -337,14 +335,14 @@
                                 Non-Disclosure Agreement
                             </td>
                             <td class="p-2">
-                            
+
                                 <input type="file" class="UploadFileCreateProvider visually-hidden" asp-for="NonDisclosureDoc" accept=".pdf" />
                                 <label asp-for="NonDisclosureDoc" class="btn btn-info">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                     Upload
                                 </label>
                             </td>
-                           
+
                         </tr>
                         <tr class="p-1">
                             <td class="p-2">
@@ -356,14 +354,14 @@
                                 License Document
                             </td>
                             <td class="p-2">
-                            
+
                                 <input type="file" class="UploadFileCreateProvider visually-hidden" asp-for="LicenseDoc" accept=".pdf" />
                                 <label asp-for="LicenseDoc" class="btn btn-info">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                     Upload
                                 </label>
                             </td>
-                           
+
                         </tr>
                     </table>
 
@@ -401,7 +399,7 @@
         $('#nav-provider-tab').addClass('admin-layout-nav-active');
     }
 
-    
+
 
     //Create Provider Account
 

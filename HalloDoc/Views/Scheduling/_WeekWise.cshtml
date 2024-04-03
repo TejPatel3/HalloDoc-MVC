@@ -15,7 +15,7 @@
 }
 
 <div class="table-responsive">
-    <table class="table calendar-table table-bordered text-center">
+    <table class="table calendar-table table-bordered text-center align-middle">
         <tr class="text-white bg-secondary">
             <th>Staff</th>
             <th>Sun @previousSunday.ToString("dd")</th>
@@ -35,6 +35,7 @@
         </tr>
         @foreach (var obj in Model.physicians)
         {
+            @* var shift = Model.shiftdetails.Where(u => u.ShiftDate >= previousSunday && u.ShiftDate <= previousSunday.AddDays(6) && u.Shift.PhysicianId == obj.PhysicianId).ToList(); *@
             var shift = Model.shiftdetails.Where(u => u.ShiftDate >= DateOnly.FromDateTime(previousSunday) && u.ShiftDate <= DateOnly.FromDateTime(previousSunday.AddDays(6)) && u.Shift.PhysicianId == obj.PhysicianId).ToList();
 
             <tr>
@@ -51,15 +52,23 @@
                     if (shift.Count() > 0)
                     {
                         int flag = 0;
-                        <td>
+                        <td style="width:12%">
                             @foreach (var item in shift)
                             {
                                 var date = item.ShiftDate;
 
+                                @* if (date == previousSunday.AddDays(i)) *@
                                 if (date == DateOnly.FromDateTime(previousSunday.AddDays(i)))
                                 {
                                 <div id="i_@obj.PhysicianId" class="m-1">
-                                    <button class="dates d-flex align-items-center justify-content-center border-0 viewshiftbtn w-100 small text-white" value="@item.ShiftId" data-bs-toggle="modal" data-bs-target="#viewShiftModal" style="background-color:#efabd2;">
+                                        <button class="dates d-flex align-items-center border-0 viewshiftbtn w-100  small text-white" value="@item.ShiftId" data-bs-toggle="modal" data-bs-target="#viewShiftModal" @if (item.Status == 2)
+                                        {
+                                            @:style="background-color:#ABEE97;"
+                                        }
+                                        else
+                                        {
+                                            @:style="background-color:#efabd2;"
+                                        }>
                                             @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
                                     </button>
                                     @{flag = 1;}
@@ -75,7 +84,7 @@
                     }
                     else
                     {
-                        <td id="i_@obj.PhysicianId"></td>
+                        <td style="width:12%" id="i_@obj.PhysicianId"></td>
                     }
                 }
             </tr>
@@ -91,4 +100,39 @@
 
     var currentdate = $('#currentDay').val();
     $('#showDate').text(currentdate);
+
+
+    $('.viewshiftbtn').on('click', function () {
+        console.log("dhsgb")
+        let shiftid = $(this).val();
+        $('#shiftdetailidviewmodel').val(shiftid);
+        $.ajax({
+            url: '/Scheduling/ViewShiftOpen',
+            data: { shiftdetailid: shiftid },
+            success: function (response) {
+                let starttimeviewshift = new Date(response.starttime);
+                let endtimeviewshift = new Date(response.endtime);
+                let options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+                let starttimeString = starttimeviewshift.toLocaleTimeString('en-US', options);
+                let endtimeString = endtimeviewshift.toLocaleTimeString('en-US', options);
+
+                $("#viewShiftModal").modal();
+                console.log(response)
+
+                $('#viewshiftregion').val(response.regionname)
+                $('#viewshiftphysicianname').empty();
+                $('#viewshiftphysicianname').append(
+                    $('<option>', {
+                        value: response.physicianname,
+                        text: response.physicianname,
+                    }));
+                $('#viewshiftshiftdate').val(response.shiftdateviewshift)
+                $('#viewshiftstartdate').val(starttimeString)
+                $('#viewshiftenddate').val(endtimeString)
+            },
+            error: function (xhr, textStatus, error) {
+                console.log(error)
+            }
+        });
+    });
 </script>

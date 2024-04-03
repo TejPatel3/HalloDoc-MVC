@@ -12,17 +12,25 @@ public partial class ShiftDetail
 
     public int ShiftId { get; set; }
     //[NotMapped]
-    [Column(TypeName = "timestamp without time zone")]
+    //[Column(TypeName = "timestamp without time zone")]
     public DateOnly ShiftDate { get; set; }
+
+    //public DateOnly ShiftDate { get; set; }
     //public DateTime ShiftDate { get; set; }
 
     public int? RegionId { get; set; }
 
-    public DateTime StartTime { get; set; }
-    //public TimeOnly StartTime { get; set; }
 
+    [Column(TypeName = "timestamp without time zone")]
+    public DateTime StartTime { get; set; }
+
+    [Column(TypeName = "timestamp without time zone")]
     public DateTime EndTime { get; set; }
-    //public TimeOnly EndTime { get; set; }
+    //public DateTime StartTime { get; set; }
+    ////public TimeOnly StartTime { get; set; }
+
+    //public DateTime EndTime { get; set; }
+    ////public TimeOnly EndTime { get; set; }
 
     public short Status { get; set; }
 
