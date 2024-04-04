@@ -25,7 +25,7 @@ namespace HelloDoc.Controllers.Scheduling
         }
 
 
-        public IActionResult LoadSchedulingPartial(string PartialName, string date, int regionid)
+        public IActionResult LoadSchedulingPartial(string PartialName, string date, int regionid, int status)
         {
             var currentDate = DateTime.Parse(date);
             List<Physician> physician = _context.PhysicianRegions.Include(u => u.Physician).Where(u => u.RegionId == regionid).Select(u => u.Physician).ToList();
@@ -42,8 +42,25 @@ namespace HelloDoc.Controllers.Scheduling
                     {
                         date = currentDate,
                         physicians = physician,
-                        shiftdetails = _context.ShiftDetails.Include(u => u.Shift).ToList()
                     };
+                    if (regionid != 0 && status != 0)
+                    {
+                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.Status == status).ToList();
+                    }
+                    else if (regionid != 0)
+                    {
+                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid).ToList();
+
+                    }
+                    else if (status != 0)
+                    {
+                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.Status == status).ToList();
+
+                    }
+                    else
+                    {
+                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).ToList();
+                    }
                     return PartialView("_DayWise", day);
 
                 case "_WeekWise":
@@ -51,9 +68,26 @@ namespace HelloDoc.Controllers.Scheduling
                     {
                         date = currentDate,
                         physicians = physician,
-                        shiftdetails = _context.ShiftDetails.Include(u => u.Shift).ToList()
 
                     };
+                    if (regionid != 0 && status != 0)
+                    {
+                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.Status == status).ToList();
+                    }
+                    else if (regionid != 0)
+                    {
+                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid).ToList();
+
+                    }
+                    else if (status != 0)
+                    {
+                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.Status == status).ToList();
+
+                    }
+                    else
+                    {
+                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).ToList();
+                    }
                     return PartialView("_WeekWise", week);
 
                 case "_MonthWise":
@@ -61,8 +95,25 @@ namespace HelloDoc.Controllers.Scheduling
                     {
                         date = currentDate,
                         physicians = physician,
-                        shiftdetails = _context.ShiftDetails.Include(u => u.Shift).ToList()
                     };
+                    if (regionid != 0 && status != 0)
+                    {
+                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.Status == status).ToList();
+                    }
+                    else if (regionid != 0)
+                    {
+                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid).ToList();
+
+                    }
+                    else if (status != 0)
+                    {
+                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.Status == status).ToList();
+
+                    }
+                    else
+                    {
+                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).ToList();
+                    }
                     return PartialView("_MonthWise", month);
 
                 default:
@@ -95,7 +146,7 @@ namespace HelloDoc.Controllers.Scheduling
                         {
                             if ((model.starttime >= DateTime.Parse(item.StartTime.ToString()) && model.starttime <= DateTime.Parse(item.EndTime.ToString())) || (model.endtime >= DateTime.Parse(item.StartTime.ToString()) && model.endtime <= DateTime.Parse(item.EndTime.ToString())))
                             {
-                                TempData["error"] = "Shift is already assigned in this time";
+                                TempData["shiftalreadyassigned"] = "Shift is already assigned in this time";
                                 return RedirectToAction("Scheduling");
                             }
                         }
@@ -195,6 +246,7 @@ namespace HelloDoc.Controllers.Scheduling
                             ShiftId = shift.ShiftId,
                             //ShiftDate = newcurdate,
                             ShiftDate = DateOnly.FromDateTime(newcurdate),
+                            Status = 1,
                             RegionId = model.regionid,
                             StartTime = new DateTime(newcurdate.Year, newcurdate.Month, newcurdate.Day, model.starttime.Hour, model.starttime.Minute, model.starttime.Second),
                             EndTime = new DateTime(newcurdate.Year, newcurdate.Month, newcurdate.Day, model.endtime.Hour, model.endtime.Minute, model.endtime.Second),
@@ -206,6 +258,8 @@ namespace HelloDoc.Controllers.Scheduling
                     }
                 }
             }
+            TempData["ShiftCreated"] = "Shift Created successfully";
+
             return RedirectToAction("Scheduling");
         }
         //public IActionResult viewShiftEdit(SchedulingViewModel obj)
@@ -224,18 +278,18 @@ namespace HelloDoc.Controllers.Scheduling
         //    };
         //    return PartialView("_DayWise", day);
         //}
-        public IActionResult ViewShiftModelSavebtn(SchedulingViewModel obj)
+        public void ViewShiftModelSavebtn(SchedulingViewModel obj)
         {
             ShiftDetail shiftdetail = _context.ShiftDetails.Include(m => m.Shift).FirstOrDefault(m => m.ShiftDetailId == obj.shiftdetailid);
             Physician physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == shiftdetail.Shift.PhysicianId);
-            if (shiftdetail.StartTime != obj.starttime)
+            if (shiftdetail.StartTime != obj.starttime || shiftdetail.EndTime != obj.endtime)
             {
                 shiftdetail.StartTime = obj.starttime;
                 shiftdetail.EndTime = obj.endtime;
                 _context.ShiftDetails.Update(shiftdetail);
                 _context.SaveChanges();
             }
-            return RedirectToAction("Scheduling");
+            //return RedirectToAction("Scheduling");
         }
         public IActionResult ViewShiftModelDeletebtn(int shiftdetailsid)
         {
@@ -288,6 +342,18 @@ namespace HelloDoc.Controllers.Scheduling
 
             return model;
 
+        }
+
+        public IActionResult ProviderOnCall(DateTime currentdate, int regionid)
+        {
+            ProviderOnCall model = new ProviderOnCall();
+            List<Shift> shift = _context.Shifts.ToList();
+            foreach (var item in shift)
+            {
+
+                Physician physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == item.PhysicianId);
+            }
+            return View();
         }
     }
 }

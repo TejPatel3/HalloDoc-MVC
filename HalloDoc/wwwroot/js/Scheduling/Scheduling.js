@@ -1,34 +1,16 @@
 ﻿var regionid;
+var status;
 var filterDate = new Date($('#currentDateValue').text());
 var currentPartial = "";
-
-$('#endTimeAddShiftModel').on('change', function () {
-    let start = $('#startTimeAddShiftModel').val();
-    let end = $('#endTimeAddShiftModel').val();
-    console.log("sgvgvd" + start + end)
-    const startdate = new Date(`1970-01-01T${start}`);
-    const enddate = new Date(`1970-01-01T${end}`);
-    const diffMilliseconds = Math.abs(enddate - startdate);
-    const minutes = Math.floor(diffMilliseconds / 60000);
-
-    console.log(minutes)
-    if (minutes < 120) {
-
-        Swal.fire({
-            title: "Alert",
-            text: "you can add minimum 2 hour shift",
-            icon: "warning",
-        });
-        $('#endTimeAddShiftModel').val("");
-    }
-
-});
-
+window.onload = function () {
+    $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+    $('#nav-provider-tab').addClass('admin-layout-nav-active');
+}
 function loadSchedulingPartial(PartialName) {
     currentPartial = PartialName;
     $.ajax({
         url: '/Scheduling/LoadSchedulingPartial',
-        data: { PartialName: PartialName, date: filterDate.toISOString(), 'regionid': regionid },
+        data: { PartialName: PartialName, date: filterDate.toISOString(), 'regionid': regionid, status: status },
         success: function (data) {
             $(".calander").html(data);
         },
@@ -39,19 +21,19 @@ function loadSchedulingPartial(PartialName) {
 }
 
 $(document).ready(function () {
-    $('.region').on('change', function () {
-        regionid = $(this).val();
-        $.ajax({
-            url: '/Scheduling/LoadSchedulingPartial',
-            data: { PartialName: currentPartial, date: filterDate.toISOString(), 'regionid': regionid },
-            success: function (data) {
-                $(".calander").html(data);
-            },
-            error: function (e) {
-                console.log(e);
-            }
-        });
-    });
+    //$('.region').on('change', function () {
+    //    regionid = $(this).val();
+    //    $.ajax({
+    //        url: '/Scheduling/LoadSchedulingPartial',
+    //        data: { PartialName: currentPartial, date: filterDate.toISOString(), 'regionid': regionid },
+    //        success: function (data) {
+    //            $(".calander").html(data);
+    //        },
+    //        error: function (e) {
+    //            console.log(e);
+    //        }
+    //    });
+    //});
     loadSchedulingPartial('_DayWise');
     $('#prevDateBtn').on('click', function () {
         if (currentPartial == "_MonthWise") {
@@ -138,52 +120,88 @@ $('#editbtnviewshiftmodel').click(function () {
     $(this).hide();
     $('#savebtnviewshiftmodel').removeClass('d-none');
 });
-//$('#savebtnviewshiftmodel').on('click', function () {
-//    console.log("fbhdshfgb");
-//    event.preventDefault();
-//    if ($("#providerProfileForm").valid()) {
-//        var formData = new FormData(this);
-//        $.ajax({
-//            url: '/AdminProviders/UpdatePhyProfile',
-//            type: 'POST',
-//            data: formData,
-//            processData: false,
-//            contentType: false,
-//            dataType: 'json',
-//            success: function (response) {
-//                if (response.success) {
-//                    toastr.success(response.message);
-//                    $("#confirmProfileBtns").addClass("d-none");
-//                    $("#editProfileBtn").removeClass("d-none");
-//                    $("#providerProfileForm :input").not("#editProfileBtn").prop("disabled", true);
-//                }
-//            },
-//            error: function (xhr, textStatus, errorThrown) {
-//                console.log('Error while updating physician info:', errorThrown);
-//            }
-//        });
-//    }
-//});
 
-//$('#deletebtnviewshiftmodel').on('click', function () {
-//    event.preventDefault();
-//    if ($("#viewShiftForm").valid()) {
-//        //var formData = new FormData($('#viewShiftForm'));
-//        var formData = $('#viewShiftForm').serialize();
-//        $.ajax({
-//            url: '/Scheduling/ViewShiftModelDeletebtn',
-//            type: 'POST',
-//            data: formData,
 
-//            success: function (response) {
 
-//            },
-//            error: function (xhr, textStatus, errorThrown) {
-//                console.log('Error while updating physician info:', errorThrown);
-//            }
-//        });
-//    }
-//});
+$('#regionDropDownScheduling').on('change', function () {
+    regionid = $(this).val()
+    loadSchedulingPartial(currentPartial);
+
+});
+$('#endTimeAddShiftModel , #startTimeAddShiftModel').on('change', function () {
+    let start = $('#startTimeAddShiftModel').val();
+    let end = $('#endTimeAddShiftModel').val();
+    console.log("sgvgvd" + start + end)
+    if (start != "00:00" && end != "00:00:00.000") {
+        const startdate = new Date(`1970-01-01T${start}`);
+        const enddate = new Date(`1970-01-01T${end}`);
+        let diff = enddate - startdate
+        if (diff < 0) {
+            Swal.fire({
+                title: "Alert",
+                text: "Selected End Time can not be earlier from start time ",
+                icon: "warning",
+            });
+            $('#endTimeAddShiftModel').val("");
+
+        }
+        else {
+
+            let diffMilliseconds = Math.abs(enddate - startdate);
+            let minutes = Math.floor(diffMilliseconds / 60000);
+
+            console.log(minutes)
+            if (minutes < 120) {
+
+                Swal.fire({
+                    title: "Alert",
+                    text: "you can add minimum 2 hour shift",
+                    icon: "warning",
+                });
+                $('#endTimeAddShiftModel').val("");
+            }
+
+        }
+    }
+
+});
+$('#viewshiftstartdate , #viewshiftenddate').on('change', function () {
+    let start = $('#viewshiftstartdate').val();
+    let end = $('#viewshiftenddate').val();
+    console.log("sgvgvd" + start + end)
+    if (start != "00:00" && end != "00:00:00.000") {
+
+        let startdate = new Date(`1970-01-01T${start}`);
+        let enddate = new Date(`1970-01-01T${end}`);
+        let diff = enddate - startdate
+        if (diff < 0) {
+            Swal.fire({
+                title: "Alert",
+                text: "Selected End Time can not be earlier from start time ",
+                icon: "warning",
+            });
+            $('#viewshiftenddate').val("");
+
+        }
+        else {
+
+            let diffMilliseconds = Math.abs(enddate - startdate);
+            let minutes = Math.floor(diffMilliseconds / 60000);
+
+            console.log(minutes)
+            if (minutes < 120) {
+
+                Swal.fire({
+                    title: "Alert",
+                    text: "you can add minimum 2 hour shift",
+                    icon: "warning",
+                });
+                $('#viewshiftenddate').val("");
+            }
+
+        }
+    }
+});
 
 $('#deletebtnviewshiftmodel').on('click', function () {
     let shiftdetailsid = $('#shiftdetailidviewmodel').val()
@@ -227,3 +245,39 @@ $('#returnbtnviewshiftmodel').on('click', function () {
 
 });
 
+$("#viewShiftForm").submit(function (event) {
+    event.preventDefault();
+    if ($("#viewShiftForm").valid()) {
+        var formData = new FormData(this);
+        console.log("djhsbwdhb")
+
+        $.ajax({
+            url: '/Scheduling/ViewShiftModelSavebtn',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                loadSchedulingPartial(currentPartial);
+                $('#viewShiftModal').modal('hide');
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error while updating physician info:', errorThrown);
+            }
+        });
+    }
+});
+$('#viewShiftModal').on('hidden.bs.modal', function (e) {
+    $(this).remove();
+})
+
+$('#pendingShiftbtn , #activeShiftbtn, #allShiftbtn').click(function () {
+    status = $(this).val();
+    loadSchedulingPartial(currentPartial);
+    $('.shiftfilter').removeClass('border-bottom-active');
+    $(this).addClass('border-bottom-active');
+});
+$('#calendar-icon-datepicker').click(function () {
+    console.log("cal")
+    $('#calendar-hidden').click();
+})

@@ -7,37 +7,37 @@
     <input type="hidden" value="@currentDay" id="currentDay" />
     var f = 0;
 }
-<div class="table-responsive">
+<div class="table-responsive shadow bg-white">
     <table class="calendar-table table-bordered table">
-        <tr>
-            <th>Staff</th>
-            <th>12A</th>
-            <th>1A</th>
-            <th>2A</th>
-            <th>3A</th>
-            <th>4A</th>
-            <th>5A</th>
-            <th>6A</th>
-            <th>7A</th>
-            <th>8A</th>
-            <th>9A</th>
-            <th>10A</th>
-            <th>11A</th>
-            <th>12P</th>
-            <th>1P</th>
-            <th>2P</th>
-            <th>3P</th>
-            <th>4P</th>
-            <th>5P</th>
-            <th>6P</th>
-            <th>7P</th>
-            <th>8P</th>
-            <th>9P</th>
-            <th>10P</th>
-            <th>11P</th>
+        <tr class="bg-secondary text-white">
+            <th style="width:10%">Staff</th>
+            <th style="width:3.75%">12A</th>
+            <th style="width:3.75%">1A</th>
+            <th style="width:3.75%">2A</th>
+            <th style="width:3.75%">3A</th>
+            <th style="width:3.75%">4A</th>
+            <th style="width:3.75%">5A</th>
+            <th style="width:3.75%">6A</th>
+            <th style="width:3.75%">7A</th>
+            <th style="width:3.75%">8A</th>
+            <th style="width:3.75%">9A</th>
+            <th style="width:3.75%">10A</th>
+            <th style="width:3.75%">11A</th>
+            <th style="width:3.75%">12P</th>
+            <th style="width:3.75%">1P</th>
+            <th style="width:3.75%">2P</th>
+            <th style="width:3.75%">3P</th>
+            <th style="width:3.75%">4P</th>
+            <th style="width:3.75%">5P</th>
+            <th style="width:3.75%">6P</th>
+            <th style="width:3.75%">7P</th>
+            <th style="width:3.75%">8P</th>
+            <th style="width:3.75%">9P</th>
+            <th style="width:3.75%">10P</th>
+            <th style="width:3.75%">11P</th>
         </tr>
         <tr>
-            <td>Coverage</td>
+            <td style="font-weight:600">Coverage</td>
             @for (int i = 0; i < 24; i++)
             {
                 <td class="dates" style="background-color:#efabd2;"></td>
@@ -50,11 +50,11 @@
             <tr>
                 @if (obj.Photo == null)
                 {
-                    <td class="d-flex"><i class="fa-solid fa-user me-1 mt-1"></i> @obj.FirstName @obj.LastName.ElementAt(0).</td>
+                    <td class="d-flex border-0" style="font-weight:600"><i class="fa-solid fa-user me-1 mt-1" style="height:25px; width:25px"></i> @obj.FirstName @obj.LastName.ElementAt(0).</td>
                 }
                 else
                 {
-                    <td class="d-flex"><img class="me-1" src="@obj.Photo" height="25px" width="25px" /> @obj.FirstName @obj.LastName.ElementAt(0).</td>
+                    <td class="d-flex border-0" style="font-weight:600"><img class="me-1 mt-1" src="@obj.Photo" height="25px" width="25px" /> @obj.FirstName @obj.LastName.ElementAt(0).</td>
                 }
                 @for (int i = 0; i < 24; i++)
                 {
@@ -66,25 +66,25 @@
                             var diff = item.EndTime.Hour - item.StartTime.Hour + 1;
                             if (item.StartTime.Hour <= i && item.EndTime.Hour >= i)
                             {
-                                var perstart = (item.StartTime.Minute / 60.00) * 100;
-                                int wid = 100;
-                                if (item.EndTime.Minute != 0)
+                                var perstart = ((item.StartTime.Minute / 42.00) * 100)/diff;
+                                var perend = (((40 - item.EndTime.Minute) / 60.00) * 100)/diff;
+                                if(perend < 0)
                                 {
-                                    wid = 58;
+                                    perend = 0;
                                 }
+                               
                                 perstart /= 2;
                                 <td id="i_@obj.PhysicianId" colspan="@diff">
-                                    <button class="dates d-flex align-items-center justify-content-center border-0 viewshiftbtn small text-white" value="@item.ShiftDetailId"
+                                    <button class="dates d-flex align-items-center justify-content-center border-0 viewshiftbtn small" value="@item.ShiftDetailId"
                                             data-bs-toggle="modal" data-bs-target="#viewShiftModal"
                                     @if(item.Status == 2)
                                     {
-                                        @:style="background-color:#ABEE97; margin-left : @perstart%; width:@wid%"
+                                        @:style="background-color:#ABEE97; margin-left : @perstart%; margin-right: @perend%;width: -webkit-fill-available;color: rgb(26, 62, 24); font-weight:600"
                                         
                                     }
                                     else
                                     {
-                                        
-                                    @:style="background-color:#efabd2; margin-left : @perstart%; width:@wid%"
+                                        @:style="background-color:#efabd2; margin-left : @perstart%; margin-right: @perend%;  width: -webkit-fill-available; color: rgb(87, 1, 51); font-weight:600"
                                     }
                                     >
                                         @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
@@ -118,42 +118,6 @@
 
     var currentDay = $('#currentDay').val();
     $('#showDate').text(currentDay);
-
-
-    // $('.viewshiftbtn').on('click', function () {
-    //     let shifedetailid = $('.viewshiftbtn').val();
-    //     $('#shiftdetailidviewmodel').val(shifedetailid);
-    //     $.ajax({
-    //         url: '/Scheduling/ViewShiftModel',
-    //         data: { shiftdetailid: shifedetailid },
-    //         success: function (data) {
-    //             console.log(data)
-    //             // Display data using asp-for
-    //             $("#startTimeViewShift").val(data.starttime);
-
-    //             // Open the modal dialog
-    //             $("#viewShiftModal").model('show');
-    //         },
-
-    //         error: function (jqXHR, textStatus, errorThrown) {
-    //             console.log("Error: " + textStatus + " " + errorThrown);
-    //         }
-    //     });
-    //     // $.ajax({
-    //     //     type: 'POST',
-    //     //     dataType: "json",
-    //     //     success: function (data) {
-    //     //         var model = data.data;
-    //     //         $('#startTimeViewShift').val(model.starttime)
-    //     //         $('#viewShiftModal').modal('show')
-    //     //     },
-    //     //     error: function () {
-    //     //         console.error(Error);
-    //     //     }
-    //     // });
-
-    // });
-
 
     $('.viewshiftbtn').on('click', function () {
         console.log("dhsgb")

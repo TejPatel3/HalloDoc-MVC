@@ -1,4 +1,6 @@
 ﻿using HalloDoc.DataModels;
+using System.ComponentModel.DataAnnotations;
+
 namespace Services.ViewModels
 {
     public class SchedulingViewModel
@@ -6,9 +8,12 @@ namespace Services.ViewModels
 
         public List<Region> regions { get; set; }
         public List<PhysicianRegion> physicianregionlist { get; set; }
+        [Required]
         public int regionid { get; set; }
+        [Required]
         public int providerid { get; set; }
         public DateOnly shiftdateviewshift { get; set; }
+        [Required]
         public DateTime shiftdate { get; set; }
         public DateTime starttime { get; set; }
         public DateTime endtime { get; set; }
@@ -40,6 +45,14 @@ namespace Services.ViewModels
 
         public List<ShiftDetail> shiftdetails { get; set; }
 
+    }
+
+    public class ProviderOnCall
+    {
+        public List<ShiftDetail> shiftdetaillist { get; set; }
+        public List<Shift> shiftlist { get; set; }
+        public List<Physician> ondutyphysicianlist { get; set; }
+        public List<Physician> offdutyphysicianlist { get; set; }
     }
 
 }

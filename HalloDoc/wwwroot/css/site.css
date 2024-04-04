@@ -394,20 +394,33 @@ footer {
 .dark-mode {
     background-color: rgb(7, 7, 7) !important;
     color: dimgray;
-    .bg-white
+    .bg-black
 
 {
-    background-color: black !important;
+    background-color: white !important;
 }
 .text-black{
     color:white !important;
 }
-.text-secondary{
+.text-white{
+    color:black !important;
+}
+.bg-white {
+    background-color: black !important;
+}
+
+.text-black {
+    color: white !important;
+}
+
+.text-secondary {
     color: darkgrey !important;
 }
-.text-light{
+
+.text-light {
     color: lightgray !important;
 }
+
 .form-control {
     background-color: lightgray;
 }
@@ -522,6 +535,7 @@ footer{
 .iti--allow-dropdown {
     width: 100% !important;
 }
-.paginate_button-active{
+
+.paginate_button-active {
     background-color: blue;
 }

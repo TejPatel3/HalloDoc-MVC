@@ -14,17 +14,17 @@
     var f = 0;
 }
 
-<div class="table-responsive">
-    <table class="table calendar-table table-bordered text-center align-middle">
+<div class="table-responsive shadow bg-white">
+    <table class="table calendar-table table-bordered text-center">
         <tr class="text-white bg-secondary">
-            <th>Staff</th>
-            <th>Sun @previousSunday.ToString("dd")</th>
-            <th>Mon @previousSunday.AddDays(1).ToString("dd")</th>
-            <th>Tue @previousSunday.AddDays(2).ToString("dd")</th>
-            <th>Wed @previousSunday.AddDays(3).ToString("dd")</th>
-            <th>Thu @previousSunday.AddDays(4).ToString("dd")</th>
-            <th>Fri @previousSunday.AddDays(5).ToString("dd")</th>
-            <th>Sat @previousSunday.AddDays(6).ToString("dd")</th>
+            <th style="width:13.9%">Staff</th>
+            <th style="width:12.3%">Sun @previousSunday.ToString("dd")</th>
+            <th style="width:12.3%">Mon @previousSunday.AddDays(1).ToString("dd")</th>
+            <th style="width:12.3%">Tue @previousSunday.AddDays(2).ToString("dd")</th>
+            <th style="width:12.3%">Wed @previousSunday.AddDays(3).ToString("dd")</th>
+            <th style="width:12.3%">Thu @previousSunday.AddDays(4).ToString("dd")</th>
+            <th style="width:12.3%">Fri @previousSunday.AddDays(5).ToString("dd")</th>
+            <th style="width:12.3%">Sat @previousSunday.AddDays(6).ToString("dd")</th>
         </tr>
         <tr>
             <td>Coverage</td>
@@ -61,13 +61,14 @@
                                 if (date == DateOnly.FromDateTime(previousSunday.AddDays(i)))
                                 {
                                 <div id="i_@obj.PhysicianId" class="m-1">
-                                        <button class="dates d-flex align-items-center border-0 viewshiftbtn w-100  small text-white" value="@item.ShiftId" data-bs-toggle="modal" data-bs-target="#viewShiftModal" @if (item.Status == 2)
+                                        <button class="dates d-flex border-0 viewshiftbtn w-100  small" value="@item.ShiftDetailId" data-bs-toggle="modal" data-bs-target="#viewShiftModal" 
+                                        @if (item.Status == 2)
                                         {
-                                            @:style="background-color:#ABEE97;"
+                                            @:style="background-color:#ABEE97; color: rgb(26, 62, 24); font-weight:600"
                                         }
                                         else
                                         {
-                                            @:style="background-color:#efabd2;"
+                                            @:style="background-color:#efabd2; color: rgb(87, 1, 51); font-weight:600"
                                         }>
                                             @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
                                     </button>

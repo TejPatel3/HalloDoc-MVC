@@ -1,0 +1,63 @@
+﻿@using Services.ViewModels
+@model ProviderOnCall
+@{
+    Layout = "_Admin";
+}
+
+<Partial name="Toast" />
+
+<div class="container mt-3">
+    <div class="d-flex justify-content-between align-items-center mt-2">
+        <h4>MDs On Call</h4>
+        <a asp-controller="Scheduling" asp-action="Scheduling"
+           class="btn m-0 btn-outline-info  px-2 ">
+            <i class="fa-solid fa-chevron-left"></i>
+            Back
+        </a>
+    </div>
+
+    <div class="mt-3">
+
+        <div class="d-flex justify-content-between">
+            <div class="d-flex">
+                <select name="regionname" class="form-select shadow-none mt-3" id="regionDropDownScheduling">
+                    <option class="regionselect" selected value="">All Region</option>
+                    @*    @foreach (var item in Model.regions)
+                    {
+                    <option class="regionselect" value="@item.RegionId" itemid="@item.RegionId">@item.Name</option>
+
+                    } *@
+                </select>
+            </div>
+            <div class="d-flex">
+                <button class="px-2 py-0 mx-2 text-white btn-info border-0 shadow-none rounded d-flex align-items-center">
+                    <i class="bi bi-plus-square"></i>
+                    <span class="d-none d-md-block ps-2">
+                        Calender View
+                    </span>
+                </button>
+                <button class="px-2 py-0 ms-2 text-white rounded btn-info border-0 shadow-none d-flex align-items-center">
+                    <i class="bi bi-plus-square"></i>
+                    <span class="d-none d-md-block ps-2">Shifts For Review</span>
+                </button>
+            </div>
+        </div>
+        <div class="container-fluid bg-white my-2 shadow">
+            <div class="row">
+                <h6>MD's On Call</h6>
+                <div>
+                    @foreach(var item in Model.ondutyphysicianlist)
+                    {
+                        <img src="@item.Photo">
+                        @item.FirstName @item.LastName
+                    }
+                </div>
+                <h6>Physician off Duty</h6>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
