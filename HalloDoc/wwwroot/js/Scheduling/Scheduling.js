@@ -1,6 +1,9 @@
 ﻿var regionid;
 var status;
 var filterDate = new Date($('#currentDateValue').text());
+var timezoneOffset = filterDate.getTimezoneOffset();
+filterDate.setMinutes(filterDate.getMinutes() - timezoneOffset);
+
 var currentPartial = "";
 window.onload = function () {
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
@@ -281,3 +284,36 @@ $('#calendar-icon-datepicker').click(function () {
     console.log("cal")
     $('#calendar-hidden').click();
 })
+
+$('#providerOnCallSchedulingbtn').click(function () {
+    console.log(filterDate)
+    $.ajax({
+        url: '/Scheduling/ProviderOnCall',
+        data: { PartialName: currentPartial, date: filterDate.toISOString(), 'regionid': regionid, status: status },
+
+        success: function (response) {
+            $('#shedulingMainDiv').html(response);
+            console.log(filterDate)
+                  },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error', errorThrown);
+        }
+    });
+});
+
+$('#regionDropDownProviderOnCall').on('change', function () {
+    console.log("dbvfhv")
+    regionid = $(this).val()
+    console.log(filterDate)
+    $.ajax({
+        url: '/Scheduling/ProviderOnCall',
+        data: { PartialName: currentPartial, date: filterDate.toISOString(), 'regionid': regionid, status: status },
+
+        success: function (response) {
+            $('#shedulingMainDiv').html(response);
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error', errorThrown);
+        }
+    });
+});

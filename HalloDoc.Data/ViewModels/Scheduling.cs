@@ -15,7 +15,11 @@ namespace Services.ViewModels
         public DateOnly shiftdateviewshift { get; set; }
         [Required]
         public DateTime shiftdate { get; set; }
+
+        [Required(ErrorMessage = "Date and time is required.")]
         public DateTime starttime { get; set; }
+
+        [Required(ErrorMessage = "Date and time is required.")]
         public DateTime endtime { get; set; }
         public int repeatcount { get; set; }
         public int shiftid { get; set; }
@@ -49,10 +53,13 @@ namespace Services.ViewModels
 
     public class ProviderOnCall
     {
-        public List<ShiftDetail> shiftdetaillist { get; set; }
-        public List<Shift> shiftlist { get; set; }
-        public List<Physician> ondutyphysicianlist { get; set; }
-        public List<Physician> offdutyphysicianlist { get; set; }
+        public IEnumerable<ShiftDetail> shiftdetaillist { get; set; }
+        public IEnumerable<Shift> shiftlist { get; set; }
+        public IEnumerable<Physician> ondutyphysicianlist { get; set; }
+        public IEnumerable<Physician> offdutyphysicianlist { get; set; }
+        public List<Region> regions { get; set; }
+        public int selectedRegionid { get; set; }
+
     }
 
 }

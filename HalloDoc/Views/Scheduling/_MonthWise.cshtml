@@ -84,11 +84,11 @@
                                                                         data-bs-toggle="modal" data-bs-target="#viewShiftModal"
                                                                 @if (item.Status == 2)
                                                                 {
-                                                                    @:style="background-color:#ABEE97; color: rgb(26, 62, 24); font-weight:600"
+                                                                    @:style="background-color:rgb(197 255 194); color: rgb(26, 62, 24); font-weight:600"
                                                                 }
                                                                 else
                                                                 {
-                                                                    @:style="background-color:#efabd2; color: rgb(87, 1, 51); font-weight:600"
+                                                                    @:style="background-color:rgb(255, 212, 237); color: rgb(87, 1, 51); font-weight:600"
                                                                 }>
                                                                     @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
                                                                     <br />
@@ -106,11 +106,11 @@
                                                                         data-bs-toggle="modal" data-bs-target="#viewShiftModal"
                                                                 @if (item.Status == 2)
                                                                 {
-                                                                    @:style="background-color:#ABEE97; color: rgb(26, 62, 24); font-weight:600"
+                                                                    @:style="background-color:rgb(197 255 194); color: rgb(26, 62, 24); font-weight:600"
                                                                 }
                                                                 else
                                                                 {
-                                                                    @:style="background-color:#efabd2; color: rgb(87, 1, 51); font-weight:600"
+                                                                    @:style="background-color:rgb(255, 212, 237); color: rgb(87, 1, 51); font-weight:600"
                                                                 }>
                                                                     @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
                                                                     <br />
@@ -123,8 +123,8 @@
 
                                                 }
                                                 <tr>
-                                                    <td class="p-0" style="background-color:#3c7b9d">
-                                                        <button class="btn p-0 fw-bold readmorebtn shadow-none text-white w-100 h-100" id="readmore" value="more_@shift.ElementAt(0).ShiftId">Read more</button>
+                                                    <td class="p-0">
+                                                        <button class="btn p-0 px-md-1  px-xl-4  readmorebtn shadow-none text-white" id="readmore" value="more_@shift.ElementAt(0).ShiftId" style="background-color:#3c7b9d;width:-webkit-fit-content;">Read more</button>
                                                     </td>
                                                 </tr>
                                             }
@@ -141,11 +141,11 @@
                                                                         data-bs-toggle="modal" data-bs-target="#viewShiftModal"
                                                                 @if (item.Status == 2)
                                                                 {
-                                                                    @:style="background-color:#ABEE97; color: rgb(26, 62, 24); font-weight:600"
+                                                                    @:style="background-color:rgb(197 255 194); color: rgb(26, 62, 24); font-weight:600"
                                                                 }
                                                                 else
                                                                 {
-                                                                    @:style="background-color:#efabd2; color: rgb(87, 1, 51); font-weight:600"
+                                                                    @:style="background-color:rgb(255, 212, 237); color: rgb(87, 1, 51); font-weight:600"
                                                                 }>
                                                                     @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
                                                                     <br />

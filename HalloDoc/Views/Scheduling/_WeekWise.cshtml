@@ -64,11 +64,11 @@
                                         <button class="dates d-flex border-0 viewshiftbtn w-100  small" value="@item.ShiftDetailId" data-bs-toggle="modal" data-bs-target="#viewShiftModal" 
                                         @if (item.Status == 2)
                                         {
-                                            @:style="background-color:#ABEE97; color: rgb(26, 62, 24); font-weight:600"
+                                            @:style="background-color:rgb(197 255 194); color: rgb(26, 62, 24); font-weight:600"
                                         }
                                         else
                                         {
-                                            @:style="background-color:#efabd2; color: rgb(87, 1, 51); font-weight:600"
+                                            @:style="background-color:rgb(255, 212, 237); color: rgb(87, 1, 51); font-weight:600"
                                         }>
                                             @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
                                     </button>
