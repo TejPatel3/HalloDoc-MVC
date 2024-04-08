@@ -26,6 +26,8 @@ builder.Services.AddScoped<IAddOrUpdateRequestStatusLog, AddOrUpdateRequestStatu
 builder.Services.AddScoped<IAuthorizatoinRepository, AuthorizationRepository>();
 builder.Services.AddScoped<IJwtRepository, JwtRepository>();
 builder.Services.AddScoped<IAdd, Add>();
+builder.Services.AddScoped<IunitOfWork, unitOfWork>();
+builder.Services.AddScoped<IVendor, Vendor>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -301,7 +301,7 @@ div.dataTables_wrapper div.dataTables_length select {
 
 .dropdown-item:hover {
     background-color: #17a2b8;
-    color: white;
+    color: white !important;
     font-weight: 700;
     letter-spacing: 1px;
     transition-property: letter-spacing !important;
@@ -344,3 +344,9 @@ input[type="file" i] {
     /*opacity: 0;*/
     /*margin-top: 3px;
 }*/
+.search-icon {
+    margin-left: 10px;
+    padding-left: 25px;
+    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
+    background-size: 20px;
+}

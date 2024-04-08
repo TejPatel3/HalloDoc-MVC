@@ -70,7 +70,6 @@ $(document).ready(function () {
 
     $('.physiciandata').on('change', function (e) {
         var regionid = $(this).val();
-        debugger
         console.log(regionid)
         $.ajax({
             url: '/Scheduling/filterregion',
@@ -317,3 +316,4 @@ $('#regionDropDownProviderOnCall').on('change', function () {
         }
     });
 });
+

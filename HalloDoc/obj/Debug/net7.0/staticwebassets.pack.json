@@ -237,6 +237,10 @@
       "PackagePath": "staticwebassets\\js\\Admin\\ViewUpload.js"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderLocation\\ProviderLoaction.js",
+      "PackagePath": "staticwebassets\\js\\ProviderLocation\\ProviderLoaction.js"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Provider\\AddOrUpdatePhysicianAccount.js",
       "PackagePath": "staticwebassets\\js\\Provider\\AddOrUpdatePhysicianAccount.js"
     },
@@ -247,6 +251,10 @@
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Scheduling\\Scheduling.js",
       "PackagePath": "staticwebassets\\js\\Scheduling\\Scheduling.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Vendor\\Vendor.js",
+      "PackagePath": "staticwebassets\\js\\Vendor\\Vendor.js"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\site.js",

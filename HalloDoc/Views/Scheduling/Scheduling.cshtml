@@ -256,8 +256,20 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@if (TempData["ShiftCreated"] != null)
+@if (TempData["deleteshift"] != null)
 {
+    <script>
+        console.log("delete success")
+        Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Shift Deleted Successfully",
+            showConfirmButton: false,
+            timer: 1700 
+        });
+    </script>
+}
+@if (TempData["ShiftCreated"] != null){
     <script>
         console.log("added")
         Swal.fire({
@@ -280,6 +292,7 @@
         });
     </script>
 }
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script src="/js/Scheduling/Scheduling.js" asp-append-version="true"></script>

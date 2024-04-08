@@ -46,21 +46,21 @@ namespace HelloDoc.Controllers.Scheduling
                     };
                     if (regionid != 0 && status != 0)
                     {
-                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.Status == status).ToList();
+                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.Status == status && m.IsDeleted != new BitArray(new[] { true })).ToList();
                     }
                     else if (regionid != 0)
                     {
-                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid).ToList();
+                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.IsDeleted != new BitArray(new[] { true })).ToList();
 
                     }
                     else if (status != 0)
                     {
-                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.Status == status).ToList();
+                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.Status == status && m.IsDeleted != new BitArray(new[] { true })).ToList();
 
                     }
                     else
                     {
-                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).ToList();
+                        day.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.IsDeleted != new BitArray(new[] { true })).ToList();
                     }
                     return PartialView("_DayWise", day);
 
@@ -73,21 +73,21 @@ namespace HelloDoc.Controllers.Scheduling
                     };
                     if (regionid != 0 && status != 0)
                     {
-                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.Status == status).ToList();
+                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.Status == status && m.IsDeleted != new BitArray(new[] { true })).ToList();
                     }
                     else if (regionid != 0)
                     {
-                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid).ToList();
+                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.IsDeleted != new BitArray(new[] { true })).ToList();
 
                     }
                     else if (status != 0)
                     {
-                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.Status == status).ToList();
+                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.Status == status && m.IsDeleted != new BitArray(new[] { true })).ToList();
 
                     }
                     else
                     {
-                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).ToList();
+                        week.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.IsDeleted != new BitArray(new[] { true })).ToList();
                     }
                     return PartialView("_WeekWise", week);
 
@@ -99,21 +99,21 @@ namespace HelloDoc.Controllers.Scheduling
                     };
                     if (regionid != 0 && status != 0)
                     {
-                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.Status == status).ToList();
+                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.Status == status && m.IsDeleted != new BitArray(new[] { true })).ToList();
                     }
                     else if (regionid != 0)
                     {
-                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid).ToList();
+                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.RegionId == regionid && m.IsDeleted != new BitArray(new[] { true })).ToList();
 
                     }
                     else if (status != 0)
                     {
-                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.Status == status).ToList();
+                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.Status == status && m.IsDeleted != new BitArray(new[] { true })).ToList();
 
                     }
                     else
                     {
-                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).ToList();
+                        month.shiftdetails = _context.ShiftDetails.Include(u => u.Shift).Where(m => m.IsDeleted != new BitArray(new[] { true })).ToList();
                     }
                     return PartialView("_MonthWise", month);
 
@@ -140,7 +140,7 @@ namespace HelloDoc.Controllers.Scheduling
                 foreach (var obj in shiftid)
                 {
                     //var shiftdetailchk = _context.ShiftDetails.Where(u => u.ShiftId == obj && u.ShiftDate == model.shiftdate).ToList();
-                    var shiftdetailchk = _context.ShiftDetails.Where(u => u.ShiftId == obj && u.ShiftDate == DateOnly.FromDateTime(model.shiftdate)).ToList();
+                    var shiftdetailchk = _context.ShiftDetails.Where(u => u.ShiftId == obj && u.ShiftDate == DateOnly.FromDateTime(model.shiftdate) && u.IsDeleted != new BitArray(new[] { true })).ToList();
                     if (shiftdetailchk.Count() > 0)
                     {
                         foreach (var item in shiftdetailchk)
@@ -297,9 +297,11 @@ namespace HelloDoc.Controllers.Scheduling
             ShiftDetail shiftdetail = _context.ShiftDetails.FirstOrDefault(m => m.ShiftDetailId == shiftdetailsid);
             if (shiftdetail != null)
             {
-                _context.Remove(shiftdetail);
+                shiftdetail.IsDeleted = new BitArray(new[] { true });
+                _context.Update(shiftdetail);
                 _context.SaveChanges();
             }
+            TempData["deleteshift"] = "delete shift success";
             return RedirectToAction("Scheduling");
         }
         public IActionResult ViewShiftModelReturnbtn(int shiftdetailsid)
@@ -392,21 +394,21 @@ namespace HelloDoc.Controllers.Scheduling
                 List<ShiftDetail> shiftdetaillist = new List<ShiftDetail>();
                 if (status != 0 && regionid != 0)
                 {
-                    shiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.RegionId == regionid && m.ShiftDate == dateOnly).ToList();
+                    shiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.IsDeleted != new BitArray(new[] { true }) && m.RegionId == regionid && m.ShiftDate == dateOnly).ToList();
                 }
                 else if (regionid != 0)
                 {
 
-                    shiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.RegionId == regionid && m.ShiftDate == dateOnly).ToList();
+                    shiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.RegionId == regionid && m.IsDeleted != new BitArray(new[] { true }) && m.ShiftDate == dateOnly).ToList();
                 }
                 else if (status != 0)
                 {
-                    shiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.ShiftDate == dateOnly).ToList();
+                    shiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.IsDeleted != new BitArray(new[] { true }) && m.ShiftDate == dateOnly).ToList();
 
                 }
                 else
                 {
-                    shiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.ShiftDate == dateOnly).ToList();
+                    shiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.ShiftDate == dateOnly && m.IsDeleted != new BitArray(new[] { true })).ToList();
                 }
 
                 IEnumerable<Physician> ondutyphysician = new List<Physician>();
@@ -432,21 +434,21 @@ namespace HelloDoc.Controllers.Scheduling
                     List<ShiftDetail> tempShiftdetaillist = new List<ShiftDetail>();
                     if (status != 0 && regionid != 0)
                     {
-                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.RegionId == regionid && m.ShiftDate == weekDate).ToList();
+                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.IsDeleted != new BitArray(new[] { true }) && m.RegionId == regionid && m.ShiftDate == weekDate).ToList();
                     }
                     else if (regionid != 0)
                     {
-                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.RegionId == regionid && m.ShiftDate == weekDate).ToList();
+                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.RegionId == regionid && m.IsDeleted != new BitArray(new[] { true }) && m.ShiftDate == weekDate).ToList();
 
                     }
                     else if (status != 0)
                     {
-                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.ShiftDate == weekDate).ToList();
+                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.IsDeleted != new BitArray(new[] { true }) && m.ShiftDate == weekDate).ToList();
 
                     }
                     else
                     {
-                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.ShiftDate == weekDate).ToList();
+                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.ShiftDate == weekDate && m.IsDeleted != new BitArray(new[] { true })).ToList();
                     }
                     weekShiftdetaillist.AddRange(tempShiftdetaillist);
                 }
@@ -473,21 +475,21 @@ namespace HelloDoc.Controllers.Scheduling
                     List<ShiftDetail> tempShiftdetaillist = new List<ShiftDetail>();
                     if (status != 0 && regionid != 0)
                     {
-                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.RegionId == regionid && m.ShiftDate == monthDate).ToList();
+                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.IsDeleted != new BitArray(new[] { true }) && m.RegionId == regionid && m.ShiftDate == monthDate).ToList();
                     }
                     else if (regionid != 0)
                     {
-                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.RegionId == regionid && m.ShiftDate == monthDate).ToList();
+                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.RegionId == regionid && m.IsDeleted != new BitArray(new[] { true }) && m.ShiftDate == monthDate).ToList();
 
                     }
                     else if (status != 0)
                     {
-                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.RegionId == regionid && m.ShiftDate == monthDate).ToList();
+                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.RegionId == regionid && m.IsDeleted != new BitArray(new[] { true }) && m.ShiftDate == monthDate).ToList();
 
                     }
                     else
                     {
-                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.ShiftDate == monthDate).ToList();
+                        tempShiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.ShiftDate == monthDate && m.IsDeleted != new BitArray(new[] { true })).ToList();
                     }
                     monthShiftdetaillist.AddRange(tempShiftdetaillist);
                 }

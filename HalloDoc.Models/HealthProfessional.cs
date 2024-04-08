@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace HalloDoc.DataModels;
 
@@ -59,4 +56,5 @@ public partial class HealthProfessional
     [ForeignKey("Profession")]
     [InverseProperty("HealthProfessionals")]
     public virtual HealthProfessionalType? ProfessionNavigation { get; set; }
+
 }

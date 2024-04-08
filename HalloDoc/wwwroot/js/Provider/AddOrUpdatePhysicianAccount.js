@@ -732,6 +732,7 @@ $('#provider-photo').on('click', function () {
             data: { providerid, base64String },
             success: function (response) {
                 $('#provider-maindiv').html(response);
+                $('#providerLocationMainDiv').html(response);
 
             }
         });
