@@ -2,6 +2,7 @@
 {
     public interface IunitOfWork
     {
-        public IVendor vendor { get; }
+        public IVendorRepository vendor { get; }
+        public ISchedulingRepository scheduling { get; }
     }
 }

@@ -1,4 +1,137 @@
-﻿@{
+﻿@using Services.ViewModels
+@model SchiftsForReviewViewModel
+@{
     Layout = null;
 }
+<div class="container-fluid pb-4 px-0 px-lg-5">
+    <div class="my-3 d-flex justify-content-between align-items-center  ">
+        <h4 class="fw-bold">Requested Shifts</h4>
+        <a asp-controller="Scheduling" asp-action="Scheduling"
+           class="btn m-0 btn-outline-info  px-2 ">
+            <i class="fa-solid fa-chevron-left"></i>
+            Back
+        </a>
+    </div>
+    <div class="container-fluid shadow py-2 bg-white">
+        <div class="d-flex align-items-center justify-content-between row">
+            <div class="col-12 col-sm-3 col-xl-2 mb-1 mb-sm-0">
+                <div class="dropdown d-flex" style="width:clamp(200px, 100%, 100%);">
+                    <select name="regionname" class="form-select shadow-none h-100" id="regiondropdownreviewshift" aria-label="Floating label select example">
+                        <span class="search-icon "></span>
+                        <option value="0" selected>All Regions</option>
+                        @foreach (var item in Model.regionlist)
+                        {
+                            <option class="regionselect" value="@item.RegionId" itemid="@item.RegionId">@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-xl-8 d-flex  justify-content-end">
+                <a asp-action="Scheduling" asp-controller="Scheduling" class="btn btn-success mx-1">View current month shifts</a>
+                <button id="approve-selected-requestedshift" value="approve" class="btn btn-success mx-1">Approved Selected</button>
+                <button id="delete-selected-requestedshift" value="delete" class="btn btn-danger mx-1">Delete Selected</a>
+            </div>
+        </div>
+        <div class="table-responsive pt-3" id="ShiftForReviewTableData">
+        </div>
+        <div class="d-flex justify-content-center mt-2" id="shiftForReviewPagination">
+        </div>
+    </div>
+</div>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+
+<script>
+    $('#header-checkbox-reviewshifts').on('change', function () {
+        console.log("jdxhsgjdghv")
+        // $('.individual-checkbox-reviewshift').prop("checked", this.checked);
+        // console.log("run check")
+    });
+    var currentpage=1;
+    var totalpages;
+    var totalCount;
+    var pagesize = 10;
+    var regionid;
+    var filterDate = localStorage.getItem("filterDate");
+    var currentPartial = localStorage.getItem("currentPartial");
+
+    // $(document).ready(function () {
+    // });
+    loadpagedata(1);
+    function loadpagedata(page) {
+    $.ajax({
+        url: '/Scheduling/ShiftDataCountForPagination',
+        data: { currentPartial: currentPartial, date: filterDate, 'regionid': regionid },
+        success: function (data) {
+            totalCount = data
+            var totalPages = Math.ceil(totalCount / pagesize);
+            $('#shiftForReviewPagination').html("")
+            for (var i = 1; i <= totalPages; i++) {
+                $('#shiftForReviewPagination').append('<button class="mx-1 btn rounded-pill shadow-none btn-outline-info shiftforreviewpagination" id="shiftforreviewpagination' + i + '" onclick="loadpagedata(' + i + ')" style="height:27px;width:27px;padding:0px 8px 0px 8px;">' + i + '</button>');
+            }
+
+            $('#shiftforreviewpagination'+currentpage).addClass('btn-info');
+            $('#shiftforreviewpagination'+currentpage).addClass('text-white');
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error', errorThrown);
+        },
+    });
+        $('.shiftforreviewpagination').removeClass('btn-info');
+        $('.shiftforreviewpagination').removeClass('text-white');
+        $('#shiftforreviewpagination' + page + '').addClass('btn-info');
+        $('#shiftforreviewpagination' + page + '').addClass('text-white');
+        currentpage = page;
+
+        $.ajax({
+            url: '/Scheduling/GetShiftData',
+            data: { currentPartial: currentPartial, date: filterDate, 'regionid': regionid, 'pagesize': pagesize, 'currentpage': page },
+            success: function (data) {
+                $('#ShiftForReviewTableData').html(data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error', errorThrown);
+            },
+        });
+        console.log("hsbdhbas" + page)
+
+    };
+
+
+
+
+
+    $('#approve-selected-requestedshift,#delete-selected-requestedshift').click(function () {
+
+
+
+        var selectedshiftvalues = [];
+        $(".individual-checkbox-reviewshift:checked").each(function () {
+            selectedshiftvalues.push($(this).val());
+        });
+
+        var clickvalue = $(this).val();
+
+        console.log(selectedshiftvalues)
+
+        $.ajax({
+            url: '/Scheduling/SelectedShiftUpdate',
+            data: { selectedshiftvalues: selectedshiftvalues, clickvalue: clickvalue },
+            method: 'POST',
+            success: function (response) {
+                loadpagedata(currentpage)
+            },
+            error: function (status, xhr, error) {
+                console.error(error)
+            }
+        });
+    });
+
+    $('#regiondropdownreviewshift').on('change', function () {
+        regionid = $(this).val();
+        currentpage = 1;
+        loadpagedata(currentpage);
+    });
+</script>

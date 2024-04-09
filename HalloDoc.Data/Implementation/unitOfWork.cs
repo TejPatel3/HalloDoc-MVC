@@ -4,11 +4,13 @@ namespace Services.Implementation
 {
     public class unitOfWork : IunitOfWork
     {
-        public IVendor vendor { get; private set; }
+        public IVendorRepository vendor { get; private set; }
+        public ISchedulingRepository scheduling { get; private set; }
 
-        public unitOfWork(IVendor Vendor)
+        public unitOfWork(IVendorRepository Vendor, ISchedulingRepository scheduling)
         {
             vendor = Vendor;
+            this.scheduling = scheduling;
         }
     }
 }

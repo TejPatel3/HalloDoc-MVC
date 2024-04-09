@@ -62,4 +62,12 @@ namespace Services.ViewModels
 
     }
 
+    public class SchiftsForReviewViewModel
+    {
+        public List<ShiftDetail> shiftDetaillist { get; set; }
+        public List<Region> regionlist { get; set; }
+        public List<Physician> physicians { get; set; }
+
+    }
+
 }

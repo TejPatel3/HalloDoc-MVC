@@ -2,6 +2,7 @@
 using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Services.Contracts;
 using Services.ViewModels;
 using System.Collections;
 using System.Globalization;
@@ -12,10 +13,12 @@ namespace HelloDoc.Controllers.Scheduling
     {
 
         private readonly ApplicationDbContext _context;
+        private readonly IunitOfWork _unitOfWork;
 
-        public SchedulingController(ApplicationDbContext context)
+        public SchedulingController(ApplicationDbContext context, IunitOfWork unitOfWork)
         {
             _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Scheduling()
@@ -507,34 +510,49 @@ namespace HelloDoc.Controllers.Scheduling
             model.selectedRegionid = regionid;
             return View(model);
         }
+        public IActionResult ShiftForReview(string currentPartial, string date, int regionid, int pagesize, int currentpage)
+        {
+            SchiftsForReviewViewModel model = _unitOfWork.scheduling.getShiftData(currentPartial, date, regionid, pagesize, currentpage);
+            return View(model);
+        }
+        public IActionResult GetShiftData(string currentPartial, string date, int regionid, int pagesize, int currentpage)
+        {
+            SchiftsForReviewViewModel model = _unitOfWork.scheduling.getShiftData(currentPartial, date, regionid, pagesize, currentpage);
+            return PartialView("_ShiftForReviewTableData", model);
+        }
+        public int ShiftDataCountForPagination(string currentPartial, string date, int regionid)
+        {
+            var curdate = DateTime.Parse(date);
+
+            var currentdate = DateOnly.FromDateTime(curdate);
+            int count = _unitOfWork.scheduling.totalpagecount(currentPartial, date, regionid);
+            return count;
+        }
+        [HttpPost]
+        public void SelectedShiftUpdate(List<string> selectedshiftvalues, string clickvalue)
+        {
+            if (clickvalue == "approve")
+            {
+                foreach (var shiftdetailid in selectedshiftvalues)
+                {
+                    ShiftDetail x = _context.ShiftDetails.FirstOrDefault(s => s.ShiftDetailId == int.Parse(shiftdetailid));
+                    x.Status = 2;
+                    _context.ShiftDetails.Update(x);
+
+                }
+            }
+            else if (clickvalue == "delete")
+            {
+                foreach (var shiftdetailid in selectedshiftvalues)
+                {
+                    ShiftDetail x = _context.ShiftDetails.FirstOrDefault(s => s.ShiftDetailId == int.Parse(shiftdetailid));
+                    x.IsDeleted = new BitArray(new[] { true });
+                    _context.ShiftDetails.Update(x);
+
+                }
+            }
+            _context.SaveChanges();
+        }
     }
-    //public IActionResult ProviderOnCall(string PartialName, string date, int regionid, int status)
-    //{
-    //    ProviderOnCall model = new ProviderOnCall();
-    //    DateOnly dateOnly = DateOnly.ParseExact(date.Substring(0, 10), "yyyy-MM-dd", CultureInfo.InvariantCulture);
-    //    List<ShiftDetail> shiftdetaillist = new List<ShiftDetail>();
-    //    IEnumerable<Physician> physicianlist = _context.Physicians.ToList();
-    //    if (status == 0 && regionid == 0)
-    //    {
-    //        shiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.ShiftDate == dateOnly).ToList();
-
-    //    }
-    //    else
-    //    {
-    //        shiftdetaillist = _context.ShiftDetails.Include(s => s.Shift).Where(m => m.Status == status && m.ShiftDate == dateOnly).ToList();
-    //    }
-
-    //    IEnumerable<Physician> ondutyphysician = new List<Physician>();
-    //    foreach (var item in shiftdetaillist)
-    //    {
-    //        var x = _context.Physicians.Where(m => m.PhysicianId == item.Shift.PhysicianId).ToList();
-    //        ondutyphysician = ondutyphysician.Concat(x);
-    //    }
-    //    model.offdutyphysicianlist = physicianlist.Except(ondutyphysician);
-    //    model.ondutyphysicianlist = ondutyphysician.Distinct();
-
-
-    //    return View(model);
-    //}
 }
 

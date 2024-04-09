@@ -7,7 +7,7 @@ namespace HalloDoc.Controllers.Vendor
     public class VendorController : Controller
     {
         private readonly IunitOfWork _unitOfWork;
-        public VendorController(IunitOfWork unit, IVendor Vendor)
+        public VendorController(IunitOfWork unit, IVendorRepository Vendor)
         {
             _unitOfWork = unit;
         }

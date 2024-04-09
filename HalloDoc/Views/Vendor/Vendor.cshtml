@@ -16,10 +16,10 @@
                 <div class="dropdown d-flex" style="width:clamp(200px, 100%, 100%);">
                     <select name="regionname" class="form-select shadow-none h-100" aria-label="Floating label select example">
                         <span class="search-icon "></span>
-                        <option value="1234" selected>All Regions</option>
-                        @foreach (var item in Model.regionlist)
+                        <option value="1234" selected>All Profession</option>
+                        @foreach (var item in Model.healthProfessionalTypelist)
                         {
-                            <option class="regionselect" value="@item.RegionId" itemid="@item.RegionId">@item.Name</option>
+                            <option class="regionselect" value="@item.HealthProfessionalId" >@item.ProfessionName</option>
                         }
                     </select>
 

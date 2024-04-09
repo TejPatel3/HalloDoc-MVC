@@ -37,7 +37,7 @@
                         <i class="bi bi-plus-square"></i>
                         <span class="d-none d-lg-block ps-2">Providers On Call</span>
                     </button>
-                    <button class="p-2 mx-2 text-white rounded btn-info border-0 shadow-none d-flex align-items-center">
+                    <button id="shiftForReviewSchedulingbtn" class="p-2 mx-2 text-white rounded btn-info border-0 shadow-none d-flex align-items-center">
                         <i class="bi bi-plus-square"></i>
                         <span class="d-none d-lg-block ps-2">Shifts For Review</span>
                     </button>
@@ -66,7 +66,8 @@
                         <span class="dot bg-info text-center text-white me-1 rounded-pill " id="prevDateBtn" style="height:27px;width:27px;padding:2px 8px 2px 8px;"><i class="fa-solid fa-chevron-left fa-sm" style="color: #ffffff;"></i></span>
 
                         <span>
-                            <i class="bi bi-calendar-week" id="calendar-icon-datepicker"></i>
+                            <input type="date" class="datepicker"/>
+                            @* <i class="bi bi-calendar-week" id="calendar-icon-datepicker"></i> *@
                         </span>
                         <span class="dot bg-info text-center text-white ms-1 rounded-pill " id="nextDateBtn" style="height:27px;width:27px;padding:2px 8px 2px 8px;"><i class="fa-solid fa-chevron-right fa-sm" style="color: #ffffff;"></i></span>
                     </div>
@@ -256,19 +257,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@if (TempData["deleteshift"] != null)
-{
-    <script>
-        console.log("delete success")
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Shift Deleted Successfully",
-            showConfirmButton: false,
-            timer: 1700 
-        });
-    </script>
-}
+
 @if (TempData["ShiftCreated"] != null){
     <script>
         console.log("added")

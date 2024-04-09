@@ -1,20 +1,30 @@
 ﻿var regionid;
 var status;
-var filterDate = new Date($('#currentDateValue').text());
+var filterDate =  new Date(Date.parse(localStorage.getItem("filterDate")));
+console.log(filterDate)
 var timezoneOffset = filterDate.getTimezoneOffset();
 filterDate.setMinutes(filterDate.getMinutes() - timezoneOffset);
+//var filterDate;
+//if (localStorage.getItem("filterDate") == "")
+//    filterDate = new Date($('#currentDateValue').text());
+//else
+//    filterDate = localStorage.getItem("filterDate");
+//var timezoneOffset = filterDate.getTimezoneOffset();
+//filterDate.setMinutes(filterDate.getMinutes() - timezoneOffset);
 
-var currentPartial = "";
+var currentPartial = localStorage.getItem("currentPartial");
 window.onload = function () {
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
     $('#nav-provider-tab').addClass('admin-layout-nav-active');
 }
 function loadSchedulingPartial(PartialName) {
     currentPartial = PartialName;
+    localStorage.setItem("filterDate", filterDate.toISOString())
     $.ajax({
         url: '/Scheduling/LoadSchedulingPartial',
         data: { PartialName: PartialName, date: filterDate.toISOString(), 'regionid': regionid, status: status },
         success: function (data) {
+            localStorage.setItem("currentPartial", currentPartial);
             $(".calander").html(data);
         },
         error: function (e) {
@@ -24,20 +34,7 @@ function loadSchedulingPartial(PartialName) {
 }
 
 $(document).ready(function () {
-    //$('.region').on('change', function () {
-    //    regionid = $(this).val();
-    //    $.ajax({
-    //        url: '/Scheduling/LoadSchedulingPartial',
-    //        data: { PartialName: currentPartial, date: filterDate.toISOString(), 'regionid': regionid },
-    //        success: function (data) {
-    //            $(".calander").html(data);
-    //        },
-    //        error: function (e) {
-    //            console.log(e);
-    //        }
-    //    });
-    //});
-    loadSchedulingPartial('_DayWise');
+    loadSchedulingPartial(currentPartial);
     $('#prevDateBtn').on('click', function () {
         if (currentPartial == "_MonthWise") {
             var date = filterDate.setMonth(filterDate.getMonth() - 1);
@@ -218,6 +215,13 @@ $('#deletebtnviewshiftmodel').on('click', function () {
         success: function (response) {
             loadSchedulingPartial(currentPartial);
             $('#viewShiftModal').modal('hide');
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Shift Deleted Successfully",
+                showConfirmButton: false,
+                timer: 1700
+            });
         },
         error: function (xhr, textStatus, errorThrown) {
             console.log('Error:', errorThrown);
@@ -293,7 +297,7 @@ $('#providerOnCallSchedulingbtn').click(function () {
         success: function (response) {
             $('#shedulingMainDiv').html(response);
             console.log(filterDate)
-                  },
+        },
         error: function (xhr, textStatus, errorThrown) {
             console.log('Error', errorThrown);
         }
@@ -317,3 +321,24 @@ $('#regionDropDownProviderOnCall').on('change', function () {
     });
 });
 
+
+
+
+var currentpage;
+var totalpages;
+var pagesize = 10;
+$('#shiftForReviewSchedulingbtn').click(function () {
+    $.ajax({
+        url: '/Scheduling/ShiftForReview',
+        data: { currentPartial: currentPartial, date: filterDate.toISOString(), 'regionid': regionid, 'pagesize': pagesize, 'currentpage': currentpage },
+
+        success: function (response) {
+            $('#shedulingMainDiv').html(response)
+
+
+        },
+        error: function (xhr, textStatus, errorThrown) {
+            console.log('Error', errorThrown);
+        }
+    });
+});
