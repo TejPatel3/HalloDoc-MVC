@@ -29,6 +29,7 @@ builder.Services.AddScoped<IAdd, Add>();
 builder.Services.AddScoped<IunitOfWork, unitOfWork>();
 builder.Services.AddScoped<IVendorRepository, VendorRepository>();
 builder.Services.AddScoped<ISchedulingRepository, SchedulingRepository>();
+builder.Services.AddScoped<IRecordRepository, RecordRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

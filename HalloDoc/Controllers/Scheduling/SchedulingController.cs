@@ -266,22 +266,7 @@ namespace HelloDoc.Controllers.Scheduling
 
             return RedirectToAction("Scheduling");
         }
-        //public IActionResult viewShiftEdit(SchedulingViewModel obj)
-        //{
-        //    var currentDate = DateTime.Parse(date);
-        //    List<Physician> physician = _context.Physicianregions.Include(u => u.Physician).Where(u => u.Regionid == regionid).Select(u => u.Physician).ToList();
-        //    if (regionid == 0)
-        //    {
-        //        physician = _context.Physicians.ToList();
-        //    }
-        //    DayWiseScheduling day = new DayWiseScheduling
-        //    {
-        //        date = currentDate,
-        //        physicians = physician,
-        //        shiftdetails = _context.ShiftDetails.Include(u => u.Shift).ToList()
-        //    };
-        //    return PartialView("_DayWise", day);
-        //}
+
         public void ViewShiftModelSavebtn(SchedulingViewModel obj)
         {
             ShiftDetail shiftdetail = _context.ShiftDetails.Include(m => m.Shift).FirstOrDefault(m => m.ShiftDetailId == obj.shiftdetailid);
@@ -523,7 +508,6 @@ namespace HelloDoc.Controllers.Scheduling
         public int ShiftDataCountForPagination(string currentPartial, string date, int regionid)
         {
             var curdate = DateTime.Parse(date);
-
             var currentdate = DateOnly.FromDateTime(curdate);
             int count = _unitOfWork.scheduling.totalpagecount(currentPartial, date, regionid);
             return count;
@@ -548,7 +532,6 @@ namespace HelloDoc.Controllers.Scheduling
                     ShiftDetail x = _context.ShiftDetails.FirstOrDefault(s => s.ShiftDetailId == int.Parse(shiftdetailid));
                     x.IsDeleted = new BitArray(new[] { true });
                     _context.ShiftDetails.Update(x);
-
                 }
             }
             _context.SaveChanges();

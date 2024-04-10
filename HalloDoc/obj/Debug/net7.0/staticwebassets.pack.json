@@ -249,8 +249,16 @@
       "PackagePath": "staticwebassets\\js\\Provider\\Provider.js"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientHistory.js",
+      "PackagePath": "staticwebassets\\js\\Records\\PatientHistory.js"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Scheduling\\Scheduling.js",
       "PackagePath": "staticwebassets\\js\\Scheduling\\Scheduling.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Vendor\\PartialViewVendor.js",
+      "PackagePath": "staticwebassets\\js\\Vendor\\PartialViewVendor.js"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Vendor\\Vendor.js",

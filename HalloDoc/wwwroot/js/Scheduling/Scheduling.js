@@ -1,6 +1,7 @@
 ﻿var regionid;
 var status;
-var filterDate =  new Date(Date.parse(localStorage.getItem("filterDate")));
+//var filterDate = new Date(Date.parse(localStorage.getItem("filterDate")));
+var filterDate = new Date($('#currentDateValue').text());
 console.log(filterDate)
 var timezoneOffset = filterDate.getTimezoneOffset();
 filterDate.setMinutes(filterDate.getMinutes() - timezoneOffset);
@@ -111,21 +112,13 @@ $(document).ready(function () {
     });
 });
 
-$('#editbtnviewshiftmodel').click(function () {
-    console.log("jdsbhjdbshj")
-    $('#viewshiftstartdate').prop('disabled', false);
-    $('#viewshiftenddate').prop('disabled', false);
-    $('#editbtnviewshiftmodel').addClass('d-none');
-    $(this).hide();
-    $('#savebtnviewshiftmodel').removeClass('d-none');
-});
+
 
 
 
 $('#regionDropDownScheduling').on('change', function () {
     regionid = $(this).val()
     loadSchedulingPartial(currentPartial);
-
 });
 $('#endTimeAddShiftModel , #startTimeAddShiftModel').on('change', function () {
     let start = $('#startTimeAddShiftModel').val();
@@ -250,7 +243,13 @@ $('#returnbtnviewshiftmodel').on('click', function () {
     });
 
 });
-
+$('#editbtnviewshiftmodel').click(function () {
+    console.log("jdsbhjdbshj")
+    $('#viewshiftstartdate').prop('disabled', false);
+    $('#viewshiftenddate').prop('disabled', false);
+    $('#editbtnviewshiftmodel').addClass('d-none');
+    $('#savebtnviewshiftmodel').removeClass('d-none');
+});
 $("#viewShiftForm").submit(function (event) {
     event.preventDefault();
     if ($("#viewShiftForm").valid()) {
@@ -265,7 +264,12 @@ $("#viewShiftForm").submit(function (event) {
             contentType: false,
             success: function (response) {
                 loadSchedulingPartial(currentPartial);
+        $('#viewshiftstartdate').prop('disabled', true);
+        $('#viewshiftenddate').prop('disabled', true);
+        $('#editbtnviewshiftmodel').removeClass('d-none');
+        $('#savebtnviewshiftmodel').addClass('d-none');
                 $('#viewShiftModal').modal('hide');
+
             },
             error: function (xhr, textStatus, errorThrown) {
                 console.log('Error while updating physician info:', errorThrown);

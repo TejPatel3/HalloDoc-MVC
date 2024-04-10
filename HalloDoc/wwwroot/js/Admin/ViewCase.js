@@ -98,12 +98,12 @@ $('.ViewCaseSaveBtn').on('click', function (e) {
 //    utilsScript:
 //        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 
-var phoneInputField = document.querySelector("#viewcasephone ");
+var phoneInputField = document.querySelector("#viewcasephone");
 var phoneInput = window.intlTelInput(phoneInputField, {
     utilsScript:
         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 });
-var phoneInputField2 = document.querySelector("#viewcasephone ");
+var phoneInputField2 = document.querySelector("#viewcasephone");
 var phoneInput = window.intlTelInput(phoneInputField2, {
     utilsScript:
         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
