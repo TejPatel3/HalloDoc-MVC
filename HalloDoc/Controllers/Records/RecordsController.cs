@@ -21,5 +21,24 @@ namespace HalloDoc.Controllers.Records
             viewModel.UserList = _unitOfWork.record.GetUserList(firstname, lastname, email, phone);
             return PartialView("_PatientHistoryTable", viewModel);
         }
+        public IActionResult PatientRecord(int id)
+        {
+            List<PatientRecordViewModel> records = new List<PatientRecordViewModel>();
+            records = _unitOfWork.record.GetPatientRecordData(id);
+            return View(records);
+        }
+        public IActionResult EmailLog()
+        {
+            var model = _unitOfWork.record.GetAspNetRoleList();
+            return View(model);
+        }
+        [HttpGet]
+        //public IActionResult GetEmailLogTable(int Role, string ReceiverName, string Email, string CreatedDate, string SentData)
+        public IActionResult GetEmailLogTable()
+        {
+            var model = _unitOfWork.record.GetEmailLogs();
+
+            return PartialView("_EmailLogTable", model);
+        }
     }
 }

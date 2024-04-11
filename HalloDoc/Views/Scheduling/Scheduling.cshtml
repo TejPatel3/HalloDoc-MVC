@@ -37,10 +37,10 @@
                         <i class="bi bi-plus-square"></i>
                         <span class="d-none d-lg-block ps-2">Providers On Call</span>
                     </button>
-                    <button id="shiftForReviewSchedulingbtn" class="p-2 mx-2 text-white rounded btn-info border-0 shadow-none d-flex align-items-center">
+                    <a asp-controller="Scheduling" asp-action="ShiftForReview" id="" class="p-2 mx-2 text-white rounded btn-info border-0 shadow-none d-flex align-items-center text-decoration-none">
                         <i class="bi bi-plus-square"></i>
                         <span class="d-none d-lg-block ps-2">Shifts For Review</span>
-                    </button>
+                    </a>
                     <button class="p-2 ms-2 text-white rounded btn-info border-0 shadow-none d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addShiftModal">
                         <i class="bi bi-plus-square"></i>
                         <span class="d-none d-lg-block ps-2">Add New Shift</span>
@@ -117,19 +117,18 @@
             </div>
             <form id="viewShiftForm" asp-controller="Scheduling" asp-action="ViewShiftModelSavebtn">
                 <div class="modal-body">
-                    <input id="shiftdetailidviewmodel" type="number" asp-for="shiftdetailid" />
+                    <input id="shiftdetailidviewmodel" type="number" asp-for="shiftdetailid" hidden/>
                     @* <input id="shiftidviewmodel" type="number"  /> *@
 
                     <div class="form-floating">
                         <select asp-for="regionid" class="form-select physiciandata" id="viewshiftregion" aria-label="Floating label select example" disabled>
                             <option value="" selected>Select Region</option>
-                            @if (Model.regions != null)
-                            {
+                          
                                 @foreach (var obj in Model.regions)
                                 {
                                     <option value="@obj.RegionId">@obj.Name</option>
                                 }
-                            }
+                            
                         </select>
                         <label for="floatingSelect" class="text-info">
                             Region

@@ -1,4 +1,9 @@
-﻿var firstname;
+﻿window.onload = function () {
+    $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+    $('#nav-record-tab').addClass('admin-layout-nav-active');
+}
+
+var firstname;
 var lastname;
 var email;
 var phone;
@@ -29,5 +34,17 @@ $('#searchPatientHistorybtn').click(function () {
         });
         return
     }
+    loadData();
+});
+$('#clearPatientHistorybtn').click(function () {
+     $('#firstNamePatientHistory').val("");
+    $('#lastNamePatientHistory').val("");
+     $('#emailPatientHistory').val("");
+    $('#phonePatientHistory').val("");
+    firstname = "";
+    lastname =  "";
+    email =  "";
+    phone =  "";
+  
     loadData();
 });

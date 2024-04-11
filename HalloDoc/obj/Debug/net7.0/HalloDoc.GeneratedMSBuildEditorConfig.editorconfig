@@ -184,12 +184,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmlkZXJcUHJvdmlkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/HalloDoc/HalloDoc/Views/Records/EmailLog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3Jkc1xFbWFpbExvZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/HalloDoc/HalloDoc/Views/Records/PatientHistory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3Jkc1xQYXRpZW50SGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/HalloDoc/HalloDoc/Views/Records/PatientRecord.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3Jkc1xQYXRpZW50UmVjb3JkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/HalloDoc/HalloDoc/Views/Records/_EmailLogTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVjb3Jkc1xfRW1haWxMb2dUYWJsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/HalloDoc/HalloDoc/Views/Records/_PatientHistoryTable.cshtml]

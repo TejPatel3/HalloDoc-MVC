@@ -1,0 +1,39 @@
+﻿@using Services.ViewModels;
+@model List<EmailLogViewModel>
+
+@{
+    Layout = null;
+}
+
+<table class="table">
+    <thead style="background-color: rgb(235, 235, 235) ; color: black !important; font-weight:700">
+        <tr>
+            <th style="width:11.11%">Recipint</th>
+            <th style="width:11.11%">Action</th>
+            <th style="width:11.11%">Role Name</th>
+            <th style="width:11.11%">Email Id</th>
+            <th style="width:11.11%">Created Date</th>
+            <th style="width:11.11%">Sent Date</th>
+            <th style="width:11.11%">Sent</th>
+            <th style="width:11.11%">Sent Tries</th>
+            <th style="width:11.11%">Confirmation Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Recipint</td>
+                <td>@item.Action</td>
+                <td>@item.RoleName</td>
+                <td>@item.Email</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.SentDate</td>
+                <td>@item.Sent</td>
+                <td>@item.SentTries</td>
+                <td>@item.ConfirmationNumber</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

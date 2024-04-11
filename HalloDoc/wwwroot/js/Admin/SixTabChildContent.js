@@ -22,6 +22,7 @@
             data: { reqid: requestid },
             success: function (response) {
                 $('#nav-home').html(response);
+                $('#patientRecordMainDiv').html(data);
             },
             error: function (xhr, status, error) {
                 console.error(error);

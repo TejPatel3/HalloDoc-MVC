@@ -173,6 +173,14 @@
       "PackagePath": "staticwebassets\\images\\night-mode.png"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\no data found.jpg",
+      "PackagePath": "staticwebassets\\images\\no data found.jpg"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\no data gif.gif",
+      "PackagePath": "staticwebassets\\images\\no data gif.gif"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\output-onlinepngtools.png",
       "PackagePath": "staticwebassets\\images\\output-onlinepngtools.png"
     },
@@ -249,8 +257,16 @@
       "PackagePath": "staticwebassets\\js\\Provider\\Provider.js"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\EmailLog.js",
+      "PackagePath": "staticwebassets\\js\\Records\\EmailLog.js"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientHistory.js",
       "PackagePath": "staticwebassets\\js\\Records\\PatientHistory.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientRecord.js",
+      "PackagePath": "staticwebassets\\js\\Records\\PatientRecord.js"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Scheduling\\Scheduling.js",

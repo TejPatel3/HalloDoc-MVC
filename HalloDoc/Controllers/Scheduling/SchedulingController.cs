@@ -495,9 +495,11 @@ namespace HelloDoc.Controllers.Scheduling
             model.selectedRegionid = regionid;
             return View(model);
         }
-        public IActionResult ShiftForReview(string currentPartial, string date, int regionid, int pagesize, int currentpage)
+        public IActionResult ShiftForReview()
         {
-            SchiftsForReviewViewModel model = _unitOfWork.scheduling.getShiftData(currentPartial, date, regionid, pagesize, currentpage);
+            SchiftsForReviewViewModel model = new SchiftsForReviewViewModel();
+            model.regionlist = _unitOfWork.vendor.getRegionList();
+
             return View(model);
         }
         public IActionResult GetShiftData(string currentPartial, string date, int regionid, int pagesize, int currentpage)

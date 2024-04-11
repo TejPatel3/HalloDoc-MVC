@@ -11,6 +11,7 @@ $('.cancelbtn').on('click', function (e) {
     var reqid = $(this).attr('id');
     var inputval = $('.requestid');
     inputval.val(reqid);
+    $('#exampleModal').modal();
 });
 
 $('.viewNotes').on('click', function (e) {
@@ -22,6 +23,8 @@ $('.viewNotes').on('click', function (e) {
         data: { reqid: requestid },
         success: function (response) {
             $('#nav-home').html(response);
+            $('#patientRecordMainDiv').html(response);
+
         },
         error: function (xhr, status, error) {
             console.error(error);
@@ -107,4 +110,11 @@ var phoneInputField2 = document.querySelector("#viewcasephone");
 var phoneInput = window.intlTelInput(phoneInputField2, {
     utilsScript:
         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+
+//$('#ViewCaseBackbtn').click(function () {
+//    location.reload();
+//});
+$('.backbuttonglobal').click(function () {
+    location.reload();
 });

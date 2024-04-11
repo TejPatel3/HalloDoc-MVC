@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8Hq/W/aOpvPi6i6xUth5i1EkAL/ZotR6TTTyXsB4dn4=",
+  "Hash": "5r0yXiqypXBc9Rv1gmUTDLk8FzHNG6LRhRjTGnZKOug=",
   "Source": "HalloDoc",
   "BasePath": "_content/HalloDoc",
   "Mode": "Default",
@@ -391,6 +391,40 @@
       "OriginalItemSpec": "wwwroot\\images\\night-mode.png"
     },
     {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\no data found.jpg",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "images/no data found.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\no data found.jpg"
+    },
+    {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\no data gif.gif",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "images/no data gif.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\no data gif.gif"
+    },
+    {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\output-onlinepngtools.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
@@ -714,6 +748,23 @@
       "OriginalItemSpec": "wwwroot\\js\\ProviderLocation\\ProviderLoaction.js"
     },
     {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\EmailLog.js",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "js/Records/EmailLog.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Records\\EmailLog.js"
+    },
+    {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientHistory.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
@@ -729,6 +780,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\Records\\PatientHistory.js"
+    },
+    {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientRecord.js",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "js/Records/PatientRecord.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Records\\PatientRecord.js"
     },
     {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Scheduling\\Scheduling.js",

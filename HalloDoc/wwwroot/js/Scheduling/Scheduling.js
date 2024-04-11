@@ -328,21 +328,21 @@ $('#regionDropDownProviderOnCall').on('change', function () {
 
 
 
-var currentpage;
-var totalpages;
-var pagesize = 10;
-$('#shiftForReviewSchedulingbtn').click(function () {
-    $.ajax({
-        url: '/Scheduling/ShiftForReview',
-        data: { currentPartial: currentPartial, date: filterDate.toISOString(), 'regionid': regionid, 'pagesize': pagesize, 'currentpage': currentpage },
+//var currentpage;
+//var totalpages;
+//var pagesize = 10;
+//$('#shiftForReviewSchedulingbtn').click(function () {
+//    $.ajax({
+//        url: '/Scheduling/ShiftForReview',
+//        data: { currentPartial: currentPartial, date: filterDate.toISOString(), 'regionid': regionid, 'pagesize': pagesize, 'currentpage': currentpage },
 
-        success: function (response) {
-            $('#shedulingMainDiv').html(response)
+//        success: function (response) {
+//            $('#shedulingMainDiv').html(response)
 
 
-        },
-        error: function (xhr, textStatus, errorThrown) {
-            console.log('Error', errorThrown);
-        }
-    });
-});
+//        },
+//        error: function (xhr, textStatus, errorThrown) {
+//            console.log('Error', errorThrown);
+//        }
+//    });
+//});

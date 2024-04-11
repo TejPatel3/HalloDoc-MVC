@@ -35,7 +35,7 @@
                     <td>@item.PhoneNumber</td>
                     <td>@item.BusinessContact</td>
                     <td class="d-flex justify-content-center">
-                        <button value="@item.VendorId" class="btn btn-outline-info mx-1 editvendor">Edit</button>
+                        <a asp-action="EditVendorAccount" asp-controller="Vendor" asp-route-vendorid=@item.VendorId  class="btn btn-outline-info mx-1">Edit</a>
                         <button value="@item.VendorId" class="btn btn-outline-info mx-1 deletevendor">Delete</button>
                     </td>
                 </tr>

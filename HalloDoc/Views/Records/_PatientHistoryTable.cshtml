@@ -5,7 +5,7 @@
 }
 
 <table class="table">
-    <thead class="bg-secondary text-white">
+    <thead style="background-color: rgb(235, 235, 235) ; color: black !important; font-weight:700">
         <tr>
             <td style="width:12%">First Name</td>
             <td style="width:12%">Last Name</td>
@@ -25,7 +25,7 @@
             <td>@item.Mobile</td>
             <td>@item.Street @item.City @item.State</td>
             <td>
-                <button class="btn btn-outline-info">Explore</button>
+                <a asp-controller="Records" asp-action="PatientRecord" asp-route-id="@item.UserId" class="btn btn-outline-info">Explore</a>
             </td>
         </tr>
         }

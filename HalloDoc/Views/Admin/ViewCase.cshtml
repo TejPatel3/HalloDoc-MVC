@@ -7,16 +7,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-
 <input type="number" class="requestid" value="@Model.requestId" hidden />
 <div class="container pb-4 bg-light " id="vCase">
     <div class="d-flex justify-content-between align-items-center w-100 my-3">
         <h4>New Request<span class=" ms-2 small text-white px-3 py-2 bg-success" style="border-radius:25px; font-size:15px">Patient</span></h4>
-        <a asp-controller="Admin" asp-action="AdminDashboard"
-           class="btn m-0 btn-outline-info  px-2 ">
+        <button 
+                class="btn m-0 btn-outline-info  px-2 backbuttonglobal">
             <i class="fa-solid fa-chevron-left"></i>
             Back
-        </a>
+        </button>
     </div>
     <form asp-controller="Admin" asp-action="ViewCaseEditData">
         <div class="row bg-white  px-4 py-2 rounded-3 shadow">
