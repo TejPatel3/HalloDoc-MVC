@@ -13,57 +13,18 @@
         <div class="row">
             <div class="col-12 d-flex justify-content-between mt-3 ">
                 <div class="dropdown d-flex">
-                    <select name="regionname" id="RegionSearch" class="form-select shadow-none getregion h-100" style="min-width:100px" aria-label="Floating label select example">
-                        <span class="search-icon "></span>
-                        <i class="bi bi-search"></i>
-                        <option class="regionselect" value="1234" selected>All</option>
-
+                    <select name="regionname" id="RegionSearch" class="form-select shadow-none getregion h-100" style="min-width:100px" aria-label="Floating label select example">                 
+                        <option class="regionselect" selected value="0">All Region</option>
+                        @foreach (var item in Model.regionlist)
+                        {
+                            <option class="regionselect" value="@item.RegionId">@item.Name</option>
+                        }
                     </select>
 
                 </div>
                 <a class="btn btn-info text-white" asp-action="CreateProviderAccount">Create Provider Account</a>
             </div>
-            <div class="table-responsive col-12 my-2">
-                <table class="table align-middle">
-                    <thead class="bg-light">
-                        <tr>
-                            <th>Stop Notification</th>
-                            <th>Provider Name</th>
-                            <th>Role</th>
-                            <th>Call On Status</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="datatable" class="bg-white">
-                        <tr class="d-none" id="savebtnNotificationProvider">
-                            <td class="border-0">
-
-                                <button class="btn btn-info">save</button>
-                            </td>
-                        </tr>
-                        @foreach (var item in Model.physician)
-                        {
-                            <tr>
-                                <td><input type="checkbox" value="@item.PhysicianId" name="providernotificationcheckbox" class="providernotificationcheckbox" 
-                                    @if(Model.isnotificationstopped.Any(m => m.PhysicianId == item.PhysicianId)){
-                                        @:checked
-                                    }
-                                    /></td>
-                                <td>@item.FirstName @item.LastName</td>
-                                <td>Physician</td>
-                                <td>Available</td>
-                                <td>Active</td>
-                                <td>
-                                    <button type="button" class="btn btn-outline-info Contactbtn-Provider" value="@item.PhysicianId" data-bs-toggle="modal" data-bs-target="#ContactProviderModal">Contact</button>
-                                    <button class="btn btn-outline-info editbtn-Provider" value="@item.PhysicianId">Edit</button>
-
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
+            <div class="table-responsive col-12 my-2" id="ProviderTableDiv">
 
             </div>
         </div>
@@ -117,7 +78,7 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+@* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> *@
 
 
 <script src="/js/Provider/Provider.js" asp-append-version="true"></script>

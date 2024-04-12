@@ -1,0 +1,126 @@
+﻿@using Services.ViewModels
+@model ProviderDetailsViewModel
+@{
+    Layout = "_OnlyLinks";
+}
+
+<table class="table align-middle">
+    <thead style="background-color: rgb(235, 235, 235) ; color: black !important; font-weight:700">
+        <tr>
+            <th>Stop Notification</th>
+            <th>Provider Name</th>
+            <th>Role</th>
+            <th>Call On Status</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="datatable">
+        <tr class="d-none" id="savebtnNotificationProvider">
+            <td class="border-0">
+
+                <button class="btn btn-info">save</button>
+            </td>
+        </tr>
+        @foreach (var item in Model.physician)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" value="@item.PhysicianId" name="providernotificationcheckbox" class="providernotificationcheckbox"
+                    @if (Model.isnotificationstopped.Any(m => m.PhysicianId == item.PhysicianId))
+                    {
+                        @:checked
+                    } />
+                </td>
+                <td>@item.FirstName @item.LastName</td>
+                <td>Physician</td>
+                <td>Available</td>
+                <td>Active</td>
+                <td>
+                    <button type="button" class="btn btn-outline-info Contactbtn-Provider" value="@item.PhysicianId" data-bs-toggle="modal" data-bs-target="#ContactProviderModal">Contact</button>
+                    <button class="btn btn-outline-info editbtn-Provider" value="@item.PhysicianId">Edit</button>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $('.Contactbtn-Provider').on('click', function () {
+        let physicianid = $(this).val();
+        console.log(physicianid)
+        $('#contactprovidersubmitbtn').val(physicianid)
+    });
+    $('#contactprovidersubmitbtn').on('click', function () {
+        let physicianid = $(this).val();
+        let message = $('#message-contactprovidermodel').val();
+        let radiobutton = $('input[name="contactMethod"]:checked').val();
+        console.log(radiobutton)
+        $('#message-providercontactmodal-span').html("");
+        if (radiobutton == undefined) {
+            alert("please select one of them");
+        }
+        else if (message == "") {
+            $('#message-providercontactmodal-span').html("please enter message");
+        }
+        else if (!regextext.test(message)) {
+
+            $('#message-providercontactmodal-span').html("message is not valid");
+        }
+        else {
+
+            $.ajax({
+                url: '/Provider/ContactProviderModelSubmit',
+                data: { "physicianid": physicianid, "message": message },
+                success: function (response) {
+                    $('#ContactProviderModal').modal('hide');
+                },
+                error: function (xhr, status, error) {
+                    console.error(error)
+                }
+            });
+        }
+    });
+
+    $('.editbtn-Provider').on('click', function () {
+        let physicianid = $(this).val();
+        $.ajax({
+            url: '/Provider/EditProviderAccount',
+            data: { physicianid: physicianid },
+            success: function (response) {
+                $('#provider-maindiv').html(response);
+                $('#physicianid-editprovideraccount').val(physicianid);
+                $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+                $('#nav-provider-tab').addClass('admin-layout-nav-active');
+            },
+            error: function (xhr, status, error) {
+                console.error(error)
+            }
+        });
+
+    });
+    $('.providernotificationcheckbox').on('change', function () {
+        $('#savebtnNotificationProvider').removeClass('d-none');
+    });
+    $('#savebtnNotificationProvider').on('click', function () {
+        $('#savebtnNotificationProvider').addClass('d-none');
+        let provideridlist = [];
+        $('input[type="checkbox"]:checked').each(function () {
+            provideridlist.push($(this).val());
+        });
+        console.log(provideridlist)
+        $.ajax({
+            url: '/Provider/UpdateNotification',
+            data: { "provideridlist": provideridlist },
+            type: 'POST',
+
+            success: function () {
+
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+
+</script>

@@ -1,16 +1,16 @@
-﻿using HalloDoc.DataContext;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
+using Services.Contracts;
 using Services.ViewModels;
 
 namespace HalloDoc.Controllers.ProviderLocation
 {
     public class ProviderLocationController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public ProviderLocationController()
+        private readonly IunitOfWork _unitOfWork;
+        public ProviderLocationController(IunitOfWork unit)
         {
-            _context = new ApplicationDbContext();
+            _unitOfWork = unit;
         }
         public IActionResult ProviderLocation()
         {
@@ -18,8 +18,8 @@ namespace HalloDoc.Controllers.ProviderLocation
         }
         public string GetLocations()
         {
-            var physicianlocation = _context.PhysicianLocations.ToList();
-            var physician = _context.Physicians.ToList();
+            var physicianlocation = _unitOfWork.tableData.GetPhysicianLocationList();
+            var physician = _unitOfWork.tableData.GetPhysicianList();
             List<ProviderLocationViewModel> locations = new List<ProviderLocationViewModel>();
             foreach (var physicianLocation in physicianlocation)
             {

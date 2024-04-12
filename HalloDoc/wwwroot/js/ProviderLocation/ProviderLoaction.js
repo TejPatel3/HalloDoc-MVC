@@ -6,23 +6,23 @@ window.onload = function () {
 
 
 }
-    $.ajax({
-        url: '/ProviderLocation/GetLocationS',
-        method: 'GET',
-        async: false,
+$.ajax({
+    url: '/ProviderLocation/GetLocationS',
+    method: 'GET',
+    async: false,
 
-        success: function (response) {
-            console.log(locationdata);
-            locationdata = JSON.parse(response)
-            console.log(locationdata);
-            //response.map(function (res) {
-            //    L.marker([res.latitude, res.longitude]).addTo(map)
-            //        .bindPopup(res.physicianname)
-            //})
-        }
-    })
+    success: function (response) {
+        console.log(locationdata);
+        locationdata = JSON.parse(response)
+        console.log(locationdata);
+        //response.map(function (res) {
+        //    L.marker([res.latitude, res.longitude]).addTo(map)
+        //        .bindPopup(res.physicianname)
+        //})
+    }
+})
 
-var map = L.map('map').setView([22.2, 77.1],5);
+var map = L.map('map').setView([22.2, 77.1], 5);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -44,7 +44,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 for (var i = 0; i < locationdata.length; i++) {
-var popupContent;
+    var popupContent;
     var iconHtml = '<div class="d-flex" style="width: 30px; height: 30px; border-radius: 50%; overflow: hidden; border: 4px solid #008000;">' +
         '<img src="' + locationdata[i].Photo + '" style="width: 100%; height: auto;" />' +
         '</div>' +
@@ -58,7 +58,7 @@ var popupContent;
     });
     if (locationdata[i].Photo != null) {
         popupContent = '<img class="openeditphy" data-id="' + locationdata[i].Physicianid + '" width = "60%" src="' + locationdata[i].Photo + '" />' +
-       '<p>Physician: ' + locationdata[i].Name + '</p>';
+            '<p>Physician: ' + locationdata[i].Name + '</p>';
     }
     else {
         popupContent = '<img class="openeditphy" data-id="' + locationdata[i].Physicianid + '" width = "60%" src="/images/profile-icon.png" />' +

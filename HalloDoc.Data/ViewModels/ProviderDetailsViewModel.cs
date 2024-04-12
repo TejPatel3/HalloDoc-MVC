@@ -40,11 +40,11 @@ namespace Services.ViewModels
         public BitArray IsCredentialDoc { get; set; }
         public BitArray IsNonDisclosureDoc { get; set; }
         public BitArray IsLicenseDoc { get; set; }
-        public IFormFile AgreementDoc { get; set; }
-        public IFormFile BackgroundDoc { get; set; }
-        public IFormFile CredentialDoc { get; set; }
-        public IFormFile NonDisclosureDoc { get; set; }
-        public IFormFile LicenseDoc { get; set; }
+        public IFormFile? AgreementDoc { get; set; }
+        public IFormFile? BackgroundDoc { get; set; }
+        public IFormFile? CredentialDoc { get; set; }
+        public IFormFile? NonDisclosureDoc { get; set; }
+        public IFormFile? LicenseDoc { get; set; }
 
         public List<PhysicianNotification> isnotificationstopped { get; set; }
 

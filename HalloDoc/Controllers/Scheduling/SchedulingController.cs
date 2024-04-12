@@ -24,7 +24,7 @@ namespace HelloDoc.Controllers.Scheduling
         public IActionResult Scheduling()
         {
             SchedulingViewModel modal = new SchedulingViewModel();
-            modal.regions = _context.Regions.ToList();
+            modal.regions = _unitOfWork.tableData.GetRegionList();
             return View(modal);
         }
 
@@ -495,6 +495,7 @@ namespace HelloDoc.Controllers.Scheduling
             model.selectedRegionid = regionid;
             return View(model);
         }
+
         public IActionResult ShiftForReview()
         {
             SchiftsForReviewViewModel model = new SchiftsForReviewViewModel();

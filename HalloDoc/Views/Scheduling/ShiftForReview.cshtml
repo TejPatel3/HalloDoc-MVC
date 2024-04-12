@@ -29,7 +29,7 @@
             <div class="col-12 col-sm-6 col-xl-8 d-flex  justify-content-end">
                 <a asp-action="Scheduling" asp-controller="Scheduling" class="btn btn-success mx-1">View current month shifts</a>
                 <button id="approve-selected-requestedshift" value="approve" class="btn btn-success mx-1">Approved Selected</button>
-                <button id="delete-selected-requestedshift" value="delete" class="btn btn-danger mx-1">Delete Selected</a>
+                <button id="delete-selected-requestedshift" value="delete" class="btn btn-danger mx-1">Delete Selected</button>
             </div>
         </div>
         <div class="table-responsive pt-3" id="ShiftForReviewTableData">
@@ -40,10 +40,13 @@
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 
 <script>
+    window.onload = function () {
+        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-provider-tab').addClass('admin-layout-nav-active');
+    }
     $('#header-checkbox-reviewshifts').on('change', function () {
         // $('.individual-checkbox-reviewshift').prop("checked", this.checked);
         // console.log("run check")

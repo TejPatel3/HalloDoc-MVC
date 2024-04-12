@@ -11,51 +11,52 @@
     <div class="container-fluid shadow px-3 py-4 bg-white">
         <div class="row d-flex">
             <div class="col-md-2">
-                <div class="dropdown h-100" style="width:clamp(200px, 100%, 100%);">
-                    <select name="requeststatus" class="form-select shadow-none border-secondary h-100" id="requeststatusfilter_searchrecords">
+                <div class="dropdown h-100 form-floating" style="width:clamp(200px, 100%, 100%);">
+                    <select name="requeststatus" class="form-select shadow-none border-secondary h-100" id="RoleFilterEmailLog">
                         <option value="0" selected>All</option>
                         @foreach (var item in Model.AspNetRoleList)
                         {
                             <option value="@item.Id">@item.Name</option>
                         }
                     </select>
+                    <label class="FloatingInput">Search By Role</label>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-floating">
-                    <input id="firstNamePatientHistory" class="form-control rounded-1  shadow-none" type="search" placeholder="Search..." aria-label="Search" style="width:clamp(100px, 100%, 100%);">
-                    <label class="FloatingInput">First Name</label>
+                    <input id="ReceiverNameEmailLog" class="form-control rounded-1  shadow-none" type="search" placeholder="Search..." aria-label="Search" style="width:clamp(100px, 100%, 100%);">
+                    <label class="FloatingInput">Receiver Name</label>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-floating">
-                    <input id="lastNamePatientHistory" class="form-control rounded-1 shadow-none" type="search" placeholder="Provider Name" style="width:clamp(100px, 100%, 100%);">
-                    <label class="FloatingInput">Last Name</label>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="form-floating">
-                    <input id="fromdos_searchrecords" class="form-control rounded-1 me-2 py-2 shadow-none" type="date" placeholder="From Date Of Service" style="width:clamp(100px, 100%, 100%); padding-top:18px !important; ">
-                    <label class="FloatingInput" style="padding-top:13px !important">From Date Of Service</label>
-
+                    <input id="EmailIdEmailLog" class="form-control rounded-1 shadow-none" type="search" placeholder="Provider Name" style="width:clamp(100px, 100%, 100%);">
+                    <label class="FloatingInput">Email Id</label>
                 </div>
             </div>
 
             <div class="col-md-2">
                 <div class="form-floating">
-                    <input id="fromdos_searchrecords" class="form-control rounded-1 me-2 py-2 shadow-none" type="date" placeholder="From Date Of Service" style="width:clamp(100px, 100%, 100%); padding-top:18px !important; ">
-                    <label class="FloatingInput" style="padding-top:13px !important">From Date Of Service</label>
+                    <input id="CreatedDateEmailLog" class="form-control rounded-1 me-2 py-2 shadow-none" type="date" placeholder="From Date Of Service" style="width:clamp(100px, 100%, 100%); padding-top:18px !important; ">
+                    <label class="FloatingInput" style="padding-top:13px !important">Created Date</label>
+
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input id="SentDateEmailId" class="form-control rounded-1 me-2 py-2 shadow-none" type="date" placeholder="From Date Of Service" style="width:clamp(100px, 100%, 100%); padding-top:18px !important; ">
+                    <label class="FloatingInput" style="padding-top:13px !important">Sent Date</label>
 
                 </div>
             </div>
 
 
             <div class="d-flex justify-content-end col-md-2 mt-3">
-                <button class="btn-info shadow-none rounded-3" id="searchPatientHistorybtn">
+                <button class="btn-info shadow-none rounded-3" id="searchEmailLogbtn">
                     Search
                 </button>
-                <button class="btn btn-outline-info rounded-3 py-2 px-3 mx-2 shadow-none" id="clearPatientHistorybtn">
+                <button class="btn btn-outline-info rounded-3 py-2 px-3 mx-2 shadow-none" id="clearEmailLogbtn">
                     Clear
                 </button>
             </div>
@@ -65,18 +66,4 @@
     </div>
 </div>
 
-<script>
-    // $("#EmailLogTable").load("/Records/GetEmailLogTable");
-
-
-    $.ajax({
-        url: '/Records/GetEmailLogTable',
-        success: function (data) {
-            $("#EmailLogTable").html(data)
-        },
-        error: function (xhr, status, error) {
-
-            console.error(error);
-        }
-    });
-</script> 
+<script src="/js//Records/EmailLog.js" asp-append-version="true"></script>

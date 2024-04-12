@@ -2,6 +2,7 @@
 using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Services.Contracts;
 using Services.ViewModels;
 using System.Collections;
 using System.Net;
@@ -12,9 +13,11 @@ namespace HalloDoc.Controllers.Provider
     public class ProviderController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public ProviderController(ApplicationDbContext context)
+        private readonly IunitOfWork _unitOfWork;
+        public ProviderController(ApplicationDbContext context, IunitOfWork unit)
         {
             _context = context;
+            _unitOfWork = unit;
         }
         public IActionResult Provider()
         {
@@ -25,9 +28,24 @@ namespace HalloDoc.Controllers.Provider
             var model = new ProviderDetailsViewModel();
             model.physician = _context.Physicians.Where(m => m.IsDeleted != bitset).ToList();
             model.isnotificationstopped = physiciannotificatin;
+            model.regionlist = _unitOfWork.tableData.GetRegionList();
             return View(model);
         }
+        public IActionResult GetProviderTable(int regionid)
+        {
 
+            var model = new ProviderDetailsViewModel();
+            if (regionid == 0)
+            {
+                model.physician = _unitOfWork.tableData.GetPhysicianList().ToList();
+            }
+            else
+            {
+                model.physician = _unitOfWork.tableData.GetPhysicianList().Where(m => m.RegionId == regionid).ToList();
+            }
+            model.isnotificationstopped = _unitOfWork.tableData.GetPhysicianNotificationList();
+            return PartialView("_ProviderTable", model);
+        }
         public IActionResult ContactProviderModelSubmit(int physicianid, string message)
         {
             var physician = _context.Physicians.FirstOrDefault(m => m.PhysicianId == physicianid);
@@ -94,7 +112,11 @@ namespace HalloDoc.Controllers.Provider
                 signature = physician.Signature,
                 physicianid = physicianid,
                 selectedregionlist = selectedphyregionlist,
-                IsAgreementDoc = physician.IsAgreementDoc,                IsCredentialDoc = physician.IsCredentialDoc,                IsBackgroundDoc = physician.IsBackgroundDoc,                IsLicenseDoc = physician.IsLicenseDoc,                IsNonDisclosureDoc = physician.IsNonDisclosureDoc,
+                IsAgreementDoc = physician.IsAgreementDoc,
+                IsCredentialDoc = physician.IsCredentialDoc,
+                IsBackgroundDoc = physician.IsBackgroundDoc,
+                IsLicenseDoc = physician.IsLicenseDoc,
+                IsNonDisclosureDoc = physician.IsNonDisclosureDoc,
                 selectedroleid = (int)physician.RoleId,
                 status = (short)physician.Status,
             };
@@ -221,6 +243,7 @@ namespace HalloDoc.Controllers.Provider
             ProviderDetailsViewModel model = new ProviderDetailsViewModel
             {
                 regionlist = regionlist,
+                rolelist = _context.Roles.ToList(),
             };
             return View(model);
         }
@@ -229,6 +252,7 @@ namespace HalloDoc.Controllers.Provider
         {
             var adminid = HttpContext.Session.GetInt32("AdminId");
             var admin = _context.Admins.FirstOrDefault(m => m.AdminId == adminid);
+
             if (adminid != 0)
             {
                 Guid id = Guid.NewGuid();
@@ -254,6 +278,8 @@ namespace HalloDoc.Controllers.Provider
                     MedicalLicense = obj.medicallicencenumber,
                     AdminNotes = obj.adminnote,
                     Address1 = obj.address1,
+                    RegionId = 1,
+                    RoleId = obj.selectedroleid,
                     Address2 = obj.address2,
                     City = obj.city,
                     Zip = obj.zip,
@@ -261,8 +287,16 @@ namespace HalloDoc.Controllers.Provider
                     CreatedBy = admin.AspNetUserId,
                     CreatedDate = DateTime.Now,
                     Npinumber = obj.npinumber,
+                    Photo = obj.photo,
+                    Status = 1,
                     BusinessName = obj.businessname,
                     BusinessWebsite = obj.businesswebsite,
+                    IsAgreementDoc = new BitArray(new[] { false }),
+                    IsBackgroundDoc = new BitArray(new[] { false }),
+                    IsCredentialDoc = new BitArray(new[] { false }),
+                    IsNonDisclosureDoc = new BitArray(new[] { false }),
+                    IsLicenseDoc = new BitArray(new[] { false }),
+                    IsDeleted = new BitArray(new[] { false }),
                 };
                 _context.Physicians.Add(physician);
                 _context.SaveChanges();
@@ -278,6 +312,36 @@ namespace HalloDoc.Controllers.Provider
                     _context.Add(physicianregion);
                 }
                 _context.SaveChanges();
+                //id
+                if (obj.AgreementDoc != null)
+                {
+                    uploadFile(obj.AgreementDoc, physician.PhysicianId, "IndependentContractorAgreement");
+                    physician.IsAgreementDoc = new BitArray(new[] { true });
+                }
+                if (obj.BackgroundDoc != null)
+                {
+                    uploadFile(obj.AgreementDoc, physician.PhysicianId, "BackgroundCheck");
+                    physician.IsBackgroundDoc = new BitArray(new[] { true });
+
+                }
+                if (obj.CredentialDoc != null)
+                {
+                    uploadFile(obj.AgreementDoc, physician.PhysicianId, "HIPAACompliance");
+                    physician.IsCredentialDoc = new BitArray(new[] { true });
+
+                }
+                if (obj.NonDisclosureDoc != null)
+                {
+                    uploadFile(obj.AgreementDoc, physician.PhysicianId, "Non-DisclosureAgreement");
+                    physician.IsNonDisclosureDoc = new BitArray(new[] { true });
+
+                }
+                if (obj.LicenseDoc != null)
+                {
+                    uploadFile(obj.AgreementDoc, physician.PhysicianId, "LicenseDocument");
+                    physician.IsLicenseDoc = new BitArray(new[] { true });
+
+                }
                 TempData["success"] = "Physician Account Created Successfully..!";
 
             }
@@ -289,7 +353,29 @@ namespace HalloDoc.Controllers.Provider
             return RedirectToAction("Provider");
         }
 
-        public IActionResult uploadFile(IFormFile file, int providerid, string onboardinguploadvalue)        {            if (file != null && file.Length > 0)            {                string extension = Path.GetExtension(file.FileName);                string filename = onboardinguploadvalue + extension;                string folderpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "onboarding", providerid.ToString());                if (!Directory.Exists(folderpath))                    Directory.CreateDirectory(folderpath);                string uploadFile = Path.Combine(folderpath, filename);                using (var fileStream = new FileStream(uploadFile, FileMode.Create))                {                    file.CopyTo(fileStream);                }                Physician physician = _context.Physicians.FirstOrDefault(x => x.PhysicianId == providerid);
+        public IActionResult uploadFile(IFormFile file, int providerid, string onboardinguploadvalue)
+        {
+            if (file != null && file.Length > 0)
+            {
+
+                string extension = Path.GetExtension(file.FileName);
+                string filename = onboardinguploadvalue + extension;
+
+                string folderpath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "onboarding", providerid.ToString());
+
+                if (!Directory.Exists(folderpath))
+                    Directory.CreateDirectory(folderpath);
+
+                string uploadFile = Path.Combine(folderpath, filename);
+
+                using (var fileStream = new FileStream(uploadFile, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+
+
+                Physician physician = _context.Physicians.FirstOrDefault(x => x.PhysicianId == providerid);
 
 
                 BitArray bitset = new BitArray(1);
@@ -297,7 +383,37 @@ namespace HalloDoc.Controllers.Provider
                 // Set some bits
                 bitset[0] = true; // Set the first bit to 1
 
-                if (onboardinguploadvalue == "IndependentContractorAgreement")                {                    physician.IsAgreementDoc = bitset;                }                else if (onboardinguploadvalue == "BackgroundCheck")                {                    physician.IsBackgroundDoc = bitset;                }                else if (onboardinguploadvalue == "HIPAACompliance")                {                    physician.IsCredentialDoc = bitset;                }                else if (onboardinguploadvalue == "Non-DisclosureAgreement")                {                    physician.IsNonDisclosureDoc = bitset;                }                else if (onboardinguploadvalue == "LicenseDocument")                {                    physician.IsLicenseDoc = bitset;                }                _context.Update(physician);                _context.SaveChanges();            }            return RedirectToAction("EditProviderAccount", new { physicianid = providerid });        }
+                if (onboardinguploadvalue == "IndependentContractorAgreement")
+                {
+                    physician.IsAgreementDoc = bitset;
+                }
+                else if (onboardinguploadvalue == "BackgroundCheck")
+                {
+                    physician.IsBackgroundDoc = bitset;
+
+                }
+                else if (onboardinguploadvalue == "HIPAACompliance")
+                {
+                    physician.IsCredentialDoc = bitset;
+
+                }
+                else if (onboardinguploadvalue == "Non-DisclosureAgreement")
+                {
+                    physician.IsNonDisclosureDoc = bitset;
+
+                }
+                else if (onboardinguploadvalue == "LicenseDocument")
+                {
+                    physician.IsLicenseDoc = bitset;
+
+                }
+
+                _context.Update(physician);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("EditProviderAccount", new { physicianid = providerid });
+        }
         [HttpPost]
         public IActionResult UpdateNotification(int[] provideridlist)
         {

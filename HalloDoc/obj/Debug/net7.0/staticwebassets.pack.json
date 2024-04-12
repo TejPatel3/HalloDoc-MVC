@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\UploadDocument\\7768657_3763028.jpg"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7774236_3736765 (2).jpg",
+      "PackagePath": "staticwebassets\\UploadDocument\\7774236_3736765 (2).jpg"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7774236_3736765.jpg",
       "PackagePath": "staticwebassets\\UploadDocument\\7774236_3736765.jpg"
     },
@@ -257,6 +261,10 @@
       "PackagePath": "staticwebassets\\js\\Provider\\Provider.js"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\BlockHistory.js",
+      "PackagePath": "staticwebassets\\js\\Records\\BlockHistory.js"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\EmailLog.js",
       "PackagePath": "staticwebassets\\js\\Records\\EmailLog.js"
     },
@@ -267,6 +275,14 @@
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientRecord.js",
       "PackagePath": "staticwebassets\\js\\Records\\PatientRecord.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\Records.js",
+      "PackagePath": "staticwebassets\\js\\Records\\Records.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\SMSLog.js",
+      "PackagePath": "staticwebassets\\js\\Records\\SMSLog.js"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Scheduling\\Scheduling.js",
@@ -515,6 +531,14 @@
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\0\\.pdf",
       "PackagePath": "staticwebassets\\onboarding\\0\\.pdf"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\13\\IndependentContractorAgreement.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\13\\IndependentContractorAgreement.pdf"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\14\\IndependentContractorAgreement.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\14\\IndependentContractorAgreement.pdf"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\2\\IndependentContractorAgreement.pdf",
