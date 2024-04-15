@@ -21,11 +21,11 @@ namespace Services.Implementation
             if (aspuser != null)
             {
                 var admin = _context.Admins.FirstOrDefault(m => m.AspNetUserId == aspuser.Id.ToString());
-                if (!_context.Admins.Where(m => m.Email == req.Email).Any())
-                {
-                    return 2;
-                }
-                else if (!_context.AspNetUsers.Where(user => user.PasswordHash == req.PasswordHash && user.Email == req.Email).Any())
+                //if (!_context.Admins.Where(m => m.Email == req.Email).Any())
+                //{
+                //    return 2;
+                //}
+                if (!_context.AspNetUsers.Where(user => user.PasswordHash == req.PasswordHash && user.Email == req.Email).Any())
                 {
                     return 3;
                 }

@@ -1,0 +1,186 @@
+﻿@* @model HalloDoc.Models.ViewModel.PatientDashboard
+ *@
+@inject IHttpContextAccessor accessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> @ViewData["Title"] - HalloDoc</title>
+    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> *@
+
+    <link rel='stylesheet' href='https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css'>
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"> </script>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/bd0516d00b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/HalloDoc.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <link rel="script" href="~/js/site.js" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body id="adminLayoutMainDiv">
+    <div class="bg-light min-vh-100">
+
+        <nav class="navbar navbar-light border-bottom px-1 bg-white" style="z-index:1041;">
+            <div class="d-flex align-items-center">
+
+                <button class="btn d-sm-none border border-dark h-25" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                    <i class="bi bi-list"></i>
+                </button>
+                <img src="/images/hallodoc-transparent.png"
+                     class="img-fluid d-flex ms-2"
+                     alt="" style="max-height:100px;     width: clamp(112px, 15vw, 141px); " />
+            </div>
+
+            <div class="navdiv d-flex flex-row align-items-center">
+                <h6 class="pe-2 d-sm-flex align-items-center d-none text-secondary">Welcome <b class="text-black ms-1">@accessor.HttpContext.Session.GetString("AdminName")</b></h6>
+                <a asp-action="Logout" asp-controller="AdminCredential">
+                    <button class="btn btn-outline-info ms-2" style="height:41px;" onclick="location.href='@Url.Action("AdminLogin","Admin")'"> <i class="fa-solid fa-right-from-bracket d-sm-none d-block" style="color: #00bfff;"></i><h6 class="d-sm-block d-none m-0"> Log out</h6></button>
+                </a>
+                <div>
+                    <img src="~/images/night-mode.png"
+                         id="theme-toggle"
+                         alt="Night Mode"
+                         class="img-fluid  btn btn-outline-info  px-1   m-sm-3 m-1 "
+                         style="width:37px;"
+                         onclick="toggleTheme()" />
+                </div>
+            </div>
+        </nav>
+
+        <div class="nav nav-tabs d-none d-sm-flex bg-white shadow" id="nav-tab" role="tablist">
+            <a class="admin-layout-nav  fw-bold me-2" id="nav-home-tab" asp-action="ProviderDashboard" asp-controller="ProviderSide">Dashboard</a>
+            <a class="admin-layout-nav  fw-bold me-1" id="nav-provider-location-tab">Invoicing</a>        
+            <a asp-controller="Vendor" asp-action="Vendor" class="admin-layout-nav  fw-bold" id="nav-partner-tab">My Schedule</a>    
+            <a class="admin-layout-nav  fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" asp-action="ProviderProfile" asp-controller="ProviderSide">My Profile</a>
+        </div>
+
+
+
+        <div class="pt-2 bg-light">
+            <div class="offcanvas offcanvas-start d-sm-none" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-header">
+                    <h6 class="offcanvas-title" id="offcanvasExampleLabel">Welcome <b class="text-black ms-1">@accessor.HttpContext.Session.GetString("AdminName")</b></h6>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+                </div>
+                <div class="offcanvas-body pt-0" style="z-index:auto;">
+                    <div class=" nav nav-tabs d-flex flex-row row m-0 p-0" id="nav-tab" role="tablist">
+                        <a class="admin-layout-nav  fw-bold me-2" id="nav-home-tab" asp-action="AdminDashboard" asp-controller="Admin">Dashboard</a>
+                        <a asp-controller="ProviderLocation" asp-action="ProviderLocation" class="admin-layout-nav  fw-bold me-1" id="nav-provider-location-tab">Provider Location</a>
+                        <a class="admin-layout-nav  fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" asp-action="AdminProfile" asp-controller="Admin">My Profile</a>
+
+                        <a class="admin-layout-nav  fw-bold btn  shadow-none" id="nav-provider-tab" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Providers</a>
+                        <div class="dropdown-menu" aria-labelledby="nav-provider-tab">
+                            <a class="dropdown-item" asp-action="Provider" asp-controller="Provider"> Provider  </a>
+                            <a class="dropdown-item" asp-controller="Scheduling" asp-action="Scheduling">Scheduling</a>
+                            <a class="dropdown-item" href="#">Invoices</a>
+                        </div>
+                        <a asp-controller="Vendor" asp-action="Vendor" class="admin-layout-nav  fw-bold" id="nav-partner-tab">Partners</a>
+                        <a class="admin-layout-nav  fw-bold" id="nav-access-tab" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Access</a>
+                        <div class="dropdown-menu" aria-labelledby="nav-access-tab">
+                            <a class="dropdown-item" asp-controller="Access" asp-action="AccessRole"> Access</a>
+                            <a class="dropdown-item" asp-controller="Admin" asp-action="CreateAdmin">Create Admin</a>
+                            <a class="dropdown-item" asp-controller="Access" asp-action="UserAccess">User Access</a>
+                        </div>
+                        <a class="admin-layout-nav accordion fw-bold" id="nav-record-tab" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Records</a>
+                        <div class="accordion-item " aria-labelledby="nav-record-tab">
+                            <a class="accordion-item" asp-controller="Records" asp-action="SearchRecords">Search Record</a>
+                            <a class="accordion-item" asp-controller="Records" asp-action="EmailLog">Email Log</a>
+                            <a class="accordion-item" asp-controller="Records" asp-action="SMSLog">SMS Log</a>
+                            <a class="accordion-item" asp-controller="Records" asp-action="PatientHistory">Patient History</a>
+                            <a class="accordion-item" asp-controller="Records" asp-action="BlockHistory">Block History</a>
+                            @*                         <a class="m-0 px-0 py-2 admin-layout-nav admin-layout-nav-active text-secondary fw-bold me-2" id="nav-home-tab" asp-action="AdminDashboard">Dashboard</a>
+                            <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold me-1" id="nav-provider-location-tab">Provider Location</a>
+                            <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" asp-action="AdminProfile">My Profile</a>
+                            <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold" id="nav-provider-tab">Providers</a>
+                            <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold" id="nav-partner-tab">Partners</a>
+                            <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold" id="nav-access-tab">Access</a>
+                            <a class="m-0 px-0 py-2 admin-layout-nav text-secondary fw-bold" id="nav-record-tab">Records</a> *@
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+
+
+
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
+    <script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    @* <script src="/js/Admin/ViewUpload.js" asp-append-version="true"></script> *@
+
+    <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
+
+
+<script>
+    $(document).ready(function () {
+        console.log("hello")
+        $('#editButton').click(function () {
+            $('input[type="text"]').removeAttr('disabled', false);
+            $('input[type="date"]').removeAttr('disabled', false);
+            $('input[type="tel"]').removeAttr('disabled', false);
+            $('#savebtn').removeAttr('hidden', false);
+            $('#cancelbtn').removeAttr('hidden', false);
+            $('#editButton').removeAttr('hidden', true);
+
+        });
+
+
+
+        $('.nav-profile-tab-for-load-profile').click(function () {
+            console.log("hello this is profile");
+            $.ajax({
+                url: '/Admin/AdminProfile',
+                type: 'POST',
+                success: function (response) {
+                    $('#nav-profile').html(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+
+</script>
+@* <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script> *@

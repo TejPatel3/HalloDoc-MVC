@@ -268,6 +268,16 @@ namespace HalloDoc.Controllers.Provider
                 };
                 _context.AspNetUsers.Add(aspnetuser);
                 _context.SaveChanges();
+
+                var aspnetuserroles = new AspNetUserRole
+                {
+                    RoleId = "2",
+                    UserId = id.ToString()
+                };
+
+                _context.AspNetUserRoles.Add(aspnetuserroles);
+                _context.SaveChanges();
+
                 var physician = new Physician
                 {
                     Id = aspnetuser.Id,
@@ -300,19 +310,6 @@ namespace HalloDoc.Controllers.Provider
                 };
                 _context.Physicians.Add(physician);
                 _context.SaveChanges();
-
-
-                PhysicianRegion physicianregion = new PhysicianRegion
-                {
-                    PhysicianId = physician.PhysicianId,
-                };
-                foreach (var item in selectedregion)
-                {
-                    physicianregion.RegionId = item;
-                    _context.Add(physicianregion);
-                }
-                _context.SaveChanges();
-                //id
                 if (obj.AgreementDoc != null)
                 {
                     uploadFile(obj.AgreementDoc, physician.PhysicianId, "IndependentContractorAgreement");
@@ -342,6 +339,19 @@ namespace HalloDoc.Controllers.Provider
                     physician.IsLicenseDoc = new BitArray(new[] { true });
 
                 }
+
+                PhysicianRegion physicianregion = new PhysicianRegion
+                {
+                    PhysicianId = physician.PhysicianId,
+                };
+                foreach (var item in selectedregion)
+                {
+                    physicianregion.RegionId = item;
+                    _context.Add(physicianregion);
+                }
+
+
+                _context.SaveChanges();
                 TempData["success"] = "Physician Account Created Successfully..!";
 
             }
@@ -385,26 +395,26 @@ namespace HalloDoc.Controllers.Provider
 
                 if (onboardinguploadvalue == "IndependentContractorAgreement")
                 {
-                    physician.IsAgreementDoc = bitset;
+                    physician.IsAgreementDoc = new BitArray(new[] { true });
                 }
                 else if (onboardinguploadvalue == "BackgroundCheck")
                 {
-                    physician.IsBackgroundDoc = bitset;
+                    physician.IsBackgroundDoc = new BitArray(new[] { true });
 
                 }
                 else if (onboardinguploadvalue == "HIPAACompliance")
                 {
-                    physician.IsCredentialDoc = bitset;
+                    physician.IsCredentialDoc = new BitArray(new[] { true });
 
                 }
                 else if (onboardinguploadvalue == "Non-DisclosureAgreement")
                 {
-                    physician.IsNonDisclosureDoc = bitset;
+                    physician.IsNonDisclosureDoc = new BitArray(new[] { true });
 
                 }
                 else if (onboardinguploadvalue == "LicenseDocument")
                 {
-                    physician.IsLicenseDoc = bitset;
+                    physician.IsLicenseDoc = new BitArray(new[] { true });
 
                 }
 

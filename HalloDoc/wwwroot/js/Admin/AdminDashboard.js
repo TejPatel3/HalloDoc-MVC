@@ -7,7 +7,6 @@ var regextext = /^[a-zA-Z][a-zA-Z ]+$/i;
 var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 var regexphone = /^[1-9][0-9]{9}$/;
 $('#CancelModalSubminbtn').click(function () {
-    console.log("assign modal validation js")
     var note = $('#CancelModalNote').val();
     var firsrdrop = $('#CancelModalFirstDropDownSelect').val();
     var allvalidation = true;
@@ -32,7 +31,6 @@ $('#CancelModalSubminbtn').click(function () {
 });
 
 $('#AssignModalSubminbtn').click(function () {
-    console.log("assign modal validation js")
     var note = $('#AssignModalNote').val();
     var Region = $('#AssignModalFirstDropDownSelect').val();
     var Physician = $('#AssignModalSecondDropDownSelect').val();
@@ -70,7 +68,6 @@ $('#AssignModalSubminbtn').click(function () {
 
 
 $('#BlockModalSubminbtn').click(function () {
-    console.log("assign modal validation js")
     var note = $('#BlockModalNote').val();
     let allvalidation = true;
     $('#BlockModalNoteSpan').html(" ");
@@ -92,13 +89,10 @@ $('#BlockModalSubminbtn').click(function () {
 
 
 $('#TransferModalSubminbtn').click(function () {
-    console.log("assign modal validation js")
     var note = $('#TransferModalNote').val();
     var Region = $('#TransferModalFirstDropDownSelect').val();
     var Physician = $('#TransferModalSecondDropDownSelect').val();
     var allvalidation = true;
-    console.log(Physician)
-    console.log(note)
     $('#TransferModalFirstDropDownSpan').html("");
     $('#TransferModalNoteSpan').html("");
     $('#TransferModalSecondDropDownSpan').html("");
@@ -160,7 +154,6 @@ $('#SendAgreementModalSubminbtn').click(function () {
 });
 
 $('#SendCreateRequestModalSubminbtn').click(function () {
-    console.log("create request modal validation js")
     var name = $('#SendCreateRequestModalName').val();
     var phonenumber = $('#SendCreateRequestModalPhoneNumber').val();
     let email = $('#SendCreateRequestModalEmail').val();
@@ -200,7 +193,6 @@ $('#SendCreateRequestModalSubminbtn').click(function () {
 
 
 function FirstDropDownValidation(firstdropvalue) {
-    console.log(firstdropvalue)
     if (firstdropvalue == "") {
         return true;
     }
@@ -218,7 +210,6 @@ function SecondDropDownValidation(seconddropvalue) {
 
 
 function ModalNotesValidation(note) {
-    console.log(note)
     const regexPattern = /^[a-zA-Z0-9 ]+$/;
     if (note == "") {
         return true;

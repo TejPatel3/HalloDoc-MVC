@@ -9,10 +9,10 @@
     <div class="row px-xl-5 px-2">
         <div class="col-12 d-flex justify-content-between py-4">
             <h4>Notes</h4>
-            <button class="btn m-0 btn-outline-info  px-2 backbuttonglobal" id="viewNotesBackbtn">
+            <a class="btn m-0 btn-outline-info  px-2 backbuttonglobal" id="viewNotesBackbtn">
                 <i class="fa-solid fa-chevron-left"></i>
                 Back
-            </button>
+            </a>
         </div>
         @if (Model.PhsysicianNameViewNotes != null)
         {
@@ -81,4 +81,4 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<script src="~/js/Admin/ViewNotes.js"> </script>
+<script src="~/js/Admin/ViewNotes.js" asp-append-version="true"> </script>

@@ -6,7 +6,6 @@ var regexphone = /^[1-9][0-9]{9}$/;
 $('#sendcodeforgotpassword').on('click', function () {
     var email = $('#email-forgotpassword').val();
     var model = { sendcode: true, checkcode: false, updatepassword: false, email: email };
-    console.log(email)
     if (email == "") {
         $('#email-forgotpassword-span').html("please enter email")
     }
@@ -32,7 +31,6 @@ $('#checkcodeforgotpassword').on('click', function () {
     let confirmationcode = $('#confirmationcode-forgotpassword').val();
     let originalconfirmationcode = $('#generatedconfirmationcode').val();
     var model = { sendcode: false, checkcode: true, updatepassword: false, email: null, confirmationcode: confirmationcode, originalconfirmationcode: originalconfirmationcode };
-    console.log(originalconfirmationcode)
     $('#confirmationcode-forgotpassword-span').html("")
     if (confirmationcode == "") {
         $('#confirmationcode-forgotpassword-span').html("please enter confirmation code that sent in mail")

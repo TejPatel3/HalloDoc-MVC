@@ -97,6 +97,10 @@
       "PackagePath": "staticwebassets\\UploadDocument\\sessionexpider.png"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\css\\Provider.css",
+      "PackagePath": "staticwebassets\\css\\Provider.css"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\css\\admin.css",
       "PackagePath": "staticwebassets\\css\\admin.css"
     },
@@ -251,6 +255,18 @@
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderLocation\\ProviderLoaction.js",
       "PackagePath": "staticwebassets\\js\\ProviderLocation\\ProviderLoaction.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderSide.js",
+      "PackagePath": "staticwebassets\\js\\ProviderSide\\ProviderSide.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\SixTabChildContent.js",
+      "PackagePath": "staticwebassets\\js\\ProviderSide\\SixTabChildContent.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\Tabs.js",
+      "PackagePath": "staticwebassets\\js\\ProviderSide\\Tabs.js"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Provider\\AddOrUpdatePhysicianAccount.js",
@@ -533,12 +549,24 @@
       "PackagePath": "staticwebassets\\onboarding\\0\\.pdf"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\0\\IndependentContractorAgreement.png",
+      "PackagePath": "staticwebassets\\onboarding\\0\\IndependentContractorAgreement.png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\13\\BackgroundCheck.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\13\\BackgroundCheck.pdf"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\13\\IndependentContractorAgreement.pdf",
       "PackagePath": "staticwebassets\\onboarding\\13\\IndependentContractorAgreement.pdf"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\14\\IndependentContractorAgreement.pdf",
       "PackagePath": "staticwebassets\\onboarding\\14\\IndependentContractorAgreement.pdf"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\16\\IndependentContractorAgreement.pdf",
+      "PackagePath": "staticwebassets\\onboarding\\16\\IndependentContractorAgreement.pdf"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\2\\IndependentContractorAgreement.pdf",

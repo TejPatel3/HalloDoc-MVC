@@ -6,5 +6,7 @@
         public ISchedulingRepository scheduling { get; }
         public IRecordRepository record { get; }
         public ITableData tableData { get; }
+        public IAdminDashboard AdminDashboard { get; }
+        public IAdminDashboardDataTable AdminDashboarDataTable { get; }
     }
 }

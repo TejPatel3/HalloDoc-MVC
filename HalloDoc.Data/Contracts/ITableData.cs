@@ -8,6 +8,13 @@ namespace Services.Contracts
         public List<Physician> GetPhysicianList();
         public List<PhysicianNotification> GetPhysicianNotificationList();
         public List<PhysicianLocation> GetPhysicianLocationList();
+        public List<AspNetRole> GetAspNetRoleList();
+        public List<CaseTag> GetCaseTagList();
+        public List<Role> GetRoleList();
+
+
+        public Role GetRoleById(int id);
+
 
     }
 }

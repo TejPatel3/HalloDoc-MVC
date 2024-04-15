@@ -22,7 +22,7 @@
             data: { reqid: requestid },
             success: function (response) {
                 $('#nav-home').html(response);
-                $('#patientRecordMainDiv').html(data);
+                $('#patientRecordMainDiv').html(response);
             },
             error: function (xhr, status, error) {
                 console.error(error);
@@ -130,7 +130,7 @@
             try {
                 console.log('accp')
                 var headers = document.querySelectorAll('.accordion-header');
-
+                
                 headers.forEach((header) => {
                     const requesttype = header.querySelector('.requesttype-accordion');
                     const nameText = requesttype.textContent || requesttype.innerText;
@@ -144,7 +144,7 @@
                 });
             }
             catch {
-
+                console.log("catch fro filter")
             }
         }
 

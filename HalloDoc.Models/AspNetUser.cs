@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace HalloDoc.DataModels;
 
@@ -19,6 +16,7 @@ public partial class AspNetUser
     public string? PasswordHash { get; set; }
 
     [StringLength(256)]
+    [Required]
     public string? Email { get; set; }
 
     [StringLength(20)]

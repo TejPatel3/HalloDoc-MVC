@@ -13,6 +13,8 @@ namespace Services.Implementation
         {
             _context = new ApplicationDbContext();
         }
+
+        //All List Method
         public List<Region> GetRegionList()
         {
             List<Region> regions = _context.Regions.ToList();
@@ -32,6 +34,24 @@ namespace Services.Implementation
         {
             List<PhysicianLocation> list = _context.PhysicianLocations.ToList();
             return list;
+        }
+        public List<AspNetRole> GetAspNetRoleList()
+        {
+            return _context.AspNetRoles.ToList();
+        }
+        public List<CaseTag> GetCaseTagList()
+        {
+            return _context.CaseTags.ToList();
+        }
+        public List<Role> GetRoleList()
+        {
+            return _context.Roles.ToList();
+        }
+
+        //Take Data according id 
+        public Role GetRoleById(int id)
+        {
+            return _context.Roles.FirstOrDefault(m => m.RoleId == id);
         }
     }
 }

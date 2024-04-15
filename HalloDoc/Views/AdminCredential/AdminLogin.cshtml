@@ -35,9 +35,9 @@
                                     <input type="email" asp-for="Email"
                                            class="form-control AdminLoginEmail "
                                            placeholder="Username"
-                                           aria-label="Username" />
-                                    <span asp-validation-for="Email" class="text-danger emailValidation"></span>
-                                    <span class="text-danger">@TempData["email"]</span>
+                                           aria-label="Username" required />
+                                    <span asp-validation-for="Email" class="text-danger emailValidation">@TempData["email"]</span>
+                                    <span class="text-danger" id="tempvalidationspan"></span>
                                     <label class="d-flex justify-content-around" asp-for="Email">Username </label>
                                     <i class="bi bi-person-circle username-icon icons d-block mobile-icon" role="button" id="eye-icon"></i>
                                 </div>
@@ -77,6 +77,7 @@
 
 <script>
     $(document).ready(function () {
+        $('#tempvalidationspan').val("")
         console.log("login");
         $('.Loginbtn').click(function () {
             var email = $('.AdminLoginEmail').val();
@@ -89,12 +90,12 @@
             else if (password == "") {
                 $('.passwordValidation').html("Please Enter Password");
             }
-             var emailRegex = /[a-zA-Z0-9._%+-][a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-             if (!emailRegex.test(email)) {
-                 alert("
-                 
-                 email address. Please enter a valid email.");
-             }
+            var emailRegex = /[a-zA-Z0-9._%+-][a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            if (!emailRegex.test(email)) {
+                alert("
+
+                     email address.Please enter a valid email.");
+                 }
         });
 
     });

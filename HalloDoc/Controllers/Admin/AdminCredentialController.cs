@@ -36,11 +36,11 @@ namespace HalloDoc.Controllers.Admin
                 return View(req);
             }
 
-            else if (num == 2)
-            {
-                TempData["email"] = "You Are not Admin";
-                return View(req);
-            }
+            //else if (num == 2)
+            //{
+            //    TempData["email"] = "You Are not Admin";
+            //    return View(req);
+            //}
 
             else if (num == 3)
             {
@@ -50,22 +50,46 @@ namespace HalloDoc.Controllers.Admin
 
             else if (num == 0)
             {
-                var admin = _context.Admins.FirstOrDefault(m => m.Email == req.Email);
-                HttpContext.Session.SetInt32("AdminId", admin.AdminId);
-                HttpContext.Session.SetString("AdminName", $"{admin.FirstName} {admin.LastName}");
-                TempData["success"] = "Login Successful...!";
-                TempData["user"] = admin.FirstName;
-                var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == admin.AspNetUserId);
-                var LogedinUser = new LogedInUserViewModel();
-                LogedInUserViewModel loggedInPersonViewModel = new LogedInUserViewModel();
-                loggedInPersonViewModel.AspNetUserId = aspnetuser.Id;
-                loggedInPersonViewModel.UserName = aspnetuser.UserName;
-                var Roleid = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == aspnetuser.Id).RoleId;
-                loggedInPersonViewModel.RoleName = _context.AspNetRoles.FirstOrDefault(x => x.Id == Roleid).Name;
-                Response.Cookies.Append("jwt", _jwtRepo.GenerateJwtToken(loggedInPersonViewModel));
-                return RedirectToAction("AdminDashboard", "Admin");
+                if (_context.Physicians.Any(m => m.Email == req.Email))
+                {
+                    var physician = _context.Physicians.FirstOrDefault(m => m.Email == req.Email);
+                    HttpContext.Session.SetInt32("AdminId", physician.PhysicianId);
+                    HttpContext.Session.SetString("AdminName", $"{physician.FirstName} {physician.LastName}");
+                    TempData["success"] = "Login Successful...!";
+                    TempData["user"] = physician.FirstName;
+                    var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == physician.Id);
+                    var LogedinUser = new LogedInUserViewModel();
+                    LogedInUserViewModel loggedInPersonViewModel = new LogedInUserViewModel();
+                    loggedInPersonViewModel.AspNetUserId = aspnetuser.Id;
+                    loggedInPersonViewModel.UserName = aspnetuser.UserName;
+                    var Roleid = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == aspnetuser.Id).RoleId;
+                    loggedInPersonViewModel.RoleName = _context.AspNetRoles.FirstOrDefault(x => x.Id == Roleid).Name;
+                    Response.Cookies.Append("jwt", _jwtRepo.GenerateJwtToken(loggedInPersonViewModel));
+                    return RedirectToAction("ProviderDashboard", "ProviderSide");
+                }
+                else
+                {
+                    var admin = _context.Admins.FirstOrDefault(m => m.Email == req.Email);
+                    HttpContext.Session.SetInt32("AdminId", admin.AdminId);
+                    HttpContext.Session.SetString("AdminName", $"{admin.FirstName} {admin.LastName}");
+                    TempData["success"] = "Login Successful...!";
+                    TempData["user"] = admin.FirstName;
+                    var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == admin.AspNetUserId);
+                    var LogedinUser = new LogedInUserViewModel();
+                    LogedInUserViewModel loggedInPersonViewModel = new LogedInUserViewModel();
+                    loggedInPersonViewModel.AspNetUserId = aspnetuser.Id;
+                    loggedInPersonViewModel.UserName = aspnetuser.UserName;
+                    var Roleid = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == aspnetuser.Id).RoleId;
+                    loggedInPersonViewModel.RoleName = _context.AspNetRoles.FirstOrDefault(x => x.Id == Roleid).Name;
+                    Response.Cookies.Append("jwt", _jwtRepo.GenerateJwtToken(loggedInPersonViewModel));
+                    return RedirectToAction("AdminDashboard", "Admin");
+                }
+
             }
+
+
             return View(req);
+
         }
 
         public async Task<IActionResult> Logout()

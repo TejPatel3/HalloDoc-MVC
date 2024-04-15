@@ -13,7 +13,7 @@ filterDate.setMinutes(filterDate.getMinutes() - timezoneOffset);
 //var timezoneOffset = filterDate.getTimezoneOffset();
 //filterDate.setMinutes(filterDate.getMinutes() - timezoneOffset);
 
-var currentPartial = localStorage.getItem("currentPartial");
+var currentPartial = "";
 window.onload = function () {
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
     $('#nav-provider-tab').addClass('admin-layout-nav-active');
@@ -35,7 +35,7 @@ function loadSchedulingPartial(PartialName) {
 }
 
 $(document).ready(function () {
-    loadSchedulingPartial(currentPartial);
+    loadSchedulingPartial("_DayWise");
     $('#prevDateBtn').on('click', function () {
         if (currentPartial == "_MonthWise") {
             var date = filterDate.setMonth(filterDate.getMonth() - 1);
@@ -277,9 +277,7 @@ $("#viewShiftForm").submit(function (event) {
         });
     }
 });
-$('#viewShiftModal').on('hidden.bs.modal', function (e) {
-    $(this).remove();
-})
+
 
 $('#pendingShiftbtn , #activeShiftbtn, #allShiftbtn').click(function () {
     status = $(this).val();

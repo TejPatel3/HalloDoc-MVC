@@ -47,10 +47,10 @@ $('.accounttype-dropdown-createrole').on('change', function () {
 $('#rolename-createrole').on('input', function () {
     let rolename = $('#rolename-createrole').val();
     let selectedmenu = [];
-    let allValidation = true;$('input[name="checkbox-createrole"]:checked').each(function () {
+    let allValidation = true; $('input[name="checkbox-createrole"]:checked').each(function () {
         selectedmenu.push($(this).val());
     });
-        $('#rolename-createrole-span').html("");
+    $('#rolename-createrole-span').html("");
     if (rolename == "") {
         $('#rolename-createrole-span').html("please enter role name");
     }
@@ -58,9 +58,10 @@ $('#rolename-createrole').on('input', function () {
         $('#rolename-createrole-span').html("role name is not valid");
 
     }
-  
+
 });
 $('#createrole-save').click(function () {
+    debugger
     let rolename = $('#rolename-createrole').val();
     let accounttype = $('.accounttype-dropdown-createrole').val();
     let roleid = $('#roleid-createrole').val();
@@ -107,9 +108,11 @@ $('#createrole-save').click(function () {
 
 $('.editbtn-accessrole').click(function () {
     let roleid = $(this).val();
+    let accounttype = $(this).data('id');
+    console.log(accounttype)
     $.ajax({
         url: '/Access/CreateRole',
-        data: { roleid: roleid },
+        data: { roleid: roleid, accounttype: accounttype, },
         success: function (response) {
             $('#accessrole-maindiv').html(response);
             $('#roleid-createrole').val(roleid)
@@ -124,7 +127,9 @@ $('.deletebtn-accessrole').click(function () {
     let roleid = $(this).val();
     $.ajax({
         url: '/Access/DeleteRole',
-        data: { roleid: roleid },
+        data: {
+            roleid: roleid
+        },
         success: function (response) {
             $('#adminLayoutMainDiv').html(response);
             //window.location.href = "https://localhost:44370/Access/AccessRole";

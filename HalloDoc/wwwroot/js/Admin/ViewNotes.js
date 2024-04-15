@@ -62,4 +62,7 @@ $('.savenote').click(function () {
                 //         });
                 //         // $(this).closest('form')
                 //     });
-                // });
+// });
+$('#viewNotesBackbtn').click(function () {
+    location.reload();
+});

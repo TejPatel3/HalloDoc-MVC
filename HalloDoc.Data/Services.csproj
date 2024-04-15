@@ -18,4 +18,10 @@
     <ProjectReference Include="..\HalloDoc.Models\DataModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Contracts\ProviderSide\" />
+    <Folder Include="Implementation\ProviderSide\" />
+    <Folder Include="ViewModels\ProviderSide\" />
+  </ItemGroup>
+
 </Project>

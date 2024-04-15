@@ -8,13 +8,17 @@ namespace Services.Implementation
         public ISchedulingRepository scheduling { get; private set; }
         public IRecordRepository record { get; private set; }
         public ITableData tableData { get; private set; }
+        public IAdminDashboard AdminDashboard { get; private set; }
+        public IAdminDashboardDataTable AdminDashboarDataTable { get; private set; }
 
-        public unitOfWork(IVendorRepository Vendor, ISchedulingRepository scheduling, IRecordRepository record, ITableData tableData)
+        public unitOfWork(IVendorRepository Vendor, ISchedulingRepository scheduling, IRecordRepository record, ITableData tableData, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboarDataTable)
         {
             vendor = Vendor;
             this.scheduling = scheduling;
             this.record = record;
             this.tableData = tableData;
+            AdminDashboard = adminDashboard;
+            AdminDashboarDataTable = adminDashboarDataTable;
         }
     }
 }

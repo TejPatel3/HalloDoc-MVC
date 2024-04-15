@@ -2,7 +2,6 @@
 @model AccessRoleViewModel
 <Partial name="Toast" />
 
-
 @{
     Layout = null;
 }
@@ -31,11 +30,18 @@
             </div>
 
             <div class="col-12 col-sm-6 form-floating mt-3">
-                <select class="form-select shadow-none accounttype-dropdown-createrole" aria-label=".form-select-lg example">
-                    <option class="fs-6 " value="0" selected>@Model.Accounttypename(0)</option>
+                <select class="form-select shadow-none accounttype-dropdown-createrole" aria-label=".form-select-lg example" asp-for="AccountType">
+                     <option class="fs-6 " value="0" selected>@Model.Accounttypename(0)</option>1
+                    @foreach(var item in Model.AspNetRoleList)
+                    {
+                     <option class="fs-6 " value="@item.Id">@item.Name</option>
+                        
+                    }
+
+                    @* <option class="fs-6 " value="0" selected>@Model.Accounttypename(0)</option>
                     <option class="fs-6 " value="1">@Model.Accounttypename(1)</option>
                     <option class="fs-6 " value="2">@Model.Accounttypename(2)</option>
-                    <option class="fs-6 " value="3">@Model.Accounttypename(3)</option>
+                    <option class="fs-6 " value="3">@Model.Accounttypename(3)</option> *@
                 </select>
                 <label for="floatingTextarea" class="text-secondary ms-3">Role</label>
             </div>

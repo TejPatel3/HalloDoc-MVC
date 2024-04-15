@@ -35,7 +35,7 @@
                                 <td class="ps-3">@item.Name</td>
                                 <td class="text-center">@Model.Accounttypename(item.AccountType)</td>
                                 <td class="text-center" style="width:clamp(10rem, 25vw, 11rem)">
-                                    <button class="btn btn-outline-info editbtn-accessrole" value="@item.RoleId">Edit</button>
+                                    <button class="btn btn-outline-info editbtn-accessrole" value="@item.RoleId" data-id="@item.AccountType">Edit</button>
                                     <button type="button" class="btn btn-outline-info deletebtn-accessrole" value="@item.RoleId">Delete</button>
 
                                 </td>

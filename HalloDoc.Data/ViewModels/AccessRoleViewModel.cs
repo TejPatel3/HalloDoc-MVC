@@ -13,6 +13,8 @@ namespace Services.ViewModels
         public List<RoleMenu> rolemenulist { get; set; }
         public List<RoleMenu> selectedrolemenulist { get; set; }
         public List<Menu> menulist { get; set; }
+        public List<AspNetRole> AspNetRoleList { get; set; }
+        public int AccountType { get; set; }
 
         public enum accounttype
         {

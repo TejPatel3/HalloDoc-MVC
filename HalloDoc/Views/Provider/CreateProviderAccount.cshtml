@@ -74,7 +74,7 @@
                         <option class="fs-6">Select Role</option>
                         @foreach (var item in Model.rolelist)
                         {
-                            <option class="fs-6">@item.Name</option>
+                            <option class="fs-6" value="@item.RoleId">@item.Name</option>
                         }
                     </select>
                     <label for="floatingTextarea" class="text-secondary ms-3">Role</label>

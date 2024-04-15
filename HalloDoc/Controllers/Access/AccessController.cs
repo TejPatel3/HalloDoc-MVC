@@ -1,6 +1,7 @@
 ﻿using HalloDoc.DataContext;
 using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
+using Services.Contracts;
 using Services.ViewModels;
 using System.Collections;
 
@@ -9,13 +10,15 @@ namespace HalloDoc.Controllers.Access
     public class AccessController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public AccessController(ApplicationDbContext context)
+        private readonly IunitOfWork _unitOfWork;
+        public AccessController(ApplicationDbContext context, IunitOfWork unit)
         {
             _context = context;
+            _unitOfWork = unit;
         }
         public IActionResult AccessRole()
         {
-            var rolelist = _context.Roles.ToList();
+            var rolelist = _unitOfWork.tableData.GetRoleList();
             var model = new AccessRoleViewModel
             {
                 rolelist = rolelist
@@ -27,6 +30,7 @@ namespace HalloDoc.Controllers.Access
         {
             var rolelist = _context.Roles.ToList();
             var model = new AccessRoleViewModel();
+            model.AspNetRoleList = _unitOfWork.tableData.GetAspNetRoleList();
             model.rolelist = rolelist;
             if (accounttype != 0)
             {
@@ -43,7 +47,9 @@ namespace HalloDoc.Controllers.Access
                 var role = _context.Roles.FirstOrDefault(m => m.RoleId == roleid);
                 var rolemenu = _context.RoleMenus.Where(m => m.RoleId == role.RoleId).ToList();
                 model.RoleName = role.Name;
+                model.RoleId = role.RoleId.ToString();
                 model.selectedrolemenulist = rolemenu;
+                model.AccountType = role.AccountType;
             }
             return View(model);
         }
@@ -102,7 +108,14 @@ namespace HalloDoc.Controllers.Access
             }
             else
             {
+                var role = _unitOfWork.tableData.GetRoleById(roleid);
+                role.Name = rolename;
+                role.AccountType = (short)accounttype;
+                role.ModifiedBy = adminname;
+                role.ModifiedDate = DateTime.Now;
 
+                _context.Roles.Update(role);
+                _context.SaveChanges();
                 int[]? roleMenus = _context.RoleMenus.Where(r => r.RoleId == roleid).Select(s => s.MenuId).ToArray();
 
                 IEnumerable<int> menusToDelete = roleMenus.Except(selectedmenu);

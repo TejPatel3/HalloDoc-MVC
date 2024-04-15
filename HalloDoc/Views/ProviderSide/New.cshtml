@@ -1,0 +1,327 @@
+﻿﻿@using Services.ViewModels
+@model List<AdminDashboardTableDataViewModel>
+@{
+    Layout = null;
+}
+@*
+
+<div class="accordion d-block d-sm-none " id="accordionExample">
+    @foreach (var item in Model)
+    {
+        <div class="accordion-item ">
+            <h2 class="accordion-header" id="heading_@item.requestid">
+                <div class="d-flex flex-column accordion-button collapsed align-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
+                    <div class="d-flex justify-content-between w-100 ">
+                        <h6 class="fw-normal">@item.PatientName</h6>
+                        @{
+                            <div class="d-none">@item.RequestType</div>
+
+                            if (item.RequestType == 1)
+                            {
+                                <label>Patient <i class="fa-solid fa-circle fa-2xs" style="color:   #5fbc61;"></i></label>
+                            }
+                            if (item.RequestType == 2)
+                            {
+                                <label>Family Friend                <i class="fa-solid fa-circle fa-2xs " style="color:  #ed9124;"></i></label>
+
+                            }
+                            if (item.RequestType == 3)
+                            {
+                                <label>
+                                    Concierge
+
+                                    <i class="fa-solid fa-circle fa-2xs" style="color:   #e36478;"></i>
+                                </label>
+
+                            }
+                            if (item.RequestType == 4)
+                            {
+                                <label>Business            <i class="fa-solid fa-circle fa-2xs" style="color:  #0c7db7;"></i></label>
+
+                            }
+                        }
+                    </div>
+                    <div class="d-flex justify-content-between w-100">
+                        <div class="h6">@item.Address</div>
+                        <div class="btn btn-outline-info border-2" style="border-radius:50px">Map</div>
+                    </div>
+                    <div class="d-flex ">
+                        <p><h6 class="text-secondary">Wait Time </h6> @item.RequestedDate</p>
+                    </div>
+                </div>
+
+            </h2>
+            <div id="collapse_@item.requestid" class="accordion-collapse collapse " aria-labelledby="heading_@item.requestid" data-bs-parent="#accordion">
+                <div class="accordion-body">
+                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+ *@
+
+
+
+<div class="accordion d-block d-sm-none " id="accordionExample">
+
+    @foreach (var item in Model)
+    {
+        <div class="accordion-item">
+            @{
+
+                var color = "green-dot";
+
+                switch (item.RequestType)
+                {
+                    case 1:
+                        {
+                            color = "green-dot";
+                            break;
+                        }
+                    case 2:
+                        {
+                            color = "orange-dot";
+                            break;
+                        }
+                    case 3:
+                        {
+                            color = "pink-dot";
+                            break;
+                        }
+                    case 4:
+                        {
+                            color = "cyan-dot";
+                            break;
+                        }
+                    default:
+                        {
+                            color = "purple-dot";
+                            break;
+                        }
+                }
+            }
+
+            <h2 class="accordion-header" id="heading_@item.requestid">
+                <div class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
+
+                    <div class="col d-flex flex-column">
+                        <span class="requesttype-accordion">@item.RequestType</span>
+                        <span class="region-accordion">@item.regionid</span>
+                        <span class="d-none">@item.RequestType</span>
+                        <span class="patient-name">@item.PatientName</span>
+                        <span class=" mt-4">@item.Address</span>
+                        <span class="mt-3"><i class="bi bi-clock text-info h6 me-2 icns"></i>Wait Time: DEC5, 2023</span>
+                    </div>
+                    <div class="col d-flex flex-column text-end mt-2 p-0">
+                        <div>
+                            <div>
+                                <span>@item.RequestTypeName(item.RequestType)</span>
+                                <i class="bi bi-circle-fill  @color"></i>
+                            </div>
+                            <div class="btn text-info border-info float-end p-0 mt-3 rounded-pill py-1 px-3" style="font-size:14px;">
+                                Map Location
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <hr class="m-0">
+            </h2>
+
+            <div id="collapse_@item.requestid" class="accordion-collapse collapse " aria-labelledby="heading_@item.requestid" data-bs-parent="#accordion">
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="rounded-pill me-3 viewCaseBtn p-1 Viewcase" value="@item.requestid" style="cursor : pointer">
+                        View Case
+                    </button>
+                </div>
+
+                <div class="accordion-body">
+                    <div><i class="bi bi-calendar2-minus me-2 icn"></i>Date of birth: @item.PatientDOB</div>
+                    <div><i class="bi bi-envelope me-2 icn"></i>Email: @item.PatientEmail</div>
+                    <div><i class="bi bi-telephone me-2 icn"></i>Patient: @item.PatientPhone</div>
+                    <div><i class="bi bi-person me-2 icn"></i>Requestor: @item.RequestorName</div>
+                </div>
+                <div class="container-fluid">
+
+                    <div class="row gy-2">
+
+                        <div class="col-6 d-flex justify-content-center">
+                            <button type="button" class="btn w-100 text-white rounded-pill p-1 btn-sm text-secondary getname" style="background:#c40eff;" id="@item.requestid" data-toggle="modal" data-target="#exampleModalAssign">
+                                @*<i class="fa-regular fa-rectangle-list me-2"></i>*@
+                                Accept
+                            </button>
+                        </div>
+                        <div class="col-6 d-flex justify-content-center">
+
+                                <button class="dropdown-item text-secondary viewCase" value="@item.requestid">
+                                    <i class="bi bi-view-list me-2"></i>
+                                    View case
+                                </button>
+                        </div>
+
+
+
+                        <div class="col-6 d-flex justify-content-center">
+
+                            <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary viewNotes">
+                                @*<i class="fa-solid fa-book-journal-whills me-2"></i>*@
+                                View Notes
+                            </button>
+                        </div>
+
+                     
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+<div class="d-none d-sm-block p-0 m-0">
+
+    <table class="table align-middle small example" id="SixTableContent">
+        <thead class="thead-light bg-light">
+
+            <tr>
+
+                <th class="d-none">request Type</th>
+                <th class="d-none">Request Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col">Chat With</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="datatable" class="bg-white">
+            @foreach (var item in Model)
+            {
+
+
+
+                var color = "green-dot";
+
+                switch (item.RequestType)
+                {
+                    case 1:
+                        {
+                            color = "green-dot";
+                            break;
+                        }
+                    case 2:
+                        {
+                            color = "orange-dot";
+                            break;
+                        }
+                    case 3:
+                        {
+                            color = "pink-dot";
+                            break;
+                        }
+                    case 4:
+                        {
+                            color = "cyan-dot";
+                            break;
+                        }
+                    default:
+                        {
+                            color = "purple-dot";
+                            break;
+                        }
+                }
+
+                <tr class="@color">
+                    <td class="d-none">@item.RequestType</td>
+                    <td class="d-none">@item.regionid</td>
+                    <td scope="row">
+                        <div class="d-flex justify-content-between ">
+                            @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
+                        </div>
+                    </td>                 
+                    <td>
+                        <div class="btn btn-outline-light w-75 d-flex small px-0 py-1">
+                            <i class="bi bi-telephone pe-3 ps-1"></i>
+                            @item.PatientPhone
+                        </div>
+                        <small class="p-0 m-0">(Patient)</small>
+
+                        @if (item.RequestType == 2 && item.RequestorPhone != null)
+                        {
+                            <div class="btn btn-outline-light w-75 d-flex px-0 py-1">
+                                <i class="bi bi-telephone pe-3 ps-1"></i>
+                                @item.RequestorPhone
+                            </div>
+                            <small>(Family\Friend)</small>
+                        }
+                        @if (item.RequestType == 3 && item.RequestorPhone != null)
+                        {
+                            <div class="btn btn-outline-light w-75 d-flex px-0 py-1">
+                                <i class="bi bi-telephone pe-3 ps-1"></i>
+                                @item.RequestorPhone
+                            </div>
+                            <small>(Concierge)</small>
+                        }
+                        @if (item.RequestType == 4 && item.RequestorPhone != null)
+                        {
+                            <div class="btn btn-outline-light w-75 d-flex px-0 py-1">
+                                <i class="bi bi-telephone pe-3 ps-1"></i>
+                                @item.RequestorPhone
+                            </div>
+                            <small>(Business)</small>
+                        }
+                    </td>
+                    <td>@item.Address</td>
+                    <td>
+                        <div class="d-flex">
+                            <button class="btn btn-outline-light p-1 me-2 shadow-none"
+                                    type="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                <i class="bi bi-person-fill"></i>
+                                <span>
+                                    Admin
+                                </span>
+                            </button>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="dropstart ms-2">
+                            <button class="btn btn-outline-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Actions
+                            </button>
+                            <input type="hidden" asp-for="@item.requestid" value="@item.requestid" />
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button type="button" id="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary cancelbtn" data-toggle="modal" data-target="#AssignModal">
+                                        <i class="fa-regular fa-rectangle-list me-2"></i>
+                                        Accept
+                                    </button>
+                                </li>                                
+                                <li><button class="dropdown-item text-secondary viewCase" value="@item.requestid"><i class="bi bi-view-list me-2"></i>View case</button></li>
+                                <li><button class="dropdown-item text-secondary viewNotes" value="@item.requestid"><i class="fa-solid fa-book-journal-whills me-2"></i>View Notes </button> </li>
+                            </ul>
+                        </div>
+                    </td>
+
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="~/js/Admin/SixTabChildContent.js" asp-append-version="true"> </script>
+
