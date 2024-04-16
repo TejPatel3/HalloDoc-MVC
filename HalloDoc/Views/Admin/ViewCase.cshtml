@@ -1,4 +1,6 @@
-﻿@using Services.ViewModels
+﻿@inject IHttpContextAccessor accessor
+
+@using Services.ViewModels
 @model ViewCaseViewModel
 @{
     Layout = null;
@@ -11,8 +13,7 @@
 <div class="container pb-4 bg-light " id="vCase">
     <div class="d-flex justify-content-between align-items-center w-100 my-3">
         <h4>New Request<span class=" ms-2 small text-white px-3 py-2 bg-success" style="border-radius:25px; font-size:15px">Patient</span></h4>
-        <button 
-                class="btn m-0 btn-outline-info  px-2 backbuttonglobal">
+        <button class="btn m-0 btn-outline-info  px-2 backbuttonglobal">
             <i class="fa-solid fa-chevron-left"></i>
             Back
         </button>
@@ -90,9 +91,8 @@
                 <label class="d-flex justify-content-between ms-2">Email </label>
                 <span class="text-danger" id="email-validationspan-viewcase"></span>
             </div>
-            @if (Model.status == 1)
+            @if (Model.status == 1 && @accessor.HttpContext.Session.GetString("AdminId") != null)
             {
-
                 <div class="col-12 col-sm-6 form-floating mb-3">
 
                     <button type="button" class="btn btn-outline-info  h-100  rounded-2  px-4" id="editButton">
@@ -153,21 +153,39 @@
 
 
             <div class="justify-content-end d-flex pb-2">
-                @if (Model.status == 1)
+                @if (@accessor.HttpContext.Session.GetString("AdminId") != null)
                 {
-                    <div class="mx-1">
-                        <button type="button" id="@Model.requestId" value="@Model.FirstName + @Model.LastName" class="btn bg-info text-white sub rounded-2 px-2 py-2 cancelbtn" data-toggle="modal" data-target="#AssignModal">Assign case</button>
 
+                    @if (Model.status == 1)
+                    {
+                        <div class="mx-1">
+                            <button type="button" id="@Model.requestId" value="@Model.FirstName + @Model.LastName" class="btn bg-info text-white sub rounded-2 px-2 py-2 cancelbtn" data-toggle="modal" data-target="#AssignModal">Assign case</button>
+
+                        </div>
+                    }
+                    <div class="mx-1">
+                        <button type="button" class="btn text-white bg-info rounded-2 px-2 py-2 viewNotes" value="@Model.requestId">View Notes </button>
+                    </div>
+                    <div class="mx-1">
+                        <button type="button" value="@Model.FirstName @Model.LastName" class="btn  text-white sub rounded-2 px-2 py-2 bg-danger cancelbtn" data-toggle="modal" data-target="#exampleModal">Cancel case</button>
                     </div>
                 }
-                <div class="mx-1">
-                    <button type="button" class="btn text-white bg-info rounded-2 px-2 py-2 viewNotes" value="@Model.requestId">View Notes </button>
-                </div>
-                <div class="mx-1">
-                    <button type="button" value="@Model.FirstName @Model.LastName" class="btn  text-white sub rounded-2 px-2 py-2 bg-danger cancelbtn" data-toggle="modal" data-target="#exampleModal">Cancel case</button>
+                @if (@accessor.HttpContext.Session.GetString("PhysicianId") != null)
+                {
+                    <div class="mx-1">
+                        <button type="button" class="btn text-white bg-info rounded-2 px-2 py-2 viewNotes" value="@Model.requestId">View Notes </button>
+                    </div>
 
-
-                </div>
+                    @if (Model.status == 1)
+                    {
+                        <div class="mx-1">
+                            <button type="button" class="btn text-white bg-success rounded-2 px-2 py-2 acceptRequest" value="@Model.requestId">Accept </button>
+                        </div>
+                        <div class="mx-1">
+                            <button type="button" class="btn text-white bg-danger rounded-2 px-2 py-2 declineRequest" value="@Model.requestId">Decline </button>
+                        </div>
+                    }
+                }
             </div>
         </div>
     </form>

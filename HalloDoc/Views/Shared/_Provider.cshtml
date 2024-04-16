@@ -57,7 +57,7 @@
             </div>
 
             <div class="navdiv d-flex flex-row align-items-center">
-                <h6 class="pe-2 d-sm-flex align-items-center d-none text-secondary">Welcome <b class="text-black ms-1">@accessor.HttpContext.Session.GetString("AdminName")</b></h6>
+                <h6 class="pe-2 d-sm-flex align-items-center d-none text-secondary">Welcome <b class="text-black ms-1">@accessor.HttpContext.Session.GetString("PhysicianName")</b></h6>
                 <a asp-action="Logout" asp-controller="AdminCredential">
                     <button class="btn btn-outline-info ms-2" style="height:41px;" onclick="location.href='@Url.Action("AdminLogin","Admin")'"> <i class="fa-solid fa-right-from-bracket d-sm-none d-block" style="color: #00bfff;"></i><h6 class="d-sm-block d-none m-0"> Log out</h6></button>
                 </a>

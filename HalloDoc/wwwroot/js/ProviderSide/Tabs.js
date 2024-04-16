@@ -12,6 +12,7 @@ $(document).ready(function () {
             type: 'GET',
             data: { regionId: regionId },
             success: function (data) {
+                console.log(data)
                 var secondDropdown = $('.physiciandrop'); // Replace with your second dropdown selector
                 secondDropdown.empty(); // Clear existing options
                 secondDropdown.append($('<option>', {
@@ -21,8 +22,9 @@ $(document).ready(function () {
                 }))
                 $.each(data, function (index, item) {
                     secondDropdown.append($('<option>', {
-                        value: item.firstName + item.lastName, // Replace with the actual value from your data
-                        text: item.firstName + item.lastName // Replace with the actual text from your data
+                        //value: item.firstName + item.lastName, 
+                        value: item.physicianId,
+                        text: item.firstName + item.lastName 
                     }));
                 });
             }
@@ -78,7 +80,7 @@ $(document).ready(function () {
 
                 status = 6
                 break;
-           
+
 
             default:
                 url = "/ProviderSide/New";

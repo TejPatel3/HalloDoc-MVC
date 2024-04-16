@@ -1,5 +1,7 @@
 ﻿@using Services.ViewModels;
 @model AdminRequestViewModel;
+<Partial name="Toast" />
+
 @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> *@
 @{
     Layout = "_dashboard";
@@ -32,9 +34,9 @@
                     <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                 </button>
             </div>
-            <form asp-action="cancelCaseModal" method="post">
+            <form asp-action="ReviewAgreementcancelCaseModal" method="post">
                 <div class="modal-body">
-                    <input type="number" class="requestid" name="id" hidden/>
+                    <input type="number" class="requestid" name="id" hidden />
                     <h6 class="my-3 text-secondary fw-normal">Patient Name: <span class="text-info fw-normal">@Model.patientName</span> </h6>
 
                     <div class="my-2 form-floating">
@@ -69,7 +71,24 @@
             type: 'POST',
             data: { "requestid": requestid },
             success: function (data) {
-
+                console.log(data)
+                if (data) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your Response Saved Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Something Went Wrong",
+                        text: "You Already Fill Your Response",
+                        footer: '<a href="#">Why do I have this issue?</a>'
+                    });
+                }
             }
 
         })

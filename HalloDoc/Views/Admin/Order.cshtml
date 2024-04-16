@@ -4,7 +4,6 @@
 @{
     Layout = null;
 }
-
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
@@ -43,6 +42,7 @@
                                         <option itemid="@item.HealthProfessionalId">@item.ProfessionName</option>
                                     }
                                 </select>
+                                <span class="text-danger small" id="firstidvalidationspan"></span>
                             </div>
                         </div>
 
@@ -52,6 +52,7 @@
                                     <option hidden>Business</option>
 
                                 </select>
+                                <span class="text-danger small" id="vendoridvalidationspan"></span>
                             </div>
                         </div>
 
@@ -88,11 +89,11 @@
                         <div class="p-2 col-xl-12">
                             <div class="form-floating">
                                 <div class="form-floating">
-                                    <textarea  class="form-control shadow-none "
+                                    <textarea class="form-control shadow-none prescription"
                                               placeholder="Prescription or Order Details"
                                               style="height: 100px"></textarea>
                                     <label for="floatingTextarea2">Prescription or Order Details</label>
-                                    <span class="text-danger small"></span>
+                                    <span class="text-danger small" id="prescriptionValidationspan"></span>
 
                                 </div>
                             </div>
@@ -102,15 +103,11 @@
                             <div class="form-floating">
                                 <select name="refill" asp-for="refill" class="form-select shadow-none mt-3 border-secondary RefillNum" id="floatingSelect" aria-label="Floating label select example">
                                     <option class="refill" selected hidden>Number Of Refill</option>
-
-
                                     <option class="refill">1</option>
                                     <option class="refill">2</option>
                                     <option class="refill">3</option>
                                     <option class="refill">4</option>
                                     <option class="refill">5</option>
-
-
                                 </select>
                                 <label class="text-secondary" for="floatingSelect">Narrow Search by Region</label>
                             </div>
@@ -167,6 +164,8 @@
 <script>
     $(document).ready(function () {
         $('.firstdropdown').change(function () {
+            $('#firstidvalidationspan').html("");
+
             var healthprofessionId = $(this).find(":selected").attr('itemid'); // This will get the id of the selected professional
             console.log(healthprofessionId);
             $.ajax({
@@ -192,12 +191,24 @@
             });
         });
 
+        $('.secondDropdown').on('click', function () {
+            if ($('#vendoridvalidationspan').html() != "") {
+                $('#firstidvalidationspan').html("Please Select Business");
+            }
+            else {
+
+                $('#firstidvalidationspan').html("");
+            }
+        });
         $('.secondDropdown').on('change', function () {
             $.ajax({
                 url: '/Admin/GetVendorDetail',
                 data: { vendorid: $(this).val() },
                 success: function (data) {
                     console.log(data)
+                    $('#firstidvalidationspan').html("");
+                    $('#vendoridvalidationspan').html("");
+
                     $('input[name="BusinessContact"]').val(data.businessContact);
                     $('input[name="Email"]').val(data.email);
                     $('input[name="FaxNumber"]').val(data.faxNumber);
@@ -205,48 +216,48 @@
             });
         })
 
-//         console.log("order page open")
-//         $('.firstdropdown').change(function () {
-//             debugger;
-//             var healthprofessionId = $(this).find(":selected").attr('itemid'); // This will get the id of the selected professional
-//             console.log(healthprofessionId);
-//             $.ajax({
-//                 url: '/Admin/GetBusiness', // Replace with your server script URL
-//                 type: 'GET',
-//                 data: { healthprofessionId: healthprofessionId },
-//                 success: function (data) {
-//                     console.log(data);
-//                     var secondDropdown = $('.business'); // Replace with your second dropdown selector
-//                     secondDropdown.empty(); // Clear existing options
-//                     secondDropdown.append($('<option>', {
-//                         hidden: "hidden",
-//                         value: "
+        //         console.log("order page open")
+        //         $('.firstdropdown').change(function () {
+        //             debugger;
+        //             var healthprofessionId = $(this).find(":selected").attr('itemid'); // This will get the id of the selected professional
+        //             console.log(healthprofessionId);
+        //             $.ajax({
+        //                 url: '/Admin/GetBusiness', // Replace with your server script URL
+        //                 type: 'GET',
+        //                 data: { healthprofessionId: healthprofessionId },
+        //                 success: function (data) {
+        //                     console.log(data);
+        //                     var secondDropdown = $('.business'); // Replace with your second dropdown selector
+        //                     secondDropdown.empty(); // Clear existing options
+        //                     secondDropdown.append($('<option>', {
+        //                         hidden: "hidden",
+        //                         value: "
 
-// ",
-//                         text: "Business"
-//                     }))
-//                     $.each(data, function (index, item) {
-//                         secondDropdown.append($('<option>', {
-//                             value: item.vendorId, // Replace with the actual value from your data
-//                             text: item.vendorName // Replace with the actual text from your data
-//                         }));
-//                     });
-//                 }
-//             });
-//         });
+        // ",
+        //                         text: "Business"
+        //                     }))
+        //                     $.each(data, function (index, item) {
+        //                         secondDropdown.append($('<option>', {
+        //                             value: item.vendorId, // Replace with the actual value from your data
+        //                             text: item.vendorName // Replace with the actual text from your data
+        //                         }));
+        //                     });
+        //                 }
+        //             });
+        //         });
 
-//         $('.secondDropdown').on('change', function () {
-//             $.ajax({
-//                 url: '/Admin/GetVendorDetail',
-//                 data: { vendorid: $(this).val() },
-//                 success: function (data) {
-//                     console.log(data)
-//                     $('input[name="BusinessContact"]').val(data.businessContact);
-//                     $('input[name="Email"]').val(data.email);
-//                     $('input[name="FaxNumber"]').val(data.faxNumber);
-//                 }
-//             });
-//         })
+        //         $('.secondDropdown').on('change', function () {
+        //             $.ajax({
+        //                 url: '/Admin/GetVendorDetail',
+        //                 data: { vendorid: $(this).val() },
+        //                 success: function (data) {
+        //                     console.log(data)
+        //                     $('input[name="BusinessContact"]').val(data.businessContact);
+        //                     $('input[name="Email"]').val(data.email);
+        //                     $('input[name="FaxNumber"]').val(data.faxNumber);
+        //                 }
+        //             });
+        //         })
 
         //$.ajax({
         //    url: '/Admin/ViewNotes',
@@ -262,6 +273,8 @@
         //});
 
         $('.ordersubmit').on('click', function () {
+            event.preventDefault()
+            console.log("sgdgvsyvdyfsvfgsvgv")
             var requestid = @Model.requestid;
             var vendorid = $('.secondDropdown').val();
             var RefillNumber = $('.RefillNum').val();
@@ -270,19 +283,32 @@
             //    requestid : requestid,
             //    vendorid : vendorid
             //}
+            $('#prescriptionValidationspan').html("");
+            $('#vendoridvalidationspan').html("");
+            var allvalidation = true;
+            if (vendorid == "Business") {
+                $('#vendoridvalidationspan').html("Please Select Business");
+                allvalidation = false;
+            }
+            if (prescription == "") {
+                $('#prescriptionValidationspan').html("Please Enter Prescription");
+                allvalidation = false;
+            }
+            if (allvalidation) {
 
-
-            $.ajax({
-                url: '/Admin/Orders',
-                type: 'POST',
-                data: { requestid: requestid, vendorid: vendorid, prescription: prescription, refill: RefillNumber },
-                success: function (data) {
-                    window.location.href = "https://localhost:44370/";
-                },
-                error: function (xhr, status, error) {
-                    console.log(error);
-                }
-            });
+                $.ajax({
+                    url: '/Admin/Orders',
+                    type: 'POST',
+                    data: { requestid: requestid, vendorid: vendorid, prescription: prescription, refill: RefillNumber },
+                    success: function (data) {
+                     
+                        location.reload()
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
         });
 
     });

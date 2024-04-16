@@ -76,7 +76,7 @@
                 (<small class="innerhead-sm" id="statusnamehead" style="color:#203f98; "></small>)
             </div>
             <div class="d-flex h-25">
-                <button class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0  height-fit-content" data-toggle="modal" data-target="#SendLinkModal">
+                <button class="btn btn-info d-flex align-items-center   rounded-3 me-1 p-2 text-white  border-0  height-fit-content" data-bs-toggle="modal" data-bs-target="#SendLinkModal">
 
                     <i class="fa-regular fa-paper-plane  " style="color: #ffffff; "></i>
                     <small class="text-white d-none d-md-inline ps-1">Send Link</small>
@@ -337,7 +337,7 @@
 </div>
 
 
-@* Transfer Modal *@
+@* Transfer Modal 
 <div class="modal fade rounded-3 shadow" id="TransferModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -347,7 +347,7 @@
                     <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                 </button>
             </div>
-            <form asp-action="AssignCase" method="post">
+            <form asp-action="AssignCase" asp-controller="Admin" method="post">
                 <div class="modal-body">
                     <input type="number" class="requestid" name="id" hidden />
                     <label class="my-2 text-secondary  fw-normal mb-3" style="font-size:12.8px">To Transfer This Request, search and selectanother Physician</label>
@@ -363,7 +363,7 @@
                         <label for="floatingTextarea" class="text-secondary">Narrow Search By Region</label>
                     </div>
 
-                    <select id="TransferModalSecondDropDownSelect" name="physicianname" class="form-select form-select-lg mt-3 fs-6 form-control physiciandrop" aria-label=".form-select-lg example">
+                    <select asp-for="PhysicianId" id="TransferModalSecondDropDownSelect" name="physiciaid" class="form-select form-select-lg mt-3 fs-6 form-control physiciandrop" aria-label=".form-select-lg example">
                         <option class="fs-6" value="" selected hidden>Select Physician</option>
                     </select>
                     <span class="text-danger" id="TransferModalSecondDropDownSpan"></span>
@@ -385,7 +385,41 @@
         </div>
     </div>
 </div>
+ *@
 
+@*Trasnfer modal provider*@
+
+<div class="modal fade" id="exampleModalTransfer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="exampleModalLabel">Transfer Request</h5>
+                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark text-white"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="TransferModal" asp-controller="ProviderSide" method="post">
+                    <small class="text-secondary">This request will be transferred to admin.</small>
+                    <input type="number" name="requestid" class="requestid" />
+
+
+                    <div class="form-floating mt-3">
+                        <textarea id="TransferModalNote" class="form-control shadow-none" placeholder="Description" style="height: 100px" asp-for="BlockNotes"></textarea>
+                        <label for="floatingTextarea2">Description</label>
+                        <span id="TransferModalNoteSpan" class="small text-danger"></span>
+
+                    </div>
+                    <div class="d-flex float-end mt-4">
+                        <button type="button" id="TransferModalSubminbtn" class="btn btn-info text-white mx-2 shadow-none">Submit</button>
+                        <button type="button" class="btn border-info text-info shadow-none" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 @* Clear Case Modal *@
 <div class="modal fade rounded-3 shadow" id="ClearModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -425,7 +459,7 @@
                     <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                 </button>
             </div>
-            <form asp-action="SendAgreementModal" method="post">
+            <form asp-controller="Admin" asp-action="SendAgreementModal" method="post">
                 <div class="modal-body">
                     <i class="bi bi-circle-fill pe-1" id="requesttype-dot"></i><span id="requesttype-agreement"></span>
                     <input type="number" class="requestid" name="id" hidden />
@@ -462,7 +496,7 @@
                     <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                 </button>
             </div>
-            <form asp-action="SendCreatePatientRequestPageLink" method="post">
+            <form asp-controller="Admin" asp-action="SendCreatePatientRequestPageLink" method="post">
                 <div class="modal-body">
                     <small class="text-secondary">To Send Create Patient Request Page in Email And Phone</small>
                     <div class="form-floating py-2 p-0">
@@ -500,6 +534,64 @@
 <script src="/js/Admin/AdminDashboard.js" asp-append-version="true"></script>
 
 <script src="~/js/Admin/ExportDataInExcle.js" asp-append-version="true"> </script>*@
+<script>
+
+    const radiouttons = document.querySelectorAll('.radio-under');
+    const radioDivs = document.querySelectorAll('.check-activeradio');
+
+    console.log("1" + radiouttons)
+    console.log("2" + radioDivs)
+    radiouttons.forEach((radio, index) => {
+        radio.addEventListener('click', () => {
+            radioDivs.forEach((div, divIndex) => {
+                if (index === divIndex) {
+                    div.classList.add('selected-border');
+                } else {
+                    div.classList.remove('selected-border');
+                }
+            });
+        });
+    });
+    $('#TransferModalSubminbtn').click(function () {
+        console.log("model tranfer")
+
+    });
+    $('#TransferModalSubminbtn').click(function () {
+        console.log("model tranfer")
+        var note = $('#TransferModalNote').val();
+        var Region = $('#TransferModalFirstDropDownSelect').val();
+        var Physician = $('#TransferModalSecondDropDownSelect').val();
+        var allvalidation = true;
+        $('#TransferModalFirstDropDownSpan').html("");
+        $('#TransferModalNoteSpan').html("");
+        $('#TransferModalSecondDropDownSpan').html("");
+        if (FirstDropDownValidation(Region)) {
+            $('#TransferModalFirstDropDownSpan').html("Please Select Region");
+            allvalidation = false;
+        }
+        if (SecondDropDownValidation(Physician)) {
+            if (FirstDropDownValidation(Region)) {
+                $('#TransferModalSecondDropDownSpan').html("Please Select Region First");
+            }
+            else {
+                $('#TransferModalSecondDropDownSpan').html("Please Select Physician");
+
+            }
+            allvalidation = false;
+        }
+        if (note == "") {
+            $('#TransferModalNoteSpan').html("Please Enter Assign Note");
+            allvalidation = false;
+        }
+        else if (!regexnote.test(note)) {
+            $('#TransferModalNoteSpan').html("Assign Note is not valid");
+            allvalidation = false;
+        }
+        if (allvalidation) {
+            $('#TransferModalSubminbtn').closest('form').submit();
+        }
+    });
+</script>
 <script src="~/js/ProviderSide/ProviderSide.js" asp-append-version="true"> </script> 
 <script src="~/js/ProviderSide/Tabs.js" asp-append-version="true"> </script> 
 <style>
@@ -543,23 +635,3 @@
     }
 
 </style>
-<script>
-
-    const radiouttons = document.querySelectorAll('.radio-under');
-    const radioDivs = document.querySelectorAll('.check-activeradio');
-
-    console.log("1" + radiouttons)
-    console.log("2" + radioDivs)
-    radiouttons.forEach((radio, index) => {
-        radio.addEventListener('click', () => {
-            radioDivs.forEach((div, divIndex) => {
-                if (index === divIndex) {
-                    div.classList.add('selected-border');
-                } else {
-                    div.classList.remove('selected-border');
-                }
-            });
-        });
-    });
-
-</script>

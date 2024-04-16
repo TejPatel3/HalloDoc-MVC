@@ -20,6 +20,8 @@ namespace Services.ViewModels
         public string PhsysicianNameViewNotes { get; set; }
 
         public DateTime assigntime { get; set; }
+        public int PhysicianId { get; set; }
+
     }
 }
 

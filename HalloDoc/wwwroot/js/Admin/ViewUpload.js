@@ -200,3 +200,6 @@ function download() {
 
 
 
+$('.backbuttonglobal').click(function () {
+    location.reload();
+});

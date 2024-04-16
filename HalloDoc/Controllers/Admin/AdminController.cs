@@ -318,8 +318,14 @@ namespace HalloDoc.Controllers.Admin
                 _context.SaveChanges();
             }
             TempData["success"] = "Your order placed successfully..!";
-
-            return RedirectToAction("AdminDashboard");
+            if (HttpContext.Session.GetInt32("PhysicianId") != null)
+            {
+                return RedirectToAction("ProviderDashboard", "ProviderSide");
+            }
+            else
+            {
+                return RedirectToAction("AdminDashboard");
+            }
         }
 
 
@@ -460,18 +466,47 @@ namespace HalloDoc.Controllers.Admin
             TempData["success"] = "Request Canceled Successfully..!";
             return RedirectToAction("AdminDashboard");
         }
+        [HttpPost]
+        public IActionResult ReviewAgreementcancelCaseModal(int id, AdminRequestViewModel cancelnote, string casetagname)
+        {
+            var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
+            if (req.Status == 3 || req.Status == 4)
+            {
+                TempData["errorCancelAgreementmodel"] = "Your Responce already submitted";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                req.Status = 3;
+                var casetag = _context.CaseTags.FirstOrDefault(t => t.Name == casetagname);
+                if (casetag != null)
+                {
+                    req.CaseTag = casetag.CaseTagId.ToString();
+
+                }
+                _context.Requests.Update(req);
+                _context.SaveChanges();
+                var adminid = HttpContext.Session.GetInt32("AdminId");
+                _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, cancelnote.BlockNotes, adminid);
+                TempData["success"] = "Request Canceled Successfully..!";
+                return RedirectToAction("Login", "Home");
+            }
+        }
 
         [HttpPost]
         public IActionResult AssignCase(int id, AdminRequestViewModel assignnote, string physicianname)
         {
             var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
-            var physiciandetail = _context.Physicians.FirstOrDefault(p => p.FirstName + p.LastName == physicianname);
-            req.Status = 2;
+            var physiciandetail = _context.Physicians.FirstOrDefault(p => p.PhysicianId.ToString() == physicianname);
+            //req.Status = 2;
             req.PhysicianId = physiciandetail.PhysicianId;
+            if (req.DeclinedBy != null)
+            {
+                req.DeclinedBy = null;
+            }
             _context.Requests.Update(req);
             _context.SaveChanges();
             var adminid = HttpContext.Session.GetInt32("AdminId");
-
             _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, adminid, physiciandetail.PhysicianId);
             TempData["success"] = "Request successfully Assigned..!";
             return RedirectToAction("AdminDashboard");
@@ -552,7 +587,14 @@ namespace HalloDoc.Controllers.Admin
             string AgreementUrl = GenerateAgreementUrl(id);
             SendEmail(email, "Confirm Your Agreement", $"Hello, Click On below Link for COnfirm Agreement: {AgreementUrl}");
             TempData["success"] = "Agreement sent in Email..!";
-            return RedirectToAction("AdminDashboard");
+            if (HttpContext.Session.GetInt32("PhysicianId") != null)
+            {
+                return RedirectToAction("ProviderDashboard", "ProviderSide");
+            }
+            else
+            {
+                return RedirectToAction("AdminDashboard");
+            }
         }
 
 
@@ -594,7 +636,14 @@ namespace HalloDoc.Controllers.Admin
                 SendEmail(email, "Create A Request", $"Hello, Click On below Link for Creating a request: {CreateRequestUrl}");
                 TempData["success"] = "Create Request link sent in Email..!";
             }
-            return RedirectToAction("AdminDashboard");
+            if (HttpContext.Session.GetInt32("PhysicianId") != null)
+            {
+                return RedirectToAction("ProviderDashboard", "ProviderSide");
+            }
+            else
+            {
+                return RedirectToAction("AdminDashboard");
+            }
         }
         private string GenerateSendCreateRequestLinkUrl(string email, string phonenumber, string firstname)
         {
@@ -617,14 +666,24 @@ namespace HalloDoc.Controllers.Admin
             return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
         }
 
-        public IActionResult IAgreeSendAgreement(int requestid)
+        public bool IAgreeSendAgreement(int requestid)
         {
             var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
-            request.Status = 4;
-            _context.Requests.Update(request);
-            _context.SaveChanges();
-            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(requestid);
-            return RedirectToAction("PatientDashboard", "Dashboard");
+            bool check = true;
+            if (request.Status == 3 || request.Status == 4)
+            {
+                check = false;
+                return check;
+
+            }
+            else
+            {
+                request.Status = 4;
+                _context.Requests.Update(request);
+                _context.SaveChanges();
+                _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(requestid);
+                return check;
+            }
         }
 
         public List<AdminDashboardTableDataViewModel> ExportAllDownload()

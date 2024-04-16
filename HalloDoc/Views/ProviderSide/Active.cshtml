@@ -229,135 +229,149 @@
         <tbody id="datatable" class="bg-white">
 
 
-
-            @foreach (var item in Model)
+            @if (Model.Count > 0)
             {
-
-
-                var color = "green-dot";
-
-                switch (item.RequestType)
+                @foreach (var item in Model)
                 {
-                    case 1:
-                        {
-                            color = "green-dot";
-                            break;
-                        }
-                    case 2:
-                        {
-                            color = "orange-dot";
-                            break;
-                        }
-                    case 3:
-                        {
-                            color = "pink-dot";
-                            break;
-                        }
-                    case 4:
-                        {
-                            color = "cyan-dot";
-                            break;
-                        }
-                    default:
-                        {
-                            color = "purple-dot";
-                            break;
-                        }
+
+
+                    var color = "green-dot";
+
+                    switch (item.RequestType)
+                    {
+                        case 1:
+                            {
+                                color = "green-dot";
+                                break;
+                            }
+                        case 2:
+                            {
+                                color = "orange-dot";
+                                break;
+                            }
+                        case 3:
+                            {
+                                color = "pink-dot";
+                                break;
+                            }
+                        case 4:
+                            {
+                                color = "cyan-dot";
+                                break;
+                            }
+                        default:
+                            {
+                                color = "purple-dot";
+                                break;
+                            }
+                    }
+
+                    <tr class="@color">
+                        <td class="d-none">@item.RequestType</td>
+                        <td class="d-none">@item.regionid</td>
+
+                        <td scope="row">
+                            <div class="d-flex justify-content-between ">
+
+                                @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <button class="btn btn-outline-light w-100 d-flex ">
+                                <i class="bi bi-telephone pe-3 ps-1"></i>
+                                @item.PatientPhone
+                            </button>
+                            <small>(Patient)</small>
+
+                            @if (item.RequestType == 2 && item.RequestorPhone != null)
+                            {
+                                <button class="btn btn-outline-light w-100 d-flex ">
+                                    <i class="bi bi-telephone pe-3 ps-1"></i>
+                                    @item.RequestorPhone
+                                </button>
+                                <small>(Family\Friend)</small>
+                            }
+                            @if (item.RequestType == 3 && item.RequestorPhone != null)
+                            {
+                                <button class="btn btn-outline-light w-100 d-flex ">
+                                    <i class="bi bi-telephone pe-3 ps-1"></i>
+                                    @item.RequestorPhone
+                                </button>
+                                <small>(Concierge)</small>
+                            }
+                            @if (item.RequestType == 4 && item.RequestorPhone != null)
+                            {
+                                <button class="btn btn-outline-light w-100 d-flex ">
+                                    <i class="bi bi-telephone pe-3 ps-1"></i>
+                                    @item.RequestorPhone
+                                </button>
+                                <small>(Business)</small>
+                            }
+                        </td>
+                        <td>@item.Address</td>
+                        <td>@item.ProviderEmail</td>
+
+                        <td>
+                            <div class="dropstart ms-2">
+                                <button class="btn btn-outline-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Actions
+                                </button>
+                                <input type="hidden" asp-for="@item.requestid" value="@item.requestid" />
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <button class="dropdown-item text-secondary viewCase" value="@item.requestid">
+                                            <i class="bi bi-view-list me-2"></i>
+                                            View case
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item text-secondary viewUpload" value="@item.requestid">
+                                            <i class="bi bi-view-list me-2"></i>
+                                            View Uploads
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button value="@item.requestid" class="dropdown-item text-secondary viewNotes">
+                                            <i class="fa-solid fa-book-journal-whills me-2"></i>View Notes
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item text-secondary order" value="@item.requestid">
+                                            <i class="bi bi-view-list me-2"></i>
+                                            Orders
+                                        </button>
+                                    </li>
+
+                                    <li>
+                                        <button class="dropdown-item text-secondary" value="@item.requestid">
+                                            <i class="bi bi-view-list me-2"></i>
+                                            Encounter
+                                        </button>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
                 }
-
-                <tr class="@color">
-                    <td class="d-none">@item.RequestType</td>
-                    <td class="d-none">@item.regionid</td>
-
-                    <td scope="row">
-                        <div class="d-flex justify-content-between ">
-
-                            @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
-                        </div>
-                    </td>
-              
-                    <td>
-                        <button class="btn btn-outline-light w-100 d-flex ">
-                            <i class="bi bi-telephone pe-3 ps-1"></i>
-                            @item.PatientPhone
-                        </button>
-                        <small>(Patient)</small>
-
-                        @if (item.RequestType == 2 && item.RequestorPhone != null)
-                        {
-                            <button class="btn btn-outline-light w-100 d-flex ">
-                                <i class="bi bi-telephone pe-3 ps-1"></i>
-                                @item.RequestorPhone
-                            </button>
-                            <small>(Family\Friend)</small>
-                        }
-                        @if (item.RequestType == 3 && item.RequestorPhone != null)
-                        {
-                            <button class="btn btn-outline-light w-100 d-flex ">
-                                <i class="bi bi-telephone pe-3 ps-1"></i>
-                                @item.RequestorPhone
-                            </button>
-                            <small>(Concierge)</small>
-                        }
-                        @if (item.RequestType == 4 && item.RequestorPhone != null)
-                        {
-                            <button class="btn btn-outline-light w-100 d-flex ">
-                                <i class="bi bi-telephone pe-3 ps-1"></i>
-                                @item.RequestorPhone
-                            </button>
-                            <small>(Business)</small>
-                        }
-                    </td>
-                    <td>status</td>
-                    <td>@item.ProviderEmail</td>
-                 
-                    <td>
-                        <div class="dropstart ms-2">
-                            <button class="btn btn-outline-light" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Actions
-                            </button>
-                            <input type="hidden" asp-for="@item.requestid" value="@item.requestid" />
-                            <ul class="dropdown-menu">
-
-                                <li>
-                                    <button class="dropdown-item text-secondary viewCase" value="@item.requestid">
-                                        <i class="bi bi-view-list me-2"></i>
-                                        View case
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="dropdown-item text-secondary viewUpload" value="@item.requestid">
-                                        <i class="bi bi-view-list me-2"></i>
-                                        View Uploads
-                                    </button>
-                                </li>
-                                <li>
-                                    <button value="@item.requestid" class="dropdown-item text-secondary viewNotes">
-                                        <i class="fa-solid fa-book-journal-whills me-2"></i>View Notes
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="dropdown-item text-secondary order" value="@item.requestid">
-                                        <i class="bi bi-view-list me-2"></i>
-                                        Orders
-                                    </button>
-                                </li>
-                        
-                                <li>
-                                    <button class="dropdown-item text-secondary" value="@item.requestid">
-                                        <i class="bi bi-view-list me-2"></i>
-                                        Encounter
-                                    </button>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-
             }
+
+
         </tbody>
     </table>
+    @if (Model.Count == 0)
+    {
+
+        <div class="d-flex justify-content-center align-items-center flex-column pb-3">
+            <img src="/images/no data gif.gif" style="width:30%; height:30%">
+            <h1>
+                Record Not Found
+            </h1>
+        </div>
+    }
 </div>
 
 

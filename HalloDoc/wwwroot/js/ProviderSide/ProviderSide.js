@@ -89,6 +89,7 @@ $('#BlockModalSubminbtn').click(function () {
 
 
 $('#TransferModalSubminbtn').click(function () {
+    console.log("model tranfer")
     var note = $('#TransferModalNote').val();
     var Region = $('#TransferModalFirstDropDownSelect').val();
     var Physician = $('#TransferModalSecondDropDownSelect').val();

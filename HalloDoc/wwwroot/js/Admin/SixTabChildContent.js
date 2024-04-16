@@ -130,7 +130,7 @@
             try {
                 console.log('accp')
                 var headers = document.querySelectorAll('.accordion-header');
-                
+
                 headers.forEach((header) => {
                     const requesttype = header.querySelector('.requesttype-accordion');
                     const nameText = requesttype.textContent || requesttype.innerText;
@@ -247,3 +247,31 @@ $('.closecasebtn').on('click', function (e) {
 });
 
 
+$('.acceptRequest').on('click', function () {
+    console.log("accept")
+    var requestid = $(this).val();
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Accept it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: '/ProviderSide/AcceptRequest',
+                data: { requestid: requestid },
+                success: function (response) {
+                    $('#adminLayoutMainDiv').html(response)
+                    Swal.fire({
+                        title: "Accepted!",
+                        text: "Request Accepted Successfully.",
+                        icon: "success"
+                    });
+                }
+            })
+        }
+    });
+});

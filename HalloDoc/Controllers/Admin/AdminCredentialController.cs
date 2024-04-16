@@ -53,8 +53,8 @@ namespace HalloDoc.Controllers.Admin
                 if (_context.Physicians.Any(m => m.Email == req.Email))
                 {
                     var physician = _context.Physicians.FirstOrDefault(m => m.Email == req.Email);
-                    HttpContext.Session.SetInt32("AdminId", physician.PhysicianId);
-                    HttpContext.Session.SetString("AdminName", $"{physician.FirstName} {physician.LastName}");
+                    HttpContext.Session.SetInt32("PhysicianId", physician.PhysicianId);
+                    HttpContext.Session.SetString("PhysicianName", $"{physician.FirstName} {physician.LastName}");
                     TempData["success"] = "Login Successful...!";
                     TempData["user"] = physician.FirstName;
                     var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == physician.Id);
@@ -94,7 +94,7 @@ namespace HalloDoc.Controllers.Admin
 
         public async Task<IActionResult> Logout()
         {
-            HttpContext.Session.Remove("UserId");
+            HttpContext.Session.Clear();
             Response.Cookies.Delete("jwt");
             return RedirectToAction("AdminLogin", "AdminCredential");
         }

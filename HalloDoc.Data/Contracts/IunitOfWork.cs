@@ -8,5 +8,7 @@
         public ITableData tableData { get; }
         public IAdminDashboard AdminDashboard { get; }
         public IAdminDashboardDataTable AdminDashboarDataTable { get; }
+        public IUpdateData UpdateData { get; }
+        public IAddOrUpdateRequestStatusLog AddOrUpdateRequestStatusLog { get; }
     }
 }

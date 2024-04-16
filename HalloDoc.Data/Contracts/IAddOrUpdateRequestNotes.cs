@@ -5,5 +5,6 @@ namespace Services.Contracts
     public interface IAddOrUpdateRequestNotes
     {
         void AddOrUpdateRequestNotes(AdminRequestViewModel obj);
+        void PhysicianRequestNotes(AdminRequestViewModel obj);
     }
 }

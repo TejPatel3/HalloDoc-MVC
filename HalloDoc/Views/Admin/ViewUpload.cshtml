@@ -1,5 +1,6 @@
 ﻿@using Services.ViewModels
 @model ViewUploadViewModel
+@inject IHttpContextAccessor accessor
 
 
 <Partial name="Toast" />
@@ -11,8 +12,7 @@
 <div class="container  pt-3 pb-4">
     <div class="d-flex justify-content-between mb-2">
         <h4>Documents</h4>
-        <a asp-action="AdminDashboard"
-           class="btn m-0 btn-outline-info  px-2 ">
+        <a class="btn m-0 btn-outline-info  px-2 backbuttonglobal">
             <i class="fa-solid fa-chevron-left"></i>
             Back
         </a>
@@ -81,20 +81,23 @@
                         Download all
                     </label>
                 </button>
-                <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="DeleteAll">
-                    <i class="bi bi-trash  d-block d-sm-none"></i>
-                    <label class="d-sm-block d-none">
+                @if (@accessor.HttpContext.Session.GetString("AdminId") != null)
+                {
+                    <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="DeleteAll">
+                        <i class="bi bi-trash  d-block d-sm-none"></i>
+                        <label class="d-sm-block d-none">
 
-                        Delete All
-                    </label>
-                </button>
-                <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="sendMail">
-                    <i class="bi bi-envelope d-block d-sm-none"></i>
-                    <label class="d-sm-block d-none">
+                            Delete All
+                        </label>
+                    </button>
+                    <button type="button" class="btn m-0 btn-outline-info  px-2 mx-1 shadow-none" id="sendMail">
+                        <i class="bi bi-envelope d-block d-sm-none"></i>
+                        <label class="d-sm-block d-none">
 
-                        Send Mail
-                    </label>
-                </button>
+                            Send Mail
+                        </label>
+                    </button>
+                }
             </div>
         </div>
         <span id="downloadallbtn-viewupload" class="text-danger"></span>
@@ -114,7 +117,7 @@
                     @foreach (var item in Model.wiseFiles)
                     {
 
-                        <tr >
+                        <tr>
                             <td scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" id="@item.RequestWiseFileId" /></td>
                             <td class="text-black">@item.FileName.Substring(52)</td>
                             <td class="text-black">  @item.CreatedDate.ToString("MMM dd , yyyy")</td>

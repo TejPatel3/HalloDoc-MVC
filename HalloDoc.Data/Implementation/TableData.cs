@@ -53,5 +53,13 @@ namespace Services.Implementation
         {
             return _context.Roles.FirstOrDefault(m => m.RoleId == id);
         }
+        public Request GetRequestFirstOrDefault(int id)
+        {
+            return _context.Requests.FirstOrDefault(m => m.RequestId == id);
+        }
+        public Physician GetPhysicianFirstOrDefault(int id)
+        {
+            return _context.Physicians.FirstOrDefault(m => m.PhysicianId == id);
+        }
     }
 }

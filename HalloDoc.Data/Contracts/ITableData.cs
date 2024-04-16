@@ -14,6 +14,9 @@ namespace Services.Contracts
 
 
         public Role GetRoleById(int id);
+        public Request GetRequestFirstOrDefault(int id);
+        public Physician GetPhysicianFirstOrDefault(int id);
+
 
 
     }
