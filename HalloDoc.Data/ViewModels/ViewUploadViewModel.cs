@@ -25,5 +25,6 @@ namespace Services.ViewModels
         [Required]
         public List<IFormFile?> Upload { get; set; }
         public string Notes { get; set; }
+        public string isfinalize { get; set; }
     }
 }

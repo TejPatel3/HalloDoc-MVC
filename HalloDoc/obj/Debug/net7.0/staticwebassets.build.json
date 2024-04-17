@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "02n/s05hlDd2V1XwJ5883n5sODS6wXgyTJ8tWuYdvJY=",
+  "Hash": "Ru5A9rqVyJcJq/izdYPJ2jI4CgivlTiywf54x8mmcNY=",
   "Source": "HalloDoc",
   "BasePath": "_content/HalloDoc",
   "Mode": "Default",
@@ -765,6 +765,23 @@
       "OriginalItemSpec": "wwwroot\\js\\ProviderLocation\\ProviderLoaction.js"
     },
     {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderProfile.js",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "js/ProviderSide/ProviderProfile.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\ProviderSide\\ProviderProfile.js"
+    },
+    {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderSide.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
@@ -780,6 +797,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\ProviderSide\\ProviderSide.js"
+    },
+    {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderSideScheduling.js",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "js/ProviderSide/ProviderSideScheduling.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\ProviderSide\\ProviderSideScheduling.js"
     },
     {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\SixTabChildContent.js",
@@ -2346,6 +2380,23 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\canada.png"
     },
     {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\dc2ec5a571974417a5551420a4fb0587.webp",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "UploadDocument/dc2ec5a571974417a5551420a4fb0587.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadDocument\\dc2ec5a571974417a5551420a4fb0587.webp"
+    },
+    {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\eye.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
@@ -2412,6 +2463,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\UploadDocument\\hallodoc-transparent.png"
+    },
+    {
+      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (5).jfif",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "UploadDocument/images (5).jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadDocument\\images (5).jfif"
     },
     {
       "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (6).jfif",

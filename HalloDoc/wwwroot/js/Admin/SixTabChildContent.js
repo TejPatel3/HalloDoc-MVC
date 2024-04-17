@@ -275,3 +275,4 @@ $('.acceptRequest').on('click', function () {
         }
     });
 });
+

@@ -13,7 +13,7 @@ using System.Net.Mail;
 
 namespace HalloDoc.Controllers.Admin
 {
-    [AuthorizationRepository("Admin")]
+    [AuthorizationRepository("Admin,Physician")]
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -343,7 +343,14 @@ namespace HalloDoc.Controllers.Admin
                 uploadFile(file, id);
                 TempData["success"] = "Document Upload Successfully..!";
             }
-            return RedirectToAction("ViewUpload", new { requestid = id });
+            if (HttpContext.Session.GetInt32("PhysicianId") != null)
+            {
+                return RedirectToAction("ConcludeCare", "ProviderSide", new { requestid = id });
+            }
+            else
+            {
+                return RedirectToAction("ViewUpload", new { requestid = id });
+            }
         }
 
         public void uploadFile(List<IFormFile> file, int id)
@@ -378,7 +385,14 @@ namespace HalloDoc.Controllers.Admin
             _context.RequestWiseFiles.Update(wisefile);
             _context.SaveChanges();
             TempData["success"] = "Document Deleted Successfully..!";
-            return RedirectToAction("ViewUpload", new { requestid = reqId });
+            if (HttpContext.Session.GetInt32("PhysicianId") != null)
+            {
+                return RedirectToAction("ConcludeCare", "ProviderSide", new { requestid = reqId });
+            }
+            else
+            {
+                return RedirectToAction("ViewUpload", new { requestid = reqId });
+            }
         }
 
         [HttpPost]
@@ -494,10 +508,10 @@ namespace HalloDoc.Controllers.Admin
         }
 
         [HttpPost]
-        public IActionResult AssignCase(int id, AdminRequestViewModel assignnote, string physicianname)
+        public IActionResult AssignCase(int id, AdminRequestViewModel assignnote, string physicianid)
         {
             var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
-            var physiciandetail = _context.Physicians.FirstOrDefault(p => p.PhysicianId.ToString() == physicianname);
+            var physiciandetail = _context.Physicians.FirstOrDefault(p => p.PhysicianId.ToString() == physicianid);
             //req.Status = 2;
             req.PhysicianId = physiciandetail.PhysicianId;
             if (req.DeclinedBy != null)

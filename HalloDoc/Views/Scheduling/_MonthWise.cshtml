@@ -1,6 +1,7 @@
 ﻿@model Services.ViewModels.MonthWiseScheduling;
 @using Microsoft.AspNetCore.Html
 @using Microsoft.AspNetCore.Mvc.Rendering;
+@inject IHttpContextAccessor accessor
 
 
 <div id="calendar" class="my-3 shadow bg-white">
@@ -91,8 +92,11 @@
                                                                     @:style="background-color:rgb(255, 212, 237); color: rgb(87, 1, 51); font-weight:600"
                                                                 }>
                                                                     @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
-                                                                    <br />
-                                                                    @item.Shift.Physician.FirstName, @item.Shift.Physician.LastName
+                                                                    @if (@accessor.HttpContext.Session.GetInt32("AdminId") != null)
+                                                                    {
+                                                                        <br />
+                                                                        @item.Shift.Physician.FirstName @item.Shift.Physician.LastName
+                                                                    }
                                                                 </button>
                                                             </td>
                                                         </tr>
@@ -113,8 +117,14 @@
                                                                     @:style="background-color:rgb(255, 212, 237); color: rgb(87, 1, 51); font-weight:600"
                                                                 }>
                                                                     @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
-                                                                    <br />
-                                                                    @item.Shift.Physician.FirstName, @item.Shift.Physician.LastName
+                                                                    @if (@accessor.HttpContext.Session.GetInt32("AdminId") != null)
+                                                                    {
+                                                                        @if (@accessor.HttpContext.Session.GetInt32("AdminId") != null)
+                                                                        {
+                                                                            <br />
+                                                                            @item.Shift.Physician.FirstName @item.Shift.Physician.LastName
+                                                                        }
+                                                                    }
                                                                 </button>
                                                             </td>
                                                         </tr>
@@ -148,8 +158,12 @@
                                                                     @:style="background-color:rgb(255, 212, 237); color: rgb(87, 1, 51); font-weight:600"
                                                                 }>
                                                                     @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
-                                                                    <br />
-                                                                    @item.Shift.Physician.FirstName, @item.Shift.Physician.LastName
+
+                                                                    @if (@accessor.HttpContext.Session.GetInt32("AdminId") != null)
+                                                                    {
+                                                                        <br />
+                                                                        @item.Shift.Physician.FirstName @item.Shift.Physician.LastName
+                                                                    }
                                                                 </button>
                                                             </td>
                                                         </tr>
@@ -191,15 +205,15 @@
                             <td class="bg-white border-0"></td>
                             <td class="bg-white border-0"></td>
                         </tr>
-                        <tr>
-                            <td class="bg-white border-0"></td>
-                            <td class="bg-white border-0"></td>
-                            <td class="bg-white border-0"></td>
-                            <td class="bg-white border-0"></td>
-                            <td class="bg-white border-0"></td>
-                            <td class="bg-white border-0"></td>
-                            <td class="bg-white border-0"></td>
-                        </tr>
+                        // <tr>
+                        //     <td class="bg-white border-0"></td>
+                        //     <td class="bg-white border-0"></td>
+                        //     <td class="bg-white border-0"></td>
+                        //     <td class="bg-white border-0"></td>
+                        //     <td class="bg-white border-0"></td>
+                        //     <td class="bg-white border-0"></td>
+                        //     <td class="bg-white border-0"></td>
+                        // </tr>
 
 
                     }

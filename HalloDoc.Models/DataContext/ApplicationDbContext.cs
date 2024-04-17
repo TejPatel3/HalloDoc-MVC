@@ -36,6 +36,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<EmailLog> EmailLogs { get; set; }
 
+    public virtual DbSet<Encounter> Encounters { get; set; }
+
     public virtual DbSet<HealthProfessional> HealthProfessionals { get; set; }
 
     public virtual DbSet<HealthProfessionalType> HealthProfessionalTypes { get; set; }
@@ -170,6 +172,17 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<EmailLog>(entity =>
         {
             entity.HasKey(e => e.EmailLogId).HasName("EmailLog_pkey");
+        });
+
+        modelBuilder.Entity<Encounter>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("Encounter_pkey");
+
+            entity.Property(e => e.IsFinalized).HasDefaultValueSql("'0'::\"bit\"");
+
+            entity.HasOne(d => d.Request).WithMany(p => p.Encounters)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("fk_encounter_request");
         });
 
         modelBuilder.Entity<HealthProfessional>(entity =>

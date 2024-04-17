@@ -312,13 +312,14 @@
                                         </button>
                                     </li>
 
-
                                     <li>
-                                        <button class="dropdown-item text-secondary" value="@item.requestid">
+                                        <button class="dropdown-item text-secondary encounterclick_concludep" id="@item.requestid" value="@item.requestid">
                                             <i class="bi bi-view-list me-2"></i>
                                             Encounter
                                         </button>
                                     </li>
+
+
 
                                 </ul>
                             </div>
@@ -343,14 +344,15 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-<script src="~/js/Admin/SixTabChildContent.js"> </script>
+@* <script src="~/js/Admin/SixTabChildContent.js"> </script> *@
+<script src="~/js/ProviderSide/SixTabChildContent.js"> </script>
 <script>
     $('.concludeCarebtn').click(function () {
         var requestid = $(this).val()
         $.ajax({
             url: '/ProviderSide/ConcludeCare',
-            data: {requestid:requestid},
-            success:function(data){
+            data: { requestid: requestid },
+            success: function (data) {
                 $('#nav-home').html(data);
             },
         });

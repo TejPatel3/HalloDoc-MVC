@@ -525,6 +525,46 @@
 </div>
 
 
+@* //encountre model *@
+
+@*Encounter Modal *@
+<div class="modal fade rounded-3 shadow" id="exampleModalEncounter" tabindex="-1" role="dialog" aria-labelledby="exampleModalEncounter" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <h5 class="modal-title text-white" id="staticBackdropLabel">Select Type Of Care</h5>
+                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                    <i class="fa-solid fa-xmark text-white"></i>
+                </button>
+            </div>
+            <div class="modal-body  justify-content-center">
+                <input type="number" name="requestid" class="requestid" value="@Model.requestid" hidden/>
+
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="px-2">
+                        <input type="radio" class="btn-check housecall" name="options-outlined" id="success-outlined" value="Housecall" autocomplete="off">
+                        <label class="btn btn-outline-info" for="success-outlined">Housecall</label>
+                    </div>
+                    <div class="px-2">
+                        <input type="radio" class="btn-check consult" name="options-outlined" id="danger-outlined" value="Consult" autocomplete="off">
+                        <label class="btn btn-outline-info" for="danger-outlined">Consult</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-info shadow-none encounter-save" type="button" role="button">Save</button>
+                <button class="btn border border-1 border-info text-info shadow-none" data-dismiss="modal" role="button" type="button">Cancel</button>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+
 @* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

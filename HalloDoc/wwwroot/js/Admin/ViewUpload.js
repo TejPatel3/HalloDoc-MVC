@@ -22,7 +22,7 @@ $('.uploadbtn').on('click', function (e) {
     }
     formData.append('id', $('.RequestsId').val());
     console.log(formData);
-    // Add any other data you need (e.g., RequestsId)
+    // Add any other data you need (e.g., RequestsId) gavsgvahgsvagvdsg
     $.ajax({
         url: '../Admin/UploadButton', // Replace with your controller action URL
         type: 'POST',

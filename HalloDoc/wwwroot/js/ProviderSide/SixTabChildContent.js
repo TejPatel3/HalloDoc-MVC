@@ -247,4 +247,134 @@ $('.closecasebtn').on('click', function (e) {
 });
 
 
+//encounter/////////////////////////////////////////////////
 
+
+$('.encounter').on('click', function (e) {
+    console.log('encounter');
+
+    var requestid = $(this).val();
+    $('.requestid').val(requestid);
+    console.log(requestid)
+})
+
+
+
+$('.encounter-save').on('click', function (e) {
+    var requestid = $('.requestid').val();
+    var encountervalue = $('input[name="options-outlined"]:checked').attr('value');
+    //if (encountervalue == "Consult") {
+    //}
+    console.log(encountervalue)
+    console.log(requestid)
+
+    $.ajax({
+        url: '/ProviderSide/EncounterSubmit',
+        data: { requestid: requestid, encountervalue: encountervalue },
+        success: function (data) {
+            $('#exampleModalEncounter').click();
+            $('#nav-home').html(data);
+            if (data == ""){
+               location.reload()
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+        }
+
+    })
+})
+$('.housecallbtnclickp').on('click', function () {
+    var requestid = $(this).val();
+    $.ajax({
+        url: '/ProviderSide/OnHouseOpenEncounter',
+        data: { requestid: requestid },
+        type: 'POST',
+        success: function (data) {
+            $('#nav-home').html(data);
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+        }
+
+    })
+})
+
+$('.encounterclick_concludep').on('click', function () {
+    var requestid = $(this).val();
+    console.log("mnhjdsbchjsdbjhb")
+    $.ajax({
+        url: '/ProviderSide/Encounter',
+        data: { requestid: requestid },
+        success: function (data) {
+            if (data == "") {
+                alert("Already Finalized");
+            } else {
+                $('#nav-home').html(data);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+        }
+
+    })
+})
+
+
+
+$('.data-agreement').on('click', function (e) {
+    console.log("send agree gayu");
+
+    var requestid = $(this).attr('value');
+    console.log(requestid);
+
+    $.ajax({
+        url: '/Admin/GetAgreementData',
+        type: 'GET',
+        data: { requestid: requestid },
+
+        success: function (data) {
+            $('#agreement-phone').val(data.phonenumber);
+            $('#agreement-email').val(data.email);
+            var requesttype = data.requesttype;
+            console.log(requesttype);
+            console.log(data.requesttype);
+            var color = "green-dot";
+            var text = "";
+            switch (requesttype) {
+                case 1:
+                    {
+                        color = "green-dot";
+                        text = "Patient";
+                        break;
+                    }
+                case 2:
+                    {
+                        color = "orange-dot";
+                        text = "Family/Friend";
+                        break;
+                    }
+                case 3:
+                    {
+                        color = "pink-dot";
+                        text = "Business Partner";
+                        break;
+                    }
+                case 4:
+                    {
+                        color = "cyan-dot";
+                        text = "Concierge";
+                        break;
+                    }
+                default:
+                    {
+                        color = "purple-dot";
+                        text = "vip";
+                        break;
+                    }
+            }
+            $('#requesttype-agreement').html(text);
+            $('#requesttype-dot').addClass(color);
+        }
+    })
+})

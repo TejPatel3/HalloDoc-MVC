@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets\\UploadDocument\\canada.png"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\dc2ec5a571974417a5551420a4fb0587.webp",
+      "PackagePath": "staticwebassets\\UploadDocument\\dc2ec5a571974417a5551420a4fb0587.webp"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\eye-icon.jfif",
       "PackagePath": "staticwebassets\\UploadDocument\\eye-icon.jfif"
     },
@@ -63,6 +67,10 @@
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\hallodoc-transparent.png",
       "PackagePath": "staticwebassets\\UploadDocument\\hallodoc-transparent.png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (5).jfif",
+      "PackagePath": "staticwebassets\\UploadDocument\\images (5).jfif"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (6).jfif",
@@ -269,8 +277,16 @@
       "PackagePath": "staticwebassets\\js\\ProviderLocation\\ProviderLoaction.js"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderProfile.js",
+      "PackagePath": "staticwebassets\\js\\ProviderSide\\ProviderProfile.js"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderSide.js",
       "PackagePath": "staticwebassets\\js\\ProviderSide\\ProviderSide.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderSideScheduling.js",
+      "PackagePath": "staticwebassets\\js\\ProviderSide\\ProviderSideScheduling.js"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\SixTabChildContent.js",

@@ -31,6 +31,8 @@ $('#CancelModalSubminbtn').click(function () {
 });
 
 $('#AssignModalSubminbtn').click(function () {
+
+
     var note = $('#AssignModalNote').val();
     var Region = $('#AssignModalFirstDropDownSelect').val();
     var Physician = $('#AssignModalSecondDropDownSelect').val();

@@ -42,6 +42,7 @@ namespace Services.Implementation
                                                         regionid = reqclient.RegionId,
                                                         PhysicianId = req.PhysicianId,
                                                         regionidtoclose = reqclient.RegionId.ToString(),
+                                                        status = req.Status,
                                                     };
 
 
@@ -75,6 +76,8 @@ namespace Services.Implementation
                                                         regionid = reqclient.RegionId,
                                                         PhysicianId = req.PhysicianId,
                                                         regionidtoclose = reqclient.RegionId.ToString(),
+                                                        status = req.Status,
+
                                                     };
 
 
@@ -105,6 +108,8 @@ namespace Services.Implementation
                                                         regionid = reqclient.RegionId,
                                                         PhysicianId = req.PhysicianId,
                                                         regionidtoclose = reqclient.RegionId.ToString(),
+                                                        status = req.Status,
+
                                                     };
 
             return AdminDashboardDataTableViewModels.ToList();

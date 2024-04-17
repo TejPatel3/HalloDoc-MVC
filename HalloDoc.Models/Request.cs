@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace HalloDoc.DataModels;
 
@@ -93,6 +90,9 @@ public partial class Request
     [InverseProperty("Requests")]
     public virtual Physician? Physician { get; set; }
 
+
+    [InverseProperty("Request")]
+    public virtual ICollection<Encounter> Encounters { get; set; } = new List<Encounter>();
     [InverseProperty("Request")]
     public virtual ICollection<RequestBusiness> RequestBusinesses { get; set; } = new List<RequestBusiness>();
 

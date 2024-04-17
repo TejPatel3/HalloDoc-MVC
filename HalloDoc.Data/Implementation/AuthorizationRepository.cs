@@ -62,7 +62,7 @@ namespace Services.Implementation
                 return;
             }
 
-            if (string.IsNullOrEmpty(_role) || roleClaim.Value != _role)
+            if (string.IsNullOrEmpty(_role) || !_role.Contains(roleClaim.Value))
             {
                 context.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "AdminCredential", action = "AdminLogin" }));
             }

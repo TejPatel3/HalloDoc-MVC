@@ -24,7 +24,7 @@ namespace Services.ViewModels
         public int? regionid { get; set; }
 
         public string regionidtoclose { get; set; }
-
+        public int status { get; set; }
 
         public enum RegionName
         {

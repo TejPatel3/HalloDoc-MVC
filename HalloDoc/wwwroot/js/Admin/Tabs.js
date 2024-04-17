@@ -19,9 +19,10 @@ $(document).ready(function () {
                     value: "",
                     text: "Select Physician"
                 }))
+                console.log(data)
                 $.each(data, function (index, item) {
                     secondDropdown.append($('<option>', {
-                        value: item.firstName + item.lastName, // Replace with the actual value from your data
+                        value: item.physicianId, // Replace with the actual value from your data
                         text: item.firstName + item.lastName // Replace with the actual text from your data
                     }));
                 });

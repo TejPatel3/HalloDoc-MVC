@@ -117,8 +117,8 @@
 
                         <div class="col-6 d-flex justify-content-center">
 
-                            <button type="button" value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary encounter" id="@item.requestid" data-toggle="modal" data-target="#exampleModalEncounter">
-
+                            <button class="dropdown-item text-secondary encounter" id="@item.requestid" value="@item.requestid" data-bs-toggle="modal" data-bs-target="#exampleModalEncounter">
+                                <i class="bi bi-view-list me-2"></i>
                                 Encounter
                             </button>
                         </div>
@@ -310,7 +310,16 @@
                             }
                         </td>
                         <td>@item.Address</td>
-                        <td>@item.ProviderEmail</td>
+                        <td>
+
+                            @if (item.status == 5)
+                            {
+                                <button class="btn-outline-info text-dark housecallbtnclickp" value="@item.requestid">
+                                    Housecall
+                                </button>
+                            }
+
+                        </td>
 
                         <td>
                             <div class="dropstart ms-2">
@@ -344,12 +353,15 @@
                                         </button>
                                     </li>
 
-                                    <li>
-                                        <button class="dropdown-item text-secondary" value="@item.requestid">
-                                            <i class="bi bi-view-list me-2"></i>
-                                            Encounter
-                                        </button>
-                                    </li>
+                                    @if (item.status == 4)
+                                    {
+                                        <li>
+                                            <button class="dropdown-item text-secondary encounter" id="@item.requestid" value="@item.requestid" data-bs-toggle="modal" data-bs-target="#exampleModalEncounter">
+                                                <i class="bi bi-view-list me-2"></i>
+                                                Encounter
+                                            </button>
+                                        </li>
+                                    }
 
                                 </ul>
                             </div>
@@ -380,5 +392,5 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-<script src="~/js/Admin/SixTabChildContent.js"> </script>
+<script src="~/js/ProviderSide/SixTabChildContent.js" asp-append-version="true"> </script>
 
