@@ -1,6 +1,7 @@
 ﻿using DataModels.AdminSideViewModels;
 using HalloDoc.DataContext;
 using HalloDoc.DataModels;
+using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
@@ -465,6 +466,100 @@ namespace HalloDoc.Controllers.ProviderSide
             _context.SaveChanges();
 
             return RedirectToAction("MyProfile");
+        }
+        public IActionResult CreatePatientRequest()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreatePatientRequest(patientRequest req)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(req);
+            }
+            var aspuser = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(n => n.Email == req.Email);
+            var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == user.RegionId);
+            var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
+            string regiondata = _context.Regions.FirstOrDefault(a => a.RegionId == user.RegionId).Abbreviation;
+            var physicianid = HttpContext.Session.GetInt32("PhysicianId");
+            var physician = await _context.Physicians.FirstOrDefaultAsync(m => m.PhysicianId == physicianid);
+            if (aspuser != null)
+            {
+                Request requests = new Request
+                {
+                    FirstName = physician.FirstName,
+                    LastName = physician.LastName,
+                    Email = physician.Email,
+                    CreatedDate = DateTime.Now,
+                    RequestTypeId = 1,
+                    Status = 1,
+                    UserId = user.UserId,
+                    PhoneNumber = physician.Mobile,
+                    ModifiedDate = DateTime.Now,
+                    //ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
+                    ConfirmationNumber = regiondata + DateTime.Now.Day.ToString().PadLeft(2, '0') + DateTime.Now.Month.ToString().PadLeft(2, '0')
+                           + DateTime.Now.Year.ToString().Substring(2) + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) +
+                           (requestcount.Count() + 1).ToString().PadLeft(4, '0'),
+
+                    //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
+                };
+                _context.Requests.Add(requests);
+                _context.SaveChanges();
+
+
+                RequestClient requestclients = new RequestClient
+                {
+                    FirstName = req.FirstName,
+                    LastName = req.LastName,
+                    Email = req.Email,
+                    PhoneNumber = req.PhoneNumber,
+                    Street = req.Street,
+                    City = req.City,
+                    State = req.State,
+                    ZipCode = req.ZipCode,
+                    RequestId = requests.RequestId,
+                    RegionId = 1,
+                    Notes = req.Notes,
+                    Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
+                    IntDate = int.Parse(req.BirthDate?.ToString("dd")),
+                    IntYear = int.Parse(req.BirthDate?.ToString("yyyy")),
+                    StrMonth = req.BirthDate?.ToString("MMM"),
+                };
+                _context.RequestClients.Add(requestclients);
+                _context.SaveChanges();
+
+                if (req.Upload != null)
+                {
+                    uploadFile(req.Upload, requests.RequestId);
+
+                }
+            }
+            TempData["success"] = "Request created successfully";
+            return RedirectToAction("AdminDashboard");
+
+        }
+        public void uploadFile(List<IFormFile> file, int id)
+        {
+            foreach (var item in file)
+            {
+                //string path = _environment.WebRootPath + "/UploadDocument/" + item.FileName;
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadDocument", item.FileName);
+                ////string path = "D:\Project\HalloDoc-Images/" + item.FileName;
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    item.CopyTo(fileStream);
+                }
+                RequestWiseFile requestWiseFiles = new RequestWiseFile
+                {
+                    RequestId = id,
+                    FileName = path,
+                    CreatedDate = DateTime.Now,
+                };
+                _context.RequestWiseFiles.Add(requestWiseFiles);
+                _context.SaveChanges();
+            }
         }
 
     }

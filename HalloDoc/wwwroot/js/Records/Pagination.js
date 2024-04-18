@@ -1,0 +1,1 @@
+﻿$('.recordstab').DataTable({    "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],    "pageLength": 10,    language: {        oPaginate: {            sNext: '<i class="bi bi-caret-right-fill text-info"></i>',            sPrevious: '<i class="bi bi-caret-left-fill text-info"></i>'        }    }});$('.dataTables_filter').hide();

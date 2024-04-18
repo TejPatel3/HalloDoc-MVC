@@ -17,7 +17,7 @@
                 Back
             </a>
         </div>
-        <form asp-action="FamilyFriend" asp-controller="PatientRequest" method="post" enctype="multipart/form-data">
+        <form asp-action="FamilyFriend" asp-controller="PatientRequest" method="post" enctype="multipart/form-data" id="formfamily">
             <div class="row bg-white  px-4 py-2">
 
 
@@ -146,10 +146,44 @@
                     </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end pb-2">
-                    <button type="submit" class="btn me-2 px-2 btn-info text-white">Submit</button>
+                    <button type="button" class="btn me-2 px-2 btn-info text-white" id="createuseraccountsubmit">Submit</button>
                     <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+<script>
+    $('#createuseraccountsubmit').click(function () {
+        var email = $('#emailpatientfamilyfriend').val();
+        $.ajax({
+            url: '/PatientRequest/CheckUserExist',
+            data: { email: email },
+            success: function (data) {
+                if (data) {
+                    $('#formfamily').submit();
+                }
+                else {
+                    $.ajax({
+                        url: '/PatientRequest/CreateUserSendMail',
+                        data: { email: email },
+                        success: function (data) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Email Sent Successfully",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        }
+                    });
+                    Swal.fire({
+                        icon: "error",
+                        title: "First Create ",
+                        text: "Something went wrong!",
+                        footer: '<a href="#">Why do I have this issue?</a>'
+                    });
+                }
+            },
+        });
+    })
+</script>

@@ -10,5 +10,6 @@
         public IAdminDashboardDataTable AdminDashboarDataTable { get; }
         public IUpdateData UpdateData { get; }
         public IAddOrUpdateRequestStatusLog AddOrUpdateRequestStatusLog { get; }
+        public IAccessRepository Access { get; }
     }
 }

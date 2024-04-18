@@ -166,7 +166,7 @@ $('.declineRequest').click(function () {
                 success: function (response) {
                     $('#adminLayoutMainDiv').html(response)
                     Swal.fire({
-                        title: "Accepted!",
+                        title: "Declined!",
                         text: "Request Declined Successfully.",
                         icon: "success"
                     });

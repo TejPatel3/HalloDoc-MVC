@@ -23,7 +23,6 @@ namespace HalloDoc.Controllers.Provider
         {
             BitArray bitset = new BitArray(1);
             bitset[0] = true;
-
             var physiciannotificatin = _context.PhysicianNotifications.ToList();
             var model = new ProviderDetailsViewModel();
             model.physician = _context.Physicians.Where(m => m.IsDeleted != bitset).ToList();

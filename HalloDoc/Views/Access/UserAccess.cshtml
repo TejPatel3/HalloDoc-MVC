@@ -1,5 +1,5 @@
 ﻿@using Services.ViewModels
-@model AccessViewModel
+@model List<AccessViewModel>
 <Partial name="Toast" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
@@ -14,30 +14,54 @@
     </div>
     <div class="container-fluid bg-white shadow">
         <div class="row">
-            <div class="col-12 d-flex justify-content-end mt-3 ">
 
-                <button class="btn btn-outline-info shadow-none" id="createaccessrole-btn">Create Access</button>
-            </div>
             <div class="table-responsive  my-2">
                 <table class="table align-middle">
                     <thead class="bg-light">
                         <tr>
-                            <th class="">Account Type</th>
-                            <th class="ps-3">Name</th>
-
+                            <th class="text-center">Account Type</th>
+                            <th class="ps-3">Account POC</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>Open Request</th>
                             <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody id="datatable" class="bg-white">
-                        @foreach (var item in Model.rolelist)
+                        @foreach (var item in Model)
                         {
                             <tr>
-                                <td >@Model.Accounttypename(item.AccountType)</td>
-                                <td class="ps-3">@item.Name</td>
-                                <td class="text-center" style="width:clamp(10rem, 25vw, 11rem)">
-                                    <button class="btn btn-outline-info editbtn-accessrole" value="@item.RoleId">Edit</button>
-                                    <button type="button" class="btn btn-outline-info deletebtn-accessrole" value="@item.RoleId">Delete</button>
+                                @if (item.Accounttype == 1.ToString())
+                                {
 
+                                    <td class="text-center">Admin</td>
+                                }
+                                else
+                                {
+                                    <td class="text-center">Physician</td>
+                                }
+                                <td class="ps-3">@item.Name</td>
+                                <td>@item.Phone</td>
+                                @if (item.Status == 1)
+                                {
+                                    <td>Active</td>
+                                }
+                                else
+                                {
+                                    <td>InActive</td>
+
+                                }
+                                <td>@item.OpenRequest</td>
+                                <td class="text-center" style="width:clamp(10rem, 25vw, 11rem)">
+                                    @if (item.Accounttype == "1")
+                                    {
+                                        <button class="btn btn-outline-info editbtn-accessrole" value="@item.RoleId" data-id="@item.Accounttype">Edit</button>
+                                    }
+                                    else
+                                    {
+                                        <button class="btn btn-outline-info editbtn-accessrole" value="@item.RoleId" data-id="@item.Accounttype">Edit</button>
+
+                                    }
                                 </td>
                             </tr>
                         }

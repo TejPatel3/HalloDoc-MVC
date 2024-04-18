@@ -3,6 +3,7 @@ using HalloDoc.DataModels;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Services.Implementation;
 using System.Net;
 using System.Net.Mail;
 
@@ -39,12 +40,7 @@ namespace HalloDoc.Controllers
         //Post Method for Patient Request
         [HttpPost]
         public async Task<IActionResult> Patient(patientRequest req)
-
         {
-            if (!ModelState.IsValid)
-            {
-                return View(req);
-            }
             Guid id = Guid.NewGuid();
             var Asp = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
             if (Asp == null)
@@ -57,8 +53,15 @@ namespace HalloDoc.Controllers
                 aspuser.CreatedDate = DateTime.Now;
                 aspuser.PhoneNumber = req.PhoneNumber;
                 _context.AspNetUsers.Add(aspuser);
+                AspNetUserRole asprole = new AspNetUserRole
+                {
+                    RoleId = 3.ToString(),
+                    UserId = id.ToString(),
+                };
+                _context.Add(asprole);
                 _context.SaveChanges();
             }
+
             User user = _context.Users.FirstOrDefault(m => m.Email == req.Email);
             if (user == null)
             {
@@ -178,12 +181,34 @@ namespace HalloDoc.Controllers
         public async Task<IActionResult> FamilyFriend(request req)
         {
             var aspuser = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
+            //if (aspuser == null)
+            //{
+            //    AspNetUser asp = new AspNetUser
+            //    {
+            //        Email = req.Email,
+            //    };
+            //    CreateUserSendMail(asp);
+            //}
+
+
             var user = await _context.Users.FirstOrDefaultAsync(n => n.Email == req.Email);
             var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == user.RegionId);
             var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
 
             if (aspuser != null)
             {
+                aspuser.PhoneNumber = req.PhoneNumber;
+                user.Mobile = req.PhoneNumber;
+                user.Street = req.Street;
+                user.City = req.City;
+                user.State = req.State;
+                user.ZipCode = req.ZipCode;
+                user.IntYear = int.Parse(req.BirthDate?.ToString("yyyy"));
+                user.IntDate = int.Parse(req.BirthDate?.ToString("dd"));
+                user.StrMonth = req.BirthDate?.ToString("MMM");
+                _context.AspNetUsers.Update(aspuser);
+                _context.Users.Update(user);
+                _context.SaveChanges();
                 Request requests = new Request
                 {
                     FirstName = req.rFirstName,
@@ -238,6 +263,7 @@ namespace HalloDoc.Controllers
                 var aspuser1 = _context.AspNetUsers.FirstOrDefault(m => m.Email == req.Email);
                 PatientResetPasswordEmail(aspuser1);
             }
+
             if (HttpContext.Session.GetInt32("UserId") != null)
             {
                 return RedirectToAction("PatientDashboard", "Dashboard");
@@ -259,6 +285,12 @@ namespace HalloDoc.Controllers
             aspuser.CreatedDate = DateTime.Now;
             aspuser.PhoneNumber = req.PhoneNumber;
             _context.AspNetUsers.Add(aspuser);
+            AspNetUserRole asprole = new AspNetUserRole
+            {
+                RoleId = 3.ToString(),
+                UserId = id.ToString(),
+            };
+            _context.Add(asprole);
             _context.SaveChanges();
 
             User addUser = new User();
@@ -303,11 +335,23 @@ namespace HalloDoc.Controllers
             string Id = (_context.AspNetUsers.FirstOrDefault(x => x.Email == user.Email)).Id;
             string resetPasswordUrl = GenerateResetPasswordUrl(Id);
             SendEmail(user.Email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
-
             TempData["success"] = "Reset Password Link sent Successful";
             return RedirectToAction("CreateRequest", "PatientRequest");
         }
-
+        private string GenerateCreateUserLink(string email)
+        {
+            string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+            var encryptemail = EncryptionDecryption.EncryptStringToBase64_Aes(email);
+            string resetPasswordPath = Url.Action("CreateUser", "Home", new { email = encryptemail });
+            return baseUrl + resetPasswordPath;
+        }
+        public IActionResult CreateUserSendMail(string email)
+        {
+            string resetPasswordUrl = GenerateCreateUserLink(email);
+            SendEmail(email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
+            TempData["success"] = "Reset Password Link sent Successful";
+            return RedirectToAction("CreateRequest", "PatientRequest");
+        }
 
         private Task SendEmail(string email, string subject, string message)
         {
@@ -490,7 +534,16 @@ namespace HalloDoc.Controllers
             return Json(new { exists = emailExists });
         }
 
-
+        public bool CheckUserExist(string email)
+        {
+            bool check = false;
+            var user = _context.AspNetUsers.FirstOrDefault(u => u.Email == email);
+            if (user != null)
+            {
+                check = true;
+            }
+            return check;
+        }
 
     }
 

@@ -1,0 +1,243 @@
+﻿@model HalloDoc.Models.ViewModel.patientRequest
+@inject IHttpContextAccessor accessor
+
+@{
+    Layout = "_Provider";
+}
+<Partial name="Toast" />
+
+<div class="bg-light pb-3">
+    <!-- form input -->
+    <div class="container">
+        <div class="d-flex justify-content-end w-100 mb-2">
+
+            <a asp-area="" asp-controller="ProviderSide" asp-action="ProviderDashboard"
+               class="btn m-0 btn-outline-info  px-2 ">
+                <i class="fa-solid fa-chevron-left"></i>
+                Back
+            </a>
+
+
+        </div>
+        <form method="post" asp-action="CreatePatientRequest" asp-controller="ProviderSide" enctype="multipart/form-data">
+            <div class="row bg-white  px-4 pt-2">
+                <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
+                <div class="form-floating col-12 mb-3">
+                    <textarea class="form-control" asp-for="Notes"
+                              placeholder="Leave a comment here"
+                              style="height: 100px"></textarea>
+                    <label for="floatingTextarea" class="ms-2 text-secondary">Enter Brief details about symptoms(optional)</label>
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="FirstName"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">First Name </label>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="LastName"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Last name</label>
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    @{
+                        string max = DateTime.Now.ToString("yyyy-MM-dd");
+                    }
+                    <input type="date" asp-for="BirthDate"
+                           class="form-control pt-2"
+                           placeholder="Username"
+                           aria-label="Username" max=@max />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
+                </div>
+                <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="email" asp-for="Email"
+                           class="form-control" id="patientEmail"
+                           placeholder="Username" />
+                    <label class="d-flex justify-content-between ms-2">Email </label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <div class="form-control p-0">
+
+                        <input id="phone" asp-for="PhoneNumber"
+                               type="tel"
+                               style="border: none; padding: 18px 2% 18px 50px" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <h5 class="mb-3 mt-4 fw-semibold">Patient Location</h5>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="Street"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Street </label>
+                    <span asp-validation-for="Street" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="City"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">City </label>
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="State"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">State </label>
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text" asp-for="ZipCode"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">Zip code </label>
+                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                </div>
+                <div class="col-12 col-sm-6 form-floating mb-3">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Username"
+                           aria-label="Username" />
+                    <label class="d-flex justify-content-between ms-2">
+                        Room # / Suite (optional)
+                    </label>
+                </div>
+
+                <h5 class="mb-3 mt-4 fw-semibold">
+                    (Optional) Upload Photo or Document
+                </h5>
+                <div class="mt-1">
+                    <div class="row d-flex">
+                        <div class="p-2 col-12 ">
+                            <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
+                                <div class="px-3">
+                                    @*<label class="choosenfile text-dark small" id="file-chosen">No item selected</label>*@
+                                    <input type="text" id="file-chosen" class="border border-0" placeholder="No item selected" disabled />
+                                </div>
+                                <div role="button" class="uploadbtn p-2 d-flex">
+                                    <input type="file" id="Create-request-upload" asp-for="Upload" multiple hidden />
+                                    <label role="button" for="Create-request-upload" class="d-flex align-items-center">
+                                        <i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex justify-content-end pt-2 pb-3">
+                    <button type="submit" class="btn me-2 px-3 btn-info text-white">Submit</button>
+                    <button type="reset" class="btn px-3 btn-outline-info">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<!-- script -->
+<script>
+    window.onload = function () {
+        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-home-tab').addClass('admin-layout-nav-active');
+    }
+    var phoneInputField = document.querySelector("#phone");
+    var phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+
+    //Dark Mode...!
+    // function myFunction() {
+    //     var element = document.body;
+    //     element.classList.toggle("dark-mode");
+    // }
+    // check user exist in database or not...!
+    function checkEmailExists() {
+        var email = document.getElementById("patientEmail").value;
+        fetch('/Patient/PatientInfoPage/checkemail/' + email)
+            .then(response => response.json())
+            .then(data => {
+                var patientPassword = document.getElementById('passwordFields1');
+                var patientConfirmPassword = document.getElementById('passwordFields2');
+                var passf = document.getElementById("passf");
+                if (data.exists) {
+                    patientPassword.style.display = 'none';
+                    patientConfirmPassword.style.display = 'none';
+                    passf.style.display = 'none';
+                    console.log("exist ")
+                }
+                else {
+                    patientPassword.style.display = 'block';
+                    patientConfirmPassword.style.display = 'block';
+                    passf.style.display = 'block';
+                    console.log(" not exist ")
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // upload button...!
+    var actualBtn = document.getElementById('Create-request-upload');
+    var fileChosen = document.getElementById('file-chosen');
+    actualBtn.addEventListener('change', function () {
+        fileChosen.textContent = this.files[0].name
+    })
+
+    actualBtn.addEventListener('change', function () {
+        /*fileChosen.textContent = this.files[0].name*/
+        fileChosen.placeholder = this.files[0].name
+        fileChosen.value = this.files[0].name
+    })
+
+    // window.onload = () => {
+    //     var myModal = new bootstrap.Modal("#exampleModalCenter");
+    //     myModal.show();
+    // };
+
+
+    var eyeicon = document.getElementById('eye-icons')
+    var eyeiconc = document.getElementById('eye-iconc')
+    var password = document.getElementById('pswd')
+    var confirmpassword = document.getElementById('pswdcnf')
+    function hideviewpswd() {
+        if (password.type === "password") {
+            console.log(confirmpassword)
+            eyeicon.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
+            password.type = "text"
+        }
+        else {
+            eyeicon.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
+            password.type = "password"
+        }
+    }
+
+
+    function hideviewpswdcnf() {
+        if (confirmpassword.type === "password") {
+            console.log(confirmpassword)
+            eyeiconc.classList.replace('bi-eye-fill', 'bi-eye-slash-fill')
+            confirmpassword.type = "text"
+        }
+        else {
+            eyeiconc.classList.replace('bi-eye-slash-fill', 'bi-eye-fill')
+            confirmpassword.type = "password"
+        }
+    }
+</script>
+

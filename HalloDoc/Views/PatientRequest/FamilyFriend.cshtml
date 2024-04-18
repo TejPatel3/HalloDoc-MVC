@@ -9,33 +9,7 @@
         });
     </script>
 
-    <!--  trigger modal -->
-    @*   <div class="modal fade"
-    id="exampleModalCenter"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalCenterTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-    <div class="modal-body">
-    <div class="d-flex flex-column align-items-center p-5">
-    <img src="/images/alert.png"
-    style="height: 40px; width: 40px"
-    alt="" />
-    <h2>Information</h2>
-    <p class="d-flex justify-content-center px-5 py-3">
-    When submitting a request, you must provide the correct contact
-    information for the patient or the responsibly party. Failure to
-    provide the correct email and phone number will delay service or
-    be declined.
-    </p>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    *@
+
     <!-- form input -->
 
     <div class="container">
@@ -46,7 +20,7 @@
                 Back
             </a>
         </div>
-        <form asp-action="FamilyFriend" method="post" enctype="multipart/form-data">
+        <form asp-action="FamilyFriend" method="post" enctype="multipart/form-data" id="formfamily">
             <div class="row bg-white  px-4 py-2">
 
                 <h5 class="mb-3 mt-4 fw-semibold ">Family\Friend Information</h5>
@@ -67,10 +41,10 @@
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <div asp-for="rPhonenumber" class="form-control p-0">
                         <input id="phone" asp-for="rPhoneNumber"
-                               type="tel"
+                               type="tel" maxlength="10"
                                name="rPhoneNumber"
-                               style="border: none; padding: 18px 2% 18px 50px" />
-                    
+                               style="border: none;  padding: 17.5px 2% 17.5px 50px; width:inherit" />
+
                         <span asp-validation-for="rPhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
@@ -127,7 +101,7 @@
                 <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text" asp-for="Email"
-                           class="form-control"
+                           class="form-control" id="emailpatientfamilyfriend"
                            placeholder="Username"
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ms-2">Email </label>
@@ -136,9 +110,9 @@
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <div class="form-control p-0">
                         <input id="home" asp-for="PhoneNumber"
-                               type="tel"
+                               type="tel" maxlength="10"
                                name="PhoneNumber"
-                               style="border: none; padding: 18px 2% 15px 50px" />
+                               style="border: none;  padding: 17.5px 2% 17.5px 50px; width:inherit" />
 
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
@@ -190,7 +164,7 @@
                 <h5 class="mb-3 mt-4 fw-semibold">
                     (Optional) Upload Photo or Document
                 </h5>
-                <div class="mt-1">
+                <div class="mt-3">
                     <div class="row d-flex">
                         <div class="p-2 col-12 ">
                             <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
@@ -209,7 +183,7 @@
                     </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end pb-2">
-                    <button type="submit" class="btn me-2 px-2 btn-info text-white">Submit</button>
+                    <button type="button" class="btn me-2 px-2 btn-info text-white" id="createuseraccountsubmit">Submit</button>
                     <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
                 </div>
             </div>
@@ -217,7 +191,8 @@
     </div>
 </div>
 
-
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 <!-- script -->
 <script>
     window.onload = () => {
@@ -256,5 +231,38 @@
         /*fileChosen.textContent = this.files[0].name*/
         fileChosen.placeholder = this.files[0].name
         fileChosen.value = this.files[0].name
+    })
+
+    $('#createuseraccountsubmit').click(function () {
+        var email = $('#emailpatientfamilyfriend').val();
+        $.ajax({
+            url: '/PatientRequest/CheckUserExist',
+            data: { email: email },
+            success: function (data) {
+                if (data) {
+                    $('#formfamily').submit();
+                }
+                else {
+                    $.ajax({
+                        url: '/PatientRequest/CreateUserSendMail',
+                        data: { email: email },
+                        success: function (data) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Email Sent Successfully",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        }
+                    });
+                    Swal.fire({
+                        icon: "error",
+                        title: "First Create ",
+                        text: "Something went wrong!",
+                        footer: '<a href="#">Why do I have this issue?</a>'
+                    });
+                }
+            },
+        });
     })
 </script>

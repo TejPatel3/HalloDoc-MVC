@@ -4,10 +4,14 @@ namespace Services.ViewModels
 {
     public class AccessViewModel
     {
+        public string Phone { get; set; }
+        public short? Status { get; set; }
+        public string OpenRequest { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string RoleId { get; set; }
         public string RoleName { get; set; }
+        public string Accounttype { get; set; }
         public List<Physician> physicianlist { get; set; }
         public List<Role> rolelist { get; set; }
         public List<RoleMenu> rolemenulist { get; set; }
@@ -27,5 +31,19 @@ namespace Services.ViewModels
             string By = ((accounttype)by).ToString();
             return By;
         }
+        public enum status
+        {
+            Active,
+            InActive,
+
+        }
+
+        public string StatusName(int by)
+        {
+            string By = ((status)by).ToString();
+            return By;
+        }
     }
 }
+
+

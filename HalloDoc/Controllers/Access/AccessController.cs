@@ -1,6 +1,7 @@
 ﻿using HalloDoc.DataContext;
 using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
 using Services.ViewModels;
 using System.Collections;
@@ -70,11 +71,6 @@ namespace HalloDoc.Controllers.Access
             return PartialView("MenuFilterCheckbox", model);
         }
 
-        //public IActionResult MenuFilterCheckbox(AccessRoleViewModel model)
-        //{
-        //    return View(model);
-        //}
-
         [HttpPost]
         public IActionResult CreateRole(string rolename, int accounttype, int[] selectedmenu, int roleid)
         {
@@ -89,10 +85,8 @@ namespace HalloDoc.Controllers.Access
                 role.CreatedBy = adminname;
                 role.CreatedDate = DateTime.Now;
                 role.IsDeleted = bit;
-
                 _context.Roles.Add(role);
                 _context.SaveChanges();
-
                 foreach (var item in selectedmenu)
                 {
                     var rolemenu = new RoleMenu
@@ -113,26 +107,19 @@ namespace HalloDoc.Controllers.Access
                 role.AccountType = (short)accounttype;
                 role.ModifiedBy = adminname;
                 role.ModifiedDate = DateTime.Now;
-
                 _context.Roles.Update(role);
                 _context.SaveChanges();
                 int[]? roleMenus = _context.RoleMenus.Where(r => r.RoleId == roleid).Select(s => s.MenuId).ToArray();
-
                 IEnumerable<int> menusToDelete = roleMenus.Except(selectedmenu);
-
                 foreach (var menuToDelete in menusToDelete)
                 {
                     RoleMenu? roleMenu = _context.RoleMenus.Where(r => r.RoleId == roleid && r.MenuId == menuToDelete).FirstOrDefault();
-
                     if (roleMenu != null)
                     {
                         _context.Remove(roleMenu);
                     }
-
                 }
-
                 IEnumerable<int> menusToAdd = selectedmenu.Except(roleMenus);
-
                 foreach (var menuToAdd in menusToAdd)
                 {
                     RoleMenu roleMenu = new RoleMenu
@@ -142,14 +129,9 @@ namespace HalloDoc.Controllers.Access
                     };
                     _context.Add(roleMenu);
                 }
-
                 _context.SaveChanges();
-
-
                 TempData["success"] = "Role Updated Successfully!";
             }
-
-
             return RedirectToAction("AccessRole");
         }
         public IActionResult DeleteRole(int roleid)
@@ -164,7 +146,6 @@ namespace HalloDoc.Controllers.Access
                 }
                 _context.Remove(role);
                 _context.SaveChanges();
-
             }
             TempData["success"] = "Role Deleted Successfully!";
             return RedirectToAction("AccessRole");
@@ -172,10 +153,33 @@ namespace HalloDoc.Controllers.Access
         public IActionResult UserAccess()
         {
             var rolelist = _context.Roles.ToList();
-            AccessViewModel model = new AccessViewModel
+            List<AccessViewModel> model = new List<AccessViewModel>();
+            var aspuser = _context.AspNetUsers.Include(m => m.AspNetUserRoles).Where(m => m.AspNetUserRoles.FirstOrDefault().RoleId == "1" || m.AspNetUserRoles.FirstOrDefault().RoleId == "2").ToList();
+            foreach (var user in aspuser)
             {
-                rolelist = rolelist
-            };
+                var access = new AccessViewModel();
+                access.Phone = user.PhoneNumber;
+                if (user.AspNetUserRoles.Count() > 0)
+                {
+                    if (user.AspNetUserRoles.FirstOrDefault(m => m.UserId == user.Id).RoleId == 1.ToString())
+                    {
+                        var admin = _context.Admins.FirstOrDefault(m => m.AspNetUserId == user.Id);
+                        access.Accounttype = 1.ToString();
+                        access.Status = admin.Status;
+                        access.Name = admin.FirstName + admin.LastName;
+                        access.OpenRequest = _context.Requests.ToList().Count().ToString();
+                    }
+                    if (user.AspNetUserRoles.FirstOrDefault(m => m.UserId == user.Id).RoleId == 2.ToString())
+                    {
+                        var physician = _context.Physicians.FirstOrDefault(m => m.Id == user.Id);
+                        access.Status = physician.Status;
+                        access.Accounttype = 2.ToString();
+                        access.Name = physician.FirstName + physician.LastName;
+                        access.OpenRequest = _context.Requests.Where(m => m.PhysicianId == physician.PhysicianId).ToList().Count().ToString();
+                    }
+                }
+                model.Add(access);
+            }
             return View(model);
         }
     }

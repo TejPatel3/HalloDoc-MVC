@@ -480,32 +480,7 @@ namespace HalloDoc.Controllers.Admin
             TempData["success"] = "Request Canceled Successfully..!";
             return RedirectToAction("AdminDashboard");
         }
-        [HttpPost]
-        public IActionResult ReviewAgreementcancelCaseModal(int id, AdminRequestViewModel cancelnote, string casetagname)
-        {
-            var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
-            if (req.Status == 3 || req.Status == 4)
-            {
-                TempData["errorCancelAgreementmodel"] = "Your Responce already submitted";
-                return RedirectToAction("Login", "Home");
-            }
-            else
-            {
-                req.Status = 3;
-                var casetag = _context.CaseTags.FirstOrDefault(t => t.Name == casetagname);
-                if (casetag != null)
-                {
-                    req.CaseTag = casetag.CaseTagId.ToString();
 
-                }
-                _context.Requests.Update(req);
-                _context.SaveChanges();
-                var adminid = HttpContext.Session.GetInt32("AdminId");
-                _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, cancelnote.BlockNotes, adminid);
-                TempData["success"] = "Request Canceled Successfully..!";
-                return RedirectToAction("Login", "Home");
-            }
-        }
 
         [HttpPost]
         public IActionResult AssignCase(int id, AdminRequestViewModel assignnote, string physicianid)
@@ -616,19 +591,11 @@ namespace HalloDoc.Controllers.Admin
         {
             string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
             var requestid = EncryptionDecryption.EncryptStringToBase64_Aes(reqid.ToString());
-            string AgreementPath = Url.Action("ReviewAgreement", "Admin", new { id = requestid });
+            string AgreementPath = Url.Action("ReviewAgreement", "Home", new { id = requestid });
             return baseUrl + AgreementPath;
         }
 
-        public IActionResult ReviewAgreement(string id)
-        {
-            var viewModel = new AdminRequestViewModel();
-            var requestid = int.Parse(EncryptionDecryption.DecryptStringFromBase64_Aes(id));
-            var PatienName = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
-            viewModel.patientName = PatienName.FirstName + " " + PatienName.LastName;
-            viewModel.requestid = requestid;
-            return View(viewModel);
-        }
+
         [HttpPost]
         public IActionResult SendAgreement(int reqid)
         {

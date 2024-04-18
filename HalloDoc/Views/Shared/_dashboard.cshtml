@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/HalloDoc.styles.css" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <link rel="script" href="~/js/site.js" />
 </head>
 <body  class="bg-light min-vh-100">
@@ -46,7 +47,7 @@
                     <div class="d-flex justify-content-between col align-items-center  ">
                         <div class="d-flex align-items-center">
                             <h6 class=" pe-2" style="color:gray;">Welcome </h6>
-                            <h6 class="" style="color:gray;">@TempData["user"]</h6>
+                            @* <h6 class="" style="color:gray;">@TempData["user"]</h6> *@
                             <a asp-action="Logout" asp-controller="Dashboard">
                                 <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("Index","Home")'">Log out</button>
                             </a>
@@ -79,7 +80,6 @@
             <span class="text-secondary"> Terms and Condition | Privacy Policy</span>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"> </script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"> </script>

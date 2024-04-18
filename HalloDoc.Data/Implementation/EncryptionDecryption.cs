@@ -1,73 +1,90 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using System;
-using System.IO;
-using System.Security.Cryptography;
-using System.Text;
-
-namespace Services.Implementation
+﻿namespace Services.Implementation
 {
     public static class EncryptionDecryption
     {
-       private static readonly byte[] Key = { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16 };
-       private static readonly byte[] IV = { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16 };
+        private static readonly byte[] Key = { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16 };
+        private static readonly byte[] IV = { 0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16 };
+
+        private static readonly char[] Digits = "0123456789".ToCharArray();
+        private static readonly char[] Alphabets = "ABCDEFGHIJ".ToCharArray();
 
         public static string EncryptStringToBase64_Aes(string plainText)
-            {
-                byte[] encrypted;
+        {
+            return new string(plainText.Select(ch => EncryptCharacter(ch)).ToArray());
+        }
 
-                using (AesCryptoServiceProvider aes = new AesCryptoServiceProvider())
-                {
-                    aes.Key = Key;
-                    aes.IV = IV;
+        public static string DecryptStringFromBase64_Aes(string cipherText)
+        {
+            return new string(cipherText.Select(ch => DecryptCharacter(ch)).ToArray());
+        }
 
-                    ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+        private static char EncryptCharacter(char ch)
+        {
+            int index = Array.IndexOf(Digits, ch);
+            return index >= 0 ? Alphabets[index] : ch;
+        }
 
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
-                        {
-                            using (StreamWriter sw = new StreamWriter(cs))
-                            {
-                                sw.Write(plainText);
-                            }
-                            encrypted = ms.ToArray();
-                        }
-                    }
-                }
-            return Convert.ToBase64String(encrypted).Replace('+', '-').Replace('/', '_').TrimEnd('=');
+        private static char DecryptCharacter(char ch)
+        {
+            int index = Array.IndexOf(Alphabets, ch);
+            return index >= 0 ? Digits[index] : ch;
+        }
+        //public static string EncryptStringToBase64_Aes(string plainText)
+        //{
+        //    byte[] encrypted;
 
-            //return Convert.ToBase64String(encrypted);
-            }
+        //    using (AesCryptoServiceProvider aes = new AesCryptoServiceProvider())
+        //    {
+        //        aes.Key = Key;
+        //        aes.IV = IV;
 
-            public static string DecryptStringFromBase64_Aes(string cipherText)
-            {
-            cipherText = cipherText.Replace('-', '+').Replace('_', '/') + new string('=', (4 - cipherText.Length % 4) % 4);
+        //        ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
 
-            string plaintext = null;
+        //        using (MemoryStream ms = new MemoryStream())
+        //        {
+        //            using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+        //            {
+        //                using (StreamWriter sw = new StreamWriter(cs))
+        //                {
+        //                    sw.Write(plainText);
+        //                }
+        //                encrypted = ms.ToArray();
+        //            }
+        //        }
+        //    }
+        //    return Convert.ToBase64String(encrypted).Replace('+', '-').Replace('/', '_').TrimEnd('=');
 
-                using (AesCryptoServiceProvider aes = new AesCryptoServiceProvider())
-                {
-                    aes.Key = Key;
-                    aes.IV = IV;
+        //    //return Convert.ToBase64String(encrypted);
+        //}
 
-                    ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+        //public static string DecryptStringFromBase64_Aes(string cipherText)
+        //{
+        //    cipherText = cipherText.Replace('-', '+').Replace('_', '/') + new string('=', (4 - cipherText.Length % 4) % 4);
 
-                    using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(cipherText)))
-                    {
-                        using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
-                        {
-                            using (StreamReader sr = new StreamReader(cs))
-                            {
-                                plaintext = sr.ReadToEnd();
-                            }
-                        }
-                    }
-                }
+        //    string plaintext = null;
 
-                return plaintext;
-            }
-        
+        //    using (AesCryptoServiceProvider aes = new AesCryptoServiceProvider())
+        //    {
+        //        aes.Key = Key;
+        //        aes.IV = IV;
+
+        //        ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+
+        //        using (MemoryStream ms = new MemoryStream(Convert.FromBase64String(cipherText)))
+        //        {
+        //            using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+        //            {
+        //                using (StreamReader sr = new StreamReader(cs))
+        //                {
+        //                    plaintext = sr.ReadToEnd();
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    return plaintext;
+        //}
+
 
 
 

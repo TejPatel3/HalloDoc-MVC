@@ -12,8 +12,9 @@ namespace Services.Implementation
         public IAdminDashboardDataTable AdminDashboarDataTable { get; private set; }
         public IUpdateData UpdateData { get; private set; }
         public IAddOrUpdateRequestStatusLog AddOrUpdateRequestStatusLog { get; private set; }
+        public IAccessRepository Access { get; private set; }
 
-        public unitOfWork(IVendorRepository Vendor, ISchedulingRepository scheduling, IRecordRepository record, ITableData tableData, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboarDataTable, IUpdateData updateData, IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog)
+        public unitOfWork(IVendorRepository Vendor, ISchedulingRepository scheduling, IRecordRepository record, ITableData tableData, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboarDataTable, IUpdateData updateData, IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog, IAccessRepository access)
         {
             vendor = Vendor;
             this.scheduling = scheduling;
@@ -23,6 +24,7 @@ namespace Services.Implementation
             AdminDashboarDataTable = adminDashboarDataTable;
             UpdateData = updateData;
             AddOrUpdateRequestStatusLog = addOrUpdateRequestStatusLog;
+            Access = access;
         }
     }
 }

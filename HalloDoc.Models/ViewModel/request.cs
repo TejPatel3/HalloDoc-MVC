@@ -17,11 +17,13 @@ namespace HalloDoc.Models.ViewModel
         public string? rLastName { get; set; }
 
         [StringLength(50)]
-        [Required(ErrorMessage = "Enter Your Email")]
+        [Required(ErrorMessage = "Please enter your Email Address"), Display(Name = "Email Address")]
+        [RegularExpression(@"^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|gov\.in)$", ErrorMessage = "Enter a valid email address with valid domain")]
+
         public string? rEmail { get; set; }
 
         [StringLength(50)]
-        [Required]
+        [Required(ErrorMessage = "Phone Number is required")]
         public string? rPhoneNumber { get; set; }
 
         [Required(ErrorMessage = "First Name is required"), Display(Name = "First Name")]
@@ -71,7 +73,7 @@ namespace HalloDoc.Models.ViewModel
         public string? State { get; set; }
 
         [StringLength(10, ErrorMessage = "Enter valid Zip Code")]
-        [RegularExpression(@"^\d{5}$", ErrorMessage = "Enter a valid 5-digit zip code")]
+        [RegularExpression(@"^\d{6}$", ErrorMessage = "Enter a valid 6-digit zip code")]
         public string? ZipCode { get; set; }
 
         [StringLength(500)]

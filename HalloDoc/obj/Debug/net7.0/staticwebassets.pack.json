@@ -17,6 +17,22 @@
       "PackagePath": "staticwebassets\\UploadDocument\\186india.png"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\194images (5).jfif",
+      "PackagePath": "staticwebassets\\UploadDocument\\194images (5).jfif"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\194images (6).jfif",
+      "PackagePath": "staticwebassets\\UploadDocument\\194images (6).jfif"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\194images (7).jfif",
+      "PackagePath": "staticwebassets\\UploadDocument\\194images (7).jfif"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\195images (7).jfif",
+      "PackagePath": "staticwebassets\\UploadDocument\\195images (7).jfif"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7768657_3763028 opacity low.png",
       "PackagePath": "staticwebassets\\UploadDocument\\7768657_3763028 opacity low.png"
     },
@@ -311,6 +327,10 @@
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\EmailLog.js",
       "PackagePath": "staticwebassets\\js\\Records\\EmailLog.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\Pagination.js",
+      "PackagePath": "staticwebassets\\js\\Records\\Pagination.js"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientHistory.js",

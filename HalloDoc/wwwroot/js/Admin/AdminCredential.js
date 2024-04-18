@@ -83,7 +83,7 @@ $('#updatepasswordforgotpassword').on('click', function () {
         $('#confirmpassword-forgotpassword-span').html("please enter confirm password")
         allvalidation = false;
     }
-    else if (password == confirmpassword) {
+    else if (password != confirmpassword) {
         $('#confirmpassword-forgotpassword-span').html("password and confirm password not match")
         allvalidation = false;
     }

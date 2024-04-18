@@ -3,6 +3,9 @@ using HalloDoc.DataModels;
 using HalloDoc.Models;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Services.Contracts;
+using Services.Implementation;
+using Services.ViewModels;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
@@ -12,28 +15,63 @@ namespace HalloDoc.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public HomeController(ApplicationDbContext context)
+        private readonly IAddOrUpdateRequestStatusLog _addOrUpdateRequestStatusLog;
+
+        public HomeController(ApplicationDbContext context, IAddOrUpdateRequestStatusLog rsl)
         {
             _context = context;
+            _addOrUpdateRequestStatusLog = rsl;
         }
 
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult CreateUser()
+        public IActionResult CreateUser(string email)
         {
-            return View();
+            registrationViewModel model = new registrationViewModel
+            {
+                Email = email,
+            };
+            return View(model);
         }
         [HttpPost]
         public IActionResult CreateUser(registrationViewModel obj)
         {
             Guid id = Guid.NewGuid();
             AspNetUser user = _context.AspNetUsers.FirstOrDefault(m => m.Email == obj.Email);
-            user.PasswordHash = obj.PasswordHash;
-            _context.AspNetUsers.Add(user);
-            _context.SaveChanges();
-            TempData["success"] = "Your Account Created Successful";
+            if (user != null)
+            {
+                user.PasswordHash = obj.PasswordHash;
+                _context.AspNetUsers.Add(user);
+                //_context.SaveChanges();
+                TempData["success"] = "Your Account Created Successful";
+            }
+            else
+            {
+                AspNetUser asp = new AspNetUser
+                {
+                    Email = obj.Email,
+                    Id = id.ToString(),
+                    CreatedDate = DateTime.Now,
+                    UserName = obj.FirstName + obj.LastName,
+                    PasswordHash = obj.PasswordHash,
+                };
+                _context.AspNetUsers.Add(asp);
+                User user1 = new User
+                {
+                    Email = obj.Email,
+                    Id = id.ToString(),
+                    CreatedDate = DateTime.Now,
+                    FirstName = obj.FirstName,
+                    LastName = obj.LastName,
+                    CreatedBy = id.ToString(),
+                    RegionId = 2,
+                };
+                _context.Users.Add(user1);
+
+                _context.SaveChanges();
+            }
             return RedirectToAction("PatientDashboard", "Dashboard");
         }
 
@@ -95,7 +133,6 @@ namespace HalloDoc.Controllers
             string Id = (_context.AspNetUsers.FirstOrDefault(x => x.Email == user.Email)).Id;
             string resetPasswordUrl = GenerateResetPasswordUrl(Id);
             SendEmail(user.Email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
-
             TempData["success"] = "Reset Password Link sent Successful";
             return RedirectToAction("Login", "Home");
         }
@@ -105,13 +142,11 @@ namespace HalloDoc.Controllers
         {
             var mail = "tatva.dotnet.tejpatel@outlook.com";
             var password = "7T6d2P3@K";
-
             var client = new SmtpClient("smtp.office365.com", 587)
             {
                 EnableSsl = true,
                 Credentials = new NetworkCredential(mail, password)
             };
-
             return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
         }
 
@@ -124,6 +159,46 @@ namespace HalloDoc.Controllers
             _context.SaveChanges();
             TempData["success"] = "Your Password Reset Successful";
             return RedirectToAction("Login");
+        }
+
+
+
+        // Review agreement Method
+
+        [HttpPost]
+        public IActionResult ReviewAgreementcancelCaseModal(int id, AdminRequestViewModel cancelnote, string casetagname)
+        {
+            var req = _context.Requests.FirstOrDefault(m => m.RequestId == id);
+            if (req.Status == 3 || req.Status == 4)
+            {
+                TempData["errorCancelAgreementmodel"] = "Your Responce already submitted";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                req.Status = 3;
+                var casetag = _context.CaseTags.FirstOrDefault(t => t.Name == casetagname);
+                if (casetag != null)
+                {
+                    req.CaseTag = casetag.CaseTagId.ToString();
+
+                }
+                _context.Requests.Update(req);
+                _context.SaveChanges();
+                var adminid = HttpContext.Session.GetInt32("AdminId");
+                _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, cancelnote.BlockNotes, adminid);
+                TempData["success"] = "Request Canceled Successfully..!";
+                return RedirectToAction("Login", "Home");
+            }
+        }
+        public IActionResult ReviewAgreement(string id)
+        {
+            var viewModel = new AdminRequestViewModel();
+            var requestid = int.Parse(EncryptionDecryption.DecryptStringFromBase64_Aes(id));
+            var PatienName = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
+            viewModel.patientName = PatienName.FirstName + " " + PatienName.LastName;
+            viewModel.requestid = requestid;
+            return View(viewModel);
         }
 
     }

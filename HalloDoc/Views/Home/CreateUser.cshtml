@@ -3,6 +3,7 @@
 }
 @model HalloDoc.Models.ViewModel.registrationViewModel
 
+
 <img class="background-img  d-block " />
 <div class="container-fluid p-0 m-0">
    
@@ -28,10 +29,30 @@
                                 <input type="email" asp-for="Email"
                                        class="form-control"
                                        placeholder="Username"
-                                       aria-label="Username" />
+                                       aria-label="Username" readonly/>
                                 <label class="d-flex justify-content-around" asp-for="Email">Username </label>
                                 <span asp-validation-for="Email"></span>
                                 <i class="bi bi-person-circle icon username-icon icons  mobile-icon    d-block" role="button" id="eye-icon"></i>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center mb-xxl-3">
+                            <div class="col-12 form-floating mb-3  text-input-max-width">
+                                <input type="text" asp-for="FirstName"
+                                       class="form-control" 
+                                       placeholder="Username"
+                                       aria-label="Username" />
+                                <label class="d-flex justify-content-between" asp-for="FirstName">First Name </label>
+                                <span asp-validation-for="FirstName"></span>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center mb-xxl-3">
+                            <div class="col-12 form-floating mb-3  text-input-max-width">
+                                <input type="text" asp-for="LastName"
+                                       class="form-control" 
+                                       placeholder="Username"
+                                       aria-label="Username" />
+                                <label class="d-flex justify-content-between" asp-for="LastName">Last Name </label>
+                                <span asp-validation-for="LastName"></span>
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center mb-xxl-3">
@@ -56,7 +77,7 @@
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center mb-xxl-3 ">
-                            <button type="submit" class="btn btn-info w-100 btn-lg text-white text-input-max-width">Create Account</button>
+                            <button type="submit" class="btn btn-info w-100 btn-lg text-white text-input-max-width" >Create Account</button>
                         </div>
                     </div>
                 </form>
@@ -65,8 +86,6 @@
     </div>
 </div>
 
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
 
 

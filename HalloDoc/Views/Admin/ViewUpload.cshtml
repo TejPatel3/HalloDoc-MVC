@@ -125,9 +125,12 @@
                                 <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
                                     <i class="bi bi-cloud-arrow-down"></i>
                                 </a>
-                                <div class=" btn btn-outline-info DeleteDoc" id="@item.RequestWiseFileId">
-                                    <i class="bi bi-trash  "></i>
-                                </div>
+                                @if (@accessor.HttpContext.Session.GetString("AdminId") != null)
+                                {
+                                    <div class=" btn btn-outline-info DeleteDoc" id="@item.RequestWiseFileId">
+                                        <i class="bi bi-trash"></i>
+                                    </div>
+                                }
                             </td>
                         </tr>
                     }

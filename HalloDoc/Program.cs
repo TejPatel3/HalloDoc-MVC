@@ -32,6 +32,7 @@ builder.Services.AddScoped<ISchedulingRepository, SchedulingRepository>();
 builder.Services.AddScoped<IRecordRepository, RecordRepository>();
 builder.Services.AddScoped<ITableData, TableData>();
 builder.Services.AddScoped<IUpdateData, UpdateData>();
+builder.Services.AddScoped<IAccessRepository, AccessRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,7 +50,7 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
-pattern: "{controller=AdminCredential}/{action=AdminLogin}/{id?}");
-//pattern: "{controller=Home}/{action=Index}/{id?}");
+//pattern: "{controller=AdminCredential}/{action=AdminLogin}/{id?}");
+pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

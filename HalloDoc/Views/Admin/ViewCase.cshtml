@@ -153,7 +153,7 @@
 
 
             <div class="justify-content-end d-flex pb-2">
-                @if (@accessor.HttpContext.Session.GetString("AdminId") != null)
+                @if (@accessor.HttpContext.Session.GetInt32("AdminId") != null)
                 {
 
                     @if (Model.status == 1)
@@ -170,7 +170,7 @@
                         <button type="button" value="@Model.FirstName @Model.LastName" class="btn  text-white sub rounded-2 px-2 py-2 bg-danger cancelbtn" data-toggle="modal" data-target="#exampleModal">Cancel case</button>
                     </div>
                 }
-                @if (@accessor.HttpContext.Session.GetString("PhysicianId") != null)
+                @if (@accessor.HttpContext.Session.GetInt32("PhysicianId") != null)
                 {
                     <div class="mx-1">
                         <button type="button" class="btn text-white bg-info rounded-2 px-2 py-2 viewNotes" value="@Model.requestId">View Notes </button>

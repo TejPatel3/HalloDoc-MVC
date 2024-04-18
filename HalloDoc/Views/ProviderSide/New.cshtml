@@ -3,64 +3,9 @@
 @{
     Layout = null;
 }
-@*
 
-<div class="accordion d-block d-sm-none " id="accordionExample">
-    @foreach (var item in Model)
-    {
-        <div class="accordion-item ">
-            <h2 class="accordion-header" id="heading_@item.requestid">
-                <div class="d-flex flex-column accordion-button collapsed align-items-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
-                    <div class="d-flex justify-content-between w-100 ">
-                        <h6 class="fw-normal">@item.PatientName</h6>
-                        @{
-                            <div class="d-none">@item.RequestType</div>
 
-                            if (item.RequestType == 1)
-                            {
-                                <label>Patient <i class="fa-solid fa-circle fa-2xs" style="color:   #5fbc61;"></i></label>
-                            }
-                            if (item.RequestType == 2)
-                            {
-                                <label>Family Friend                <i class="fa-solid fa-circle fa-2xs " style="color:  #ed9124;"></i></label>
 
-                            }
-                            if (item.RequestType == 3)
-                            {
-                                <label>
-                                    Concierge
-
-                                    <i class="fa-solid fa-circle fa-2xs" style="color:   #e36478;"></i>
-                                </label>
-
-                            }
-                            if (item.RequestType == 4)
-                            {
-                                <label>Business            <i class="fa-solid fa-circle fa-2xs" style="color:  #0c7db7;"></i></label>
-
-                            }
-                        }
-                    </div>
-                    <div class="d-flex justify-content-between w-100">
-                        <div class="h6">@item.Address</div>
-                        <div class="btn btn-outline-info border-2" style="border-radius:50px">Map</div>
-                    </div>
-                    <div class="d-flex ">
-                        <p><h6 class="text-secondary">Wait Time </h6> @item.RequestedDate</p>
-                    </div>
-                </div>
-
-            </h2>
-            <div id="collapse_@item.requestid" class="accordion-collapse collapse " aria-labelledby="heading_@item.requestid" data-bs-parent="#accordion">
-                <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-            </div>
-        </div>
-    }
-
-</div>
- *@
 
 
 
@@ -133,7 +78,7 @@
 
             <div id="collapse_@item.requestid" class="accordion-collapse collapse " aria-labelledby="heading_@item.requestid" data-bs-parent="#accordion">
                 <div class="d-flex justify-content-end">
-                    <button type="button" class="rounded-pill me-3 viewCaseBtn p-1 Viewcase" value="@item.requestid" style="cursor : pointer">
+                    <button type="button" class="rounded-pill me-3 viewCaseBtn p-1 viewCase" value="@item.requestid" style="cursor : pointer">
                         View Case
                     </button>
                 </div>
@@ -154,13 +99,7 @@
                                 Accept
                             </button>
                         </div>
-                        <div class="col-6 d-flex justify-content-center">
-
-                            <button class="dropdown-item text-secondary viewCase" value="@item.requestid">
-                                <i class="bi bi-view-list me-2"></i>
-                                View case
-                            </button>
-                        </div>
+                      
 
 
 
