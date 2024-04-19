@@ -29,9 +29,11 @@ namespace HalloDoc.Controllers
         }
         public IActionResult CreateUser(string email)
         {
+            var decryptemail = EncryptionDecryption.DecryptStringFromBase64_Aes(email);
+
             registrationViewModel model = new registrationViewModel
             {
-                Email = email,
+                Email = decryptemail,
             };
             return View(model);
         }
@@ -40,37 +42,52 @@ namespace HalloDoc.Controllers
         {
             Guid id = Guid.NewGuid();
             AspNetUser user = _context.AspNetUsers.FirstOrDefault(m => m.Email == obj.Email);
-            if (user != null)
+            User checkuser = _context.Users.FirstOrDefault(m => m.Email == obj.Email);
+            if (checkuser != null)
             {
-                user.PasswordHash = obj.PasswordHash;
-                _context.AspNetUsers.Add(user);
-                //_context.SaveChanges();
-                TempData["success"] = "Your Account Created Successful";
+                TempData["error"] = "User Already Exist on this email";
+                return RedirectToAction("Login");
             }
             else
             {
-                AspNetUser asp = new AspNetUser
-                {
-                    Email = obj.Email,
-                    Id = id.ToString(),
-                    CreatedDate = DateTime.Now,
-                    UserName = obj.FirstName + obj.LastName,
-                    PasswordHash = obj.PasswordHash,
-                };
-                _context.AspNetUsers.Add(asp);
-                User user1 = new User
-                {
-                    Email = obj.Email,
-                    Id = id.ToString(),
-                    CreatedDate = DateTime.Now,
-                    FirstName = obj.FirstName,
-                    LastName = obj.LastName,
-                    CreatedBy = id.ToString(),
-                    RegionId = 2,
-                };
-                _context.Users.Add(user1);
 
-                _context.SaveChanges();
+                if (user != null)
+                {
+                    user.PasswordHash = obj.PasswordHash;
+                    _context.AspNetUsers.Add(user);
+                    //_context.SaveChanges();
+                    TempData["success"] = "Your Account Created Successful";
+                }
+                else
+                {
+                    AspNetUser asp = new AspNetUser
+                    {
+                        Email = obj.Email,
+                        Id = id.ToString(),
+                        CreatedDate = DateTime.Now,
+                        UserName = obj.FirstName + obj.LastName,
+                        PasswordHash = obj.PasswordHash,
+                    };
+                    _context.AspNetUsers.Add(asp);
+                    User user1 = new User
+                    {
+                        Email = obj.Email,
+                        Id = id.ToString(),
+                        CreatedDate = DateTime.Now,
+                        FirstName = obj.FirstName,
+                        LastName = obj.LastName,
+                        CreatedBy = id.ToString(),
+                        RegionId = 2,
+                    };
+                    _context.Users.Add(user1);
+                    AspNetUserRole asprole = new AspNetUserRole
+                    {
+                        RoleId = "3",
+                        UserId = id.ToString(),
+                    };
+                    _context.Add(asprole);
+                    _context.SaveChanges();
+                }
             }
             return RedirectToAction("PatientDashboard", "Dashboard");
         }
@@ -85,7 +102,12 @@ namespace HalloDoc.Controllers
         {
             if (!_context.Users.Where(user => user.Email == obj.Email).Any())
             {
-                TempData["email"] = "You are not User";
+                TempData["email"] = "Email Id Not Exist";
+                return View(obj);
+            }
+            if (!_context.AspNetUsers.Where(m => m.Email == obj.Email && m.PasswordHash == obj.PasswordHash).Any())
+            {
+                TempData["pswd"] = "Enter Valid Password";
                 return View(obj);
             }
 
@@ -93,19 +115,12 @@ namespace HalloDoc.Controllers
             {
                 var user = _context.Users.FirstOrDefault(m => m.Email == obj.Email);
                 HttpContext.Session.SetInt32("UserId", user.UserId);
+                HttpContext.Session.SetString("UserName", user.FirstName + " " + user.LastName);
                 TempData["success"] = "Login Successful...!";
                 return RedirectToAction("PatientDashboard", "Dashboard");
             }
-            else if (!_context.AspNetUsers.Where(m => m.Email == obj.Email).Any())
-            {
-                TempData["email"] = "Email Does Not Exist";
-                return View(obj);
-            }
-            else
-            {
-                TempData["pswd"] = "Enter Valid Password";
-                return View(obj);
-            }
+            return View(obj);
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -130,11 +145,21 @@ namespace HalloDoc.Controllers
         }
         public IActionResult PatientResetPasswordEmail(AspNetUser user)
         {
-            string Id = (_context.AspNetUsers.FirstOrDefault(x => x.Email == user.Email)).Id;
-            string resetPasswordUrl = GenerateResetPasswordUrl(Id);
-            SendEmail(user.Email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
-            TempData["success"] = "Reset Password Link sent Successful";
-            return RedirectToAction("Login", "Home");
+            var usercheck = _context.Users.FirstOrDefault(m => m.Email == user.Email);
+            if (usercheck != null)
+            {
+                string Id = (_context.AspNetUsers.FirstOrDefault(x => x.Email == user.Email)).Id;
+                string resetPasswordUrl = GenerateResetPasswordUrl(Id);
+                SendEmail(user.Email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
+                TempData["success"] = "Reset Password Link sent Successful";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                TempData["error"] = "Email Id Not Exist First Crrete account";
+
+            }
+            return RedirectToAction("ForgotPassword", "Home");
         }
 
 

@@ -9,6 +9,7 @@ namespace HalloDoc.Models.ViewModel
         public RequestClient RequestClient { get; set; }
 
         [Column(TypeName = "character varying")]
+        [Required]
         public string? PasswordHash { get; set; }
 
         [Required(ErrorMessage = "Enter Your Email")]
@@ -17,9 +18,10 @@ namespace HalloDoc.Models.ViewModel
 
         [Required]
         [Compare("PasswordHash")]
-
         public string? ConfirmPassword { get; set; }
+        [Required]
         public string? FirstName { get; set; }
+        [Required]
         public string? LastName { get; set; }
     }
 }

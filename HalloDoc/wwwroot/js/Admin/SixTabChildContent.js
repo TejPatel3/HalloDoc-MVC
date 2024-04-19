@@ -264,7 +264,8 @@ $('.acceptRequest').on('click', function () {
                 url: '/ProviderSide/AcceptRequest',
                 data: { requestid: requestid },
                 success: function (response) {
-                    $('#adminLayoutMainDiv').html(response)
+                    //$('#adminLayoutMainDiv').html(response)
+                    location.reload();
                     Swal.fire({
                         title: "Accepted!",
                         text: "Request Accepted Successfully.",

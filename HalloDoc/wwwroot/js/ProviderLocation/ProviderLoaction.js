@@ -7,10 +7,9 @@ window.onload = function () {
 
 }
 $.ajax({
-    url: '/ProviderLocation/GetLocationS',
+    url: '/ProviderLocation/GetLocations',
     method: 'GET',
     async: false,
-
     success: function (response) {
         console.log(locationdata);
         locationdata = JSON.parse(response)

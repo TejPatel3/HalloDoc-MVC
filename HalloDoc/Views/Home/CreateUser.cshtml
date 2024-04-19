@@ -27,11 +27,11 @@
                         <div class="col-12 d-flex justify-content-center mb-xxl-3">
                             <div class="col-12 form-floating mb-3  text-input-max-width">
                                 <input type="email" asp-for="Email"
-                                       class="form-control"
+                                       class="form-control" value="@Model.Email"
                                        placeholder="Username"
                                        aria-label="Username" readonly/>
                                 <label class="d-flex justify-content-around" asp-for="Email">Username </label>
-                                <span asp-validation-for="Email"></span>
+                                <span asp-validation-for="Email" class="small text-danger"></span>
                                 <i class="bi bi-person-circle icon username-icon icons  mobile-icon    d-block" role="button" id="eye-icon"></i>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                                        placeholder="Username"
                                        aria-label="Username" />
                                 <label class="d-flex justify-content-between" asp-for="FirstName">First Name </label>
-                                <span asp-validation-for="FirstName"></span>
+                                <span asp-validation-for="FirstName" class="small text-danger"></span>
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center mb-xxl-3">
@@ -52,7 +52,7 @@
                                        placeholder="Username"
                                        aria-label="Username" />
                                 <label class="d-flex justify-content-between" asp-for="LastName">Last Name </label>
-                                <span asp-validation-for="LastName"></span>
+                                <span asp-validation-for="LastName" class="small text-danger"></span>
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-center mb-xxl-3">
@@ -62,7 +62,7 @@
                                        placeholder="Username"
                                        aria-label="Username" />
                                 <label class="d-flex justify-content-between" asp-for="PasswordHash">Password </label>
-                                <span asp-validation-for="PasswordHash"></span>
+                                <span asp-validation-for="PasswordHash" class="small text-danger"></span>
                                 <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-icons" onclick="hideviewpswd()"></i>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                                        class="form-control" placeholder="Username"
                                        aria-label="Username" />
                                 <label class="d-flex justify-content-between">Confirm Password </label>
-                                <span asp-validation-for="ConfirmPassword"></span>
+                                <span asp-validation-for="ConfirmPassword" class="small text-danger"></span>
                                 <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-iconc" onclick="hideviewpswdcnf()"></i>
                             </div>
                         </div>

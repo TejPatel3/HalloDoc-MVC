@@ -34,7 +34,7 @@ namespace HalloDoc.Models.ViewModel
         public string? Email { get; set; }
 
         [StringLength(23)]
-        [RegularExpression(@"^\+?(\d[\d-. ]+)?(\([\d-. ]+\))?[\d-. ]+\d$", ErrorMessage = "Please enter valid phone number")]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Please enter 10 digit valid phone number")]
         [Required(ErrorMessage = "Plese enter your Phone Number")]
         public string? PhoneNumber { get; set; }
 

@@ -52,17 +52,17 @@
                     <input type="date" asp-for="BirthDate"
                            class="form-control pt-2"
                            placeholder="Username"
-                           aria-label="Username" max=@max/>
+                           aria-label="Username" max=@max />
                     <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
                 <h5 class="mb-3 mt-4 fw-semibold">Patient contact Information</h5>
                 <div class="col-12 col-sm-6 form-floating mb-3">
-                    <input type="text" asp-for="Email"
+                    <input type="email" asp-for="Email"
                            class="form-control"
-                           placeholder="Username"
+                           placeholder="Username" id="emailpatientfamilyfriend"
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ms-2">Email </label>
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <span asp-validation-for="Email" id="patientemailvalidationspan" class="text-danger"></span>
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <div class="form-control p-0">
@@ -70,8 +70,8 @@
                                type="tel"
                                name="PhoneNumber"
                                style="border: none; padding: 18px 2% 18px 50px;" />
-                        <span class="text-danger" asp-validation-for="PhoneNumber"></span>
                     </div>
+                    <span class="text-danger" asp-validation-for="PhoneNumber"></span>
                 </div>
 
                 <h5 class="mb-3 mt-4 fw-semibold">Patient Location</h5>
@@ -149,41 +149,54 @@
                     <button type="button" class="btn me-2 px-2 btn-info text-white" id="createuseraccountsubmit">Submit</button>
                     <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
                 </div>
+                <h6 class="text-danger small">Note: If You Request For Patient And That email is not Exist then Crete Account Link Will Sent On Patient Email,<br />&emsp;&emsp;&nbsp;&nbsp; First Crete account Then and only then this form will submit,<br />&emsp;&emsp;&nbsp;&nbsp; Do not Close This form untill Patient create Account </h6>
+
             </div>
         </form>
     </div>
 </div>
 <script>
+    var check = 1;
     $('#createuseraccountsubmit').click(function () {
         var email = $('#emailpatientfamilyfriend').val();
-        $.ajax({
-            url: '/PatientRequest/CheckUserExist',
-            data: { email: email },
-            success: function (data) {
-                if (data) {
-                    $('#formfamily').submit();
-                }
-                else {
-                    $.ajax({
-                        url: '/PatientRequest/CreateUserSendMail',
-                        data: { email: email },
-                        success: function (data) {
-                            Swal.fire({
-                                icon: "success",
-                                title: "Email Sent Successfully",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
+        var regexemail = /^\w+@@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        if (email == "") {
+            $('#patientemailvalidationspan').html("Please Enter Email")
+        }
+        else if (!regexemail.test(email)) {
+
+            $('#patientemailvalidationspan').html("Please Enter Valid Email")
+        }
+        else {
+            if (check == 1) {
+
+
+                $.ajax({
+                    url: '/PatientRequest/CheckUserExist',
+                    data: { email: email },
+                    success: function (data) {
+                        if (data) {
+                            check = 2;
+                            document.getElementById("createuseraccountsubmit").type = "submit";
+                            $('#createuseraccountsubmit').click();
                         }
-                    });
-                    Swal.fire({
-                        icon: "error",
-                        title: "First Create ",
-                        text: "Something went wrong!",
-                        footer: '<a href="#">Why do I have this issue?</a>'
-                    });
-                }
-            },
-        });
+                        else {
+                            $.ajax({
+                                url: '/PatientRequest/CreateUserSendMail',
+                                data: { email: email },
+                                success: function (data) {
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Email Sent Successfully",
+                                        text: "Crete User Account Page Link Sent on Patient Account, First Crete account and then try to submit this form"
+                                    });
+                                }
+                            });
+
+                        }
+                    },
+                });
+            }
+        }
     })
 </script>

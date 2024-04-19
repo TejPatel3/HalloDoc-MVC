@@ -1,5 +1,7 @@
 ﻿@* @model HalloDoc.Models.ViewModel.PatientDashboard
  *@
+@inject IHttpContextAccessor accessor
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +49,7 @@
                     <div class="d-flex justify-content-between col align-items-center  ">
                         <div class="d-flex align-items-center">
                             <h6 class=" pe-2" style="color:gray;">Welcome </h6>
-                            @* <h6 class="" style="color:gray;">@TempData["user"]</h6> *@
+                            <h6 class="" style="color:gray;">@accessor.HttpContext.Session.GetString("UserName")</h6>
                             <a asp-action="Logout" asp-controller="Dashboard">
                                 <button class="btn btn-outline-info ms-4 " style="height:41px;" onclick="location.href='@Url.Action("Index","Home")'">Log out</button>
                             </a>
@@ -75,7 +77,7 @@
         @RenderBody()
     </div>
 
-    <footer class="footer d-flex align-items-center">
+    <footer class="footer d-flex align-items-center fixed-bottom">
         <div class="container-fluid bg-black p-0 d-flex justify-content-center align-items-center">
             <span class="text-secondary"> Terms and Condition | Privacy Policy</span>
         </div>

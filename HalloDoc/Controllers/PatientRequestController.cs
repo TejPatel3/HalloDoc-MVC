@@ -332,11 +332,21 @@ namespace HalloDoc.Controllers
         }
         public IActionResult PatientResetPasswordEmail(AspNetUser user)
         {
-            string Id = (_context.AspNetUsers.FirstOrDefault(x => x.Email == user.Email)).Id;
-            string resetPasswordUrl = GenerateResetPasswordUrl(Id);
-            SendEmail(user.Email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
-            TempData["success"] = "Reset Password Link sent Successful";
-            return RedirectToAction("CreateRequest", "PatientRequest");
+            var usercheck = _context.Users.FirstOrDefault(m => m.Email == user.Email);
+            if (usercheck != null)
+            {
+                string Id = (_context.AspNetUsers.FirstOrDefault(x => x.Email == user.Email)).Id;
+                string resetPasswordUrl = GenerateResetPasswordUrl(Id);
+                SendEmail(user.Email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
+                TempData["success"] = "Reset Password Link sent Successful";
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                TempData["error"] = "Email Id Not Exist First Crrete account";
+
+            }
+            return RedirectToAction("ForgotPassword", "PatientRequest");
         }
         private string GenerateCreateUserLink(string email)
         {
@@ -348,8 +358,8 @@ namespace HalloDoc.Controllers
         public IActionResult CreateUserSendMail(string email)
         {
             string resetPasswordUrl = GenerateCreateUserLink(email);
-            SendEmail(email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
-            TempData["success"] = "Reset Password Link sent Successful";
+            SendEmail(email, "Crete Your Account", $"Hello, Click On below Link for Crete Your Account:{resetPasswordUrl}");
+            TempData["success"] = "crete user account Link sent Successful";
             return RedirectToAction("CreateRequest", "PatientRequest");
         }
 
@@ -389,9 +399,23 @@ namespace HalloDoc.Controllers
         [HttpPost]
         public async Task<IActionResult> Concierge(conciergeViewModel req)
         {
-
+            var aspuser = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(n => n.Email == req.Email);
+            aspuser.PhoneNumber = req.PhoneNumber;
+            user.Mobile = req.PhoneNumber;
+            user.Street = req.Street;
+            user.City = req.City;
+            user.State = req.State;
+            user.ZipCode = req.ZipCode;
+            user.IntYear = int.Parse(req.BirthDate?.ToString("yyyy"));
+            user.IntDate = int.Parse(req.BirthDate?.ToString("dd"));
+            user.StrMonth = req.BirthDate?.ToString("MMM");
+            _context.AspNetUsers.Update(aspuser);
+            _context.Users.Update(user);
+            _context.SaveChanges();
             Request requests = new Request
             {
+                UserId = user.UserId,
                 FirstName = req.rFirstName,
                 LastName = req.rLastName,
                 Email = req.rEmail,
@@ -403,7 +427,6 @@ namespace HalloDoc.Controllers
             _context.Requests.Add(requests);
             _context.SaveChanges();
 
-            var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == req.Email);
             RequestClient requestclients = new RequestClient
             {
                 FirstName = req.FirstName,
@@ -414,7 +437,7 @@ namespace HalloDoc.Controllers
                 City = req.City,
                 State = req.State,
                 ZipCode = req.ZipCode,
-                RequestId = requestdata.RequestId,
+                RequestId = requests.RequestId,
                 RegionId = 1,
                 Notes = req.Notes,
                 Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
@@ -463,8 +486,23 @@ namespace HalloDoc.Controllers
         [HttpPost]
         public async Task<IActionResult> Business(businessViewModel req)
         {
+            var aspuser = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
+            var user = await _context.Users.FirstOrDefaultAsync(n => n.Email == req.Email);
+            aspuser.PhoneNumber = req.PhoneNumber;
+            user.Mobile = req.PhoneNumber;
+            user.Street = req.Street;
+            user.City = req.City;
+            user.State = req.State;
+            user.ZipCode = req.ZipCode;
+            user.IntYear = int.Parse(req.BirthDate?.ToString("yyyy"));
+            user.IntDate = int.Parse(req.BirthDate?.ToString("dd"));
+            user.StrMonth = req.BirthDate?.ToString("MMM");
+            _context.AspNetUsers.Update(aspuser);
+            _context.Users.Update(user);
+            _context.SaveChanges();
             Request requests = new Request
             {
+                UserId = user.UserId,
                 FirstName = req.rFirstName,
                 LastName = req.rLastName,
                 Email = req.rEmail,
@@ -476,7 +514,6 @@ namespace HalloDoc.Controllers
             _context.Requests.Add(requests);
             _context.SaveChanges();
 
-            var requestdata = await _context.Requests.FirstOrDefaultAsync(m => m.Email == req.Email);
             RequestClient requestclients = new RequestClient
             {
                 FirstName = req.FirstName,
@@ -487,7 +524,7 @@ namespace HalloDoc.Controllers
                 City = req.City,
                 State = req.State,
                 ZipCode = req.ZipCode,
-                RequestId = requestdata.RequestId,
+                RequestId = requests.RequestId,
                 RegionId = 1,
                 Notes = req.Notes,
                 Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,

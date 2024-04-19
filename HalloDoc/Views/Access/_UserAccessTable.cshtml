@@ -1,0 +1,67 @@
+﻿@* @using Services.ViewModels
+@model IEnumerable<UserAccessViewModel>
+
+<div class="table-responsive">
+    <table class="table table-borderless align-middle">
+        <thead class="table-head">
+            <tr>
+                <th>Account Type</th>
+                <th>Account POC</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Open Requests</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+
+                string? statusName;
+                switch (user.StatusId)
+                {
+                    case 1:
+                        {
+                            statusName = "Active";
+                            break;
+                        }
+                    case 2:
+                        {
+                            statusName = "Pending";
+                            break;
+                        }
+                    case 3:
+                        {
+                            statusName = "Not Active";
+                            break;
+                        }
+                    default:
+                        {
+                            statusName = "Not Active";
+                            break;
+                        }
+                }
+
+                <tr>
+                    <td>@user.AccountTypeName</td>
+                    <td>@user.FirstName @user.LastName</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@statusName</td>
+                    <td>@user.OpenRequests</td>
+                    <td>
+                        <div class="d-flex justify-content-center gap-2">
+                            @if (user.AccountTypeId == 1)
+                            {
+                                <a asp-controller="AdminAccess" asp-action="EditAdmin" asp-route-adminId=@user.UserId class="btn-second p-2">Edit</a>
+                            }
+                            else if (user.AccountTypeId == 2)
+                            {
+                                <a asp-controller="AdminProviders" asp-action="EditPhysician" asp-route-physicianId=@user.UserId class="btn-second p-2">Edit</a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> *@
