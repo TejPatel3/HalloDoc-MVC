@@ -1,19 +1,9 @@
 ﻿var regextext = /^[a-zA-Z-, ]+$/i;
-
 window.onload = function () {
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
     $('#nav-access-tab').addClass('admin-layout-nav-active');
 }
-//var phoneInputField = document.querySelector("#phone-adminprofile");
-//var phoneInput = window.intlTelInput(phoneInputField, {
-//    utilsScript:
-//        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-//});
-//var phoneInputField2 = document.querySelector("#alterphonenumber-adminprofile");
-//var phoneInput = window.intlTelInput(phoneInputField2, {
-//    utilsScript:
-//        "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-//});
+
 $('#createaccessrole-btn').on('click', function () {
     $.ajax({
         url: '/Access/CreateRole',
@@ -29,19 +19,6 @@ $('#createaccessrole-btn').on('click', function () {
 $('.accounttype-dropdown-createrole').on('change', function () {
     let accounttype = $('.accounttype-dropdown-createrole').val();
     $('#menuselect-filter').load('/Access/MenuFilterCheck', { accounttype: accounttype })
-
-    //$.ajax({
-    //    url: '/Access/MenuFilterCheckbox',
-    //    data: { accounttype: accounttype },
-    //    dataType:'html',
-    //    succcess: function (response) {
-    //        $('#menuselect-filter').empty();
-    //        $('#menuselect-filter').html(response);
-    //    },
-    //    error: function (xhr, status, error) {
-    //        console.error(error);
-    //    }
-    //})
 });
 
 $('#rolename-createrole').on('input', function () {
@@ -56,12 +33,10 @@ $('#rolename-createrole').on('input', function () {
     }
     else if (!regextext.test(rolename)) {
         $('#rolename-createrole-span').html("role name is not valid");
-
     }
-
 });
+
 $('#createrole-save').click(function () {
-    debugger
     let rolename = $('#rolename-createrole').val();
     let accounttype = $('.accounttype-dropdown-createrole').val();
     let roleid = $('#roleid-createrole').val();
@@ -81,10 +56,7 @@ $('#createrole-save').click(function () {
         $('#adminselectedregion-adminprofile-span').html("please select at least one menu");
         allValidation = false;
     }
-
     if (allValidation) {
-
-
         $.ajax({
             url: '/Access/CreateRole',
             type: 'POST',
@@ -96,13 +68,11 @@ $('#createrole-save').click(function () {
             },
             success: function (response) {
                 $('#adminLayoutMainDiv').html(response);
-
             },
             error: function (xhr, status, error) {
                 console.error(error);
             }
         });
-
     }
 });
 
@@ -132,8 +102,6 @@ $('.deletebtn-accessrole').click(function () {
         },
         success: function (response) {
             $('#adminLayoutMainDiv').html(response);
-            //window.location.href = "https://localhost:44370/Access/AccessRole";
-
         },
         error: function (xhr, status, error) {
             console.error(error);

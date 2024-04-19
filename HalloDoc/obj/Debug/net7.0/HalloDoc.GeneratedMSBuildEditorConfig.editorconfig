@@ -32,10 +32,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXFVzZXJBY2Nlc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project/HalloDoc/HalloDoc/Views/Access/_UserAccessTable.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXF9Vc2VyQWNjZXNzVGFibGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Project/HalloDoc/HalloDoc/Views/AdminCredential/AdminForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5DcmVkZW50aWFsXEFkbWluRm9yZ290UGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

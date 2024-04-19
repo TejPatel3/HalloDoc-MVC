@@ -16,7 +16,6 @@ $('#CancelModalSubminbtn').click(function () {
         $('#CancelModalFirstDropDownSpan').html("Please Select Reason for cancellation");
         allvalidation = false;
     }
-
     if (note == "") {
         $('#CancelModalNoteSpan').html("Please Enter cancellation Note");
         allvalidation = false;
@@ -31,8 +30,6 @@ $('#CancelModalSubminbtn').click(function () {
 });
 
 $('#AssignModalSubminbtn').click(function () {
-
-
     var note = $('#AssignModalNote').val();
     var Region = $('#AssignModalFirstDropDownSelect').val();
     var Physician = $('#AssignModalSecondDropDownSelect').val();
@@ -47,10 +44,8 @@ $('#AssignModalSubminbtn').click(function () {
     if (SecondDropDownValidation(Physician)) {
         if (FirstDropDownValidation(Region)) {
             $('#AssignModalSecondDropDownSpan').html("Please Select Region first");
-
         }
         else {
-
             $('#AssignModalSecondDropDownSpan').html("Please Select Physician");
         }
         allvalidation = false;
@@ -87,9 +82,6 @@ $('#BlockModalSubminbtn').click(function () {
     }
 });
 
-
-
-
 $('#TransferModalSubminbtn').click(function () {
     var note = $('#TransferModalNote').val();
     var Region = $('#TransferModalFirstDropDownSelect').val();
@@ -108,7 +100,6 @@ $('#TransferModalSubminbtn').click(function () {
         }
         else {
             $('#TransferModalSecondDropDownSpan').html("Please Select Physician");
-
         }
         allvalidation = false;
     }
@@ -129,7 +120,6 @@ $('#SendAgreementModalSubminbtn').click(function () {
     var phone = $('#AgreementModal-Phone').val();
     var email = $('#AgreementModal-Email').val();
     let allvalidation = true;
-
     $('#SendAgreementModalphoneSpan').html("");
     $('#SendAgreementModalemailSpan').html("");
     if (phone == "") {
@@ -148,8 +138,6 @@ $('#SendAgreementModalSubminbtn').click(function () {
         $('#SendAgreementModalemailSpan').html("Email is not valid");
         allvalidation = false;
     }
-
-
     if (allvalidation) {
         $('#SendAgreementModalSubminbtn').closest('form').submit()
     }
@@ -208,9 +196,6 @@ function SecondDropDownValidation(seconddropvalue) {
     return false;
 };
 
-
-
-
 function ModalNotesValidation(note) {
     const regexPattern = /^[a-zA-Z0-9 ]+$/;
     if (note == "") {
@@ -221,41 +206,3 @@ function ModalNotesValidation(note) {
     }
     return false;
 };
-
-
-
-
-//$('.ModalSubminbtn').click(function () {
-//    console.log("assign modal validation js")
-//    var note = $('.notes').val();
-//    var firstdrop = $('.ModalFirstDropDownSelect').val();
-//    var seconddrop = $('.ModalSecondDropDownSelect').val();
-//    let regexPattern = /^[a-z A-Z 0-9]+$/;
-//    console.log(firstdrop)
-//    console.log(seconddrop)
-//    console.log(note)
-//    if (firstdrop == "") {
-//        $('.ModalFirstDropDownSpan').html("This is Required Please Select");
-//    }
-//    else {
-//        $('.ModalFirstDropDownSpan').html("");
-//    }
-//    if (seconddrop == "") {
-//        $('.ModalSecondDropDownSpan').html("This is Required Please Select");
-//    }
-//    else {
-//        $('.ModalSecondDropDownSpan').html("");
-
-//    }
-//    if (note == "") {
-//        $('.ModalNotesSpan').html("Please Enter Note");
-//    }
-//    else if (!regexPattern.test(note)) {
-//        $('.ModalNotesSpan').html("Note is not Valid");
-//    }
-//    else {
-//        $('.ModalNotesSpan').html("");
-//        $('.ModalSubminbtn').closest('form').submit()
-//    }
-//});
-

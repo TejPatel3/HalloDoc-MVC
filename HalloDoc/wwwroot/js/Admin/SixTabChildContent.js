@@ -125,21 +125,17 @@
             table.columns(0).search('').draw();
         }
         else {
-            table.columns(0).search(value).draw(); // Replace 0 with the index of the column you want to filter
-
+            table.columns(0).search(value).draw();
             try {
                 console.log('accp')
                 var headers = document.querySelectorAll('.accordion-header');
-
                 headers.forEach((header) => {
                     const requesttype = header.querySelector('.requesttype-accordion');
                     const nameText = requesttype.textContent || requesttype.innerText;
-
-
                     if (nameText.includes(value)) {
-                        header.style.display = ''; // Show the header
+                        header.style.display = '';
                     } else {
-                        header.style.display = 'none'; // Hide the header
+                        header.style.display = 'none';
                     }
                 });
             }
@@ -147,8 +143,6 @@
                 console.log("catch fro filter")
             }
         }
-
-
     });
 
     $('#RegionSearch').on('change', function () {
@@ -158,7 +152,7 @@
             table.columns(1).search('').draw();
         }
         else {
-            table.columns(1).search(regionid).draw(); // Replace 0 with the index of the column you want to filter
+            table.columns(1).search(regionid).draw();
             try {
 
                 var headers = document.querySelectorAll('.accordion-header');
@@ -168,9 +162,9 @@
                     const nameText = regionName.textContent || regionName.innerText;
 
                     if (nameText.includes(regionid)) {
-                        header.style.display = ''; // Show the header
+                        header.style.display = '';
                     } else {
-                        header.style.display = 'none'; // Hide the header
+                        header.style.display = 'none';
                     }
                 });
             }
@@ -179,7 +173,6 @@
             }
         }
     })
-
 });
 
 $('.viewUpload').on('click', function (e) {
@@ -215,7 +208,6 @@ $('.order').on('click', function (e) {
 });
 
 $('.sendAgreementBtn').on('click', function (e) {
-
     $.ajax({
         url: '/Admin/SendAgreementModals',
         type: 'POST',

@@ -1,14 +1,10 @@
 ﻿@using Services.ViewModels
 @model ViewUploadViewModel
 @inject IHttpContextAccessor accessor
-
-
 <Partial name="Toast" />
-
 @{
     Layout = null;
 }
-
 <div class="container  pt-3 pb-4">
     <div class="d-flex justify-content-between mb-2">
         <h4>Conclude Care</h4>
@@ -21,11 +17,9 @@
         <div class="row">
             <div class="col-12  text-secondary " style="font-size:15px;">Patient Name</div>
             <div class="col-12 text-secondary">
-
                 <div>
                     <strong class="h4 text-info fw-bold">@Model.FirstName @Model.LastName </strong>
                 </div>
-
             </div>
 
             <div class="mt-1 d-flex justify-content-between">

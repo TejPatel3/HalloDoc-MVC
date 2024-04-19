@@ -555,7 +555,7 @@ namespace HalloDoc.Controllers.Admin
                 return check;
             }
         }
-
+        [HttpGet]
         public List<AdminDashboardTableDataViewModel> ExportAllDownload()
         {
             var data = _adminDashboardDataTable.GetDataForExportAll();

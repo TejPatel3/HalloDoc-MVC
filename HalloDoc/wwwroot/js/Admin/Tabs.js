@@ -5,15 +5,14 @@
 
 $(document).ready(function () {
     $('.SelectedRegionGivePhysicianList').change(function () {
-        var regionId = $(this).find(":selected").attr('id'); // This will get the id of the selected region
-
+        var regionId = $(this).find(":selected").attr('id');
         $.ajax({
-            url: '/Admin/GetPhysicianByRegionId', // Replace with your server script URL
+            url: '/Admin/GetPhysicianByRegionId',
             type: 'GET',
             data: { regionId: regionId },
             success: function (data) {
-                var secondDropdown = $('.physiciandrop'); // Replace with your second dropdown selector
-                secondDropdown.empty(); // Clear existing options
+                var secondDropdown = $('.physiciandrop');
+                secondDropdown.empty();
                 secondDropdown.append($('<option>', {
                     hidden: "hidden",
                     value: "",
@@ -22,15 +21,13 @@ $(document).ready(function () {
                 console.log(data)
                 $.each(data, function (index, item) {
                     secondDropdown.append($('<option>', {
-                        value: item.physicianId, // Replace with the actual value from your data
-                        text: item.firstName + item.lastName // Replace with the actual text from your data
+                        value: item.physicianId,
+                        text: item.firstName + item.lastName
                     }));
                 });
             }
         });
     });
-
-
 
     $.ajax({
         url: '/Admin/New',
@@ -42,7 +39,6 @@ $(document).ready(function () {
             console.error(error);
         }
     });
-
 
     $('.dashboardtab').on('click', function (e) {
         e.preventDefault();
@@ -100,10 +96,8 @@ $(document).ready(function () {
         console.log(url)
         $.ajax({
             url: url,
-
             success: function (response) {
                 $('#datatable').html(response);
-
             },
             error: function (xhr, status, error) {
                 if (xhr.status === 401) {
@@ -120,16 +114,12 @@ function download() {
     var selectedFiles = document.querySelectorAll('input[name="checkbox"]:checked');
     var fileUrls = [];
     console.log(selectedFiles)
-
-    // Iterate through selected checkboxes and extract file URLs
     selectedFiles.forEach(function (checkbox) {
         var row = checkbox.closest('tr');
         var fileUrl = row.querySelector('a').getAttribute('href');
         fileUrls.push(fileUrl);
     });
-    // Download each file
     fileUrls.forEach(function (url) {
-        // Create an anchor element to trigger the download
         var link = document.createElement('a');
         link.href = url;
         link.download = '';

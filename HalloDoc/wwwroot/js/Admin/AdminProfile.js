@@ -1,6 +1,6 @@
 ﻿var regexstrongpassword = /[A-Za-z\d@$!%*?&]{8,}/
-//var regexstrongpassword = /^(?=.* [a - z])(?=.* [A - Z])(?=.*\d)(?=.* [@$! %*?&])[A - Za - z\d@$!%*?&]{ 8,} $/
 var phoneInputField = document.querySelector("#alterphonenumber-adminprofile");
+
 var phoneInput = window.intlTelInput(phoneInputField, {
     utilsScript:
         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
@@ -10,17 +10,16 @@ var phoneInput = window.intlTelInput(phoneInputField2, {
     utilsScript:
         "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 });
+
 window.onload = function () {
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
     $('#nav-profile-tab').addClass('admin-layout-nav-active');
-
     $('#resetpassword-adminprofile').click(function () {
         console.log("reset pass")
         $('#password-adminprofile').removeAttr('disabled', false)
         $('#savepassword-adminprofile').removeAttr('hidden', false);
         $('#savepassword-adminprofile').show();
         $(this).hide();
-
     });
     $('#savepassword-adminprofile').click(function () {
         console.log("reset pass")
@@ -34,7 +33,6 @@ window.onload = function () {
             alert("Please Enter Strong Password that contain\nAt least one uppercase letter\nAt least one lowercase letter\nAt least one digit\nAt least one special character\nAt least 8 characters in length")
         }
         else {
-
             $('#password-adminprofile').attr('disabled', true);
             $('#resetpassword-adminprofile').show();
             $(this).hide();
@@ -43,13 +41,11 @@ window.onload = function () {
                 type: 'POST',
                 data: { email: email, password: password },
                 success: function (response) {
-                    //$('#nav-profile').html(response);
                 },
                 error: function (xhr, status, error) {
                     console.error(error);
                 }
             });
-
         }
     });
     $('#editbtn-administrator-adminprofile').click(function () {
@@ -57,22 +53,9 @@ window.onload = function () {
         var password = $('#password-adminprofile').val();
         var email = $('#email-adminprofile').val();
         $('.adisabled').removeAttr('disabled', false);
-
         $('#savebtn-administrator-adminprofile').removeAttr('hidden', false);
         $('#savebtn-administrator-adminprofile').show();
         $(this).hide();
-
-        // $.ajax({
-        //     url: '/AdminCredential/ResetPassword',
-        //     type: 'POST',
-        //     data: { email: email, password: password },
-        //     success: function (response) {
-        //         $('#nav-profile').html(response);
-        //     },
-        //     error: function (xhr, status, error) {
-        //         console.error(error);
-        //     }
-        // });
     });
     $('#email-adminprofile').on('input', function () {
         var email = $('#email-adminprofile').val();
@@ -125,7 +108,6 @@ window.onload = function () {
         }
         else {
             $('#firstname-validationspan').html("");
-
         }
         if (lastname == "") {
             $('#lastname-validationspan').html("please enter lastname");
@@ -142,7 +124,6 @@ window.onload = function () {
             $('#email-validationspan').html("Please Enter Email");
             allvalidation = false;
             $('#confirmemail-validationspan').html("");
-
         }
         else if (!regexemail.test(email)) {
             $('#email-validationspan').html("Please Enter Valid Email");
@@ -173,44 +154,27 @@ window.onload = function () {
             $('.adisabled').attr('disabled', true);
             $('#editbtn-administrator-adminprofile').show();
             $(this).hide();
-
             $.ajax({
                 url: '/Admin/UpdateAdministrationInfoAdminProfile',
                 type: 'POST',
-                //dataType: 'json',
                 data: model,
                 success: function (response) {
-                    //$('#nav-profile').html(response);
                 },
-
-
                 error: function (xhr, status, error) {
                     console.error(error);
                 }
             });
         }
     });
+
     $('#editbtn-mailing-adminprofile').click(function () {
         console.log("reset pass")
         var password = $('#password-adminprofile').val();
         var email = $('#email-adminprofile').val();
         $('.mdisabled').removeAttr('disabled', false);
-
         $('#savebtn-mailing-adminprofile').removeAttr('hidden', false);
         $('#savebtn-mailing-adminprofile').show();
         $(this).hide();
-
-        // $.ajax({
-        //     url: '/AdminCredential/ResetPassword',
-        //     type: 'POST',
-        //     data: { email: email, password: password },
-        //     success: function (response) {
-        //         $('#nav-profile').html(response);
-        //     },
-        //     error: function (xhr, status, error) {
-        //         console.error(error);
-        //     }
-        // });
     });
     $('#savebtn-mailing-adminprofile').click(function () {
         console.log("reset pass")
@@ -221,7 +185,6 @@ window.onload = function () {
         var city = $('#city-adminprofile').val();
         var alterphonenumber = $('#alterphonenumber-adminprofile').val();
         $('.mdisabled').attr('disabled', true);
-
         $('#editbtn-mailing-adminprofile').show();
         $(this).hide();
         var model = {
@@ -231,25 +194,16 @@ window.onload = function () {
             zip: zip,
             alterphonenumber: alterphonenumber,
         }
-
-
         $('#confirmemail-validationspan').html("");
-
-
-
         $.ajax({
             url: '/Admin/UpdateMailingInfoAdminProfile',
             type: 'POST',
-            //dataType: 'json',
             data: model,
             success: function (response) {
-                //$('#nav-profile').html(response);
             },
             error: function (xhr, status, error) {
                 console.error(error);
             }
         });
-
     });
-
 }

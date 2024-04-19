@@ -1,8 +1,8 @@
 ﻿var regexstrongpassword = /[A-Za-z\d@$!%*?&]{8,}/
 var regextext = /^[a-zA-Z][a-zA-Z ]+$/i;
 var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
 var regexphone = /^[1-9][0-9]{9}$/;
+
 $('#sendcodeforgotpassword').on('click', function () {
     var email = $('#email-forgotpassword').val();
     var model = { sendcode: true, checkcode: false, updatepassword: false, email: email };
@@ -18,8 +18,7 @@ $('#sendcodeforgotpassword').on('click', function () {
             type: 'POST',
             data: model,
             success: function (response) {
-                $('#generatedconfirmationcode').val(response.confirmationCode); // replace 'your-input-field' with the id of your input field
-
+                $('#generatedconfirmationcode').val(response.confirmationCode); 
             },
             error: function (xhr, status, error) {
                 console.error(error);
@@ -27,6 +26,7 @@ $('#sendcodeforgotpassword').on('click', function () {
         });
     }
 });
+
 $('#checkcodeforgotpassword').on('click', function () {
     let confirmationcode = $('#confirmationcode-forgotpassword').val();
     let originalconfirmationcode = $('#generatedconfirmationcode').val();
@@ -36,7 +36,6 @@ $('#checkcodeforgotpassword').on('click', function () {
         $('#confirmationcode-forgotpassword-span').html("please enter confirmation code that sent in mail")
     }
     else {
-
         $.ajax({
             url: '/AdminCredential/AdminForgotPassword',
             type: 'POST',
@@ -55,7 +54,6 @@ $('#checkcodeforgotpassword').on('click', function () {
                 else {
                     $('#confirmationcode-forgotpassword-span').html("Confirmation code is incorrect")
                 }
-
             },
             error: function (xhr, status, error) {
                 console.error(error);
@@ -63,6 +61,7 @@ $('#checkcodeforgotpassword').on('click', function () {
         });
     }
 });
+
 $('#updatepasswordforgotpassword').on('click', function () {
     var email = $('#email-forgotpassword').val();
     var allvalidation = true;
