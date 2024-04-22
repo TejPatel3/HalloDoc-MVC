@@ -65,8 +65,8 @@
                     <div class="form-control p-0">
                         <input id="phone" asp-for="PhoneNumber"
                                type="tel"
-                               name="PhoneNumber"
-                               style="border: none; padding: 18px 2% 18px 50px;" />
+                               name="PhoneNumber" maxlength="10"
+                               style="border: none; padding: 17.5px 2% 17.5px 50px; width:inherit" />
                         <span class="text-danger" asp-validation-for="PhoneNumber"></span>
                     </div>
                 </div>
@@ -149,3 +149,5 @@
         </form>
     </div>
 </div>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

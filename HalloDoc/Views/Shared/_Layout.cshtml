@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - HalloDoc</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/axax/libs/toastr.js/latest/toastr.min.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
@@ -23,7 +22,6 @@
     <link rel="script" href="~/js/site.js" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 </head>
 <body class="bg-light min-vh-100" >
     <nav class="navbar  navbar-light border-bottom justify-content-between">
@@ -53,22 +51,15 @@
     <div class="pt-2 mb-5 bg-light" style="min-height:79.5vh">
         @RenderBody()
     </div>
-
     <footer class="footer d-flex align-items-center">
         <div class="container-fluid bg-black p-0 d-flex justify-content-center align-items-center">
             <span class="text-secondary"> Terms and Condition | Privacy Policy</span>
         </div>
     </footer>
-
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
-  
-
- 
-
     @await RenderSectionAsync("Scripts", required: false)
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" asp-append-version="true"></script>
 </body>

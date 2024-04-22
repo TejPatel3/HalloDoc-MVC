@@ -16,22 +16,14 @@
             <th class="p-3 fw-medium" width="15%">Created Date</th>
             <th class="p-3 fw-medium" width="15%">Notes</th>
             <th class="p-3 text-center fw-medium" width="15%">Is Active</th>
-            <th class="p-3 fw-medium" width="10%">Action</th>
-
-            @* <th>
-
-
-            </th>*@
+            <th class="p-3 fw-medium" width="10%">Action</th>           
         </tr>
     </thead>
 
     <tbody>
-
         @foreach (var obj in Model)
         {
-
             <tr class="p-1" style="border-top : 10px solid transparent ; border-bottom : 10px solid transparent">
-
                 <td class="p-3">
                     @obj.PatientName
                 </td>
@@ -60,43 +52,19 @@
                 </td>
             </tr>
         }
-
-
-
-    </tbody>
-
-
-
+        </tbody>
 </table>
 <script src="/js/Records/Pagination.js" asp-append-version="true"></script>
 
 <script>
-
     $('.unblockbtn_blockhistory').on('click', function () {
-
         var requestid = $(this).val();
-
         $.ajax({
             url: '/Records/UnblockbtnBlockHistory',
             data: { requestid: requestid },
             success: function (response) {
                 $('#blockhistorystable').html(response)
             }
-
         });
     });
-
-        //$('.deleterequest').on('click', function () {
-
-        //    var requestid = $(this).val();
-
-        //    $.ajax({
-        //        url: '/Records/DeleteRecords',
-        //        data: { requestid: requestid },
-        //        success: function (response) {
-        //            $('#searchrecordstable').html(response)
-        //        }
-
-        //    });
-        //});
 </script>

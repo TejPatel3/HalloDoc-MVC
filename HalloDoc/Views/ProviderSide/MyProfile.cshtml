@@ -1,5 +1,4 @@
 ﻿@using Services.ViewModels
-
 @model ProviderDetailsViewModel;
 
 @{
@@ -198,10 +197,6 @@
                     <option class="fs-6" value="Gujarat" selected>Gujarat</option>
                     <option class="fs-6" value="" selected>Maharastra</option>
                     <option class="fs-6" value="" selected>Goa</option>
-                    @*    @foreach (var item in Model.role)
-                    {
-                    <option class="fs-6" >@item.Name</option>
-                    } *@
                 </select>
                 <label for="floatingTextarea" class="text-secondary ms-3">State</label>
                 <span id="providerinfo-state" class="text-danger small"></span>
@@ -319,9 +314,6 @@
                 <div class="table-responsive small" style="font-weight: bold">
                     <table>
                         <tr class="p-1">
-
-
-
                             @if (Model.IsAgreementDoc[0])
                             {
                                 <td class="p-2 px-3">
@@ -336,8 +328,6 @@
                             }
                         </tr>
                         <tr class="p-1">
-
-
                             @if (Model.IsCredentialDoc[0])
                             {
                                 <td class="p-2 px-3">
@@ -355,7 +345,6 @@
                         <tr>
                             @if (Model.IsBackgroundDoc[0])
                             {
-
                                 <td class="p-2 px-3">
                                     Background Check
                                 </td>
@@ -370,7 +359,6 @@
                         <tr>
                             @if (Model.IsNonDisclosureDoc[0])
                             {
-
                                 <td class="p-2 px-3">
                                     Non-Disclosure Agreement
                                 </td>
@@ -385,7 +373,6 @@
                         <tr>
                             @if (Model.IsLicenseDoc[0])
                             {
-
                                 <td class="p-2 px-3">
                                     License Document
                                 </td>
@@ -397,18 +384,13 @@
                                 </td>
                             }
                         </tr>
-
                     </table>
-
                 </div>
             </form>
             <input type="file" id="SelectFileToUpload" data-allowed-file-extensions='["pdf"]' class="file file-loading" hidden />
             <hr class="text-muted" style="border : 1px solid black" />
-
         </div>
     </div>
-
-
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
 <script>
@@ -417,143 +399,143 @@
         $('#nav-ProviderProfile-tab').addClass('admin-layout-nav-active');
     }
 
-    (function fun() {
-        window.requestAnimFrame = (function (callback) {
-            return window.requestAnimationFrame ||
-                window.webkitRequestAnimationFrame ||
-                window.mozRequestAnimationFrame ||
-                window.oRequestAnimationFrame ||
-                window.msRequestAnimaitonFrame ||
-                function (callback) {
-                    window.setTimeout(callback, 1000 / 60);
-                };
-        })();
+        (function fun() {
+            window.requestAnimFrame = (function (callback) {
+                return window.requestAnimationFrame ||
+                    window.webkitRequestAnimationFrame ||
+                    window.mozRequestAnimationFrame ||
+                    window.oRequestAnimationFrame ||
+                    window.msRequestAnimaitonFrame ||
+                    function (callback) {
+                        window.setTimeout(callback, 1000 / 60);
+                    };
+            })();
 
-        var canvas = document.getElementById("sig-canvas");
-        var ctx = canvas.getContext("2d");
-        ctx.strokeStyle = "#222222";
-        ctx.lineWidth = 4;
+            var canvas = document.getElementById("sig-canvas");
+            var ctx = canvas.getContext("2d");
+            ctx.strokeStyle = "#222222";
+            ctx.lineWidth = 4;
 
-        var drawing = false;
-        var mousePos = {
-            x: 0,
-            y: 0
-        };
-        var lastPos = mousePos;
+            var drawing = false;
+            var mousePos = {
+                x: 0,
+                y: 0
+            };
+            var lastPos = mousePos;
 
-        canvas.addEventListener("mousedown", function (e) {
-            drawing = true;
-            lastPos = getMousePos(canvas, e);
-        }, false);
+            canvas.addEventListener("mousedown", function (e) {
+                drawing = true;
+                lastPos = getMousePos(canvas, e);
+            }, false);
 
-        canvas.addEventListener("mouseup", function (e) {
-            drawing = false;
-        }, false);
+            canvas.addEventListener("mouseup", function (e) {
+                drawing = false;
+            }, false);
 
-        canvas.addEventListener("mousemove", function (e) {
-            mousePos = getMousePos(canvas, e);
-        }, false);
+            canvas.addEventListener("mousemove", function (e) {
+                mousePos = getMousePos(canvas, e);
+            }, false);
 
-        // Add touch event support for mobile
-        canvas.addEventListener("touchstart", function (e) {
+            // Add touch event support for mobile
+            canvas.addEventListener("touchstart", function (e) {
 
-        }, false);
+            }, false);
 
-        canvas.addEventListener("touchmove", function (e) {
-            var touch = e.touches[0];
-            var me = new MouseEvent("mousemove", {
-                clientX: touch.clientX,
-                clientY: touch.clientY
-            });
-            canvas.dispatchEvent(me);
-        }, false);
+            canvas.addEventListener("touchmove", function (e) {
+                var touch = e.touches[0];
+                var me = new MouseEvent("mousemove", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(me);
+            }, false);
 
-        canvas.addEventListener("touchstart", function (e) {
-            mousePos = getTouchPos(canvas, e);
-            var touch = e.touches[0];
-            var me = new MouseEvent("mousedown", {
-                clientX: touch.clientX,
-                clientY: touch.clientY
-            });
-            canvas.dispatchEvent(me);
-        }, false);
+            canvas.addEventListener("touchstart", function (e) {
+                mousePos = getTouchPos(canvas, e);
+                var touch = e.touches[0];
+                var me = new MouseEvent("mousedown", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(me);
+            }, false);
 
-        canvas.addEventListener("touchend", function (e) {
-            var me = new MouseEvent("mouseup", {});
-            canvas.dispatchEvent(me);
-        }, false);
+            canvas.addEventListener("touchend", function (e) {
+                var me = new MouseEvent("mouseup", {});
+                canvas.dispatchEvent(me);
+            }, false);
 
-        function getMousePos(canvasDom, mouseEvent) {
-            var rect = canvasDom.getBoundingClientRect();
-            return {
-                x: mouseEvent.clientX - rect.left,
-                y: mouseEvent.clientY - rect.top
-            }
-        }
-
-        function getTouchPos(canvasDom, touchEvent) {
-            var rect = canvasDom.getBoundingClientRect();
-            return {
-                x: touchEvent.touches[0].clientX - rect.left,
-                y: touchEvent.touches[0].clientY - rect.top
-            }
-        }
-
-        function renderCanvas() {
-            if (drawing) {
-                ctx.moveTo(lastPos.x, lastPos.y);
-                ctx.lineTo(mousePos.x, mousePos.y);
-                ctx.stroke();
-                lastPos = mousePos;
-            }
-        }
-
-        // Prevent scrolling when touching the canvas
-        document.body.addEventListener("touchstart", function (e) {
-            if (e.target == canvas) {
-                e.preventDefault();
-            }
-        }, false);
-        document.body.addEventListener("touchend", function (e) {
-            if (e.target == canvas) {
-                e.preventDefault();
-            }
-        }, false);
-        document.body.addEventListener("touchmove", function (e) {
-            if (e.target == canvas) {
-                e.preventDefault();
-            }
-        }, false);
-
-        (function drawLoop() {
-            requestAnimFrame(drawLoop);
-            renderCanvas();
-        })();
-
-        function clearCanvas() {
-            canvas.width = canvas.width;
-        }
-
-        // Set up the UI
-        var clearBtn = document.getElementById("sig-clearBtn");
-        var submitBtn = document.getElementById("sig-submitBtn");
-        clearBtn.addEventListener("click", function (e) {
-            clearCanvas();
-        }, false);
-        submitBtn.addEventListener("click", function (e) {
-            var dataUrl = canvas.toDataURL();
-            console.log(dataUrl);
-            $.ajax({
-                url: '/Provider/EditProviderSign',
-                type: 'POST',
-                data: { providerid: providerid, base64string: dataUrl },
-                success: function (response) {
-                    $('#Cancelbutton').trigger('click');
-                    $('#providermenudiv').html(response);
+            function getMousePos(canvasDom, mouseEvent) {
+                var rect = canvasDom.getBoundingClientRect();
+                return {
+                    x: mouseEvent.clientX - rect.left,
+                    y: mouseEvent.clientY - rect.top
                 }
-            });
-        }, false);
+            }
 
-    })();
+            function getTouchPos(canvasDom, touchEvent) {
+                var rect = canvasDom.getBoundingClientRect();
+                return {
+                    x: touchEvent.touches[0].clientX - rect.left,
+                    y: touchEvent.touches[0].clientY - rect.top
+                }
+            }
+
+            function renderCanvas() {
+                if (drawing) {
+                    ctx.moveTo(lastPos.x, lastPos.y);
+                    ctx.lineTo(mousePos.x, mousePos.y);
+                    ctx.stroke();
+                    lastPos = mousePos;
+                }
+            }
+
+            // Prevent scrolling when touching the canvas
+            document.body.addEventListener("touchstart", function (e) {
+                if (e.target == canvas) {
+                    e.preventDefault();
+                }
+            }, false);
+            document.body.addEventListener("touchend", function (e) {
+                if (e.target == canvas) {
+                    e.preventDefault();
+                }
+            }, false);
+            document.body.addEventListener("touchmove", function (e) {
+                if (e.target == canvas) {
+                    e.preventDefault();
+                }
+            }, false);
+
+            (function drawLoop() {
+                requestAnimFrame(drawLoop);
+                renderCanvas();
+            })();
+
+            function clearCanvas() {
+                canvas.width = canvas.width;
+            }
+
+            // Set up the UI
+            var clearBtn = document.getElementById("sig-clearBtn");
+            var submitBtn = document.getElementById("sig-submitBtn");
+            clearBtn.addEventListener("click", function (e) {
+                clearCanvas();
+            }, false);
+            submitBtn.addEventListener("click", function (e) {
+                var dataUrl = canvas.toDataURL();
+                console.log(dataUrl);
+                $.ajax({
+                    url: '/Provider/EditProviderSign',
+                    type: 'POST',
+                    data: { providerid: providerid, base64string: dataUrl },
+                    success: function (response) {
+                        $('#Cancelbutton').trigger('click');
+                        $('#providermenudiv').html(response);
+                    }
+                });
+            }, false);
+
+        })();
 </script>
 <script src="/js/ProviderSide/ProviderProfile.js" asp-append-version="true"></script>

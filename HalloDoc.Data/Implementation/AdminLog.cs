@@ -21,20 +21,35 @@ namespace Services.Implementation
             if (aspuser != null)
             {
                 var admin = _context.Admins.FirstOrDefault(m => m.AspNetUserId == aspuser.Id.ToString());
-                //if (!_context.Admins.Where(m => m.Email == req.Email).Any() || !_context.Physicians.Where(m => m.Email == req.Email).Any())
-                //{
-                //    return 2;
-                //}
+                var physician = _context.Physicians.FirstOrDefault(m => m.Id == aspuser.Id.ToString());
                 if (!_context.AspNetUsers.Where(user => user.PasswordHash == req.PasswordHash && user.Email == req.Email).Any())
                 {
                     return 3;
                 }
-                else if (_context.AspNetUsers.Where(m => m.Email == req.Email).Any() && _context.AspNetUsers.Where(user => user.PasswordHash == req.PasswordHash).Any())
+                if (!_context.Admins.Where(m => m.Email == req.Email).Any())
                 {
-                    return 0;
+                    if (physician != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                }
+                if (!_context.Physicians.Where(m => m.Email == req.Email).Any())
+                {
+                    if (admin != null)
+                    {
+                        return 0;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
                 }
             }
-            return -1;
+            return 1;
         }
     }
 }

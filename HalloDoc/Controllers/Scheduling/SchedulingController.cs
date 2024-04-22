@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
+using Services.Implementation;
 using Services.ViewModels;
 using System.Collections;
 using System.Globalization;
 
 namespace HelloDoc.Controllers.Scheduling
 {
+    [AuthorizationRepository("Admin,Physician")]
     public class SchedulingController : Controller
     {
         private readonly IunitOfWork _unitOfWork;

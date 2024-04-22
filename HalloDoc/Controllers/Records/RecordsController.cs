@@ -2,10 +2,13 @@
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using Services.Contracts;
+using Services.Implementation;
 using Services.ViewModels;
 
 namespace HalloDoc.Controllers.Records
 {
+    [AuthorizationRepository("Admin,Physician")]
+
     public class RecordsController : Controller
     {
         private readonly IunitOfWork _unitOfWork;

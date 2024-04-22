@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
+using Services.Implementation;
 using Services.ViewModels;
 using System.Collections;
 using System.Net;
@@ -9,6 +10,8 @@ using System.Net.Mail;
 
 namespace HalloDoc.Controllers.Provider
 {
+    [AuthorizationRepository("Admin,Physician")]
+
     public class ProviderController : Controller
     {
         private readonly IunitOfWork _unitOfWork;

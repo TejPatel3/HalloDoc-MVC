@@ -1,19 +1,12 @@
 ﻿@inject IHttpContextAccessor accessor
-
 @{
     Layout = "_Provider";
     ViewData["Title"] = "Scheduling";
-
 }
 @using Services.ViewModels
-
 @model SchedulingViewModel;
-
-
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
 <div id="shedulingMainDiv">
-
     <div class="container mt-3 px-0">
         <div class="d-flex justify-content-between align-items-center mt-2">
             <h4>My Scheduling</h4>
@@ -33,42 +26,9 @@
                     Back
                 </a>
             }
-
-
         </div>
 
         <div class="mt-3">
-            @*
-            <div class="d-flex justify-content-between">
-            <div class="d-flex">
-            <select name="regionname" class="form-select shadow-none mt-3" id="regionDropDownScheduling">
-            <option class="regionselect" selected value="">All Region</option>
-            @foreach (var item in Model.regions)
-            {
-            <option class="regionselect" value="@item.RegionId" itemid="@item.RegionId">@item.Name</option>
-
-            }
-            </select>
-            </div>
-            <div class="d-flex">
-            <button class="p-2 mx-2 text-white btn-info border-0 shadow-none rounded d-flex align-items-center text-decoration-none" id="providerOnCallSchedulingbtn">
-            <i class="bi bi-plus-square"></i>
-            <span class="d-none d-lg-block ps-2">Providers On Call</span>
-            </button>
-            <a asp-controller="Scheduling" asp-action="ShiftForReview" id="" class="p-2 mx-2 text-white rounded btn-info border-0 shadow-none d-flex align-items-center text-decoration-none">
-            <i class="bi bi-plus-square"></i>
-            <span class="d-none d-lg-block ps-2">Shifts For Review</span>
-            </a>
-            <button class="p-2 ms-2 text-white rounded btn-info border-0 shadow-none d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addShiftModal">
-            <i class="bi bi-plus-square"></i>
-            <span class="d-none d-lg-block ps-2">Add New Shift</span>
-            </button>
-            </div>
-            </div>
-            *@
-
-
-
             <div class="d-flex justify-content-between mt-3">
                 <div class="calbtn">
                     <div>
@@ -85,7 +45,6 @@
 
                         <span>
                             <input type="date" class="datepicker" />
-                            @* <i class="bi bi-calendar-week" id="calendar-icon-datepicker"></i> *@
                         </span>
                         <span class="dot bg-info text-center text-white ms-1 rounded-pill " id="nextDateBtn" style="height:27px;width:27px;padding:2px 8px 2px 8px;"><i class="fa-solid fa-chevron-right fa-sm" style="color: #ffffff;"></i></span>
                     </div>
@@ -104,7 +63,6 @@
                             Approved Shift
                         </button>
                     </div>
-
                     <div class="d-flex justify-content-end">
                         <button class="p-2 text-white rounded btn-success border-0 shadow-none d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addShiftModal">
                             <span class="d-none d-lg-block ps-2">Add Shift</span>
@@ -112,14 +70,10 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="calander mt-4">
                 Partial
             </div>
-
         </div>
-
     </div>
 </div>
 
@@ -136,17 +90,13 @@
             <form id="viewShiftForm" asp-controller="Scheduling" asp-action="ViewShiftModelSavebtn">
                 <div class="modal-body">
                     <input id="shiftdetailidviewmodel" type="number" asp-for="shiftdetailid" hidden />
-                    @* <input id="shiftidviewmodel" type="number"  /> *@
-
                     <div class="form-floating">
                         <select asp-for="regionid" class="form-select physiciandata" id="viewshiftregion" aria-label="Floating label select example" disabled>
                             <option value="" selected>Select Region</option>
-
                             @foreach (var obj in Model.regions)
                             {
                                 <option value="@obj.RegionId">@obj.Name</option>
                             }
-
                         </select>
                         <label for="floatingSelect" class="text-info">
                             Region
@@ -295,5 +245,4 @@
 }
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 <script src="/js/ProviderSide/ProviderSideScheduling.js" asp-append-version="true"></script>

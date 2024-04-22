@@ -4,20 +4,12 @@
     Layout = null;
 }
 
-
-
-
-
-
 <div class="accordion d-block d-sm-none " id="accordionExample">
-
     @foreach (var item in Model)
     {
         <div class="accordion-item">
             @{
-
                 var color = "green-dot";
-
                 switch (item.RequestType)
                 {
                     case 1:
@@ -50,7 +42,6 @@
 
             <h2 class="accordion-header" id="heading_@item.requestid">
                 <div class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
-
                     <div class="col d-flex flex-column">
                         <span class="requesttype-accordion">@item.RequestType</span>
                         <span class="region-accordion">@item.regionid</span>
@@ -68,9 +59,7 @@
                             <div class="btn text-info border-info float-end p-0 mt-3 rounded-pill py-1 px-3" style="font-size:14px;">
                                 Map Location
                             </div>
-
                         </div>
-
                     </div>
                 </div>
                 <hr class="m-0">
@@ -82,7 +71,6 @@
                         View Case
                     </button>
                 </div>
-
                 <div class="accordion-body">
                     <div><i class="bi bi-calendar2-minus me-2 icn"></i>Date of birth: @item.PatientDOB</div>
                     <div><i class="bi bi-envelope me-2 icn"></i>Email: @item.PatientEmail</div>
@@ -90,28 +78,18 @@
                     <div><i class="bi bi-person me-2 icn"></i>Requestor: @item.RequestorName</div>
                 </div>
                 <div class="container-fluid">
-
                     <div class="row gy-2">
-
                         <div class="col-6 d-flex justify-content-center">
                             <button type="button" class="btn w-100 text-white rounded-pill p-1 btn-sm text-secondary acceptRequest" style="background:#c40eff;" id="@item.requestid">
-                                @*<i class="fa-regular fa-rectangle-list me-2"></i>*@
                                 Accept
                             </button>
                         </div>
-                      
-
-
 
                         <div class="col-6 d-flex justify-content-center">
-
                             <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary viewNotes">
-                                @*<i class="fa-solid fa-book-journal-whills me-2"></i>*@
                                 View Notes
                             </button>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -122,12 +100,9 @@
 
 
 <div class="d-none d-sm-block p-0 m-0">
-
     <table class="table align-middle small example" id="SixTableContent">
         <thead class="thead-light bg-light">
-
             <tr>
-
                 <th class="d-none">request Type</th>
                 <th class="d-none">Request Id</th>
                 <th scope="col">Name</th>
@@ -140,14 +115,9 @@
         <tbody id="datatable" class="bg-white">
             @if (Model.Count > 0)
             {
-
                 @foreach (var item in Model)
                 {
-
-
-
                     var color = "green-dot";
-
                     switch (item.RequestType)
                     {
                         case 1:
@@ -249,17 +219,13 @@
                                 </ul>
                             </div>
                         </td>
-
-
                     </tr>
-
                 }
             }
         </tbody>
     </table>
     @if (Model.Count == 0)
     {
-
         <div class="d-flex justify-content-center align-items-center flex-column pb-3">
             <img src="/images/no data gif.gif" style="width:30%; height:30%">
             <h1>
@@ -267,11 +233,7 @@
             </h1>
         </div>
     }
-
-
 </div>
-
-
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

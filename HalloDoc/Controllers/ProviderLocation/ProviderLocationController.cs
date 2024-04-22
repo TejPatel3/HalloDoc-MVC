@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
 using Services.Contracts;
+using Services.Implementation;
 using Services.ViewModels;
 
 namespace HalloDoc.Controllers.ProviderLocation
 {
+    [AuthorizationRepository("Admin,Physician")]
+
     public class ProviderLocationController : Controller
     {
         private readonly IunitOfWork _unitOfWork;

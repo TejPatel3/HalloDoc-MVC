@@ -10,8 +10,8 @@
 
 <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-        <button class="nav-link active text-info" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
-        <button class="nav-link text-info" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+        <button class="fw-bold nav-link active text-info" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Dashboard</button>
+        <button class="fw-bold nav-link text-info" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
     </div>
 </nav>
 <!-- Modal -->
@@ -251,6 +251,19 @@
 </div>
 
 <script>
+    window.onload = function () {
+        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-home-tab').addClass('admin-layout-nav-active');
+    }
+    $('#nav-profile-tab').click(function () {
+        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-profile-tab').addClass('admin-layout-nav-active');
+    })
+    $('#nav-home-tab').click(function () {
+        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-home-tab').addClass('admin-layout-nav-active');
+    })
+    })
     $(document).ready(function () {
         $('#editButton').click(function () {
             console.log("ktktkt");

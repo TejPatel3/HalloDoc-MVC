@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
+using Services.Implementation;
 using Services.ViewModels;
 
 namespace HalloDoc.Controllers.Vendor
 {
+    [AuthorizationRepository("Admin,Physician")]
     public class VendorController : Controller
     {
         private readonly IunitOfWork _unitOfWork;

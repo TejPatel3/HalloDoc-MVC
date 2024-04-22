@@ -58,19 +58,6 @@
                                         </button>
                                         <input type="hidden" />
                                         <ul class="dropdown-menu">
-                                            @*                  <li>
-                                    <button type="button"  class="dropdown-item text-secondary cancelbtn" data-toggle="modal" data-target="#AssignModal">
-                                    <i class="fa-regular fa-rectangle-list me-2"></i>
-                                    Assign case
-                                    </button>
-                                    </li>
-
-                                    <li>
-                                    <button type="button" class="dropdown-item text-secondary cancelbtn" data-toggle="modal" data-target="#exampleModal">
-                                    <i class="fa-regular fa-circle-xmark me-2"></i>
-                                    Cancel case
-                                    </button>
-                                    </li> *@
                                             <li><button value="@item.RequestId" class="dropdown-item text-secondary viewCase ViewCasePatientRecord"><i class="bi bi-view-list me-2"></i>View case</button></li>
                                             <li><button class="dropdown-item text-secondary viewNotes"><i class="fa-brands fa-rocketchat me-2"></i>Chat</button> </li>
                                             <li><button value="@item.RequestId" type="button" class="dropdown-item text-secondary cancelbtn DocumentsPatientRecord" data-toggle="modal" data-target="#BlockModal"><i class="fa-solid fa-file me-2"></i>Documents</button></li>
@@ -113,15 +100,11 @@
                     <h6 class="my-3 text-secondary fw-normal">Patient Name: <span class="text-info fw-normal pname"></span> </h6>
                     <select name="casetagname" id="CancelModalFirstDropDownSelect" class="form-select form-select-lg  fs-6 shadow-none ModalFirstDropDown" aria-label=".form-select-lg example">
                         <option class="fs-6" value="" selected hidden>Reasons For Cancellation</option>
-                    @*     @foreach (var item in Model.caseTags)
-                        {
-                            <option class="fs-6" value="@item.Name">@item.Name</option>
-                        } *@
                     </select>
                     <span class="text-danger" id="CancelModalFirstDropDownSpan"></span>
                     <div class="my-2 form-floating mt-3">
 
-                        <textarea class="form-control shadow-none notes" 
+                        <textarea class="form-control shadow-none notes"
                                   placeholder="Provide Additional Note" id="CancelModalNote"
                                   style="height: 100px"></textarea>
                         <label for="floatingTextarea" class="text-secondary">Provide Additional Note</label>

@@ -2,11 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
+using Services.Implementation;
 using Services.ViewModels;
 using System.Collections;
 
 namespace HalloDoc.Controllers.Access
 {
+    [AuthorizationRepository("Admin,Physician")]
+
     public class AccessController : Controller
     {
         private readonly IunitOfWork _unitOfWork;

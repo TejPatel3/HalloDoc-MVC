@@ -7,8 +7,6 @@
 }
 @Html.Partial("Toast")
 
-
-
 <table class="w-100 recordstab">
     <thead style="background-color: rgb(235, 235, 235) ; color: black !important">
         <tr>
@@ -26,21 +24,14 @@
             <th class="text-center p-1 fw-medium" width="">Cancelled By Provider Note</th>
             <th class="text-center p-1 fw-medium" width="">Admin Note</th>
             <th class="text-center p-1 fw-medium" width="">Patient Note</th>
-            <th class="text-center p-1 fw-medium" width="">Delete Permanently</th>
-            @* <th>
-
-
-            </th>*@
+            <th class="text-center p-1 fw-medium" width="">Delete Permanently</th>         
         </tr>
     </thead>
 
     <tbody>
-
         @foreach (var obj in Model)
         {
-
             <tr class="p-1" style="border-top : 10px solid transparent ; border-bottom : 10px solid transparent">
-
                 <td class="p-3">
                     @obj.PatientName
                 </td>
@@ -54,7 +45,6 @@
 
                 <td class="p-3">
                     @obj.CloseCaseDate
-
                 </td>
                 <td class="p-3"> @obj.Email </td>
                 <td class="p-3">@obj.PhoneNumber</td>
@@ -115,13 +105,7 @@
                 </td>
             </tr>
         }
-
-
-
     </tbody>
-
-
-
 </table>
 <script src="/js/Records/Pagination.js" asp-append-version="true"></script>
 <script>

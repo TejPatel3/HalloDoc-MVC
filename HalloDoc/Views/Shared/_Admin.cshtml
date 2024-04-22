@@ -7,7 +7,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> @ViewData["Title"] - HalloDoc</title>
-    @* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"> *@
 
     <link rel='stylesheet' href='https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css'>
 
@@ -99,49 +98,25 @@
                 <a class="dropdown-item" asp-controller="Records" asp-action="BlockHistory">Block History</a>
             </div>
         </div>
-
-
-
         <div class="pt-2 bg-light">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <div>
-
                 <div class="offcanvas offcanvas-start d-sm-none" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-header">
                         <h6 class="offcanvas-title" id="offcanvasExampleLabel">Welcome <b class="text-black ms-1">@accessor.HttpContext.Session.GetString("AdminName")</b></h6>
                         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-
                     </div>
                     <div class="offcanvas-body">
-
                         <div class="nav nav-tabs border-bottom-0 border-start-0 border-end-0 border border-2 d-block" id="nav-tab" role="tablist">
-
-
                             <a class="ms-0 admin-layout-nav nav-link admin-layout-nav-active active me-4 text-secondary fw-bold collapsed p-2" id="nav-home-tab" asp-action="AdminDashboard" asp-controller="Admin">Dashboard</a>
                             <a asp-controller="ProviderLocation" asp-action="ProviderLocation" class="ms-0 admin-layout-nav nav-link active me-4 text-secondary fw-bold collapsed p-2" id="nav-provider-location-tab">Provider Location</a>
                             <a class="ms-0 admin-layout-nav nav-profile-tab-for-load-profile nav-link active me-4 text-secondary fw-bold collapsed p-2" id="nav-profile-tab" asp-action="AdminProfile" asp-controller="Admin">My Profile</a>
-
-                            <div class="accordion accordion-flush d-md-none d-block mt-2" id="accordionFlushExample">
+                                                        <div class="accordion accordion-flush d-md-none d-block mt-2" id="accordionFlushExample">
                                 <div class="accordion-item" style="border:0px;">
                                     <h2 class="accordion-header" id="flush-headingOne">
                                         <button class="accordion-button shadow-none text-secondary fw-bold collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseone" aria-expanded="false" aria-controls="flush-collapseone" style="background-color:white; color:black;">
                                             Providers
                                         </button>
                                     </h2>
-
                                     <div id="flush-collapseone" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="background-color:aliceblue; color:black">
                                         <div class="ps-3 py-2">
                                             <a class="dropdown-item fw-semibold text-secondary py-1" asp-action="Provider" asp-controller="Provider"> Provider  </a>
@@ -195,93 +170,21 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-            @*
-            <div class="offcanvas offcanvas-start d-sm-none" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-            <h6 class="offcanvas-title" id="offcanvasExampleLabel">Welcome <b class="text-black ms-1">@accessor.HttpContext.Session.GetString("AdminName")</b></h6>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-
-            </div>
-            <div class="offcanvas-body pt-0" style="z-index:auto;">
-            <div class=" nav nav-tabs d-flex flex-row row m-0 p-0" id="nav-tab" role="tablist">
-            <a class="admin-layout-nav  fw-bold me-2" id="nav-home-tab" asp-action="AdminDashboard" asp-controller="Admin">Dashboard</a>
-            <a asp-controller="ProviderLocation" asp-action="ProviderLocation" class="admin-layout-nav  fw-bold me-1" id="nav-provider-location-tab">Provider Location</a>
-            <a class="admin-layout-nav  fw-bold nav-profile-tab-for-load-profile" id="nav-profile-tab" asp-action="AdminProfile" asp-controller="Admin">My Profile</a>
-
-            <a class="admin-layout-nav  fw-bold btn  shadow-none" id="nav-provider-tab" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Providers</a>
-            <div class="dropdown-menu" aria-labelledby="nav-provider-tab">
-            <a class="dropdown-item" asp-action="Provider" asp-controller="Provider"> Provider  </a>
-            <a class="dropdown-item" asp-controller="Scheduling" asp-action="Scheduling">Scheduling</a>
-            <a class="dropdown-item" href="#">Invoices</a>
-            </div>
-            <a asp-controller="Vendor" asp-action="Vendor" class="admin-layout-nav  fw-bold" id="nav-partner-tab">Partners</a>
-            <a class="admin-layout-nav  fw-bold" id="nav-access-tab" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Access</a>
-            <div class="dropdown-menu" aria-labelledby="nav-access-tab">
-            <a class="dropdown-item" asp-controller="Access" asp-action="AccessRole"> Access</a>
-            <a class="dropdown-item" asp-controller="Admin" asp-action="CreateAdmin">Create Admin</a>
-            <a class="dropdown-item" asp-controller="Access" asp-action="UserAccess">User Access</a>
-            </div>
-            <a class="admin-layout-nav accordion fw-bold" id="nav-record-tab" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Records</a>
-            <div class="accordion-item " aria-labelledby="nav-record-tab">
-            <a class="accordion-item" asp-controller="Records" asp-action="SearchRecords">Search Record</a>
-            <a class="accordion-item" asp-controller="Records" asp-action="EmailLog">Email Log</a>
-            <a class="accordion-item" asp-controller="Records" asp-action="SMSLog">SMS Log</a>
-            <a class="accordion-item" asp-controller="Records" asp-action="PatientHistory">Patient History</a>
-            <a class="accordion-item" asp-controller="Records" asp-action="BlockHistory">Block History</a>
-
-            </div>
-            </div>
-            </div>
-            </div> *@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             @RenderBody()
         </div>
     </div>
-
-
-
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     <script src='https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js'></script>
     <script src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js'></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    @* <script src="/js/Admin/ViewUpload.js" asp-append-version="true"></script> *@
-
     <script src='https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js'></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-
 </html>
 
 
@@ -295,10 +198,7 @@
             $('#savebtn').removeAttr('hidden', false);
             $('#cancelbtn').removeAttr('hidden', false);
             $('#editButton').removeAttr('hidden', true);
-
         });
-
-
 
         $('.nav-profile-tab-for-load-profile').click(function () {
             console.log("hello this is profile");
@@ -314,6 +214,4 @@
             });
         });
     });
-
 </script>
-@* <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script> *@
