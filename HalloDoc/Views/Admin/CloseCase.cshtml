@@ -7,7 +7,6 @@
 }
 <input class="CloseCaseRequestid" value="@Model.requestid" hidden />
 <div class="container  pt-3 pb-4">
-
     <div class="d-flex justify-content-between mb-2">
         <h4>Documents</h4>
         <a asp-action="AdminDashboard"
@@ -20,29 +19,20 @@
         <div class="row">
             <div class="col-12  text-secondary " style="font-size:15px;">Patient Name</div>
             <div class="col-12 text-secondary">
-
                 <div>
                     <strong class="h4 text-info fw-bold">@Model.FirstName @Model.LastName </strong>
                     <label class="fw-bold"> (@Model.ConfirmationNumber)</label>
                 </div>
-
             </div>
-
             <div class="col-12  text-secondary pt-2" style="font-size:13px;">Check here for any files that you or the doctors of your subsequenc requests have attached for you to review</div>
-
-
             <div class="d-flex justify-content-between  pt-3">
                 <div>
                     <h5>Documents</h5>
-
                 </div>
-
             </div>
             @if (Model.wiseFiles.Count() != 0)
             {
-
                 <div class="table-responsive mt-2">
-
                     <table class="table">
                         <thead class="thead-light">
                             <tr>
@@ -54,7 +44,6 @@
                         <tbody>
                             @foreach (var item in Model.wiseFiles)
                             {
-
                                 <tr>
                                     <td class="text-black">@item.FileName.Substring(52)</td>
                                     <td class="text-black">  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
@@ -63,12 +52,9 @@
 
                                             <i class="bi bi-cloud-arrow-down "></i>
                                         </a>
-
-
                                     </td>
                                 </tr>
                             }
-
                         </tbody>
                     </table>
                 </div>
@@ -89,13 +75,11 @@
                             <label class="d-flex justify-content-between ms-2">First Name </label>
                         </div>
                         <div class="col-12 col-sm-6 form-floating mb-3">
-
                             <input type="text" asp-for="LastName"
                                    class="form-control"
                                    placeholder="Username"
                                    aria-label="Username" disabled />
                             <label class="d-flex justify-content-between ms-2">Last name</label>
-                            @* <span asp-validation-for="LastName" class="text-danger"></span> *@
                         </div>
                         <div class="col-12 col-sm-6 form-floating mb-3">
                             @{
@@ -109,17 +93,13 @@
                             <span class="text-danger"></span>
                         </div>
 
-
                         <div class="col-12 col-sm-6 d-flex mb-3">
                             <div class="container-fluid p-0 m-0">
-
                                 <div class="row">
-
                                     <div class="col-sm-8 col-lg-10 col-8 form-floating ">
                                         <input id="phone" asp-for="PhoneNumber"
                                                type="tel" class="form-control viewcasephone"
                                                style=" padding: 16px 2% 16px 50px; " disabled />
-
                                         <span class="text-danger" id="Closecasephonenumberspan"></span>
                                     </div>
 
@@ -132,8 +112,6 @@
                             </div>
                         </div>
 
-
-
                         <div class="col-12 col-sm-6 form-floating mb-3">
                             <input type="email" asp-for="Email"
                                    class="form-control" id="ViewCasePatientEmail"
@@ -142,7 +120,6 @@
                             <span class="text-danger" id="Closecaseemailspan"></span>
                         </div>
                         <div class="justify-content-end d-flex mt-4 pb-3 pe-3" id="edit-close-closecase">
-
                             <div class="mx-1">
                                 <button type="button" class="btn btn-info shadow-none text-white py-2 px-4" id="closecase-edit">
                                     Edit
@@ -153,8 +130,6 @@
                                     Close Case
                                 </button>
                             </div>
-
-
                         </div>
                         <div class="justify-content-end d-flex mt-4 d-none pb-3 pe-3" id="save-cancel-closecase">
                             <div class="mx-1">
@@ -167,14 +142,12 @@
                                     Cancel
                                 </button>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </form>
-
         </div>
     </div>
 </div>
+
 <script src="~/js/Admin/CloseCase.js" asp-append-version="true"> </script>

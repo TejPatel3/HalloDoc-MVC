@@ -7,22 +7,15 @@
 
 <Partial name="Toast" />
 <div class="position-fixed top-0 bottom-0 start-0 end-0" style="z-index:2000;">
-
     <div class="container-fluid h-100">
         <div class="row d-flex flex-row h-100">
             <div class="col-xl-6 col-lg-6 col-md-6 d-flex ">
                 <div>
                     <img src="/images/11116016_415.jpg" alt="" class="admin-photo w-100 h-100">
-
                 </div>
-
             </div>
-            <!-- hello -->
-            @*   <div class="col-md-6  login-content h-100 ">
-            <div class="container-fluid login-container pl-container"> *@
             <div class="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center">
                 <div class="d-flex flex-column justify-content-around " style="height:100vh">
-
                     <div class="d-flex justify-content-center  d-none d-sm-block">
                         <img src="/images/hallodoc-transparent.png" alt="">
                     </div>
@@ -31,7 +24,6 @@
                             <h2>Login To Your Account</h2>
                         </div>
                         <form method="post" asp-action="AdminLogin" asp-controller="AdminCredential">
-
                             <div>
                                 <div class="form-floating mb-3">
                                     <input type="email" asp-for="Email"
@@ -51,7 +43,6 @@
                                     <label>Password </label>
                                     <span class="text-danger passwordValidation" asp-validation-for="PasswordHash">@TempData["pswd"]</span>
                                     <i class="bi bi-eye-fill username-icon icons d-block mobile-icon" role="button" id="eye-icons" onclick="hideviewpswd()"></i>
-
                                 </div>
                             </div>
                             <div>
@@ -67,16 +58,11 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
-
-
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
 <script>
     $(document).ready(function () {
         $('#tempvalidationspan').val("")
@@ -94,11 +80,8 @@
             }
             var emailRegex = /[a-zA-Z0-9._%+-][a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
             if (!emailRegex.test(email)) {
-                alert("
-
-                     email address.Please enter a valid email.");
-                 }
+                alert("email address.Please enter a valid email.");
+            }
         });
-
     });
 </script>

@@ -46,7 +46,6 @@
                        placeholder="Username"
                        aria-label="Username" disabled />
                 <label class="d-flex justify-content-between ms-2">Last name</label>
-                @* <span asp-validation-for="LastName" class="text-danger"></span> *@
             </div>
             <div class="col-12 col-sm-6 form-floating mb-3">
                 @{
@@ -61,11 +60,8 @@
             </div>
             <div class="col-12 col-sm-6 d-flex mb-3">
                 <div class="container-fluid p-0 m-0">
-
                     <div class="row">
-
                         <div class="col-sm-8 col-lg-10 col-8 form-floating ">
-
                             <div class="form-control p-0">
                                 <input id="viewcasephone" asp-for="PhoneNumber"
                                        type="tel"
@@ -104,8 +100,6 @@
                 </div>
             }
 
-
-
             <h5 class="mb-3 mt-4 fw-semibold">Location Information</h5>
             <div class="col-12 col-sm-6 form-floating mb-3">
                 <input type="text" asp-for="Region"
@@ -118,9 +112,7 @@
 
             <div class="col-12 col-sm-6 d-flex ">
                 <div class="container-fluid p-0 m-0">
-
                     <div class="row">
-
                         <div class="col-sm-8 col-lg-10 col-8 form-floating ">
                             <input type="text" asp-for="Address"
                                    class="form-control"
@@ -129,7 +121,6 @@
                             <label class="d-flex justify-content-between ms-2">Address </label>
                             <span asp-validation-for="Address" class="text-danger"></span>
                         </div>
-
                         <div class="col-sm-4 col-lg-2 col-4 form-floating ">
                             <a class="btn btn-outline-info w-100 h-100 d-flex justify-content-center align-items-center" href="https://www.google.com/maps/">
                                 <i class="bi bi-geo-alt fa-lg"></i>
@@ -138,7 +129,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="col-12 col-sm-6 form-floating mb-3">
                 <input type="text"
@@ -150,12 +140,9 @@
                 </label>
             </div>
 
-
-
             <div class="justify-content-end d-flex pb-2">
                 @if (@accessor.HttpContext.Session.GetInt32("AdminId") != null)
                 {
-
                     @if (Model.status == 1)
                     {
                         <div class="mx-1">
@@ -175,7 +162,6 @@
                     <div class="mx-1">
                         <button type="button" class="btn text-white bg-info rounded-2 px-2 py-2 viewNotes" value="@Model.requestId">View Notes </button>
                     </div>
-
                     @if (Model.status == 1)
                     {
                         <div class="mx-1">
@@ -192,92 +178,3 @@
 </div>
 
 <script src="~/js/Admin/ViewCase.js" asp-append-version="true"> </script>
-@*
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
- *@
-@*
-<script>
-    $(document).ready(function () {
-
-        $('.cancelbtn').on('click', function (e) {
-            var name = $(this).attr('value');
-            console.log(name)
-            $('.pname').html(name);
-            var reqid = $(this).attr('id');
-            var inputval = $('.requestid');
-            inputval.val(reqid);
-        });
-
-        $('.viewNotes').on('click', function (e) {
-            var requestid = $(this).attr('value');
-            console.log("clickit");
-            $.ajax({
-                url: '/Admin/ViewNotes',
-                type: 'GET',
-                data: { reqid: requestid },
-                success: function (response) {
-                    $('#nav-home').html(response);
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        });
-
-        $('#editButton').click(function () {
-            $('input[type="email"]').removeAttr('disabled', false);
-            $('input[type="tel"]').removeAttr('disabled', false);
-            $(this).hide();
-            $('#savebtn').removeAttr('hidden', false);
-        });
-
-
-        $('.ViewCaseSaveBtn').on('click', function (e) {
-            console.log("checked for view case edit btn")
-            var requestid = @Model.requestId;
-            var email = $('#ViewCasePatientEmail').val();
-            var phoneNumber = $('#home').val();
-            var confirmationNumber = $('#ViewCaseConfirmationNumber').val();
-            console.log(email)
-            console.log(phoneNumber)
-            var ViewModel = {
-                requestId: requestid,
-                Email: email,
-                PhoneNumber: phoneNumber,
-                ConfirmationNumber: confirmationNumber,
-            };
-            console.log(ViewModel)
-            $('input[type="email"]').attr('disabled', true);
-            $('input[type="tel"]').attr('disabled', true);
-            $(this).hide();
-            $('#editButton').show();
-            $.ajax({
-                url: '/Admin/ViewCaseEditData',
-                type: 'POST',
-                data: ViewModel,
-                dataType: 'json',
-                success: function (response) {
-                    $('#nav-home').html(response);
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        });
-    });
-
-    const phoneInputField = document.querySelector("#phone");
-    const phoneInput = window.intlTelInput(phoneInputField, {
-        utilsScript:
-            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-
-
-
-</script>  *@

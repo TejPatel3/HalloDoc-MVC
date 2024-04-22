@@ -3,31 +3,27 @@
 @{
     Layout = "_Admin";
     ViewData["Title"] = "Provider";
-
 }
 
 <div class="container pb-4 bg-light px-5" id="provider-maindiv">
     <div class="d-flex justify-content-between align-items-center w-100 my-3">
         <h4>Provider Information</h4>
-
     </div>
     <div class="container-fluid bg-white shadow">
         <div class="row">
             <div class="col-12 d-flex justify-content-between mt-3 ">
                 <div class="dropdown d-flex">
-                    <select name="regionname" id="RegionSearch" class="form-select shadow-none getregion h-100" style="min-width:100px" aria-label="Floating label select example">                 
+                    <select name="regionname" id="RegionSearch" class="form-select shadow-none getregion h-100" style="min-width:100px" aria-label="Floating label select example">
                         <option class="regionselect" selected value="0">All Region</option>
                         @foreach (var item in Model.regionlist)
                         {
                             <option class="regionselect" value="@item.RegionId">@item.Name</option>
                         }
                     </select>
-
                 </div>
                 <a class="btn btn-info text-white" asp-action="CreateProviderAccount">Create Provider Account</a>
             </div>
             <div class="table-responsive col-12 my-2" id="ProviderTableDiv">
-
             </div>
         </div>
     </div>
@@ -45,7 +41,6 @@
             </div>
             <div class="modal-body">
                 <form asp-action="ContactProviderModal" method="post">
-
                     <small class="text-secondary">Choose communication to send message.</small>
                     <br>
                     <div class="mt-3">
@@ -61,13 +56,10 @@
                             <input type="radio" id="bothcontact" name="contactMethod" value="Both"> Both
                         </label>
                     </div>
-
-
                     <div class="form-floating mt-3">
                         <textarea id="message-contactprovidermodel" class="form-control shadow-none" placeholder="Message" style="height: 100px"></textarea>
                         <label for="floatingTextarea2">Message</label>
                         <span id="message-providercontactmodal-span" class="small text-danger"></span>
-
                     </div>
                     <div class="d-flex float-end mt-4">
                         <button type="button" id="contactprovidersubmitbtn" class="btn btn-info text-white mx-2 shadow-none">Send</button>
@@ -79,8 +71,5 @@
         </div>
     </div>
 </div>
-
-@* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> *@
-
 
 <script src="/js/Provider/Provider.js" asp-append-version="true"></script>

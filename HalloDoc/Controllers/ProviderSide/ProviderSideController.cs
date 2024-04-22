@@ -93,13 +93,19 @@ namespace HalloDoc.Controllers.ProviderSide
             var requestnote = _unitOfWork.tableData.GetRequestNoteByRequestId(requestid);
             var model = new ViewUploadViewModel
             {
-                wiseFiles = wisefileslist,
                 requestid = requestid,
                 FirstName = requestclient.FirstName,
                 LastName = requestclient.LastName,
                 ConfirmationNumber = request.ConfirmationNumber,
-                Notes = requestnote.PhysicianNotes,
             };
+            if (requestnote != null)
+            {
+                model.Notes = requestnote.PhysicianNotes;
+            }
+            if (wisefileslist.Count > 0)
+            {
+                model.wiseFiles = wisefileslist;
+            }
             var encounter = _unitOfWork.tableData.GetEncounterByRequestId(requestid);
             if (encounter != null)
             {
@@ -208,7 +214,7 @@ namespace HalloDoc.Controllers.ProviderSide
                 model.RequestId = request.RequestId;
                 return View(model);
             }
-            else if (request.Status == 6 && encounter.IsFinalized[0] != true)
+            else if (request.Status == 6 && encounter.IsFinalized[0] != true || role == "Admin")
             {
                 EncounterFormViewModel model = new EncounterFormViewModel();
                 model.RequestId = request.RequestId;
@@ -246,14 +252,6 @@ namespace HalloDoc.Controllers.ProviderSide
                 model.role = role;
                 return View(model);
             }
-            //else if(request.Status == 6 && encounter.IsFinalized[0] == true)
-            //{
-            //    return BadRequest("Already Finalized");
-            //}
-            //else if ((request.Status == 6 || request.Status == 7 || request.Status == 8 || request.Status == 3) && encounter.IsFinalized != fortrue)
-            //{
-            //    return PartialView("_DownLoadEncounter", new { requestid = request.Requestid, role = role });
-            //}
             else
             {
                 return PartialView("_SelectCallType", request);
@@ -264,12 +262,9 @@ namespace HalloDoc.Controllers.ProviderSide
         public IActionResult OnHouseOpenEncounter(int requestid)
         {
             int physicianid = (int)HttpContext.Session.GetInt32("PhysicianId");
-
             var request = _unitOfWork.tableData.GetRequestFirstOrDefault(requestid);
-            //var request = _context.Requests.FirstOrDefault(x => x.RequestId == requestid);
             request.Status = 6;
             _unitOfWork.UpdateData.UpdateRequest(request);
-            //_context.Requests.Update(request);
             RequestStatusLog requeststatuslog = new RequestStatusLog();
             requeststatuslog.Status = request.Status;
             requeststatuslog.RequestId = requestid;
@@ -277,8 +272,6 @@ namespace HalloDoc.Controllers.ProviderSide
             requeststatuslog.CreatedDate = DateTime.Now;
             requeststatuslog.PhysicianId = physicianid;
             _unitOfWork.Add.AddRequestStatusLog(requeststatuslog);
-            //_context.RequestStatusLogs.Add(requeststatuslog);
-            //_context.SaveChanges();
             return RedirectToAction("Encounter", new { requestid = requestid });
         }
 
@@ -286,17 +279,11 @@ namespace HalloDoc.Controllers.ProviderSide
         public IActionResult EncounterFormSubmit(EncounterFormViewModel model)
         {
             int physicianid = (int)HttpContext.Session.GetInt32("PhysicianId");
-
             var requestclient = _unitOfWork.tableData.GetRequestClientByRequestId(model.RequestId);
-            //var requestclient = _context.RequestClients.FirstOrDefault(x => x.RequestId == model.RequestId);
-
             BitArray fortrue = new BitArray(1);
             fortrue[0] = true;
             var request = _unitOfWork.tableData.GetRequestFirstOrDefault(model.RequestId);
-            //var request = _context.Requests.FirstOrDefault(x => x.RequestId == model.RequestId);
-
             var encounter = _unitOfWork.tableData.GetEncounterByRequestId(request.RequestId);
-            //var encounter = _context.Encounters.FirstOrDefault(x => x.RequestId == request.RequestId);
             if (encounter == null)
             {
                 encounter = new Encounter();
@@ -331,30 +318,16 @@ namespace HalloDoc.Controllers.ProviderSide
             encounter.Procedures = model.Procedure;
             encounter.FollowUp = model.Followup;
             _unitOfWork.UpdateData.UpdateRequest(request);
-            //_context.Requests.Update(request);
             if (encounter.RequestId == 0)
             {
                 encounter.RequestId = requestclient.RequestId;
                 encounter.Date = DateTime.Now;
-                //encounter. = _context.Physicians.FirstOrDefault(x => x.Physicianid == physicianid).Aspnetuserid;
                 _unitOfWork.Add.AddEncounter(encounter);
-                //_context.Encounters.Add(encounter);
             }
             else
             {
-                //_context.Encounters.Update(encounter);
                 _unitOfWork.UpdateData.UpdateEncounter(encounter);
-                //encounter.Modifieddate = DateTime.Now;
-                //if (physicianid != -1)
-                //{
-                //    encounter.Modifiedby = _context.Physicians.FirstOrDefault(x => x.Physicianid == physicianid).Aspnetuserid;
-                //}
-                //if (adminid != -1)
-                //{
-                //    encounter.Modifiedby = _context.Admins.FirstOrDefault(x => x.Adminid == adminid).Aspnetuserid;
-                //}
             }
-            //_context.SaveChanges();
             var jwtservice = HttpContext.RequestServices.GetService<IJwtRepository>();
             var requestcookie = HttpContext.Request;
             var token = requestcookie.Cookies["jwt"];
@@ -381,7 +354,6 @@ namespace HalloDoc.Controllers.ProviderSide
             BitArray fortrue = new BitArray(1);
             fortrue[0] = true;
             var encounter = _unitOfWork.tableData.GetEncounterByRequestId(requestid);
-            //var encounter = _context.Encounters.FirstOrDefault(x => x.RequestId == requestid);
             if (encounter == null)
             {
                 var enounternew = new Encounter();
@@ -389,15 +361,11 @@ namespace HalloDoc.Controllers.ProviderSide
                 enounternew.IsFinalized = fortrue;
                 enounternew.Date = DateTime.Now;
                 _unitOfWork.Add.AddEncounter(enounternew);
-                //_context.Encounters.Add(enounternew);
-                //_context.SaveChanges();
             }
             else
             {
                 encounter.IsFinalized = fortrue;
                 _unitOfWork.UpdateData.UpdateEncounter(encounter);
-                //_context.Encounters.Update(encounter);
-                //_context.SaveChanges();
             }
             return Ok();
         }
@@ -406,16 +374,10 @@ namespace HalloDoc.Controllers.ProviderSide
         {
             var physicianid = (int)HttpContext.Session.GetInt32("PhysicianId");
             var physiciandata = _unitOfWork.tableData.GetPhysicianFirstOrDefault(physicianid);
-            //var physiciandata = _context.Physicians.FirstOrDefault(p => p.PhysicianId == physicianid);
-
             var aspnetuser = _unitOfWork.tableData.GetAspNetUserByAspNetUserId(physiciandata.Id);
-            //var aspnetuser = _context.AspNetUsers.FirstOrDefault(x => x.Id == physiciandata.Id);
             var rolelist = _unitOfWork.tableData.GetAspNetRoleList();
-            //var rolelist = _context.AspNetRoles.ToList();
             var regionlist = _unitOfWork.tableData.GetRegionList();
-            //var regionlist = _context.Regions.ToList();
             var selectedregionlist = _unitOfWork.tableData.GetPhysicianRegionListByPhysicianId(physicianid);
-            //var selectedregionlist = _context.PhysicianRegions.ToList().Where(a => a.PhysicianId == physicianid).ToList();
             var model = new ProviderDetailsViewModel
             {
                 physicianid = physiciandata.PhysicianId,
@@ -423,7 +385,6 @@ namespace HalloDoc.Controllers.ProviderSide
                 password = aspnetuser.PasswordHash,
                 role = rolelist,
                 regionlist = _unitOfWork.tableData.GetRegionList(),
-                //regionlist = _context.Regions.ToList(),
                 firstname = physiciandata.FirstName,
                 lastname = physiciandata.LastName,
                 email = physiciandata.Email,
@@ -455,18 +416,10 @@ namespace HalloDoc.Controllers.ProviderSide
         {
             var physicianid = (int)HttpContext.Session.GetInt32("PhysicianId");
             var phydata = _unitOfWork.tableData.GetPhysicianFirstOrDefault(physicianid);
-            //var phydata = _context.Physicians.FirstOrDefault(x => x.PhysicianId == physicianid);
-
             var aspnetuser = _unitOfWork.tableData.GetAspNetUserByAspNetUserId(phydata.Id);
-            //var aspnetuser = _context.AspNetUsers.FirstOrDefault(x => x.Id == phydata.Id);
-
             aspnetuser.PasswordHash = p.password;
-
             TempData["success"] = "Password Updated Successfully";
             _unitOfWork.UpdateData.UpdateAspNetUser(aspnetuser);
-            //_context.AspNetUsers.Update(aspnetuser);
-            //_context.SaveChanges();
-
             return RedirectToAction("MyProfile");
         }
         public IActionResult CreatePatientRequest()
@@ -481,18 +434,12 @@ namespace HalloDoc.Controllers.ProviderSide
                 return View(req);
             }
             var aspuser = _unitOfWork.tableData.GetAspNetUserByEmail(req.Email);
-            //var aspuser = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
             var user = _unitOfWork.tableData.GetUserByEmail(req.Email);
-            //var user = await _context.Users.FirstOrDefaultAsync(n => n.Email == req.Email);
             var region = _unitOfWork.tableData.GetRegionByRegionId(user.RegionId);
-            //var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == user.RegionId);
             var requestcount = _unitOfWork.tableData.GetRequestList().Where(m => m.CreatedDate.Date == DateTime.Now.Date).ToList();
-            //var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
             string regiondata = _unitOfWork.tableData.GetRegionByRegionId(user.RegionId).Abbreviation;
-            //string regiondata = _context.Regions.FirstOrDefault(a => a.RegionId == user.RegionId).Abbreviation;
             var physicianid = (int)HttpContext.Session.GetInt32("PhysicianId");
             var physician = _unitOfWork.tableData.GetPhysicianFirstOrDefault(physicianid);
-            //var physician = await _context.Physicians.FirstOrDefaultAsync(m => m.PhysicianId == physicianid);
             if (aspuser != null)
             {
                 Request requests = new Request
@@ -506,18 +453,11 @@ namespace HalloDoc.Controllers.ProviderSide
                     UserId = user.UserId,
                     PhoneNumber = physician.Mobile,
                     ModifiedDate = DateTime.Now,
-                    //ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
                     ConfirmationNumber = regiondata + DateTime.Now.Day.ToString().PadLeft(2, '0') + DateTime.Now.Month.ToString().PadLeft(2, '0')
                            + DateTime.Now.Year.ToString().Substring(2) + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) +
                            (requestcount.Count() + 1).ToString().PadLeft(4, '0'),
-
-                    //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
                 };
                 _unitOfWork.Add.AddRequest(requests);
-                //_context.Requests.Add(requests);
-                //_context.SaveChanges();
-
-
                 RequestClient requestclients = new RequestClient
                 {
                     FirstName = req.FirstName,
@@ -537,26 +477,19 @@ namespace HalloDoc.Controllers.ProviderSide
                     StrMonth = req.BirthDate?.ToString("MMM"),
                 };
                 _unitOfWork.Add.AddRequestClient(requestclients);
-                //_context.RequestClients.Add(requestclients);
-                //_context.SaveChanges();
-
                 if (req.Upload != null)
                 {
                     uploadFile(req.Upload, requests.RequestId);
-
                 }
             }
             TempData["success"] = "Request created successfully";
             return RedirectToAction("AdminDashboard");
-
         }
         public void uploadFile(List<IFormFile> file, int id)
         {
             foreach (var item in file)
             {
-                //string path = _environment.WebRootPath + "/UploadDocument/" + item.FileName;
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadDocument", item.FileName);
-                ////string path = "D:\Project\HalloDoc-Images/" + item.FileName;
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
                     item.CopyTo(fileStream);
@@ -568,10 +501,7 @@ namespace HalloDoc.Controllers.ProviderSide
                     CreatedDate = DateTime.Now,
                 };
                 _unitOfWork.Add.AddRequestWiseFile(requestWiseFiles);
-                //_context.RequestWiseFiles.Add(requestWiseFiles);
-                //_context.SaveChanges();
             }
         }
-
     }
 }

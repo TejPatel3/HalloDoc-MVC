@@ -3,14 +3,10 @@
     Layout = "_dashboard";
 }
 <div class="bg-light">
-
-
     <!-- form input -->
-
     <div class="container">
         <div class="d-flex justify-content-between w-100 mb-2">
             <h4>Submit Information</h4>
-
             <a asp-area="" asp-controller="Dashboard" asp-action="PatientDashboard"
                class="btn m-0 btn-outline-info  px-2 ">
                 <i class="fa-solid fa-chevron-left"></i>
@@ -19,8 +15,6 @@
         </div>
         <form asp-action="FamilyFriend" asp-controller="PatientRequest" method="post" enctype="multipart/form-data" id="formfamily">
             <div class="row bg-white  px-4 py-2">
-
-
                 <h5 class="mb-3 mt-4 fw-semibold">Patient Information</h5>
                 <div class="form-floating col-12 mb-3">
                     <textarea class="form-control" asp-for="Notes"
@@ -123,7 +117,6 @@
                         Relation with Patient
                     </label>
                 </div>
-
                 <h5 class="mb-3 mt-4 fw-semibold">
                     (Optional) Upload Photo or Document
                 </h5>
@@ -150,7 +143,6 @@
                     <button type="reset" class="btn px-2 btn-outline-info">Cancel</button>
                 </div>
                 <h6 class="text-danger small">Note: If You Request For Patient And That email is not Exist then Crete Account Link Will Sent On Patient Email,<br />&emsp;&emsp;&nbsp;&nbsp; First Crete account Then and only then this form will submit,<br />&emsp;&emsp;&nbsp;&nbsp; Do not Close This form untill Patient create Account </h6>
-
             </div>
         </form>
     </div>

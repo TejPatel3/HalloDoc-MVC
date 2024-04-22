@@ -25,12 +25,10 @@
             <form asp-action="redirect" asp-controller="Dashboard" method="post">
                 <div class="modal-body d-flex justify-content-center">
                     <div class="px-2">
-
                         <input type="radio" class="btn-check" name="radiobtn" id="success-outlined" autocomplete="off" value="me" checked>
                         <label class="btn btn-outline-info" for="success-outlined">Me</label>
                     </div>
                     <div class="px-2">
-
                         <input type="radio" class="btn-check" name="radiobtn" id="danger-outlined" value="someone" autocomplete="off">
                         <label class="btn btn-outline-info" for="danger-outlined">Some One Else</label>
                     </div>
@@ -59,12 +57,10 @@
                 <div class="row">
                     <div class="col-12  text-secondary " style="font-size:15px;">Patient Name</div>
                     <div class="col-12 text-secondary">
-
                         <div>
                             <strong class="h4 text-info">@Model.users.FirstName @Model.users.LastName </strong>
                             (@Model.requests.FirstOrDefault(x => x.RequestId == (Model.requests.FirstOrDefault(m =>m.UserId == Model.users.UserId).RequestId)).ConfirmationNumber)
                         </div>
-
                     </div>
 
                     <div class="col-12  text-secondary pt-2" style="font-size:13px;">Check here for any files that you or the doctors of your subsequenc requests have attached for you to review</div>
@@ -96,7 +92,6 @@
                     </button>
                 </div>
 
-
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
@@ -117,17 +112,13 @@
                                 <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
                                 <td>
                                     <a href="~/UploadDocument/@item.FileName.Substring(52)" download>
-
                                         <i class="bi bi-cloud-arrow-down  btn btn-outline-info"></i>
                                     </a>
                                 </td>
                             </tr>
                         }
-
                     </tbody>
                 </table>
-
-
             </div>
         </div>
     </div>
@@ -180,7 +171,6 @@
                                                 <option value="1">Phone</option>
                                             </select>
                                             <label for="floatingPassword" class="form-label">Type</label>
-
                                         </div>
                                     </div>
                                     <div class="col-12 col-sm-8 form-floating mb-3">
@@ -211,7 +201,6 @@
                                        aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">Street </label>
                                 <span asp-validation-for="users.Street" class="text-danger"></span>
-
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="text" asp-for="users.City"
@@ -246,7 +235,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="d-flex d-none justify-content-end " id="hiddenBlock">
                                 <button type="submit" class="btn btn-info me-3" id="savebtn">Save</button>
                                 <a class="btn btn-info " id="cancelbtn">cancel</a>
@@ -266,17 +254,12 @@
     $(document).ready(function () {
         $('#editButton').click(function () {
             console.log("ktktkt");
-            // Remove disabled attribute to make inputs editable
-            // $('#name').prop('disabled', false);
-            // $('#age').prop('disabled', false);
             $('input[type="text"]').removeAttr('disabled', false);
             $('input[type="date"]').removeAttr('disabled', false);
             $('input[type="tel"]').removeAttr('disabled', false);
             $('select').removeAttr('disabled', false);
             $("#hiddenBlock").removeClass("d-none");
-            // Hide the edit button after clicking it
             $(this).hide();
-            // $('#saveButton').removeAttr('hidden', false);
         });
     });
 
@@ -300,9 +283,7 @@
         console.log(state)
         var zip = document.getElementById("ZipCode").value;
         console.log(zip)
-
         var mapurl = "https://www.google.com/maps/search/?api=1&query=";
-
         if (street != null) {
             mapurl = mapurl + street.replace(" ", "") + "," + "+";
         }
@@ -352,8 +333,6 @@
         $('#download').click(function () {
             $('.childCheckbox').prop('checked', $(this).prop('checked'));
         });
-
-        // Handle individual checkbox clicks to update the leader checkbox state
         $('.childCheckbox').click(function () {
             $('#download').prop('checked', $('.childCheckbox:checked').length === $('.childCheckbox').length);
         });
@@ -365,8 +344,6 @@
         var selectedFiles = document.querySelectorAll('input[name="checkbox"]:checked');
         var fileUrls = [];
         console.log(selectedFiles)
-
-        // Iterate through selected checkboxes and extract file URLs
         selectedFiles.forEach(function (checkbox) {
             var row = checkbox.closest('tr');
             var fileUrl = row.querySelector('a').getAttribute('href');
@@ -374,7 +351,6 @@
         });
         // Download each file
         fileUrls.forEach(function (url) {
-            // Create an anchor element to trigger the download
             var link = document.createElement('a');
             link.href = url;
             link.download = '';
@@ -389,19 +365,13 @@
         downloadSelectedFiles();
     });
 
-
     const actualBtn = document.getElementById('actual-btn');
     const fileChosen = document.getElementById('file-chosen');
-
     actualBtn.addEventListener('change', function () {
         fileChosen.textContent = this.files[0].name
         fileChosen.placeholder = this.files[0].name
         fileChosen.value = this.files[0].name
-
     })
-
-
-
 </script>
 
 <style>

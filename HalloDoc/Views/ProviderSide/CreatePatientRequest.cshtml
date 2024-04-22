@@ -162,12 +162,6 @@
             "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
     });
 
-    //Dark Mode...!
-    // function myFunction() {
-    //     var element = document.body;
-    //     element.classList.toggle("dark-mode");
-    // }
-    // check user exist in database or not...!
     function checkEmailExists() {
         var email = document.getElementById("patientEmail").value;
         fetch('/Patient/PatientInfoPage/checkemail/' + email)
@@ -200,15 +194,10 @@
     })
 
     actualBtn.addEventListener('change', function () {
-        /*fileChosen.textContent = this.files[0].name*/
         fileChosen.placeholder = this.files[0].name
         fileChosen.value = this.files[0].name
     })
 
-    // window.onload = () => {
-    //     var myModal = new bootstrap.Modal("#exampleModalCenter");
-    //     myModal.show();
-    // };
 
 
     var eyeicon = document.getElementById('eye-icons')

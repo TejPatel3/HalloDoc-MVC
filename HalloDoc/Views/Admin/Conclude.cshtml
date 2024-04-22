@@ -4,18 +4,12 @@
     Layout = null;
 }
 
-
-
-
 <div class="accordion d-block d-sm-none " id="accordionExample">
-
     @foreach (var item in Model)
     {
         <div class="accordion-item">
             @{
-
                 var color = "green-dot";
-
                 switch (item.RequestType)
                 {
                     case 1:
@@ -48,8 +42,6 @@
 
             <h2 class="accordion-header" id="heading_@item.requestid">
                 <div class="accordion-button collapsed pb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
-
-
                     <div class="col d-flex flex-column">
                         <span class="requesttype-accordion">@item.RequestType</span>
                         <span class="region-accordion">@item.regionid</span>
@@ -72,64 +64,46 @@
                 </div>
                 <hr class="m-0">
             </h2>
-
             <div id="collapse_@item.requestid" class="accordion-collapse collapse " aria-labelledby="heading_@item.requestid" data-bs-parent="#accordion">
                 <div class="d-flex justify-content-end">
                     <button type="button" class="rounded-pill me-3 viewCaseBtn p-1 viewCase" value="@item.requestid" style="cursor : pointer">
                         View Case
                     </button>
                 </div>
-
                 <div class="accordion-body d-flex flex-column gap-1">
                     <div><i class="bi bi-calendar2-minus me-2 icn"></i>Date of birth: @item.PatientDOB</div>
                     <div><i class="bi bi-envelope me-2 icn"></i>Email: @item.PatientEmail</div>
                     <div><i class="bi bi-telephone me-2 icn"></i>Patient: @item.PatientPhone</div>
                     <div><i class="bi bi-calendar2-minus me-2 icn"></i>Date of service: -</div>
                     <div><i class="bi bi-person me-2 icn"></i>Physician: @item.PhysicianName</div>
-
                 </div>
                 <div class="container-fluid">
-
                     <div class="row gy-2">
-
-
                         <div class="col-6 d-flex justify-content-center">
-
                             <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary viewNotes">
-
                                 View Notes
                             </button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-
                             <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary">
-
                                 Doctor Note
                             </button>
                         </div>
 
                         <div class="col-6 d-flex justify-content-center">
-
                             <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary viewUpload">
-
                                 View Uploads
                             </button>
                         </div>
 
                         <div class="col-6 d-flex justify-content-center">
-
                             <button type="button" value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary encounter" id="@item.requestid" data-toggle="modal" data-target="#exampleModalEncounter">
-
                                 Encounter
                             </button>
                         </div>
 
-
-
                         <div class="col-6 d-flex justify-content-center">
-
                             <button type="button" id="@item.requestid" value="@item.requestid" class="btn w-100 text-white bg-warning rounded-pill p-1 btn-sm text-secondary order">
-
                                 Orders
                             </button>
                         </div>
@@ -157,7 +131,6 @@
                                     Provider
                                 </small>
                             </button>
-
                         </div>
                     </div>
                 </div>
@@ -167,14 +140,11 @@
 </div>
 
 <div class="d-none d-sm-block ">
-
-
     <table class="table align-middle example">
         <thead class="thead-light bg-light">
             <tr>
                 <td class="d-none"></td>
                 <td class="d-none"></td>
-
                 <th scope="col">Name</th>
                 <th scope="col">Date Of Birth</th>
                 <th scope="col">Physician Name</th>
@@ -186,15 +156,9 @@
             </tr>
         </thead>
         <tbody id="datatable" class="bg-white">
-
-
-
             @foreach (var item in Model)
             {
-
-
                 var color = "green-dot";
-
                 switch (item.RequestType)
                 {
                     case 1:
@@ -227,10 +191,8 @@
                 <tr class="@color">
                     <td class="d-none">@item.RequestType</td>
                     <td class="d-none">@item.regionid</td>
-
                     <td scope="row">
                         <div class="d-flex justify-content-between ">
-
                             @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
                         </div>
                     </td>
@@ -282,7 +244,6 @@
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-
                                 <li>
                                     <button class="dropdown-item text-secondary viewCase" value="@item.requestid">
                                         <i class="bi bi-view-list me-2"></i>
@@ -313,17 +274,15 @@
                                     </button>
                                 </li>
                                 <li>
-                                    <button class="dropdown-item text-secondary" value="@item.requestid">
+                                    <button class="dropdown-item text-secondary encounterclick_concludep" id="@item.requestid" value="@item.requestid">
                                         <i class="bi bi-view-list me-2"></i>
                                         Encounter
                                     </button>
                                 </li>
-
                             </ul>
                         </div>
                     </td>
                 </tr>
-
             }
         </tbody>
     </table>

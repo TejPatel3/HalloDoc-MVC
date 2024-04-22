@@ -80,10 +80,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUGVuZGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project/new/HalloDoc/HalloDoc/HalloDoc/Views/Admin/Tabs.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVGFicy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Project/new/HalloDoc/HalloDoc/HalloDoc/Views/Admin/ToClose.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVG9DbG9zZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -214,10 +210,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Project/new/HalloDoc/HalloDoc/HalloDoc/Views/ProviderSide/Tabs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmlkZXJTaWRlXFRhYnMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Project/new/HalloDoc/HalloDoc/HalloDoc/Views/ProviderSide/_DownLoadEncounter.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvdmlkZXJTaWRlXF9Eb3duTG9hZEVuY291bnRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/new/HalloDoc/HalloDoc/HalloDoc/Views/Provider/CreateProviderAccount.cshtml]

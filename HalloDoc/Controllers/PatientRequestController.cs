@@ -80,16 +80,13 @@ namespace HalloDoc.Controllers
                 addUser.IntDate = int.Parse(req.BirthDate?.ToString("dd"));
                 addUser.StrMonth = req.BirthDate?.ToString("MMM");
                 addUser.RegionId = 2;
-
-                //users.IntDate = req.BirthDat
-
                 _context.Users.Add(addUser);
                 _context.SaveChanges();
             }
+
             var users = await _context.Users.FirstOrDefaultAsync(m => m.Email == req.Email);
             var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == users.RegionId);
             var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
-
             Request requests = new Request
             {
                 UserId = users.UserId,
@@ -99,13 +96,12 @@ namespace HalloDoc.Controllers
                 FirstName = req.FirstName,
                 LastName = req.LastName,
                 CreatedDate = DateTime.Now,
-                //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{DateTime.Now.ToString("")}",
                 ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
             };
             _context.Requests.Add(requests);
             _context.SaveChanges();
-            int requestdata = requests.RequestId;
 
+            int requestdata = requests.RequestId;
             RequestClient requestclients = new RequestClient
             {
                 FirstName = req.FirstName,
@@ -127,12 +123,10 @@ namespace HalloDoc.Controllers
             _context.RequestClients.Add(requestclients);
             _context.SaveChanges();
 
-
             if (req.Upload != null)
             {
                 uploadFile(req.Upload, requestdata);
             }
-
             TempData["success"] = "Your Request Submited Successful...!";
             if (HttpContext.Session.GetInt32("UserId") != null)
             {
@@ -140,18 +134,15 @@ namespace HalloDoc.Controllers
             }
             else
             {
-
                 return RedirectToAction("Login", "Home");
             }
         }
 
         public void uploadFile(List<IFormFile> file, int id)
         {
-
             foreach (var item in file)
             {
                 string path = _environment.WebRootPath + "/UploadDocument/" + id + item.FileName;
-                //string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadDocument", id,item.FileName);
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
                     item.CopyTo(fileStream);
@@ -165,10 +156,7 @@ namespace HalloDoc.Controllers
                 _context.RequestWiseFiles.Add(requestWiseFiles);
                 _context.SaveChanges();
             }
-
-
         }
-
 
         //Get method for Family-Friend 
         public IActionResult FamilyFriend()
@@ -181,20 +169,9 @@ namespace HalloDoc.Controllers
         public async Task<IActionResult> FamilyFriend(request req)
         {
             var aspuser = await _context.AspNetUsers.FirstOrDefaultAsync(m => m.Email == req.Email);
-            //if (aspuser == null)
-            //{
-            //    AspNetUser asp = new AspNetUser
-            //    {
-            //        Email = req.Email,
-            //    };
-            //    CreateUserSendMail(asp);
-            //}
-
-
             var user = await _context.Users.FirstOrDefaultAsync(n => n.Email == req.Email);
             var region = await _context.Regions.FirstOrDefaultAsync(x => x.RegionId == user.RegionId);
             var requestcount = (from m in _context.Requests where m.CreatedDate.Date == DateTime.Now.Date select m).ToList();
-
             if (aspuser != null)
             {
                 aspuser.PhoneNumber = req.PhoneNumber;
@@ -221,10 +198,7 @@ namespace HalloDoc.Controllers
                     PhoneNumber = req.rPhoneNumber,
                     ModifiedDate = DateTime.Now,
                     User = user,
-
                     ConfirmationNumber = (region.Abbreviation.Substring(0, 2) + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString().PadLeft(2, '0') + req.LastName.Substring(0, 2) + req.FirstName.Substring(0, 2) + requestcount.Count().ToString().PadLeft(4, '0')).ToUpper(),
-
-                    //ConfirmationNumber = $"{req.FirstName.Substring(0, 2)}{req.BirthDate.ToString().Substring(0, 2)}{req.LastName.Substring(0, 2)}{req.BirthDate.ToString().Substring(3, 2)}{req.BirthDate.ToString().Substring(6, 4)}",
                 };
                 _context.Requests.Add(requests);
                 _context.SaveChanges();
@@ -252,11 +226,8 @@ namespace HalloDoc.Controllers
                 if (req.Upload != null)
                 {
                     uploadFile(req.Upload, requests.RequestId);
-
                 }
             }
-
-            //var aspcheck = _context.AspNetUsers.FirstOrDefault(m => m.Email == req.Email);
             if (_context.AspNetUsers.FirstOrDefault(m => m.Email == req.Email) == null)
             {
                 familyCreatePatient(req);
@@ -271,13 +242,11 @@ namespace HalloDoc.Controllers
             else
             {
                 return RedirectToAction("CreateRequest");
-
             }
         }
         public IActionResult familyCreatePatient(request req)
         {
             Guid id = Guid.NewGuid();
-
             AspNetUser aspuser = new AspNetUser();
             aspuser.Email = req.Email;
             aspuser.UserName = req.FirstName;
@@ -292,7 +261,6 @@ namespace HalloDoc.Controllers
             };
             _context.Add(asprole);
             _context.SaveChanges();
-
             User addUser = new User();
             addUser.Email = req.Email;
             addUser.Id = id.ToString();
@@ -308,11 +276,8 @@ namespace HalloDoc.Controllers
             addUser.IntDate = int.Parse(req.BirthDate?.ToString("dd"));
             addUser.StrMonth = req.BirthDate?.ToString("MMM");
             addUser.RegionId = 2;
-            //users.IntDate = req.BirthDat
-
             _context.Users.Add(addUser);
             _context.SaveChanges();
-
             if (HttpContext.Session.GetInt32("UserId") != null)
             {
                 return RedirectToAction("PatientDashboard", "Dashboard");
@@ -320,7 +285,6 @@ namespace HalloDoc.Controllers
             else
             {
                 return RedirectToAction("CreateRequest");
-
             }
         }
         //Email send 
@@ -344,7 +308,6 @@ namespace HalloDoc.Controllers
             else
             {
                 TempData["error"] = "Email Id Not Exist First Crrete account";
-
             }
             return RedirectToAction("ForgotPassword", "PatientRequest");
         }
@@ -367,13 +330,11 @@ namespace HalloDoc.Controllers
         {
             var mail = "tatva.dotnet.tejpatel@outlook.com";
             var password = "7T6d2P3@K";
-
             var client = new SmtpClient("smtp.office365.com", 587)
             {
                 EnableSsl = true,
                 Credentials = new NetworkCredential(mail, password)
             };
-
             return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
         }
 
@@ -387,7 +348,6 @@ namespace HalloDoc.Controllers
             TempData["success"] = "Your Password Reset Successful";
             return RedirectToAction("PatientDashboard", "Dashboard");
         }
-
 
         //Get Method for Concierge Patient Request
         public IActionResult Concierge()
@@ -444,7 +404,6 @@ namespace HalloDoc.Controllers
                 IntDate = int.Parse(req.BirthDate?.ToString("dd")),
                 IntYear = int.Parse(req.BirthDate?.ToString("yyyy")),
                 StrMonth = req.BirthDate?.ToString("MMM"),
-
             };
             _context.RequestClients.Add(requestclients);
             _context.SaveChanges();
@@ -458,7 +417,6 @@ namespace HalloDoc.Controllers
                 ZipCode = req.ZipCode,
                 CreatedDate = DateTime.Now,
                 Address = req.Street + " , " + req.City + " , " + req.State + " , " + req.ZipCode,
-
             };
             _context.Concierges.Add(congierges);
             _context.SaveChanges();
@@ -470,11 +428,8 @@ namespace HalloDoc.Controllers
             };
             _context.RequestConcierges.Add(reqconcierges);
             _context.SaveChanges();
-
             return RedirectToAction("CreateRequest");
-
         }
-
 
         //Get Method for Business Patient Request
         public IActionResult Business()
@@ -531,7 +486,6 @@ namespace HalloDoc.Controllers
                 IntDate = int.Parse(req.BirthDate?.ToString("dd")),
                 IntYear = int.Parse(req.BirthDate?.ToString("yyyy")),
                 StrMonth = req.BirthDate?.ToString("MMM"),
-
             };
             _context.RequestClients.Add(requestclients);
             _context.SaveChanges();
@@ -546,8 +500,6 @@ namespace HalloDoc.Controllers
                 City = req.City,
                 RegionId = 1,
                 ZipCode = req.ZipCode,
-
-
             };
             _context.Businesses.Add(businesses);
             _context.SaveChanges();
@@ -559,7 +511,6 @@ namespace HalloDoc.Controllers
             };
             _context.RequestBusinesses.Add(reqBusiness);
             _context.SaveChanges();
-
             return RedirectToAction("CreateRequest");
         }
 
@@ -581,9 +532,5 @@ namespace HalloDoc.Controllers
             }
             return check;
         }
-
     }
-
-
-
 }

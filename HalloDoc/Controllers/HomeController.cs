@@ -30,7 +30,6 @@ namespace HalloDoc.Controllers
         public IActionResult CreateUser(string email)
         {
             var decryptemail = EncryptionDecryption.DecryptStringFromBase64_Aes(email);
-
             registrationViewModel model = new registrationViewModel
             {
                 Email = decryptemail,
@@ -50,12 +49,11 @@ namespace HalloDoc.Controllers
             }
             else
             {
-
                 if (user != null)
                 {
                     user.PasswordHash = obj.PasswordHash;
                     _context.AspNetUsers.Add(user);
-                    //_context.SaveChanges();
+                    _context.SaveChanges();
                     TempData["success"] = "Your Account Created Successful";
                 }
                 else
@@ -96,6 +94,7 @@ namespace HalloDoc.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Login(AspNetUser obj)
@@ -110,7 +109,6 @@ namespace HalloDoc.Controllers
                 TempData["pswd"] = "Enter Valid Password";
                 return View(obj);
             }
-
             else if (_context.AspNetUsers.Where(m => m.Email == obj.Email).Any() && _context.AspNetUsers.Where(user => user.PasswordHash == obj.PasswordHash).Any())
             {
                 var user = _context.Users.FirstOrDefault(m => m.Email == obj.Email);
@@ -120,7 +118,6 @@ namespace HalloDoc.Controllers
                 return RedirectToAction("PatientDashboard", "Dashboard");
             }
             return View(obj);
-
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -157,7 +154,6 @@ namespace HalloDoc.Controllers
             else
             {
                 TempData["error"] = "Email Id Not Exist First Crrete account";
-
             }
             return RedirectToAction("ForgotPassword", "Home");
         }
@@ -186,10 +182,7 @@ namespace HalloDoc.Controllers
             return RedirectToAction("Login");
         }
 
-
-
         // Review agreement Method
-
         [HttpPost]
         public IActionResult ReviewAgreementcancelCaseModal(int id, AdminRequestViewModel cancelnote, string casetagname)
         {
@@ -206,7 +199,6 @@ namespace HalloDoc.Controllers
                 if (casetag != null)
                 {
                     req.CaseTag = casetag.CaseTagId.ToString();
-
                 }
                 _context.Requests.Update(req);
                 _context.SaveChanges();
@@ -225,7 +217,6 @@ namespace HalloDoc.Controllers
             viewModel.requestid = requestid;
             return View(viewModel);
         }
-
     }
 }
 

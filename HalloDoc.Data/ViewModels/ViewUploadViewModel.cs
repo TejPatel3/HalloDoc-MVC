@@ -8,11 +8,11 @@ namespace Services.ViewModels
     {
         public String? ConfirmationNumber { get; set; }
 
-        public List<RequestWiseFile> wiseFiles { get; set; }
+        public List<RequestWiseFile>? wiseFiles { get; set; }
 
-        public String FirstName { get; set; }
+        public String? FirstName { get; set; }
 
-        public String LastName { get; set; }
+        public String? LastName { get; set; }
 
         public String Email { get; set; }
 
@@ -24,7 +24,7 @@ namespace Services.ViewModels
 
         [Required]
         public List<IFormFile?> Upload { get; set; }
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
         public string isfinalize { get; set; }
     }
 }

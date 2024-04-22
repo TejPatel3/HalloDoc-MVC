@@ -1,42 +1,30 @@
 ﻿@model Services.ViewModels.SendOrderModal
 <Partial name="Toast" />
-
 @{
     Layout = null;
 }
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-
         <div class="container mt-5">
-
             <div class="d-flex justify-content-between align-items-center mt-2">
                 <div class="d-flex">
-
                     <h4>Send Order</h4>
-
                 </div>
-
                 <div>
                     <a onclick="location.reload()"
                        class="btn m-0 btn-outline-info  px-2 ">
                         <i class="fa-solid fa-chevron-left"></i>
                         Back
                     </a>
-
                 </div>
             </div>
-
             <div class="border border-0 shadow rounded-3 px-4 py-2 mt-2 bg-white">
-
                 <form method="post">
                     <div class="mt-3 d-flex row">
-
                         <div class="p-2 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                             <div class="form-group">
                                 <select name="profession" class="form-select form-select-lg fs-6 py-3 shadow-none  border-secondary firstdropdown">
                                     <option selected hidden>Select Profession</option>
-
                                     @foreach (var item in Model.Healthprofessionaltypes)
                                     {
                                         <option itemid="@item.HealthProfessionalId">@item.ProfessionName</option>
@@ -50,7 +38,6 @@
                             <div class="form-group">
                                 <select name="business" class="form-select form-select-lg fs-6 py-3 shadow-none business secondDropdown ">
                                     <option hidden>Business</option>
-
                                 </select>
                                 <span class="text-danger small" id="vendoridvalidationspan"></span>
                             </div>
@@ -61,28 +48,22 @@
                                 <input type="text" asp-for="BusinessContact" class="form-control shadow-none disable" placeholder="Business Contact">
                                 <label class="FloatingInput" for="Name">Business Contact</label>
                                 <span class="text-danger small"></span>
-
                             </div>
                         </div>
-
-
 
                         <div class="p-2 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                             <div class="form-floating ">
                                 <input type="email" asp-for="Email" class="form-control shadow-none" placeholder="Email">
                                 <label class="FloatingInput" for="Name">Email</label>
                                 <span class="text-danger small"></span>
-
                             </div>
                         </div>
-
 
                         <div class="p-2 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                             <div class="form-floating ">
                                 <input type="text" asp-for="FaxNumber" class="form-control shadow-none disable" placeholder="Fax Number">
                                 <label class="FloatingInput" for="Name">Fax Number</label>
                                 <span class="text-danger small"></span>
-
                             </div>
                         </div>
 
@@ -94,7 +75,6 @@
                                               style="height: 100px"></textarea>
                                     <label for="floatingTextarea2">Prescription or Order Details</label>
                                     <span class="text-danger small" id="prescriptionValidationspan"></span>
-
                                 </div>
                             </div>
                         </div>
@@ -114,7 +94,6 @@
                         </div>
 
                         <div class="justify-content-end d-flex mt-4">
-
                             <div class="mx-1">
                                 <button type="button" class="btn btn-info shadow-none text-white py-2 ordersubmit">
                                     Submit
@@ -128,54 +107,24 @@
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
-
-    </div>
-
-    <div class="tab-pane fade" id="nav-provider-location" role="tabpanel" aria-labelledby="nav-provider-location-tab">
-        2
-    </div>
-
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-        3
-    </div>
-
-    <div class="tab-pane fade" id="nav-provider" role="tabpanel" aria-labelledby="nav-provider-tab">
-        4
-    </div>
-
-    <div class="tab-pane fade" id="nav-partner" role="tabpanel" aria-labelledby="nav-partner-tab">
-        5
-    </div>
-
-    <div class="tab-pane fade" id="nav-access" role="tabpanel" aria-labelledby="nav-access-tab">
-        6
-    </div>
-
-    <div class="tab-pane fade" id="nav-record" role="tabpanel" aria-labelledby="nav-record-tab">
-        7
     </div>
 </div>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-
-
 <script>
     $(document).ready(function () {
         $('.firstdropdown').change(function () {
             $('#firstidvalidationspan').html("");
-
-            var healthprofessionId = $(this).find(":selected").attr('itemid'); // This will get the id of the selected professional
+            var healthprofessionId = $(this).find(":selected").attr('itemid');
             console.log(healthprofessionId);
             $.ajax({
-                url: '/Admin/GetBusiness', // Replace with your server script URL
+                url: '/Admin/GetBusiness',
                 type: 'GET',
                 data: { healthprofessionId: healthprofessionId },
                 success: function (data) {
-
-                    var secondDropdown = $('.business'); // Replace with your second dropdown selector
-                    secondDropdown.empty(); // Clear existing options
+                    var secondDropdown = $('.business');
+                    secondDropdown.empty();
                     secondDropdown.append($('<option>', {
                         hidden: "hidden",
                         value: "invalid",
@@ -183,8 +132,8 @@
                     }))
                     $.each(data, function (index, item) {
                         secondDropdown.append($('<option>', {
-                            value: item.vendorId, // Replace with the actual value from your data
-                            text: item.vendorName // Replace with the actual text from your data
+                            value: item.vendorId,
+                            text: item.vendorName
                         }));
                     });
                 }
@@ -196,7 +145,6 @@
                 $('#firstidvalidationspan').html("Please Select Business");
             }
             else {
-
                 $('#firstidvalidationspan').html("");
             }
         });
@@ -208,69 +156,12 @@
                     console.log(data)
                     $('#firstidvalidationspan').html("");
                     $('#vendoridvalidationspan').html("");
-
                     $('input[name="BusinessContact"]').val(data.businessContact);
                     $('input[name="Email"]').val(data.email);
                     $('input[name="FaxNumber"]').val(data.faxNumber);
                 }
             });
         })
-
-        //         console.log("order page open")
-        //         $('.firstdropdown').change(function () {
-        //             debugger;
-        //             var healthprofessionId = $(this).find(":selected").attr('itemid'); // This will get the id of the selected professional
-        //             console.log(healthprofessionId);
-        //             $.ajax({
-        //                 url: '/Admin/GetBusiness', // Replace with your server script URL
-        //                 type: 'GET',
-        //                 data: { healthprofessionId: healthprofessionId },
-        //                 success: function (data) {
-        //                     console.log(data);
-        //                     var secondDropdown = $('.business'); // Replace with your second dropdown selector
-        //                     secondDropdown.empty(); // Clear existing options
-        //                     secondDropdown.append($('<option>', {
-        //                         hidden: "hidden",
-        //                         value: "
-
-        // ",
-        //                         text: "Business"
-        //                     }))
-        //                     $.each(data, function (index, item) {
-        //                         secondDropdown.append($('<option>', {
-        //                             value: item.vendorId, // Replace with the actual value from your data
-        //                             text: item.vendorName // Replace with the actual text from your data
-        //                         }));
-        //                     });
-        //                 }
-        //             });
-        //         });
-
-        //         $('.secondDropdown').on('change', function () {
-        //             $.ajax({
-        //                 url: '/Admin/GetVendorDetail',
-        //                 data: { vendorid: $(this).val() },
-        //                 success: function (data) {
-        //                     console.log(data)
-        //                     $('input[name="BusinessContact"]').val(data.businessContact);
-        //                     $('input[name="Email"]').val(data.email);
-        //                     $('input[name="FaxNumber"]').val(data.faxNumber);
-        //                 }
-        //             });
-        //         })
-
-        //$.ajax({
-        //    url: '/Admin/ViewNotes',
-        //    type: 'POST',
-        //    dataType: 'json',
-        //    data: model,
-        //    success: function (response) {
-
-        //    },
-        //    error: function (xhr, status, error) {
-        //        console.error(error);
-        //    }
-        //});
 
         $('.ordersubmit').on('click', function () {
             event.preventDefault()
@@ -279,10 +170,6 @@
             var vendorid = $('.secondDropdown').val();
             var RefillNumber = $('.RefillNum').val();
             var prescription = $('.prescription').val();
-            //var OrderModal = {
-            //    requestid : requestid,
-            //    vendorid : vendorid
-            //}
             $('#prescriptionValidationspan').html("");
             $('#vendoridvalidationspan').html("");
             var allvalidation = true;
@@ -295,13 +182,11 @@
                 allvalidation = false;
             }
             if (allvalidation) {
-
                 $.ajax({
                     url: '/Admin/Orders',
                     type: 'POST',
                     data: { requestid: requestid, vendorid: vendorid, prescription: prescription, refill: RefillNumber },
                     success: function (data) {
-                     
                         location.reload()
                     },
                     error: function (xhr, status, error) {
@@ -310,7 +195,5 @@
                 });
             }
         });
-
     });
-
 </script>

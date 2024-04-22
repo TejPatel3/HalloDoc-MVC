@@ -16,28 +16,21 @@ namespace HalloDoc.Controllers.Vendor
         {
             VendorViewModel modal = new VendorViewModel();
             modal = _unitOfWork.vendor.getVendorData();
-
             return View(modal);
         }
 
         public IActionResult VendorFilter(int professionid, string search, int vendorid)
         {
-
             VendorViewModel modal = new VendorViewModel();
-
             if (professionid == 0 && search == null && vendorid == 0)
             {
                 modal = _unitOfWork.vendor.getVendorData();
-
             }
             else if (professionid != 0 || search != null || vendorid != 0)
             {
                 modal = _unitOfWork.vendor.getFilteredVendorData(professionid, search, vendorid);
             }
-
-
             return PartialView("_VendorTable", modal);
-
         }
         public IActionResult AddVendorAccount()
         {

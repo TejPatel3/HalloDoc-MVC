@@ -1,5 +1,6 @@
 ﻿@using DataModels.AdminSideViewModels;
 @model EncounterFormViewModel
+@inject IHttpContextAccessor accessor
 
 @{
     Layout = null;
@@ -76,7 +77,7 @@
                         <div class="mb-3 form-floating">
                             <input type="tel"
                                    class=" w-100 form-control"
-                                   asp-for="Mobile" placeholder=""/>
+                                   asp-for="Mobile" placeholder="" />
                             <label asp-for="Mobile" class="form-label"></label>
                             <span class="text-danger" asp-validation-for="Mobile"></span>
                         </div>
@@ -338,7 +339,7 @@
                         {
                             <button type="button" class="p-2px-3mx-2 text-white bg-info rounded border-info" id="Savechanges">Save Changes</button>
                         }
-                        @if (!Model.isFinaled)
+                        @if (!Model.isFinaled && @accessor.HttpContext.Session.GetInt32("PhysicianId") != null)
                         {
                             <button type="button" class="p-2px-3mx-2 text-white rounded" id="finalize" style="background-color : rebeccapurple ; border-color : rebeccapurple">Finalize</button>
                         }
@@ -402,7 +403,7 @@
                     type: 'POST',
                     success: function (result) {
                         location.reload();
-                       
+
                     },
 
                 });

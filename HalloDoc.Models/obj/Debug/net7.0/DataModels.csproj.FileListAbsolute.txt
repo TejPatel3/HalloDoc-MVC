@@ -56,3 +56,17 @@ C:\Users\pce156\Downloads\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\ref
 C:\Users\pce156\Downloads\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\DataModels.pdb
 C:\Users\pce156\Downloads\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\DataModels.genruntimeconfig.cache
 C:\Users\pce156\Downloads\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\ref\DataModels.dll
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\bin\Debug\net7.0\DataModels.deps.json
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\bin\Debug\net7.0\DataModels.runtimeconfig.json
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\bin\Debug\net7.0\DataModels.dll
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\bin\Debug\net7.0\DataModels.pdb
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\DataModels.csproj.AssemblyReference.cache
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\DataModels.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\DataModels.AssemblyInfoInputs.cache
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\DataModels.AssemblyInfo.cs
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\DataModels.csproj.CoreCompileInputs.cache
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\DataModels.dll
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\refint\DataModels.dll
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\DataModels.pdb
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\DataModels.genruntimeconfig.cache
+D:\Project\new\HalloDoc\HalloDoc\HalloDoc.Models\obj\Debug\net7.0\ref\DataModels.dll

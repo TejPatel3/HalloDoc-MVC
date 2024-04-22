@@ -23,21 +23,6 @@
             </div>
 
             <div class="mt-1 d-flex justify-content-between">
-                @* <form enctype="multipart/form-data">
-                <div class="row d-flex">
-                <div class="py-2 col-12 ">
-                <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
-                <div class="px-3 table-responsive">
-                <input type="file" id="actual-btn" multiple hidden asp-for="Upload" />
-                <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-dark text-nowrap">No item selected</label>
-                </div>
-                <button type="button" id="uploadBtnAdmin" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
-                <label role="button" class="d-flex align-items-center"><i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div></label>
-                </button>
-                </div>
-                </div>
-                </div>
-                </form> *@
                 <div>
                     <h4>Encounter Forms</h4>
                 </div>
@@ -54,34 +39,11 @@
                         </button>
                     </form>
                 </div>
-
-                @*  <form>
-                <div class="row d-flex mt-3">
-                <div class="py-2 col-12 ">
-                <div class="form-group rounded d-flex align-items-center justify-content-between border border-2 uploadbtndiv">
-                <div class="px-3 table-responsive w-100">
-                <input type="file" id="actual-btn-viewupload" asp-for="Upload" multiple hidden />
-                <input type="text" class="RequestsId" value="@Model.requestid" hidden />
-                <label role="button" for="actual-btn-viewupload" id="file-chosen" class="choosenfile text-nowrap text-secondary w-100">No item selected</label>
-                </div>
-                <button type="button" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
-                <label role="button" class="d-flex align-items-center">
-                <i class="bi bi-cloud-arrow-up p-2"></i>
-                <div>Upload</div>
-                </label>
-                </button>
-                </div>
-                </div>
-                </div>
-                </form> *@
             </div>
         </div>
 
-
         <span id="downloadallbtn-viewupload" class="text-danger"></span>
-
         <div class="table-responsive">
-
             <table class="table">
                 <thead class="thead-light">
                     <tr>
@@ -90,22 +52,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.wiseFiles)
+                    @if (Model.wiseFiles != null)
                     {
-
-                        <tr>
-                            <td class="text-black">@item.FileName.Substring(52)</td>
-                            <td class="text-center">
-                                <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
-                                    <i class="bi bi-cloud-arrow-down"></i>
-                                </a>
-                                <div class=" btn btn-outline-info DeleteDoc" id="@item.RequestWiseFileId">
-                                    <i class="bi bi-trash  "></i>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach (var item in Model.wiseFiles)
+                        {
+                            <tr>
+                                <td class="text-black">@item.FileName.Substring(52)</td>
+                                <td class="text-center">
+                                    <a class="text-decoration-none  btn btn-outline-info" href="~/UploadDocument/@item.FileName.Substring(52)" download>
+                                        <i class="bi bi-cloud-arrow-down"></i>
+                                    </a>
+                                    <div class=" btn btn-outline-info DeleteDoc" id="@item.RequestWiseFileId">
+                                        <i class="bi bi-trash  "></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
                     }
-
+                    else
+                    {
+                        <tr><td class="text-black">No Data Available</td></tr>
+                    }
                 </tbody>
             </table>
             <div class="py-3">
@@ -129,8 +96,6 @@
                 </form>
             </div>
         </div>
-
-
     </div>
 </div>
 
@@ -149,14 +114,13 @@
         console.log(viewModel)
         console.log(viewModel)
         $.ajax({
-            url: '/ProviderSide/PhysicianNotes', // replace with your URL
+            url: '/ProviderSide/PhysicianNotes',
             type: 'POST',
             data: viewModel,
             success: function (data) {
                 console.log('Success:', data);
             },
             error: function () {
-                // Handle error
                 console.log('Error occurred');
             }
         });
@@ -168,15 +132,13 @@
 
     $('#actual-btn-viewupload').change(function () {
         var formData = new FormData();
-        //  formData.append('file', actualBtn.files[0]); // Append each selected file
         for (var i = 0; i < actualBtn.files.length; i++) {
-            formData.append('file', actualBtn.files[i]); // Append each selected file
+            formData.append('file', actualBtn.files[i]);
         }
         formData.append('id', $('.RequestsId').val());
         console.log(formData);
-        // Add any other data you need (e.g., RequestsId) gavsgvahgsvagvdsg
         $.ajax({
-            url: '../Admin/UploadButton', // Replace with your controller action URL
+            url: '../Admin/UploadButton',
             type: 'POST',
             data: formData,
             processData: false,
@@ -189,28 +151,6 @@
             }
         });
 
-        // var formData = new FormData();
-
-        // var file = actualBtn.files[0]
-        // var requestid = $('.RequestsId').val()
-        // formData.append('file', actualBtn.files[0]);
-
-        // formData.append('id', $('.RequestsId').val());
-        // console.log(formData);
-        // $.ajax({
-        //     url: '../Admin/SingleUploadButton',
-        //     Type:'POST',
-        //     data: { file: file, requestid: requestid }            ,
-        //     processData: false,
-
-        //     contentType: false,
-        //     success: function (response) {
-        //         $('#nav-home').html(response);
-        //     },
-        //     error: function (error) {
-        //         console.error('Error uploading files:', error);
-        //     }
-        // });
     });
     $('.ConcludeCareSubmitBtn').click(function () {
         let valuebtn = $(this).val();
@@ -226,7 +166,7 @@
         else {
             $.ajax({
                 url: '/ProviderSide/ConcludeCareSubmit',
-               
+
                 data: { requestid: requestid },
                 success: function () {
                     location.reload();

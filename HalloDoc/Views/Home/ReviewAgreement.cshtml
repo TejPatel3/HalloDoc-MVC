@@ -6,13 +6,12 @@
 @{
     Layout = "_dashboard";
     ViewData["Title"] = "Review Agreement";
-
 }
 <div class="container p-sm-5 my-sm-5 my-2 ">
     <h4>
         To provide best medical service, we cannot determine the cost right away. If you agree to our service, so we will provide care and follow-up until all care is completed. So with this points, if you like us to provide care to you click on "Agree" and we'll get started immediately, if you do not agree simply click "Cancel".
     </h4>
-    <input type="number" asp-for="requestid" class="requestid" hidden/>
+    <input type="number" asp-for="requestid" class="requestid" hidden />
     <div class="d-flex justify-content-center my-5 ">
         <button type="button" class="btn btn-success m-sm-5 m-2 px-4 rounded-3 shadow Iagree" id="iagreee">
             I Agree
@@ -20,8 +19,6 @@
         <button type="button" class="btn btn-danger m-sm-5 m-2 px-4 rounded-3 shadow cancelbtn" data-toggle="modal" data-target="#cancelModalForSendAgreement">
             cancel
         </button>
-
-
     </div>
 </div>
 
@@ -58,8 +55,6 @@
     </div>
 </div>
 
-
-
 <script src="/js/Admin/SendAgreement.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -92,23 +87,12 @@
                     });
                 }
             }
-
         })
     });
 
     $('.cancelbtn').on('click', function (e) {
-        // var name = $(this).attr('value');
-        // console.log(name)
-        // $('.pname').html(name);
         var requestid = $('.requestid').val();
         console.log(requestid);
         $('.requestid').val(requestid);
-        // var inputval = $('.requestid');
-        // var reqtype = $('.requesttype');
-        // inputval.val(reqid);
-        // var requesttypeid = $(this).attr('value');;
-        // reqtype.val(requesttypeid);
-        // console.log(requesttypeid)
     });
-
 </script>

@@ -4,16 +4,12 @@
     Layout = null;
 }
 
-
 <div class="accordion d-block d-sm-none " id="accordionExample">
-
     @foreach (var item in Model)
     {
         <div class="accordion-item">
             @{
-
                 var color = "green-dot";
-
                 switch (item.RequestType)
                 {
                     case 1:
@@ -46,8 +42,6 @@
 
             <h2 class="accordion-header" id="heading_@item.requestid">
                 <div class="accordion-button collapsed pb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
-
-
                     <div class="col d-flex flex-column">
                         <span class="requesttype-accordion">@item.RequestType</span>
                         <span class="region-accordion">@item.regionid</span>
@@ -77,7 +71,6 @@
                         View Case
                     </button>
                 </div>
-
                 <div class="accordion-body d-flex flex-column gap-1">
                     <div><i class="bi bi-calendar2-minus me-2 icn"></i>Date of birth: @item.PatientDOB</div>
                     <div><i class="bi bi-envelope me-2 icn"></i>Email: @item.PatientEmail</div>
@@ -86,47 +79,33 @@
                     <div><i class="bi bi-calendar2-minus me-2 icn"></i>Date of service: </div>
                     <div><i class="bi bi-person me-2 icn"></i>Physician: @item.PhysicianName</div>
                     <div><i class="bi bi-person me-2 icn"></i>Requestor: @item.RequestorName </div>
-
                 </div>
                 <div class="container-fluid mb-2">
-
                     <div class="row gy-2">
-
                         <div class="col-6 d-flex justify-content-center">
                             <button type="button" class="btn w-100 bg-warning text-white rounded-pill p-1 btn-sm text-secondary cancelbtn SendAgreementModal" value="@item.RequestType" id="@item.requestid" data-toggle="modal" data-target="#AgreementModal">
-
                                 Send Agreement
                             </button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-
                             <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary viewNotes">
-
                                 View Notes
                             </button>
                         </div>
                         <div class="col-6 d-flex justify-content-center">
-
                             <button type="button" value="@item.PatientName" class="btn w-100 bg-danger text-white rounded-pill p-1 btn-sm text-secondary cancelbtn" id="@item.requestid" value="@item.PatientName" data-toggle="modal" data-target="#TransferModal" style="background:lightblue;">
-
                                 Transfer
                             </button>
                         </div>
 
                         <div class="col-6 d-flex justify-content-center">
-
                             <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary viewUpload">
-
                                 View Uploads
                             </button>
                         </div>
 
-
-
                         <div class="col-6 d-flex justify-content-center">
-
                             <button type="button" id="@item.requestid" value="@item.PatientName" class="btn bg-warning w-100 text-white rounded-pill p-1 btn-sm text-secondary cancelbtn" data-toggle="modal" data-target="#ClearModal">
-
                                 Clear Case
                             </button>
                         </div>
@@ -134,27 +113,19 @@
                         <div class="col-6 d-flex justify-content-center">
                             <a class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm">Email</a>
                         </div>
-
-
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     }
 </div>
 
 <div class="d-none d-sm-block ">
-
-
     <table class="table align-middle example">
         <thead class="thead-light bg-light">
             <tr>
                 <td class="d-none"></td>
                 <td class="d-none"></td>
-
                 <th scope="col">Name</th>
                 <th scope="col">Date Of Birth</th>
                 <th scope="col">Requestor</th>
@@ -168,16 +139,9 @@
             </tr>
         </thead>
         <tbody id="datatable" class="bg-white">
-
-
-
             @foreach (var item in Model)
             {
-
-
-
                 var color = "green-dot";
-
                 switch (item.RequestType)
                 {
                     case 1:
@@ -210,10 +174,8 @@
                 <tr class="@color">
                     <td class="d-none">@item.RequestType</td>
                     <td class="d-none">@item.regionid</td>
-
                     <td scope="row">
                         <div class="d-flex justify-content-between ">
-
                             @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
                         </div>
                     </td>
@@ -265,7 +227,6 @@
                                     Patient
                                 </span>
                             </button>
-
                             <button class="btn btn-outline-light p-1 shadow-none"
                                     type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -274,18 +235,14 @@
                                     Provider
                                 </span>
                             </button>
-
                         </div>
                     </td>
                     <td>
                         <div class="dropstart ms-2">
-
-
                             <button class="btn btn-outline-light shadow-none" type="button" data-bs-toggle="dropdown" id="drop" aria-expanded="false">
                                 Actions
                             </button>
                             <ul class="dropdown-menu">
-
                                 <li>
                                     <button class="dropdown-item text-secondary viewCase" value="@item.requestid">
                                         <i class="bi bi-view-list me-2"></i>
@@ -321,14 +278,10 @@
                                         Send Agreement
                                     </button>
                                 </li>
-
                             </ul>
-
-
                         </div>
                     </td>
                 </tr>
-
             }
         </tbody>
     </table>

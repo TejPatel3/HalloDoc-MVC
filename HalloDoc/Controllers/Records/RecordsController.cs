@@ -35,7 +35,6 @@ namespace HalloDoc.Controllers.Records
             return View(model);
         }
         [HttpGet]
-        //public IActionResult GetEmailLogTable(int Role, string ReceiverName, string Email, string CreatedDate, string SentData)
         public IActionResult GetEmailLogTable(int Role, string ReceiverName, string Email, DateTime CreatedDate, DateTime SentDate)
         {
             var model = _unitOfWork.record.GetEmailLogs(Role, ReceiverName, Email, CreatedDate, SentDate);
@@ -47,7 +46,6 @@ namespace HalloDoc.Controllers.Records
             return View(model);
         }
         [HttpGet]
-        //public IActionResult GetEmailLogTable(int Role, string ReceiverName, string Email, string CreatedDate, string SentData)
         public IActionResult GetSMSLogTable(int Role, string ReceiverName, string Email, DateTime CreatedDate, DateTime SentDate)
         {
             var model = _unitOfWork.record.GetSMSLogs(Role, ReceiverName, Email, CreatedDate, SentDate);
@@ -73,11 +71,7 @@ namespace HalloDoc.Controllers.Records
             )
         {
             List<RecordViewModel> records = new List<RecordViewModel>();
-
             records = _unitOfWork.record.GetSearchRecordData(reqstatus, patientname, requesttype, fromdateofservice, todateofservice, physicianname, email, phonenumber);
-
-
-
             return PartialView("_SearchRecordsTable", records);
         }
         //download search record excel file
@@ -91,15 +85,10 @@ namespace HalloDoc.Controllers.Records
             string email,
             string phonenumber)
         {
-
             List<RecordViewModel> records = new List<RecordViewModel>();
-
             records = _unitOfWork.record.GetSearchRecordData(reqstatus, patientname, requesttype, fromdateofservice, todateofservice, physicianname, email, phonenumber);
-
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet1 = workbook.CreateSheet("Sheet1");
-
-            // Create header row
             IRow headerRow = sheet1.CreateRow(0);
             headerRow.CreateCell(0).SetCellValue("Patient Name");
             headerRow.CreateCell(1).SetCellValue("Requestor");
@@ -115,13 +104,10 @@ namespace HalloDoc.Controllers.Records
             headerRow.CreateCell(11).SetCellValue("Cancelled By Provider Note");
             headerRow.CreateCell(12).SetCellValue("Admin Note");
             headerRow.CreateCell(13).SetCellValue("Patient Note");
-            // Add more headers here...
 
-            // Add data rows
             for (int i = 0; i < records.Count; i++)
             {
-                IRow row = sheet1.CreateRow(i + 1);  // Start from the second row
-
+                IRow row = sheet1.CreateRow(i + 1);
                 row.CreateCell(0).SetCellValue(records[i].PatientName);
                 row.CreateCell(1).SetCellValue(records[i].Requestor);
                 row.CreateCell(2).SetCellValue(records[i].DateOfService);
@@ -136,17 +122,13 @@ namespace HalloDoc.Controllers.Records
                 row.CreateCell(11).SetCellValue(records[i].CancelProviderNote);
                 row.CreateCell(12).SetCellValue(records[i].AdminNote);
                 row.CreateCell(13).SetCellValue(records[i].PatientNote);
-                // Add more cells here...
             }
 
             var date = DateTime.Now.ToString("hh : mm") + "Search Records";
-
-
             using (var stream = new MemoryStream())
             {
                 workbook.Write(stream);
                 var content = stream.ToArray();
-
                 return Convert.ToBase64String(content);
             }
         }
@@ -154,13 +136,9 @@ namespace HalloDoc.Controllers.Records
         //delete records from search records
         public IActionResult DeleteRecords(int requestid)
         {
-
             _unitOfWork.record.DeleteSearchRecord(requestid);
-
             List<RecordViewModel> records = new List<RecordViewModel>();
-
             records = _unitOfWork.record.GetSearchRecordData(0, null, 0, null, null, null, null, null); ;
-
             return PartialView("_SearchRecordsTable", records);
         }
 
@@ -175,31 +153,22 @@ namespace HalloDoc.Controllers.Records
         public IActionResult BlockHistoryFilter(string name, string date, string email, string phonenumber)
         {
             List<RecordViewModel> blockhistorydata = new List<RecordViewModel>();
-
             blockhistorydata = _unitOfWork.record.GetBlockHistoryFilterData(name, date, email, phonenumber);
-
             return PartialView("_BlockHistoryTable", blockhistorydata);
-
         }
 
         //unblock btn block history
         public IActionResult UnblockbtnBlockHistory(int requestid)
         {
             int adminid = (int)HttpContext.Session.GetInt32("AdminId");
-
             int yesorno = _unitOfWork.record.UnblockBlockHistory(requestid, adminid);
-
             if (yesorno != 1)
             {
                 TempData["success"] = "Some Error Occured";
             }
-
             List<RecordViewModel> blockhistorydata = new List<RecordViewModel>();
-
             blockhistorydata = _unitOfWork.record.GetBlockHistoryFilterData(null, null, null, null);
-
             return PartialView("_BlockHistoryTable", blockhistorydata);
         }
-
     }
 }

@@ -5,13 +5,7 @@
 }
 @model HalloDoc.Models.ViewModel.businessViewModel
 <div class="bg-light">
-    <script>
-        swal("Information",
-            "When submitting a request, you must provide the correct contact information for the patient or the responsibly party.Failure to provide the correct email and phone number will delay service or be declined.",
-            "warning", {
-            closeOnClickOutside: false,
-        });
-    </script>
+
 
     <!-- form input -->
     <form asp-action="Business" method="post" id="formfamily">
@@ -188,8 +182,6 @@
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 <script>
-
-
     const phoneInputField = document.querySelector("#phone");
     const phoneInput = window.intlTelInput(phoneInputField, {
         utilsScript:
@@ -200,7 +192,7 @@
     window.intlTelInput(inputHome, {
         initialCountry: 'gb',
         placeholderNumberType: 'FIXED_LINE',
-        utilsScript: "/intl-tel-input/js/utils.js?1705750707383" // just for formatting/placeholders etc
+        utilsScript: "/intl-tel-input/js/utils.js?1705750707383" 
     });
     var check = 1;
     $('#createuseraccountsubmit').click(function () {
@@ -244,4 +236,10 @@
             }
         }
     })
+
+    swal("Information",
+        "When submitting a request, you must provide the correct contact information for the patient or the responsibly party.Failure to provide the correct email and phone number will delay service or be declined.",
+        "warning", {
+        closeOnClickOutside: false,
+    });
 </script>

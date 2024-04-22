@@ -3,8 +3,8 @@
 @{
     Layout = "_Admin";
     ViewData["Title"] = "Create Admin";
-
 }
+
 <Partial name="Toast" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
@@ -20,7 +20,6 @@
     <div class="container-fluid my-3 bg-white shadow">
         <form id="createAdminAccountForm">
             <div class="row px-2">
-
                 <h5 class="my-3">Account Information</h5>
                 <div class="col-12 col-sm-4 form-floating mb-3 ">
                     <input type="text" asp-for="UserName"
@@ -31,7 +30,6 @@
                     <span class="small text-danger" asp-validation-for="UserName"></span>
                 </div>
                 <div class="col-12 col-sm-4 form-floating mb-3">
-
                     <input type="text" asp-for="password"
                            class="form-control"
                            placeholder="Username"
@@ -48,7 +46,6 @@
                         }
                     </select>
                     <label for="floatingTextarea" class="text-secondary ms-3">Role</label>
-
                 </div>
 
                 @* ********************************************************************************************************************************************* *@
@@ -115,31 +112,27 @@
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ps-4">Address 1</label>
                     <span class="small text-danger" asp-validation-for="address1"></span>
-
                 </div>
-                <div class="col-12 col-sm-6 form-floating mb-3">
 
+                <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text" asp-for="address2" id="address2-adminprofile"
                            class="form-control m"
                            placeholder="Username"
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ps-4">Address 2</label>
                     <span class="small text-danger" asp-validation-for="address2"></span>
-
                 </div>
-                <div class="col-12 col-sm-6 form-floating mb-3">
 
+                <div class="col-12 col-sm-6 form-floating mb-3">
                     <input type="text" asp-for="city" id="city-adminprofile"
                            class="form-control m"
                            placeholder="Username"
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ps-4">City</label>
                     <span class="small text-danger" asp-validation-for="city"></span>
-
                 </div>
+
                 <div class="col-12 col-sm-6 form-floating">
-
-
                     <select class="form-select form-select-lg  fs-6 shadow-none" aria-label=".form-select-lg example" asp-for="selectedstate">
                         @foreach (var item in Model.regionlist)
                         {
@@ -147,18 +140,14 @@
                         }
                     </select>
                     <label for="floatingTextarea" class="text-secondary ms-3">State</label>
-                    @* <span class="small text-danger" asp-validation-for="state"></span> *@
-
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
-
                     <input type="text" asp-for="zip" id="zip-adminprofile"
                            class="form-control m"
                            placeholder="Username"
                            aria-label="Username" />
                     <label class="d-flex justify-content-between ps-4">Zip</label>
                     <span class="small text-danger" asp-validation-for="zip"></span>
-
                 </div>
                 <div class="col-12 col-sm-6 form-floating mb-3">
                     <div class="form-control p-0">
@@ -166,7 +155,6 @@
                                type="tel"
                                name="PhoneNumber"
                                style="border: none; padding: 18px 2% 15px 50px; width:inherit" />
-
                     </div>
                     <span class="small text-danger" asp-validation-for="alterphonenumber"></span>
                 </div>
@@ -174,16 +162,12 @@
                 <div class="d-flex justify-content-end col-12 pb-3">
                     <button type="submit" class="btn btn-success text-white px-4 me-2">Create Account</button>
                 </div>
-
             </div>
         </form>
     </div>
-
-
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-
 <script>
     window.onload = function () {
         $('.admin-layout-nav').removeClass('admin-layout-nav-active');
@@ -213,9 +197,7 @@
                 data: formData,
                 processData: false,
                 contentType: false,
-                // dataType: 'json',
                 success: function (response) {
-                    // $('#adminLayoutMainDiv').html(response)
                     window.location.href = "https://localhost:44370/Admin/AdminDashboard";
                 },
                 error: function (xhr, textStatus, errorThrown) {

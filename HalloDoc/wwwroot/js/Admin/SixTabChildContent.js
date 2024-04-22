@@ -269,3 +269,21 @@ $('.acceptRequest').on('click', function () {
     });
 });
 
+$('.encounterclick_concludep').on('click', function () {
+    var requestid = $(this).val();
+    console.log("mnhjdsbchjsdbjhb")
+    $.ajax({
+        url: '/ProviderSide/Encounter',
+        data: { requestid: requestid },
+        success: function (data) {
+            if (data == "") {
+                alert("Already Finalized");
+            } else {
+                $('#nav-home').html(data);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+        }
+    })
+})

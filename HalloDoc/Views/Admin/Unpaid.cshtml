@@ -4,16 +4,12 @@
     Layout = null;
 }
 
-
 <div class="accordion d-block d-sm-none " id="accordionExample">
-
     @foreach (var item in Model)
     {
         <div class="accordion-item">
             @{
-
                 var color = "green-dot";
-
                 switch (item.RequestType)
                 {
                     case 1:
@@ -46,8 +42,6 @@
 
             <h2 class="accordion-header" id="heading_@item.requestid">
                 <div class="accordion-button collapsed pb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
-
-
                     <div class="col d-flex flex-column">
                         <span class="requesttype-accordion">@item.RequestType</span>
                         <span class="region-accordion">@item.regionid</span>
@@ -79,35 +73,24 @@
                 </div>
 
                 <div class="accordion-body d-flex flex-column gap-1">
-
                     <div class="text-nowrap"><i class="bi bi-envelope me-2 icn"></i>Email: <span>@item.PatientEmail</span></div>
                     <div><i class="bi bi-telephone me-2 icn"></i>Patient: @item.PatientPhone</div>
                     <div><i class="bi bi-calendar2-minus me-2 icn"></i>Date of service: @DateTime.Now</div>
                     <div><i class="bi bi-person me-2 icn"></i>Physician: -</div>
-
-
                 </div>
                 <div class="container-fluid">
-
                     <div class="row gy-2">
-
                         <div class="col-6 d-flex justify-content-center">
-
                             <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary viewNotes">
-
                                 View Notes
                             </button>
                         </div>
 
-
                         <div class="col-6 d-flex justify-content-center">
-
                             <button value="@item.requestid" class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm text-secondary viewUpload">
-
                                 View Uploads
                             </button>
                         </div>
-
 
                         <div class="col-6 d-flex justify-content-center">
                             <a class="btn w-100 bg-success text-white rounded-pill p-1 btn-sm">Email</a>
@@ -123,7 +106,6 @@
                                     Patient
                                 </small>
                             </button>
-
                             <button class="btn btn-outline-info p-1 shadow-none"
                                     type="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
@@ -132,7 +114,6 @@
                                     Provider
                                 </small>
                             </button>
-
                         </div>
                     </div>
                 </div>
@@ -142,7 +123,6 @@
 </div>
 
 <div class=" d-none d-sm-block ">
-
     <table class="table align-middle example">
         <thead class="thead-light bg-light">
             <tr>
@@ -266,14 +246,10 @@
                         </div>
                     </td>
                 </tr>
-
             }
         </tbody>
     </table>
 </div>
-
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
