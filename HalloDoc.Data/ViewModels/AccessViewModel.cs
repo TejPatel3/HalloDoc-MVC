@@ -12,6 +12,9 @@ namespace Services.ViewModels
         public string RoleId { get; set; }
         public string RoleName { get; set; }
         public string Accounttype { get; set; }
+
+        public int physicianId { get; set; }
+        public int AdminId { get; set; }
         public List<Physician> physicianlist { get; set; }
         public List<Role> rolelist { get; set; }
         public List<RoleMenu> rolemenulist { get; set; }

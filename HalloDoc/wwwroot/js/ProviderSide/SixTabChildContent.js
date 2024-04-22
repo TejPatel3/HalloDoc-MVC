@@ -53,10 +53,8 @@
             success: function (response) {
                 $('#AgreementModal-Phone').val(response.phonenumber);
                 $('#AgreementModal-Email').val(response.email);
-
                 var requesttype = response.requesttype;
                 console.log(requesttype);
-
                 var color = "green-dot";
                 var text = "";
                 switch (requesttype) {
@@ -101,14 +99,12 @@
     });
 
     $('.example').DataTable({
-
         "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
         "pageLength": 5,
         language: {
             oPaginate: {
                 sNext: '<i class="bi bi-caret-right-fill text-info"></i>',
                 sPrevious: '<i class="bi bi-caret-left-fill text-info"></i>'
-
             }
         }
     });
@@ -125,21 +121,17 @@
             table.columns(0).search('').draw();
         }
         else {
-            table.columns(0).search(value).draw(); // Replace 0 with the index of the column you want to filter
-
+            table.columns(0).search(value).draw(); 
             try {
                 console.log('accp')
                 var headers = document.querySelectorAll('.accordion-header');
-
                 headers.forEach((header) => {
                     const requesttype = header.querySelector('.requesttype-accordion');
                     const nameText = requesttype.textContent || requesttype.innerText;
-
-
                     if (nameText.includes(value)) {
-                        header.style.display = ''; // Show the header
+                        header.style.display = ''; 
                     } else {
-                        header.style.display = 'none'; // Hide the header
+                        header.style.display = 'none'; 
                     }
                 });
             }
@@ -147,8 +139,6 @@
 
             }
         }
-
-
     });
 
     $('#RegionSearch').on('change', function () {
@@ -160,13 +150,10 @@
         else {
             table.columns(1).search(regionid).draw(); // Replace 0 with the index of the column you want to filter
             try {
-
                 var headers = document.querySelectorAll('.accordion-header');
-
                 headers.forEach((header) => {
                     const regionName = header.querySelector('.region-accordion');
                     const nameText = regionName.textContent || regionName.innerText;
-
                     if (nameText.includes(regionid)) {
                         header.style.display = ''; // Show the header
                     } else {
@@ -179,7 +166,6 @@
             }
         }
     })
-
 });
 
 $('.viewUpload').on('click', function (e) {
@@ -215,7 +201,6 @@ $('.order').on('click', function (e) {
 });
 
 $('.sendAgreementBtn').on('click', function (e) {
-
     $.ajax({
         url: '/Admin/SendAgreementModals',
         type: 'POST',
@@ -252,22 +237,14 @@ $('.closecasebtn').on('click', function (e) {
 
 $('.encounter').on('click', function (e) {
     console.log('encounter');
-
     var requestid = $(this).val();
     $('.requestid').val(requestid);
     console.log(requestid)
 })
 
-
-
 $('.encounter-save').on('click', function (e) {
     var requestid = $('.requestid').val();
     var encountervalue = $('input[name="options-outlined"]:checked').attr('value');
-    //if (encountervalue == "Consult") {
-    //}
-    console.log(encountervalue)
-    console.log(requestid)
-
     $.ajax({
         url: '/ProviderSide/EncounterSubmit',
         data: { requestid: requestid, encountervalue: encountervalue },
@@ -281,7 +258,6 @@ $('.encounter-save').on('click', function (e) {
         error: function (xhr, status, error) {
             console.log(error);
         }
-
     })
 })
 $('.housecallbtnclickp').on('click', function () {
@@ -296,7 +272,6 @@ $('.housecallbtnclickp').on('click', function () {
         error: function (xhr, status, error) {
             console.log(error);
         }
-
     })
 })
 
@@ -316,23 +291,18 @@ $('.encounterclick_concludep').on('click', function () {
         error: function (xhr, status, error) {
             console.log(error);
         }
-
     })
 })
 
 
 
 $('.data-agreement').on('click', function (e) {
-    console.log("send agree gayu");
-
     var requestid = $(this).attr('value');
     console.log(requestid);
-
     $.ajax({
         url: '/Admin/GetAgreementData',
         type: 'GET',
         data: { requestid: requestid },
-
         success: function (data) {
             $('#agreement-phone').val(data.phonenumber);
             $('#agreement-email').val(data.email);

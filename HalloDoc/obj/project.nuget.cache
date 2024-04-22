@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hQ5uWVUfQtsc2K01b3Fvzq4ue79zmLMLA4LQNYKdTTWnz5BRAKYKZvOIY8ry0sQ8+AHm0Menu7mriSXYICqauA==",
+  "dgSpecHash": "bIMLH/+UyiH4DDMF89BnDaN2iDt9dHUiSfmNLwd4AbtcQFE4P2KgwhLU/AngZXoWUZ7WVrXCaWCOCbYPgG+LHA==",
   "success": true,
-  "projectFilePath": "D:\\Project\\HalloDoc\\HalloDoc\\HalloDoc.csproj",
+  "projectFilePath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc\\HalloDoc.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pce156\\.nuget\\packages\\bouncycastle.cryptography\\2.3.0\\bouncycastle.cryptography.2.3.0.nupkg.sha512",
     "C:\\Users\\pce156\\.nuget\\packages\\enums.net\\4.0.1\\enums.net.4.0.1.nupkg.sha512",

@@ -1,9 +1,7 @@
-﻿
-window.onload = function () {
+﻿window.onload = function () {
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
     $('#nav-record-tab').addClass('admin-layout-nav-active');
 }
-
 
 $(document).ready(function () {
     loadsearchtable()
@@ -16,9 +14,7 @@ function loadsearchtable() {
         }
     });
 }
-
 $('#searchbtn_searchrecords,#exportdata_searchrecords').on('click', function () {
-
     var reqstatus = $('#requeststatusfilter_searchrecords').val();
     var patientname = $('#patient_name_searchrecords').val();
     var requesttype = $('#requesttypefilter_searchrecords').val();
@@ -29,7 +25,6 @@ $('#searchbtn_searchrecords,#exportdata_searchrecords').on('click', function () 
     var phonenumber = $('#phone_searchrecords').val();
     var download = $(this).val();
     console.log(fromdateofservice)
-
     if (download == "download") {
         $.ajax({
             url: '/Records/DownloadSearchRecord',
@@ -43,7 +38,6 @@ $('#searchbtn_searchrecords,#exportdata_searchrecords').on('click', function () 
                 email: email,
                 phonenumber: phonenumber,
             },
-
             success: function (base64String) {
                 var byteCharacters = atob(base64String);
                 var byteNumbers = new Array(byteCharacters.length);
@@ -63,11 +57,13 @@ $('#searchbtn_searchrecords,#exportdata_searchrecords').on('click', function () 
                 var fileName = 'All_Records_' + day + '_' + month + '_' + year + '_' + hours + '_' + minutes + '.xlsx';
                 link.download = fileName;
                 link.click();
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
             }
         })
     }
     else {
-
         $.ajax({
             url: '/Records/SearchRecordsFilter',
             data: {
@@ -81,18 +77,18 @@ $('#searchbtn_searchrecords,#exportdata_searchrecords').on('click', function () 
                 phonenumber: phonenumber,
                 download: download
             },
-
             success: function (response) {
                 $('#searchrecordstable').html(response)
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
             }
         })
     }
-
 })
 
 $('#clearbtn_searchrecords').on('click', function () {
     console.log("runjbjbjkbkj")
-
     $('#requeststatusfilter_searchrecords').val(0);
     $('#patient_name_searchrecords').val("");
     $('#requesttypefilter_searchrecords').val(0);
@@ -101,12 +97,8 @@ $('#clearbtn_searchrecords').on('click', function () {
     $('#provider_name_searchrecords').val("");
     $('#email_searchrecords').val("");
     $('#phone_searchrecords').val("");
-
-
     $.ajax({
         url: '/Records/SearchRecordsFilter',
-
-
         success: function (response) {
             $('#searchrecordstable').html(response)
         }

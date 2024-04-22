@@ -1,18 +1,9 @@
 ﻿var regionid;
 var status;
-//var filterDate = new Date(Date.parse(localStorage.getItem("filterDate")));
 var filterDate = new Date($('#currentDateValue').text());
 console.log(filterDate)
 var timezoneOffset = filterDate.getTimezoneOffset();
 filterDate.setMinutes(filterDate.getMinutes() - timezoneOffset);
-//var filterDate;
-//if (localStorage.getItem("filterDate") == "")
-//    filterDate = new Date($('#currentDateValue').text());
-//else
-//    filterDate = localStorage.getItem("filterDate");
-//var timezoneOffset = filterDate.getTimezoneOffset();
-//filterDate.setMinutes(filterDate.getMinutes() - timezoneOffset);
-
 var currentPartial = "";
 window.onload = function () {
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
@@ -72,10 +63,10 @@ $(document).ready(function () {
         $.ajax({
             url: '/Scheduling/filterregion',
             data: { "regionid": regionid },
+            type: 'POST',
             success: function (response) {
-                //console.log(response);
+                console.log(response)
                 var physelect = $('#physelectschedule');
-                //console.log(physelect);
                 physelect.empty();
                 physelect.append($('<option>', {
                     value: "",
@@ -85,10 +76,9 @@ $(document).ready(function () {
                     console.log(item)
                     physelect.append($('<option>', {
                         value: item.physicianId,
-                        text: item.firstName + item.lastName
+                        text: item.name
                     }));
                 });
-
             },
             error: function (xhr, status, error) {
                 console.error(error);
@@ -108,7 +98,6 @@ $(document).ready(function () {
                 $(this).prop('disabled', true);
             });
         }
-
     });
 });
 
@@ -135,16 +124,13 @@ $('#endTimeAddShiftModel , #startTimeAddShiftModel').on('change', function () {
                 icon: "warning",
             });
             $('#endTimeAddShiftModel').val("");
-
         }
         else {
 
             let diffMilliseconds = Math.abs(enddate - startdate);
             let minutes = Math.floor(diffMilliseconds / 60000);
-
             console.log(minutes)
-            if (minutes < 120) {
-
+            if (minutes < 60) {
                 Swal.fire({
                     title: "Alert",
                     text: "you can add minimum 2 hour shift",
@@ -152,17 +138,14 @@ $('#endTimeAddShiftModel , #startTimeAddShiftModel').on('change', function () {
                 });
                 $('#endTimeAddShiftModel').val("");
             }
-
         }
     }
-
 });
 $('#viewshiftstartdate , #viewshiftenddate').on('change', function () {
     let start = $('#viewshiftstartdate').val();
     let end = $('#viewshiftenddate').val();
     console.log("sgvgvd" + start + end)
     if (start != "00:00" && end != "00:00:00.000") {
-
         let startdate = new Date(`1970-01-01T${start}`);
         let enddate = new Date(`1970-01-01T${end}`);
         let diff = enddate - startdate
@@ -173,16 +156,12 @@ $('#viewshiftstartdate , #viewshiftenddate').on('change', function () {
                 icon: "warning",
             });
             $('#viewshiftenddate').val("");
-
         }
         else {
-
             let diffMilliseconds = Math.abs(enddate - startdate);
             let minutes = Math.floor(diffMilliseconds / 60000);
-
             console.log(minutes)
             if (minutes < 120) {
-
                 Swal.fire({
                     title: "Alert",
                     text: "you can add minimum 2 hour shift",
@@ -204,7 +183,6 @@ $('#deletebtnviewshiftmodel').on('click', function () {
         data: {
             shiftdetailsid: shiftdetailsid
         },
-
         success: function (response) {
             loadSchedulingPartial(currentPartial);
             $('#viewShiftModal').modal('hide');
@@ -220,7 +198,6 @@ $('#deletebtnviewshiftmodel').on('click', function () {
             console.log('Error:', errorThrown);
         }
     });
-
 });
 
 $('#returnbtnviewshiftmodel').on('click', function () {
@@ -232,7 +209,6 @@ $('#returnbtnviewshiftmodel').on('click', function () {
         data: {
             shiftdetailsid: shiftdetailsid
         },
-
         success: function (response) {
             loadSchedulingPartial(currentPartial);
             $('#viewShiftModal').modal('hide');
@@ -241,7 +217,6 @@ $('#returnbtnviewshiftmodel').on('click', function () {
             console.log('Error:', errorThrown);
         }
     });
-
 });
 $('#editbtnviewshiftmodel').click(function () {
     console.log("jdsbhjdbshj")
@@ -255,7 +230,6 @@ $("#viewShiftForm").submit(function (event) {
     if ($("#viewShiftForm").valid()) {
         var formData = new FormData(this);
         console.log("djhsbwdhb")
-
         $.ajax({
             url: '/Scheduling/ViewShiftModelSavebtn',
             type: 'POST',
@@ -264,12 +238,11 @@ $("#viewShiftForm").submit(function (event) {
             contentType: false,
             success: function (response) {
                 loadSchedulingPartial(currentPartial);
-        $('#viewshiftstartdate').prop('disabled', true);
-        $('#viewshiftenddate').prop('disabled', true);
-        $('#editbtnviewshiftmodel').removeClass('d-none');
-        $('#savebtnviewshiftmodel').addClass('d-none');
+                $('#viewshiftstartdate').prop('disabled', true);
+                $('#viewshiftenddate').prop('disabled', true);
+                $('#editbtnviewshiftmodel').removeClass('d-none');
+                $('#savebtnviewshiftmodel').addClass('d-none');
                 $('#viewShiftModal').modal('hide');
-
             },
             error: function (xhr, textStatus, errorThrown) {
                 console.log('Error while updating physician info:', errorThrown);
@@ -295,7 +268,6 @@ $('#providerOnCallSchedulingbtn').click(function () {
     $.ajax({
         url: '/Scheduling/ProviderOnCall',
         data: { PartialName: currentPartial, date: filterDate.toISOString(), 'regionid': regionid, status: status },
-
         success: function (response) {
             $('#shedulingMainDiv').html(response);
             console.log(filterDate)
@@ -313,7 +285,6 @@ $('#regionDropDownProviderOnCall').on('change', function () {
     $.ajax({
         url: '/Scheduling/ProviderOnCall',
         data: { PartialName: currentPartial, date: filterDate.toISOString(), 'regionid': regionid, status: status },
-
         success: function (response) {
             $('#shedulingMainDiv').html(response);
         },
@@ -322,25 +293,3 @@ $('#regionDropDownProviderOnCall').on('change', function () {
         }
     });
 });
-
-
-
-
-//var currentpage;
-//var totalpages;
-//var pagesize = 10;
-//$('#shiftForReviewSchedulingbtn').click(function () {
-//    $.ajax({
-//        url: '/Scheduling/ShiftForReview',
-//        data: { currentPartial: currentPartial, date: filterDate.toISOString(), 'regionid': regionid, 'pagesize': pagesize, 'currentpage': currentpage },
-
-//        success: function (response) {
-//            $('#shedulingMainDiv').html(response)
-
-
-//        },
-//        error: function (xhr, textStatus, errorThrown) {
-//            console.log('Error', errorThrown);
-//        }
-//    });
-//});

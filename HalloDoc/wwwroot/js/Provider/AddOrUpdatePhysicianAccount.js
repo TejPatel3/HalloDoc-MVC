@@ -65,7 +65,6 @@ $('#Aisavebtn-editprovideraccount').on('click', function () {
         $('#Aieditbtn-editprovideraccount').removeClass('d-none')
         $('.aidisabled').attr('disabled', true);
         $(this).addClass('d-none');
-
         $.ajax({
             url: '/Provider/EditProviderAccount',
             type: 'POST',
@@ -86,30 +85,6 @@ $('#pieditbtn-editprovideraccount').on('click', function () {
     $(this).addClass('d-none');
 });
 
-
-//$('#firstname-editprovideraccount').on('input', function () {
-//    let firstname = $('#firstname-editprovideraccount').val();
-
-//    $('#firstname-editprovideraccount-span').html("");
-//    if (firstname == "") {
-//        $('#firstname-editprovideraccount-span').html("please enter firstname");
-//        allvalidation = false;
-//    }
-//    else if (!regextext.test(firstname)) {
-//        $('#firstname-editprovideraccount-span').html("firstname not valid");
-//        allvalidation = false;
-
-//    }
-//});
-
-//$('#lastname-editprovideraccount')
-//$('#phone-editprovideraccount')
-
-//$('#medicallicense-editprovideraccount')
-//$('#npinumber-editprovideraccount')
-
-
-//provider information on input jc
 
 $('#firstname-editprovideraccount').on('input', function () {
     let firstname = $('#firstname-editprovideraccount').val();
@@ -193,7 +168,6 @@ $('#pisavebtn-editprovideraccount').on('click', function () {
     let phonenumber = $('#phone-editprovideraccount').val();
     let medicallicense = $('#medicallicense-editprovideraccount').val();
     let npinum = $('#npinumber-editprovideraccount').val();
-    //let regionlist = $('#username-editprovideraccount').val();
     let allvalidation = true;
     var selectedregion = [];
 
@@ -292,7 +266,6 @@ $('#pisavebtn-editprovideraccount').on('click', function () {
 });
 
 
-//mailing & billing provider data on input methods for validation
 $('#address1-editprovideraccount').on('input', function () {
     var address1 = $('#address1-editprovideraccount').val();
     $('#address1-editprovideraccount-span').html("")
@@ -753,13 +726,13 @@ $('.fileuploadbtn').on('click', function () {
 
 $('#SelectFileToUpload').on('change', function () {
     var fileInput = document.getElementById('SelectFileToUpload');
-    var file = fileInput.files[0]; // Get the selected file
+    var file = fileInput.files[0]; 
     let providerid = $('#physicianid-editprovideraccount').val();
 
     var formData = new FormData();
-    formData.append('file', file); // Append the file
-    formData.append('providerid', providerid); // Append other data
-    formData.append('onboardinguploadvalue', onboardinguploadvalue); // Append other data
+    formData.append('file', file); 
+    formData.append('providerid', providerid); 
+    formData.append('onboardinguploadvalue', onboardinguploadvalue); 
     let x = file.name;
     let extention = x.split('.').pop();
     if (extention != "pdf") {
@@ -768,7 +741,7 @@ $('#SelectFileToUpload').on('change', function () {
     else {
 
         $.ajax({
-            url: '/Provider/uploadFile', // Replace with your server endpoint
+            url: '/Provider/uploadFile',
             type: 'POST',
             data: formData,
             processData: false,

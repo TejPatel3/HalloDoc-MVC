@@ -1,5 +1,4 @@
-﻿using HalloDoc.DataContext;
-using HalloDoc.DataModels;
+﻿using HalloDoc.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
 using Services.ViewModels;
@@ -10,15 +9,14 @@ namespace HalloDoc.Controllers.Admin
 {
     public class AdminCredentialController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly IAdminLog adminLog;
         private readonly IJwtRepository _jwtRepo;
-
-        public AdminCredentialController(IAdminLog _admin, IJwtRepository jwtRepository)
+        private readonly IunitOfWork _unitOfWork;
+        public AdminCredentialController(IAdminLog _admin, IJwtRepository jwtRepository, IunitOfWork unit)
         {
-            _context = new ApplicationDbContext();
             adminLog = _admin;
             _jwtRepo = jwtRepository;
+            _unitOfWork = unit;
         }
 
         public IActionResult AdminLogin()
@@ -35,63 +33,50 @@ namespace HalloDoc.Controllers.Admin
                 TempData["email"] = "Email Not Exist";
                 return View(req);
             }
-
-            //else if (num == 2)
-            //{
-            //    TempData["email"] = "You Are not Admin";
-            //    return View(req);
-            //}
-
             else if (num == 3)
             {
                 TempData["pswd"] = "Enter Valid Password";
                 return View(req);
             }
-
             else if (num == 0)
             {
-                if (_context.Physicians.Any(m => m.Email == req.Email))
+                if (_unitOfWork.tableData.GetPhysicianList().Any(m => m.Email == req.Email))
                 {
-                    var physician = _context.Physicians.FirstOrDefault(m => m.Email == req.Email);
+                    var physician = _unitOfWork.tableData.GetPhysicianByEmail(req.Email);
                     HttpContext.Session.SetInt32("PhysicianId", physician.PhysicianId);
                     HttpContext.Session.SetString("PhysicianName", $"{physician.FirstName} {physician.LastName}");
                     TempData["success"] = "Login Successful...!";
                     TempData["user"] = physician.FirstName;
-                    var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == physician.Id);
+                    var aspnetuser = _unitOfWork.tableData.GetAspNetUserByAspNetUserId(physician.Id);
                     var LogedinUser = new LogedInUserViewModel();
                     LogedInUserViewModel loggedInPersonViewModel = new LogedInUserViewModel();
                     loggedInPersonViewModel.AspNetUserId = aspnetuser.Id;
                     loggedInPersonViewModel.UserName = aspnetuser.UserName;
-                    var Roleid = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == aspnetuser.Id).RoleId;
-                    loggedInPersonViewModel.RoleName = _context.AspNetRoles.FirstOrDefault(x => x.Id == Roleid).Name;
+                    var Roleid = _unitOfWork.tableData.GetAspNetUserRoleByUserId(aspnetuser.Id).RoleId;
+                    loggedInPersonViewModel.RoleName = _unitOfWork.tableData.GetAspNetRoleById(Roleid).Name;
                     Response.Cookies.Append("jwt", _jwtRepo.GenerateJwtToken(loggedInPersonViewModel));
                     return RedirectToAction("ProviderDashboard", "ProviderSide");
                 }
                 else
                 {
-                    var admin = _context.Admins.FirstOrDefault(m => m.Email == req.Email);
+                    var admin = _unitOfWork.tableData.GetAdminByEmail(req.Email);
                     HttpContext.Session.SetInt32("AdminId", admin.AdminId);
                     HttpContext.Session.SetString("AdminName", $"{admin.FirstName} {admin.LastName}");
                     TempData["success"] = "Login Successful...!";
                     TempData["user"] = admin.FirstName;
-                    var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == admin.AspNetUserId);
+                    var aspnetuser = _unitOfWork.tableData.GetAspNetUserByAspNetUserId(admin.AspNetUserId);
                     var LogedinUser = new LogedInUserViewModel();
                     LogedInUserViewModel loggedInPersonViewModel = new LogedInUserViewModel();
                     loggedInPersonViewModel.AspNetUserId = aspnetuser.Id;
                     loggedInPersonViewModel.UserName = aspnetuser.UserName;
-                    var Roleid = _context.AspNetUserRoles.FirstOrDefault(x => x.UserId == aspnetuser.Id).RoleId;
-                    loggedInPersonViewModel.RoleName = _context.AspNetRoles.FirstOrDefault(x => x.Id == Roleid).Name;
+                    var Roleid = _unitOfWork.tableData.GetAspNetUserRoleByUserId(aspnetuser.Id).RoleId;
+                    loggedInPersonViewModel.RoleName = _unitOfWork.tableData.GetAspNetRoleById(Roleid).Name;
                     Response.Cookies.Append("jwt", _jwtRepo.GenerateJwtToken(loggedInPersonViewModel));
                     return RedirectToAction("AdminDashboard", "Admin");
                 }
-
             }
-
-
             return View(req);
-
         }
-
         public async Task<IActionResult> Logout()
         {
             HttpContext.Session.Clear();
@@ -99,15 +84,13 @@ namespace HalloDoc.Controllers.Admin
             return RedirectToAction("AdminLogin", "AdminCredential");
         }
 
-
         [HttpPost]
         public IActionResult ResetPassword(string email, string password)
         {
             var adiminid = HttpContext.Session.GetInt32("AdminId");
-            var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Email == email);
+            var aspnetuser = _unitOfWork.tableData.GetAspNetUserByEmail(email);
             aspnetuser.PasswordHash = password;
-            _context.AspNetUsers.Update(aspnetuser);
-            _context.SaveChanges();
+            _unitOfWork.UpdateData.UpdateAspNetUser(aspnetuser);
             TempData["success"] = "Password Reset Successfully...!";
             return RedirectToAction("AdminProfile", "Admin");
         }
@@ -125,40 +108,30 @@ namespace HalloDoc.Controllers.Admin
         public IActionResult AdminForgotPassword(bool sendcode, bool checkcode, bool updatepassword, string email, int confirmationcode, string password, int originalconfirmationcode)
         {
             int generatedconfirmationcode = 0;
-
             if (sendcode)
             {
                 generatedconfirmationcode = generateconfirmationcode();
                 TempData["Confirmationcode"] = generatedconfirmationcode;
                 SendEmail(email, "Your Attachments", "Please Find Your Attachments Here", generatedconfirmationcode);
-
                 TempData["success"] = "Code sent successfully";
-
                 return Json(new { success = true, confirmationCode = generatedconfirmationcode });
             }
             if (checkcode)
             {
                 if (confirmationcode == originalconfirmationcode)
                 {
-                    //return Json(new { redirectToUrl = Url.Action("AdminForgotPassword", "AdminCredential") });
-
                     return View();
                 }
                 else
                 {
                     return Json(new { success = true, confirmationnumbernotmatch = true });
-                    //TempData["warning"] = "Confirmation code wrong";
-                    //return View();
-                    //TempData["warning"] = "Confirmation code wrong";
-                    //return Json(new { message = TempData["warning"].ToString() });
                 }
             }
             if (updatepassword)
             {
-                var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Email == email);
+                var aspnetuser = _unitOfWork.tableData.GetAspNetUserByEmail(email);
                 aspnetuser.PasswordHash = password;
-                _context.AspNetUsers.Update(aspnetuser);
-                _context.SaveChanges();
+                _unitOfWork.UpdateData.UpdateAspNetUser(aspnetuser);
                 return RedirectToAction("AdminLogin");
             }
             return RedirectToAction("AdminLogin");
@@ -168,7 +141,6 @@ namespace HalloDoc.Controllers.Admin
         {
             var mail = "tatva.dotnet.tejpatel@outlook.com";
             var password = "7T6d2P3@K";
-
             var mailMessage = new MailMessage
             {
                 From = new MailAddress(mail),
@@ -181,7 +153,6 @@ namespace HalloDoc.Controllers.Admin
                 EnableSsl = true,
                 Credentials = new NetworkCredential(mail, password)
             };
-
             return client.SendMailAsync(mailMessage);
         }
     }

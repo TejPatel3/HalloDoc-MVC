@@ -53,5 +53,6 @@ namespace Services.ViewModels
         public List<Role> rolelist { get; set; }
         public string selectedrole { get; set; }
         public string selectedstate { get; set; }
+        public bool check { get; set; }
     }
 }

@@ -33,6 +33,7 @@ builder.Services.AddScoped<IRecordRepository, RecordRepository>();
 builder.Services.AddScoped<ITableData, TableData>();
 builder.Services.AddScoped<IUpdateData, UpdateData>();
 builder.Services.AddScoped<IAccessRepository, AccessRepository>();
+builder.Services.AddScoped<IRemoveData, RemoveData>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

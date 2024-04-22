@@ -16,7 +16,6 @@ function LoadData() {
             $("#EmailLogTable").html(data)
         },
         error: function (xhr, status, error) {
-
             console.error(error);
         }
     });
@@ -43,6 +42,4 @@ $('#clearEmailLogbtn').click(function () {
     CreatedDate = "01-01-0001 00:00:00";
     SentDate = "01-01-0001 00:00:00";
     LoadData();
-    //$("#EmailLogTable").load('@Url.Action("Records","GetEmailLogTable")', { 'Role': Role, 'ReceiverName': ReceiverName, 'Email': Email, 'CreatedDate': CreatedDate, 'SentDate': SentDate });
-
 });

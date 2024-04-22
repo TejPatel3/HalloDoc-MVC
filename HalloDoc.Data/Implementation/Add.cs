@@ -2,6 +2,7 @@
 using HalloDoc.DataModels;
 using Services.Contracts;
 using Services.ViewModels;
+using System.Collections;
 
 namespace Services.Implementation
 {
@@ -12,6 +13,113 @@ namespace Services.Implementation
         {
             _context = context;
         }
+        //Save chages in database
+        public void SaveChangesDB()
+        {
+            _context.SaveChanges();
+        }
+        //Direct add data in one table in database
+        public int AddRole(Role role)
+        {
+            if (role != null)
+            {
+                _context.Roles.Add(role);
+                _context.SaveChanges();
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+        public int AddRoleMenu(RoleMenu roleMenu)
+        {
+            if (roleMenu != null)
+            {
+                _context.RoleMenus.Add(roleMenu);
+                _context.SaveChanges();
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+        public void AddPhysician(Physician physician)
+        {
+            _context.Add(physician);
+            _context.SaveChanges();
+        }
+        public int AddPhysicianRegion(PhysicianRegion physicianRegion)
+        {
+            if (physicianRegion != null)
+            {
+                _context.PhysicianRegions.Add(physicianRegion);
+                _context.SaveChanges();
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+        public void AddPhysicianNotification(PhysicianNotification physicianNotification)
+        {
+            _context.Add(physicianNotification);
+            _context.SaveChanges();
+        }
+        public void AddAspNetUser(AspNetUser user)
+        {
+            _context.Add(user);
+            _context.SaveChanges();
+        }
+        public void AddAspNetUserRole(AspNetUserRole userRole)
+        {
+            _context.Add(userRole);
+            _context.SaveChanges();
+        }
+        public void AddRequestStatusLog(RequestStatusLog log)
+        {
+            _context.Add(log);
+            _context.SaveChanges();
+        }
+        public void AddEncounter(Encounter encounter)
+        {
+            _context.Add(encounter);
+            _context.SaveChanges();
+        }
+        public void AddRequest(Request request)
+        {
+            _context.Add(request); _context.SaveChanges();
+        }
+        public void AddRequestClient(RequestClient requestClient)
+        {
+            _context.Add(requestClient); _context.SaveChanges();
+        }
+        public void AddRequestWiseFile(RequestWiseFile wiseFile)
+        {
+            _context.Add(wiseFile); _context.SaveChanges();
+        }
+        public void AddOrderDetails(OrderDetail orderDetail)
+        {
+            _context.Add(orderDetail); _context.SaveChanges();
+        }
+        public void AddAdminRegion(AdminRegion adminRegion)
+        {
+            _context.Add(adminRegion); _context.SaveChanges();
+        }
+        public void AddShift(Shift shift)
+        {
+            _context.Add(shift); _context.SaveChanges();
+        }
+        public void AddShiftDetail(ShiftDetail shiftDetail)
+        {
+            _context.Add(shiftDetail); _context.SaveChanges();
+        }
+        //Add Data in multiple table 
 
         public void AddAdmin(UserAllDataViewModel obj, int adminid)
         {

@@ -32,7 +32,6 @@ namespace HalloDoc.Controllers.ProviderLocation
                     Name = physician.FirstOrDefault(m => m.PhysicianId == physicianLocation.PhysicianId).FirstName + physician.FirstOrDefault(m => m.PhysicianId == physicianLocation.PhysicianId).LastName,
                 });
             }
-
             return locations.ToJson();
         }
     }

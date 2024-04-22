@@ -34,7 +34,14 @@
                 <td>@item.FirstName @item.LastName</td>
                 <td>Physician</td>
                 <td>Available</td>
-                <td>Active</td>
+                @if (item.Status == 1)
+                {
+                    <td>Active</td>
+                }
+                else
+                {
+                    <td>InActive</td>
+                }
                 <td>
                     <button type="button" class="btn btn-outline-info Contactbtn-Provider" value="@item.PhysicianId" data-bs-toggle="modal" data-bs-target="#ContactProviderModal">Contact</button>
                     <button class="btn btn-outline-info editbtn-Provider" value="@item.PhysicianId">Edit</button>

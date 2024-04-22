@@ -21,7 +21,7 @@ namespace Services.Implementation
             if (aspuser != null)
             {
                 var admin = _context.Admins.FirstOrDefault(m => m.AspNetUserId == aspuser.Id.ToString());
-                //if (!_context.Admins.Where(m => m.Email == req.Email).Any())
+                //if (!_context.Admins.Where(m => m.Email == req.Email).Any() || !_context.Physicians.Where(m => m.Email == req.Email).Any())
                 //{
                 //    return 2;
                 //}

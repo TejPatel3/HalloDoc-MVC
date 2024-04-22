@@ -1,14 +1,10 @@
 ﻿window.onload = function () {
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
     $('#nav-provider-tab').addClass('admin-layout-nav-active');
-
-    console.log("hbjhbkjnllknhuyfyadmin-layout-nav-active")
-
 }
 
 var email;
 var providerid;
-
 $(document).ready(function () {
     loadview();
 });
@@ -21,16 +17,12 @@ function loadview() {
     });
 }
 
-
 //both sign and upload
 
 try {
-
     var actualBtn = document.getElementById('actual-btn');
     var fileChosen = document.getElementById('file-chosen');
-
     actualBtn.addEventListener('change', function () {
-
         var filesname = this.files[0].name;
         console.log(filesname)
         for (var i = 1; i < this.files.length; i++) {
@@ -42,22 +34,14 @@ try {
         fileChosen.ariaPlaceholder = filesname;
         console.log("run")
     })
-
-
 } catch (Exception) {
 
 }
 
-
 try {
-
     var actualBtnSign = document.getElementById('actual-btn-sign');
     var fileChosenSign = document.getElementById('file-chosen-sign');
-
-
-    console.log("sign")
     actualBtnSign.addEventListener('change', function () {
-
         var filesname = this.files[0].name;
         console.log(filesname)
         for (var i = 1; i < this.files.length; i++) {
@@ -74,7 +58,6 @@ try {
 }
 
 //sign and photo ajax
-
 $('#provider-sign').on('click', function () {
     debugger
     var fileInput = document.querySelector('#actual-btn-sign');
@@ -88,7 +71,6 @@ $('#provider-sign').on('click', function () {
             data: { providerid, base64String },
             success: function (response) {
                 $('#providermenudiv').html(response);
-
             }
         });
     };
@@ -120,7 +102,6 @@ $('#provider-photo').on('click', function () {
 var onboardinguploadvalue;
 $('.fileuploadbtn').on('click', function () {
     $('#SelectFileToUpload').click();
-
     onboardinguploadvalue = $(this).val();
 });
 
@@ -136,7 +117,6 @@ $('#username-editprovideraccount').on('input', function () {
     }
     else if (!regextext.test(username)) {
         $('#username-editprovideraccount-span').html("username not valid");
-
     }
 });
 $('#Aieditbtn-editprovideraccount').on('click', function () {
@@ -150,12 +130,10 @@ $('#Aisavebtn-editprovideraccount').on('click', function () {
         providerid: providerid,
         UserName: username,
     }
-
     if ($('#username-editprovideraccount-span').html() == "") {
         $('#Aieditbtn-editprovideraccount').removeClass('d-none')
         $('.aidisabled').attr('disabled', true);
         $(this).addClass('d-none');
-
         $.ajax({
             url: '/Provider/UpdatePhysicianInfo',
             type: 'POST',
@@ -169,7 +147,6 @@ $('#Aisavebtn-editprovideraccount').on('click', function () {
         });
     }
 });
-
 
 $('#Airesetpasswordbtn-editprovideraccount').on('click', function () {
     $('#password-editprovideraccount').removeAttr('disabled', false);
@@ -184,7 +161,6 @@ $('#Aiupdatebtn-editprovideraccount').on('click', function () {
     var regexstrongpassword = /[A-Za-z\d@$!%*?&]{8,}/
     $('#resetpassword-editprovideraccount-span').html("");
     if (password == "") {
-
         $('#resetpassword-editprovideraccount-span').html("please enter password");
     }
     else if (!regexstrongpassword.test(password)) {
@@ -196,7 +172,6 @@ $('#Aiupdatebtn-editprovideraccount').on('click', function () {
             type: 'POST',
             data: model,
             success: function (response) {
-                //$('#nav-profile').html(response);
                 $('#password-editprovideraccount').attr('disabled', true);
                 $('#Aiupdatebtn-editprovideraccount').addClass('d-none');
                 $('#Airesetpasswordbtn-editprovideraccount').removeClass('d-none');
@@ -210,170 +185,128 @@ $('#Aiupdatebtn-editprovideraccount').on('click', function () {
 
 
 //validation for physician information
-
 $('#editbtn-editprovider').on('click', function () {
-
     $('.adisabled').removeAttr('disabled', false);
     $('#savebtn-editprovider').removeAttr('hidden', false);
     $('#savebtn-editprovider').show();
     $(this).hide();
 })
-
-
 $('#firstname-editprovider').on('input', function () {
-
     var firstname = $('#firstname-editprovider').val();
-
     if (firstname == "") {
         $('#providerinfo-firstname').html("*Required");
-
     }
     else {
         const regex = /^[a-zA-Z]+$/i
-
         if (!regex.test(firstname)) {
             $('#providerinfo-firstname').html("*not valid");
-
-        } else {
+        }
+        else {
             $('#providerinfo-firstname').html("");
-
-
         }
     }
 })
 $('#lastname-editprovider').on('input', function () {
-
     var lastname = $('#lastname-editprovider').val();
-
     if (lastname == "") {
         $('#providerinfo-lastname').html("*Required");
-
     }
     else {
         const regex = /^[a-zA-Z]+$/i
-
         if (!regex.test(lastname)) {
             $('#providerinfo-lastname').html("*not valid");
 
-        } else {
+        }
+        else {
             $('#providerinfo-lastname').html("");
-
-
         }
     }
 });
 
 $('#email-editprovider').on('input', function () {
-
     var email = $('#email-editprovider').val();
-
     if (email == "") {
         $('#providerinfo-email').html("*Required");
     }
     else {
         var regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
         if (!regex.test(email)) {
             $('#providerinfo-email').html("*enter valid email");
 
-        } else {
+        }
+        else {
             $('#providerinfo-email').html("");
-
         }
     }
 })
 
 $('#phonenumber-editprovider').on('input', function () {
-
     var phonenumber = $('#phonenumber-editprovider').val();
-
-    console.log(phonenumber)
-
     if (phonenumber == "") {
         $('#providerinfo-phonenumber').html("*Required");
     }
     else {
         var regex = /^[1-9][0-9]{9}$/
-
         if (!regex.test(phonenumber)) {
             $('#providerinfo-phonenumber').html("*enter valid number");
 
-        } else {
+        }
+        else {
             $('#providerinfo-phonenumber').html("");
-
         }
     }
 })
 
 $('#medicallicence-editprovider').on('input', function () {
-
     var medicallicence = $('#medicallicence-editprovider').val();
-
     if (medicallicence == "") {
         $('#providerinfo-medicallicence').html("*Required");
-
     }
     else {
         const regex = /^[a-zA-Z0-9]+$/i
-
         if (!regex.test(medicallicence)) {
             $('#providerinfo-medicallicence').html("*not valid");
 
-        } else {
+        }
+        else {
             $('#providerinfo-medicallicence').html("");
-
         }
     }
-
-
 });
 $('#npinumber-editprovider').on('input', function () {
-
     var npinumber = $('#npinumber-editprovider').val();
-
     if (npinumber == "") {
         $('#providerinfo-npinumber').html("*Required");
-
     }
     else {
         const regex = /^[a-zA-Z0-9]+$/i
-
         if (!regex.test(npinumber)) {
             $('#providerinfo-npinumber').html("*not valid");
 
-        } else {
+        }
+        else {
             $('#providerinfo-npinumber').html("");
-
         }
     }
 });
 
 $('#syncemail-editprovider').on('input', function () {
-
     var syncemail = $('#syncemail-editprovider').val();
-
     if (syncemail == "") {
         $('#providerinfo-syncemail').html("*Required");
-
     }
     else {
         var regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-
-
         if (!regex.test(syncemail)) {
             $('#providerinfo-syncemail').html("*not valid");
-
-        } else {
+        }
+        else {
             $('#providerinfo-syncemail').html("");
-
         }
     }
-
-
 })
 
 $('#savebtn-editprovider').on('click', function () {
-    debugger
     var firstname = $('#firstname-editprovider').val();
     var lastname = $('#lastname-editprovider').val();
     var email = $('#email-editprovider').val();
@@ -382,8 +315,6 @@ $('#savebtn-editprovider').on('click', function () {
     var npinumber = $('#npinumber-editprovider').val();
     var syncemail = $('#syncemail-editprovider').val();
     var selectedregion = [];
-
-
     if (
         $('#providerinfo-firstname').text() == "" &&
         $('#providerinfo-lastname').text() == "" &&
@@ -392,11 +323,9 @@ $('#savebtn-editprovider').on('click', function () {
         $('#providerinfo-medicallicence').text() == "" &&
         $('#providerinfo-npinumber').text() == "" &&
         $('#providerinfo-syncemail').text() == "") {
-
         $('input[type="checkbox"]:checked').each(function () {
             selectedregion.push($(this).val());
         });
-
         var model = {
             firstname: firstname,
             lastname: lastname,
@@ -408,11 +337,9 @@ $('#savebtn-editprovider').on('click', function () {
             SynchronizeEmail: syncemail,
             providerid: providerid
         }
-
         $('.adisabled').attr('disabled', true);
         $('#editbtn-editprovider').show();
         $(this).hide();
-
         $.ajax({
             url: '/Provider/UpdatePhysicianInfo',
             type: 'POST',
@@ -420,19 +347,15 @@ $('#savebtn-editprovider').on('click', function () {
             success: function (response) {
 
             },
-
             error: function (xhr, status, error) {
                 console.error(error);
             }
         });
-
-
     }
 });
+
 //mailing billing validation
-
 $('#editbtn-mailing-editprovider').on('click', function () {
-
     $('.mdisabled').removeAttr('disabled', false);
     $('#savebtn-mailing-editprovider').removeAttr('hidden', false);
     $('#savebtn-mailing-editprovider').show();
@@ -445,7 +368,6 @@ $('#savebtn-mailing-editprovider').on('click', function () {
     var city = $('#city-editprovider').val();
     var zip = $('#zip-editprovider').val();
     var altphone = $('#altphone-editprovider').val();
-
     if (
         $('#providerinfo-addr1').text() == "" &&
         $('#providerinfo-addr2').text() == "" &&
@@ -453,7 +375,6 @@ $('#savebtn-mailing-editprovider').on('click', function () {
         $('#providerinfo-zip').text() == "" &&
         $('#providerinfo-altphone').text() == ""
     ) {
-
         var model = {
             address1: addr1,
             address2: addr2,
@@ -462,18 +383,15 @@ $('#savebtn-mailing-editprovider').on('click', function () {
             alterphonenumber: altphone,
             providerid: providerid
         }
-
         $('.mdisabled').attr('disabled', true);
         $('#editbtn-mailing-editprovider').show();
         $(this).hide();
-
         $.ajax({
             url: '/Provider/UpdatePhysicianInfo',
             type: 'POST',
             data: model,
             success: function (response) {
             },
-
             error: function (xhr, status, error) {
                 console.error(error);
             }
@@ -482,156 +400,115 @@ $('#savebtn-mailing-editprovider').on('click', function () {
 });
 
 $('#addr1-editprovider').on('input', function () {
-
     var addr1 = $('#addr1-editprovider').val();
-
     if (addr1 == "") {
         $('#providerinfo-addr1').html("*Required");
-
     }
     else {
         const regex = /^[^\s\W,-/][\w\s,-/]*$/i
-
         if (!regex.test(addr1)) {
             $('#providerinfo-addr1').html("*not valid");
-
-        } else {
+        }
+        else {
             $('#providerinfo-addr1').html("");
-
-
         }
     }
 })
 $('#addr2-editprovider').on('input', function () {
-
     var addr2 = $('#addr2-editprovider').val();
-
     if (addr2 == "") {
         $('#providerinfo-addr2').html("*Required");
-
     }
     else {
         const regex = /^[^\s\W,-/][\w\s,-/]*$/i
-
         if (!regex.test(addr2)) {
             $('#providerinfo-addr2').html("*not valid");
-
-        } else {
+        }
+        else {
             $('#providerinfo-addr2').html("");
-
-
         }
     }
 })
 
 $('#city-editprovider').on('input', function () {
-
     var city = $('#city-editprovider').val();
-
     if (city == "") {
         $('#providerinfo-city').html("*Required");
-
     }
     else {
         const regex = /^[^\s\W][\w\s]*$/i
-
-
         if (!regex.test(city)) {
             $('#providerinfo-city').html("*not valid");
-
-        } else {
+        }
+        else {
             $('#providerinfo-city').html("");
-
-
         }
     }
 })
 $('#zip-editprovider').on('input', function () {
-
     var zip = $('#zip-editprovider').val();
-
     if (zip == "") {
         $('#providerinfo-zip').html("*Required");
-
     }
     else {
         const regex = /^[1-9][0-9]{5}$/
-
         if (!regex.test(zip)) {
             $('#providerinfo-zip').html("*not valid");
-
-        } else {
+        }
+        else {
             $('#providerinfo-zip').html("");
-
         }
     }
 })
 
 $('#altphone-editprovider').on('input', function () {
-
     var altphone = $('#altphone-editprovider').val();
-
     if (altphone == "") {
         $('#providerinfo-altphone').html("*Required");
     }
     else {
         var regex = /^[1-9][0-9]{9}$/
-
         if (!regex.test(altphone)) {
             $('#providerinfo-altphone').html("*enter valid number");
-
-        } else {
+        }
+        else {
             $('#providerinfo-altphone').html("");
-
         }
     }
 })
 
-
-
 //provider profile edit and validation
-
-
 $('#editbtn-ppdisable-editprovider').on('click', function () {
-
     $('.ppdisable').removeAttr('disabled', false);
     $('#savebtn-ppdisable-editprovider').removeAttr('hidden', false);
     $('#savebtn-ppdisable-editprovider').show();
     $(this).hide();
 });
 
-
 $('#savebtn-ppdisable-editprovider').on('click', function () {
     var businessname = $('#ppdisable-businessname').val();
     var businesswebsite = $('#ppdisable-businesswebsite').val();
     var adminnotes = $('#ppdisable-adminnotes').val();
-
-
     if (
         $('#ppdisable-adminnotes-span').text() == "" &&
         $('#ppdisable-businesswebsite-span').text() == "" &&
         $('#ppdisable-businessname-span').text() == ""
     ) {
-
         var model = {
             BusinessName: businessname,
             BusinessWebsite: businesswebsite,
             AdminNotes: businesswebsite,
             providerid: providerid
-
         }
-
         $('.ppdisable').attr('disabled', true);
         $('#editbtn-ppdisable-editprovider').show();
         $(this).hide();
-
         $.ajax({
             url: '/Provider/UpdatePhysicianInfo',
             type: 'POST',
             data: model,
             success: function (response) {
             },
-
             error: function (xhr, status, error) {
                 console.error(error);
             }
@@ -640,40 +517,32 @@ $('#savebtn-ppdisable-editprovider').on('click', function () {
 });
 
 $('#ppdisable-businessname').on('input', function () {
-
     var businessname = $('#ppdisable-businessname').val();
-
     if (businessname == "") {
         $('#ppdisable-businessname-span').html("*Required");
-
     }
     else {
         const regex = /^[^\s\W,-/][\w\s,-/]*$/i
-
         if (!regex.test(businessname)) {
             $('#ppdisable-businessname-span').html("*not valid");
-
-        } else {
+        }
+        else {
             $('#ppdisable-businessname-span').html("");
         }
     }
 })
 
 $('#ppdisable-businesswebsite').on('input', function () {
-
     var businesswebsite = $('#ppdisable-businesswebsite').val();
-
     if (businesswebsite == "") {
         $('#ppdisable-businesswebsite-span').html("*Required");
-
     }
     else {
         const regex = /^(https?:\/\/)?([a-zA-Z0-9]+\.)+[a-zA-Z]{2,}(\/[a-zA-Z0-9\-\._~:\/\?#\[\]@!\$&'\(\)\*\+,;=]*)?$/
-
         if (!regex.test(businesswebsite)) {
             $('#ppdisable-businesswebsite-span').html("*not valid");
-
-        } else {
+        }
+        else {
             $('#ppdisable-businesswebsite-span').html("");
         }
     }
@@ -681,20 +550,16 @@ $('#ppdisable-businesswebsite').on('input', function () {
 
 
 $('#ppdisable-adminnotes').on('input', function () {
-
     var adminnotes = $('#ppdisable-adminnotes').val();
-
     if (adminnotes == "") {
         $('#ppdisable-adminnotes-span').html("*Required");
-
     }
     else {
         const regex = /^[^\s\W,-/][\w\s,-/.]*$/i
-
         if (!regex.test(adminnotes)) {
             $('#ppdisable-adminnotes-span').html("*not valid");
-
-        } else {
+        }
+        else {
             $('#ppdisable-adminnotes-span').html("");
         }
     }
@@ -705,21 +570,19 @@ $('#ppdisable-adminnotes').on('input', function () {
 
 $('#SelectFileToUpload').on('change', function () {
     var fileInput = document.getElementById('SelectFileToUpload');
-    var file = fileInput.files[0]; // Get the selected file
-
+    var file = fileInput.files[0]; 
     var formData = new FormData();
-    formData.append('file', file); // Append the file
-    formData.append('providerid', providerid); // Append other data
-    formData.append('onboardinguploadvalue', onboardinguploadvalue); // Append other data
+    formData.append('file', file); 
+    formData.append('providerid', providerid); 
+    formData.append('onboardinguploadvalue', onboardinguploadvalue); 
     let x = file.name;
     let extention = x.split('.').pop();
     if (extention != "pdf") {
         alert("please upload pdf file")
     }
     else {
-
         $.ajax({
-            url: '/Provider/uploadFile', // Replace with your server endpoint
+            url: '/Provider/uploadFile', 
             type: 'POST',
             data: formData,
             processData: false,
@@ -736,9 +599,8 @@ $('#SelectFileToUpload').on('change', function () {
 
 //creating provider account
 $('#createproviderbtn').on('click', function () {
-
     $.ajax({
-        url: '/Provider/CreateProviderAccount', // Replace with your server endpoint
+        url: '/Provider/CreateProviderAccount', 
         success: function (response) {
             $('#providermenudiv').html(response);
         },

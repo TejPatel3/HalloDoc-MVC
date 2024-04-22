@@ -2,22 +2,13 @@
 window.onload = function () {
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
     $('#nav-provider-location-tab').addClass('admin-layout-nav-active');
-
-
-
 }
 $.ajax({
     url: '/ProviderLocation/GetLocations',
     method: 'GET',
     async: false,
     success: function (response) {
-        console.log(locationdata);
         locationdata = JSON.parse(response)
-        console.log(locationdata);
-        //response.map(function (res) {
-        //    L.marker([res.latitude, res.longitude]).addTo(map)
-        //        .bindPopup(res.physicianname)
-        //})
     }
 })
 
@@ -27,19 +18,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
-
-
-//$.ajax({
-//    url: '/ProviderLocation/GetLocation',
-//    success: function (response) {
-//        console.log(response);
-//        response.map(function (res) {
-//            L.marker([res.latitude, res.longitude]).addTo(map)
-//                .bindPopup(res.physicianname)
-//        })
-//    }
-//});
-//var marker = L.marker([51.5, -0.19]).addTo(map);
 
 
 for (var i = 0; i < locationdata.length; i++) {
@@ -52,8 +30,8 @@ for (var i = 0; i < locationdata.length; i++) {
     var customIcon = L.divIcon({
         className: 'custom-icon',
         html: iconHtml,
-        iconSize: [30, 45], // size of the icon
-        iconAnchor: [15, 45], // point of the icon which will correspond to marker's location
+        iconSize: [30, 45],
+        iconAnchor: [15, 45],
     });
     if (locationdata[i].Photo != null) {
         popupContent = '<img class="openeditphy" data-id="' + locationdata[i].Physicianid + '" width = "60%" src="' + locationdata[i].Photo + '" />' +
@@ -63,8 +41,6 @@ for (var i = 0; i < locationdata.length; i++) {
         popupContent = '<img class="openeditphy" data-id="' + locationdata[i].Physicianid + '" width = "60%" src="/images/profile-icon.png" />' +
             '<p>Physician: ' + locationdata[i].Name + '</p>';
     }
-    //var popupContent = '<img class="openeditphy" data-id="' + locationdata[i].Physicianid + '" width = "60%" src="' + locationdata[i].Photo + '" />' +
-    //    '<p>Physician: ' + locationdata[i].Name + '</p>';
     var marker = L.marker([locationdata[i].Lat, locationdata[i].Long], { icon: customIcon }).addTo(map)
         .bindPopup(popupContent);
 

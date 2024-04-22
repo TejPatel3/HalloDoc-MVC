@@ -11,5 +11,7 @@
         public IUpdateData UpdateData { get; }
         public IAddOrUpdateRequestStatusLog AddOrUpdateRequestStatusLog { get; }
         public IAccessRepository Access { get; }
+        public IAdd Add { get; }
+        public IRemoveData RemoveData { get; }
     }
 }

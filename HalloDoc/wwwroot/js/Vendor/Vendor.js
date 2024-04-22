@@ -2,20 +2,17 @@
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
     $('#nav-partner-tab').addClass('admin-layout-nav-active');
 }
-var search = ""; //for search
-var professionid = 0; // for dropdown search profession
-var vendorid = 0; //for delete btn vendor
+var search = ""; 
+var professionid = 0; 
+var vendorid = 0; 
 $(document).ready(function () {
     loadview("", 0);
 });
     function loadview(search, professionid) {
         $.ajax({
-
             url: '/Vendor/VendorFilter',
             data: { search: search, professionid: professionid },
-
             success: function (response) {
-
                 $('#vendortablediv').html(response)
             }
         });
@@ -23,13 +20,10 @@ $(document).ready(function () {
 
 
 $('#professionnamefilter').on('change', function () {
-
     professionid = $(this).val();
-
     $.ajax({
         url: '/Vendor/VendorFilter',
         data: { professionid: professionid },
-
         success: function (response) {
             loadview(search, professionid);
             $('#vendortablediv').html(response)
@@ -38,13 +32,10 @@ $('#professionnamefilter').on('change', function () {
 });
 
 $('#searchfiltervendor').on('input', function () {
-
     search = $(this).val();
-
     $.ajax({
         url: '/Vendor/VendorFilter',
         data: { search: search },
-
         success: function (response) {
             loadview(search, professionid);
             $('#vendortablediv').html(response)

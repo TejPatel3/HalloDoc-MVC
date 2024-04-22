@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vcthug+NgxICidVAmGPrOBzd5pTV7iI4x/gDlWFNWGc=",
+  "Hash": "eeODoIPn33QoLhUGkSmO0gFH9sr7FGLAdUaIabzRJe8=",
   "Source": "HalloDoc",
   "BasePath": "_content/HalloDoc",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "HalloDoc\\wwwroot",
       "Source": "HalloDoc",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\bundle\\HalloDoc.styles.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\bundle\\HalloDoc.styles.css",
       "SourceId": "HalloDoc",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "HalloDoc.styles.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\Project\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\bundle\\HalloDoc.styles.css"
+      "OriginalItemSpec": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\bundle\\HalloDoc.styles.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\HalloDoc.bundle.scp.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\HalloDoc.bundle.scp.css",
       "SourceId": "HalloDoc",
       "SourceType": "Computed",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "HalloDoc.bundle.scp.css",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "D:\\Project\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\HalloDoc.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\HalloDoc.bundle.scp.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\css\\admin.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\css\\admin.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "css/admin.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\css\\admin.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\css\\Provider.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\css\\Provider.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "css/Provider.css",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\css\\Provider.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\css\\site.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\favicon.ico",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\11116016_415.jpg",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\11116016_415.jpg",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/11116016_415.jpg",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\images\\11116016_415.jpg"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\11116040-opacity-low.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\11116040-opacity-low.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/11116040-opacity-low.png",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\images\\11116040-opacity-low.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\7768657_3763028 opacity low.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\7768657_3763028 opacity low.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/7768657_3763028 opacity low.png",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\images\\7768657_3763028 opacity low.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\7768657_3763028.jpg",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\7768657_3763028.jpg",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/7768657_3763028.jpg",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\images\\7768657_3763028.jpg"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\7774236_3736765.jpg",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\7774236_3736765.jpg",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/7774236_3736765.jpg",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\images\\7774236_3736765.jpg"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\alert.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\alert.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/alert.png",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\images\\alert.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\australia.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\australia.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/australia.png",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\images\\australia.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\canada.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\canada.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/canada.png",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\images\\canada.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\eye.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\eye.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/eye.png",
       "AssetKind": "All",
@@ -272,10 +272,10 @@
       "OriginalItemSpec": "wwwroot\\images\\eye.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\eye-icon.jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\eye-icon.jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/eye-icon.jfif",
       "AssetKind": "All",
@@ -289,10 +289,10 @@
       "OriginalItemSpec": "wwwroot\\images\\eye-icon.jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig56. Patient site 1.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\Fig56. Patient site 1.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/Fig56. Patient site 1.png",
       "AssetKind": "All",
@@ -306,10 +306,10 @@
       "OriginalItemSpec": "wwwroot\\images\\Fig56. Patient site 1.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\hallodoc-transparent.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\hallodoc-transparent.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/hallodoc-transparent.png",
       "AssetKind": "All",
@@ -323,10 +323,10 @@
       "OriginalItemSpec": "wwwroot\\images\\hallodoc-transparent.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\india.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\india.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/india.png",
       "AssetKind": "All",
@@ -340,10 +340,10 @@
       "OriginalItemSpec": "wwwroot\\images\\india.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\LesfImage.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\LesfImage.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/LesfImage.png",
       "AssetKind": "All",
@@ -357,10 +357,10 @@
       "OriginalItemSpec": "wwwroot\\images\\LesfImage.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\light-mode.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\light-mode.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/light-mode.png",
       "AssetKind": "All",
@@ -374,10 +374,10 @@
       "OriginalItemSpec": "wwwroot\\images\\light-mode.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\moon.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\moon.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/moon.png",
       "AssetKind": "All",
@@ -391,10 +391,10 @@
       "OriginalItemSpec": "wwwroot\\images\\moon.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\night-mode.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\night-mode.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/night-mode.png",
       "AssetKind": "All",
@@ -408,10 +408,10 @@
       "OriginalItemSpec": "wwwroot\\images\\night-mode.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\no data found.jpg",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\no data found.jpg",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/no data found.jpg",
       "AssetKind": "All",
@@ -425,10 +425,10 @@
       "OriginalItemSpec": "wwwroot\\images\\no data found.jpg"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\no data gif.gif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\no data gif.gif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/no data gif.gif",
       "AssetKind": "All",
@@ -442,10 +442,10 @@
       "OriginalItemSpec": "wwwroot\\images\\no data gif.gif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\output-onlinepngtools.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\output-onlinepngtools.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/output-onlinepngtools.png",
       "AssetKind": "All",
@@ -459,10 +459,10 @@
       "OriginalItemSpec": "wwwroot\\images\\output-onlinepngtools.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\password-eye-icon.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\password-eye-icon.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/password-eye-icon.png",
       "AssetKind": "All",
@@ -476,10 +476,10 @@
       "OriginalItemSpec": "wwwroot\\images\\password-eye-icon.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\profile-icon.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\profile-icon.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/profile-icon.png",
       "AssetKind": "All",
@@ -493,10 +493,10 @@
       "OriginalItemSpec": "wwwroot\\images\\profile-icon.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\images\\sessionexpider.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\images\\sessionexpider.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "images/sessionexpider.png",
       "AssetKind": "All",
@@ -510,10 +510,10 @@
       "OriginalItemSpec": "wwwroot\\images\\sessionexpider.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Access\\AccessRole.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Access\\AccessRole.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Access/AccessRole.js",
       "AssetKind": "All",
@@ -527,10 +527,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Access\\AccessRole.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\AdminCredential.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\AdminCredential.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/AdminCredential.js",
       "AssetKind": "All",
@@ -544,10 +544,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\AdminCredential.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\AdminDashboard.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\AdminDashboard.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/AdminDashboard.js",
       "AssetKind": "All",
@@ -561,10 +561,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\AdminDashboard.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\AdminProfile.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\AdminProfile.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/AdminProfile.js",
       "AssetKind": "All",
@@ -578,10 +578,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\AdminProfile.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\CloseCase.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\CloseCase.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/CloseCase.js",
       "AssetKind": "All",
@@ -595,10 +595,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\CloseCase.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ExportDataInExcle.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ExportDataInExcle.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/ExportDataInExcle.js",
       "AssetKind": "All",
@@ -612,10 +612,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\ExportDataInExcle.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\SendAgreement.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\SendAgreement.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/SendAgreement.js",
       "AssetKind": "All",
@@ -629,10 +629,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\SendAgreement.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\SixTabChildContent.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\SixTabChildContent.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/SixTabChildContent.js",
       "AssetKind": "All",
@@ -646,10 +646,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\SixTabChildContent.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\Tabs.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\Tabs.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/Tabs.js",
       "AssetKind": "All",
@@ -663,10 +663,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\Tabs.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ViewCase.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ViewCase.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/ViewCase.js",
       "AssetKind": "All",
@@ -680,10 +680,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\ViewCase.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ViewNotes.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ViewNotes.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/ViewNotes.js",
       "AssetKind": "All",
@@ -697,10 +697,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\ViewNotes.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ViewUpload.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ViewUpload.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Admin/ViewUpload.js",
       "AssetKind": "All",
@@ -714,10 +714,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Admin\\ViewUpload.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Provider\\AddOrUpdatePhysicianAccount.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Provider\\AddOrUpdatePhysicianAccount.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Provider/AddOrUpdatePhysicianAccount.js",
       "AssetKind": "All",
@@ -731,10 +731,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Provider\\AddOrUpdatePhysicianAccount.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Provider\\Provider.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Provider\\Provider.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Provider/Provider.js",
       "AssetKind": "All",
@@ -748,10 +748,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Provider\\Provider.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderLocation\\ProviderLoaction.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderLocation\\ProviderLoaction.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/ProviderLocation/ProviderLoaction.js",
       "AssetKind": "All",
@@ -765,10 +765,10 @@
       "OriginalItemSpec": "wwwroot\\js\\ProviderLocation\\ProviderLoaction.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderProfile.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderProfile.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/ProviderSide/ProviderProfile.js",
       "AssetKind": "All",
@@ -782,10 +782,10 @@
       "OriginalItemSpec": "wwwroot\\js\\ProviderSide\\ProviderProfile.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderSide.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderSide.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/ProviderSide/ProviderSide.js",
       "AssetKind": "All",
@@ -799,10 +799,10 @@
       "OriginalItemSpec": "wwwroot\\js\\ProviderSide\\ProviderSide.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderSideScheduling.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\ProviderSideScheduling.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/ProviderSide/ProviderSideScheduling.js",
       "AssetKind": "All",
@@ -816,10 +816,10 @@
       "OriginalItemSpec": "wwwroot\\js\\ProviderSide\\ProviderSideScheduling.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\SixTabChildContent.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\SixTabChildContent.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/ProviderSide/SixTabChildContent.js",
       "AssetKind": "All",
@@ -833,10 +833,10 @@
       "OriginalItemSpec": "wwwroot\\js\\ProviderSide\\SixTabChildContent.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\Tabs.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderSide\\Tabs.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/ProviderSide/Tabs.js",
       "AssetKind": "All",
@@ -850,10 +850,10 @@
       "OriginalItemSpec": "wwwroot\\js\\ProviderSide\\Tabs.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\BlockHistory.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\BlockHistory.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Records/BlockHistory.js",
       "AssetKind": "All",
@@ -867,10 +867,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Records\\BlockHistory.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\EmailLog.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\EmailLog.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Records/EmailLog.js",
       "AssetKind": "All",
@@ -884,10 +884,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Records\\EmailLog.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\Pagination.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\Pagination.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Records/Pagination.js",
       "AssetKind": "All",
@@ -901,10 +901,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Records\\Pagination.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientHistory.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientHistory.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Records/PatientHistory.js",
       "AssetKind": "All",
@@ -918,10 +918,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Records\\PatientHistory.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientRecord.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\PatientRecord.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Records/PatientRecord.js",
       "AssetKind": "All",
@@ -935,10 +935,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Records\\PatientRecord.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\Records.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\Records.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Records/Records.js",
       "AssetKind": "All",
@@ -952,10 +952,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Records\\Records.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\SMSLog.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Records\\SMSLog.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Records/SMSLog.js",
       "AssetKind": "All",
@@ -969,10 +969,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Records\\SMSLog.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Scheduling\\Scheduling.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Scheduling\\Scheduling.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Scheduling/Scheduling.js",
       "AssetKind": "All",
@@ -986,10 +986,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Scheduling\\Scheduling.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\site.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -1003,10 +1003,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Vendor\\PartialViewVendor.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Vendor\\PartialViewVendor.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Vendor/PartialViewVendor.js",
       "AssetKind": "All",
@@ -1020,10 +1020,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Vendor\\PartialViewVendor.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Vendor\\Vendor.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\js\\Vendor\\Vendor.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "js/Vendor/Vendor.js",
       "AssetKind": "All",
@@ -1037,10 +1037,10 @@
       "OriginalItemSpec": "wwwroot\\js\\Vendor\\Vendor.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -1054,10 +1054,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -1071,10 +1071,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -1088,10 +1088,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -1105,10 +1105,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css",
       "AssetKind": "All",
@@ -1122,10 +1122,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.css.map",
       "AssetKind": "All",
@@ -1139,10 +1139,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css",
       "AssetKind": "All",
@@ -1156,10 +1156,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "AssetKind": "All",
@@ -1173,10 +1173,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css",
       "AssetKind": "All",
@@ -1190,10 +1190,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.css.map",
       "AssetKind": "All",
@@ -1207,10 +1207,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css",
       "AssetKind": "All",
@@ -1224,10 +1224,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.min.css.map",
       "AssetKind": "All",
@@ -1241,10 +1241,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css",
       "AssetKind": "All",
@@ -1258,10 +1258,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.css.map",
       "AssetKind": "All",
@@ -1275,10 +1275,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css",
       "AssetKind": "All",
@@ -1292,10 +1292,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-grid.rtl.min.css.map",
       "AssetKind": "All",
@@ -1309,10 +1309,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css",
       "AssetKind": "All",
@@ -1326,10 +1326,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.css.map",
       "AssetKind": "All",
@@ -1343,10 +1343,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css",
       "AssetKind": "All",
@@ -1360,10 +1360,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.min.css.map",
       "AssetKind": "All",
@@ -1377,10 +1377,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css",
       "AssetKind": "All",
@@ -1394,10 +1394,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.css.map",
       "AssetKind": "All",
@@ -1411,10 +1411,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css",
       "AssetKind": "All",
@@ -1428,10 +1428,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-reboot.rtl.min.css.map",
       "AssetKind": "All",
@@ -1445,10 +1445,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css",
       "AssetKind": "All",
@@ -1462,10 +1462,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.css.map",
       "AssetKind": "All",
@@ -1479,10 +1479,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css",
       "AssetKind": "All",
@@ -1496,10 +1496,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.min.css.map",
       "AssetKind": "All",
@@ -1513,10 +1513,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css",
       "AssetKind": "All",
@@ -1530,10 +1530,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.css.map",
       "AssetKind": "All",
@@ -1547,10 +1547,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css",
       "AssetKind": "All",
@@ -1564,10 +1564,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap-utilities.rtl.min.css.map",
       "AssetKind": "All",
@@ -1581,10 +1581,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js",
       "AssetKind": "All",
@@ -1598,10 +1598,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.js.map",
       "AssetKind": "All",
@@ -1615,10 +1615,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js",
       "AssetKind": "All",
@@ -1632,10 +1632,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.bundle.min.js.map",
       "AssetKind": "All",
@@ -1649,10 +1649,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js",
       "AssetKind": "All",
@@ -1666,10 +1666,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.js.map",
       "AssetKind": "All",
@@ -1683,10 +1683,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js",
       "AssetKind": "All",
@@ -1700,10 +1700,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.esm.min.js.map",
       "AssetKind": "All",
@@ -1717,10 +1717,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -1734,10 +1734,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js.map",
       "AssetKind": "All",
@@ -1751,10 +1751,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -1768,10 +1768,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js.map",
       "AssetKind": "All",
@@ -1785,10 +1785,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -1802,10 +1802,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -1819,10 +1819,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -1836,10 +1836,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -1853,10 +1853,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -1870,10 +1870,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -1887,10 +1887,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -1904,10 +1904,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -1921,10 +1921,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -1938,10 +1938,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -1955,10 +1955,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -1972,10 +1972,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
@@ -1989,10 +1989,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE.txt",
       "AssetKind": "All",
@@ -2006,10 +2006,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\0\\.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\0\\.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/0/.pdf",
       "AssetKind": "All",
@@ -2023,10 +2023,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\0\\.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\0\\IndependentContractorAgreement.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\0\\IndependentContractorAgreement.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/0/IndependentContractorAgreement.png",
       "AssetKind": "All",
@@ -2040,10 +2040,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\0\\IndependentContractorAgreement.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\13\\BackgroundCheck.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\13\\BackgroundCheck.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/13/BackgroundCheck.pdf",
       "AssetKind": "All",
@@ -2057,10 +2057,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\13\\BackgroundCheck.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\13\\IndependentContractorAgreement.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\13\\IndependentContractorAgreement.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/13/IndependentContractorAgreement.pdf",
       "AssetKind": "All",
@@ -2074,10 +2074,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\13\\IndependentContractorAgreement.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\14\\IndependentContractorAgreement.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\14\\IndependentContractorAgreement.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/14/IndependentContractorAgreement.pdf",
       "AssetKind": "All",
@@ -2091,10 +2091,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\14\\IndependentContractorAgreement.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\16\\IndependentContractorAgreement.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\16\\IndependentContractorAgreement.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/16/IndependentContractorAgreement.pdf",
       "AssetKind": "All",
@@ -2108,10 +2108,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\16\\IndependentContractorAgreement.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\2\\IndependentContractorAgreement.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\2\\IndependentContractorAgreement.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/2/IndependentContractorAgreement.pdf",
       "AssetKind": "All",
@@ -2125,10 +2125,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\2\\IndependentContractorAgreement.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\BackgroundCheck.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\BackgroundCheck.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/3/BackgroundCheck.pdf",
       "AssetKind": "All",
@@ -2142,10 +2142,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\3\\BackgroundCheck.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\HIPAACompliance.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\HIPAACompliance.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/3/HIPAACompliance.pdf",
       "AssetKind": "All",
@@ -2159,10 +2159,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\3\\HIPAACompliance.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\IndependentContractorAgreement.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\IndependentContractorAgreement.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/3/IndependentContractorAgreement.pdf",
       "AssetKind": "All",
@@ -2176,10 +2176,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\3\\IndependentContractorAgreement.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\LicenseDocument.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\LicenseDocument.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/3/LicenseDocument.pdf",
       "AssetKind": "All",
@@ -2193,10 +2193,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\3\\LicenseDocument.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\Non-DisclosureAgreement.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\3\\Non-DisclosureAgreement.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/3/Non-DisclosureAgreement.pdf",
       "AssetKind": "All",
@@ -2210,10 +2210,10 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\3\\Non-DisclosureAgreement.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\4\\IndependentContractorAgreement.pdf",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\4\\IndependentContractorAgreement.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "onboarding/4/IndependentContractorAgreement.pdf",
       "AssetKind": "All",
@@ -2227,10 +2227,27 @@
       "OriginalItemSpec": "wwwroot\\onboarding\\4\\IndependentContractorAgreement.pdf"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\11116016_415.jpg",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\onboarding\\6\\BackgroundCheck.pdf",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "BasePath": "_content/HalloDoc",
+      "RelativePath": "onboarding/6/BackgroundCheck.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\onboarding\\6\\BackgroundCheck.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\11116016_415.jpg",
+      "SourceId": "HalloDoc",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/11116016_415.jpg",
       "AssetKind": "All",
@@ -2244,10 +2261,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\11116016_415.jpg"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\11116040-opacity-low.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\11116040-opacity-low.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/11116040-opacity-low.png",
       "AssetKind": "All",
@@ -2261,10 +2278,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\11116040-opacity-low.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\186india.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\186india.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/186india.png",
       "AssetKind": "All",
@@ -2278,10 +2295,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\186india.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\194images (5).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\194images (5).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/194images (5).jfif",
       "AssetKind": "All",
@@ -2295,10 +2312,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\194images (5).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\194images (6).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\194images (6).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/194images (6).jfif",
       "AssetKind": "All",
@@ -2312,10 +2329,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\194images (6).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\194images (7).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\194images (7).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/194images (7).jfif",
       "AssetKind": "All",
@@ -2329,10 +2346,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\194images (7).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\195images (7).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\195images (7).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/195images (7).jfif",
       "AssetKind": "All",
@@ -2346,10 +2363,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\195images (7).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\198images (7).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\198images (7).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/198images (7).jfif",
       "AssetKind": "All",
@@ -2363,10 +2380,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\198images (7).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\198images.jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\198images.jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/198images.jfif",
       "AssetKind": "All",
@@ -2380,10 +2397,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\198images.jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\199images (6).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\199images (6).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/199images (6).jfif",
       "AssetKind": "All",
@@ -2397,10 +2414,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\199images (6).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\199images (7).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\199images (7).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/199images (7).jfif",
       "AssetKind": "All",
@@ -2414,10 +2431,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\199images (7).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\199images.jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\199images.jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/199images.jfif",
       "AssetKind": "All",
@@ -2431,10 +2448,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\199images.jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\204images (6).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\204images (6).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/204images (6).jfif",
       "AssetKind": "All",
@@ -2448,10 +2465,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\204images (6).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7768657_3763028 opacity low.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7768657_3763028 opacity low.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/7768657_3763028 opacity low.png",
       "AssetKind": "All",
@@ -2465,10 +2482,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\7768657_3763028 opacity low.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7768657_3763028.jpg",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7768657_3763028.jpg",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/7768657_3763028.jpg",
       "AssetKind": "All",
@@ -2482,10 +2499,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\7768657_3763028.jpg"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7774236_3736765 (2).jpg",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7774236_3736765 (2).jpg",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/7774236_3736765 (2).jpg",
       "AssetKind": "All",
@@ -2499,10 +2516,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\7774236_3736765 (2).jpg"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7774236_3736765.jpg",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\7774236_3736765.jpg",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/7774236_3736765.jpg",
       "AssetKind": "All",
@@ -2516,10 +2533,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\7774236_3736765.jpg"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\alert.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\alert.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/alert.png",
       "AssetKind": "All",
@@ -2533,10 +2550,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\alert.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\australia.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\australia.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/australia.png",
       "AssetKind": "All",
@@ -2550,10 +2567,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\australia.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\canada.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\canada.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/canada.png",
       "AssetKind": "All",
@@ -2567,10 +2584,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\canada.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\dc2ec5a571974417a5551420a4fb0587.webp",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\dc2ec5a571974417a5551420a4fb0587.webp",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/dc2ec5a571974417a5551420a4fb0587.webp",
       "AssetKind": "All",
@@ -2584,10 +2601,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\dc2ec5a571974417a5551420a4fb0587.webp"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\eye.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\eye.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/eye.png",
       "AssetKind": "All",
@@ -2601,10 +2618,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\eye.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\eye-icon.jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\eye-icon.jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/eye-icon.jfif",
       "AssetKind": "All",
@@ -2618,10 +2635,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\eye-icon.jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig56. Patient site 1.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Fig56. Patient site 1.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/Fig56. Patient site 1.png",
       "AssetKind": "All",
@@ -2635,10 +2652,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\Fig56. Patient site 1.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\hallodoc-transparent.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\hallodoc-transparent.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/hallodoc-transparent.png",
       "AssetKind": "All",
@@ -2652,10 +2669,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\hallodoc-transparent.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (1).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (1).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/images (1).jfif",
       "AssetKind": "All",
@@ -2669,10 +2686,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\images (1).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (2).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (2).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/images (2).jfif",
       "AssetKind": "All",
@@ -2686,10 +2703,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\images (2).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (3).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (3).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/images (3).jfif",
       "AssetKind": "All",
@@ -2703,10 +2720,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\images (3).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (5).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (5).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/images (5).jfif",
       "AssetKind": "All",
@@ -2720,10 +2737,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\images (5).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (6).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (6).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/images (6).jfif",
       "AssetKind": "All",
@@ -2737,10 +2754,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\images (6).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (7).jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images (7).jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/images (7).jfif",
       "AssetKind": "All",
@@ -2754,10 +2771,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\images (7).jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images.jfif",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\images.jfif",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/images.jfif",
       "AssetKind": "All",
@@ -2771,10 +2788,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\images.jfif"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\india.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\india.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/india.png",
       "AssetKind": "All",
@@ -2788,10 +2805,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\india.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\LesfImage.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\LesfImage.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/LesfImage.png",
       "AssetKind": "All",
@@ -2805,10 +2822,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\LesfImage.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\light-mode.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\light-mode.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/light-mode.png",
       "AssetKind": "All",
@@ -2822,10 +2839,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\light-mode.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\moon.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\moon.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/moon.png",
       "AssetKind": "All",
@@ -2839,10 +2856,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\moon.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\night-mode.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\night-mode.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/night-mode.png",
       "AssetKind": "All",
@@ -2856,10 +2873,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\night-mode.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\output-onlinepngtools.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\output-onlinepngtools.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/output-onlinepngtools.png",
       "AssetKind": "All",
@@ -2873,10 +2890,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\output-onlinepngtools.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\password-eye-icon.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\password-eye-icon.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/password-eye-icon.png",
       "AssetKind": "All",
@@ -2890,10 +2907,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\password-eye-icon.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\profile-icon.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\profile-icon.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/profile-icon.png",
       "AssetKind": "All",
@@ -2907,10 +2924,10 @@
       "OriginalItemSpec": "wwwroot\\UploadDocument\\profile-icon.png"
     },
     {
-      "Identity": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\sessionexpider.png",
+      "Identity": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\sessionexpider.png",
       "SourceId": "HalloDoc",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\pce156\\Downloads\\HalloDoc\\HalloDoc\\HalloDoc\\wwwroot\\",
       "BasePath": "_content/HalloDoc",
       "RelativePath": "UploadDocument/sessionexpider.png",
       "AssetKind": "All",

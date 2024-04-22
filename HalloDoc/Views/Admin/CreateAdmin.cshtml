@@ -185,6 +185,10 @@
 
 
 <script>
+    window.onload = function () {
+        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-access-tab').addClass('admin-layout-nav-active');
+    }
     var phoneInputField = document.querySelector("#phone-CreateAdmin");
     var phoneInput = window.intlTelInput(phoneInputField, {
         utilsScript:
@@ -201,7 +205,7 @@
         if ($("#createAdminAccountForm").valid()) {
             var formData = new FormData(this);
             $('input[type="checkbox"]:checked').each(function () {
-                formData.append("selectedregion",$(this).val());
+                formData.append("selectedregion", $(this).val());
             });
             $.ajax({
                 url: '/Admin/CreateAdminAccount',

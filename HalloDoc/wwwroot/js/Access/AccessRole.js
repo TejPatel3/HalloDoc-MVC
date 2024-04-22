@@ -112,3 +112,32 @@ $('.deletebtn-accessrole').click(function () {
 $('#createrole-cancel').click(function () {
     window.location.href = "https://localhost:44370/Access/AccessRole";
 });
+
+$('.editbtn-Physician').click(function () {
+    var physicianId = $(this).val();
+    $.ajax({
+        url: '/Provider/EditProviderAccount',
+        type: 'POST',
+        data: { physicianid :physicianId},
+        success: function (response) {
+            $('#UserAccess-maindiv').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
+});
+$('.editbtn-Admin').click(function () {
+    var adminid = $(this).val();
+    $.ajax({
+        url: '/Access/AdminProfileFromUserAccess',
+        type: 'POST',
+        data: { adminid: adminid },
+        success: function (response) {
+            $('#UserAccess-maindiv').html(response);
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
+});

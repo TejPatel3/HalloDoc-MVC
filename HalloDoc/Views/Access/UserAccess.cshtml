@@ -9,7 +9,7 @@
 
 }
 
-<div class="container pb-4 bg-light px-2 px-sm-3 px-md-4 px-lg-5" id="accessrole-maindiv">
+<div class="container pb-4 bg-light px-2 px-sm-3 px-md-4 px-lg-5" id="UserAccess-maindiv">
     <div class="d-flex justify-content-between align-items-center w-100 my-3">
         <h4>Account Access</h4>
 
@@ -57,11 +57,11 @@
                                 <td class="text-center" style="width:clamp(10rem, 25vw, 11rem)">
                                     @if (item.Accounttype == "1")
                                     {
-                                        <button class="btn btn-outline-info editbtn-accessrole" value="@item.RoleId" data-id="@item.Accounttype">Edit</button>
+                                        <button class="btn btn-outline-info editbtn-Admin" value="@item.AdminId" data-id="@item.Accounttype">Edit</button>
                                     }
                                     else
                                     {
-                                        <button class="btn btn-outline-info editbtn-accessrole" value="@item.RoleId" data-id="@item.Accounttype">Edit</button>
+                                        <button class="btn btn-outline-info editbtn-Physician" value="@item.physicianId" data-id="@item.Accounttype">Edit</button>
 
                                     }
                                 </td>

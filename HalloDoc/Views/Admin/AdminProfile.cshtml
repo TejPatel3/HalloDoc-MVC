@@ -1,9 +1,14 @@
 ﻿@using Services.ViewModels
 @model UserAllDataViewModel
-@{
+@if (Model.check)
+{
     Layout = "_Admin";
     ViewData["Title"] = "My Profile";
-
+}
+else
+{
+    Layout = null;
+    ViewData["Title"] = "My Profile";
 }
 <Partial name="Toast" />
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -11,11 +16,23 @@
 <div class="container bg-light">
     <div class="d-flex justify-content-between align-items-center w-100 my-3">
         <h4 class="fw-bold">MY Profile</h4>
-        <a asp-controller="Admin" asp-action="AdminDashboard"
-           class="btn m-0 btn-outline-info  px-2 ">
-            <i class="fa-solid fa-chevron-left"></i>
-            Back
-        </a>
+        @if (Model.check)
+        {
+
+            <a asp-controller="Admin" asp-action="AdminDashboard"
+               class="btn m-0 btn-outline-info  px-2 ">
+                <i class="fa-solid fa-chevron-left"></i>
+                Back
+            </a>
+        }
+        else
+        {
+            <a onclick="location.reload()"
+               class="btn m-0 btn-outline-info  px-2 ">
+                <i class="fa-solid fa-chevron-left"></i>
+                Back
+            </a>
+        }
     </div>
     <div class="container-fluid my-3 bg-white shadow">
         <div class="row px-2">
@@ -121,7 +138,7 @@
                 }
                 <div>
 
-                <span class="text-danger small" id="selectedregion-validationspan"></span>
+                    <span class="text-danger small" id="selectedregion-validationspan"></span>
                 </div>
             </div>
             <div class="d-flex justify-content-end col-12">

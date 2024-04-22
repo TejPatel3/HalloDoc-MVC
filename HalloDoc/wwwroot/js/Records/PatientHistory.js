@@ -2,7 +2,6 @@
     $('.admin-layout-nav').removeClass('admin-layout-nav-active');
     $('#nav-record-tab').addClass('admin-layout-nav-active');
 }
-
 var firstname;
 var lastname;
 var email;
@@ -44,7 +43,6 @@ $('#clearPatientHistorybtn').click(function () {
     firstname = "";
     lastname =  "";
     email =  "";
-    phone =  "";
-  
+    phone =  "";  
     loadData();
 });

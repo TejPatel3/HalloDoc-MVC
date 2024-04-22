@@ -2228,11 +2228,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\HalloDoc\\HalloDoc.Data\\Services.csproj",
+      "projectUniqueName": "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc.Data\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\Services.csproj",
+      "projectPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc.Data\\Services.csproj",
       "packagesPath": "C:\\Users\\pce156\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\obj\\",
+      "outputPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc.Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pce156\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2249,8 +2249,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj": {
-              "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj"
+            "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc.Models\\DataModels.csproj": {
+              "projectPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc.Models\\DataModels.csproj"
             }
           }
         }

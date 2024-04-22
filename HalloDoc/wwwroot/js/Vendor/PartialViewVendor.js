@@ -1,5 +1,4 @@
-﻿
-$('.deletevendor').on('click', function () {
+﻿$('.deletevendor').on('click', function () {
     var vendorid = $(this).val();
     Swal.fire({
         title: "Are you sure?",
