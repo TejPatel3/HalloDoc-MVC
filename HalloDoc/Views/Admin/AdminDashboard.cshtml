@@ -331,7 +331,7 @@
                         <label for="floatingTextarea" class="text-secondary">Narrow Search By Region</label>
                     </div>
 
-                    <select id="TransferModalSecondDropDownSelect" name="physicianname" class="form-select form-select-lg mt-3 fs-6 form-control physiciandrop" aria-label=".form-select-lg example">
+                    <select id="TransferModalSecondDropDownSelect" name="physicianid" class="form-select form-select-lg mt-3 fs-6 form-control physiciandrop" aria-label=".form-select-lg example">
                         <option class="fs-6" value="" selected hidden>Select Physician</option>
                     </select>
                     <span class="text-danger" id="TransferModalSecondDropDownSpan"></span>
@@ -395,7 +395,7 @@
                     <br />
                     <small class="text-secondary">To Send Agreement please make sure you are updating the correct contact information below for the responsible party.</small>
                     <div class="form-floating py-2 p-0">
-                        <input class="form-control " id="AgreementModal-Phone" placeholder="Mobile Number" />
+                        <input class="form-control " id="AgreementModal-Phone" placeholder="Mobile Number" maxlength="10"/>
                         <label for="floatingTextarea" class="text-secondary" style="top : 8px">Phone Number</label>
                         <span class="text-danger" id="SendAgreementModalphoneSpan"></span>
                     </div>

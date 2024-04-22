@@ -18,6 +18,7 @@ $(document).ready(function () {
                     value: "",
                     text: "Select Physician"
                 }))
+                console.log("test")
                 console.log(data)
                 $.each(data, function (index, item) {
                     secondDropdown.append($('<option>', {

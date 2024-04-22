@@ -225,30 +225,38 @@ namespace HalloDoc.Controllers.ProviderSide
                 model.Email = requestclients.Email;
                 model.Location = requestclients.Address;
                 model.isFinaled = !fortrue[0];
-                model.HistoryOfIllness = encounter.HistoryIllness;
-                model.MedicalHistory = encounter.MedicalHistory;
-                model.Medication = encounter.Medications;
-                model.Allergies = encounter.Allergies;
-                model.Temp = encounter.Temp;
-                model.HR = encounter.Hr;
-                model.RR = encounter.Rr;
-                model.BPs = encounter.BpS;
-                model.BPd = encounter.BpD;
-                model.O2 = encounter.O2;
-                model.Pain = encounter.Pain;
-                model.Heent = encounter.Heent;
-                model.CV = encounter.Cv;
-                model.Chest = encounter.Chest;
-                model.ABD = encounter.Abd;
-                model.Extr = encounter.Extr;
-                model.Skin = encounter.Skin;
-                model.Neuro = encounter.Neuro;
-                model.Other = encounter.Other;
-                model.Diagnosis = encounter.Diagnosis;
-                model.TreatmentPlan = encounter.TreatmentPlan;
-                model.MedicationsDispended = encounter.MedicationDispensed;
-                model.Procedure = encounter.Procedures;
-                model.Followup = encounter.FollowUp;
+
+                if (encounter != null)
+                {
+                    model.HistoryOfIllness = encounter.HistoryIllness;
+                    model.MedicalHistory = encounter.MedicalHistory;
+                    model.Medication = encounter.Medications;
+                    model.Allergies = encounter.Allergies;
+                    model.Temp = encounter.Temp;
+                    model.HR = encounter.Hr;
+                    model.RR = encounter.Rr;
+                    model.BPs = encounter.BpS;
+                    model.BPd = encounter.BpD;
+                    model.O2 = encounter.O2;
+                    model.Pain = encounter.Pain;
+                    model.Heent = encounter.Heent;
+                    model.CV = encounter.Cv;
+                    model.Chest = encounter.Chest;
+                    model.ABD = encounter.Abd;
+                    model.Extr = encounter.Extr;
+                    model.Skin = encounter.Skin;
+                    model.Neuro = encounter.Neuro;
+                    model.Other = encounter.Other;
+                    model.Diagnosis = encounter.Diagnosis;
+                    model.TreatmentPlan = encounter.TreatmentPlan;
+                    model.MedicationsDispended = encounter.MedicationDispensed;
+                    model.Procedure = encounter.Procedures;
+                    model.Followup = encounter.FollowUp;
+                }
+                else
+                {
+                    encounter = null;
+                }
                 model.role = role;
                 return View(model);
             }
