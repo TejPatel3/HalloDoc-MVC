@@ -301,15 +301,41 @@ namespace HelloDoc.Controllers.Scheduling
             }
         }
 
-        public void ViewShiftModelSavebtn(SchedulingViewModel obj)
+        public IActionResult ViewShiftModelSavebtn(SchedulingViewModel obj)
         {
             ShiftDetail shiftdetail = _unitOfWork.tableData.GetShiftDetailByShiftDetailId(obj.shiftdetailid);
+            List<ShiftDetail> shiftdetaillist = _unitOfWork.tableData.GetShiftDetailList().Where(m => m.Shift.PhysicianId == shiftdetail.Shift.PhysicianId && m.ShiftDate == shiftdetail.ShiftDate).ToList();
+            shiftdetaillist.Remove(shiftdetail);
             Physician physician = _unitOfWork.tableData.GetPhysicianFirstOrDefault(shiftdetail.Shift.PhysicianId);
-            if (shiftdetail.StartTime != obj.starttime || shiftdetail.EndTime != obj.endtime)
+            bool check = true;
+            if (shiftdetaillist.Count == 0)
             {
                 shiftdetail.StartTime = obj.starttime;
                 shiftdetail.EndTime = obj.endtime;
                 _unitOfWork.UpdateData.UpdateShiftDetail(shiftdetail);
+            }
+            foreach (var item in shiftdetaillist)
+            {
+                if (obj.starttime < item.StartTime && obj.endtime < item.StartTime || obj.endtime > item.EndTime && obj.starttime > item.EndTime)
+                {
+                    check = true;
+                }
+                else
+                {
+                    check = false;
+                    break;
+                }
+            }
+            if (check)
+            {
+                shiftdetail.StartTime = obj.starttime;
+                shiftdetail.EndTime = obj.endtime;
+                _unitOfWork.UpdateData.UpdateShiftDetail(shiftdetail);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
             }
         }
         public IActionResult ViewShiftModelDeletebtn(int shiftdetailsid)
@@ -355,6 +381,7 @@ namespace HelloDoc.Controllers.Scheduling
                 shiftdateviewshift = shiftdata.ShiftDate,
                 starttime = shiftdata.StartTime,
                 endtime = shiftdata.EndTime,
+
             };
             return model;
         }
@@ -406,7 +433,7 @@ namespace HelloDoc.Controllers.Scheduling
                 {
                     shiftdetaillist = _unitOfWork.tableData.GetShiftDetailList().Where(m => m.ShiftDate == dateOnly && m.IsDeleted != new BitArray(new[] { true })).ToList();
                 }
-
+                shiftdetaillist = shiftdetaillist.Where(x => x.StartTime <= DateTime.Now && x.EndTime >= DateTime.Now && x.Status == 2).ToList();
                 IEnumerable<Physician> ondutyphysician = new List<Physician>();
                 foreach (var item in shiftdetaillist)
                 {
@@ -446,6 +473,7 @@ namespace HelloDoc.Controllers.Scheduling
                     }
                     weekShiftdetaillist.AddRange(tempShiftdetaillist);
                 }
+                weekShiftdetaillist = weekShiftdetaillist.Where(x => x.StartTime <= DateTime.Now && x.EndTime >= DateTime.Now && x.Status == 2).ToList();
                 IEnumerable<Physician> weekondutyphysician = new List<Physician>();
                 foreach (var item in weekShiftdetaillist)
                 {
@@ -484,7 +512,7 @@ namespace HelloDoc.Controllers.Scheduling
                     }
                     monthShiftdetaillist.AddRange(tempShiftdetaillist);
                 }
-
+                monthShiftdetaillist = monthShiftdetaillist.Where(x => x.StartTime <= DateTime.Now && x.EndTime >= DateTime.Now && x.Status == 2).ToList();
                 IEnumerable<Physician> monthondutyphysician = new List<Physician>();
                 foreach (var item in monthShiftdetaillist)
                 {

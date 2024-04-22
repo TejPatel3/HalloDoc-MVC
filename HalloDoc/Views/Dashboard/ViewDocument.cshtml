@@ -66,7 +66,6 @@
                     <div class="col-12  text-secondary pt-2" style="font-size:13px;">Check here for any files that you or the doctors of your subsequenc requests have attached for you to review</div>
                     <div class="mt-1">
                         <form asp-action="UploadButton" asp-controller="Dashboard" enctype="multipart/form-data" method="post" asp-route-requestid="@Model.requestid">
-
                             <div class="row d-flex">
                                 <div class="py-2 col-12 ">
                                     <div class="form-group rounded d-flex align-items-center justify-content-between uploadbtndiv">
@@ -74,14 +73,13 @@
                                             <input type="file" id="actual-btn" asp-for="Upload" multiple hidden />
                                             <label role="button" for="actual-btn" id="file-chosen" class="choosenfile text-dark text-nowrap">No item selected</label>
                                         </div>
-                                        <button type="submit" class="uploadbtn px-2 py-1 d-flex ms-1 border-0">
+                                        <button type="button" id="UploadButtonViewDocument" class="uploadbtn px-2 py-1 d-flex ms-1 border-0" onclick="UploadDocument()">
                                             <label role="button" class="d-flex align-items-center"><i class="bi bi-cloud-arrow-up p-2"></i><div>Upload</div></label>
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
 
@@ -91,39 +89,40 @@
                         Download all
                     </button>
                 </div>
-
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th scope="col"><input type="checkbox" id="download" /></th>
-                            <th scope="col">FileName</th>
-                            <th scope="col">Uploader</th>
-                            <th scope="col">Upload Date</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.wiseFiles)
-                        {
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
                             <tr>
-                                <th scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" /></th>
-                                <td>@item.FileName.Substring(52)</td>
-                                <td>@Model.users.FirstName @Model.users.LastName</td>
-                                <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
-                                <td>
-                                    <a href="~/UploadDocument/@item.FileName.Substring(52)" download>
-                                        <i class="bi bi-cloud-arrow-down  btn btn-outline-info"></i>
-                                    </a>
-                                </td>
+                                <th scope="col"><input type="checkbox" id="download" /></th>
+                                <th scope="col">FileName</th>
+                                <th scope="col">Uploader</th>
+                                <th scope="col">Upload Date</th>
+                                <th scope="col">Action</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.wiseFiles)
+                            {
+                                <tr>
+                                    <th scope="row"><input type="checkbox" name="checkbox" class="childCheckbox" /></th>
+                                    <td>@item.FileName.Substring(65)</td>
+                                    <td>@Model.users.FirstName @Model.users.LastName</td>
+                                    <td>  @item.CreatedDate.ToString("MMM dd , yyyy")</td>
+                                    <td>
+                                        <a href="~/UploadDocument/@item.FileName.Substring(52)" download>
+                                            <i class="bi bi-cloud-arrow-down  btn btn-outline-info"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-        <div class="container mt-3 ">
+        <div class="container mt-3">
             <div class="d-flex mb-2">
                 <div class="row ">
                     <div class="d-flex justify-content-between col-12">
@@ -136,14 +135,14 @@
                     </div>
                     <form id="thisform" asp-controller="Dashboard" asp-action="edit">
                         <div class=" row bg-white mt-2 p-3 g-1 g-sm-3">
-                            <h5 class="pt-1">General Information</h5>
+                            <h5>General Information</h5>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="text" asp-for="users.FirstName"
                                        class="form-control" id="age"
                                        placeholder="Username"
                                        aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">First Name </label>
-                                <span class="text-danger"></span>
+                                <span class="text-danger" asp-validation-for="users.FirstName"></span>
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="text" asp-for="users.LastName"
@@ -151,7 +150,7 @@
                                        placeholder="Username"
                                        aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">Last name</label>
-                                <span class="text-danger"></span>
+                                <span class="text-danger" asp-validation-for="users.LastName"></span>
                             </div>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="date" asp-for="DOB"
@@ -159,9 +158,9 @@
                                        placeholder="Username"
                                        aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between ms-2">Birth Date</label>
-                                <span class="text-danger"></span>
+                                <span class="text-danger" asp-validation-for="DOB"></span>
                             </div>
-                            <h5 class="pt-1">Contact Information</h5>
+                            <h5>Contact Information</h5>
                             <div class="col-12 col-sm-6 ">
                                 <div class="row">
                                     <div class="col-12 col-sm-4 form-floating mb-3">
@@ -179,7 +178,7 @@
                                                    type="tel"
                                                    disabled
                                                    style="border: none; padding: 18px 2% 18px 50px; width:100%; " />
-                                            <span class="text-danger"></span>
+                                            <span class="text-danger" asp-validation-for="users.Mobile"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -191,9 +190,9 @@
                                        placeholder="Username" disabled
                                        aria-label="Username" />
                                 <label class="d-flex justify-content-between ms-2">Email </label>
-                                <span class="text-danger"></span>
+                                <span class="text-danger" asp-validation-for="users.Email"></span>
                             </div>
-                            <h5 class="pt-1">Location Information</h5>
+                            <h5>Location Information</h5>
                             <div class="col-12 col-sm-6 form-floating mb-3">
                                 <input type="text" asp-for="users.Street"
                                        class="form-control" id="Street"
@@ -226,7 +225,7 @@
                                                placeholder="Username"
                                                aria-label="Username" disabled />
                                         <label class="d-flex justify-content-between ms-2">Zip code </label>
-                                        <span class="text-danger"></span>
+                                        <span class="text-danger" asp-validation-for="users.ZipCode"></span>
                                     </div>
                                     <div class="col-3 ">
                                         <a class="btn btn-outline-info p-3 w-100" id="map">
@@ -241,7 +240,7 @@
                             </div>
                         </div>
                     </form>
-                    <div class="d-flex justify-content-end mb-2 mt-1">
+                    <div class="d-flex justify-content-end mb-3 mt-1">
                         <a class="btn btn-info " id="editButton">Edit</a>
                     </div>
                 </div>
@@ -256,13 +255,12 @@
         $('#nav-home-tab').addClass('admin-layout-nav-active');
     }
     $('#nav-profile-tab').click(function () {
-        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-home-tab').removeClass('admin-layout-nav-active');
         $('#nav-profile-tab').addClass('admin-layout-nav-active');
     })
     $('#nav-home-tab').click(function () {
-        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-profile-tab').removeClass('admin-layout-nav-active');
         $('#nav-home-tab').addClass('admin-layout-nav-active');
-    })
     })
     $(document).ready(function () {
         $('#editButton').click(function () {
@@ -274,9 +272,6 @@
             $("#hiddenBlock").removeClass("d-none");
             $(this).hide();
         });
-    });
-
-    $(document).ready(function () {
         $('#cancelbtn').click(function () {
             $('input[type="text"]').prop('disabled', true);
             $('input[type="date"]').prop('disabled', true);
@@ -378,13 +373,28 @@
         downloadSelectedFiles();
     });
 
-    const actualBtn = document.getElementById('actual-btn');
-    const fileChosen = document.getElementById('file-chosen');
-    actualBtn.addEventListener('change', function () {
-        fileChosen.textContent = this.files[0].name
-        fileChosen.placeholder = this.files[0].name
-        fileChosen.value = this.files[0].name
+    const actualBtn1 = document.getElementById('actual-btn');
+    const fileChosen1 = document.getElementById('file-chosen');
+    actualBtn1.addEventListener('change', function () {
+        fileChosen1.textContent = this.files[0].name
+        fileChosen1.placeholder = this.files[0].name
+        fileChosen1.value = this.files[0].name
     })
+    function UploadDocument() {
+        console.log("jhsbdhgs")
+        // if ($('#UploadButtonViewDocument').type == "button") {
+        var fileChosencheck = document.getElementById('file-chosen');
+        if (fileChosencheck.textContent == "No item selected") {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please select Document first then try to upload",
+            });
+        }
+        else {
+            $('#UploadButtonViewDocument').prop("type", "submit");
+        }
+    }
 </script>
 
 <style>

@@ -75,7 +75,7 @@ $(document).ready(function () {
                 $.each(response, function (index, item) {
                     console.log(item)
                     physelect.append($('<option>', {
-                        value: item.physicianId,
+                        value: item.physicianid,
                         text: item.name
                     }));
                 });
@@ -133,7 +133,7 @@ $('#endTimeAddShiftModel , #startTimeAddShiftModel').on('change', function () {
             if (minutes < 60) {
                 Swal.fire({
                     title: "Alert",
-                    text: "you can add minimum 2 hour shift",
+                    text: "you can add minimum 1 hour shift",
                     icon: "warning",
                 });
                 $('#endTimeAddShiftModel').val("");
@@ -161,10 +161,10 @@ $('#viewshiftstartdate , #viewshiftenddate').on('change', function () {
             let diffMilliseconds = Math.abs(enddate - startdate);
             let minutes = Math.floor(diffMilliseconds / 60000);
             console.log(minutes)
-            if (minutes < 120) {
+            if (minutes < 60) {
                 Swal.fire({
                     title: "Alert",
-                    text: "you can add minimum 2 hour shift",
+                    text: "you can add minimum 1 hour shift",
                     icon: "warning",
                 });
                 $('#viewshiftenddate').val("");
@@ -238,6 +238,11 @@ $("#viewShiftForm").submit(function (event) {
             contentType: false,
             success: function (response) {
                 loadSchedulingPartial(currentPartial);
+                Swal.fire({
+                    icon: "success",
+                    title: "Updated",
+                    text: "Shift Updated Successfully!",
+                });
                 $('#viewshiftstartdate').prop('disabled', true);
                 $('#viewshiftenddate').prop('disabled', true);
                 $('#editbtnviewshiftmodel').removeClass('d-none');
@@ -245,7 +250,11 @@ $("#viewShiftForm").submit(function (event) {
                 $('#viewShiftModal').modal('hide');
             },
             error: function (xhr, textStatus, errorThrown) {
-                console.log('Error while updating physician info:', errorThrown);
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Shift Already created in this time!",
+                });
             }
         });
     }

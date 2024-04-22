@@ -155,12 +155,12 @@
 </div>
 
 @* cancel case model *@
-<div class="modal fade rounded-3 shadow" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@* <div class="modal fade rounded-3 shadow" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content ">
             <div class="modal-header bg-info">
                 <h5 class="modal-title text-white" id="exampleModalLabel">cancel Confirmation</h5>
-                <button class="btn" type="button" data-dismiss="modal">
+                <button class="btn" type="button" data-bs-dismiss="modal">
                     <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                 </button>
             </div>
@@ -188,16 +188,16 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" value="submit" class="btn btn-info text-white ModalSubminbtn" id="CancelModalSubminbtn"> Confirm</button>
-                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">cancel</button>
                 </div>
             </form>
         </div>
     </div>
-</div>
+</div> *@
 
 
 @* Assign Case Modal *@
-<div class="modal fade rounded-3 shadow" id="AssignModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@* <div class="modal fade rounded-3 shadow" id="AssignModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-info">
@@ -242,16 +242,16 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-info text-white" id="AssignModalSubminbtn">Confirm</button>
-                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">cancel</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
+ *@
 
 @* Block Case Modal *@
-<div class="modal fade rounded-3 shadow" id="BlockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+@* <div class="modal fade rounded-3 shadow" id="BlockModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-info">
@@ -279,29 +279,28 @@
                 </div>
                 <div class="modal-footer border-0">
                     <button type="button" class="btn btn-info text-white" id="BlockModalSubminbtn">Confirm</button>
-                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">cancel</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
+ *@
 
 @*Trasnfer modal provider*@
-
 <div class="modal fade" id="exampleModalTransfer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <h5 class="modal-title text-white" id="exampleModalLabel">Transfer Request</h5>
-                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-xmark text-white"></i>
                 </button>
             </div>
             <div class="modal-body">
                 <form asp-action="TransferModal" asp-controller="ProviderSide" method="post">
                     <small class="text-secondary">This request will be transferred to admin.</small>
-                    <input type="number" name="requestid" class="requestid" />
+                    <input type="number" name="requestid" class="requestid" hidden/>
 
 
                     <div class="form-floating mt-3">
@@ -312,7 +311,7 @@
                     </div>
                     <div class="d-flex float-end mt-4">
                         <button type="button" id="TransferModalSubminbtn" class="btn btn-info text-white mx-2 shadow-none">Submit</button>
-                        <button type="button" class="btn border-info text-info shadow-none" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn border-info text-info shadow-none" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -320,8 +319,8 @@
         </div>
     </div>
 </div>
-
 @* Clear Case Modal *@
+@* 
 <div class="modal fade rounded-3 shadow" id="ClearModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content py-4">
@@ -347,7 +346,7 @@
         </div>
     </div>
 </div>
-
+ *@
 
 @* Send Agreement Case Modal *@
 <div class="modal fade rounded-3 shadow" id="AgreementModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -355,7 +354,7 @@
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <h5 class="modal-title text-white" id="exampleModalLabel">Send Agreement</h5>
-                <button class="btn" type="button" data-dismiss="modal">
+                <button class="btn" type="button" data-bs-dismiss="modal">
                     <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                 </button>
             </div>
@@ -378,7 +377,7 @@
                 </div>
                 <div class="modal-footer border-0 pt-0 pb-3">
                     <button type="button" class="btn btn-info text-white sendAgreementBtn" id="SendAgreementModalSubminbtn">Send</button>
-                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">cancel</button>
                 </div>
             </form>
         </div>
@@ -392,7 +391,7 @@
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <h5 class="modal-title text-white" id="exampleModalLabel">Send Link</h5>
-                <button class="btn" type="button" data-dismiss="modal">
+                <button class="btn" type="button" data-bs-dismiss="modal">
                     <i class="fa-solid fa-xmark" style="color: #ffffff;"></i>
                 </button>
             </div>
@@ -417,7 +416,7 @@
                 </div>
                 <div class="modal-footer border-0 pt-0 pb-3">
                     <button type="button" id="SendCreateRequestModalSubminbtn" class="btn btn-info text-white">Send</button>
-                    <button type="button" class="btn btn-outline-info" data-dismiss="modal">cancel</button>
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">cancel</button>
                 </div>
             </form>
         </div>
@@ -433,7 +432,7 @@
         <div class="modal-content">
             <div class="modal-header bg-info">
                 <h5 class="modal-title text-white" id="staticBackdropLabel">Select Type Of Care</h5>
-                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
                     <i class="fa-solid fa-xmark text-white"></i>
                 </button>
             </div>
@@ -455,7 +454,7 @@
 
             <div class="modal-footer">
                 <button class="btn btn-info shadow-none encounter-save" type="button" role="button">Save</button>
-                <button class="btn border border-1 border-info text-info shadow-none" data-dismiss="modal" role="button" type="button">Cancel</button>
+                <button class="btn border border-1 border-info text-info shadow-none" data-bs-dismiss="modal" role="button" type="button">Cancel</button>
             </div>
 
 

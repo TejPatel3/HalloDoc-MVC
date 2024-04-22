@@ -66,27 +66,25 @@
                             var diff = item.EndTime.Hour - item.StartTime.Hour + 1;
                             if (item.StartTime.Hour <= i && item.EndTime.Hour >= i)
                             {
-                                var perstart = ((item.StartTime.Minute / 42.00) * 100)/diff;
-                                var perend = (((40 - item.EndTime.Minute) / 60.00) * 100)/diff;
-                                if(perend < 0)
+                                var perstart = ((item.StartTime.Minute / 42.00) * 100) / diff;
+                                var perend = (((40 - item.EndTime.Minute) / 60.00) * 100) / diff;
+                                if (perend < 0)
                                 {
                                     perend = 0;
                                 }
-                               
+
                                 perstart /= 2;
                                 <td id="i_@obj.PhysicianId" colspan="@diff">
-                                    <button class="dates d-flex align-items-center justify-content-center border-0 viewshiftbtn small" value="@item.ShiftDetailId"
+                                    <button class="dates d-flex align-items-center justify-content-center border-0 viewshiftbtn small" value="@item.ShiftDetailId" data-id="@item.ShiftId"
                                             data-bs-toggle="modal" data-bs-target="#viewShiftModal"
-                                    @if(item.Status == 2)
+                                    @if (item.Status == 2)
                                     {
                                         @:style="background-color:rgb(197 255 194); margin-left : @perstart%; margin-right: @perend%;width: -webkit-fill-available;color: rgb(26, 62, 24); font-weight:600"
-                                        
                                     }
                                     else
                                     {
                                         @:style="background-color:rgb(255, 212, 237); margin-left : @perstart%; margin-right: @perend%;  width: -webkit-fill-available; color: rgb(87, 1, 51); font-weight:600"
-                                    }
-                                    >
+                                    }>
                                         @item.StartTime.ToString("hh:mm tt")-@item.EndTime.ToString("hh:mm tt")
                                     </button>
                                 </td>
@@ -134,7 +132,6 @@
 
                 $("#viewShiftModal").modal();
                 console.log(response)
-
                 $('#viewshiftregion').val(response.regionname)
                 $('#viewshiftphysicianname').empty();
                 $('#viewshiftphysicianname').append(

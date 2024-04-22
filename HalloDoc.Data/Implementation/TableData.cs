@@ -76,10 +76,10 @@ namespace Services.Implementation
         {
             return _context.HealthProfessionalTypes.ToList();
         }
-      
+
         public List<ShiftDetail> GetShiftDetailList()
         {
-            return _context.ShiftDetails.Include(m => m.Shift).ToList();
+            return _context.ShiftDetails.Include(m => m.Shift).Where(m => m.IsDeleted != new BitArray(new[] { true })).ToList();
         }
         public List<Shift> GetShiftList()
         {
@@ -103,7 +103,7 @@ namespace Services.Implementation
         }
         public List<RoleMenu> GetRoleMenuListByRoleId(int roleId)
         {
-                return _context.RoleMenus.Where(m => m.RoleId == roleId).ToList();
+            return _context.RoleMenus.Where(m => m.RoleId == roleId).ToList();
         }
         public List<PhysicianRegion> GetPhysicianRegionListByPhysiianId(int physiianId)
         {
@@ -198,7 +198,7 @@ namespace Services.Implementation
         {
             return _context.Regions.FirstOrDefault(m => m.RegionId == regionId);
         }
-        public RequestStatusLog GetRequestStatusLogByRequestIdStatus(int requestId,int status)
+        public RequestStatusLog GetRequestStatusLogByRequestIdStatus(int requestId, int status)
         {
             return _context.RequestStatusLogs.FirstOrDefault(m => m.RequestId == requestId && m.Status == status);
         }
