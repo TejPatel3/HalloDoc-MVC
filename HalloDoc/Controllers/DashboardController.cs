@@ -134,8 +134,15 @@ namespace HalloDoc.Controllers
         {
             int id = (int)HttpContext.Session.GetInt32("UserId");
             var users = _context.Users.FirstOrDefault(m => m.UserId == id);
+            var model = new request
+            {
+                rFirstName = users.FirstName,
+                rLastName = users.LastName,
+                rEmail = users.Email,
+            };
+
             TempData["user"] = users.FirstName;
-            return View();
+            return View(model);
         }
 
         public IActionResult edit(PatientDashboard req)

@@ -120,7 +120,7 @@ namespace Services.Implementation
         }
         public Request GetRequestFirstOrDefault(int id)
         {
-            return _context.Requests.FirstOrDefault(m => m.RequestId == id);
+            return _context.Requests.Include(m => m.RequestClients).Include(m => m.User).FirstOrDefault(m => m.RequestId == id);
         }
         public Physician GetPhysicianFirstOrDefault(int? id)
         {

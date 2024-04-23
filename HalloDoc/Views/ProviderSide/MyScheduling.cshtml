@@ -143,7 +143,7 @@
             </div>
             <form asp-action="AddShift" asp-controller="Scheduling">
                 <div class="modal-body">
-                    <input value="@accessor.HttpContext.Session.GetString("PhysicianId")" />
+                    <input value="@accessor.HttpContext.Session.GetString("PhysicianId")" hidden/>
                     <div class="form-floating">
                         <select asp-for="regionid" class="form-select physiciandata" id="floatingSelect" aria-label="Floating label select example">
                             <option value="" selected>Select Region</option>
@@ -233,7 +233,7 @@
     </script>
 }
 @if (TempData["shiftalreadyassigned"] != null)
-{
+{   
     <script>
         console.log("kdshgduhsghjfddsfdsfdsfdsf")
         Swal.fire({

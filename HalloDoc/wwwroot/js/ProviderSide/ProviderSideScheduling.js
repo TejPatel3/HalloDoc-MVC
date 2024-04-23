@@ -104,10 +104,10 @@ $('#endTimeAddShiftModel , #startTimeAddShiftModel').on('change', function () {
             let diffMilliseconds = Math.abs(enddate - startdate);
             let minutes = Math.floor(diffMilliseconds / 60000);
             console.log(minutes)
-            if (minutes < 120) {
+            if (minutes < 60) {
                 Swal.fire({
                     title: "Alert",
-                    text: "you can add minimum 2 hour shift",
+                    text: "you can add minimum 1 hour shift",
                     icon: "warning",
                 });
                 $('#endTimeAddShiftModel').val("");
@@ -135,10 +135,10 @@ $('#viewshiftstartdate , #viewshiftenddate').on('change', function () {
             let diffMilliseconds = Math.abs(enddate - startdate);
             let minutes = Math.floor(diffMilliseconds / 60000);
             console.log(minutes)
-            if (minutes < 120) {
+            if (minutes < 60) {
                 Swal.fire({
                     title: "Alert",
-                    text: "you can add minimum 2 hour shift",
+                    text: "you can add minimum 1 hour shift",
                     icon: "warning",
                 });
                 $('#viewshiftenddate').val("");

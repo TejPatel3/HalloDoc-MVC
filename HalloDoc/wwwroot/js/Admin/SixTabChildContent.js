@@ -269,6 +269,7 @@ $('.acceptRequest').on('click', function () {
     });
 });
 
+//encounter in conclude test
 $('.encounterclick_concludep').on('click', function () {
     var requestid = $(this).val();
     console.log("mnhjdsbchjsdbjhb")
@@ -278,12 +279,60 @@ $('.encounterclick_concludep').on('click', function () {
         success: function (data) {
             if (data == "") {
                 alert("Already Finalized");
-            } else {
+            }
+            else {
                 $('#nav-home').html(data);
             }
         },
         error: function (xhr, status, error) {
             console.log(error);
         }
+    })
+})
+
+//to close encounter button
+$('.encounterclick_Toclosep').on('click', function () {
+    var requestid = $(this).val();
+    console.log("download encounter model open js")
+    $.ajax({
+        url: '/ProviderSide/CheckFinalize',
+        data: { requestid: requestid },
+        success: function (result) {
+            console.log(result)
+            if (result) {
+                $.ajax({
+                    url: '/ProviderSide/Encounter',
+                    data: { requestid: requestid },
+                    success: function (result) {
+                        $('#download_Modal').html(result);
+                        var my = new bootstrap.Modal(document.getElementById('DownloadEncounterModal'));
+                        my.show();
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                })
+            }
+            else {
+                $.ajax({
+                    url: '/ProviderSide/Encounter',
+                    data: { requestid: requestid },
+                    success: function (result) {
+                        $('#nav-home').html(result);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                })
+            }
+            console.log(result.IsAjax);
+            $('#download_Modal').html(result);
+            var my = new bootstrap.Modal(document.getElementById('DownloadEncounterModal'));
+            my.show();
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+        }
+
     })
 })

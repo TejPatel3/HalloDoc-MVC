@@ -121,7 +121,7 @@
             table.columns(0).search('').draw();
         }
         else {
-            table.columns(0).search(value).draw(); 
+            table.columns(0).search(value).draw();
             try {
                 console.log('accp')
                 var headers = document.querySelectorAll('.accordion-header');
@@ -129,9 +129,9 @@
                     const requesttype = header.querySelector('.requesttype-accordion');
                     const nameText = requesttype.textContent || requesttype.innerText;
                     if (nameText.includes(value)) {
-                        header.style.display = ''; 
+                        header.style.display = '';
                     } else {
-                        header.style.display = 'none'; 
+                        header.style.display = 'none';
                     }
                 });
             }
@@ -251,8 +251,8 @@ $('.encounter-save').on('click', function (e) {
         success: function (data) {
             $('#exampleModalEncounter').click();
             $('#nav-home').html(data);
-            if (data == ""){
-               location.reload()
+            if (data == "") {
+                location.reload()
             }
         },
         error: function (xhr, status, error) {
@@ -275,27 +275,88 @@ $('.housecallbtnclickp').on('click', function () {
     })
 })
 
+//$('.encounterclick_concludep_Encounter').on('click', function () {
+//    var requestid = $(this).val();
+//    console.log("mnhjdsbchjsdbjhb")
+//    $.ajax({
+//        url: '/ProviderSide/Encounter',
+//        data: { requestid: requestid },
+//        success: function (data) {
+//            if (data == "") {
+//                alert("Already Finalized");
+//            } else {
+//                $('#nav-home').html(data);
+//            }
+//        },
+//        error: function (xhr, status, error) {
+//            console.log(error);
+//        }
+//    })
+//})
+
 $('.encounterclick_concludep').on('click', function () {
     var requestid = $(this).val();
-    console.log("mnhjdsbchjsdbjhb")
+    console.log("download encounter model open js")
     $.ajax({
-        url: '/ProviderSide/Encounter',
+        url: '/ProviderSide/CheckFinalize',
         data: { requestid: requestid },
-        success: function (data) {
-            if (data == "") {
-                alert("Already Finalized");
-            } else {
-                $('#nav-home').html(data);
+        success: function (result) {
+            console.log(result)
+            if (result) {
+                $.ajax({
+                    url: '/ProviderSide/Encounter',
+                    data: { requestid: requestid },
+                    success: function (result) {
+                        $('#download_Modal').html(result);
+                        var my = new bootstrap.Modal(document.getElementById('DownloadEncounterModal'));
+                        my.show();
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                })
             }
+            else {
+                $.ajax({
+                    url: '/ProviderSide/Encounter',
+                    data: { requestid: requestid },
+                    success: function (result) {
+                        $('#nav-home').html(result);                   
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                })
+            }
+            console.log(result.IsAjax);
+            $('#download_Modal').html(result);
+            var my = new bootstrap.Modal(document.getElementById('DownloadEncounterModal'));
+            my.show();
         },
         error: function (xhr, status, error) {
             console.log(error);
         }
+
     })
 })
+//$('.encounterclick_concludep').on('click', function () {
+//    var requestid = $(this).val();
+//    console.log("download encounter model open js")
+//    $.ajax({
+//        url: '/ProviderSide/Encounter',
+//        data: { requestid: requestid },
+//        success: function (result) {
+//            console.log(result.IsAjax);
+//            $('#download_Modal').html(result);
+//            var my = new bootstrap.Modal(document.getElementById('DownloadEncounterModal'));
+//            my.show();
+//        },
+//        error: function (xhr, status, error) {
+//            console.log(error);
+//        }
 
-
-
+//    })
+//})
 $('.data-agreement').on('click', function (e) {
     var requestid = $(this).attr('value');
     console.log(requestid);

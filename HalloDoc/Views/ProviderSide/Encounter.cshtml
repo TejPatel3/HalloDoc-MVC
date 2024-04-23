@@ -75,11 +75,12 @@
                     </div>
                     <div class="col-md-6 ">
                         <div class="mb-3 form-floating">
-                            <input type="tel"
-                                   class=" w-100 form-control"
-                                   asp-for="Mobile" placeholder="" />
-                            <label asp-for="Mobile" class="form-label"></label>
-                            <span class="text-danger" asp-validation-for="Mobile"></span>
+                            <div class="form-control p-0">
+                                <input asp-for="Mobile"
+                                       type="tel" class="adisabled" id="phone-adminprofile"
+                                       style="border: none; padding: 18px 2% 18px 50px; width:inherit" disabled />
+                                <span id="phone-validationspan" class="text-danger" asp-validation-for="Mobile"></span>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -162,7 +163,7 @@
                                    placeholder="Blood Pressure"
                                    class="form-control form-field form-tel-field w-100 text-wrap"
                                    asp-for="BPs" />
-                            <label asp-for="BPs" class="form-label">Blood Pressure Systolic</label>
+                            <label asp-for="BPs" class="form-label" style="font-size:12px">Blood Pressure Systolic</label>
                             <span class="text-danger" asp-validation-for="BPs"></span>
                         </div>
                     </div>
@@ -172,7 +173,7 @@
                                    placeholder="Blood Pressure"
                                    class="form-control form-field form-tel-field w-100"
                                    asp-for="BPd" />
-                            <label asp-for="BPd" class="form-label">Blood Pressure Diastolic</label>
+                            <label asp-for="BPd" class="form-label" style="font-size:12px">Blood Pressure Diastolic</label>
                             <span class="text-danger" asp-validation-for="BPd"></span>
                         </div>
                     </div>

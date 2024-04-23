@@ -9,9 +9,9 @@
 }
 
 
+<div id="download_Modal"></div>
 <div>
     <div class="px-sm-3 px-1" id="nav-home">
-
         <div class="container-fluid">
             <nav>
                 <div class="nav nav-tabs row g-0 border-0 pb-4 pt-2" id="status-tab" role="tablist">
@@ -300,7 +300,7 @@
             <div class="modal-body">
                 <form asp-action="TransferModal" asp-controller="ProviderSide" method="post">
                     <small class="text-secondary">This request will be transferred to admin.</small>
-                    <input type="number" name="requestid" class="requestid" hidden/>
+                    <input type="number" name="requestid" class="requestid" hidden />
 
 
                     <div class="form-floating mt-3">
@@ -320,7 +320,7 @@
     </div>
 </div>
 @* Clear Case Modal *@
-@* 
+@*
 <div class="modal fade rounded-3 shadow" id="ClearModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content py-4">

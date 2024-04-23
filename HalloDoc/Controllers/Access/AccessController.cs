@@ -185,15 +185,10 @@ namespace HalloDoc.Controllers.Access
         public IActionResult AdminProfileFromUserAccess(int adminid)
         {
             var admin = _unitOfWork.tableData.GetAdminByAdminId(adminid);
-            //var admin = _context.Admins.FirstOrDefault(m => m.AdminId == adminid);
             var aspnetuser = _unitOfWork.tableData.GetAspNetUserByAspNetUserId(admin.AspNetUserId);
-            //var aspnetuser = _context.AspNetUsers.FirstOrDefault(m => m.Id == admin.AspNetUserId);
             var rolelist = _unitOfWork.tableData.GetAspNetRoleList();
-            //var rolelist = _context.AspNetRoles.ToList();
             var regionlist = _unitOfWork.tableData.GetRegionList();
-            //var regionlist = _context.Regions.ToList();
             var adminregionlist = _unitOfWork.tableData.GetAdminRegionListByAdminId(adminid);
-            //var adminregionlist = _context.AdminRegions.Where(a => a.AdminId == adminid).ToList();
             var model = new UserAllDataViewModel
             {
                 UserName = aspnetuser.UserName,
