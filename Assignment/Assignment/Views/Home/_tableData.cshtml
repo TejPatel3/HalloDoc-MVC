@@ -1,0 +1,46 @@
+﻿@using DataModels.ViewModel
+@model List<TableDataViewModel>
+@{
+    Layout = null;
+}
+<table class="table align-middle example p-0">
+    <thead>
+        <tr class="fw-bold bg-light">
+            <td width="3%">Id</td>
+            <td width="8%">First Name</td>
+            <td width="8%">Last Name</td>
+            <td width="20%">Email</td>
+            <td width="4%">Age</td>
+            <td width="8%">Gender</td>
+            <td width="8%">Department</td>
+            <td width="8%">Education</td>
+            <td width="8%">Company</td>
+            <td width="5%">Experience</td>
+            <td width="6%">Package</td>
+            <td width="12%" class="text-center">Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Email</td>
+                <td>@item.Age</td>
+                <td>@item.Gender</td>
+                <td>@item.Department</td>
+                <td>@item.Education</td>
+                <td>@item.Company</td>
+                <td>@item.Experience</td>
+                <td>₹ @item.Package L</td>
+                <td class="text-center">
+                    <button value="@item.Id" class="btn btn-dark editbtn">Edit</button>
+                    <button class="btn btn-danger deletebtn" value="@item.Id">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="/js/Data.js" asp-append-version="true"></script>

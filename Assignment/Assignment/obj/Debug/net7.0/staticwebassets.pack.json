@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\wwwroot\\js\\Data.js",
+      "PackagePath": "staticwebassets\\js\\Data.js"
+    },
+    {
       "Id": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

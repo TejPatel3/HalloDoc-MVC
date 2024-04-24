@@ -8,6 +8,8 @@
     ".NETCoreApp,Version=v7.0": {
       "Assignment/1.0.0": {
         "dependencies": {
+          "DataModels": "1.0.0",
+          "DataServices": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.18",
           "Microsoft.AspNetCore.Session": "2.2.0",
           "Microsoft.DotNet.Scaffolding.Shared": "7.0.12",
@@ -2445,6 +2447,35 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
         }
+      },
+      "DataModels/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.18",
+          "Microsoft.AspNetCore.Session": "2.2.0",
+          "Microsoft.DotNet.Scaffolding.Shared": "7.0.12",
+          "Microsoft.EntityFrameworkCore": "7.0.18",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.18",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.18",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
+        },
+        "runtime": {
+          "DataModels.dll": {}
+        }
+      },
+      "DataServices/1.0.0": {
+        "dependencies": {
+          "DataModels": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.18",
+          "Microsoft.AspNetCore.Session": "2.2.0",
+          "Microsoft.DotNet.Scaffolding.Shared": "7.0.12",
+          "Microsoft.EntityFrameworkCore": "7.0.18",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.18",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.18",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.11"
+        },
+        "runtime": {
+          "DataServices.dll": {}
+        }
       }
     }
   },
@@ -4021,6 +4052,16 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "DataModels/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DataServices/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

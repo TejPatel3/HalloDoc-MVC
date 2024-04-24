@@ -20,3 +20,13 @@ html {
 body {
   margin-bottom: 60px;
 }
+.mainColor {
+    background-color: #108c8c !important;
+}
+.btnpurple {
+    background-color: #4854bc !important;
+    color:white !important;
+}
+.example{
+    width : fit-content !important;
+}

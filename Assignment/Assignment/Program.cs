@@ -1,4 +1,4 @@
-using DataModels.DataContext;
+using Assignment;
 using DataServices.Interface;
 using DataServices.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<ILoginRepository, LoginRepository>();
+builder.Services.AddScoped<IGetTableDataRepository, GetTableDataRepository>();
 
 var app = builder.Build();
 

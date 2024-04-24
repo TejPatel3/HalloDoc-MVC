@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
-namespace DataModels.DataContext;
+namespace Assignment;
 
 public partial class ApplicationDbContext : DbContext
 {
@@ -13,17 +15,28 @@ public partial class ApplicationDbContext : DbContext
     {
     }
 
-    public virtual DbSet<Login> Logins { get; set; }
+    public virtual DbSet<Department> Departments { get; set; }
+
+    public virtual DbSet<Employee> Employees { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("User ID = postgres;Password=762397@T;Server=localhost;Port=5432;Database=Testing;Integrated Security=true;Pooling=true;");
+        => optionsBuilder.UseNpgsql("User ID = postgres;Password=762397@T;Server=localhost;Port=5432;Database=EMS_DB;Integrated Security=true;Pooling=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Login>(entity =>
+        modelBuilder.Entity<Department>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("Login_pkey");
+            entity.HasKey(e => e.Id).HasName("Department_pkey");
+        });
+
+        modelBuilder.Entity<Employee>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("Employee_pkey");
+
+            entity.HasOne(d => d.Dept).WithMany(p => p.Employees)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("DeptId_fkey1");
         });
 
         OnModelCreatingPartial(modelBuilder);

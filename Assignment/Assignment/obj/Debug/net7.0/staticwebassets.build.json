@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DfYlz0z70hPwjUFgv8wK35cx6UfF4hgyV0o9rSVes20=",
+  "Hash": "MHwjmxJLMIMzdyv8gHAgX9iyspVTZbl1V3rSOBscXag=",
   "Source": "Assignment",
   "BasePath": "_content/Assignment",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\wwwroot\\js\\Data.js",
+      "SourceId": "Assignment",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\wwwroot\\",
+      "BasePath": "_content/Assignment",
+      "RelativePath": "js/Data.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Data.js"
     },
     {
       "Identity": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\wwwroot\\js\\site.js",

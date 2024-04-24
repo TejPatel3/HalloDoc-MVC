@@ -241,3 +241,7 @@ D:\Project\new\HalloDoc\HalloDoc\Assignment\Assignment\bin\Debug\net7.0\runtimes
 D:\Project\new\HalloDoc\HalloDoc\Assignment\Assignment\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\Project\new\HalloDoc\HalloDoc\Assignment\Assignment\obj\Debug\net7.0\Assignment.csproj.AssemblyReference.cache
 D:\Project\new\HalloDoc\HalloDoc\Assignment\Assignment\obj\Debug\net7.0\Assignment.csproj.CopyComplete
+D:\Project\new\HalloDoc\HalloDoc\Assignment\Assignment\bin\Debug\net7.0\DataModels.dll
+D:\Project\new\HalloDoc\HalloDoc\Assignment\Assignment\bin\Debug\net7.0\DataServices.dll
+D:\Project\new\HalloDoc\HalloDoc\Assignment\Assignment\bin\Debug\net7.0\DataModels.pdb
+D:\Project\new\HalloDoc\HalloDoc\Assignment\Assignment\bin\Debug\net7.0\DataServices.pdb

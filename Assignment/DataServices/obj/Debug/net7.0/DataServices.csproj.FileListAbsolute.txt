@@ -12,3 +12,6 @@ D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\refint
 D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.pdb
 D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.genruntimeconfig.cache
 D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\ref\DataServices.dll
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\bin\Debug\net7.0\DataModels.dll
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\bin\Debug\net7.0\DataModels.pdb
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.csproj.CopyComplete
