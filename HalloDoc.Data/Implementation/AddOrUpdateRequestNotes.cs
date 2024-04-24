@@ -12,7 +12,10 @@ namespace Services.Implementation
         {
             _context = context;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
         void IAddOrUpdateRequestNotes.AddOrUpdateRequestNotes(AdminRequestViewModel obj)
         {
             var requestnote = new RequestNote();
@@ -36,6 +39,7 @@ namespace Services.Implementation
                 _context.SaveChanges();
             }
         }
+
         void IAddOrUpdateRequestNotes.PhysicianRequestNotes(AdminRequestViewModel obj)
         {
             var requestnote = new RequestNote();

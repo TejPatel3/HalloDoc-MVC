@@ -559,6 +559,7 @@ namespace HalloDoc.Controllers.Admin
 
             var request = _unitOfWork.tableData.GetRequestFirstOrDefault(requestid);
             request.Status = 9;
+            _unitOfWork.UpdateData.UpdateRequest(request);
             var adminid = HttpContext.Session.GetInt32("AdminId");
             return RedirectToAction("AdminDashboard");
 
