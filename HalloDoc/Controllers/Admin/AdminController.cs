@@ -351,7 +351,7 @@ namespace HalloDoc.Controllers.Admin
             var req = _unitOfWork.tableData.GetRequestFirstOrDefault(id);
             var physiciandetail = _unitOfWork.tableData.GetPhysicianFirstOrDefault(int.Parse(physicianid));
             req.PhysicianId = physiciandetail.PhysicianId;
-            req.Status = 2;
+            //req.Status = 2;
             if (req.DeclinedBy != null)
             {
                 req.DeclinedBy = null;

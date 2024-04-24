@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div>
+            <div class="form-floating mb-3">
+                <input type="email" asp-for="Email"
+                       class="form-control AdminLoginEmail "
+                       placeholder="Username"
+                       aria-label="Username" required />
+                <span class="text-danger" id="tempvalidationspan"></span>
+                <label class="d-flex justify-content-around" asp-for="Email">Username </label>
+                <i class="bi bi-person-circle username-icon icons d-block mobile-icon" role="button" id="eye-icon"></i>
+            </div>
+        </div>
+    </div>
+
+</div>

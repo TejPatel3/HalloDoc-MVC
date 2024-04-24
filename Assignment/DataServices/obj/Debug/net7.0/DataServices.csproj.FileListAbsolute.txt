@@ -1,0 +1,14 @@
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\bin\Debug\net7.0\DataServices.deps.json
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\bin\Debug\net7.0\DataServices.runtimeconfig.json
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\bin\Debug\net7.0\DataServices.dll
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\bin\Debug\net7.0\DataServices.pdb
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.csproj.AssemblyReference.cache
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.AssemblyInfoInputs.cache
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.AssemblyInfo.cs
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.csproj.CoreCompileInputs.cache
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.dll
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\refint\DataServices.dll
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.pdb
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\DataServices.genruntimeconfig.cache
+D:\Project\new\HalloDoc\HalloDoc\Assignment\DataServices\obj\Debug\net7.0\ref\DataServices.dll
