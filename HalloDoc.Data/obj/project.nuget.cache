@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lp0SoP3ngRkLJTUANaHV6G4vpM32XrMpluIbN8kpmTLIGNv22XXww3RGGMXG+AyBd4y9jjN0UeoUKY9qndIpRA==",
+  "dgSpecHash": "L/kkYM3NNTtfdwqgHpW2Pz4YCrycImTXt20peRbL2QNrnRKeR+iBiPlDv3bZ5jx3GDCBSJxegMzUCtL2N2/UuA==",
   "success": true,
-  "projectFilePath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc.Data\\Services.csproj",
+  "projectFilePath": "D:\\Project\\HalloDoc\\HalloDoc.Data\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pce156\\.nuget\\packages\\bouncycastle\\1.8.9\\bouncycastle.1.8.9.nupkg.sha512",
     "C:\\Users\\pce156\\.nuget\\packages\\itextsharp\\5.5.13.3\\itextsharp.5.5.13.3.nupkg.sha512",

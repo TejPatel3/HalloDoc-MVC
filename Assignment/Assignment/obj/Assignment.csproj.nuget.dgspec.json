@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\Assignment.csproj": {}
+    "D:\\Project\\HalloDoc\\Assignment\\Assignment\\Assignment.csproj": {}
   },
   "projects": {
-    "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\Assignment.csproj": {
+    "D:\\Project\\HalloDoc\\Assignment\\Assignment\\Assignment.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\Assignment.csproj",
+        "projectUniqueName": "D:\\Project\\HalloDoc\\Assignment\\Assignment\\Assignment.csproj",
         "projectName": "Assignment",
-        "projectPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\Assignment.csproj",
+        "projectPath": "D:\\Project\\HalloDoc\\Assignment\\Assignment\\Assignment.csproj",
         "packagesPath": "C:\\Users\\pce156\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\obj\\",
+        "outputPath": "D:\\Project\\HalloDoc\\Assignment\\Assignment\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce156\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj": {
-                "projectPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj"
+              "D:\\Project\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj": {
+                "projectPath": "D:\\Project\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj"
               },
-              "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataServices\\DataServices.csproj": {
-                "projectPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataServices\\DataServices.csproj"
+              "D:\\Project\\HalloDoc\\Assignment\\DataServices\\DataServices.csproj": {
+                "projectPath": "D:\\Project\\HalloDoc\\Assignment\\DataServices\\DataServices.csproj"
               }
             }
           }
@@ -111,14 +111,14 @@
         }
       }
     },
-    "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj": {
+    "D:\\Project\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj",
+        "projectUniqueName": "D:\\Project\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj",
         "projectName": "DataModels",
-        "projectPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj",
+        "projectPath": "D:\\Project\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj",
         "packagesPath": "C:\\Users\\pce156\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataModels\\obj\\",
+        "outputPath": "D:\\Project\\HalloDoc\\Assignment\\DataModels\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce156\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -208,14 +208,14 @@
         }
       }
     },
-    "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataServices\\DataServices.csproj": {
+    "D:\\Project\\HalloDoc\\Assignment\\DataServices\\DataServices.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataServices\\DataServices.csproj",
+        "projectUniqueName": "D:\\Project\\HalloDoc\\Assignment\\DataServices\\DataServices.csproj",
         "projectName": "DataServices",
-        "projectPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataServices\\DataServices.csproj",
+        "projectPath": "D:\\Project\\HalloDoc\\Assignment\\DataServices\\DataServices.csproj",
         "packagesPath": "C:\\Users\\pce156\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataServices\\obj\\",
+        "outputPath": "D:\\Project\\HalloDoc\\Assignment\\DataServices\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce156\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -232,8 +232,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj": {
-                "projectPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj"
+              "D:\\Project\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj": {
+                "projectPath": "D:\\Project\\HalloDoc\\Assignment\\DataModels\\DataModels.csproj"
               }
             }
           }

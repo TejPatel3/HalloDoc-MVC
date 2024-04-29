@@ -1,5 +1,6 @@
 ﻿var regextext = /^[a-zA-Z][a-zA-Z ]+$/i;
-var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+var regexemail = /^[a-z][a-z0-9]*([\.][a-z0-9]+)*@(gmail\.com|yahoo\.com|outlook\.com|tatvasoft\.com)$/;
+//var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 var regexphone = /^[1-9][0-9]{9}$/;$('#closecase-edit').click(function () {    $('input[type="email"]').removeAttr('disabled', false);    $('input[type="tel"]').removeAttr('disabled', false);    $('#edit-close-closecase').addClass('d-none')    $('#save-cancel-closecase').removeClass('d-none');});$('#closecase-cancel').click(function () {    $('input[type="email"]').attr('disabled', true);    $('input[type="tel"]').attr('disabled', true);    $('#edit-close-closecase').removeClass('d-none')    $('#save-cancel-closecase').addClass('d-none');});$('#closecase-save').click(function () {    var email = $('#ViewCasePatientEmail').val();    var phoneNumber = $('.viewcasephone').val();    var requestid = $('.CloseCaseRequestid').val();    var ViewModel = {        requestId: requestid,        Email: email,        PhoneNumber: phoneNumber,    };    let allvalidation = true;    console.log(ViewModel)    $('#Closecaseemailspan').html("");
     $('#Closecasephonenumberspan').html("");
     if (email == "") {        $('#Closecaseemailspan').html("please enter email");

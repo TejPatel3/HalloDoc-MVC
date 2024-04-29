@@ -156,11 +156,12 @@
             try {
 
                 var headers = document.querySelectorAll('.accordion-header');
-
+                console.log(headers);
                 headers.forEach((header) => {
-                    const regionName = header.querySelector('.region-accordion');
-                    const nameText = regionName.textContent || regionName.innerText;
-
+                    const regionName = header.querySelector('.region-accordion-filter');
+                    console.log(regionName)
+                    const nameText = header.textContent || header.innerText;
+                    console.log(nameText)
                     if (nameText.includes(regionid)) {
                         header.style.display = '';
                     } else {
@@ -252,19 +253,23 @@ $('.acceptRequest').on('click', function () {
         confirmButtonText: "Yes, Accept it!"
     }).then((result) => {
         if (result.isConfirmed) {
-            $.ajax({
-                url: '/ProviderSide/AcceptRequest',
-                data: { requestid: requestid },
-                success: function (response) {
-                    //$('#adminLayoutMainDiv').html(response)
-                    location.reload();
-                    Swal.fire({
-                        title: "Accepted!",
-                        text: "Request Accepted Successfully.",
-                        icon: "success"
-                    });
-                }
-            })
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Accepted!",
+                text: "Request Accepted Successfully.",
+                showConfirmButton: false,
+                timer: 1500
+            }).then((result) => {
+                $.ajax({
+                    url: '/ProviderSide/AcceptRequest',
+                    data: { requestid: requestid },
+                    success: function (response) {
+                        //$('#adminLayoutMainDiv').html(response)
+                        location.reload();
+                    }
+                })
+            });
         }
     });
 });

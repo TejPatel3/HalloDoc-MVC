@@ -43,8 +43,8 @@
             <h2 class="accordion-header" id="heading_@item.requestid">
                 <div class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
                     <div class="col d-flex flex-column">
-                        <span class="requesttype-accordion">@item.RequestType</span>
-                        <span class="region-accordion">@item.regionid</span>
+                        <span class="d-none requesttype-accordion">@item.RequestType</span>
+                        <span class="d-none region-accordion">@item.regionid</span>
                         <span class="d-none">@item.RequestType</span>
                         <span class="patient-name">@item.PatientName</span>
                         <span class=" mt-4">@item.Address</span>
@@ -209,7 +209,7 @@
                                 <input type="hidden" asp-for="@item.requestid" value="@item.requestid" />
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <button type="button" value="@item.requestid" value="@item.PatientName" class="dropdown-item text-secondary acceptRequest" data-toggle="modal" data-target="#AssignModal">
+                                        <button type="button" value="@item.requestid" class="dropdown-item text-secondary acceptRequest" data-toggle="modal" data-target="#AssignModal">
                                             <i class="fa-regular fa-rectangle-list me-2"></i>
                                             Accept
                                         </button>

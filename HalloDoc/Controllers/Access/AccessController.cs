@@ -165,7 +165,7 @@ namespace HalloDoc.Controllers.Access
                         access.Accounttype = 1.ToString();
                         access.Status = admin.Status;
                         access.Name = admin.FirstName + admin.LastName;
-                        access.OpenRequest = _unitOfWork.tableData.GetRequestList().Count().ToString();
+                        access.OpenRequest = _unitOfWork.tableData.GetRequestList().Where(m => m.Status != 10 && m.Status != 11).Count().ToString();
                         access.AdminId = admin.AdminId;
                     }
                     if (user.AspNetUserRoles.FirstOrDefault(m => m.UserId == user.Id).RoleId == 2.ToString())
@@ -174,7 +174,7 @@ namespace HalloDoc.Controllers.Access
                         access.Status = physician.Status;
                         access.Accounttype = 2.ToString();
                         access.Name = physician.FirstName + physician.LastName;
-                        access.OpenRequest = _unitOfWork.tableData.GetRequestList().Where(m => m.PhysicianId == physician.PhysicianId).ToList().Count().ToString();
+                        access.OpenRequest = _unitOfWork.tableData.GetRequestList().Where(m => m.PhysicianId == physician.PhysicianId && m.Status < 7 && m.Status != 3).ToList().Count().ToString();
                         access.physicianId = physician.PhysicianId;
                     }
                 }

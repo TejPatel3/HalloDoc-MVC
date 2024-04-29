@@ -84,7 +84,7 @@
                                   style="height: 100px"></textarea>
                     </div>
                     <div class="d-flex justify-content-end pt-3 ">
-                        @if (Model.isfinalize == null)
+                        @if (Model.isfinalize == "False")
                         {
                             <button value="notFinalize" type="button" class="btn btn-info text-white fw-normal ConcludeCareSubmitBtn">Conclude Care</button>
                         }
@@ -154,6 +154,7 @@
     });
     $('.ConcludeCareSubmitBtn').click(function () {
         let valuebtn = $(this).val();
+        console.log(valuebtn)
         let requestid = $('.RequestsId').val();
         console.log(requestid)
         if (valuebtn == "notFinalize") {
@@ -164,15 +165,36 @@
             });
         }
         else {
-            $.ajax({
-                url: '/ProviderSide/ConcludeCareSubmit',
-
-                data: { requestid: requestid },
-                success: function () {
-                    location.reload();
-                },
-                error: function (error) {
-                    console.error('Error uploading files:', error);
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this conclude care!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Conclude case!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Conclude Case Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            $.ajax({
+                                url: '/ProviderSide/ConcludeCareSubmit',
+                                data: { requestid: requestid },
+                                success: function () {
+                                    location.reload();
+                                },
+                                error: function (error) {
+                                    console.error('Error uploading files:', error);
+                                }
+                            });
+                        }
+                    });
                 }
             });
         }

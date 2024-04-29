@@ -50,32 +50,50 @@ namespace HalloDoc.Controllers.Provider
             Sendemail(physician.Email, "Hallodoc admin sent you message", message);
             return RedirectToAction("Provider");
         }
-        public async Task Sendemail(string email, string subject, string message)
+
+        private Task Sendemail(string email, string subject, string message)
         {
-            try
+            var mail = "tatva.dotnet.tejpatel@outlook.com";
+            var password = "7T6d2P3@K";
+            var client = new SmtpClient("smtp.office365.com", 587)
             {
-                var mail = "pateltej3122002@gmail.com";
-                var password = "762397@TEj";
-                var client = new SmtpClient("smtp.office365.com", 587)
-                {
-                    EnableSsl = true,
-                    Credentials = new NetworkCredential(mail, password)
-                };
-                var mailMessage = new MailMessage
-                {
-                    From = new MailAddress(mail),
-                    Subject = subject,
-                    Body = message,
-                };
-                mailMessage.To.Add(email);
-                await client.SendMailAsync(mailMessage);
-                TempData["success"] = "Document sent in Email..!";
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error sending email: {ex.Message}");
-            }
+                EnableSsl = true,
+                Credentials = new NetworkCredential(mail, password)
+            };
+            MailMessage mailMessage = new MailMessage(from: mail, to: email, subject, message);
+            mailMessage.IsBodyHtml = true;
+
+            return client.SendMailAsync(mailMessage);
+            //return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
+
+
         }
+        //public async Task Sendemail(string email, string subject, string message)
+        //{
+        //    try
+        //    {
+        //        var mail = "pateltej3122002@gmail.com";
+        //        var password = "762397@TEj";
+        //        var client = new SmtpClient("smtp.office365.com", 587)
+        //        {
+        //            EnableSsl = true,
+        //            Credentials = new NetworkCredential(mail, password)
+        //        };
+        //        var mailMessage = new MailMessage
+        //        {
+        //            From = new MailAddress(mail),
+        //            Subject = subject,
+        //            Body = message,
+        //        };
+        //        mailMessage.To.Add(email);
+        //        await client.SendMailAsync(mailMessage);
+        //        TempData["success"] = "Document sent in Email..!";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Error sending email: {ex.Message}");
+        //    }
+        //}
         public IActionResult EditProviderAccount(int physicianid)
         {
             var physician = _unitOfWork.tableData.GetPhysicianFirstOrDefault(physicianid);

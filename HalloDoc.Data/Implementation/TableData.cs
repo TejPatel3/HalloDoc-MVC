@@ -23,7 +23,7 @@ namespace Services.Implementation
         }
         public List<Physician> GetPhysicianList()
         {
-            List<Physician> physicians = _context.Physicians.Where(m => m.IsDeleted == new BitArray(new[] { false })).ToList();
+            List<Physician> physicians = _context.Physicians.Where(m => m.IsDeleted == new BitArray(new[] { false })).Include(m => m.PhysicianRegions).ToList();
             return physicians;
         }
         public List<AspNetUser> GetAspNetUserListAdminPhysician()
@@ -112,6 +112,10 @@ namespace Services.Implementation
         public List<AdminRegion> GetAdminRegionListByAdminId(int? adminId)
         {
             return _context.AdminRegions.Where(m => m.AdminId == adminId).ToList();
+        }
+        public List<RequestStatusLog> GetRequestStatusLogListByRequestId(int requestId)
+        {
+            return _context.RequestStatusLogs.Where(m => m.RequestId == requestId).Include(m => m.Physician).Include(m => m.Physician).ToList();
         }
         //Get Data with filter
         public Role GetRoleById(int id)

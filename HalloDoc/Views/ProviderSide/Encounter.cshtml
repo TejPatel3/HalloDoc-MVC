@@ -26,7 +26,7 @@
                             <input type="text"
                                    class="form-control form-field"
                                    placeholder="First Name"
-                                   asp-for="Firstname" />
+                                   asp-for="Firstname" required />
                             <label asp-for="Firstname" class="form-label">First Name</label>
                             <span asp-validation-for="Firstname" class="text-danger"></span>
                         </div>
@@ -52,12 +52,15 @@
                             <span class="text-danger" asp-validation-for="Location"></span>
                         </div>
                     </div>
+                    @{
+                        string max = DateTime.Now.ToString("yyyy-MM-dd");
+                    }
 
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <input type="date"
                                    class="form-control form-field"
-                                   placeholder="Date Of Birth"
+                                   placeholder="Date Of Birth" max=@max
                                    asp-for="DOB" />
                             <label asp-for="DOB" class="form-label form-label-wicon">Date Of Birth</label>
                             <span class="text-danger" asp-validation-for="DOB"></span>
@@ -67,7 +70,7 @@
                         <div class="form-floating mb-3">
                             <input type="date"
                                    class="form-control form-field"
-                                   placeholder="Date Of Birth"
+                                   placeholder="Date Of Birth" max=@max
                                    asp-for="Dateofservice" />
                             <label asp-for="Dateofservice" class="form-label form-label-wicon">Service Date</label>
                             <span class="text-danger" asp-validation-for="Dateofservice"></span>
@@ -77,10 +80,10 @@
                         <div class="mb-3 form-floating">
                             <div class="form-control p-0">
                                 <input asp-for="Mobile"
-                                       type="tel" class="adisabled" id="phone-adminprofile"
-                                       style="border: none; padding: 18px 2% 18px 50px; width:inherit" disabled />
-                                <span id="phone-validationspan" class="text-danger" asp-validation-for="Mobile"></span>
+                                       type="tel" class="adisabled" id="phone-adminprofile" maxlength="10"
+                                       style="border: none; padding: 18px 2% 18px 50px; width:inherit" />
                             </div>
+                            <span id="phone-validationspan" class="text-danger" asp-validation-for="Mobile"></span>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -353,6 +356,8 @@
 </div>
 
 <link rel="stylesheet" href="~/css/error.css" asp-append-version="true" />
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 <script>
     var observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
@@ -375,15 +380,7 @@
             nationalMode: false,
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
         });
-        $(this).on('blur', function () {
-            var fullNumber = iti.getNumber();
-            var countryCode = iti.getSelectedCountryData().dialCode;
-            if (fullNumber.startsWith("+" + countryCode + "+" + countryCode)) {
-                fullNumber = fullNumber.replace("+" + countryCode + "+", "+");
-            }
-            console.log(fullNumber);
-            $(this).val(fullNumber);
-        });
+      
     });
 
     $('#finalize').on('click', function () {
@@ -398,21 +395,21 @@
             confirmButtonText: "Yes, Finalize it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                $.ajax({
-                    url: '/ProviderSide/FinalizeEncounter',
-                    data: { requestid },
-                    type: 'POST',
-                    success: function (result) {
-                        location.reload();
-
-                    },
-
-                });
                 Swal.fire({
                     title: "Finalized!",
                     text: "Encounter  has been Finalized.",
                     icon: "success"
-                })
+                }).then((result) => {
+                    $(this).closest('form').submit();
+                    $.ajax({
+                        url: '/ProviderSide/FinalizeEncounter',
+                        data: { requestid },
+                        type: 'POST',
+                        success: function (result) {
+                            location.reload();
+                        },
+                    });
+                });
             }
         });
     })

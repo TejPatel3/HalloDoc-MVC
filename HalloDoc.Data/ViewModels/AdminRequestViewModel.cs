@@ -8,6 +8,7 @@ namespace Services.ViewModels
         public List<Request> requests { get; set; }
         public List<Region> regions { get; set; }
         public List<Physician> physicians { get; set; }
+        public List<RequestStatusLog> requestStatusLogList { get; set; }
         public string patientName { get; set; }
         [MaybeNull]
         public string BlockNotes { get; set; }
@@ -21,6 +22,7 @@ namespace Services.ViewModels
 
         public DateTime assigntime { get; set; }
         public int PhysicianId { get; set; }
+
 
     }
 }

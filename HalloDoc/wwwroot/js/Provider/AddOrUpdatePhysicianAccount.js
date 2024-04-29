@@ -1,6 +1,6 @@
 ﻿var regextext = /^[a-zA-Z0-9][a-zA-Z0-9-, ]*$/i;
 var regexlicense = /^[a-zA-Z0-9][a-zA-Z0-9 ]+$/i;
-var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+var regexemail = /^[a-z][a-z0-9]*([\.][a-z0-9]+)*@(gmail\.com|yahoo\.com|outlook\.com|tatvasoft\.com)$/;
 var regexphone = /^[1-9][0-9]{9}$/;
 var regexzip = /^[1-9][0-9]{5}$/;
 var regexstrongpassword = /[A-Za-z\d@$!%*?&]{8,}/
@@ -657,7 +657,7 @@ $('#savebtn-adminnote-editprovider').on('click', function () {
             type: 'POST',
             data: { providerid: providerid, base64string: dataUrl },
             success: function (response) {
-                $('#Cancelbutton').trigger('click');
+                $('#Cancelbutton').click();
                 $('#provider-maindiv').html(response);
             }
         });

@@ -300,7 +300,7 @@ namespace Services.Implementation
 
 
                 model.Email = request.RequestClients.FirstOrDefault().Email;
-                model.PhoneNumber = request.RequestClients.FirstOrDefault().PhoneNumber.ToString();
+                model.PhoneNumber = request.RequestClients.FirstOrDefault().PhoneNumber != null ? request.RequestClients.FirstOrDefault().PhoneNumber.ToString() : "-";
                 model.Address = request.RequestClients.FirstOrDefault().Address;
                 model.Zip = request.RequestClients.FirstOrDefault().ZipCode;
                 model.RequestStatus = request.Status;

@@ -1,6 +1,7 @@
 ﻿var regexstrongpassword = /[A-Za-z\d@$!%*?&]{8,}/
 var regextext = /^[a-zA-Z][a-zA-Z ]+$/i;
-var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+var regexemail = /^[a-z][a-z0-9]*([\.][a-z0-9]+)*@(gmail\.com|yahoo\.com|outlook\.com|tatvasoft\.com)$/;
+//var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 var regexphone = /^[1-9][0-9]{9}$/;
 
 $('#sendcodeforgotpassword').on('click', function () {

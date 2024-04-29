@@ -111,7 +111,7 @@ namespace HalloDoc.Controllers.ProviderSide
             var encounter = _unitOfWork.tableData.GetEncounterByRequestId(requestid);
             if (encounter != null)
             {
-                model.isfinalize = encounter.IsFinalized.ToString();
+                model.isfinalize = encounter.IsFinalized[0].ToString();
             }
             return View(model);
         }
@@ -271,6 +271,14 @@ namespace HalloDoc.Controllers.ProviderSide
                     model.MedicationsDispended = encounter.MedicationDispensed;
                     model.Procedure = encounter.Procedures;
                     model.Followup = encounter.FollowUp;
+                    if (encounter.ModifiedDate != null)
+                    {
+                        model.Dateofservice = encounter.ModifiedDate;
+                    }
+                    else
+                    {
+                        model.Dateofservice = encounter.CreatedDate;
+                    }
                 }
                 else
                 {
@@ -310,7 +318,15 @@ namespace HalloDoc.Controllers.ProviderSide
         [HttpPost]
         public IActionResult EncounterFormSubmit(EncounterFormViewModel model)
         {
-            int physicianid = (int)HttpContext.Session.GetInt32("PhysicianId");
+            //if (HttpContext.Session.GetInt32("PhysicianId") != null)
+            //{
+            //    int id = (int)HttpContext.Session.GetInt32("PhysicianId");
+            //}
+            //else
+            //{
+            //    int id = (int)HttpContext.Session.GetInt32("AdminId");
+
+            //}
             var requestclient = _unitOfWork.tableData.GetRequestClientByRequestId(model.RequestId);
             BitArray fortrue = new BitArray(1);
             fortrue[0] = true;
@@ -354,10 +370,12 @@ namespace HalloDoc.Controllers.ProviderSide
             {
                 encounter.RequestId = requestclient.RequestId;
                 encounter.Date = DateTime.Now;
+                encounter.CreatedDate = model.Dateofservice;
                 _unitOfWork.Add.AddEncounter(encounter);
             }
             else
             {
+                encounter.ModifiedDate = model.Dateofservice;
                 _unitOfWork.UpdateData.UpdateEncounter(encounter);
             }
             var jwtservice = HttpContext.RequestServices.GetService<IJwtRepository>();
@@ -461,10 +479,6 @@ namespace HalloDoc.Controllers.ProviderSide
         [HttpPost]
         public async Task<IActionResult> CreatePatientRequest(patientRequest req)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(req);
-            }
             var aspuser = _unitOfWork.tableData.GetAspNetUserByEmail(req.Email);
             var user = _unitOfWork.tableData.GetUserByEmail(req.Email);
             var region = _unitOfWork.tableData.GetRegionByRegionId(user.RegionId);
@@ -515,7 +529,7 @@ namespace HalloDoc.Controllers.ProviderSide
                 }
             }
             TempData["success"] = "Request created successfully";
-            return RedirectToAction("AdminDashboard");
+            return RedirectToAction("ProviderDashboard");
         }
         public void uploadFile(List<IFormFile> file, int id)
         {

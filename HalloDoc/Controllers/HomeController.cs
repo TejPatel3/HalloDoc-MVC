@@ -125,19 +125,29 @@ namespace HalloDoc.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public IActionResult resetPassword()
+        public IActionResult resetPassword(string useremail, string id)
         {
-            return View();
+            var encemail = EncryptionDecryption.DecryptStringFromBase64_Aes(useremail);
+            AspNetUser model = _context.AspNetUsers.FirstOrDefault(m => m.Id == id && m.Email == encemail);
+            if (model == null)
+            {
+                return RedirectToAction("AccessDenied");
+            }
+            else
+            {
+                return View(model);
+            }
         }
 
         public IActionResult ForgotPassword(AspNetUser user)
         {
             return View(user);
         }
-        private string GenerateResetPasswordUrl(string userId)
+        private string GenerateResetPasswordUrl(string userId, string email)
         {
             string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-            string resetPasswordPath = Url.Action("resetPassword", "Home", new { id = userId });
+            string encryptemail = EncryptionDecryption.EncryptStringToBase64_Aes(email);
+            string resetPasswordPath = Url.Action("resetPassword", "Home", new { id = userId, useremail = encryptemail });
             return baseUrl + resetPasswordPath;
         }
         public IActionResult PatientResetPasswordEmail(AspNetUser user)
@@ -146,8 +156,8 @@ namespace HalloDoc.Controllers
             if (usercheck != null)
             {
                 string Id = (_context.AspNetUsers.FirstOrDefault(x => x.Email == user.Email)).Id;
-                string resetPasswordUrl = GenerateResetPasswordUrl(Id);
-                SendEmail(user.Email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: {resetPasswordUrl}");
+                string resetPasswordUrl = GenerateResetPasswordUrl(Id, user.Email);
+                SendEmail(user.Email, "Reset Your Password", $"Hello, Click On below Link for Reset Your Password: <a href=\"{resetPasswordUrl}\">here</a>");
                 TempData["success"] = "Reset Password Link sent Successful";
                 return RedirectToAction("Login", "Home");
             }
@@ -168,18 +178,29 @@ namespace HalloDoc.Controllers
                 EnableSsl = true,
                 Credentials = new NetworkCredential(mail, password)
             };
-            return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
+            MailMessage mailMessage = new MailMessage(from: mail, to: email, subject, message);
+            mailMessage.IsBodyHtml = true;
+
+            return client.SendMailAsync(mailMessage);
+            //return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
         }
 
         [HttpPost]
         public IActionResult resetPassword(AspNetUser aspnetuser)
         {
-            var aspuser = _context.AspNetUsers.FirstOrDefault(x => x.Email == aspnetuser.Email);
-            aspuser.PasswordHash = aspnetuser.PasswordHash;
-            _context.AspNetUsers.Update(aspuser);
-            _context.SaveChanges();
-            TempData["success"] = "Your Password Reset Successful";
-            return RedirectToAction("Login");
+            var aspuser = _context.AspNetUsers.FirstOrDefault(x => x.Id == aspnetuser.Id);
+            if (aspuser == null)
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+            else
+            {
+                aspuser.PasswordHash = aspnetuser.PasswordHash;
+                _context.AspNetUsers.Update(aspuser);
+                _context.SaveChanges();
+                TempData["success"] = "Your Password Reset Successful";
+                return RedirectToAction("Login");
+            }
         }
 
         // Review agreement Method
@@ -211,11 +232,29 @@ namespace HalloDoc.Controllers
         public IActionResult ReviewAgreement(string id)
         {
             var viewModel = new AdminRequestViewModel();
-            var requestid = int.Parse(EncryptionDecryption.DecryptStringFromBase64_Aes(id));
-            var PatienName = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
-            viewModel.patientName = PatienName.FirstName + " " + PatienName.LastName;
-            viewModel.requestid = requestid;
-            return View(viewModel);
+            var eid = EncryptionDecryption.DecryptStringFromBase64_Aes(id);
+            var request = _context.Requests.FirstOrDefault(m => m.RequestId.ToString() == eid);
+            if (request == null)
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
+            else if (request.UserId != HttpContext.Session.GetInt32("UserId"))
+            {
+                return RedirectToAction("Login");
+            }
+            else
+            {
+
+                var requestid = int.Parse(EncryptionDecryption.DecryptStringFromBase64_Aes(id));
+                var PatienName = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
+                viewModel.patientName = PatienName.FirstName + " " + PatienName.LastName;
+                viewModel.requestid = requestid;
+                return View(viewModel);
+            }
+        }
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

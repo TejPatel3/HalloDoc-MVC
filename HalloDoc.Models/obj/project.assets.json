@@ -2374,11 +2374,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc.Models\\DataModels.csproj",
+      "projectUniqueName": "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj",
       "projectName": "DataModels",
-      "projectPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc.Models\\DataModels.csproj",
+      "projectPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj",
       "packagesPath": "C:\\Users\\pce156\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc.Models\\obj\\",
+      "outputPath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pce156\\AppData\\Roaming\\NuGet\\NuGet.Config",

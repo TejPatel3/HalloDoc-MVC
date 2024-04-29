@@ -1274,3 +1274,5 @@ D:\Project\new\HalloDoc\HalloDoc\HalloDoc\obj\Debug\net7.0\HalloDoc.genruntimeco
 D:\Project\new\HalloDoc\HalloDoc\HalloDoc\obj\Debug\net7.0\ref\HalloDoc.dll
 D:\Project\new\HalloDoc\HalloDoc\HalloDoc\bin\Debug\net7.0\BouncyCastle.Crypto.dll
 D:\Project\new\HalloDoc\HalloDoc\HalloDoc\bin\Debug\net7.0\itextsharp.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\BouncyCastle.Crypto.dll
+D:\Project\HalloDoc\HalloDoc\bin\Debug\net7.0\itextsharp.dll

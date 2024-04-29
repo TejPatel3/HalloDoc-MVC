@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I+pcc4VnAXeMqNuKD5bpzd/wRSzHm4mGXG91tqPCNJ9ulAOfy7eejxyHxjxhTqojCjLjXC0Ef/DOhDIkTA7pDA==",
+  "dgSpecHash": "f8B2qj4gQkSAPYbqBp1grOcTfd5T8x9+cZdKYNg7s2dVZe1g4eQJDCvXmuI28H42/1Jo2LRK0y1M/LgBhMAEwg==",
   "success": true,
-  "projectFilePath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\Assignment\\Assignment\\Assignment.csproj",
+  "projectFilePath": "D:\\Project\\HalloDoc\\Assignment\\Assignment\\Assignment.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pce156\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\pce156\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

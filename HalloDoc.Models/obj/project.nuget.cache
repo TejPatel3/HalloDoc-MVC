@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JB1h0wFHeUkVIItiO4xkUcUARvqzqPQo5T3m5qOz/jH9VfiDw2h4oqQ0P+sKpKkDToaFaUrVUtkdeX/WkHQHdQ==",
+  "dgSpecHash": "p0+saqJ1eeoPV3lvQZVaSmqnwRJNWoVXcxqoGKFP9N27QdtS0FjLX+vZOfuXpydrZYTP7XYA7NjZFBwmK4k29g==",
   "success": true,
-  "projectFilePath": "D:\\Project\\new\\HalloDoc\\HalloDoc\\HalloDoc.Models\\DataModels.csproj",
+  "projectFilePath": "D:\\Project\\HalloDoc\\HalloDoc.Models\\DataModels.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pce156\\.nuget\\packages\\bouncycastle\\1.8.9\\bouncycastle.1.8.9.nupkg.sha512",
     "C:\\Users\\pce156\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

@@ -73,9 +73,16 @@ namespace HalloDoc.Controllers.Records
             string phonenumber
             )
         {
-            List<RecordViewModel> records = new List<RecordViewModel>();
-            records = _unitOfWork.record.GetSearchRecordData(reqstatus, patientname, requesttype, fromdateofservice, todateofservice, physicianname, email, phonenumber);
-            return PartialView("_SearchRecordsTable", records);
+            try
+            {
+                List<RecordViewModel> records = new List<RecordViewModel>();
+                records = _unitOfWork.record.GetSearchRecordData(reqstatus, patientname, requesttype, fromdateofservice, todateofservice, physicianname, email, phonenumber);
+                return PartialView("_SearchRecordsTable", records);
+            }
+            catch
+            {
+                return RedirectToAction("AccessDenied", "Home");
+            }
         }
         //download search record excel file
         public string DownloadSearchRecord(

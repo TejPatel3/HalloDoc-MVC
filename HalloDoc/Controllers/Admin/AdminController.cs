@@ -1,4 +1,5 @@
-﻿using HalloDoc.DataModels;
+﻿using HalloDoc.DataContext;
+using HalloDoc.DataModels;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,13 +26,16 @@ namespace HalloDoc.Controllers.Admin
         private readonly IAddOrUpdateRequestStatusLog _addOrUpdateRequestStatusLog;
         private readonly IJwtRepository _jwtRepo;
         private readonly IAdd _add;
+        private readonly ApplicationDbContext _context;
+
         public AdminController(
         IAdminLog _admin, IAdminDashboard adminDashboard,
         IAdminDashboardDataTable adminDashboardDataTable,
         IViewCaseRepo viewcase, IBlockCaseRepository block,
         IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog,
         IAddOrUpdateRequestNotes addOrUpdateRequestNotes,
-        IJwtRepository jwtRepo, IAdd add, IunitOfWork unitOfWork)
+        IJwtRepository jwtRepo, IAdd add, IunitOfWork unitOfWork,
+        ApplicationDbContext context)
         {
             adminLog = _admin;
             _adminDashboard = adminDashboard;
@@ -43,6 +47,7 @@ namespace HalloDoc.Controllers.Admin
             _jwtRepo = jwtRepo;
             _add = add;
             _unitOfWork = unitOfWork;
+            _context = context;
         }
 
 
@@ -128,14 +133,8 @@ namespace HalloDoc.Controllers.Admin
             }
             var adminname = HttpContext.Session.GetString("AdminName");
             viewnote.requestid = reqid;
-            var transfernotedetail = _unitOfWork.tableData.GetRequestStatusLogByRequestIdStatus(reqid, 2);
-            if (transfernotedetail != null)
-            {
-                var physicianname = _unitOfWork.tableData.GetPhysicianFirstOrDefault(transfernotedetail.TransToPhysicianId);
-                viewnote.PhsysicianNameViewNotes = physicianname.FirstName;
-                viewnote.AdminNameViewNotes = adminname;
-                viewnote.assigntime = transfernotedetail.CreatedDate;
-            }
+            var transfernotedetail = _unitOfWork.tableData.GetRequestStatusLogListByRequestId(reqid);
+            viewnote.requestStatusLogList = transfernotedetail;
             return View(viewnote);
         }
 
@@ -390,8 +389,22 @@ namespace HalloDoc.Controllers.Admin
         [HttpGet]
         public List<Physician> GetPhysicianByRegionId(int regionId)
         {
-            var physician = _unitOfWork.tableData.GetPhysicianList().Where(r => r.RegionId == regionId).ToList();
-            return physician;
+            var physician = _context.Physicians.Include(x => x.PhysicianRegions).ToList();
+            var phyregion = _context.PhysicianRegions.Include(x => x.Physician).ToList();
+            if (regionId != 0)
+            {
+                physician = phyregion.Where(x => x.RegionId == regionId).Select(x => x.Physician).ToList();
+            }
+            List<Physician> result = new List<Physician>();
+            foreach (var phy in physician)
+            {
+                Physician model = new Physician();
+                model.FirstName = phy.FirstName;
+                model.LastName = phy.LastName;
+                model.PhysicianId = phy.PhysicianId;
+                result.Add(model);
+            }
+            return result;
         }
 
         [HttpGet]
@@ -430,7 +443,8 @@ namespace HalloDoc.Controllers.Admin
         public IActionResult SendAgreementModal(int id, string email)
         {
             string AgreementUrl = GenerateAgreementUrl(id);
-            SendEmail(email, "Confirm Your Agreement", $"Hello, Click On below Link for COnfirm Agreement: {AgreementUrl}");
+            SendEmail(email, "Confirm Your Agreement", $"Hello,First You Need to Login Your self then Click On below Link for Confirm Agreement: <a href=\"{AgreementUrl}\">here</a>");
+
             TempData["success"] = "Agreement sent in Email..!";
             if (HttpContext.Session.GetInt32("PhysicianId") != null)
             {
@@ -466,7 +480,7 @@ namespace HalloDoc.Controllers.Admin
             else
             {
                 string CreateRequestUrl = GenerateSendCreateRequestLinkUrl(email, phonenumber, firstname);
-                SendEmail(email, "Create A Request", $"Hello, Click On below Link for Creating a request: {CreateRequestUrl}");
+                SendEmail(email, "Create A Request", $"We trust this message finds you in good spirits.To Create Account click <a href=\"{CreateRequestUrl}\">here</a>");
                 TempData["success"] = "Create Request link sent in Email..!";
             }
             if (HttpContext.Session.GetInt32("PhysicianId") != null)
@@ -494,7 +508,13 @@ namespace HalloDoc.Controllers.Admin
                 EnableSsl = true,
                 Credentials = new NetworkCredential(mail, password)
             };
-            return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
+            MailMessage mailMessage = new MailMessage(from: mail, to: email, subject, message);
+            mailMessage.IsBodyHtml = true;
+
+            return client.SendMailAsync(mailMessage);
+            //return client.SendMailAsync(new MailMessage(from: mail, to: email, subject, message));
+
+
         }
 
         public bool IAgreeSendAgreement(int requestid)

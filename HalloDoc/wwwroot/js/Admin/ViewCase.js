@@ -1,6 +1,7 @@
 ﻿
 var regextext = /^[a-zA-Z0-9][a-zA-Z0-9 ]+$/i;
-var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+var regexemail = /^[a-z][a-z0-9]*([\.][a-z0-9]+)*@(gmail\.com|yahoo\.com|outlook\.com|tatvasoft\.com)$/;
+//var regexemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 var regexphone = /^[1-9][0-9]{9}$/;
 console.log("helo");
 

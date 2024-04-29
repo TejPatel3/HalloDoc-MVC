@@ -46,8 +46,8 @@
                 <h2 class="accordion-header" id="heading_@item.requestid">
                     <div class="accordion-button collapsed pb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
                         <div class="col d-flex flex-column">
-                            <span class="requesttype-accordion">@item.RequestType</span>
-                            <span class="region-accordion">@item.regionid</span>
+                            <span class="d-none requesttype-accordion">@item.RequestType</span>
+                            <span class="d-none region-accordion">@item.regionid</span>
                             <span class="d-none">@item.RequestType</span>
                             <span class="patient-name">@item.PatientName</span>
                             <span class=" mt-3 font-size-m-clamp">@item.Address</span>
@@ -164,22 +164,23 @@
             {
                 @foreach (var item in Model)
                 {
+
                     var color = "green-dot";
                     switch (item.RequestType)
                     {
                         case 1:
                             {
-                                color = "pink-dot";
+                                color = "green-dot";
                                 break;
                             }
                         case 2:
                             {
-                                color = "green-dot";
+                                color = "orange-dot";
                                 break;
                             }
                         case 3:
                             {
-                                color = "orange-dot";
+                                color = "pink-dot";
                                 break;
                             }
                         case 4:
@@ -189,9 +190,10 @@
                             }
                         default:
                             {
-                                color = "green-dot";
+                                color = "purple-dot";
                                 break;
                             }
+
                     }
 
                     <tr class="@color">

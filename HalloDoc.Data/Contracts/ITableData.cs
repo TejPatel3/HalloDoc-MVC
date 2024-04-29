@@ -32,6 +32,7 @@ namespace Services.Contracts
         public List<RoleMenu> GetRoleMenuListByRoleId(int roleId);
         public List<PhysicianRegion> GetPhysicianRegionListByPhysiianId(int physiianId);
         public List<AdminRegion> GetAdminRegionListByAdminId(int? adminId);
+        public List<RequestStatusLog> GetRequestStatusLogListByRequestId(int requestId);
 
 
         //Get Data By filter

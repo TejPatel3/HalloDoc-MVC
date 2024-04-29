@@ -43,8 +43,8 @@
             <h2 class="accordion-header" id="heading_@item.requestid">
                 <div class="accordion-button collapsed pb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
                     <div class="col d-flex flex-column">
-                        <span class="requesttype-accordion">@item.RequestType</span>
-                        <span class="region-accordion">@item.regionid</span>
+                        <span class="d-none requesttype-accordion">@item.RequestType</span>
+                        <span class="d-none region-accordion">@item.regionid</span>
                         <span class="d-none">@item.RequestType</span>
                         <span class="patient-name">@item.PatientName</span>
                         <span class=" mt-3 font-size-m-clamp">@item.Address</span>
@@ -200,7 +200,7 @@
                     <td>@item.PatientDOB.ToString("dd MMM,yyyy ")</td>
                     <td>@item.RequestTypeName(item.RequestType)</td>
                     <td>@item.PhysicianName</td>
-                    <td>@item.RequestedDate</td>
+                    <td>@item.RequestedDate.ToString("dd MMM,yyyy")</td>
                     <td>
                         <button class="btn btn-outline-light w-100 d-flex ">
                             <i class="bi bi-telephone pe-3 ps-1"></i>
@@ -232,8 +232,8 @@
                             <small>(Business)</small>
                         }
                     </td>
-                    <td scope="row">@item.PatientName</td>
-                    <td>@item.ProviderEmail</td>
+                    <td scope="row">@item.Address</td>
+                    <td>@item.Notes</td>
                     <td>
                         <div class="border border-1 border-white rounded d-flex justify-content-around align-items-center p-1" style="width : 65%">
                             <i class="fa-solid fa-user-doctor pe-1"></i>

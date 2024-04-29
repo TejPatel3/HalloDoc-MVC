@@ -3,6 +3,36 @@
     $('#nav-home-tab').addClass('admin-layout-nav-active');
 }
 
+//$(document).ready(function () {
+//    $('.SelectedRegionGivePhysicianList').change(function () {
+//        var regionId = $(this).find(":selected").attr('id');
+//        $.ajax({
+//            url: '/Admin/GetPhysicianByRegionId',
+//            type: 'GET',
+//            data: { regionId: regionId },
+//            success: function (data) {
+//                console.log(data)
+//                var secondDropdown = $('.physiciandrop');
+//                secondDropdown.empty();
+//                secondDropdown.append($('<option>', {
+//                    hidden: "hidden",
+//                    value: "",
+//                    text: "Select Physician"
+//                }))
+//                console.log("test")
+//                $.each(data, function (index, item) {
+//                    secondDropdown.append($('<option>', {
+//                        value: item.physicianId,
+//                        text: item.firstName + item.lastName
+//                    }));
+//                });
+//            },
+//            error: function (xhr, status, error) {
+//                console.error(error);
+//            }
+//        });
+//    });
+
 $(document).ready(function () {
     $('.SelectedRegionGivePhysicianList').change(function () {
         var regionId = $(this).find(":selected").attr('id');
@@ -11,6 +41,7 @@ $(document).ready(function () {
             type: 'GET',
             data: { regionId: regionId },
             success: function (data) {
+                console.log(data)
                 var secondDropdown = $('.physiciandrop');
                 secondDropdown.empty();
                 secondDropdown.append($('<option>', {
@@ -19,13 +50,15 @@ $(document).ready(function () {
                     text: "Select Physician"
                 }))
                 console.log("test")
-                console.log(data)
                 $.each(data, function (index, item) {
                     secondDropdown.append($('<option>', {
                         value: item.physicianId,
                         text: item.firstName + item.lastName
                     }));
                 });
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
             }
         });
     });

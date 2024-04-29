@@ -44,8 +44,8 @@
             <h2 class="accordion-header" id="heading_@item.requestid">
                 <div class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapse_@item.requestid" aria-expanded="false" aria-controls="collapse_@item.requestid">
                     <div class="col d-flex flex-column">
-                        <span class="requesttype-accordion">@item.RequestType</span>
-                        <span class="region-accordion">@item.regionid</span>
+                        <span class="d-none requesttype-accordion">@item.RequestType</span>
+                        <span class="d-none region-accordion-filter">@item.regionid</span>
                         <span class="d-none">@item.RequestType</span>
                         <span class="patient-name">@item.PatientName</span>
                         <span class=" mt-4">@item.Address</span>
@@ -176,7 +176,7 @@
                     </td>
                     <td>@item.PatientDOB.ToString("dd MMM,yyyy ")</td>
                     <td>@item.RequestTypeName(item.RequestType)</td>
-                    <td>@item.RequestedDate</td>
+                    <td>@item.RequestedDate.ToString("dd MMM,yyyy")</td>
                     <td>
                         <div class="btn btn-outline-light w-75 d-flex small px-0 py-1">
                             <i class="bi bi-telephone pe-3 ps-1"></i>

@@ -50,6 +50,7 @@
         }
     </tbody>
 </table>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script>
     $('.Contactbtn-Provider').on('click', function () {
         let physicianid = $(this).val();
@@ -73,12 +74,12 @@
             $('#message-providercontactmodal-span').html("message is not valid");
         }
         else {
-
             $.ajax({
                 url: '/Provider/ContactProviderModelSubmit',
                 data: { "physicianid": physicianid, "message": message },
                 success: function (response) {
-                    $('#ContactProviderModal').modal('hide');
+                    // $('#ContactProviderModal').modal('hide');
+                    $('#closecontactprovidermodal').click();
                 },
                 error: function (xhr, status, error) {
                     console.error(error)
