@@ -155,16 +155,13 @@ namespace Services.Implementation
             var request = _context.Requests.FirstOrDefault(m => m.RequestId == requestid);
             request.Status = 1;
             request.PhysicianId = null;
-
             var statuslog = new RequestStatusLog();
-
             statuslog.Status = 1;
             statuslog.RequestId = requestid;
             statuslog.PhysicianId = physicianid;
             statuslog.Notes = note.BlockNotes;
             statuslog.CreatedDate = DateTime.Now;
             statuslog.TransToAdmin = new BitArray(new[] { true });
-
             _context.Requests.Update(request);
             _context.RequestStatusLogs.Add(statuslog);
             _context.SaveChanges();

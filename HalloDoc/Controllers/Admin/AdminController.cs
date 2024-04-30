@@ -126,6 +126,7 @@ namespace HalloDoc.Controllers.Admin
         {
             var request = _unitOfWork.tableData.GetRequestFirstOrDefault(reqid);
             var requestnote = _unitOfWork.tableData.GetRequestNoteByRequestId(reqid);
+            var requestStatusLog = _unitOfWork.tableData.GetRequestStatusLogListByRequestId(reqid);
             var viewnote = new AdminRequestViewModel();
             if (requestnote != null)
             {
@@ -133,8 +134,37 @@ namespace HalloDoc.Controllers.Admin
             }
             var adminname = HttpContext.Session.GetString("AdminName");
             viewnote.requestid = reqid;
-            var transfernotedetail = _unitOfWork.tableData.GetRequestStatusLogListByRequestId(reqid);
-            viewnote.requestStatusLogList = transfernotedetail;
+            List<string> notes = new List<string>();
+            foreach (var item in requestStatusLog)
+            {
+                var physician = _unitOfWork.tableData.GetPhysicianFirstOrDefault(item.PhysicianId);
+                var admin = _unitOfWork.tableData.GetAdminByAdminId(item.AdminId);
+                var transphy = _unitOfWork.tableData.GetPhysicianFirstOrDefault(item.TransToPhysicianId);
+                if (item.AdminId != null && item.TransToPhysicianId != null && admin != null && transphy != null)
+                {
+                    string tnote = admin.FirstName + " transfer to " + transphy.FirstName + " on " + item.CreatedDate.ToString("dd MMM,yyyy") + " at " + item.CreatedDate.ToString("h:mm tt") + " : " + item.Notes;
+                    notes.Add(tnote);
+                }
+                if (item.PhysicianId != null && physician != null && item.TransToAdmin != null)
+                {
+                    string anote = physician.FirstName + " transfer back to admin on " + item.CreatedDate.ToString("dd MMM,yyyy") + " at " + item.CreatedDate.ToString("h:mm tt") + " : " + item.Notes;
+                    notes.Add(anote);
+                }
+            }
+            if (request.DeclinedBy != null)
+            {
+                var declinephy = _unitOfWork.tableData.GetPhysicianFirstOrDefault(int.Parse(request.DeclinedBy));
+                string tnote = declinephy.FirstName + " Decline Request on " + request.ModifiedDate.Value.ToString("dd MMM,yyyy") + " at " + request.ModifiedDate.Value.ToString("h:mm tt");
+                notes.Add(tnote);
+            }
+
+
+            viewnote.TransferNoteList = notes;
+
+
+
+            //var transfernotedetail = _unitOfWork.tableData.GetRequestStatusLogListByRequestId(reqid);
+            //viewnote.requestStatusLogList = transfernotedetail;
             return View(viewnote);
         }
 
@@ -351,6 +381,24 @@ namespace HalloDoc.Controllers.Admin
             var physiciandetail = _unitOfWork.tableData.GetPhysicianFirstOrDefault(int.Parse(physicianid));
             req.PhysicianId = physiciandetail.PhysicianId;
             //req.Status = 2;
+            //if (req.DeclinedBy != null)
+            //{
+            //    req.DeclinedBy = null;
+            //}
+            _unitOfWork.UpdateData.UpdateRequest(req);
+            var adminid = HttpContext.Session.GetInt32("AdminId");
+            _addOrUpdateRequestStatusLog.AddOrUpdateRequestStatusLog(id, assignnote.BlockNotes, adminid, physiciandetail.PhysicianId);
+            TempData["success"] = "Request successfully Assigned..!";
+            return RedirectToAction("AdminDashboard");
+        }
+
+        [HttpPost]
+        public IActionResult TransferCase(int id, AdminRequestViewModel assignnote, string physicianid)
+        {
+            var req = _unitOfWork.tableData.GetRequestFirstOrDefault(id);
+            var physiciandetail = _unitOfWork.tableData.GetPhysicianFirstOrDefault(int.Parse(physicianid));
+            req.PhysicianId = physiciandetail.PhysicianId;
+            req.Status = 1;
             if (req.DeclinedBy != null)
             {
                 req.DeclinedBy = null;

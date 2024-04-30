@@ -4,7 +4,7 @@
 @{
     Layout = null;
 }
-<div class="container  px-xl-5 " style="height:80.4vh">
+<div class="container-fluid px-xl-5" style="height:80.4vh">
     <div class="row px-xl-5 px-2">
         <div class="col-12 d-flex justify-content-between py-4">
             <h4>Notes</h4>
@@ -13,30 +13,29 @@
                 Back
             </a>
         </div>
-      @*   @if (Model.PhsysicianNameViewNotes != null)
-        { *@
-            <div class="col-12 col-sm-6  py-2">
-                <div class="py-3 bg-white  d-flex flex-row   rounded-3">
-                    <div class="d-flex justify-content-center  px-3 pt-2 mb-0">
-                        <i class="fa-solid fa-right-left"></i>
-                    </div>
-                    <div>
-                        <h5 class="mb-0">Transfer Notes</h5>
-                    @if (Model.requestStatusLogList.Count() > 0)
+        <div class="col-12 col-sm-6  py-2">
+            <div class="py-3 bg-white  d-flex flex-row   rounded-3">
+                <div class="d-flex justify-content-center  px-3 pt-2 mb-0">
+                    <i class="fa-solid fa-right-left"></i>
+                </div>
+                <div>
+                    <h5 class="mb-0">Transfer Notes</h5>
+                    @if (Model.TransferNoteList.Count > 0)
                     {
-                        @foreach (var item in Model.requestStatusLogList)
+                        var Index = 1;
+                        @foreach (var item in Model.TransferNoteList)
                         {
-                            if (item.Notes != null)
+                            <span>@Index) @item</span>
+                            <br />
                             {
-                                <span> @item.Notes on @item.CreatedDate.ToString("MM/dd/yyyy")  at  @item.CreatedDate.ToString("h:mm tt") . </span>
-                                <br />
+                                Index = @Index + 1;
                             }
                         }
                     }
-                    </div>
                 </div>
             </div>
-        @* } *@
+        </div>
+
         <div class="col-12 col-sm-6 py-2 ">
             <div class="py-3 bg-white  d-flex flex-row   rounded-3">
                 <div class="d-flex justify-content-center p-3 pt-2 mb-0">

@@ -109,10 +109,14 @@ namespace Services.Implementation
             {
                 request.PhysicianId = null;
                 request.DeclinedBy = physicianid.ToString();
+                request.ModifiedDate = DateTime.Now;
                 _context.Requests.Update(request);
                 _context.SaveChanges();
                 return 1;
             }
+            var reqstatuslog = new RequestStatusLog();
+            reqstatuslog.RequestId = requestid;
+
             return 0;
         }
 

@@ -154,14 +154,13 @@
         else {
             table.columns(1).search(regionid).draw();
             try {
-
                 var headers = document.querySelectorAll('.accordion-header');
-                console.log(headers);
+                console.log("header"+headers);
                 headers.forEach((header) => {
-                    const regionName = header.querySelector('.region-accordion-filter');
-                    console.log(regionName)
-                    const nameText = header.textContent || header.innerText;
-                    console.log(nameText)
+                    const regionName = header.querySelector('.region-accordion');
+                    console.log("region name"+regionName)
+                    const nameText = regionName.textContent || regionName.innerText;
+                    console.log("nametext"+nameText)
                     if (nameText.includes(regionid)) {
                         header.style.display = '';
                     } else {
