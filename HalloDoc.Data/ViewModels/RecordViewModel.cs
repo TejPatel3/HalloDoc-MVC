@@ -1,4 +1,4 @@
-﻿using HalloDoc.DataModels;
+﻿using DataModels.DataModels;
 using System.Collections;
 
 namespace Services.ViewModels

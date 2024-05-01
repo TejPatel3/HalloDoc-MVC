@@ -1,15 +1,10 @@
-﻿using HalloDoc.DataContext;
-using HalloDoc.DataModels;
+﻿using DataModels.DataContext;
+using DataModels.DataModels;
 using Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Implementation
 {
-    public class RemoveData:IRemoveData
+    public class RemoveData : IRemoveData
     {
         private readonly ApplicationDbContext _context;
         public RemoveData()

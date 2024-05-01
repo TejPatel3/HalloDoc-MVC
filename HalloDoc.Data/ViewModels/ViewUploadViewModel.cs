@@ -1,4 +1,4 @@
-﻿using HalloDoc.DataModels;
+﻿using DataModels.DataModels;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 

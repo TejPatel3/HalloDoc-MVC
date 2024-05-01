@@ -1,6 +1,6 @@
 ﻿using DataModels.AdminSideViewModels;
-using HalloDoc.DataContext;
-using HalloDoc.DataModels;
+using DataModels.DataContext;
+using DataModels.DataModels;
 using HalloDoc.Models.ViewModel;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -13,7 +13,7 @@ using System.Collections;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace HalloDoc.Controllers.ProviderSide
+namespace DataModels.Controllers.ProviderSide
 {
     [AuthorizationRepository("Admin,Physician")]
     public class ProviderSideController : Controller

@@ -101,6 +101,10 @@
       "PackagePath": "staticwebassets\\UploadDocument\\LesfImage.png"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Screenshot (1).png",
+      "PackagePath": "staticwebassets\\UploadDocument\\Screenshot (1).png"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\UploadDocument\\Screenshot (3).png",
       "PackagePath": "staticwebassets\\UploadDocument\\Screenshot (3).png"
     },
@@ -359,6 +363,10 @@
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Admin\\ViewUpload.js",
       "PackagePath": "staticwebassets\\js\\Admin\\ViewUpload.js"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\Invoicing\\Invoicing.js",
+      "PackagePath": "staticwebassets\\js\\Invoicing\\Invoicing.js"
     },
     {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\js\\ProviderLocation\\ProviderLoaction.js",

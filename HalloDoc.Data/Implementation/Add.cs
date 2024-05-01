@@ -1,8 +1,7 @@
-﻿using HalloDoc.DataContext;
-using HalloDoc.DataModels;
+﻿using DataModels.DataContext;
+using DataModels.DataModels;
 using Services.Contracts;
 using Services.ViewModels;
-using System.Collections;
 
 namespace Services.Implementation
 {

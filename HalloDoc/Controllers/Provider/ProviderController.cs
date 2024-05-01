@@ -1,4 +1,4 @@
-﻿using HalloDoc.DataModels;
+﻿using DataModels.DataModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts;

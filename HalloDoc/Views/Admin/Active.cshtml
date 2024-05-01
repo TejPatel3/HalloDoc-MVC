@@ -193,9 +193,9 @@
                     <td class="d-none">@item.RequestType</td>
                     <td class="d-none">@item.regionid</td>
                     <td scope="row">
-                        <div class="d-flex justify-content-between ">
+                        <a href="mailto:@item.PatientEmail" class="d-flex justify-content-between  text-decoration-none text-white">
                             @item.PatientName <div class="btn btn-outline-light btn-sm"><i class="fa-regular fa-envelope fa-sm"></i></div>
-                        </div>
+                        </a>
                     </td>
                     <td>@item.PatientDOB.ToString("dd MMM,yyyy ")</td>
                     <td>@item.RequestTypeName(item.RequestType)</td>

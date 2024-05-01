@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using HalloDoc.DataModels;
+using DataModels.DataModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace HalloDoc.DataContext;
+namespace DataModels.DataContext;
 
 public partial class ApplicationDbContext : DbContext
 {
@@ -26,6 +26,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
 
+    public virtual DbSet<Biweektime> Biweektimes { get; set; }
+
     public virtual DbSet<BlockRequest> BlockRequests { get; set; }
 
     public virtual DbSet<Business> Businesses { get; set; }
@@ -46,6 +48,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<OrderDetail> OrderDetails { get; set; }
 
+    public virtual DbSet<Payrate> Payrates { get; set; }
+
     public virtual DbSet<Physician> Physicians { get; set; }
 
     public virtual DbSet<PhysicianLocation> PhysicianLocations { get; set; }
@@ -55,6 +59,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<PhysicianRegion> PhysicianRegions { get; set; }
 
     public virtual DbSet<Region> Regions { get; set; }
+
+    public virtual DbSet<Reimbursement> Reimbursements { get; set; }
 
     public virtual DbSet<Request> Requests { get; set; }
 
@@ -85,6 +91,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<ShiftDetailRegion> ShiftDetailRegions { get; set; }
 
     public virtual DbSet<Smslog> Smslogs { get; set; }
+
+    public virtual DbSet<Timesheet> Timesheets { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
@@ -139,6 +147,13 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.AspNetUserRoles)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("AspNetUserRoles_UserId_fkey");
+        });
+
+        modelBuilder.Entity<Biweektime>(entity =>
+        {
+            entity.HasKey(e => e.Biweekid).HasName("biweektime_pkey");
+
+            entity.HasOne(d => d.Physician).WithMany(p => p.Biweektimes).HasConstraintName("biweektime_physicianid_fkey");
         });
 
         modelBuilder.Entity<BlockRequest>(entity =>
@@ -207,6 +222,13 @@ public partial class ApplicationDbContext : DbContext
             entity.HasKey(e => e.Id).HasName("OrderDetails_pkey");
         });
 
+        modelBuilder.Entity<Payrate>(entity =>
+        {
+            entity.HasKey(e => e.Payrateid).HasName("payrate_pkey");
+
+            entity.HasOne(d => d.Physicina).WithMany(p => p.Payrates).HasConstraintName("payrate_physicinaid_fkey");
+        });
+
         modelBuilder.Entity<Physician>(entity =>
         {
             entity.HasKey(e => e.PhysicianId).HasName("Physician_pkey");
@@ -248,6 +270,15 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<Region>(entity =>
         {
             entity.HasKey(e => e.RegionId).HasName("Region_pkey");
+        });
+
+        modelBuilder.Entity<Reimbursement>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("reimbursement_pkey");
+
+            entity.HasOne(d => d.Biweektime).WithMany(p => p.Reimbursements).HasConstraintName("biweek");
+
+            entity.HasOne(d => d.Physician).WithMany(p => p.Reimbursements).HasConstraintName("reimbursement_physicianid_fkey");
         });
 
         modelBuilder.Entity<Request>(entity =>
@@ -417,6 +448,15 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<Smslog>(entity =>
         {
             entity.HasKey(e => e.SmslogId).HasName("SMSLog_pkey");
+        });
+
+        modelBuilder.Entity<Timesheet>(entity =>
+        {
+            entity.HasKey(e => e.Timesheetid).HasName("timesheet_pkey");
+
+            entity.HasOne(d => d.Biweektime).WithMany(p => p.Timesheets).HasConstraintName("biweektime");
+
+            entity.HasOne(d => d.Physician).WithMany(p => p.Timesheets).HasConstraintName("timesheet_physicianid_fkey");
         });
 
         modelBuilder.Entity<User>(entity =>

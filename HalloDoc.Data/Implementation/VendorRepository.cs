@@ -1,5 +1,5 @@
-﻿using HalloDoc.DataContext;
-using HalloDoc.DataModels;
+﻿using DataModels.DataContext;
+using DataModels.DataModels;
 using Services.Contracts;
 using Services.ViewModels;
 using System.Collections;
@@ -9,9 +9,9 @@ namespace Services.Implementation
     public class VendorRepository : IVendorRepository
     {
         private readonly ApplicationDbContext _context;
-        public VendorRepository()
+        public VendorRepository(ApplicationDbContext context)
         {
-            _context = new ApplicationDbContext();
+            _context = context;
         }
         public List<Region> getRegionList()
         {

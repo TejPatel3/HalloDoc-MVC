@@ -1,4 +1,4 @@
-﻿using HalloDoc.DataModels;
+﻿using DataModels.DataModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

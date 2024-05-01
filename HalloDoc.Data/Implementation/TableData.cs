@@ -1,5 +1,5 @@
-﻿using HalloDoc.DataContext;
-using HalloDoc.DataModels;
+﻿using DataModels.DataContext;
+using DataModels.DataModels;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
 using System.Collections;

@@ -148,6 +148,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXZpZXdBZ3JlZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/HalloDoc/HalloDoc/Views/Invoicing/Invoicing.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljaW5nXEludm9pY2luZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/HalloDoc/HalloDoc/Views/Invoicing/_InvoicingTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljaW5nXF9JbnZvaWNpbmdUYWJsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/HalloDoc/HalloDoc/Views/PatientRequest/Business.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudFJlcXVlc3RcQnVzaW5lc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

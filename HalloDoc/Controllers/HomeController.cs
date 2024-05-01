@@ -1,5 +1,5 @@
-﻿using HalloDoc.DataContext;
-using HalloDoc.DataModels;
+﻿using DataModels.DataContext;
+using DataModels.DataModels;
 using HalloDoc.Models;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +10,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Mail;
 
-namespace HalloDoc.Controllers
+namespace DataModels.Controllers
 {
     public class HomeController : Controller
     {

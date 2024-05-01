@@ -1,5 +1,5 @@
-﻿using HalloDoc.DataContext;
-using HalloDoc.DataModels;
+﻿using DataModels.DataContext;
+using DataModels.DataModels;
 using HalloDoc.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +7,7 @@ using Services.Implementation;
 using System.Net;
 using System.Net.Mail;
 
-namespace HalloDoc.Controllers
+namespace DataModels.Controllers
 {
     public class PatientRequestController : Controller
     {

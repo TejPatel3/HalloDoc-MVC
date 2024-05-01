@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "_Admin";
+    ViewData["Title"] = "Invoicing";
+}
+
+<div class="container pb-4 bg-light px-1 px-sm-2 px-lg-5" id="provider-maindiv">
+    <div class="d-flex justify-content-between align-items-center w-100 my-3">
+        <h4>Time Sheet</h4>
+        <a asp-controller="Admin" asp-action="AdminDashboard"
+           class="btn m-0 btn-outline-info  px-2 ">
+            <i class="fa-solid fa-chevron-left"></i>
+            Back
+        </a>
+    </div>
+    <div class="container-fluid bg-white shadow">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-between mt-3 ">
+                <div class="dropdown d-flex">
+                    <select name="regionname" id="RegionSearch" class="form-select shadow-none getregion h-100" style="min-width:100px" aria-label="Floating label select example">
+                        <option class="regionselect" selected value="0">Search By Physician</option>
+                        @*      @foreach (var item in Model.regionlist)
+                        {
+                        <option class="regionselect" value="@item.RegionId">@item.Name</option>
+                        } *@
+                    </select>
+                </div>
+                <div class="dropdown d-flex">
+                    <select name="regionname" id="RegionSearch" class="form-select shadow-none getregion h-100" style="min-width:100px" aria-label="Floating label select example">
+                        <option class="regionselect" selected value="0">Search By Physician</option>
+                        @*      @foreach (var item in Model.regionlist)
+                        {
+                        <option class="regionselect" value="@item.RegionId">@item.Name</option>
+                        } *@
+                    </select>
+                </div>
+            </div>
+            <div class="table-responsive col-12 my-0 my-sm-1 my-md-2 " id="ProviderTableDiv">
+            </div>
+        </div>
+    </div>
+</div>

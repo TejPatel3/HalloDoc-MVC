@@ -1,5 +1,5 @@
 using DataAccess.ServiceRepository;
-using HalloDoc.DataContext;
+using DataModels.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Services.Contracts;
 using Services.Implementation;
