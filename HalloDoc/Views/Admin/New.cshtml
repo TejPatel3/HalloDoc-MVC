@@ -214,33 +214,42 @@
                     <td>@item.RequestTypeName(item.RequestType)</td>
                     <td>@item.RequestedDate.ToString("dd MMM,yyyy")</td>
                     <td>
-                        <div class="btn btn-outline-light w-75 d-flex small px-0 py-1">
-                            <i class="bi bi-telephone pe-3 ps-1"></i>
-                            @item.PatientPhone
-                        </div>
-                        <small class="p-0 m-0">(Patient)</small>
+                        <a href="tel:@item.PatientPhone" class="text-decoration-none">
+                            <button class="btn btn-outline-light w-100 d-flex ">
+                                <i class="bi bi-telephone pe-3 ps-1"></i>
+                                @item.PatientPhone
+                            </button>
+                        </a>
+                        <small>(Patient)</small>
                         @if (item.RequestType == 2 && item.RequestorPhone != null)
                         {
-                            <div class="btn btn-outline-light w-75 d-flex px-0 py-1">
-                                <i class="bi bi-telephone pe-3 ps-1"></i>
-                                @item.RequestorPhone
-                            </div>
+                            <a href="tel:@item.RequestorPhone" class="text-decoration-none">
+                                <button class="btn btn-outline-light w-100 d-flex ">
+                                    <i class="bi bi-telephone pe-3 ps-1"></i>
+                                    @item.RequestorPhone
+                                </button>
+                            </a>
                             <small>(Family\Friend)</small>
                         }
                         @if (item.RequestType == 3 && item.RequestorPhone != null)
                         {
-                            <div class="btn btn-outline-light w-75 d-flex px-0 py-1">
-                                <i class="bi bi-telephone pe-3 ps-1"></i>
-                                @item.RequestorPhone
-                            </div>
+                            <a href="tel:@item.RequestorPhone" class="text-decoration-none">
+                                <button class="btn btn-outline-light w-100 d-flex">
+                                    <i class="bi bi-telephone pe-3 ps-1"></i>
+                                    @item.RequestorPhone
+                                </button>
+                            </a>
+
                             <small>(Concierge)</small>
                         }
                         @if (item.RequestType == 4 && item.RequestorPhone != null)
                         {
-                            <div class="btn btn-outline-light w-75 d-flex px-0 py-1">
-                                <i class="bi bi-telephone pe-3 ps-1"></i>
-                                @item.RequestorPhone
-                            </div>
+                            <a href="tel:@item.RequestorPhone" class="text-decoration-none">
+                                <button class="btn btn-outline-light w-100 d-flex ">
+                                    <i class="bi bi-telephone pe-3 ps-1"></i>
+                                    @item.RequestorPhone
+                                </button>
+                            </a>
                             <small>(Business)</small>
                         }
                     </td>

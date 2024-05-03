@@ -1,6 +1,7 @@
 ﻿@model Services.ViewModels.VendorViewModel
 @{
     Layout = "_Admin";
+    ViewData["Title"] = "Vendor";
 }
 <div class="container-fluid pb-4 px-0 px-lg-5" id="vendormaindiv">
     <div class="my-3">
@@ -39,7 +40,7 @@
 
 <script src="/js/Vendor/Vendor.js"></script>
 
- @if (TempData["vendoraccountcreated"] != null)
+@if (TempData["vendoraccountcreated"] != null)
 {
     <script>
         console.log("added")
@@ -64,7 +65,7 @@
             timer: 1700
         });
     </script>
-} 
+}
 @if (TempData["VendorDataUpdatederror"] != null || TempData["vendoraccountcreatederror"] != null)
 {
     <script>

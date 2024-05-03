@@ -72,6 +72,29 @@ namespace HalloDoc.Controllers.Access
         }
 
         [HttpPost]
+        public bool IsRoleExist(string rolename, int roleid)
+        {
+            if (roleid != 0)
+            {
+                var role = _unitOfWork.tableData.GetRoleListByExcludeRoleId(roleid).Select(m => m.Name).ToList();
+                //var role = _context.Roles.Where(r => r.Roleid != roleid).Select(x => x.Name).ToList();
+                if (role.Contains(rolename))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                var role = _unitOfWork.tableData.GetRoleList().Select(x => x.Name).ToList();
+                if (role.Contains(rolename))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        [HttpPost]
         public IActionResult CreateRole(string rolename, int accounttype, int[] selectedmenu, int roleid)
         {
             var adminname = HttpContext.Session.GetString("AdminName");

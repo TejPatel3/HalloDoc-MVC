@@ -187,6 +187,8 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<EmailLog>(entity =>
         {
             entity.HasKey(e => e.EmailLogId).HasName("EmailLog_pkey");
+
+            entity.Property(e => e.EmailLogId).HasIdentityOptions(40L, null, null, null, null, null);
         });
 
         modelBuilder.Entity<Encounter>(entity =>
@@ -448,6 +450,8 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<Smslog>(entity =>
         {
             entity.HasKey(e => e.SmslogId).HasName("SMSLog_pkey");
+
+            entity.Property(e => e.SmslogId).HasIdentityOptions(3L, null, null, null, null, null);
         });
 
         modelBuilder.Entity<Timesheet>(entity =>

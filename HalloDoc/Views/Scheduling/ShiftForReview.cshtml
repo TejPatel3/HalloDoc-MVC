@@ -73,8 +73,7 @@
             for (var i = 1; i <= totalPages; i++) {
                 $('#shiftForReviewPagination').append('<button class="mx-1 btn rounded-pill shadow-none btn-outline-info shiftforreviewpagination" id="shiftforreviewpagination' + i + '" onclick="loadpagedata(' + i + ')" style="height:27px;width:27px;padding:0px 8px 0px 8px;">' + i + '</button>');
             }
-
-            $('#shiftforreviewpagination'+currentpage).addClass('btn-info');
+            $('#shiftforreviewpagination'+currentpage).addClass('btn-info');             
             $('#shiftforreviewpagination'+currentpage).addClass('text-white');
         },
         error: function (xhr, textStatus, errorThrown) {

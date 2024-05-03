@@ -7,6 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contracts\ProviderSide\**" />
+    <Compile Remove="Implementation\ProviderSide\**" />
+    <EmbeddedResource Remove="Contracts\ProviderSide\**" />
+    <EmbeddedResource Remove="Implementation\ProviderSide\**" />
+    <None Remove="Contracts\ProviderSide\**" />
+    <None Remove="Implementation\ProviderSide\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="iTextSharp" Version="5.5.13.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.16" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
@@ -20,8 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\ProviderSide\" />
-    <Folder Include="Implementation\ProviderSide\" />
     <Folder Include="ViewModels\ProviderSide\" />
   </ItemGroup>
 

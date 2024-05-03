@@ -13,5 +13,6 @@
         public IAccessRepository Access { get; }
         public IAdd Add { get; }
         public IRemoveData RemoveData { get; }
+        public ISendEmailAndSMS SendEmailAndSMS { get; }
     }
 }

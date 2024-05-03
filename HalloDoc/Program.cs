@@ -34,6 +34,7 @@ builder.Services.AddScoped<ITableData, TableData>();
 builder.Services.AddScoped<IUpdateData, UpdateData>();
 builder.Services.AddScoped<IAccessRepository, AccessRepository>();
 builder.Services.AddScoped<IRemoveData, RemoveData>();
+builder.Services.AddScoped<ISendEmailAndSMS, SendEmailAndSMS>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

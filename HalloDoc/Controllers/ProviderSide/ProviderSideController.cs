@@ -681,5 +681,10 @@ namespace DataModels.Controllers.ProviderSide
                 return result;
             }
         }
+
+        public IActionResult ProviderInvoicing()
+        {
+            return View();
+        }
     }
 }

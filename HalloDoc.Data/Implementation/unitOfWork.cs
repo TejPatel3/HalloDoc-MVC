@@ -15,9 +15,9 @@ namespace Services.Implementation
         public IAccessRepository Access { get; private set; }
         public IAdd Add { get; }
         public IRemoveData RemoveData { get; }
+        public ISendEmailAndSMS SendEmailAndSMS { get; }
 
-
-        public unitOfWork(IVendorRepository Vendor, ISchedulingRepository scheduling, IRecordRepository record, ITableData tableData, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboarDataTable, IUpdateData updateData, IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog, IAccessRepository access, IAdd add, IRemoveData removeData)
+        public unitOfWork(IVendorRepository Vendor, ISchedulingRepository scheduling, IRecordRepository record, ITableData tableData, IAdminDashboard adminDashboard, IAdminDashboardDataTable adminDashboarDataTable, IUpdateData updateData, IAddOrUpdateRequestStatusLog addOrUpdateRequestStatusLog, IAccessRepository access, IAdd add, IRemoveData removeData, ISendEmailAndSMS sendEmailAndSMS)
         {
             vendor = Vendor;
             this.scheduling = scheduling;
@@ -30,6 +30,7 @@ namespace Services.Implementation
             Access = access;
             Add = add;
             RemoveData = removeData;
+            SendEmailAndSMS = sendEmailAndSMS;
         }
     }
 }

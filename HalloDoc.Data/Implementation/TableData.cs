@@ -117,6 +117,10 @@ namespace Services.Implementation
         {
             return _context.RequestStatusLogs.Where(m => m.RequestId == requestId).Include(m => m.Physician).Include(m => m.Physician).ToList();
         }
+        public List<Role> GetRoleListByExcludeRoleId(int roleId)
+        {
+            return _context.Roles.Where(m => m.RoleId != roleId).ToList();
+        }
         //Get Data with filter
         public Role GetRoleById(int id)
         {

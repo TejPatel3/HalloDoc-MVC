@@ -210,31 +210,15 @@ namespace Services.Implementation
             if (fromdateofservice != null)
             {
                 DateTime dt = DateTime.ParseExact(fromdateofservice, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                // Extract the day, month, and year
-                int day = dt.Day;
-                int month = dt.Month;
-                int year = dt.Year;
-                recorddata = recorddata
-                .Where(x => x.RequestClients.FirstOrDefault().IntYear >= year
-                && x.RequestClients.FirstOrDefault().IntDate >= day
-                && DateTime.ParseExact(x.RequestClients.FirstOrDefault().StrMonth, "MMM", CultureInfo.InvariantCulture).Month >= month)
-                .ToList();
+                recorddata = recorddata.Where(m => m.CreatedDate >= dt).ToList();
             }
 
             //for todateofservice search
 
             if (todateofservice != null)
             {
-                DateTime dt = DateTime.ParseExact(todateofservice, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                // Extract the day, month, and year
-                int day = dt.Day;
-                int month = dt.Month;
-                int year = dt.Year;
-                recorddata = recorddata
-                .Where(x => x.RequestClients.FirstOrDefault().IntYear <= year
-                && x.RequestClients.FirstOrDefault().IntDate <= day
-                && DateTime.ParseExact(x.RequestClients.FirstOrDefault().StrMonth, "MMM", CultureInfo.InvariantCulture).Month <= month)
-                .ToList();
+                DateOnly dt = DateOnly.ParseExact(todateofservice, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                recorddata = recorddata.Where(m => DateOnly.FromDateTime(m.CreatedDate) <= dt).ToList();
             }
 
             //for physicianname search
@@ -268,9 +252,7 @@ namespace Services.Implementation
                 var model = new RecordViewModel();
                 model.PatientName = request.RequestClients.FirstOrDefault().FirstName + " " + request.RequestClients.FirstOrDefault().LastName;
                 model.Requestor = model.RequestTypeName(request.RequestTypeId);
-                model.DateOfService = request.RequestClients.FirstOrDefault().StrMonth
-                    + " " + request.RequestClients.FirstOrDefault().IntDate + "," +
-                    request.RequestClients.FirstOrDefault().IntYear;
+                model.DateOfService = request.CreatedDate.ToString("dd MMM, yyyy");
 
                 model.Physician = "-";
                 if (request.PhysicianId != null)

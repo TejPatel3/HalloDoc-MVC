@@ -47,7 +47,9 @@ namespace HalloDoc.Controllers.Provider
         public IActionResult ContactProviderModelSubmit(int physicianid, string message)
         {
             var physician = _unitOfWork.tableData.GetPhysicianFirstOrDefault(physicianid);
-            Sendemail(physician.Email, "Hallodoc admin sent you message", message);
+            //Sendemail(physician.Email, "Hallodoc admin sent you message", message);
+            _unitOfWork.SendEmailAndSMS.Sendemail(physician.Email, "Hallodoc admin sent you message", message);
+            _unitOfWork.SendEmailAndSMS.SendSMS();
             return RedirectToAction("Provider");
         }
 

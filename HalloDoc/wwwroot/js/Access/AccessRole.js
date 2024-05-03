@@ -4,6 +4,26 @@ window.onload = function () {
     $('#nav-access-tab').addClass('admin-layout-nav-active');
 }
 
+$('#rolename-createrole').on('blur', function () {
+    let rolename = $('#rolename-createrole').val();
+    let roleid = $('#roleid-createrole').val();
+    $.ajax({
+        url: '/Access/IsRoleExist',
+        type: 'POST',
+        data: {
+            rolename: rolename,
+            roleid: roleid
+        },
+        success: function (response) {
+            if (!response) {
+                Swal.fire('Role exist');
+                $('#rolename-createrole').val('');
+            }
+        },
+
+    })
+})
+
 $('#createaccessrole-btn').on('click', function () {
     $.ajax({
         url: '/Access/CreateRole',
