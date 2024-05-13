@@ -1,0 +1,220 @@
+﻿@using Services.ViewModels
+
+@model InvoicingViewAll
+<div id="receiptSection" class="form-container mb-4">
+    <form id="receiptForm">
+        <div class="table-responsive">
+            <table class="table align-middle md-txt">
+                <thead>
+                    <tr>
+                        <td width="10%">Date</td>
+                        <td width="20%">Item</td>
+                        <td width="20%">Amount</td>
+                        <td width="25%">Bill</td>
+                        <td width="25%" class="text-center">Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Receipt)
+                    {
+                        <input type="hidden" class="TimeDetailId" value="@item.TimeSheetDetailId" />
+                        <tr>
+                            <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                            <td>
+                                @if (string.IsNullOrEmpty(item.Item))
+                                {
+                                    <input type="text" class="item form-control form-field" />
+                                }
+                                else
+                                {
+                                    <span class="dull-txt oldValueEdit">@item.Item</span>
+                                    <input type="text" class="d-none newValueEdit item form-control form-field" value="@item.Item" />
+                                }
+                            </td>
+                            <td>
+                                @if (item.Amount == null)
+                                {
+                                    <input type="number" class="amount form-control form-field" />
+                                }
+                                else
+                                {
+                                    <span class="dull-txt oldValueEdit">@item.Amount</span>
+                                    <input type="number" class="d-none newValueEdit amount form-control form-field" value="@item.Amount" />
+                                }
+                            </td>
+                            @if (string.IsNullOrEmpty(item.FileName))
+                            {
+                                <td>
+                                    <div class="d-flex w-100 justify-content-between gx-0">
+                                        <div class="w-100 h-100 d-flex align-items-center input-upload">
+                                            <input type="file" name="file" id="Upload_@item.TimeSheetDetailId" class="inputFileReceipt form-control form-field form-input" style="display:none" />
+                                            <label class="w-100 h-100 mb-0 form-label input-file-btn" id="fileName_@item.FileName" for="Upload_@item.TimeSheetDetailId">Select File</label>
+                                        </div>
+                                        <button type="button" value="@item.TimeSheetDetailId" class="upload-btn btn btn-info uploadReceptBtn">
+                                            <span class="d-none d-sm-flex"><i class="bi bi-cloud-arrow-up me-2"></i>Upload</span>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <span class="dull-txt oldValueEdit">@item.FileName</span>
+                                    <div class="d-none newValueEdit d-flex w-100 justify-content-between gx-0">
+                                        <div class="w-100 h-100 d-flex align-items-center input-upload">
+                                            <input type="file" name="file" id="Upload_@item.TimeSheetDetailId" class="inputFileReceipt form-control form-field form-input" style="display:none" />
+                                            <label class="w-100 h-100 mb-0 form-label input-file-btn" id="fileName_@item.FileName" for="Upload_@item.TimeSheetDetailId">Select File</label>
+                                        </div>
+                                        <button type="button" value="@item.TimeSheetDetailId" class="upload-btn btn btn-info uploadReceptBtn">
+                                            <span class="d-none d-sm-flex"><i class="bi bi-cloud-arrow-up me-2"></i>Upload</span>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button type="button" class="d-none btn btn-info px-2 p-1 newValueEdit saveEditBtn">Save</button>
+                                        <button type="button" class="d-none btn btn-outline-info px-2 p-1 newValueEdit cancelEditBtn">Cancel</button>
+                                        <button type="button" class="editReceiptBtn btn btn-outline-info px-2 p-1 oldValueEdit">Edit</button>
+                                        <button type="button" value="@item.TimeSheetBillId" class="deleteReceiptBtn btn btn-outline-info px-2 p-1 oldValueEdit">Delete</button>
+                                        <a href="~/Uploads/Receipts/@item.TimeSheetDetailId/@item.FileName" target="_blank" class="btn btn-outline-info px-2 p-1 oldValueEdit">View</a>
+                                    </div>
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </form>
+</div>
+
+<script asp-append-version="true">
+    $(".uploadReceptBtn").click(function () {
+
+        let month = $("#monthSpan").text();
+        let half = $("#halfSpan").text();
+
+        let timesheetDetailId = $(this).val();
+        let fileInput = $(this).closest('td').find(`#Upload_${timesheetDetailId}`)[0].files[0];
+        let item = $(this).closest('tr').find(".item").val();
+        let amount = $(this).closest('tr').find(".amount").val();
+
+        console.log("id", timesheetDetailId);
+        console.log("file", fileInput);
+        console.log("item", item);
+        console.log("amount", amount);
+
+        if (timesheetDetailId == 0) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Submit TimeSheet form atleast once to upload Receipts",
+            });
+            return;
+        }
+        if (item.trim() == null || item.trim() == "" || amount == null || amount == 0) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Item and Amount is necessary",
+            });
+            return;
+        }
+        if (fileInput == null) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Please select a file to upload",
+            });
+            return;
+        }
+        uploadFile(fileInput, timesheetDetailId, item, amount);
+    });
+
+    function uploadFile(file, timesheetDetailId, item, amount) {
+        var formData = new FormData();
+        formData.append('receipt', file);
+        formData.append('timesheetDetailId', timesheetDetailId);
+        formData.append('item', item);
+        formData.append('amount', amount);
+        $.ajax({
+            url: '/ProviderSide/UploadReceipt',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Response submited successfull...!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                if (response.fail) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Something Went wrong Try Again",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                let month = $("#monthSpan").text();
+                let half = $("#halfSpan").text();
+                getMonthHalfReceiptData(month, half);
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    $(".deleteReceiptBtn").click(function () {
+        let TimeSheetBillId = $(this).val();
+        console.log(TimeSheetBillId);
+        if (TimeSheetBillId == 0) {
+            toastr.error("File doesn't exists");
+            return;
+        }
+        console.log(TimeSheetBillId);
+        $.ajax({
+            url: '/ProviderSide/DeleteReceipt',
+            type: 'POST',
+            data: { timeSheetBillId: TimeSheetBillId },
+            success: function (response) {
+                if (response.success) {
+                    toastr.success(response.message);
+                }
+                if (response.fail) {
+                    toastr.error(response.message);
+                }
+                let month = $("#monthSpan").text();
+                let half = $("#halfSpan").text();
+                getMonthHalfReceiptData(month, half);
+            },
+            error: function () {
+
+            }
+        });
+    });
+
+    $(".editReceiptBtn").click(function () {
+        $(this).closest('tr').find(".newValueEdit").removeClass("d-none");
+        $(this).closest('tr').find(".oldValueEdit").addClass("d-none");
+    });
+
+    $(".cancelEditBtn").click(function () {
+        $(this).closest('tr').find(".newValueEdit").addClass("d-none");
+        $(this).closest('tr').find(".oldValueEdit").removeClass("d-none");
+    });
+
+    $(".saveEditBtn").click(function () {
+        $(this).closest('tr').find(".uploadReceptBtn").click();
+    });
+
+</script>

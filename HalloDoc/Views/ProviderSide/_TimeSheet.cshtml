@@ -1,0 +1,69 @@
+﻿@* @using Services.ViewModels
+@model InvoicingViewAll *@
+@model Services.ViewModels.InvoicingViewAll
+
+@if (Model.Invoicing.ToList()[0].TimeSheetDetailId != 0)
+{
+    <div class="table-responsive mt-5">
+        <table class="table align-middle md-txt">
+            <thead>
+                <tr>
+                    <td>Date</td>
+                    <td>On-Call Hours</td>
+                    <td>Total Hours</td>
+                    <td class="text-center">Weekend/ Holiday</td>
+                    <td>Number of Housecalls</td>
+                    <td>Number of Phone Consults</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (var i = 0; i < Model.Invoicing.Count(); i++)
+                {
+                    <tr>
+                        <input type="hidden" name="[@i].physicianId" value="@Model.Invoicing.ToList()[0].physicianId" />
+                        <input type="hidden" name="[@i].TimeSheetDetailId" value="@Model.Invoicing.ToList()[i].TimeSheetDetailId" />
+                        <td>
+                            @Model.Invoicing.ToList()[i].Date.ToString("MMM dd, yyyy")
+                            <input type="hidden" name="[@i].Date" value="@Model.Invoicing.ToList()[i].Date" />
+                        </td>
+                        <td>
+                            @Model.Invoicing.ToList()[i].onCallHours
+                            <input type="hidden" name="[@i].onCallHours" value="@Model.Invoicing.ToList()[i].onCallHours" />
+                        </td>
+                        <td>
+                            @Model.Invoicing.ToList()[i].totalHours
+                            <input type="hidden" name="[@i].totalHours" value="@Model.Invoicing.ToList()[i].totalHours" class="form-control form-field" />
+                        </td>
+                        <td class="text-center">
+                            @* <input type="checkbox" value="@Model.Invoicing.ToList()[i].isWeekend" name="[@i].isWeekend" @(Model.Invoicing) /> *@
+                            @if (Model.Invoicing.ToList()[i].isWeekend == true)
+                            {
+                                <span>Yes</span>
+                            }
+                            else
+                            {
+                                <span>No</span>
+                            }
+                        </td>
+                        <td>
+                            @Model.Invoicing.ToList()[i].noOfHouseCalls
+                            <input type="hidden" name="[@i].noOfHouseCalls" value="@Model.Invoicing.ToList()[i].noOfHouseCalls" class="form-control form-field" />
+                        </td>
+                        <td>
+                            @Model.Invoicing.ToList()[i].noOfPhoneConsults
+                            <input type="hidden" name="[@i].noOfPhoneConsults" value="@Model.Invoicing.ToList()[i].noOfPhoneConsults" class="form-control form-field" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+}
+else
+{
+    <div class="d-flex w-100 justify-content-center mt-5">
+        <p class="sm-heading">No Records Found</p>
+    </div>
+}

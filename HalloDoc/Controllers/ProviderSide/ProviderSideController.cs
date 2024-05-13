@@ -20,10 +20,13 @@ namespace DataModels.Controllers.ProviderSide
     {
         private readonly IunitOfWork _unitOfWork;
         private readonly IAddOrUpdateRequestNotes _addOrUpdateRequestNotes;
-        public ProviderSideController(IunitOfWork unit, ApplicationDbContext context, IAddOrUpdateRequestNotes addOrUpdateRequestNotes)
+        private readonly IWebHostEnvironment _environment;
+
+        public ProviderSideController(IunitOfWork unit, ApplicationDbContext context, IAddOrUpdateRequestNotes addOrUpdateRequestNotes, IWebHostEnvironment environment)
         {
             _unitOfWork = unit;
             _addOrUpdateRequestNotes = addOrUpdateRequestNotes;
+            _environment = environment;
         }
         public IActionResult ProviderDashboard()
         {
@@ -682,9 +685,241 @@ namespace DataModels.Controllers.ProviderSide
             }
         }
 
-        public IActionResult ProviderInvoicing()
+        //Provider side invoicing (good to have)
+        public IActionResult Invoicing()
         {
             return View();
+        }
+
+        public IActionResult GetMonthHalfData(string monthHalf)
+        {
+            int physicianId = (int)HttpContext.Session.GetInt32("PhysicianId");
+
+            if (physicianId == 0)
+            {
+                return RedirectToAction("Login", "PlatformAuth");
+            }
+            int month = Convert.ToInt32(monthHalf.Substring(0, monthHalf.IndexOf("-")));
+            int half = Convert.ToInt32(monthHalf.Substring(monthHalf.IndexOf("-") + 1, 1));
+
+            IEnumerable<InvoicingView> invoicingView = _unitOfWork.ProviderSite.GetMonthHalfTimeSheetData(DateTime.Now.Year, month, half, physicianId);
+            InvoicingViewAll result = new InvoicingViewAll
+            {
+                Invoicing = invoicingView,
+                Month = month,
+                Half = half,
+            };
+            return PartialView("_TimeSheet", result);
+
+        }
+
+        public IActionResult GetMonthHalfReceiptData(string month, string half)
+        {
+            int physicianId = (int)HttpContext.Session.GetInt32("PhysicianId");
+            if (physicianId == 0)
+            {
+                return RedirectToAction("Login", "PlatformAuth");
+            }
+            int monthInt = Convert.ToInt32(month);
+            int halfInt = Convert.ToInt32(half);
+
+            IEnumerable<ReceiptView> receipts = _unitOfWork.ProviderSite.GetMonthHalfReceiptData(DateTime.Now.Year, monthInt, halfInt, physicianId);
+            InvoicingViewAll result = new InvoicingViewAll
+            {
+                Receipt = receipts,
+                Month = monthInt,
+                Half = halfInt,
+            };
+            return PartialView("_TimeSheetReceipts", result);
+
+        }
+
+        public IActionResult GetTimesheetBillDataOnly(string monthHalf)
+        {
+            int physicianId = (int)HttpContext.Session.GetInt32("PhysicianId");
+            if (physicianId == 0)
+            {
+                return RedirectToAction("Login", "PlatformAuth");
+            }
+            int month = Convert.ToInt32(monthHalf.Substring(0, monthHalf.IndexOf("-")));
+            int half = Convert.ToInt32(monthHalf.Substring(monthHalf.IndexOf("-") + 1, 1));
+
+            IEnumerable<ReceiptView> receipts = _unitOfWork.ProviderSite.GetMonthHalfTimesheetBillData(DateTime.Now.Year, month, half, physicianId);
+            InvoicingViewAll result = new InvoicingViewAll
+            {
+                Receipt = receipts,
+                Month = month,
+                Half = half,
+            };
+            return PartialView("_TimeSheetReceiptTable", result);
+
+        }
+
+        public IActionResult IsTimesheetFinalize(string monthHalf)
+        {
+            int physicianId = (int)HttpContext.Session.GetInt32("PhysicianId");
+            if (physicianId == 0)
+            {
+                return RedirectToAction("Login", "PlatformAuth");
+            }
+            int month = Convert.ToInt32(monthHalf.Substring(0, monthHalf.IndexOf("-")));
+            int half = Convert.ToInt32(monthHalf.Substring(monthHalf.IndexOf("-") + 1, 1));
+
+            if (_unitOfWork.ProviderSite.IsTimeSheetFinalized(DateTime.Now.Year, month, half, physicianId))
+            {
+                return Json(new { finalized = true });
+            }
+            else
+            {
+                return Json(new { finalized = false });
+            }
+
+        }
+
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Invoicing(InvoicingView model)
+        {
+            return RedirectToAction("BiWeekTimeSheet", new { monthHalf = model.MonthHalf });
+        }
+
+        public IActionResult BiWeekTimeSheet(string monthHalf)
+        {
+            int physicianId = (int)HttpContext.Session.GetInt32("PhysicianId");
+            if (physicianId == 0)
+            {
+                return RedirectToAction("Login", "PlatformAuth");
+            }
+            int month = Convert.ToInt32(monthHalf.Substring(0, monthHalf.IndexOf("-")));
+            int half = Convert.ToInt32(monthHalf.Substring(monthHalf.IndexOf("-") + 1, 1));
+
+            IEnumerable<InvoicingView> invoicingView = _unitOfWork.ProviderSite.GetMonthHalfTimeSheetData(DateTime.Now.Year, month, half, physicianId);
+            InvoicingViewAll result = new InvoicingViewAll
+            {
+                Invoicing = invoicingView,
+                Month = month,
+                Half = half,
+            };
+            return View(result);
+
+        }
+
+        public IActionResult GetMonthHalfTimesheetData(string month, string half)
+        {
+            int physicianId = (int)HttpContext.Session.GetInt32("PhysicianId");
+            if (physicianId == 0)
+            {
+                return RedirectToAction("Login", "PlatformAuth");
+            }
+            int monthInt = Convert.ToInt32(month);
+            int halfInt = Convert.ToInt32(half);
+
+            IEnumerable<InvoicingView> invoicingView = _unitOfWork.ProviderSite.GetMonthHalfTimeSheetData(DateTime.Now.Year, monthInt, halfInt, physicianId);
+            InvoicingViewAll result = new InvoicingViewAll
+            {
+                Invoicing = invoicingView,
+                Month = monthInt,
+                Half = halfInt,
+            };
+            return PartialView("_TimeSheetForm", result);
+
+        }
+
+        //[HttpPost]
+        //public IActionResult BiWeeklyTimeSheet(IEnumerable<InvoicingView> model)
+        //{
+
+        //    _unitOfWork.ProviderSite.AddUpdateTimesheet(model);
+        //    return Json(new { success = true, message = "Timesheet Updated Successfully" });
+        //}
+
+        [HttpPost]
+        public IActionResult AddUpdateTimesheetDetails(IEnumerable<InvoicingView> model)
+        {
+
+            _unitOfWork.ProviderSite.AddUpdateTimesheet(model);
+            return Json(new { success = true, message = "Timesheet Updated Successfully" });
+        }
+
+        [HttpPost]
+        public IActionResult UploadReceipt(IFormFile receipt, int timesheetDetailId, string item, int amount)
+        {
+            try
+            {
+                string userFolder = _environment.WebRootPath + "/Uploads/Receipts/" + timesheetDetailId;
+
+                if (!Directory.Exists(userFolder))
+                {
+                    Directory.CreateDirectory(userFolder);
+                }
+
+                string[] existingFiles = Directory.GetFiles(userFolder);
+                foreach (string existingFile in existingFiles)
+                {
+                    System.IO.File.Delete(existingFile);
+                }
+
+                string userFile = userFolder + "/" + receipt.FileName;
+                using (FileStream fileStream = new FileStream(userFile, FileMode.Create))
+                {
+                    receipt.CopyTo(fileStream);
+                };
+
+                TimesheetBill timesheetBill = new TimesheetBill
+                {
+                    TimesheetDetailId = timesheetDetailId,
+                    Item = item,
+                    Amount = amount,
+                    FilePath = receipt.FileName,
+                    IsDeleted = false,
+                    CreatedDate = DateTime.Now,
+                };
+                if (_unitOfWork.ProviderSite.IsExistsTimesheetBillByDetailId(timesheetDetailId))
+                {
+                    _unitOfWork.ProviderSite.UpdateTimeSheetBill(timesheetBill);
+                }
+                else
+                {
+                    _unitOfWork.ProviderSite.AddTimesheetBill(timesheetBill);
+                }
+                _unitOfWork.ProviderSite.SaveChanges();
+
+                return Json(new { success = true, message = "Receipt uploaded Successfully" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { fail = true, message = $"Failed to upload Receipt {ex}" });
+            }
+
+        }
+
+        public IActionResult DeleteReceipt(int timeSheetBillId)
+        {
+
+            if (timeSheetBillId == 0)
+            {
+                return Json(new { fail = true, message = $"Failed to delete Receipt" });
+            }
+            else
+            {
+                _unitOfWork.ProviderSite.DeleteTimesheetBill(timeSheetBillId);
+                return Json(new { success = true, message = "Receipt deleted Successfully" });
+            }
+
+        }
+
+        [HttpPost]
+        public IActionResult FinalizeTimeSheet(InvoicingViewAll model)
+        {
+            if (_unitOfWork.ProviderSite.FinalizeTimeSheet(model.TimeSheetId))
+            {
+                TempData["success"] = "Timesheet Finalized Successfully";
+            }
+            else
+            {
+                TempData["error"] = "Failed to Finalize Timesheet";
+            }
+            return RedirectToAction("Invoicing");
         }
     }
 }

@@ -222,5 +222,11 @@ namespace Services.Implementation
         {
             return _context.ShiftDetails.Include(m => m.Shift).FirstOrDefault(m => m.ShiftDetailId == shiftDetailId);
         }
+        public Payrate GetPayrateByPhysicianId(int physicianid)
+        {
+            var payrate = _context.Payrates.FirstOrDefault(m => m.Physicinaid == physicianid);
+            return payrate;
+        }
+
     }
 }

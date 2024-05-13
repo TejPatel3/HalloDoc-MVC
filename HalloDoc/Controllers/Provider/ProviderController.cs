@@ -412,5 +412,24 @@ namespace HalloDoc.Controllers.Provider
             _unitOfWork.UpdateData.UpdatePhysician(physician);
             return RedirectToAction("Provider");
         }
+        public IActionResult PayRate(int PhysicianId)
+        {
+            var payrate = _unitOfWork.tableData.GetPayrateByPhysicianId(PhysicianId);
+            var model = new PayRateViewModel();
+            model.NightShiftWeekEnd = payrate != null ? payrate.Nightshift : 50;
+            model.Shift = payrate != null ? payrate.Shift : 50;
+            model.HouseCallNightWeekEnd = payrate != null ? payrate.Nighthousecall : 50;
+            model.PhoneConsult = payrate != null ? payrate.Consult : 50;
+            model.PhoneConsultNightWeekEnd = payrate != null ? payrate.Nightconsult : 50;
+            model.BatchTesting = payrate != null ? payrate.Batchtesting : 50;
+            model.HouseCalls = payrate != null ? payrate.Housecall : 50;
+            model.PhysicianId = PhysicianId;
+            return View(model);
+        }
+        [HttpPost]
+        public void UpdatePayrate(PayRateViewModel model)
+        {
+            _unitOfWork.Payrate.AddUpadtePayrate(model);
+        }
     }
 }

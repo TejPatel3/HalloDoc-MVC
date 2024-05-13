@@ -1,0 +1,52 @@
+﻿@using Services.ViewModels
+@model InvoicingViewAll
+@if (Model.Receipt.Count() > 0)
+{
+    <div class="form-container mb-4">
+        <form>
+            <div class="table-responsive">
+                <table class="table align-middle md-txt">
+                    <thead>
+                        <tr>
+                            <td>Date</td>
+                            <td>Item</td>
+                            <td>Amount</td>
+                            <td>Bill</td>
+                            <td class="text-center">Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Receipt)
+                        {
+                            <input type="hidden" class="TimeDetailId" value="@item.TimeSheetDetailId" />
+                            <tr>
+                                <td>@item.Date.ToString("MMM dd, yyyy")</td>
+                                <td>
+                                    <span>@item.Item</span>
+                                </td>
+                                <td>
+                                    <span>@item.Amount</span>
+                                </td>
+                                <td>
+                                    <span>@item.FileName</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <a href="~/Uploads/Receipts/@item.TimeSheetDetailId/@item.FileName" target="_blank" class="btn-second px-2 p-1">View</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <div class="d-flex w-100 justify-content-center mt-5">
+        <p class="sm-heading">No Records Found</p>
+    </div>
+}

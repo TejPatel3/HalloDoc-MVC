@@ -18,7 +18,6 @@ namespace Services.Contracts
         public int UpdateRequestTable(int requestid, short status);
         public int DeclineRequestTable(int requestid, int physicianid);
 
-
         //update data in multiple table
 
 

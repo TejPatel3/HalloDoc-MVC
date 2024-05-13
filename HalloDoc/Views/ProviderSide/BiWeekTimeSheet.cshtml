@@ -1,0 +1,109 @@
+﻿@* @using Services.ViewModels *@
+@model Services.ViewModels.InvoicingViewAll
+@{
+    Layout = "_Provider";
+}
+@* @{
+    var month = Model.Month;
+    var half = Model.Half;
+}
+<span style="display: none" id="monthSpan">@Model.Month</span>
+<span style="display: none" id="halfSpan">@Model.Half</span> *@
+<div class="container-bigheader d-flex justify-content-center container-fluid">
+    <div class="row w-100">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="d-flex w-100 align-items-center justify-content-end mb-3">
+                <a asp-action="Invoicing" asp-controller="ProviderSide" class="btn btn-outline-info mb-0">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    Back
+                </a>
+            </div>
+            <span id="monthSpan" style="display:none">@Model.Month</span>
+            <span id="halfSpan" style="display:none">@Model.Half</span>
+            @* timesheet form starts *@
+            <div id="timesheetPartial"></div>
+            @* timesheet form ends *@
+
+            <div class="d-flex w-100 justify-content-start mb-4">
+                <button id="receiptToggleBtn" type="button" class="btn btn-info p-2">
+                    Add Receipts
+                </button>
+            </div>
+
+            @* Add receipts section starts *@
+            <div id="receiptPartial"></div>
+            @* Add receipts section ends *@
+            <form method="post" asp-action="FinalizeTimeSheet" id="finalizeForm">
+                <input type="hidden" asp-for="TimeSheetId" value="@Model.Invoicing.ToList()[0].TimeSheetId" />
+                <div class="d-flex w-100 justify-content-end mb-4">
+                    <button value="@Model.Invoicing.ToList()[0].TimeSheetId" id="finalizeBtn" type="submit" class="btn btn-info p-2">
+                        Finalize
+                    </button>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+
+<script asp-append-version="true">
+    $("#invoicing").addClass("tab-list-link-active");
+    $("#invoicingMobile").addClass("offcan-tab-link-active");
+
+    $(document).ready(function () {
+        let month = $("#monthSpan").text();
+        let half = $("#halfSpan").text();
+        getMonthHalfTimesheet(month, half);
+        getMonthHalfReceiptData(month, half);
+
+        document.getElementById("receiptToggleBtn").addEventListener("click", function () {
+            var formContainer = document.getElementById("receiptSection");
+            formContainer.classList.toggle("d-none");
+        });
+    });
+
+    function getMonthHalfReceiptData(month, half) {
+        $.ajax({
+            url: '/ProviderSide/GetMonthHalfReceiptData',
+            type: 'GET',
+            data: { month: month, half: half },
+            success: function (response) {
+                $("#receiptPartial").html(response);
+            },
+            error: function () {
+
+            }
+        });
+    }
+    
+    function getMonthHalfTimesheet(month, half) {
+        $.ajax({
+            url: '/ProviderSide/GetMonthHalfTimesheetData',
+            type: 'GET',
+            data: { month: month, half: half },
+            success: function (response) {
+                $("#timesheetPartial").html(response);
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    $("#finalizeBtn").click(function () {
+        event.preventDefault();
+        let timesheetId = $("#finalizeBtn").val();
+        if (timesheetId == null || timesheetId == 0) {
+            toastr.warning("Submit the Timesheet atleast once to finalize it");
+            return;
+        }
+        else{
+            $("#finalizeForm").submit();
+        }
+    });
+
+    
+
+</script>

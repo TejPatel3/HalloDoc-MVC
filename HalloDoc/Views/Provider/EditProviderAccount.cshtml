@@ -39,7 +39,7 @@
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 <input type="number" id="physicianid-editprovideraccount" asp-for="physicianid" hidden/>
-<div class="container bg-light">
+<div class="container bg-light" id="EditProviderMainDiv">
     <div class="d-flex justify-content-between align-items-center w-100 my-3">
         <h4 class="fw-bold">Edit Physician Account</h4>
         <button class="btn m-0 btn-outline-info  px-2 " onclick="location.reload()">
@@ -172,6 +172,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end col-12">
+                <button class="btn btn-info me-2 text-white" id="EnterPayRatebtn">Enter Payrate</button>
                 <button class="btn btn-info me-2 text-white" id="pieditbtn-editprovideraccount">Edit</button>
                 <button class="btn btn-info me-2 text-white d-none" id="pisavebtn-editprovideraccount">Save</button>
 
@@ -543,6 +544,31 @@
                 });
             }
         });
-
     }
+    // $('#EnterPayRatebtn').click(function(){
+    //     debugger
+    //             let physicianid = $('#physicianid-editprovideraccount').val();
+    //      $.ajax({
+    //                 url: '/Provider/PayRate',
+    //                 // data: { "physicianid": physicianid },
+    //                 type:'POST',
+    //                 success: function (data) {
+    //                     $('#adminLayoutMainDiv').html(data);
+    //                                        },
+    //                 error: function (xhr, status, error) {
+    //                     console.error(error)
+    //                 }
+    //             }); 
+    // });
+    $('#EnterPayRatebtn').click(function(){
+        console.log("pay rate")
+        let physicianid = $('#physicianid-editprovideraccount').val();
+        $.ajax({
+            url:'/Provider/PayRate',
+            data:{"PhysicianId" : physicianid},
+            success:function(data){
+                $('#EditProviderMainDiv').html(data);
+            }
+        })
+    });
 </script>

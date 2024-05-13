@@ -14,5 +14,9 @@
         public IAdd Add { get; }
         public IRemoveData RemoveData { get; }
         public ISendEmailAndSMS SendEmailAndSMS { get; }
+        public IProviderSiteRepository ProviderSite { get; }
+        public IPayrate Payrate { get; }
+
+
     }
 }

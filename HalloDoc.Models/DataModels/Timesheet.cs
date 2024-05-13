@@ -6,51 +6,49 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataModels.DataModels;
 
-[Table("timesheet")]
+[Table("Timesheet")]
 public partial class Timesheet
 {
     [Key]
-    [Column("timesheetid")]
-    public int Timesheetid { get; set; }
+    public int TimesheetId { get; set; }
 
-    [Column("physicianid")]
-    public int? Physicianid { get; set; }
+    public int PhysicianId { get; set; }
 
-    [Column("isweekend")]
-    public bool? Isweekend { get; set; }
+    [Column(TypeName = "timestamp without time zone")]
+    public DateTime StartDate { get; set; }
 
-    [Column("oncallhours")]
-    public decimal? Oncallhours { get; set; }
+    public bool? IsFinalize { get; set; }
 
-    [Column("housecall")]
-    public int? Housecall { get; set; }
+    public bool? IsApproved { get; set; }
 
-    [Column("consult")]
-    public int? Consult { get; set; }
+    [Column(TypeName = "timestamp without time zone")]
+    public DateTime? FinalizedDate { get; set; }
 
-    [Column("createdby", TypeName = "character varying")]
-    public string? Createdby { get; set; }
+    [Column(TypeName = "timestamp without time zone")]
+    public DateTime? ApprovedDate { get; set; }
 
-    [Column("modifiedby", TypeName = "character varying")]
-    public string? Modifiedby { get; set; }
+    [Column(TypeName = "timestamp without time zone")]
+    public DateTime? CreatedDate { get; set; }
 
-    [Column("biweektimeid")]
-    public int? Biweektimeid { get; set; }
+    public int? InvoiceTotal { get; set; }
 
-    [Column("date", TypeName = "timestamp without time zone")]
-    public DateTime? Date { get; set; }
+    public int? Bonus { get; set; }
 
-    [Column("modifieddate", TypeName = "timestamp without time zone")]
-    public DateTime? Modifieddate { get; set; }
+    [Column(TypeName = "timestamp without time zone")]
+    public DateTime? ModifiedDate { get; set; }
 
-    [Column("createddate", TypeName = "timestamp without time zone")]
-    public DateTime? Createddate { get; set; }
+    [StringLength(100)]
+    public string? AdminDescription { get; set; }
 
-    [ForeignKey("Biweektimeid")]
+    [StringLength(128)]
+    public string? ApprovedBy { get; set; }
+
+    public bool? IsDeleted { get; set; }
+
+    [ForeignKey("PhysicianId")]
     [InverseProperty("Timesheets")]
-    public virtual Biweektime? Biweektime { get; set; }
+    public virtual Physician Physician { get; set; } = null!;
 
-    [ForeignKey("Physicianid")]
-    [InverseProperty("Timesheets")]
-    public virtual Physician? Physician { get; set; }
+    [InverseProperty("Timesheet")]
+    public virtual ICollection<TimesheetDetail> TimesheetDetails { get; set; } = new List<TimesheetDetail>();
 }

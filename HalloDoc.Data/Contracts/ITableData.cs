@@ -63,6 +63,6 @@ namespace Services.Contracts
         public CaseTag GetCaseTagByName(string name);
 
         public ShiftDetail GetShiftDetailByShiftDetailId(int shiftDetailId);
-
+        public Payrate GetPayrateByPhysicianId(int physicianid);
     }
 }

@@ -26,8 +26,6 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<AspNetUserRole> AspNetUserRoles { get; set; }
 
-    public virtual DbSet<Biweektime> Biweektimes { get; set; }
-
     public virtual DbSet<BlockRequest> BlockRequests { get; set; }
 
     public virtual DbSet<Business> Businesses { get; set; }
@@ -60,8 +58,6 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<Region> Regions { get; set; }
 
-    public virtual DbSet<Reimbursement> Reimbursements { get; set; }
-
     public virtual DbSet<Request> Requests { get; set; }
 
     public virtual DbSet<RequestBusiness> RequestBusinesses { get; set; }
@@ -93,6 +89,10 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<Smslog> Smslogs { get; set; }
 
     public virtual DbSet<Timesheet> Timesheets { get; set; }
+
+    public virtual DbSet<TimesheetBill> TimesheetBills { get; set; }
+
+    public virtual DbSet<TimesheetDetail> TimesheetDetails { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
 
@@ -147,13 +147,6 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.AspNetUserRoles)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("AspNetUserRoles_UserId_fkey");
-        });
-
-        modelBuilder.Entity<Biweektime>(entity =>
-        {
-            entity.HasKey(e => e.Biweekid).HasName("biweektime_pkey");
-
-            entity.HasOne(d => d.Physician).WithMany(p => p.Biweektimes).HasConstraintName("biweektime_physicianid_fkey");
         });
 
         modelBuilder.Entity<BlockRequest>(entity =>
@@ -272,15 +265,6 @@ public partial class ApplicationDbContext : DbContext
         modelBuilder.Entity<Region>(entity =>
         {
             entity.HasKey(e => e.RegionId).HasName("Region_pkey");
-        });
-
-        modelBuilder.Entity<Reimbursement>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("reimbursement_pkey");
-
-            entity.HasOne(d => d.Biweektime).WithMany(p => p.Reimbursements).HasConstraintName("biweek");
-
-            entity.HasOne(d => d.Physician).WithMany(p => p.Reimbursements).HasConstraintName("reimbursement_physicianid_fkey");
         });
 
         modelBuilder.Entity<Request>(entity =>
@@ -456,11 +440,29 @@ public partial class ApplicationDbContext : DbContext
 
         modelBuilder.Entity<Timesheet>(entity =>
         {
-            entity.HasKey(e => e.Timesheetid).HasName("timesheet_pkey");
+            entity.HasKey(e => e.TimesheetId).HasName("Timesheet_pkey");
 
-            entity.HasOne(d => d.Biweektime).WithMany(p => p.Timesheets).HasConstraintName("biweektime");
+            entity.HasOne(d => d.Physician).WithMany(p => p.Timesheets)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Timesheet_PhysicianId_fkey");
+        });
 
-            entity.HasOne(d => d.Physician).WithMany(p => p.Timesheets).HasConstraintName("timesheet_physicianid_fkey");
+        modelBuilder.Entity<TimesheetBill>(entity =>
+        {
+            entity.HasKey(e => e.TimesheetBillId).HasName("TimesheetBills_pkey");
+
+            entity.HasOne(d => d.TimesheetDetail).WithMany(p => p.TimesheetBills)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("TimesheetBills_TimesheetDetailId_fkey");
+        });
+
+        modelBuilder.Entity<TimesheetDetail>(entity =>
+        {
+            entity.HasKey(e => e.TimesheetDetailId).HasName("TimesheetDetail_pkey");
+
+            entity.HasOne(d => d.Timesheet).WithMany(p => p.TimesheetDetails)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("TimesheetDetail_TimesheetId_fkey");
         });
 
         modelBuilder.Entity<User>(entity =>

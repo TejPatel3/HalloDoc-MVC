@@ -110,9 +110,6 @@ public partial class Physician
     [StringLength(50)]
     public string? SyncEmailAddress { get; set; }
 
-    [InverseProperty("Physician")]
-    public virtual ICollection<Biweektime> Biweektimes { get; set; } = new List<Biweektime>();
-
     [ForeignKey("CreatedBy")]
     [InverseProperty("PhysicianCreatedByNavigations")]
     public virtual AspNetUser? CreatedByNavigation { get; set; }
@@ -133,9 +130,6 @@ public partial class Physician
 
     [InverseProperty("Physician")]
     public virtual ICollection<PhysicianRegion> PhysicianRegions { get; set; } = new List<PhysicianRegion>();
-
-    [InverseProperty("Physician")]
-    public virtual ICollection<Reimbursement> Reimbursements { get; set; } = new List<Reimbursement>();
 
     [InverseProperty("Physician")]
     public virtual ICollection<RequestStatusLog> RequestStatusLogPhysicians { get; set; } = new List<RequestStatusLog>();

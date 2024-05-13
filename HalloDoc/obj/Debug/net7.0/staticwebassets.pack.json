@@ -209,6 +209,22 @@
       "PackagePath": "staticwebassets\\UploadDocument\\sessionexpider.png"
     },
     {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\Uploads\\Receipts\\15\\Screenshot (5).png",
+      "PackagePath": "staticwebassets\\Uploads\\Receipts\\15\\Screenshot (5).png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\Uploads\\Receipts\\32\\Screenshot (3).png",
+      "PackagePath": "staticwebassets\\Uploads\\Receipts\\32\\Screenshot (3).png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\Uploads\\Receipts\\33\\Screenshot (5).png",
+      "PackagePath": "staticwebassets\\Uploads\\Receipts\\33\\Screenshot (5).png"
+    },
+    {
+      "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\Uploads\\Receipts\\34\\Screenshot (5).png",
+      "PackagePath": "staticwebassets\\Uploads\\Receipts\\34\\Screenshot (5).png"
+    },
+    {
       "Id": "D:\\Project\\HalloDoc\\HalloDoc\\wwwroot\\css\\Provider.css",
       "PackagePath": "staticwebassets\\css\\Provider.css"
     },

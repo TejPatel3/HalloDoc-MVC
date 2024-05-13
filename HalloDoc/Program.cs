@@ -35,6 +35,8 @@ builder.Services.AddScoped<IUpdateData, UpdateData>();
 builder.Services.AddScoped<IAccessRepository, AccessRepository>();
 builder.Services.AddScoped<IRemoveData, RemoveData>();
 builder.Services.AddScoped<ISendEmailAndSMS, SendEmailAndSMS>();
+builder.Services.AddScoped<IProviderSiteRepository, ProviderSiteRepository>();
+builder.Services.AddScoped<IPayrate, PayrateRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
