@@ -1,0 +1,88 @@
+﻿@using Services.ViewModels
+
+@model InvoicingViewAll
+@{
+    Layout = "_Admin";
+}
+<div class="container-bigheader d-flex justify-content-center container-fluid">
+    <div class="row w-100">
+        <div class="col-lg-1"></div>
+
+        <div class="col-lg-10">
+
+            <span style="display:none" id="Monthspan">@Model.Month</span>
+            <span style="display:none" id="Halfspan">@Model.Half</span>
+            <span style="display:none" id="selectedPhyIdspan">@Model.selectedPhyId</span>
+
+            <div class="d-flex w-100 align-items-center justify-content-end mb-3">
+                <a asp-action="AdminDashboard" asp-controller="Admin" class="btn btn-outline-info mb-0">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    Back
+                </a>
+            </div>
+
+            <div id="TimesheetFormSection"></div>
+            <div class="my-3">
+                <form id="approveForm" method="post" asp-action="ApproveTimeSheet" asp-controller="Invoicing">
+                    <input type="hidden" asp-for="TimeSheetId" />
+                    <input type="hidden" asp-for="InvoiceTotalSubmit" />
+                    <div class="w-100 d-flex justify-content-end align-items-center gap-3">
+                        <div class="form-floating">
+                            <input type="number" asp-for="Bonus" class="form-control form-field" placeholder="Bonus Amount" />
+                            <label asp-for="Bonus"></label>
+                            <span asp-validation-for="Bonus" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" asp-for="AdminDescription" class="form-control form-field" placeholder="Admin Description" />
+                            <label asp-for="AdminDescription"></label>
+                            <span asp-validation-for="AdminDescription" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-info p-2">Approve</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+
+<script asp-append-version="true">
+    var month, half, phyId;
+    $(document).ready(function () {
+        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-provider-tab').addClass('admin-layout-nav-active');
+
+        month = $("#Monthspan").text();
+        half = $("#Halfspan").text();
+        phyId = $("#selectedPhyIdspan").text();
+        LoadBothTableData();
+    });
+
+    function LoadBothTableData() {
+        $.ajax({
+            url: '/Invoicing/GetAdminApproveSheetData',
+            type: 'GET',
+            data: { month: month, half: half, phyId: phyId },
+            success: function (response) {
+                $("#TimesheetFormSection").html(response);
+                setApproveNewValues();
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    function setApproveNewValues() {
+        let invoiceTotal = $("#InvoiceTotal").val();
+        $("#InvoiceTotalSubmit").val(invoiceTotal);
+
+        // let bonus = $("#Bonus").val();
+        // let AdminDescription = $("#AdminDescription").val();
+
+        // $("#BonusSubmit").val(bonus);
+        // $("#AdminDescriptionSubmit").val(AdminDescription);
+    }
+
+</script>

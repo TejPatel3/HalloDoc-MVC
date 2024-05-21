@@ -65,6 +65,37 @@ namespace Services.ViewModels
         public bool IsFinalized { get; set; }
 
         public bool IsApproved { get; set; }
+
+        public int? PayTotalHours { get; set; }
+
+        public int? PayWeekend { get; set; }
+
+        public int? PayHouseCalls { get; set; }
+
+        public int? PayPhoneConcults { get; set; }
+
+        public int? SumTotalHours { get; set; }
+
+        public int? SumWeekend { get; set; }
+
+        public int? SumHouseCalls { get; set; }
+
+        public int? SumPhoneConcults { get; set; }
+
+        public int? InvoiceTotal { get; set; }
+
+        public int? InvoiceTotalSubmit { get; set; }
+
+        [Range(minimum: 0, maximum: 100000, ErrorMessage = "Enter bomus between 0 to 100k")]
+        public int? Bonus { get; set; }
+
+        //public int? BonusSubmit { get; set; }
+        [RegularExpression(@"^(?!\s+$).+", ErrorMessage = "Enter a valid Admin Description")]
+        public string? AdminDescription { get; set; }
+
+        //public string? AdminDescriptionSubmit { get; set; }
+
+        public string? ApprovedBy { get; set; }
     }
 
     public class ReceiptView
@@ -89,5 +120,31 @@ namespace Services.ViewModels
 
         public bool? IsDeleted { get; set; }
     }
+
+    public class PayrateView
+    {
+        public int PayrateId { get; set; }
+
+        public int? PhysicianId { get; set; }
+
+        public string? Category { get; set; }
+
+        public int? NightShiftWeekend { get; set; }
+
+        public int? Shift { get; set; }
+
+        public int? HouseCallNightWeekend { get; set; }
+
+        public int? PhoneConsult { get; set; }
+
+        public int? PhoneConsultNightWeekend { get; set; }
+
+        public int? BatchTesting { get; set; }
+
+        public int? HouseCalls { get; set; }
+
+        public bool isExists { get; set; }
+    }
+
 
 }

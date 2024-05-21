@@ -5,9 +5,9 @@
 <div class="form-container mb-4">
 
     <form id="timesheetPeriodForm">
-        <div class="table-responsive">
+        <div class="table-responsive bg-white shadow">
             <table class="table align-middle md-txt">
-                <thead>
+                <thead class="fw-bold bg-secondary text-white">
                     <tr>
                         <td>Date</td>
                         <td>On-Call Hours</td>
@@ -32,7 +32,7 @@
                                 <input type="hidden" name="[@i].onCallHours" value="@Model.Invoicing.ToList()[i].onCallHours" />
                             </td>
                             <td>
-                                <input type="number" name="[@i].totalHours" value="@Model.Invoicing.ToList()[i].totalHours" class="form-control form-field" />
+                                <input type="number" name="[@i].totalHours" value="@Model.Invoicing.ToList()[i].totalHours" class="form-control form-field" required min="0" max="24" />
                             </td>
                             <td class="text-center">
                                 @* <input type="checkbox" value="@Model.Invoicing.ToList()[i].isWeekend" name="[@i].isWeekend" @(Model.Invoicing) /> *@
@@ -46,17 +46,17 @@
                                 }
                             </td>
                             <td>
-                                <input type="number" name="[@i].noOfHouseCalls" value="@Model.Invoicing.ToList()[i].noOfHouseCalls" class="form-control form-field" />
+                                <input type="number" name="[@i].noOfHouseCalls" value="@Model.Invoicing.ToList()[i].noOfHouseCalls" class="form-control form-field" required min="0" max="20" />
                             </td>
                             <td>
-                                <input type="number" name="[@i].noOfPhoneConsults" value="@Model.Invoicing.ToList()[i].noOfPhoneConsults" class="form-control form-field" />
+                                <input type="number" name="[@i].noOfPhoneConsults" value="@Model.Invoicing.ToList()[i].noOfPhoneConsults" class="form-control form-field" required min="0" max="30" />
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
             <div class="d-flex w-100 justify-content-end">
-                <button id="timesheetSubmitBtn" type="submit" class="btn btn-info p-2">Submit</button>
+                <button id="timesheetSubmitBtn" type="submit" class="btn btn-info p-2 mb-3 me-3">Submit</button>
             </div>
         </div>
     </form>
@@ -66,6 +66,11 @@
     $("#timesheetSubmitBtn").click(function () {
         event.preventDefault();
         var formData = new FormData($("#timesheetPeriodForm")[0]);
+
+        if (!$("#timesheetPeriodForm").valid()){
+            return;
+        }
+
         $.ajax({
             url: '/ProviderSide/AddUpdateTimesheetDetails',
             type: 'POST',
@@ -95,6 +100,7 @@
                 let month = $("#monthSpan").text();
                 let half = $("#halfSpan").text();
                 getMonthHalfTimesheet(month, half);
+                getMonthHalfReceiptData(month, half);
             },
             error: function () {
 

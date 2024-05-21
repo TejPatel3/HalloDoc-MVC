@@ -43,8 +43,11 @@
                     <td>InActive</td>
                 }
                 <td>
-                    <button type="button" class="btn btn-outline-info Contactbtn-Provider" value="@item.PhysicianId" data-bs-toggle="modal" data-bs-target="#ContactProviderModal">Contact</button>
                     <button class="btn btn-outline-info editbtn-Provider" value="@item.PhysicianId">Edit</button>
+                    @if (!Model.isnotificationstopped.Any(m => m.PhysicianId == item.PhysicianId))
+                    {
+                        <button type="button" class="btn btn-outline-info Contactbtn-Provider" value="@item.PhysicianId" data-bs-toggle="modal" data-bs-target="#ContactProviderModal">Contact</button>
+                    }
                 </td>
             </tr>
         }

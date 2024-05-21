@@ -148,12 +148,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXZpZXdBZ3JlZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Project/HalloDoc/HalloDoc/Views/Invoicing/ApproveTimesheet.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljaW5nXEFwcHJvdmVUaW1lc2hlZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Project/HalloDoc/HalloDoc/Views/Invoicing/Invoicing.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljaW5nXEludm9pY2luZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Project/HalloDoc/HalloDoc/Views/Invoicing/_InvoicingTable.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljaW5nXF9JbnZvaWNpbmdUYWJsZS5jc2h0bWw=
+[D:/Project/HalloDoc/HalloDoc/Views/Invoicing/_InvoicingTableData.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljaW5nXF9JbnZvaWNpbmdUYWJsZURhdGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Project/HalloDoc/HalloDoc/Views/Invoicing/_TimesheetApproveTables.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52b2ljaW5nXF9UaW1lc2hlZXRBcHByb3ZlVGFibGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Project/HalloDoc/HalloDoc/Views/PatientRequest/Business.cshtml]

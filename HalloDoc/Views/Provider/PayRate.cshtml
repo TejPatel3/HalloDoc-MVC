@@ -29,17 +29,17 @@
                         <td class="align-middle text-center">
                             <div class="form-floating mb-3">
                                 <input type="text" asp-for="NightShiftWeekEnd"
-                                       class="form-control" id="NSWE"
+                                       class="form-control payratevalue" 
                                        placeholder="Username"
-                                       aria-label="Username" />
+                                       aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between">PayRate</label>
-                                <span class="small text-danger"></span>
+                                <span class="small text-danger" ></span>
                             </div>
                         </td>
                         <td class="align-middle text-center">
-                            <button class="btn btn-info text-white px-4 editbtnPayrateNSWE">Edit</button>
-                            <button class="btn btn-info text-white px-4 savebtnPayrateNSWE d-none">Save</button>
-                            <button class="btn btn-info text-white px-4 cancelPayrateNSWE d-none">Cancel</button>
+                            <button class="btn btn-info text-white px-4 editbtnPayrate">Edit</button>
+                            <button class="btn btn-info text-white px-4 savebtnPayrate d-none" data-payrate-type="NSWE">Save</button>
+                            <button class="btn btn-info text-white px-4 d-none cancelbtnPayrate">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -47,17 +47,17 @@
                         <td class="align-middle text-center">
                             <div class="form-floating mb-3">
                                 <input type="text" asp-for="Shift"
-                                       class="form-control" id="shift"
+                                       class="form-control payratevalue" 
                                        placeholder="Username"
-                                       aria-label="Username" />
+                                       aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between">PayRate</label>
                                 <span class="small text-danger"></span>
                             </div>
                         </td>
                         <td class="align-middle text-center">
-                            <button class="btn btn-info text-white px-4 editbtnPayrateS">Edit</button>
-                            <button class="btn btn-info text-white px-4 savebtnPayrateS d-none">Save</button>
-                            <button class="btn btn-info text-white px-4 cancelPayrateS d-none">Cancel</button>
+                            <button class="btn btn-info text-white px-4 editbtnPayrate">Edit</button>
+                            <button class="btn btn-info text-white px-4 savebtnPayrate d-none" data-payrate-type="shift">Save</button>
+                            <button class="btn btn-info text-white px-4  d-none cancelbtnPayrate">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -65,17 +65,17 @@
                         <td class="align-middle text-center">
                             <div class="form-floating mb-3">
                                 <input type="text" asp-for="HouseCallNightWeekEnd"
-                                       class="form-control" id="HCNWE"
+                                       class="form-control payratevalue" 
                                        placeholder="Username"
-                                       aria-label="Username" />
+                                       aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between">PayRate</label>
                                 <span class="small text-danger"></span>
                             </div>
                         </td>
                         <td class="align-middle text-center">
-                            <button class="btn btn-info text-white px-4 editbtnPayrateHCNWE">Edit</button>
-                            <button class="btn btn-info text-white px-4 savebtnPayrateHCNWE d-none">Save</button>
-                            <button class="btn btn-info text-white px-4 cancelPayrateHCNWE d-none">Cancel</button>
+                            <button class="btn btn-info text-white px-4 editbtnPayrate">Edit</button>
+                            <button class="btn btn-info text-white px-4 savebtnPayrate d-none" data-payrate-type="HCNWE">Save</button>
+                            <button class="btn btn-info text-white px-4  d-none cancelbtnPayrate">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -83,17 +83,17 @@
                         <td class="align-middle text-center">
                             <div class="form-floating mb-3">
                                 <input type="text" asp-for="PhoneConsult"
-                                       class="form-control" id="PC"
+                                       class="form-control payratevalue" 
                                        placeholder="Username"
-                                       aria-label="Username" />
+                                       aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between">PayRate</label>
                                 <span class="small text-danger"></span>
                             </div>
                         </td>
                         <td class="align-middle text-center">
-                            <button class="btn btn-info text-white px-4 editbtnPayratePC">Edit</button>
-                            <button class="btn btn-info text-white px-4 savebtnPayratePC d-none">Save</button>
-                            <button class="btn btn-info text-white px-4 cancelPayratePC d-none">Cancel</button>
+                            <button class="btn btn-info text-white px-4 editbtnPayrate">Edit</button>
+                            <button class="btn btn-info text-white px-4 savebtnPayrate d-none" data-payrate-type="PC">Save</button>
+                            <button class="btn btn-info text-white px-4 d-none cancelbtnPayrate">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -101,17 +101,17 @@
                         <td class="align-middle text-center">
                             <div class="form-floating mb-3">
                                 <input type="text" asp-for="PhoneConsultNightWeekEnd"
-                                       class="form-control" id="PCNWE"
+                                       class="form-control payratevalue" 
                                        placeholder="Username"
-                                       aria-label="Username" />
+                                       aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between">PayRate</label>
                                 <span class="small text-danger"></span>
                             </div>
                         </td>
                         <td class="align-middle text-center">
-                            <button class="btn btn-info text-white px-4 editbtnPayratePCNW">Edit</button>
-                            <button class="btn btn-info text-white px-4 savebtnPayratePCNW d-none">Save</button>
-                            <button class="btn btn-info text-white px-4 cancelPayratePCNW d-none">Cancel</button>
+                            <button class="btn btn-info text-white px-4 editbtnPayrate">Edit</button>
+                            <button class="btn btn-info text-white px-4 savebtnPayrate d-none" data-payrate-type="PCNWE">Save</button>
+                            <button class="btn btn-info text-white px-4 d-none cancelbtnPayrate">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -119,17 +119,17 @@
                         <td class="align-middle text-center">
                             <div class="form-floating mb-3">
                                 <input type="text" asp-for="BatchTesting"
-                                       class="form-control" id="BT"
+                                       class="form-control payratevalue"
                                        placeholder="Username"
-                                       aria-label="Username" />
+                                       aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between">PayRate</label>
                                 <span class="small text-danger"></span>
                             </div>
                         </td>
                         <td class="align-middle text-center">
-                            <button class="btn btn-info text-white px-4 editbtnPayrateBT">Edit</button>
-                            <button class="btn btn-info text-white px-4 savebtnPayrateBT d-none">Save</button>
-                            <button class="btn btn-info text-white px-4 cancelPayrateBT d-none">Cancel</button>
+                            <button class="btn btn-info text-white px-4 editbtnPayrate">Edit</button>
+                            <button class="btn btn-info text-white px-4 savebtnPayrate d-none" data-payrate-type="BT">Save</button>
+                            <button class="btn btn-info text-white px-4  d-none cancelbtnPayrate">Cancel</button>
 
                         </td>
                     </tr>
@@ -138,17 +138,17 @@
                         <td class="align-middle text-center">
                             <div class="form-floating mb-3">
                                 <input type="text" asp-for="HouseCalls"
-                                       class="form-control" id="HC"
+                                       class="form-control payratevalue"
                                        placeholder="Username"
-                                       aria-label="Username" />
+                                       aria-label="Username" disabled />
                                 <label class="d-flex justify-content-between">PayRate</label>
                                 <span class="small text-danger"></span>
                             </div>
                         </td>
                         <td class="align-middle text-center">
-                            <button class="btn btn-info text-white px-4 editbtnPayrateHC">Edit</button>
-                            <button class="btn btn-info text-white px-4 savebtnPayrateHC d-none">Save</button>
-                            <button class="btn btn-info text-white px-4 cancelPayrateHC d-none">Cancel</button>
+                            <button class="btn btn-info text-white px-4 editbtnPayrate">Edit</button>
+                            <button class="btn btn-info text-white px-4 savebtnPayrate d-none" data-payrate-type="HC">Save</button>
+                            <button class="btn btn-info text-white px-4  d-none cancelbtnPayrate">Cancel</button>
                         </td>
                     </tr>
                 </tbody>
@@ -159,257 +159,78 @@
 
 <script asp-append-version="true">
     var PhysicianId = $('#PhysicianIdPayRate').val();
-    //night shift week end
-    $('.editbtnPayrateNSWE').click(function () {
+    function resetData() {
+        $.ajax({
+            url: '/Provider/PayRate',
+            data: { "PhysicianId": PhysicianId },
+            success: function (data) {
+                $('#EditProviderMainDiv').html(data);
+            }
+        })
+    }
+    $('.cancelbtnPayrate').click(function () {
+        resetData();
+    });
+
+    $('.editbtnPayrate').click(function () {
         console.log("nswe")
+        $(this).siblings().removeClass('d-none')
         $(this).addClass('d-none');
-        $('.savebtnPayrateNSWE').removeClass('d-none');
-        $('.cancelPayrateNSWE').removeClass('d-none');
+        $(this).closest('tr').find(".payratevalue").prop('disabled', false);
     });
 
-    $('.savebtnPayrateNSWE').click(function () {
-        console.log("ddsnJDn");
-        var FieldCheck = "NSWE";
-        let value = $('#NSWE').val();
+    $('.savebtnPayrate').click(function () {
+        let FieldCheck = $(this).data('payrate-type');
+        let value = $(this).closest('tr').find('.payratevalue').val();
         console.log(FieldCheck)
         console.log(value)
-        console.log(PhysicianId);
-        $.ajax({
-            url: '/Provider/UpdatePayrate',
-            type: 'POST',
-            data: {
-                FieldCheck: FieldCheck,
-                PhysicianId: PhysicianId,
-                NightShiftWeekEnd: value
-            },
-            success: function (response) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Response submited successfull...!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            },
-        })
-        $('.savebtnPayrateNSWE').addClass('d-none');
-        $('.cancelPayrateNSWE').addClass('d-none');
-        $('.editbtnPayrateNSWE').removeClass('d-none');
+        if (value.trim() == "") {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Value is required",
+            });
+        }
+        else if (value < 0) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Enter valid Value",
+            });
+            $(this).closest('tr').find('.payratevalue').val("")
+        }
+        else if (value > 100000) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Value must be between 1 to 100k",
+            });
+            $(this).closest('tr').find('.payratevalue').val("")
+        }
+        else {
+            debugger
+            
+            $.ajax({
+                url: '/Provider/UpdatePayrate',
+                type: 'POST',
+                data: {
+                    FieldCheck: FieldCheck,
+                    PhysicianId: PhysicianId,
+                    PayrateValue: value
+                },
+                success: function (response) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Response submited successfull...!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    resetData();
+                },
+            })
+        }
     });
 
-    //shift
-    $('.editbtnPayrateS').click(function () {
-        $(this).addClass('d-none');
-        $('.savebtnPayrateS').removeClass('d-none');
-        $('.cancelPayrateS').removeClass('d-none');
-    });
-    $('.savebtnPayrateS').click(function () {
-        console.log("ddsnJDn");
-        var FieldCheck = "S";
-        let value = $('#shift').val();
-        console.log(FieldCheck)
-        console.log(value)
-        console.log(PhysicianId);
-        $.ajax({
-            url: '/Provider/UpdatePayrate',
-            type: 'POST',
-            data: {
-                FieldCheck: FieldCheck,
-                PhysicianId: PhysicianId,
-                Shift: value
-            },
-            success: function (response) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Response submited successfull...!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            },
-        })
-        $('.savebtnPayrateS').addClass('d-none');
-        $('.cancelPayrateS').addClass('d-none');
-        $('.editbtnPayrateS').removeClass('d-none');
-    });
 
-    //housecall night week end
-    $('.editbtnPayrateHCNWE').click(function () {
-        $(this).addClass('d-none');
-        $('.savebtnPayrateHCNWE').removeClass('d-none');
-        $('.cancelPayrateHCNWE').removeClass('d-none');
-    });
-    $('.savebtnPayrateHCNWE').click(function () {
-        console.log("ddsnJDn");
-        var FieldCheck = "HCNWE";
-        let value = $('#HCNWE').val();
-        console.log(FieldCheck)
-        console.log(value)
-        console.log(PhysicianId);
-        $.ajax({
-            url: '/Provider/UpdatePayrate',
-            type: 'POST',
-            data: {
-                FieldCheck: FieldCheck,
-                PhysicianId: PhysicianId,
-                HouseCallNightWeekEnd: value
-            },
-            success: function (response) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Response submited successfull...!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            },
-        })
-        $('.savebtnPayrateHCNWE').addClass('d-none');
-        $('.cancelPayrateHCNWE').addClass('d-none');
-        $('.editbtnPayrateHCNWE').removeClass('d-none');
-    });
-
-    //phonr consult
-    $('.editbtnPayratePC').click(function () {
-        $(this).addClass('d-none');
-        $('.savebtnPayratePC').removeClass('d-none');
-        $('.cancelPayratePC').removeClass('d-none');
-    });
-    $('.savebtnPayratePC').click(function () {
-        console.log("ddsnJDn");
-        var FieldCheck = "PC";
-        let value = $('#PC').val();
-        console.log(FieldCheck)
-        console.log(value)
-        console.log(PhysicianId);
-        $.ajax({
-            url: '/Provider/UpdatePayrate',
-            type: 'POST',
-            data: {
-                FieldCheck: FieldCheck,
-                PhysicianId: PhysicianId,
-                PhoneConsult: value
-            },
-            success: function (response) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Response submited successfull...!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            },
-        })
-        $('.savebtnPayratePC').addClass('d-none');
-        $('.cancelPayratePC').addClass('d-none');
-        $('.editbtnPayratePC').removeClass('d-none');
-    });
-
-    //phone consult night weekend
-    $('.editbtnPayratePCNW').click(function () {
-        $(this).addClass('d-none');
-        $('.savebtnPayratePCNW').removeClass('d-none');
-        $('.cancelPayratePCNW').removeClass('d-none');
-    });
-    $('.savebtnPayratePCNW').click(function () {
-        console.log("ddsnJDn");
-        var FieldCheck = "PCNWE";
-        let value = $('#PCNWE').val();
-        console.log(FieldCheck)
-        console.log(value)
-        console.log(PhysicianId);
-        $.ajax({
-            url: '/Provider/UpdatePayrate',
-            type: 'POST',
-            data: {
-                FieldCheck: FieldCheck,
-                PhysicianId: PhysicianId,
-                PhoneConsultNightWeekEnd: value
-            },
-            success: function (response) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Response submited successfull...!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            },
-        })
-        $('.savebtnPayratePCNW').addClass('d-none');
-        $('.cancelPayratePCNW').addClass('d-none');
-        $('.editbtnPayratePCNW').removeClass('d-none');
-    });
-
-    //batch testing
-    $('.editbtnPayrateBT').click(function () {
-        $(this).addClass('d-none');
-        $('.savebtnPayrateBT').removeClass('d-none');
-        $('.cancelPayrateBT').removeClass('d-none');
-    });
-    $('.savebtnPayrateBT').click(function () {
-        console.log("ddsnJDn");
-        var FieldCheck = "BT";
-        let value = $('#BT').val();
-        console.log(FieldCheck)
-        console.log(value)
-        console.log(PhysicianId);
-        $.ajax({
-            url: '/Provider/UpdatePayrate',
-            type: 'POST',
-            data: {
-                FieldCheck: FieldCheck,
-                PhysicianId: PhysicianId,
-                BatchTesting: value
-            },
-            success: function (response) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Response submited successfull...!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            },
-        })
-        $('.savebtnPayrateBT').addClass('d-none');
-        $('.cancelPayrateBT').addClass('d-none');
-        $('.editbtnPayrateBT').removeClass('d-none');
-    });
-
-    //house call
-    $('.editbtnPayrateHC').click(function () {
-        $(this).addClass('d-none');
-        $('.savebtnPayrateHC').removeClass('d-none');
-        $('.cancelPayrateHC').removeClass('d-none');
-    });
-    $('.savebtnPayrateHC').click(function () {
-        console.log("ddsnJDn");
-        var FieldCheck = "HC";
-        let value = $('#HC').val();
-        console.log(FieldCheck)
-        console.log(value)
-        console.log(PhysicianId);
-        $.ajax({
-            url: '/Provider/UpdatePayrate',
-            type: 'POST',
-            data: {
-                FieldCheck: FieldCheck,
-                PhysicianId: PhysicianId,
-                HouseCalls: value
-            },
-            success: function (response) {
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Response submited successfull...!",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            },
-        })
-        $('.savebtnPayrateHC').addClass('d-none');
-        $('.cancelPayrateHC').addClass('d-none');
-        $('.editbtnPayrateHC').removeClass('d-none');
-    });
 </script>

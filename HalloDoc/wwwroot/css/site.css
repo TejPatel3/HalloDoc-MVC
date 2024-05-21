@@ -540,7 +540,10 @@ footer{
     background-color: blue;
 }
 
-
+.error{
+    color: red;
+    font-size: 14px;
+}
 
 
 

@@ -32,31 +32,31 @@ namespace Services.Implementation
                 };
                 if (model.FieldCheck == "NSWE")
                 {
-                    add.Nightshift = model.NightShiftWeekEnd;
+                    add.Nightshift = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "S")
                 {
-                    add.Shift = model.Shift;
+                    add.Shift = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "HCNWE")
                 {
-                    add.Nighthousecall = model.HouseCallNightWeekEnd;
+                    add.Nighthousecall = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "PC")
                 {
-                    add.Consult = model.PhoneConsult;
+                    add.Consult = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "PCNWE")
                 {
-                    add.Nightconsult = model.PhoneConsultNightWeekEnd;
+                    add.Nightconsult = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "BT")
                 {
-                    add.Batchtesting = model.BatchTesting;
+                    add.Batchtesting = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "HC")
                 {
-                    add.Housecall = model.HouseCalls;
+                    add.Housecall = model.PayrateValue;
                 }
                 _context.Payrates.Add(add);
                 _context.SaveChanges();
@@ -65,31 +65,31 @@ namespace Services.Implementation
             {
                 if (model.FieldCheck == "NSWE")
                 {
-                    payrate.Nightshift = model.NightShiftWeekEnd;
+                    payrate.Nightshift = model.PayrateValue;
                 }
-                else if (model.FieldCheck == "S")
+                else if (model.FieldCheck == "shift")
                 {
-                    payrate.Shift = model.Shift;
+                    payrate.Shift = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "HCNWE")
                 {
-                    payrate.Nighthousecall = model.HouseCallNightWeekEnd;
+                    payrate.Nighthousecall = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "PC")
                 {
-                    payrate.Consult = model.PhoneConsult;
+                    payrate.Consult = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "PCNWE")
                 {
-                    payrate.Nightconsult = model.PhoneConsultNightWeekEnd;
+                    payrate.Nightconsult = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "BT")
                 {
-                    payrate.Batchtesting = model.BatchTesting;
+                    payrate.Batchtesting = model.PayrateValue;
                 }
                 else if (model.FieldCheck == "HC")
                 {
-                    payrate.Housecall = model.HouseCalls;
+                    payrate.Housecall = model.PayrateValue;
                 }
                 _context.Payrates.Update(payrate);
                 _context.SaveChanges();

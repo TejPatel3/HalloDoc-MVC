@@ -1,41 +1,183 @@
-﻿@{
+﻿@using Services.ViewModels
+
+@model InvoicingViewAll
+@{
     Layout = "_Admin";
-    ViewData["Title"] = "Invoicing";
 }
 
-<div class="container pb-4 bg-light px-1 px-sm-2 px-lg-5" id="provider-maindiv">
-    <div class="d-flex justify-content-between align-items-center w-100 my-3">
-        <h4>Time Sheet</h4>
-        <a asp-controller="Admin" asp-action="AdminDashboard"
-           class="btn m-0 btn-outline-info  px-2 ">
-            <i class="fa-solid fa-chevron-left"></i>
-            Back
-        </a>
-    </div>
-    <div class="container-fluid bg-white shadow">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-between mt-3 ">
-                <div class="dropdown d-flex">
-                    <select name="regionname" id="RegionSearch" class="form-select shadow-none getregion h-100" style="min-width:100px" aria-label="Floating label select example">
-                        <option class="regionselect" selected value="0">Search By Physician</option>
-                        @*      @foreach (var item in Model.regionlist)
-                        {
-                        <option class="regionselect" value="@item.RegionId">@item.Name</option>
-                        } *@
-                    </select>
-                </div>
-                <div class="dropdown d-flex">
-                    <select name="regionname" id="RegionSearch" class="form-select shadow-none getregion h-100" style="min-width:100px" aria-label="Floating label select example">
-                        <option class="regionselect" selected value="0">Search By Physician</option>
-                        @*      @foreach (var item in Model.regionlist)
-                        {
-                        <option class="regionselect" value="@item.RegionId">@item.Name</option>
-                        } *@
-                    </select>
-                </div>
+<div class="container-bigheader d-flex justify-content-center container-fluid">
+    <div class="row w-100">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="d-flex w-100 align-items-center justify-content-between mb-3">
+                <h5>Timesheets</h5>
+                <a asp-action="AdminDashboard" asp-controller="Admin" class="btn btn-outline-info mb-0">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    Back
+                </a>
             </div>
-            <div class="table-responsive col-12 my-0 my-sm-1 my-md-2 " id="ProviderTableDiv">
+            <div class="form-container mb-4">
+                <form id="timesheetPeriodForm" method="post" asp-action="Invoicing" asp-controller="ProviderDashboard">
+                    <div class="row row-cols-1 row-cols-md-3 gx-2 gx-lg-3 w-100 d-flex gap-3 justify-content-start">
+                        <div class="col">
+                            <div class="form-floating">
+                                <select asp-for="MonthHalf" class="form-select monthDrop form-field form-control">
+                                </select>
+                                <label asp-for="MonthHalf">Search By Timesheetperiod</label>
+                                <span asp-validation-for="MonthHalf"></span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                                <select asp-for="selectedPhyId" class="form-select monthDrop form-field form-control">
+                                    @foreach (var phy in Model.Physicians)
+                                    {
+                                        <option value="@phy.PhysicianId">@phy.FirstName @phy.LastName</option>
+                                    }
+                                </select>
+                                <label asp-for="selectedPhyId">Search By Timesheetperiod</label>
+                                <span asp-validation-for="selectedPhyId"></span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
             </div>
+
+            <div id="timesheetTable"></div>
+
         </div>
+        <div class="col-lg-1"></div>
     </div>
 </div>
+
+<script asp-append-version="true">
+    window.onload = function () {
+        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-provider-tab').addClass('admin-layout-nav-active');
+    }
+    $("#invoicingDrop").addClass("dropdown-item-selected");
+    $("#invoicingDropMobile").addClass("offcanDropSelected");
+
+    // Populating the month half Dropdown starts
+    populateTimesheetPeriodDropdown();
+
+    function populateTimesheetPeriodDropdown() {
+        var currentDate = new Date();
+        var currentDay = currentDate.getDate();
+        var currentMonth = currentDate.getMonth() + 1;
+        var currentYear = currentDate.getFullYear();
+        var options = document.getElementById('MonthHalf');
+
+        options.innerHTML = '';
+
+        for (var i = 1; i < currentMonth; i++) {
+            var firstHalfStart = new Date(currentYear, i - 1, 1);
+            var firstHalfEnd = new Date(currentYear, i - 1, 14);
+            var secondHalfStart = new Date(currentYear, i - 1, 15);
+            var secondHalfEnd = new Date(currentYear, i - 1, daysInMonth(i, currentYear));
+
+            options.innerHTML += '<option value="' + i + '-1">' + formatDate(firstHalfStart) + ' - ' + formatDate(firstHalfEnd) + '</option>';
+            options.innerHTML += '<option value="' + i + '-2">' + formatDate(secondHalfStart) + ' - ' + formatDate(secondHalfEnd) + '</option>';
+        }
+
+        if (currentDay <= 14) {
+            var firstHalfStart = new Date(currentYear, currentMonth - 1, 1);
+            var firstHalfEnd = new Date(currentYear, currentMonth - 1, 14);
+            var secondHalfStart = new Date(currentYear, currentMonth - 1, 15);
+            var secondHalfEnd = new Date(currentYear, currentMonth - 1, daysInMonth(currentMonth, currentYear));
+
+            options.innerHTML += '<option value="' + currentMonth + '-1">' + formatDate(firstHalfStart) + ' - ' + formatDate(firstHalfEnd) + '</option>';
+        } else {
+            var secondHalfStart = new Date(currentYear, currentMonth - 1, 15);
+            var secondHalfEnd = new Date(currentYear, currentMonth - 1, daysInMonth(currentMonth, currentYear));
+
+            options.innerHTML += '<option value="' + currentMonth + '-2">' + formatDate(secondHalfStart) + ' - ' + formatDate(secondHalfEnd) + '</option>';
+            if (currentMonth != 12 || currentDay != daysInMonth(currentMonth, currentYear)) {
+                var nextMonth = currentMonth == 12 ? 1 : currentMonth + 1;
+                var nextMonthYear = currentMonth == 12 ? currentYear + 1 : currentYear;
+                var nextMonthFirstHalfStart = new Date(nextMonthYear, nextMonth - 1, 1);
+                var nextMonthFirstHalfEnd = new Date(nextMonthYear, nextMonth - 1, 14);
+
+                options.innerHTML += '<option value="' + currentMonth + '-1">' + formatDate(nextMonthFirstHalfStart) + ' - ' + formatDate(nextMonthFirstHalfEnd) + '</option>';
+            }
+        }
+    }
+
+    function formatDate(date) {
+        var year = date.getFullYear();
+        var month = (date.getMonth() + 1).toString().padStart(2, '0');
+        var day = date.getDate().toString().padStart(2, '0');
+        return year + '/' + month + '/' + day;
+    }
+
+    function daysInMonth(month, year) {
+        return new Date(year, month, 0).getDate();
+    }
+    // Populating the month half Dropdown ends
+
+
+    $(document).ready(function () {
+        let monthHalf = $("#MonthHalf").val();
+        let phyId = $("#selectedPhyId").val();
+        getTimesheetData(monthHalf, phyId);
+
+    });
+
+    $("#MonthHalf, #selectedPhyId").change(function () {
+        let monthHalf = $("#MonthHalf").val();
+        let phyId = $("#selectedPhyId").val();
+        getTimesheetData(monthHalf, phyId);
+
+        console.log(monthHalf);
+        console.log(phyId);
+    });
+
+    function getTimesheetData(monthHalf, phyId) {
+        $.ajax({
+            url: '/Invoicing/GetTimeSheetData',
+            type: 'GET',
+            data: { monthHalf: monthHalf, phyId: phyId },
+            success: function (response) {
+                $("#timesheetTable").html(response);
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    // function getMonthHalfReceiptData(monthHalf) {
+    //     $.ajax({
+    //         url: '/ProviderDashboard/GetTimesheetBillDataOnly',
+    //         type: 'GET',
+    //         data: { monthHalf: monthHalf },
+    //         success: function (response) {
+    //             $("#timesheetReceiptTable").html(response);
+    //         },
+    //         error: function () {
+
+    //         }
+    //     });
+    // }
+
+    // function checkIsFinalize(monthHalf) {
+    //     $.ajax({
+    //         url: '/ProviderDashboard/IsTimesheetFinalize',
+    //         type: 'GET',
+    //         data: { monthHalf: monthHalf },
+    //         success: function (response) {
+    //             if (response.finalized) {
+    //                 $("#openFinalizeBtn").addClass("d-none");
+    //             }
+    //             else {
+    //                 $("#openFinalizeBtn").removeClass("d-none");
+    //             }
+    //         },
+    //         error: function () {
+
+    //         }
+    //     });
+    // }
+
+</script>

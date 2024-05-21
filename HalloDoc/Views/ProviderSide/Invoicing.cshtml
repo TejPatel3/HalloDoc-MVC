@@ -10,7 +10,7 @@
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
             <div class="d-flex w-100 align-items-center justify-content-between mb-3">
-                <p class="mb-0 md-heading">Timesheets</p>
+                <h5>Timesheets</h5>
                 <a asp-action="ProviderDashboard" asp-controller="ProviderSide" class="btn  btn-outline-info mb-0">
                     <i class="fa-solid fa-chevron-left"></i>
                     Back
@@ -37,7 +37,7 @@
 
             </div>
             <div class="form-container">
-                <p class="form-sec-head">TimeSheet Reimbursement</p>
+                <h5>TimeSheet Reimbursement</h5>
                 <div id="timesheetReceiptTable"></div>
             </div>
         </div>
@@ -46,18 +46,17 @@
 </div>
 
 <script asp-append-version="true">
-    $("#invoicing").addClass("tab-list-link-active");
-    $("#invoicingMobile").addClass("offcan-tab-link-active");
-
+    window.onload = function () {
+        $('.admin-layout-nav').removeClass('admin-layout-nav-active');
+        $('#nav-provider-location-tab').addClass('admin-layout-nav-active');
+    }
     populateTimesheetPeriodDropdown();
-
     function populateTimesheetPeriodDropdown() {
         var currentDate = new Date();
         var currentDay = currentDate.getDate();
         var currentMonth = currentDate.getMonth() + 1;
         var currentYear = currentDate.getFullYear();
         var options = document.getElementById('MonthHalf');
-
         options.innerHTML = '';
 
         for (var i = 1; i < currentMonth; i++) {
@@ -65,7 +64,6 @@
             var firstHalfEnd = new Date(currentYear, i - 1, 14);
             var secondHalfStart = new Date(currentYear, i - 1, 15);
             var secondHalfEnd = new Date(currentYear, i - 1, daysInMonth(i, currentYear));
-
             options.innerHTML += '<option value="' + i + '-1">' + formatDate(firstHalfStart) + ' - ' + formatDate(firstHalfEnd) + '</option>';
             options.innerHTML += '<option value="' + i + '-2">' + formatDate(secondHalfStart) + ' - ' + formatDate(secondHalfEnd) + '</option>';
         }

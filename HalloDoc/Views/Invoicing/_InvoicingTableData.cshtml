@@ -1,0 +1,141 @@
+﻿@using Services.ViewModels
+
+@model InvoicingViewAll
+@if (Model.IsFinalized == false)
+{
+    <div class="d-flex form-container align-items-center justify-content-center w-100 mt-5">
+        <p class="fs-4 mb-0">@Model.phyName has not finalized the timesheet in specified time period.</p>
+    </div>
+}
+else if (Model.Invoicing == null)
+{
+    <div class="form-container mt-5">
+        <div class="d-flex w-100 align-items-center justify-content-start mb-3">
+            <h5>Pending Bi-Weekly timesheet</h5>
+        </div>
+        <div class="table-responsive bg-white shadow">
+            <table class="table align-middle md-txt">
+                <thead class="fw-bold bg-secondary text-white">
+                    <tr>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status Date</th>
+                        <th>Approve</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.StartDate.ToString("MMM dd, yyyy")</td>
+                        <td>@Model.EndDate.ToString("MMM dd, yyyy")</td>
+                        <td>@Model.Status</td>
+                        <td>
+                            <a asp-action="ApproveTimeSheet" asp-controller="Invoicing" asp-route-month="@Model.Month" asp-route-half="@Model.Half" asp-route-phyId="@Model.selectedPhyId" class="btn btn-info p-2">Approve</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else if (Model.IsApproved == true)
+{
+    <div class="form-container table-responsive mt-5 bg-white shadow">
+        <table class="table align-middle md-txt">
+            <thead class="fw-bold bg-secondary text-white">
+                <tr>
+                    <td>Date</td>
+                    <td>On-Call Hours</td>
+                    <td>Total Hours</td>
+                    <td class="text-center">Weekend/ Holiday</td>
+                    <td>Number of Housecalls</td>
+                    <td>Number of Phone Consults</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (var i = 0; i < Model.Invoicing.Count(); i++)
+                {
+                    <tr>
+                        <input type="hidden" name="[@i].physicianId" value="@Model.Invoicing.ToList()[0].physicianId" />
+                        <input type="hidden" name="[@i].TimeSheetDetailId" value="@Model.Invoicing.ToList()[i].TimeSheetDetailId" />
+                        <td>
+                            @Model.Invoicing.ToList()[i].Date.ToString("MMM dd, yyyy")
+                            <input type="hidden" name="[@i].Date" value="@Model.Invoicing.ToList()[i].Date" />
+                        </td>
+                        <td>
+                            @Model.Invoicing.ToList()[i].onCallHours
+                            <input type="hidden" name="[@i].onCallHours" value="@Model.Invoicing.ToList()[i].onCallHours" />
+                        </td>
+                        <td>
+                            @Model.Invoicing.ToList()[i].totalHours
+                            <input type="hidden" name="[@i].totalHours" value="@Model.Invoicing.ToList()[i].totalHours" class="form-control form-field" />
+                        </td>
+                        <td class="text-center">
+                            @* <input type="checkbox" value="@Model.Invoicing.ToList()[i].isWeekend" name="[@i].isWeekend" @(Model.Invoicing) /> *@
+                            @if (Model.Invoicing.ToList()[i].isWeekend == true)
+                            {
+                                <span>Yes</span>
+                            }
+                            else
+                            {
+                                <span>No</span>
+                            }
+                        </td>
+                        <td>
+                            @Model.Invoicing.ToList()[i].noOfHouseCalls
+                            <input type="hidden" name="[@i].noOfHouseCalls" value="@Model.Invoicing.ToList()[i].noOfHouseCalls" class="form-control form-field" />
+                        </td>
+                        <td>
+                            @Model.Invoicing.ToList()[i].noOfPhoneConsults
+                            <input type="hidden" name="[@i].noOfPhoneConsults" value="@Model.Invoicing.ToList()[i].noOfPhoneConsults" class="form-control form-field" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="form-container mt-5">
+        <h5>TimeSheet Reimbursement</h5>
+        <div class="form-container mb-4">
+            <form>
+                <div class="table-responsive bg-white shadow">
+                    <table class="table align-middle md-txt">
+                        <thead class="fw-bold bg-secondary text-white">
+                            <tr>
+                                <td>Date</td>
+                                <td>Item</td>
+                                <td>Amount</td>
+                                <td>Bill</td>
+                                <td class="text-center">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Receipt)
+                            {
+                                <input type="hidden" class="TimeDetailId" value="@item.TimeSheetDetailId" />
+                                <tr>
+                                    <td>@item.Date.ToString("MMM dd, yyyy")</td>
+                                    <td>
+                                        <span>@item.Item</span>
+                                    </td>
+                                    <td>
+                                        <span>@item.Amount</span>
+                                    </td>
+                                    <td>
+                                        <span>@item.FileName</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <a href="~/Uploads/Receipts/@item.TimeSheetDetailId/@item.FileName" target="_blank" class="btn-second px-2 p-1">View</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </form>
+        </div>
+    </div>
+}

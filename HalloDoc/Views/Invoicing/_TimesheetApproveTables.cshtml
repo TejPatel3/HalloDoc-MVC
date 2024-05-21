@@ -1,0 +1,194 @@
+﻿@using Services.ViewModels
+
+@model InvoicingViewAll
+
+<div class="form-container mb-4">
+
+    <form id="timesheetPeriodForm">
+        @* <input type="hidden" id="TimesheetIdPartial" value="@Model.TimeSheetId"/> *@
+        <div class="table-responsive bg-white shadow">
+            <table class="table align-middle md-txt ">
+                <thead class="bg-secondary text-white fw-bold">
+                    <tr>
+                        <td>Date</td>
+                        <td>On-Call Hours</td>
+                        <td>Total Hours</td>
+                        <td class="text-center">Weekend/ Holiday</td>
+                        <td>Number of Housecalls</td>
+                        <td>Number of Phone Consults</td>
+                        <td>Total</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < Model.Invoicing.Count(); i++)
+                    {
+                        <tr>
+                            <input type="hidden" name="[@i].physicianId" value="@Model.Invoicing.ToList()[0].physicianId" />
+                            <input type="hidden" name="[@i].TimeSheetDetailId" value="@Model.Invoicing.ToList()[i].TimeSheetDetailId" />
+                            <td>
+                                @Model.Invoicing.ToList()[i].Date.ToString("MM/dd/yyyy")
+                                <input type="hidden" name="[@i].Date" value="@Model.Invoicing.ToList()[i].Date" />
+                            </td>
+                            <td>
+                                @Model.Invoicing.ToList()[i].onCallHours
+                                <input type="hidden" name="[@i].onCallHours" value="@Model.Invoicing.ToList()[i].onCallHours" />
+                            </td>
+                            <td>
+                                <input type="number" name="[@i].totalHours" value="@Model.Invoicing.ToList()[i].totalHours" class="form-control form-field" required min="0" max="24" />
+                            </td>
+                            <td class="text-center">
+                                @* <input type="checkbox" value="@Model.Invoicing.ToList()[i].isWeekend" name="[@i].isWeekend" @(Model.Invoicing) /> *@
+                                @if (Model.Invoicing.ToList()[i].isWeekend == true)
+                                {
+                                    <center><input type="checkbox" name="[@i].isWeekend" class="form-check-input" value="true" checked /></center>
+                                }
+                                else
+                                {
+                                    <center><input type="checkbox" name="[@i].isWeekend" class="form-check-input" value="true" /></center>
+                                }
+                            </td>
+                            <td>
+                                <input type="number" name="[@i].noOfHouseCalls" value="@Model.Invoicing.ToList()[i].noOfHouseCalls" class="form-control form-field" required min="0" max="20" />
+                            </td>
+                            <td>
+                                <input type="number" name="[@i].noOfPhoneConsults" value="@Model.Invoicing.ToList()[i].noOfPhoneConsults" class="form-control form-field" required min="0" max="30" />
+                            </td>
+                            <td></td>
+                        </tr>
+                    }
+                    <tr>
+                        <td class="fw-bold">Payrate</td>
+                        <td></td>
+                        <td>
+                            <input type="number" class="form-control form-field" asp-for="PayTotalHours" readonly />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-field" asp-for="PayWeekend" readonly />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-field" asp-for="PayHouseCalls" readonly />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-field" asp-for="PayPhoneConcults" readonly />
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Invoice Total</td>
+                        <td></td>
+                        <td>
+                            <input type="number" class="form-control form-field" asp-for="SumTotalHours" readonly />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-field" asp-for="SumWeekend" readonly />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-field" asp-for="SumHouseCalls" readonly />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-field" asp-for="SumPhoneConcults" readonly />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-field" asp-for="InvoiceTotal" readonly />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex w-100 justify-content-end">
+                <button id="timesheetSubmitBtn" type="submit" class="btn btn-info p-2 mb-3 me-3">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="form-container mt-5">
+    <h5>TimeSheet Reimbursement</h5>
+    <div class="form-container mb-4 pt-2">
+        <form>
+            <div class="table-responsive bg-white shadow">
+                <table class="table align-middle md-txt">
+                    <thead class="fw-bold bg-secondary text-white">
+                        <tr>
+                            <td>Date</td>
+                            <td>Item</td>
+                            <td>Amount</td>
+                            <td>Bill</td>
+                            <td class="text-center">Action</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Receipt)
+                        {
+                            <input type="hidden" class="TimeDetailId" value="@item.TimeSheetDetailId" />
+                            <tr>
+                                <td>@item.Date.ToString("MMM dd, yyyy")</td>
+                                <td>
+                                    <span>@item.Item</span>
+                                </td>
+                                <td>
+                                    <span>@item.Amount</span>
+                                </td>
+                                <td>
+                                    <span>@item.FileName</span>
+                                </td>
+                                <td>
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <a href="~/Uploads/Receipts/@item.TimeSheetDetailId/@item.FileName" target="_blank" class="btn btn-outline-info px-2 p-1">View</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<script asp-append-version="true">
+    $("#timesheetSubmitBtn").click(function () {
+        event.preventDefault();
+
+        var formData = new FormData($("#timesheetPeriodForm")[0]);
+
+        if (!$("#timesheetPeriodForm").valid()){
+            return;
+        }
+
+        $.ajax({
+            url: '/ProviderSide/AddUpdateTimesheetDetails',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Response submited successfull...!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                if (response.fail) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "error",
+                        title: "Something Went wrong Try Again",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                let month = $("#monthSpan").text();
+                let half = $("#halfSpan").text();
+                LoadBothTableData();
+            },
+            error: function () {
+
+            }
+        });
+    });
+
+</script>

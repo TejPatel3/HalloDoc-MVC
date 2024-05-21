@@ -1,11 +1,11 @@
 ﻿@using Services.ViewModels
 
 @model InvoicingViewAll
-<div id="receiptSection" class="form-container mb-4">
+<div id="receiptSection" class="form-container mb-4 d-none">
     <form id="receiptForm">
-        <div class="table-responsive">
+        <div class="table-responsive bg-white shadow">
             <table class="table align-middle md-txt">
-                <thead>
+                <thead class="fw-bold bg-secondary text-white">
                     <tr>
                         <td width="10%">Date</td>
                         <td width="20%">Item</td>
@@ -34,12 +34,12 @@
                             <td>
                                 @if (item.Amount == null)
                                 {
-                                    <input type="number" class="amount form-control form-field" />
+                                    <input type="number" class="amount form-control form-field" required min="1" max="99999" />
                                 }
                                 else
                                 {
                                     <span class="dull-txt oldValueEdit">@item.Amount</span>
-                                    <input type="number" class="d-none newValueEdit amount form-control form-field" value="@item.Amount" />
+                                    <input type="number" class="d-none newValueEdit amount form-control form-field" value="@item.Amount" required min="1" max="99999" />
                                 }
                             </td>
                             @if (string.IsNullOrEmpty(item.FileName))
@@ -76,8 +76,8 @@
                                         <button type="button" class="d-none btn btn-info px-2 p-1 newValueEdit saveEditBtn">Save</button>
                                         <button type="button" class="d-none btn btn-outline-info px-2 p-1 newValueEdit cancelEditBtn">Cancel</button>
                                         <button type="button" class="editReceiptBtn btn btn-outline-info px-2 p-1 oldValueEdit">Edit</button>
-                                        <button type="button" value="@item.TimeSheetBillId" class="deleteReceiptBtn btn btn-outline-info px-2 p-1 oldValueEdit">Delete</button>
-                                        <a href="~/Uploads/Receipts/@item.TimeSheetDetailId/@item.FileName" target="_blank" class="btn btn-outline-info px-2 p-1 oldValueEdit">View</a>
+                                        <button type="button" value="@item.TimeSheetBillId" class="deleteReceiptBtn btn btn-outline-danger px-2 p-1 oldValueEdit">Delete</button>
+                                        <a href="~/Uploads/Receipts/@item.TimeSheetDetailId/@item.FileName" target="_blank" class="btn btn-outline-success px-2 p-1 oldValueEdit">View</a>
                                     </div>
                                 </td>
                             }
@@ -105,6 +105,10 @@
         console.log("file", fileInput);
         console.log("item", item);
         console.log("amount", amount);
+
+        if (!$("#receiptForm").valid()){
+            return;
+        }
 
         if (timesheetDetailId == 0) {
             Swal.fire({
@@ -175,30 +179,59 @@
     }
 
     $(".deleteReceiptBtn").click(function () {
-        let TimeSheetBillId = $(this).val();
-        console.log(TimeSheetBillId);
-        if (TimeSheetBillId == 0) {
-            toastr.error("File doesn't exists");
-            return;
-        }
-        console.log(TimeSheetBillId);
-        $.ajax({
-            url: '/ProviderSide/DeleteReceipt',
-            type: 'POST',
-            data: { timeSheetBillId: TimeSheetBillId },
-            success: function (response) {
-                if (response.success) {
-                    toastr.success(response.message);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+                let TimeSheetBillId = $(this).val();
+                console.log(TimeSheetBillId);
+                if (TimeSheetBillId == 0) {
+                    toastr.error("File doesn't exists");
+                    return;
                 }
-                if (response.fail) {
-                    toastr.error(response.message);
-                }
-                let month = $("#monthSpan").text();
-                let half = $("#halfSpan").text();
-                getMonthHalfReceiptData(month, half);
-            },
-            error: function () {
+                console.log(TimeSheetBillId);
+                $.ajax({
+                    url: '/ProviderSide/DeleteReceipt',
+                    type: 'POST',
+                    data: { timeSheetBillId: TimeSheetBillId },
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Deleted Successfully",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                        if (response.fail) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "error",
+                                title: "Something Went wrong Try Again",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                        let month = $("#monthSpan").text();
+                        let half = $("#halfSpan").text();
+                        getMonthHalfReceiptData(month, half);
+                    },
+                    error: function () {
 
+                    }
+                });
             }
         });
     });
