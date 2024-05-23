@@ -825,13 +825,7 @@ namespace DataModels.Controllers.ProviderSide
 
         }
 
-        //[HttpPost]
-        //public IActionResult BiWeeklyTimeSheet(IEnumerable<InvoicingView> model)
-        //{
 
-        //    _unitOfWork.ProviderSite.AddUpdateTimesheet(model);
-        //    return Json(new { success = true, message = "Timesheet Updated Successfully" });
-        //}
 
         [HttpPost]
         public IActionResult AddUpdateTimesheetDetails(IEnumerable<InvoicingView> model)
